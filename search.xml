@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title><![CDATA[python脚本基础]]></title>
+    <url>%2F2018%2F07%2F10%2Fpython%E8%84%9A%E6%9C%AC%E5%9F%BA%E7%A1%80%2F</url>
+    <content type="text"><![CDATA[数组类型tuple字典类型dict使用*tuple解析数组使用**dict解析字典传参数的时候 单个字符,数字由*args接受,形成tuple键值对有**kwargs接受,形成dict主函数if __name__ == &#39;__main__&#39;当然也可以使用sys.argv来读取参数]]></content>
+      <categories>
+        <category>python</category>
+      </categories>
+      <tags>
+        <tag>基础</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[shell基础]]></title>
+    <url>%2F2018%2F07%2F10%2Fshell%E5%9F%BA%E7%A1%80%2F</url>
+    <content type="text"><![CDATA[基础知识12345#!/bin/bash#!/bin/sh#!/usr/bin/awk#!/usr/bin/env python#!/usr/bin/perl 这几行在第一行,不再第一行就是注释不用的话就用相关解释器带上文件名执行在写脚本的时候如果不加前面的也会交给bash解释,但是还是指定解释器比较好 定义变量名的时候等号旁边没有空格 要在登录后显示初始化内容可以将脚本文件放到 /etc/profile.d/ 的下面或者是更改/etc/motd 文件 单引号中`` 命令无效 当参数大于9个要使用${}方式 touch 主要是用来更新时间的…. 使用cat连接两个文件 ln -s 源文件 快捷方式 s表示链接 有多个命令就使用;号,若将输出全都重定向用{}扩起来,{}是父shell,()是子shell 12345678read读到换行符为止,所以就使用循环可以将文件读完,不然好像只能读一行黑洞/dev/null 了解一下-.-cp mv rm 加上-i 进行确认`command` == $(command)`read file` 是要求用户输入并且保存到file变量中...`read -p &quot;&quot; ver `就像scanf一样..(我下所的)readonly xxx=1 或者readonly xxx(已定义) 表示只读无法改变包括unset用重定向代替输入 shell中0给了stdin 1给了stdout 2给了stderr 其余数字可以来关联输出文件 例如文件中&gt;&amp;3 命令用3&gt;文件 输出到文件中 exec 将文件关联paste两个文件连接tr替换if空格[] while空格: expand unexpand 将tab 转换成空格 一般只早开头 使用-a 替换全部 unset 消除定义的变量 ${array[*]} == ${array[@]} “”${array[*]} != “${array[@]}”前面是整个数组的字符串,后面时整个数组 123456789条件语句if or elif 后面要跟上 then 如:if [ xx ]then xxxxxelif [ xxx ]then xxxxxfi 12345678[ ]是shell的内置命令 下列给出操作符:-eq equal to-ne not equal to-lt less than-gt great thange (没有-哦) great or equal如果条件判断与then写在统一行then前面加;[]两侧要有空格 在case中 中止case语句用;;如果用;&amp; or ;;&amp;来终止还是执行下去,他中止的是子句,会使用word在去匹配pattern,直到遇到;;结束case递增可以使用let x=$x+1 当然也可以使用expr语句-.-我也是随机选择的….do 和while [ ]写在一起的时候do前面有分号while 后面可以加上命令list 使用分号;来隔开,决定是否推出循环的是最后一个命令返回值,注意是最后一个!!!其中命令都是用[]扩起来的列入[];[];[][] 是条件-n String 判断字符串长度是否非0-z Stirng 判断字符串长度为0时就断(zero)String=StringString!=String 1234567for 后面不加in就选择传入的参数同时也可以写的像c的for一样但是写成要这样for((p=1,k=321;p&lt;10;p++,k++))do xxxxxdone 1234select var in xxx xxx xxx xxxdo xxxx(可以是case或者是if条件判断)done 在select中要写退出循环的条件,不然会一直循环下去,还有就是要写其他选项的条件,不然不科学-.- option 参数的代码123456while getopts x:x:x: OPTION 这个option可以随便定义do case $OPTION in x) xxx=$OPTAGE;; 这个变量时规定的 与$REPLY一样done 写的函数可以直接调用 条件中-r 可读 -w 可写 -a and12345$&#123;xx:-dsa&#125;等:(也可以通过其他方式来实现) :-先默认后赋值,不改变 :+先赋值,不改变 :=改变 :?若是空的则输出错误退出脚本 $PAGER 似乎是系统变量 显示文档的less也可以通过其他方式来实现 echo -n 不换行输出 -e 激活转移字符 sort -u 忽略相同行 当不能使用管道时可以使用命令替代参数 数字或者字符串expression不能出现在$()中,要用()扩起来后在放到$()中间…… 循环的话要注意变量的赋值 find 命令 从给定的文件位置开始找 -iname 忽略大小写-mtime 表示修改时间 -mtime n修改时间为n天-mtime +n 大于n天-mtime -n 小于n天 如果有多个命令使用-a来连接 其中如果有()要使用\ 来转义 -o 或者 xargs 可以处理很多参数 locate 查询本地的数据库 find是直接查找文件系统 dd if=file of=file count=blocks bs=bytes 信号 通过trap xx(函数名) 数字 可以将让函数才该信号出现的时候调用该函数使用trap也可以脚本结束后调用函数,数字是0使用’’ 或者: 是屏蔽中断INT信号使用trap INT 来恢复exit xx 中xx是信号kill 进程的时候要先kill掉子进程,不然会交给init进程接管使用&amp;&amp;连接多个命令的时候是一个一个执行的,会创建子bash执行进程 command|sed &#39;command&#39;sed &#39;command&#39; file 使用;分号来连接多个command(不用另起’’) 或者使用-e(要’’分离每个命令)也可以将多个command写在一个文件中,-f指定文件!可以对取值范围取反sed stream editor 可以从管道或者文件中读取参数 sed -n &#39;1~2p&#39; 1 start 2 step sed还能加上正则/^$/使用正则还能代替行号使用&amp;表示正则表达式获取的结果 awk ‘script’ files12345678910&apos;script&apos; 中一般为 /pattern/&#123;action&#125; exprssion &#123;action&#125;其中特殊的有: value ~ /pattern/ 与正则匹配 加个!就是不匹配 可以使用()将判断分离,这样()间可以使用||或者&amp;&amp;链接分割符通过-F指定可以在awk文件中写好命令之后使用-f来指定文件使用BEGIN&#123;&#125;来执行处理数据之前执行的初始化操作使用next来表示 将两个命令的结果连接起来 #!/bin/bash/awk -f awk脚本 .awk awk中有内建变量 NR为行数 FS分割符 等等]]></content>
+      <categories>
+        <category>shell</category>
+      </categories>
+      <tags>
+        <tag>基础</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[vim基础]]></title>
+    <url>%2F2018%2F07%2F10%2Fvim%E5%9F%BA%E7%A1%80%2F</url>
+    <content type="text"><![CDATA[ctrl + s 卡死后使用 ctrl + q z回车 将光标所在行移动到屏幕顶端 z. 将光标所在行移动到屏幕中间 z- 将光标所在行移动到屏幕低端]]></content>
+      <categories>
+        <category>vim</category>
+      </categories>
+      <tags>
+        <tag>基础</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[sql基本知识]]></title>
+    <url>%2F2018%2F07%2F10%2Fsql%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86%2F</url>
+    <content type="text"><![CDATA[当我在将大小写忽略的时候之前使用大写的数据库的名字就进不去了,因为系统自动将我打的大写换成了小写….. 每一个检查点都会记录他自己的操作对象的信息状态,当共用的是同一个硬盘上的数据,硬盘上的数据是会被最近的检查点所覆盖掉的,当要回复在之前的某一个特定的检查点的时候,是先通过最近的检查点来逐级向上恢复的]]></content>
+      <categories>
+        <category>sql</category>
+      </categories>
+      <tags>
+        <tag>基础</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[git基本操作]]></title>
+    <url>%2F2018%2F07%2F10%2Fgit%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C%2F</url>
+    <content type="text"><![CDATA[一般提交操作为:1234git add -all ==&gt; gaagit commit -m &quot;xxxx&quot; ==&gt; gcgit pull ==&gt; glgit push ==&gt; gp 自动保存密码:git config --global credential.helper store]]></content>
+      <categories>
+        <category>git</category>
+      </categories>
+      <tags>
+        <tag>git基本操作</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[css渐变动画]]></title>
+    <url>%2F2018%2F07%2F10%2Fcss%E6%B8%90%E5%8F%98%E5%8A%A8%E7%94%BB%2F</url>
+    <content type="text"><![CDATA[鼠标放上去渐变12345678div&#123;width:100px;transition: width 2s;-moz-transition: width 2s; /* Firefox 4 */-webkit-transition: width 2s; /* Safari 和 Chrome */-o-transition: width 2s; /* Opera */&#125; 使div居中:要设置div的宽度 再使用margin 0 auto设置]]></content>
+      <categories>
+        <category>css</category>
+      </categories>
+      <tags>
+        <tag>渐变</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[关于pacman]]></title>
+    <url>%2F2018%2F07%2F10%2Fpacman%2F</url>
+    <content type="text"><![CDATA[pacman -D --asexplicite xxx 设置为单独安装的包 pacman -Qtd 出来的包可以删 但有些删除可能会有影响,大多没用 pacman -Rscn 可以删除干净包 pacman -Rdd 是在出现了依赖问题的时候用用,一般就不用它,他是强行破坏 依赖关系 有些依赖关系不一定会长久存在,所以pacman -Qtd不是删除干净包就一定没有东西的 可能会在你装包的时候出现依赖的更新 pacman不会自动帮你删除孤包 Rdd所操作的对象往往是这个包同时被其他的包依赖， 如果你正常情况下用R去卸它是会报错提示破坏依赖的。 比如一条依赖树a-b-c，即c依赖b，b又依赖a， 那么如果你用R或者Rs去卸载b就会报错提示你c的依赖将被破坏所以不能卸。 如果是用Rdd卸载b就是不管谁依赖它就是强行把b一个东西删掉， 本质上是临时破坏一下依赖。这个做法往往是出了什么问题才会用的。 卸载同时删配置文件的参数是-n，-c的意思是同时把依赖它的包也卸载掉 总结一下 对于a-b-c这样一条依赖树且a和b都是作为依赖安装的， 那么如果使用-R、-Rs去卸载b就会报错提示c的依赖被破坏并中断操作， 使用-Rdd卸载b就会强行删b，同时a和c被保留。 使用-Rc卸b就会把b和c卸载掉，用-Rsc卸b就会把abc全卸掉]]></content>
+      <categories>
+        <category>arch</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+      </tags>
+  </entry>
+</search>
