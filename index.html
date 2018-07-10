@@ -408,7 +408,19 @@
             
 
             
+              <span class="post-meta-divider">|</span>
+            
 
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-07-10T16:35:44+08:00">
+                2018-07-10
+              </time>
             
           </span>
 
@@ -453,9 +465,51 @@
 
           
           
+             <span id="/2018/07/10/python脚本基础/" class="leancloud_visitors" data-flag-title="python脚本基础">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
 
           
 
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  72
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  1
+                </span>
+              
+            </div>
           
 
           
@@ -561,7 +615,19 @@
             
 
             
+              <span class="post-meta-divider">|</span>
+            
 
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-07-10T19:15:53+08:00">
+                2018-07-10
+              </time>
             
           </span>
 
@@ -606,9 +672,51 @@
 
           
           
+             <span id="/2018/07/10/shell基础/" class="leancloud_visitors" data-flag-title="shell基础">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
 
           
 
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1,587
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  6
+                </span>
+              
+            </div>
           
 
           
@@ -628,11 +736,11 @@
       
         
           
-            <h4 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line">#!/bin/sh</span><br><span class="line">#!/usr/bin/awk</span><br><span class="line">#!/usr/bin/env python</span><br><span class="line">#!/usr/bin/perl</span><br></pre></td></tr></table></figure>
+            <h4 id="shell开头"><a href="#shell开头" class="headerlink" title="shell开头"></a>shell开头</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line">#!/bin/sh</span><br><span class="line">#!/usr/bin/awk</span><br><span class="line">#!/usr/bin/env python</span><br><span class="line">#!/usr/bin/perl</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>这几行在第一行,不再第一行就是注释<br>不用的话就用相关解释器带上文件名执行<br>在写脚本的时候如果不加前面的也会交给bash解释,但是还是指定解释器比较好</p>
 </blockquote>
-<p>定义变量名的时候等号旁边没有空格</p>
+<h4 id="注意点一"><a href="#注意点一" class="headerlink" title="注意点一"></a>注意点一</h4><p>定义变量名的时候等号旁边没有空格</p>
 <p>要在登录后显示初始化内容可以将脚本文件放到 /etc/profile.d/</p>
 <p>的下面或者是更改/etc/motd 文件</p>
 <p>单引号中`` 命令无效</p>
@@ -647,7 +755,7 @@
 <p>ln -s 源文件 快捷方式 s表示链接</p>
 </blockquote>
 <p>有多个命令就使用;号,若将输出全都重定向用{}扩起来,{}是父shell,()是子shell</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">read读到换行符为止,所以就使用循环可以将文件读完,不然好像只能读一行</span><br><span class="line">黑洞/dev/null 了解一下-.-</span><br><span class="line">cp mv rm 加上-i 进行确认</span><br><span class="line">`command` == $(command)</span><br><span class="line">`read file` 是要求用户输入并且保存到file变量中...</span><br><span class="line">`read -p &quot;&quot; ver `就像scanf一样..(我下所的)</span><br><span class="line">readonly xxx=1 或者readonly xxx(已定义) 表示只读无法改变包括unset</span><br><span class="line">用重定向代替输入</span><br></pre></td></tr></table></figure>
+<h4 id="注意点二"><a href="#注意点二" class="headerlink" title="注意点二"></a>注意点二</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">read读到换行符为止,所以就使用循环可以将文件读完,不然好像只能读一行</span><br><span class="line">黑洞/dev/null 了解一下-.-</span><br><span class="line">cp mv rm 加上-i 进行确认</span><br><span class="line">`command` == $(command)</span><br><span class="line">`read file` 是要求用户输入并且保存到file变量中...</span><br><span class="line">`read -p &quot;&quot; ver `就像scanf一样..(我下所的)</span><br><span class="line">readonly xxx=1 或者readonly xxx(已定义) 表示只读无法改变包括unset</span><br><span class="line">用重定向代替输入</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>shell中0给了stdin 1给了stdout 2给了stderr</p>
 </blockquote>
@@ -666,7 +774,7 @@
 </blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">条件语句if or elif 后面要跟上 then 如:</span><br><span class="line"></span><br><span class="line">if [ xx ]</span><br><span class="line">then</span><br><span class="line">    xxxxx</span><br><span class="line">elif [ xxx ]</span><br><span class="line">then</span><br><span class="line">    xxxxx</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[  ]是shell的内置命令 下列给出操作符:</span><br><span class="line">-eq equal to</span><br><span class="line">-ne not equal to</span><br><span class="line">-lt less than</span><br><span class="line">-gt great than</span><br><span class="line">ge (没有-哦) great or equal</span><br><span class="line">如果条件判断与then写在统一行then前面加;</span><br><span class="line">[]两侧要有空格</span><br></pre></td></tr></table></figure>
-<blockquote>
+<h4 id="注意点三"><a href="#注意点三" class="headerlink" title="注意点三"></a>注意点三</h4><blockquote>
 <p>在case中 中止case语句用;;如果用;&amp; or ;;&amp;来终止还是执行下去,他中止的是子句,会使用word在去匹配pattern,直到遇到;;结束case<br>递增可以使用let x=$x+1 当然也可以使用expr语句-.-我也是随机选择的….<br>do 和while [  ]写在一起的时候do前面有分号<br>while 后面可以加上命令list 使用分号;来隔开,决定是否推出循环的是最后一个命令返回值,注意是最后一个!!!<br>其中命令都是用[]扩起来的列入[];[];[]<br>[] 是条件<br>-n String 判断字符串长度是否非0<br>-z Stirng 判断字符串长度为0时就断(zero)<br>String=String<br>String!=String</p>
 </blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">for 后面不加in就选择传入的参数</span><br><span class="line">同时也可以写的像c的for一样但是写成要这样</span><br><span class="line"></span><br><span class="line">for((p=1,k=321;p&lt;10;p++,k++))</span><br><span class="line">do</span><br><span class="line">    xxxxx</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
@@ -805,7 +913,19 @@
             
 
             
+              <span class="post-meta-divider">|</span>
+            
 
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-07-10T16:07:29+08:00">
+                2018-07-10
+              </time>
             
           </span>
 
@@ -850,9 +970,51 @@
 
           
           
+             <span id="/2018/07/10/vim基础/" class="leancloud_visitors" data-flag-title="vim基础">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
 
           
 
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  53
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  1
+                </span>
+              
+            </div>
           
 
           
@@ -961,7 +1123,19 @@
             
 
             
+              <span class="post-meta-divider">|</span>
+            
 
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-07-10T19:12:14+08:00">
+                2018-07-10
+              </time>
             
           </span>
 
@@ -1006,9 +1180,51 @@
 
           
           
+             <span id="/2018/07/10/sql基本知识/" class="leancloud_visitors" data-flag-title="sql基本知识">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
 
           
 
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  142
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  1
+                </span>
+              
+            </div>
           
 
           
@@ -1028,12 +1244,8 @@
       
         
           
-            <ul>
-<li><p>当我在将大小写忽略的时候之前使用大写的数据库的名字就进不去了,因为系统自动将我打的大写换成了小写…..</p>
-</li>
-<li><p>每一个检查点都会记录他自己的操作对象的信息状态,当共用的是同一个硬盘上的数据,硬盘上的数据是会被最近的检查点所覆盖掉的,当要回复在之前的某一个特定的检查点的时候,是先通过最近的检查点来逐级向上恢复的</p>
-</li>
-</ul>
+            <p>当我在将大小写忽略的时候之前使用大写的数据库的名字就进不去了,因为系统自动将我打的大写换成了小写…..</p>
+<p>每一个检查点都会记录他自己的操作对象的信息状态,当共用的是同一个硬盘上的数据,硬盘上的数据是会被最近的检查点所覆盖掉的,当要回复在之前的某一个特定的检查点的时候,是先通过最近的检查点来逐级向上恢复的</p>
 
           
         
@@ -1119,7 +1331,19 @@
             
 
             
+              <span class="post-meta-divider">|</span>
+            
 
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-07-10T15:58:26+08:00">
+                2018-07-10
+              </time>
             
           </span>
 
@@ -1164,9 +1388,51 @@
 
           
           
+             <span id="/2018/07/10/git基本操作/" class="leancloud_visitors" data-flag-title="git基本操作">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
 
           
 
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  38
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  1
+                </span>
+              
+            </div>
           
 
           
@@ -1273,7 +1539,19 @@
             
 
             
+              <span class="post-meta-divider">|</span>
+            
 
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-07-10T15:50:41+08:00">
+                2018-07-10
+              </time>
             
           </span>
 
@@ -1318,9 +1596,51 @@
 
           
           
+             <span id="/2018/07/10/css渐变动画/" class="leancloud_visitors" data-flag-title="css渐变动画">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
 
           
 
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  58
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  1
+                </span>
+              
+            </div>
           
 
           
@@ -1428,7 +1748,19 @@
             
 
             
+              <span class="post-meta-divider">|</span>
+            
 
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-07-10T15:46:04+08:00">
+                2018-07-10
+              </time>
             
           </span>
 
@@ -1473,9 +1805,51 @@
 
           
           
+             <span id="/2018/07/10/pacman/" class="leancloud_visitors" data-flag-title="关于pacman">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
 
           
 
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  412
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  1
+                </span>
+              
+            </div>
           
 
           
@@ -1685,8 +2059,17 @@ Rdd所操作的对象往往是这个包同时被其他的包依赖，
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">兔子春</span>
+  <span class="author" itemprop="copyrightHolder">由一位伟大的中二艺术家创作</span>
 
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">2.4k</span>
   
 </div>
 
@@ -2178,10 +2561,142 @@ Rdd所操作的对象往往是这个包同时被其他的包依赖，
   
 
   
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("ri4cqTT5k46WXRSHIdYoUNNk-gzGzoHsz", "E81NJ1O4Tj8webGC8Hz9L4Su");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
 
   
 
   
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+      pbOptions = {};
+      
+          pbOptions.iconStyle = "box";
+      
+          pbOptions.boxForm = "horizontal";
+      
+          pbOptions.position = "bottomCenter";
+      
+          pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Evernote,Mailto";
+      
+      new needShareButton('#needsharebutton-postbottom', pbOptions);
+    
+    
+  </script>
+
   
 
   
