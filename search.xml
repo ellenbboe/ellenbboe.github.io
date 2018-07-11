@@ -1,6 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[git443错误]]></title>
+    <url>%2F2018%2F07%2F11%2Fgit443%E9%94%99%E8%AF%AF%2F</url>
+    <content type="text"><![CDATA[在git push的时候出现OpenSSL SSL_connect: SSL_ERROR_SYSCALL in connection to github.com:443 网上的解决方法都不管用 重新clone到本地 进行上传 成功]]></content>
+      <categories>
+        <category>git</category>
+      </categories>
+      <tags>
+        <tag>443错误</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[git上传脚本]]></title>
+    <url>%2F2018%2F07%2F11%2Fgit%E4%B8%8A%E4%BC%A0%E8%84%9A%E6%9C%AC%2F</url>
+    <content type="text"><![CDATA[由于上传命令太多了,所以写了脚本命名为comgit12#!/bin/bashgit add --all;git commit -m &quot;$1&quot;;git pull;git push; 使用方法 comgit &quot;comment&quot;]]></content>
+      <categories>
+        <category>git</category>
+      </categories>
+      <tags>
+        <tag>脚本</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[python脚本基础]]></title>
     <url>%2F2018%2F07%2F10%2Fpython%E8%84%9A%E6%9C%AC%E5%9F%BA%E7%A1%80%2F</url>
     <content type="text"><![CDATA[数组类型tuple字典类型dict使用*tuple解析数组使用**dict解析字典传参数的时候 单个字符,数字由*args接受,形成tuple键值对有**kwargs接受,形成dict主函数if __name__ == &#39;__main__&#39;当然也可以使用sys.argv来读取参数]]></content>
