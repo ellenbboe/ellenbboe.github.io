@@ -141,7 +141,7 @@
 <meta property="og:site_name" content="Eden">
 <meta property="og:description" content="准备准备空间大概8g 准备在u盘上构建系统我准备将u盘对半分成两个盘一个安装系统,就用ext4一个当作普通的u盘来用记得分区的时候格式化可以使用fdisk 或者 其他工具 另外: 我的arch上没有创建swap分区 挂载U盘/移动硬盘使用fdisk -l命令得到123456789Disk /dev/sdb：29 GiB，31104958464 字节，60751872 个扇区单元：扇区 / 1 *">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-07-12T08:28:29.024Z">
+<meta property="og:updated_time" content="2018-07-12T12:18:40.950Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux From Scrach 1">
 <meta name="twitter:description" content="准备准备空间大概8g 准备在u盘上构建系统我准备将u盘对半分成两个盘一个安装系统,就用ext4一个当作普通的u盘来用记得分区的时候格式化可以使用fdisk 或者 其他工具 另外: 我的arch上没有创建swap分区 挂载U盘/移动硬盘使用fdisk -l命令得到123456789Disk /dev/sdb：29 GiB，31104958464 字节，60751872 个扇区单元：扇区 / 1 *">
@@ -416,7 +416,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-07-12T16:28:29+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-07-12T20:18:40+08:00">
                 2018-07-12
               </time>
             
@@ -488,7 +488,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  2,725
+                  2,771
                 </span>
               
 
@@ -591,9 +591,10 @@
 </ol>
 </blockquote>
 <p>这里我在使用lfs帐号进入lfs文件夹的时候出现了权限不足,我使用了chmod加了权限</p>
-<p>之后就是漫长的编译过程<br>具体按照官方资料上进行编译</p>
-<h5 id="中文资料-已过期7-7"><a href="#中文资料-已过期7-7" class="headerlink" title="中文资料(已过期7.7)"></a>中文资料(已过期7.7)</h5><p><a href="https://linux.cn/lfs/LFS-BOOK-7.7-systemd/index.html" target="_blank" rel="noopener">https://linux.cn/lfs/LFS-BOOK-7.7-systemd/index.html</a></p>
-<h5 id="英文资料-目前时8-2"><a href="#英文资料-目前时8-2" class="headerlink" title="英文资料(目前时8.2)"></a>英文资料(目前时8.2)</h5><p><a href="http://www.linuxfromscratch.org/lfs/view/stable/index.html" target="_blank" rel="noopener">http://www.linuxfromscratch.org/lfs/view/stable/index.html</a></p>
+<p>之后就是漫长的编译过程<br>具体按照官方资料上进行编译<br>注意在编译过程中必须清楚知道当前步骤 make 与 make install 防止错误</p>
+<p>====&gt;之后的构建过程 之后补充上</p>
+<h4 id="资料-建议配合使用"><a href="#资料-建议配合使用" class="headerlink" title="资料(建议配合使用)"></a>资料(建议配合使用)</h4><h5 id="中文资料-已过期7-7"><a href="#中文资料-已过期7-7" class="headerlink" title="中文资料(已过期7.7)"></a>中文资料(已过期7.7)</h5><p><a href="https://linux.cn/lfs/LFS-BOOK-7.7-systemd/index.html" target="_blank" rel="noopener">https://linux.cn/lfs/LFS-BOOK-7.7-systemd/index.html</a></p>
+<h5 id="英文资料-目前是8-2"><a href="#英文资料-目前是8-2" class="headerlink" title="英文资料(目前是8.2)"></a>英文资料(目前是8.2)</h5><p><a href="http://www.linuxfromscratch.org/lfs/view/stable/index.html" target="_blank" rel="noopener">http://www.linuxfromscratch.org/lfs/view/stable/index.html</a></p>
 
       
     </div>
@@ -835,7 +836,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#准备"><span class="nav-number">1.</span> <span class="nav-text">准备</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#挂载U盘-移动硬盘"><span class="nav-number">2.</span> <span class="nav-text">挂载U盘/移动硬盘</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#软件包和补丁"><span class="nav-number">3.</span> <span class="nav-text">软件包和补丁</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#最后的准备工作"><span class="nav-number">4.</span> <span class="nav-text">最后的准备工作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#添加-LFS-用户"><span class="nav-number">4.1.</span> <span class="nav-text">添加 LFS 用户</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#设置环境"><span class="nav-number">4.2.</span> <span class="nav-text">设置环境</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#关于-SBU"><span class="nav-number">4.3.</span> <span class="nav-text">关于 SBU</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#构建临时系统"><span class="nav-number">5.</span> <span class="nav-text">构建临时系统</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#中文资料-已过期7-7"><span class="nav-number">5.0.1.</span> <span class="nav-text">中文资料(已过期7.7)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#英文资料-目前时8-2"><span class="nav-number">5.0.2.</span> <span class="nav-text">英文资料(目前时8.2)</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#准备"><span class="nav-number">1.</span> <span class="nav-text">准备</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#挂载U盘-移动硬盘"><span class="nav-number">2.</span> <span class="nav-text">挂载U盘/移动硬盘</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#软件包和补丁"><span class="nav-number">3.</span> <span class="nav-text">软件包和补丁</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#最后的准备工作"><span class="nav-number">4.</span> <span class="nav-text">最后的准备工作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#添加-LFS-用户"><span class="nav-number">4.1.</span> <span class="nav-text">添加 LFS 用户</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#设置环境"><span class="nav-number">4.2.</span> <span class="nav-text">设置环境</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#关于-SBU"><span class="nav-number">4.3.</span> <span class="nav-text">关于 SBU</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#构建临时系统"><span class="nav-number">5.</span> <span class="nav-text">构建临时系统</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#资料-建议配合使用"><span class="nav-number">5.1.</span> <span class="nav-text">资料(建议配合使用)</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#中文资料-已过期7-7"><span class="nav-number">5.1.1.</span> <span class="nav-text">中文资料(已过期7.7)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#英文资料-目前是8-2"><span class="nav-number">5.1.2.</span> <span class="nav-text">英文资料(目前是8.2)</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
