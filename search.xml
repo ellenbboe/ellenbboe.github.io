@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[2018-07-14 lfs编译日志]]></title>
+    <url>%2F2018%2F07%2F14%2F2018-07-14%2F</url>
+    <content type="text"><![CDATA[编译gcc出现错误:123456789In file included from ../../gcc-4.9.2/gcc/cp/except.c:1013:cfns.gperf:101:1: error: &apos;const char* libc_name_p(const char*, unsigned int)&apos; redeclared inline with &apos;gnu_inline&apos; attributecfns.gperf:26:14: note: &apos;const char* libc_name_p(const char*, unsigned int)&apos; previously declared herecfns.gperf:26:14: warning: inline function &apos;const char* libc_name_p(const char*, unsigned int)&apos; used but never definedmake[2]: *** [Makefile:1058: cp/except.o] Error 1make[2]: Leaving directory &apos;/mnt/lfs/sources/gcc-build/gcc&apos;make[1]: *** [Makefile:4027: install-gcc] Error 2make[1]: Leaving directory &apos;/mnt/lfs/sources/gcc-build&apos;make: *** [Makefile:2176: install] Error 2 原因 : 编译用的gcc版本太高]]></content>
+      <categories>
+        <category>lfs编译日志</category>
+      </categories>
+      <tags>
+        <tag>日志</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[tar基础]]></title>
     <url>%2F2018%2F07%2F14%2Ftar%2F</url>
     <content type="text"><![CDATA[记录: 来自网上 12345678910111213141516171、*.tar 用 tar -xvf 解压2、*.gz 用 gzip -d或者gunzip 解压3、*.tar.gz和*.tgz 用 tar -xzf 解压4、*.bz2 用 bzip2 -d或者用bunzip2 解压5、*.tar.bz2用tar -xjf 解压6、*.Z 用 uncompress 解压7、*.tar.Z 用tar -xZf 解压8、*.rar 用 unrar e解压9、*.zip 用 unzip 解压 我一般解压都是直接使用tar -xvf xxx这样比较省事吧 (=\ _ \ =) 然后压缩就是直接使用 tar -cvf xxx 了 加入有大小需求的话,我会考虑加上z,j之类的]]></content>
