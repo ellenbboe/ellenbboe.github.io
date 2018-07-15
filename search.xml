@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[2018-07-15 lfs编译日志]]></title>
+    <url>%2F2018%2F07%2F15%2F2018-07-15%2F</url>
+    <content type="text"><![CDATA[接上一次错误:发现是自己设备umount没有全部umount掉,然后就关机了结果出现了错误,经过一系列的操作后,正确这里简单的写一下:最开始是找到网上的fuser,结果发现没什么用最后使用mount,列出所有挂载点,将我u盘的挂载点逐一umount掉从最小的开始,最后成功 ps:gcc编译时长11小时,苦了我的电脑了cpu 70多度已经习以为常,编译工具链有点麻烦啊我现在进度还只有一半,后面的总结估计要好几天才能完成]]></content>
+      <categories>
+        <category>lfs编译日志</category>
+      </categories>
+      <tags>
+        <tag>日志</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[keyboard_shortcuts]]></title>
     <url>%2F2018%2F07%2F14%2Fkeyboard-shortcuts%2F</url>
     <content type="text"><![CDATA[内核以下是系统底层的快捷键，通常被用于调试。遇到系统问题，请尽可能尝试这些快捷键，而不是按住电源开关强制关机。 这些快捷键需要首先使用如下命令激活echo &quot;1&quot; &gt; /proc/sys/kernel/sysrq如果你希望在系统启动时就开启，请编辑 /etc/sysctl.d/99-sysctl.conf 并添加配置 kernel.sysrq = 1. 如果你希望在挂载分区和启动引导前就开启的话, 请在内核启动参数上添加 sysrq_always_enabled=1. 记住这个激活命令的通用口诀是 “Reboot Even If System Utterly Broken” (或者”REISUB“)。 键盘快捷键 描述Alt+SysRq+R+ Unraw 从X收回对键盘的控制 Alt+SysRq+E+ Terminate 向所有进程发送SIGTERM信号，让它们正常终止 Alt+SysRq+I+ Kill 向所有进程发送SIGKILL信号，强制立即终止 Alt+SysRq+S+ Sync 将待写数据写入磁盘 Alt+SysRq+U+ Unmount 卸载所有硬盘然后重新按只读模式挂载 Alt+SysRq+B+ Reboot 重启]]></content>
