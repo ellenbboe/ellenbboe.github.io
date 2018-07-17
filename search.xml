@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[迷时]]></title>
+    <url>%2F2018%2F07%2F17%2Fxiaoshi1%2F</url>
+    <content type="text"><![CDATA[时光从不给人告白的机会慢慢的便失去了感觉直到掌心温度渐渐流逝眼眶才湿润起来到底我该以怎样的眼神看着你抉择中我总自以为抓住了时光却不想陷入了它的把戏可惜一生只够走一次只愿能给我留个念想]]></content>
+      <categories>
+        <category>诗歌集</category>
+      </categories>
+      <tags>
+        <tag>小诗</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[2018-07-15 lfs编译日志]]></title>
     <url>%2F2018%2F07%2F15%2F2018-07-15%2F</url>
     <content type="text"><![CDATA[接上一次错误:发现是自己设备umount没有全部umount掉,然后就关机了结果出现了错误,经过一系列的操作后,正确这里简单的写一下:最开始是找到网上的fuser,结果发现没什么用最后使用mount,列出所有挂载点,将我u盘的挂载点逐一umount掉从最小的开始,最后成功 ps:gcc编译时长11小时,苦了我的电脑了cpu 70多度已经习以为常,编译工具链有点麻烦啊我现在进度还只有一半,后面的总结估计要好几天才能完成]]></content>
