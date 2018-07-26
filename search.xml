@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[2018暑假生活记录表]]></title>
+    <url>%2F2018%2F07%2F26%2F2018summerrecord%2F</url>
+    <content type="text"><![CDATA[暑期生活记录表 日期 执行力 影响力 7-27 7-28 7-29 7-30 7-31 8-01 8-02 8-03 8-04 8-05 8-06 8-07 8-08 8-09 8-10 8-11 8-12 8-13 8-14 8-15 8-16 8-17 8-18 8-19 8-20 8-21 8-22 8-23 8-24 8-25 8-26 8-27 总结总执行力为:总影响力为:个人评价:]]></content>
+      <categories>
+        <category>记录表</category>
+      </categories>
+      <tags>
+        <tag>生活规划</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[2018-07-25 lfs编译日志]]></title>
     <url>%2F2018%2F07%2F25%2F2018-07-25%2F</url>
     <content type="text"><![CDATA[lfs编译告一段落系统大半构建完成]]></content>
