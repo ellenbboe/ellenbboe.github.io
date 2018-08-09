@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[2018-08-09 备份日志]]></title>
+    <url>%2F2018%2F08%2F09%2F2018-08-09-1%2F</url>
+    <content type="text"><![CDATA[备份准备工作已开始分区已经完成,也已经加密还需要详细了解rsync,增量式备份由于属于本地备份,或许未能完全了解rsync个人想法 网上全都是简单的参数缩写,还是得查man page,记倒不是问题ps:十分害怕硬盘gg,听说希捷的容易坏0-0]]></content>
+      <categories>
+        <category>arch备份日志</category>
+      </categories>
+      <tags>
+        <tag>日志</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[2018-08-09 lfs编译日志]]></title>
     <url>%2F2018%2F08%2F09%2F2018-08-09%2F</url>
     <content type="text"><![CDATA[已经完成lfs最小的构建偷偷的懒散的躺了好十几天..愧疚(逃开始下一个任务==&gt;备份系统]]></content>
