@@ -141,7 +141,7 @@
 <meta property="og:site_name" content="Eden">
 <meta property="og:description" content="System V is the classic boot process that has been used in Unix and Unix-like systems such as Linux since about 1983.It consists of a small program, init, that sets up basic programs such as login (vi">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-08-08T03:25:53.844Z">
+<meta property="og:updated_time" content="2018-08-09T02:15:10.654Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux For Scratch Pass 5">
 <meta name="twitter:description" content="System V is the classic boot process that has been used in Unix and Unix-like systems such as Linux since about 1983.It consists of a small program, init, that sets up basic programs such as login (vi">
@@ -416,8 +416,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-08-08T11:25:53+08:00">
-                2018-08-08
+              <time title="更新于" itemprop="dateModified" datetime="2018-08-09T10:15:10+08:00">
+                2018-08-09
               </time>
             
           </span>
@@ -488,7 +488,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  3,156
+                  5,127
                 </span>
               
 
@@ -504,7 +504,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  12
+                  20
                 </span>
               
             </div>
@@ -560,8 +560,33 @@
 </blockquote>
 <p>新的方法一般会变成enp5s0 or wlp3s0这样的形式<br>你也可以禁用新的方法使用老的</p>
 <p>创建传统的udev规则<br>根据现有的初始化规则来创建<br><code>bash /lib/udev/init-net-rules.sh</code><br><code>cat /etc/udev/rules.d/70-persistent-net.rules</code></p>
-<h4 id="创建自定义符号链接到设备"><a href="#创建自定义符号链接到设备" class="headerlink" title="创建自定义符号链接到设备"></a>创建自定义符号链接到设备</h4><p>具有相同功能的设备出现在 <code>/dev</code> 目录下的顺序是随机的。假如你有一个 USB 摄像头和一个电视调谐器，<code>/dev/video0</code> 有可能是 USB 摄像头，<code>/dev/video1</code> 是电视调谐器，有时候又可能是反过来的。对于<strong>除声卡和网卡</strong>外的设备，都可以通过创建自定义持久性符号链接的 udev 规则来固定。</p>
-<h4 id="之后就是疯狂配置系统的文件…"><a href="#之后就是疯狂配置系统的文件…" class="headerlink" title="之后就是疯狂配置系统的文件…."></a>之后就是疯狂配置系统的文件….</h4>
+<p>具有相同功能的设备出现在 <code>/dev</code> 目录下的顺序是随机的。假如你有一个 USB 摄像头和一个电视调谐器，<code>/dev/video0</code> 有可能是 USB 摄像头，<code>/dev/video1</code> 是电视调谐器，有时候又可能是反过来的。对于<strong>除声卡和网卡</strong>外的设备，都可以通过创建自定义持久性符号链接的 udev 规则来固定。</p>
+<h5 id="处理类似的设备"><a href="#处理类似的设备" class="headerlink" title="处理类似的设备"></a>处理类似的设备</h5><p>对于你所有的硬件，都有可能遇到此问题（尽管此问题可能在你当前的 Linux 发行版上不存在），在 <code>/sys/class</code> 或 <code>/sys/block</code> 目录下找到对应目录，比如，显卡可能的路径为 <code>/sys/class/video4linux/videoX</code>。找到该设备的唯一设备标识（通常，厂商和产品 ID 以及/或 序列号会有用）：<br><code>udevadm info -a -p /sys/class/video4linux/video0</code><br>然后通过写入规则建立符号链接：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">cat &gt; /etc/udev/rules.d/83-duplicate_devs.rules &lt;&lt; &quot;EOF&quot;</span><br><span class="line"># Persistent symlinks for webcam and tuner</span><br><span class="line">KERNEL==&quot;video*&quot;, ATTRS&#123;idProduct&#125;==&quot;1910&quot;, ATTRS&#123;idVendor&#125;==&quot;0d81&quot;, \</span><br><span class="line">    SYMLINK+=&quot;webcam&quot;</span><br><span class="line">KERNEL==&quot;video*&quot;, ATTRS&#123;device&#125;==&quot;0x036f&quot;, ATTRS&#123;vendor&#125;==&quot;0x109e&quot;, \</span><br><span class="line">    SYMLINK+=&quot;tvtuner&quot;</span><br><span class="line"></span><br><span class="line">EOF</span><br></pre></td></tr></table></figure></p>
+<p>最终，<code>/dev/video0</code> 和 <code>/dev/video1</code> 依旧会<strong>随机</strong>分配给 USB 摄像头和电视调谐器，但是 <code>/dev/tvtuner</code> 和 <code>/dev/webcam</code> 将会<strong>固定</strong>的分配给正确的设备。</p>
+<h4 id="通用网络设置"><a href="#通用网络设置" class="headerlink" title="通用网络设置"></a>通用网络设置</h4><p>网络脚本启动和关闭哪些接口通常取决于<code>/etc/sysconfig/</code>中的文件。此目录应包含要配置的每个接口的文件，例如ifconfig.xyz，其中“xyz”应描述网卡。<br>使用<code>ip link</code> 或者 <code>ls /sys/class/net</code> 查看接口名称</p>
+<p>通过配置文件配置接口(静态ip)<br>具体按照自己情况来<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">cd /etc/sysconfig/</span><br><span class="line">cat &gt; ifconfig.eth0 &lt;&lt; &quot;EOF&quot;</span><br><span class="line">ONBOOT=yes 是否在booting的时候调用nic(网卡全称 network interface card)</span><br><span class="line">IFACE=eth0 接口名称</span><br><span class="line">SERVICE=ipv4-static 获取IP地址的方法</span><br><span class="line">IP=192.168.1.2</span><br><span class="line">GATEWAY=192.168.1.1 默认网关IP地址</span><br><span class="line">PREFIX=24 网络掩码</span><br><span class="line">BROADCAST=192.168.1.255 广播地址</span><br><span class="line">EOF</span><br></pre></td></tr></table></figure></p>
+<p>For more information see the <code>ifup</code> man page.</p>
+<p><strong>DNS解析</strong><br>通过将ISP服务器或网络管理员提供的DNS服务器的IP地址放入/etc/resolv.conf来实现ip地址的解析。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">cat &gt; /etc/resolv.conf &lt;&lt; &quot;EOF&quot;</span><br><span class="line"># Begin /etc/resolv.conf</span><br><span class="line"></span><br><span class="line">domain &lt;Your Domain Name&gt;</span><br><span class="line">nameserver &lt;IP address of your primary nameserver&gt;</span><br><span class="line">nameserver &lt;IP address of your secondary nameserver&gt;</span><br><span class="line"></span><br><span class="line"># End /etc/resolv.conf</span><br><span class="line">EOF</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>Google 公开 IPv4 DNS 解析服务器地址为 8.8.8.8 和 8.8.4.4。<br>译者注：国内也有一些 IT 公司提供公开可用的 DNS 解析服务：<br>114 DNS：114.114.114.114 和 114.114.115.115<br>阿里 DNS：223.5.5.5 和 223.6.6.6<br>百度 DNS：180.76.76.76<br>OpenDNS：208.67.220.220）</p>
+</blockquote>
+<p><strong>自定义host文件</strong>(一般是自动从dns的服务器中得到缓存,也可以手动配置)<br>就算没有网卡，也应该提供有效的完整域名，否则某些软件可能无法正常运行。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Private Network Address Range      Normal Prefix</span><br><span class="line">10.0.0.1 - 10.255.255.254           8</span><br><span class="line">172.x.0.1 - 172.x.255.254           16</span><br><span class="line">192.168.y.1 - 192.168.y.254         24</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>x can be any number in the range 16-31. y can be any number in the range 0-255.</p>
+</blockquote>
+<h4 id="System-V-Bootscript"><a href="#System-V-Bootscript" class="headerlink" title="System V Bootscript"></a>System V Bootscript</h4><p>SysVinit(init)默认处于3的级别<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">0: halt the computer 关闭计算机</span><br><span class="line">1: single-user mode 单人模式</span><br><span class="line">2: multi-user mode without networking 多人单机</span><br><span class="line">3: multi-user mode with networking 多人联机</span><br><span class="line">4: reserved for customization, otherwise does the same as 3</span><br><span class="line">5: same as 4, it is usually used for GUI login (like X&apos;s xdm or KDE&apos;s kdm)</span><br><span class="line">6: reboot the computer 重启</span><br></pre></td></tr></table></figure></p>
+<p>内核初始化的时候，无论是命令行指定运行的第一个程序，还是默认的 init。该程序会读入初始化文件 <code>/etc/inittab</code><br>初始化文件的解释可以参考 <code>inittab</code> 的 <code>man</code> 手册页面。对于LFS，运行的核心命令是 <strong>rc</strong>。上面的初始化文件将指示 <code>rc</code> 运行 <code>/etc/rc.d/rcS.d</code> 目录中，所有以 <code>S</code> 开头的脚本，然后便是 <code>/etc/rc.d/rc?.d</code> 目录中，所有以 <code>S</code> 开头的脚本。目录中的问号由指定的 <code>initdefault</code> 值来决定。</p>
+<p>为了方便，<code>rc</code> 会从 <code>/lib/lsb/init-functions</code> 中读取函数库。该库还会读取一个可选的配置文件 <code>/etc/sysconfig/rc.site</code>。任何在后续章节中描述到的系统配置文件中的参数，都可以放在这个文件中，允许将所有的系统参数合并到该文件中。</p>
+<p>为了调试方便，函数脚本会将日志输出到 <code>/run/var/bootlog</code> 文件中。由于 <code>/run</code> 目录是个 <code>tmpfs</code>（临时文件系统），所以该文件在启动之后就不会持续存在了，但在启动过程的最后，这些内容会被添附到更为持久的 <code>/var/log/boot.log</code> 文件中。</p>
+<p>想要改变运行级，可以使用命令 <code>init &lt;runlevel&gt;</code>，其中的 <code>&lt;runlevel&gt;</code> 便是想要切换到的运行级。举个例子，若是想要重启计算机，可以使用命令 <code>init 6</code>，这是 <code>reboot</code> 命令的别名。就像，<code>init 0</code> 是 <code>halt</code> 的别名一样。</p>
+<p>对于中文，日语，韩语以及一些其他的语言需要的字符，Linux 的控制台还无法通过配置是之正常显示。用户若要使用这些语言，需要安装 <code>X Window 系统</code>，用于扩充所需字符域的字体，以及合适的输入法.</p>
+<p>可选的 <code>/etc/sysconfig/rc.site</code> 文件中包含着那些为每个 <code>System V</code> 启动脚本自动设置好的设定。这些设定也可以在 <code>/etc/sysconfig/</code> 目录中的 <code>hostname</code>，<code>console</code>，和<code>clock</code> 文件中设置。如果这些设定值同时在以上的这些文件和 <code>rc.site</code> 中设定了，那么脚本中的设定值将会被<strong>优先采用</strong></p>
+<p><strong>自定义启动和关闭的脚本</strong></p>
+<blockquote>
+<p>LFS 启动脚本会以相当效率的方式启动和关闭系统，不过你可以在 <code>rc.site</code> 文件中进行调整，来提升速度或是根据需求调整消息。若是有这样的需求，就去调整上面 <code>/etc/sysconfig/rc.site</code> 文件的设置吧！<br>在启动脚本 <code>udev</code> 运行时，会调用一次 <code>udev settle</code>，完成检测需要很长时间。这段时间根据当前系统的设备，可花可不花。如果你需要的仅仅是简单的分区和单个网卡，在启动的过程中，就没有必要等待这个命令执行。通过设置变量 <code>OMIT_UDEV_SETTLE=y</code>，可以跳过此命令。<br>启动脚本<code>udev_retry</code> 默认也执行<code>udev settle</code>。该命令仅在 <code>/var</code> 目录是分开挂载的情况下需要。因为这种情况下时钟需要文件 <code>/var/lib/hwclock/adjtime</code>。其他的自定义设置可能也需要等待 <code>udev</code> 执行完成，但是在许多的安装中不需要。设置变量 <code>OMIT_UDEV_RETRY_SETTLE=y</code> 跳过命令。<br>默认情况下，文件系统检测静默执行。看上去就像是启动过程中的一个延迟。想要打开 <code>fsck</code> 的输出，设置变量。<br>重起时，你可能想完全的跳过文件系统检测 <code>fsck</code>。为此，可以创建 <code>/fastboot</code> 文件或是以 <code>/sbin/shutdown -f -r now</code> 命令重启系统。另一方面，你也可以通过创建 <code>/forcefsck</code>，或是在运行 <code>shutdown</code> 命令时，用 <code>-F</code> 参数代替<code>-f</code>，以此来强制检测整个文件系统。<br>设置变量 <code>FASTBOOT=y</code> 将禁用启动过程中的 <code>fsck</code>，直至你将其移除。不推荐长时间地使用该方式。<br>通常，<code>/tmp</code> 目录中的所有文件会在启动时删除。根据存在目录与文件的数量，该操作会导致启动过程中明显的延迟。如果要跳过移除文件的操作，设置变量 <code>SKIPTMPCLEAN=y</code>。<br>在关机的过程中，<code>init</code> 程序会向每一个已经启动的程序（例如，<code>agetty</code>）发送一个 <code>TERM</code> 信号，等一段时间（默认为 3 秒），然后给每个进程发送 <code>KILL</code> 信号。对没有被自身脚本关闭的进程，<code>sendsignals</code> 脚本会<strong>重复</strong>此过程。<code>init</code> 的延迟可以通过参数来设置。比方说，想去掉 <code>init</code> 的延迟，可以通过在关机或重启时使用 <code>-t0</code> 参数（如，<code>/sbin/shutdown -t0 -r now</code>）。<code>sendsignals</code> 脚本的延迟可以通过设置参数 <code>KILLDELAY=0</code> 跳过。</p>
+</blockquote>
+<p>创建 /etc/inputrc 文件 可编辑控制行的语句<br>创建 /etc/shells 文件 shell的类似索引的东西</p>
+
       
     </div>
     
@@ -729,7 +754,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-count">24</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -806,7 +831,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#安装LFS-Bootscripts"><span class="nav-number">1.</span> <span class="nav-text">安装LFS-Bootscripts</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#概述"><span class="nav-number">2.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#历史"><span class="nav-number">3.</span> <span class="nav-text">历史</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Sysfs"><span class="nav-number">4.</span> <span class="nav-text">Sysfs</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#设备节点的创建"><span class="nav-number">5.</span> <span class="nav-text">设备节点的创建</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#加载模块"><span class="nav-number">6.</span> <span class="nav-text">加载模块</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#处理热插拔-动态设备"><span class="nav-number">6.1.</span> <span class="nav-text">处理热插拔/动态设备</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#加载模块和创建设备时可能碰到的问题"><span class="nav-number">7.</span> <span class="nav-text">加载模块和创建设备时可能碰到的问题</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#内核模块没有自动加载"><span class="nav-number">7.1.</span> <span class="nav-text">内核模块没有自动加载</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#内核驱动没有自动加载，Udev-也没有尝试加载"><span class="nav-number">7.2.</span> <span class="nav-text">内核驱动没有自动加载，Udev 也没有尝试加载</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Udev-加载了一些无用模块"><span class="nav-number">7.3.</span> <span class="nav-text">Udev 加载了一些无用模块</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Udev-创建了错误的设备节点，或错误的软链接"><span class="nav-number">7.4.</span> <span class="nav-text">Udev 创建了错误的设备节点，或错误的软链接</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Udev-规则工作不可靠"><span class="nav-number">7.5.</span> <span class="nav-text">Udev 规则工作不可靠</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Udev-没有创建设备"><span class="nav-number">7.6.</span> <span class="nav-text">Udev 没有创建设备</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#设备名称顺序在重启后随机改变"><span class="nav-number">7.7.</span> <span class="nav-text">设备名称顺序在重启后随机改变</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#管理设备"><span class="nav-number">8.</span> <span class="nav-text">管理设备</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#网络设备"><span class="nav-number">8.1.</span> <span class="nav-text">网络设备</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#创建自定义符号链接到设备"><span class="nav-number">9.</span> <span class="nav-text">创建自定义符号链接到设备</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#之后就是疯狂配置系统的文件…"><span class="nav-number">10.</span> <span class="nav-text">之后就是疯狂配置系统的文件….</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#安装LFS-Bootscripts"><span class="nav-number">1.</span> <span class="nav-text">安装LFS-Bootscripts</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#概述"><span class="nav-number">2.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#历史"><span class="nav-number">3.</span> <span class="nav-text">历史</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Sysfs"><span class="nav-number">4.</span> <span class="nav-text">Sysfs</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#设备节点的创建"><span class="nav-number">5.</span> <span class="nav-text">设备节点的创建</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#加载模块"><span class="nav-number">6.</span> <span class="nav-text">加载模块</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#处理热插拔-动态设备"><span class="nav-number">6.1.</span> <span class="nav-text">处理热插拔/动态设备</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#加载模块和创建设备时可能碰到的问题"><span class="nav-number">7.</span> <span class="nav-text">加载模块和创建设备时可能碰到的问题</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#内核模块没有自动加载"><span class="nav-number">7.1.</span> <span class="nav-text">内核模块没有自动加载</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#内核驱动没有自动加载，Udev-也没有尝试加载"><span class="nav-number">7.2.</span> <span class="nav-text">内核驱动没有自动加载，Udev 也没有尝试加载</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Udev-加载了一些无用模块"><span class="nav-number">7.3.</span> <span class="nav-text">Udev 加载了一些无用模块</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Udev-创建了错误的设备节点，或错误的软链接"><span class="nav-number">7.4.</span> <span class="nav-text">Udev 创建了错误的设备节点，或错误的软链接</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Udev-规则工作不可靠"><span class="nav-number">7.5.</span> <span class="nav-text">Udev 规则工作不可靠</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Udev-没有创建设备"><span class="nav-number">7.6.</span> <span class="nav-text">Udev 没有创建设备</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#设备名称顺序在重启后随机改变"><span class="nav-number">7.7.</span> <span class="nav-text">设备名称顺序在重启后随机改变</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#管理设备"><span class="nav-number">8.</span> <span class="nav-text">管理设备</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#网络设备"><span class="nav-number">8.1.</span> <span class="nav-text">网络设备</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#处理类似的设备"><span class="nav-number">8.2.</span> <span class="nav-text">处理类似的设备</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#通用网络设置"><span class="nav-number">9.</span> <span class="nav-text">通用网络设置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#System-V-Bootscript"><span class="nav-number">10.</span> <span class="nav-text">System V Bootscript</span></a></li></ol></div>
             
 
           </div>
@@ -840,7 +865,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">24.4k</span>
+    <span title="Site words total count">27.0k</span>
   
 </div>
 
