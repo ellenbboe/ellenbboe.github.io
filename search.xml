@@ -1,6 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[备份arch系统]]></title>
+    <url>%2F2018%2F08%2F10%2F%E5%A4%87%E4%BB%BDarch%E7%B3%BB%E7%BB%9F%2F</url>
+    <content type="text"><![CDATA[使用rsync进行备份rsync的六种模式123456rsync [OPTION]... SRC DESTrsync [OPTION]... SRC [USER@]host:DESTrsync [OPTION]... [USER@]HOST:SRC DESTrsync [OPTION]... [USER@]HOST::SRC DESTrsync [OPTION]... SRC [USER@]HOST::DESTrsync [OPTION]... rsync://[USER@]HOST[:PORT]/SRC [DEST] 本地备份的话我们使用第一种 大佬使用的备份脚本,通过指定/的目录来进行备份123456789101112131415161718192021222324252627#!/bin/zsh -e#进入主目录cd $(dirname $0)#判断参数个数时候小于2或者大于3(也就是可以是2个参数或者是3个参数)if [[ $# -lt 2 || $# -gt 3 ]]; then echo &quot;usage: $0 SRC_DIR DEST_DIR [-w]&quot; exit 1fi#得到参数src=$1dest=$2doit=$3if [[ $doit == -w ]]; then dry=else dry=&apos;-n&apos;firsync --archive --one-file-system --inplace --hard-links \ --human-readable --numeric-ids --delete --delete-excluded \ --acls --xattrs --sparse \ --itemize-changes --verbose --progress \ --exclude=&apos;*~&apos; --exclude=__pycache__ \ --exclude-from=root.exclude \ $src $dest $dry 以下列出rsync参数,使用到的将使用加粗列出 -v, –verbose 详细模式输出。-i, –itemize-changes 列出改变(不知道是不是这个意思)-q, –quiet 精简输出模式。-c, –checksum 打开校验开关，强制对文件传输进行校验。-a, –archive 归档模式，表示以递归方式传输文件，并保持所有文件属性，等于-rlptgoD。-A –acls This option causes rsync to update the destination ACLs to be the same as the source ACLs. The option also implies –perms.-X –xattrs This option causes rsync to update the destination extended attributes to be the same as the source ones.(上面两个选项保留文件 ACL 和扩展属性)-r, –recursive 对子目录以递归模式处理。-R, –relative 使用相对路径信息。-b, –backup 创建备份，也就是对于目的已经存在有同样的文件名时，将老的文件重新命名为~filename。可以使用–suffix选项来指定不同的备份文件前缀。–backup-dir 将备份文件(如~filename)存放在在目录下。-suffix=SUFFIX 定义备份文件前缀。-u, –update 仅仅进行更新，也就是跳过所有已经存在于DST，并且文件时间晚于要备份的文件，不覆盖更新的文件。–inplace 更新目标文件,RSYNC将写入的更新数据直接写入目标文件。-l, –links 保留软链结。-L, –copy-links 想对待常规文件一样处理软链结。–copy-unsafe-links 仅仅拷贝指向SRC路径目录树以外的链结。–safe-links 忽略指向SRC路径目录树以外的链结。-H, –hard-links 保留硬链结。-p, –perms 保持文件权限。就是 –acls-o, –owner 保持文件属主信息。-g, –group 保持文件属组信息。-D, –devices 保持设备文件信息。-t, –times 保持文件时间信息。-S, –sparse 对稀疏文件进行特殊处理以节省DST的空间。-n, –dry-run 进行try的尝试,不做改变。-w, –whole-file 拷贝文件，不进行增量检测。-x, –one-file-system 不要跨越文件系统边界。-B, –block-size=SIZE 检验算法使用的块尺寸，默认是700字节。-e, –rsh=command 指定使用rsh、ssh方式进行数据同步。–rsync-path=PATH 指定远程服务器上的rsync命令所在路径信息。-C, –cvs-exclude 使用和CVS一样的方法自动忽略文件，用来排除那些不希望传输的文件。–existing 仅仅更新那些已经存在于DST的文件，而不备份那些新创建的文件。–delete 删除那些DST中SRC没有的文件。–delete-excluded 同样删除接收端那些被该选项指定排除的文件。–delete-after 传输结束以后再删除。–ignore-errors 及时出现IO错误也进行删除。–max-delete=NUM 最多删除NUM个文件。–partial 保留那些因故没有完全传输的文件，以是加快随后的再次传输。–force 强制删除目录，即使不为空。–numeric-ids 将数字的用户和组id匹配为用户名和组名。–timeout=time ip超时时间，单位为秒。-I, –ignore-times 不跳过那些有同样的时间和长度的文件。–size-only 当决定是否要备份文件时，仅仅察看文件大小而不考虑文件时间。–modify-window=NUM 决定文件是否时间相同时使用的时间戳窗口，默认为0。-T –temp-dir=DIR 在DIR中创建临时文件。–compare-dest=DIR 同样比较DIR中的文件来决定是否需要备份。-P 等同于 –partial。–progress 显示备份过程。-z, –compress 对备份的文件在传输时进行压缩处理。–include=PATTERN 指定不排除而需要传输的文件模式。–exclude-from=FILE 排除FILE中指定模式的文件。–include-from=FILE 不排除FILE指定模式匹配的文件。–version 打印版本信息。–address 绑定到特定的地址。–config=FILE 指定其他的配置文件，不使用默认的rsyncd.conf文件。–port=PORT 指定其他的rsync服务端口。–blocking-io 对远程shell使用阻塞IO。-stats 给出某些文件的传输状态。–progress 在传输时现实传输过程。–log-format=formAT 指定日志文件格式。–password-file=FILE 从FILE中得到密码。–bwlimit=KBPS 限制I/O带宽，KBytes per second。-h, –help 显示帮助信息。–human-readable 以更可读的格式输出数字。 看了好多教程rsync+btrfs单纯使用rsync..发现还是单纯的使用rsync比较省事 排除的目录12345/media/*/sys/*/proc/*/mnt/*/tmp/* 但 @依云仙子 所说 --one-file-system 已经排除了特殊的目录 目前就先这样备份了123456sudo rsync --archive --one-file-system --hard-links \ --acls --xattrs --sparse \ --human-readable --numeric-ids --delete --delete-excluded \ --itemize-changes --verbose --progress \ --exclude-from=backup.exclude \ / /run/media/s/5ff9a14c-20ba-41c5-8b7e-f6b095326200/Backup/backup (讲道理应该可以) 再把代码备份到github上就差不多了(溜了)]]></content>
+      <categories>
+        <category>rsync</category>
+      </categories>
+      <tags>
+        <tag>备份</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[2018-08-10 备份日志]]></title>
+    <url>%2F2018%2F08%2F10%2F2018-08-10%2F</url>
+    <content type="text"><![CDATA[看了好多教程,还是不懂与其这样不如使用最简单的备份操作进行备份(借口,就是懒)还是得学习啊,感觉神码也不懂..]]></content>
+      <categories>
+        <category>arch备份日志</category>
+      </categories>
+      <tags>
+        <tag>日志</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[2018-08-09 备份日志]]></title>
     <url>%2F2018%2F08%2F09%2F2018-08-09-1%2F</url>
     <content type="text"><![CDATA[备份准备工作已开始分区已经完成,也已经加密还需要详细了解rsync,增量式备份由于属于本地备份,或许未能完全了解rsync个人想法 网上全都是简单的参数缩写,还是得查man page,记倒不是问题ps:十分害怕硬盘gg,听说希捷的容易坏0-0]]></content>
@@ -245,7 +267,7 @@
   <entry>
     <title><![CDATA[sql基本知识]]></title>
     <url>%2F2018%2F07%2F10%2Fsql%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86%2F</url>
-    <content type="text"><![CDATA[当我在将大小写忽略的时候之前使用大写的数据库的名字就进不去了,因为系统自动将我打的大写换成了小写….. 每一个检查点都会记录他自己的操作对象的信息状态,当共用的是同一个硬盘上的数据,硬盘上的数据是会被最近的检查点所覆盖掉的,当要回复在之前的某一个特定的检查点的时候,是先通过最近的检查点来逐级向上恢复的]]></content>
+    <content type="text"><![CDATA[当我在将大小写忽略的时候之前使用大写的数据库的名字就进不去了,因为系统自动将我打的大写换成了小写….. 每一个检查点都会记录他自己的操作对象的信息状态,当共用的是同一个硬盘上的数据,硬盘上的数据是会被最近的检查点所覆盖掉的,当要回复在之前的某一个特定的检查点的时候,是先通过最近的检查点来逐级向上恢复的 当colume 与condition 条件相等时结果为result123456case colume when condition then result when condition then result when condition then resultelse resultend 当满足某一条件时，执行某一result123456case when condition then result when condition then result when condition then resultelse resultend 当满足某一条件时，执行某一result,把该结果赋值到new_column_name 字段中123456case when condition then result when condition then result when condition then resultelse resultend new_column_name case when 用在select 语句中，新的字段new_column_name可以用来排序，但是不能用在where中]]></content>
       <categories>
         <category>sql</category>
       </categories>
@@ -278,7 +300,7 @@
   <entry>
     <title><![CDATA[关于pacman]]></title>
     <url>%2F2018%2F07%2F10%2Fpacman%2F</url>
-    <content type="text"><![CDATA[pacman -D --asexplicite xxx 设置为单独安装的包 pacman -Qtd 出来的包可以删 但有些删除可能会有影响,大多没用 pacman -Rscn 可以删除干净包 pacman -Rdd 是在出现了依赖问题的时候用用,一般就不用它,他是强行破坏 依赖关系 有些依赖关系不一定会长久存在,所以pacman -Qtd不是删除干净包就一定没有东西的 可能会在你装包的时候出现依赖的更新 pacman不会自动帮你删除孤包 Rdd所操作的对象往往是这个包同时被其他的包依赖， 如果你正常情况下用R去卸它是会报错提示破坏依赖的。 比如一条依赖树a-b-c，即c依赖b，b又依赖a， 那么如果你用R或者Rs去卸载b就会报错提示你c的依赖将被破坏所以不能卸。 如果是用Rdd卸载b就是不管谁依赖它就是强行把b一个东西删掉， 本质上是临时破坏一下依赖。这个做法往往是出了什么问题才会用的。 卸载同时删配置文件的参数是-n，-c的意思是同时把依赖它的包也卸载掉 总结一下 对于a-b-c这样一条依赖树且a和b都是作为依赖安装的， 那么如果使用-R、-Rs去卸载b就会报错提示c的依赖被破坏并中断操作， 使用-Rdd卸载b就会强行删b，同时a和c被保留。 使用-Rc卸b就会把b和c卸载掉，用-Rsc卸b就会把abc全卸掉]]></content>
+    <content type="text"><![CDATA[pacman -D --asexplicite xxx 设置为单独安装的包 pacman -Qtd 出来的包可以删 但有些删除可能会有影响,大多没用 pacman -Rscn 可以删除干净包 pacman -Rdd 是在出现了依赖问题的时候用用,一般就不用它,他是强行破坏 依赖关系 有些依赖关系不一定会长久存在,所以pacman -Qtd不是删除干净包就一定没有东西的 可能会在你装包的时候出现依赖的更新 pacman不会自动帮你删除孤包 Rdd所操作的对象往往是这个包同时被其他的包依赖， 如果你正常情况下用R去卸它是会报错提示破坏依赖的。 比如一条依赖树a-b-c，即c依赖b，b又依赖a， 那么如果你用R或者Rs去卸载b就会报错提示你c的依赖将被破坏所以不能卸。 如果是用Rdd卸载b就是不管谁依赖它就是强行把b一个东西删掉， 本质上是临时破坏一下依赖。这个做法往往是出了什么问题才会用的。 卸载同时删配置文件的参数是-n，-c的意思是同时把依赖它的包也卸载掉 总结一下 对于a-b-c这样一条依赖树且a和b都是作为依赖安装的， 那么如果使用-R、-Rs去卸载b就会报错提示c的依赖被破坏并中断操作， 使用-Rdd卸载b就会强行删b，同时a和c被保留。 使用-Rc卸b就会把b和c卸载掉，用-Rsc卸b就会把abc全卸掉 ####pacman基本用法 1234567891011121314151617181920212223pacman -Sy abc #和源同步后安装名为abc的包pacman -S abc #从本地数据库中得到abc的信息，下载安装abc包pacman -Sf abc #强制安装包abcpacman -Ss abc #搜索有关abc信息的包pacman -Si abc #从数据库中搜索包abc的信息pacman -Q #列出已经安装的软件包pacman -Q abc #检查 abc 软件包是否已经安装pacman -Qi abc #列出已安装的包abc的详细信息pacman -Ql abc #列出abc软件包的所有文件pacman -Qo /path/to/abc #列出abc文件所属的软件包pacman -Syu #同步源，并更新系统pacman -Sy #仅同步源pacman -Su #更新系统pacman -R abc #删除abc包pacman -Rd abc #强制删除被依赖的包pacman -Rc abc #删除abc包和依赖abc的包pacman -Rsc abc #删除abc包和abc依赖的包pacman -Sc #清理/var/cache/pacman/pkg目录下的旧包pacman -Scc #清除所有下载的包和数据库pacman -U abc #安装下载的abs包，或新编译的abc包pacman -Sd abc #忽略依赖性问题，安装包abcpacman -Su --ignore foo #升级时不升级包foopacman -Sg abc #查询abc这个包组包含的软件包]]></content>
       <categories>
         <category>arch</category>
       </categories>
