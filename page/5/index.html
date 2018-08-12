@@ -14,6 +14,13 @@
 
 
 
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
 
 
 
@@ -153,7 +160,7 @@
     root: '/',
     scheme: 'Mist',
     version: '5.1.4',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":true},
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":true},
     fancybox: true,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
@@ -371,7 +378,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.unblog.top/2018/07/10/python脚本基础/">
+    <link itemprop="mainEntityOfPage" href="https://www.unblog.top/2018/07/14/lfs3/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="兔子春">
@@ -390,7 +397,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/07/10/python脚本基础/" itemprop="url">python脚本基础</a></h1>
+                <a class="post-title-link" href="/2018/07/14/lfs3/" itemprop="url">Linux From Scratch Pass 3</a></h1>
         
 
         <div class="post-meta">
@@ -402,8 +409,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-10T16:33:46+08:00">
-                2018-07-10
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-14T10:31:58+08:00">
+                2018-07-14
               </time>
             
 
@@ -418,8 +425,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-07-10T16:35:44+08:00">
-                2018-07-10
+              <time title="更新于" itemprop="dateModified" datetime="2018-07-14T10:34:06+08:00">
+                2018-07-14
               </time>
             
           </span>
@@ -437,8 +444,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/python/" itemprop="url" rel="index">
-                    <span itemprop="name">python</span>
+                  <a href="/categories/linux/" itemprop="url" rel="index">
+                    <span itemprop="name">linux</span>
                   </a>
                 </span>
 
@@ -468,7 +475,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  72
+                  3,486
                 </span>
               
 
@@ -484,7 +491,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1
+                  14
                 </span>
               
             </div>
@@ -507,16 +514,56 @@
       
         
           
-          数组类型tuple字典类型dict使用*tuple解析数组使用**dict解析字典传参数的时候 单个字符,数字由*args接受,形成tuple键值对有**kwargs接受,形成dict主函数if __name__ == &#39;__main__&#39;当然也可以使用sys.argv来读取参数
+            <h3 id="安装基本的系统软件"><a href="#安装基本的系统软件" class="headerlink" title="安装基本的系统软件"></a>安装基本的系统软件</h3><p>注意使用root用户</p>
+<h4 id="准备虚拟内核文件系统"><a href="#准备虚拟内核文件系统" class="headerlink" title="准备虚拟内核文件系统"></a>准备虚拟内核文件系统</h4><p>内核会挂载几个文件系统用于自己和用户空间程序交换信息。这些文件系统是虚拟的，并不占用实际磁盘空间，它们的内容会放在内存里。</p>
+<p>开始先创建将用来挂载文件系统的目录：</p>
+<p><code>mkdir -pv $LFS/{dev,proc,sys,run}</code></p>
+<h4 id="创建初始设备节点"><a href="#创建初始设备节点" class="headerlink" title="创建初始设备节点"></a>创建初始设备节点</h4><p>在内核引导系统的时候，它依赖于几个设备节点，特别是 <code>console</code> 和 <code>null</code> 两个设备。这些设备节点需要创建在硬盘上，这样在 <code>udevd</code> 启动之前它们也仍然有效，特别是在 Linux 使用<code>init=/bin/bash</code> 参数启动的时候。运行下面的命令创建这几个设备节点：</p>
+<p><code>mknod -m 600 $LFS/dev/console c 5 1</code><br><code>mknod -m 666 $LFS/dev/null c 1 3</code><br><strong>注</strong>: mknod创建设备文件 -m设置权限</p>
+<h4 id="挂载和激活-dev"><a href="#挂载和激活-dev" class="headerlink" title="挂载和激活 /dev"></a>挂载和激活 /dev</h4><p>通常激活 <code>/dev</code> 目录下设备的方式是在 <code>/dev</code>目录挂载一个虚拟文件系统（比如 <code>tmpfs</code>），然后允许在检测到设备或打开设备时在这个虚拟文件系统里<strong>动态</strong>创建设备节点。这个通常是在启动过程中由 <code>Udev</code> 完成。由于我们的新系统还没有 <code>Udev</code> 而且也<em>没有被引导启动</em>，<em>有必要手动挂载和激活</em> <code>/dev</code> 目录。这可以通过绑定挂载宿主机系统的 <code>/dev</code> 目录实现。绑定挂载是一种特殊的挂载模式，它允许在另外的位置创建某个目录或挂载点的镜像。运行下面的命令来实现：</p>
+<p><code>mount -v --bind /dev $LFS/dev</code></p>
+<h4 id="挂载虚拟文件系统"><a href="#挂载虚拟文件系统" class="headerlink" title="挂载虚拟文件系统"></a>挂载虚拟文件系统</h4><p>现在挂载剩下的虚拟内核文件系统：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mount -vt devpts devpts $LFS/dev/pts -o gid=5,mode=620</span><br><span class="line">mount -vt proc proc $LFS/proc</span><br><span class="line">mount -vt sysfs sysfs $LFS/sys</span><br><span class="line">mount -vt tmpfs tmpfs $LFS/run</span><br></pre></td></tr></table></figure></p>
+<p><strong>注</strong>:<code>mount [-fnrsvw] [-t vfstype] [-o options] device dir</code></p>
+<p><code>gid=5</code><br>这个选项会让 <code>devpts</code> 创建的<strong>所有设备节点属主</strong>的组 ID 都是 5。这是我们待会将要指定给 <code>tty</code> 组的 <code>ID</code>。现在我们先用 <code>ID</code>代替组名，因为宿主机系统可能会为它的 <code>tty</code> 组分配了不同的 <code>ID</code>。</p>
+<p><code>mode=0620</code><br>这个选项会让 <code>devpts</code> 创建的<strong>所有设备节点的属性</strong>是 <code>0620</code>（属主用户可读写，组成员可写）。和上一个选项同时使用，可以保证 <code>devpts</code> 所创建的设备节点能满足 <code>grantpt()</code> 函数的要求，这意味着不需要 <code>Glibc</code> 的 <code>pt_chown</code> 帮助程序（默认没有安装）了。</p>
+<p>在某些宿主机系统里，<code>/dev/shm</code> 是一个指向 <code>/run/shm</code> 的软链接。这个 <code>/run</code> 下的 <code>tmpfs</code> 文件系统已经在之前挂载了，所以在这里只需要创建一个目录。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">if [ -h $LFS/dev/shm ]; then</span><br><span class="line">  mkdir -pv $LFS/$(readlink $LFS/dev/shm)</span><br><span class="line">fi</span><br></pre></td></tr></table></figure></p>
+<h4 id="升级问题"><a href="#升级问题" class="headerlink" title="升级问题"></a>升级问题</h4><p>软件包管理器可以在软件新版本发布后轻松升级。一般来说 LFS 和 BLFS 手册里的指令可以用来升级到新版本。下面是一些在你准备升级软件包时需要注意的事情，特别是在一个运行中的系统。</p>
+<p>1.如果需要升级 Glibc 到新版本（比如，从 glibc-2.19 升级到 glibc-2.20），重新构建整个 LFS 会比较安全。虽然你也许能够按依赖关系重新编译所有的软件包，不过我们不建议这样做。</p>
+<p>2.如果某个包含的动态库的软件包升级了，而且库名字有改变，那么所有动态链接到这个库的软件包都需要重新链接新的库。（请注意软件包版本和库名字并不存在相关性。）举个例子，某个软件包 foo-1.2.3 安装了一个名叫 libfoo.so.1 的动态库。然后假设你把这个软件包升级到了新版本 foo-1.2.4，而新版本会安装名叫 libfoo.so.2的动态库。在这种情况下，所有动态链接到 libfoo.so.1 的软件包都需要重新编译链接到 libfoo.so.2。注意在所有依赖软件包重新编译完成之前，请不要删除旧版的库文件。</p>
+<h5 id="创建软件包存档"><a href="#创建软件包存档" class="headerlink" title="创建软件包存档"></a>创建软件包存档</h5><p>在这种方式里，像之前的软链接软件包管理方式里所描述的那样，软件包被伪装安装到一个独立的目录树里。在安装完成后，会将已安装文件打包成一个软件包存档。然后这个存档会用来在本地机器或其他机器上安装软件包。</p>
+<p>这种方式为商业发行版中的大多数包管理器所采用。一些例子是 RPM（它顺便也是 Linux 标准规范 里所要求的）、pkg-utils、Debian 的 apt、以及 Gentoo 的 Portage 系统。该页面描述了如何在 LFS 系统里采用这种包管理方式： <a href="http://www.linuxfromscratch.org/hints/downloads/files/fakeroot.txt。" target="_blank" rel="noopener">http://www.linuxfromscratch.org/hints/downloads/files/fakeroot.txt。</a></p>
+<p>创建带有依赖关系的软件包存档非常复杂，已经超出 LFS 手册范围了。</p>
+<h5 id="基于用户的软件包管理"><a href="#基于用户的软件包管理" class="headerlink" title="基于用户的软件包管理"></a>基于用户的软件包管理</h5><p>在这种方式，是 LFS 特有的，由 Matthias Benkmann 所设计，可以在 Hints Project 里能找到。在这种方式里，每个软件包都由一个单独的用户安装到标准的位置。属于某个软件包的文件可以通过检查<strong>用户 ID</strong> 轻松识别出来。关于这种方式的特性和短处非常复杂，在本节里说不清楚。详细的信息请参看 <a href="http://www.linuxfromscratch.org/hints/downloads/files/more_control_and_pkg_man.txt。" target="_blank" rel="noopener">http://www.linuxfromscratch.org/hints/downloads/files/more_control_and_pkg_man.txt。</a></p>
+<h5 id="在多个系统上布置-LFS"><a href="#在多个系统上布置-LFS" class="headerlink" title="在多个系统上布置 LFS"></a>在多个系统上布置 LFS</h5><p>LFS 系统的一个优点是没有会依赖磁盘系统里文件位置的文件。克隆一份 LFS 到和宿主机器相似配置的机器上，简单到只要对包含根目录的 LFS 分区（对于一个基本的 LFS 构建不压缩的话大概有 250MB）使用 tar命令打包，然后通过网络传输或光盘拷贝到新机器上展开即可。在这之后，还需要调整一些配置文件，包括：/etc/hosts、/etc/fstab、/etc/passwd、/etc/group、/etc/shadow 和 /etc/ld.so.conf。</p>
+<p>根据系统硬件和原始内核配置文件的差异，可能还需要重新编译一下内核。</p>
+<p>最后，需要使用 8.4 “用 GRUB 设置引导过程”里所介绍的方法让新系统可引导</p>
+<h4 id="进入-Chroot-环境"><a href="#进入-Chroot-环境" class="headerlink" title="进入 Chroot 环境"></a>进入 Chroot 环境</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">chroot &quot;$LFS&quot; /tools/bin/env -i \</span><br><span class="line">    HOME=/root                  \</span><br><span class="line">    TERM=&quot;$TERM&quot;                \</span><br><span class="line">    PS1=&apos;\u:\w\$ &apos;              \</span><br><span class="line">    PATH=/bin:/usr/bin:/sbin:/usr/sbin:/tools/bin \</span><br><span class="line">    /tools/bin/bash --login +h(选项来关闭其哈希功能)</span><br></pre></td></tr></table></figure>
+<p>给 <code>env</code> 命令传递 <code>-i</code> 选项会清除这个 <code>chroot</code> 切换进去的<strong>环境里所有变量</strong>。随后，只重新设定了 <code>HOME</code>、<code>TERM</code>、<code>PS1</code> 和 <code>PATH</code> 变量。<code>TERM=$TERM</code> 语句会设定 <code>chroot</code> 进入的环境里的 <code>TERM</code> 变量<strong>为进入前该变量同样的值</strong>。许多程序需要这个变量才能正常工作，比如 <code>vim</code> 和 <code>less</code>。如果还需要设定其他变量，比如 CFLAGS 或 CXXFLAGS，就在这里一起设定比较合适。</p>
+<p>从这里以后，就不再需要 <code>LFS</code> 变量了，因为后面所有工作都将被限定在 LFS 文件系统里。这是因为我们已经告诉 Bash 终端 $LFS 就是当前的根目录（/）。</p>
+<p>请注意 <code>/tools/bin</code> 放在了 <code>PATH</code> 变量的最后。意思是在每个软件的最后版本编译安装好后就不再使用临时工具了。这还需要让 <code>shell</code> 不要“记住”每个可执行文件的位置—这样的话，还要给 <code>bash</code> 加上 <code>+h</code> 选项来关闭其哈希功能。</p>
+<p>注意一下 <code>bash</code> 的提示符是 <code>I have no name!</code>。这是正常的，因为这个时候 <code>/etc/passwd</code>文件还没有被创建。</p>
+<p><strong>注意:</strong><br>非常重要，本章从这以后的命令，以及后续章节里的命令都要在 chroot 环境下运行。如果因为某种原因（比如说重启）离开了这个环境，请保证要按照 <strong>“挂载和激活 /dev”</strong> 和 <strong>“挂载虚拟内核文件系统”</strong> 里所说的那样挂载虚拟内核文件系统，然后在继续构建之前重新运行 chroot 进入环境。</p>
+<p>创建目录<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">mkdir -pv /&#123;bin,boot,etc/&#123;opt,sysconfig&#125;,home,lib/firmware,mnt,opt&#125;</span><br><span class="line">mkdir -pv /&#123;media/&#123;floppy,cdrom&#125;,sbin,srv,var&#125;</span><br><span class="line">install -dv -m 0750 /root</span><br><span class="line">install -dv -m 1777 /tmp /var/tmp</span><br><span class="line">mkdir -pv /usr/&#123;,local/&#125;&#123;bin,include,lib,sbin,src&#125;</span><br><span class="line">mkdir -pv /usr/&#123;,local/&#125;share/&#123;color,dict,doc,info,locale,man&#125;</span><br><span class="line">mkdir -v  /usr/&#123;,local/&#125;share/&#123;misc,terminfo,zoneinfo&#125;</span><br><span class="line">mkdir -v  /usr/libexec</span><br><span class="line">mkdir -pv /usr/&#123;,local/&#125;share/man/man&#123;1..8&#125;</span><br><span class="line"></span><br><span class="line">case $(uname -m) in</span><br><span class="line"> x86_64) mkdir -v /lib64 ;;</span><br><span class="line">esac</span><br><span class="line"></span><br><span class="line">mkdir -v /var/&#123;log,mail,spool&#125;</span><br><span class="line">ln -sv /run /var/run</span><br><span class="line">ln -sv /run/lock /var/lock</span><br><span class="line">mkdir -pv /var/&#123;opt,cache,lib/&#123;color,misc,locate&#125;,local&#125;</span><br></pre></td></tr></table></figure></p>
+<p>一般目录默认会按 <code>755</code> 的权限创建，但是这并不适用于所有的目录。在上面的命令里，有两个改动—一个是 <code>root</code> 用户的主目录，另一个是存放临时文件的目录。</p>
+<p>第一个模式改动能保证不是所有人都能进入 <code>/root</code>目录—同样的一般用户也需要为他/她的主目录设置这样的模式。第二个模式改动能保证所有用户都可以写目录 <code>/tmp</code> 和 <code>/var/tmp</code>。还增加了一个所谓的 “粘滞位”的限制，即位掩码 <code>0x1777</code> 中最高位的比特(1)。</p>
+<h4 id="关于-FHS-兼容性"><a href="#关于-FHS-兼容性" class="headerlink" title="关于 FHS 兼容性"></a>关于 FHS 兼容性</h4><p>这个目录树是基于文件系统目录结构标准（FHS）（参看 <a href="https://wiki.linuxfoundation.org/en/FHS" target="_blank" rel="noopener">https://wiki.linuxfoundation.org/en/FHS</a>) ,FHS 标准还规定了要有 /usr/local/games 和 /usr/share/games 目录。另外 FHS 标准关于/usr/local/share 里子目录的结构要求并不清晰，所以我们只创建了我们需要的目录。不过，如果你更喜欢严格遵守 FHS 标准，创建这些目录也不会有问题。</p>
+<h4 id="创建必需的文件和符号链接"><a href="#创建必需的文件和符号链接" class="headerlink" title="创建必需的文件和符号链接"></a>创建必需的文件和符号链接</h4><p>有些程序里会使用写死的路径<em>调用其它暂时还未安装的程序</em>。为了满足这种类型程序的需要，我们将创建一些符号链接，在完成本章内容后这些软件会安装好，并替代之前的符号链接:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ln -sv /tools/bin/&#123;bash,cat,dd,echo,ln,pwd,rm,stty&#125; /bin</span><br><span class="line">ln -sv /tools/bin/&#123;install,perl&#125; /usr/bin</span><br><span class="line">ln -sv /tools/lib/libgcc_s.so&#123;,.1&#125; /usr/lib</span><br><span class="line">ln -sv /tools/lib/libstdc++.&#123;a,so&#123;,.6&#125;&#125; /usr/lib</span><br><span class="line">ln -sv bash /bin/sh</span><br></pre></td></tr></table></figure></p>
+<p>由于历史原因，Linux 在文件<code>/etc/mtab</code>中维护一个已挂载文件系统的列表。而现代内核改为在内部维护这个列表，并通过 <code>/proc</code> 文件系统输出给用户。为了满足一些依赖 <code>/etc/mtab</code> 文件的应用程序，我们要创建下面的符号链接：<br><code>ln -sv /proc/self/mounts /etc/mtab</code><br>为了让 <code>root</code> 用户能正常登录，而且 <code>root</code> 的名字能被正常识别，必须在文件 <code>/etc/passwd</code> 和 <code>/etc/group</code> 中写入相应的内容。</p>
+<p>运行下面的命令创建 /etc/passwd 文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">cat &gt; /etc/passwd &lt;&lt; &quot;EOF&quot;</span><br><span class="line">root:x:0:0:root:/root:/bin/bash</span><br><span class="line">bin:x:1:1:bin:/dev/null:/bin/false</span><br><span class="line">daemon:x:6:6:Daemon User:/dev/null:/bin/false</span><br><span class="line">messagebus:x:18:18:D-Bus Message Daemon User:/var/run/dbus:/bin/false</span><br><span class="line">nobody:x:99:99:Unprivileged User:/dev/null:/bin/false</span><br><span class="line">EOF</span><br></pre></td></tr></table></figure>
+<p>root 用户的实际密码（<strong>这里的 “x” 只是占位符</strong>）将在后面创建。</p>
+<p>运行下面的命令创建 <code>/etc/group</code> 文件：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">cat &gt; /etc/group &lt;&lt; &quot;EOF&quot;</span><br><span class="line">root:x:0:</span><br><span class="line">bin:x:1:daemon</span><br><span class="line">sys:x:2:</span><br><span class="line">kmem:x:3:</span><br><span class="line">tape:x:4:</span><br><span class="line">tty:x:5:</span><br><span class="line">daemon:x:6:</span><br><span class="line">floppy:x:7:</span><br><span class="line">disk:x:8:</span><br><span class="line">lp:x:9:</span><br><span class="line">dialout:x:10:</span><br><span class="line">audio:x:11:</span><br><span class="line">video:x:12:</span><br><span class="line">utmp:x:13:</span><br><span class="line">usb:x:14:</span><br><span class="line">cdrom:x:15:</span><br><span class="line">adm:x:16:</span><br><span class="line">messagebus:x:18:</span><br><span class="line">systemd-journal:x:23:</span><br><span class="line">input:x:24:</span><br><span class="line">mail:x:34:</span><br><span class="line">nogroup:x:99:</span><br><span class="line">users:x:999:</span><br><span class="line">EOF</span><br></pre></td></tr></table></figure></p>
+<p>这里创建的用户组没有参照任何标准 — 它们一部分是为了满足本章中配置 Udev 的需要，还有一部分来自一些现存 Linux 发行版的通用设定。另外，某些测试套件也依赖特定用户或组。而 Linux 标准规范 （LSB，参见<a href="http://www.linuxbase.org" target="_blank" rel="noopener">http://www.linuxbase.org</a> ）只要求以组 ID（GID）为 0 创建用户组 root 以及以 GID 为 1 创建用户组 bin。系统管理员可以自由分配其它所有用户组名字和 GID，因为优秀的程序不会依赖 GID 数字，而是使用组名。</p>
+<p>为了移除 “I have no name!” 的提示符，可以打开一个新 shell。由于完整的 Glibc 已经在 第五章 里装好了，而且已经创建好了 /etc/passwd 和 /etc/group 文件，用户名和组名就可以正常解析了：</p>
+<p><code>exec /tools/bin/bash --login +h</code></p>
+<p>注意这里使用了 +h 参数。这样会告诉 bash 不要使用它内建的路径哈希功能。而不加这个参数的话， bash 将会记住曾经执行过程序的路径。<em>为了在新编译安装好程序后就能马上使用，参数 +h 将在本章中一直使用。</em></p>
+<p>程序 <code>login</code>，<code>agetty</code> 和<code>init</code>（还有一些其它的）会使用一些日志文件来记录信息，比如<code>谁在什么时候登录了系统</code>。不过，在日志文件不存在的时候这些程序一般不会写入。下面初始化一下日志文件并加上合适的权限：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">touch /var/log/&#123;btmp,lastlog,wtmp&#125;</span><br><span class="line">chgrp -v utmp /var/log/lastlog</span><br><span class="line">chmod -v 664  /var/log/lastlog</span><br><span class="line">chmod -v 600  /var/log/btmp</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>The /var/log/wtmp file records all logins and logouts.<br>The /var/log/lastlog file records when each user last logged in.<br>The /var/log/faillog file records failed login attempts.<br>The /var/log/btmp file records the bad login attempts.<br>文件 /run/utmp 会记录当前已登录的用户。这个文件会在启动脚本中动态创建。</p>
+</blockquote>
+<p>接下来还是漫长的构建的过程,尤其是<code>glibc</code>和<code>gcc</code> (吐血)</p>
 
           
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/07/10/python脚本基础/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
         
       
     </div>
@@ -563,7 +610,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.unblog.top/2018/07/10/shell基础/">
+    <link itemprop="mainEntityOfPage" href="https://www.unblog.top/2018/07/14/2018-07-14/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="兔子春">
@@ -582,7 +629,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/07/10/shell基础/" itemprop="url">shell基础</a></h1>
+                <a class="post-title-link" href="/2018/07/14/2018-07-14/" itemprop="url">2018-07-14 lfs编译日志</a></h1>
         
 
         <div class="post-meta">
@@ -594,8 +641,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-10T16:31:11+08:00">
-                2018-07-10
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-14T08:31:27+08:00">
+                2018-07-14
               </time>
             
 
@@ -610,8 +657,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-07-10T19:15:53+08:00">
-                2018-07-10
+              <time title="更新于" itemprop="dateModified" datetime="2018-07-14T17:57:15+08:00">
+                2018-07-14
               </time>
             
           </span>
@@ -629,8 +676,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/shell/" itemprop="url" rel="index">
-                    <span itemprop="name">shell</span>
+                  <a href="/categories/lfs编译日志/" itemprop="url" rel="index">
+                    <span itemprop="name">lfs编译日志</span>
                   </a>
                 </span>
 
@@ -660,7 +707,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,587
+                  226
                 </span>
               
 
@@ -676,7 +723,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  6
+                  1
                 </span>
               
             </div>
@@ -699,17 +746,14 @@
       
         
           
-          shell开头12345#!/bin/bash#!/bin/sh#!/usr/bin/awk#!/usr/bin/env python#!/usr/bin/perl
+            <h4 id="编译gcc出现错误"><a href="#编译gcc出现错误" class="headerlink" title="编译gcc出现错误:"></a>编译gcc出现错误:</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">In file included from ../../gcc-4.9.2/gcc/cp/except.c:1013:</span><br><span class="line">cfns.gperf:101:1: error: &apos;const char* libc_name_p(const char*, unsigned int)&apos; redeclared inline with &apos;gnu_inline&apos; attribute</span><br><span class="line">cfns.gperf:26:14: note: &apos;const char* libc_name_p(const char*, unsigned int)&apos; previously declared here</span><br><span class="line">cfns.gperf:26:14: warning: inline function &apos;const char* libc_name_p(const char*, unsigned int)&apos; used but never defined</span><br><span class="line">make[2]: *** [Makefile:1058: cp/except.o] Error 1</span><br><span class="line">make[2]: Leaving directory &apos;/mnt/lfs/sources/gcc-build/gcc&apos;</span><br><span class="line">make[1]: *** [Makefile:4027: install-gcc] Error 2</span><br><span class="line">make[1]: Leaving directory &apos;/mnt/lfs/sources/gcc-build&apos;</span><br><span class="line">make: *** [Makefile:2176: install] Error 2</span><br></pre></td></tr></table></figure>
+<p><strong> 原因 </strong>:</p>
+<blockquote>
+<p>编译用的gcc版本太高</p>
+</blockquote>
+<p>编译了一部分,电脑关机去睡觉,结果醒来接着编译的时候出错了…<br>我估计着是chroot进去的时候出现了差异,然后出现错误<br>真实让人头大,打算测试一下….有点心累<br>同时比较幸运,还好不是在编完gcc的时候出现,不然时间浪费太严重了</p>
 
-这几行在第一行,不再第一行就是注释不用的话就用相关解释器带上文件名执行在写脚本的时候如果不加前面的也会交给bash解释,但是还是指定
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/07/10/shell基础/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+          
         
       
     </div>
@@ -756,7 +800,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.unblog.top/2018/07/10/vim基础/">
+    <link itemprop="mainEntityOfPage" href="https://www.unblog.top/2018/07/14/tar/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="兔子春">
@@ -775,7 +819,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/07/10/vim基础/" itemprop="url">vim基础</a></h1>
+                <a class="post-title-link" href="/2018/07/14/tar/" itemprop="url">tar基础</a></h1>
         
 
         <div class="post-meta">
@@ -787,8 +831,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-10T16:06:17+08:00">
-                2018-07-10
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-14T08:24:45+08:00">
+                2018-07-14
               </time>
             
 
@@ -803,8 +847,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-07-10T16:07:29+08:00">
-                2018-07-10
+              <time title="更新于" itemprop="dateModified" datetime="2018-07-14T08:25:46+08:00">
+                2018-07-14
               </time>
             
           </span>
@@ -822,8 +866,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/vim/" itemprop="url" rel="index">
-                    <span itemprop="name">vim</span>
+                  <a href="/categories/linux/" itemprop="url" rel="index">
+                    <span itemprop="name">linux</span>
                   </a>
                 </span>
 
@@ -853,7 +897,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  53
+                  149
                 </span>
               
 
@@ -892,19 +936,13 @@
       
         
           
-          ctrl + s 卡死后使用 ctrl + q
-z回车 将光标所在行移动到屏幕顶端 
-z. 将光标所在行移动到屏幕中间 
-z- 将光标所在行移动到屏幕低端
+            <p>记录:</p>
+<p>来自网上<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">1、*.tar 用 tar -xvf 解压</span><br><span class="line"></span><br><span class="line">2、*.gz 用 gzip -d或者gunzip 解压</span><br><span class="line"></span><br><span class="line">3、*.tar.gz和*.tgz 用 tar -xzf 解压</span><br><span class="line"></span><br><span class="line">4、*.bz2 用 bzip2 -d或者用bunzip2 解压</span><br><span class="line"></span><br><span class="line">5、*.tar.bz2用tar -xjf 解压</span><br><span class="line"></span><br><span class="line">6、*.Z 用 uncompress 解压</span><br><span class="line"></span><br><span class="line">7、*.tar.Z 用tar -xZf 解压</span><br><span class="line"></span><br><span class="line">8、*.rar 用 unrar e解压</span><br><span class="line"></span><br><span class="line">9、*.zip 用 unzip 解压</span><br></pre></td></tr></table></figure></p>
+<p>我一般解压都是直接使用tar -xvf xxx<br>这样比较省事吧 (=\ _ \ =)</p>
+<p>然后压缩就是直接使用 tar -cvf xxx 了</p>
+<p>加入有大小需求的话,我会考虑加上z,j之类的</p>
 
           
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/07/10/vim基础/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
         
       
     </div>
@@ -951,7 +989,7 @@ z- 将光标所在行移动到屏幕低端
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.unblog.top/2018/07/10/sql基本知识/">
+    <link itemprop="mainEntityOfPage" href="https://www.unblog.top/2018/07/14/lfs2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="兔子春">
@@ -970,7 +1008,7 @@ z- 将光标所在行移动到屏幕低端
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/07/10/sql基本知识/" itemprop="url">sql基本知识</a></h1>
+                <a class="post-title-link" href="/2018/07/14/lfs2/" itemprop="url">Linux From Scrach Pass 2</a></h1>
         
 
         <div class="post-meta">
@@ -982,8 +1020,8 @@ z- 将光标所在行移动到屏幕低端
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-10T16:01:12+08:00">
-                2018-07-10
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-14T08:11:27+08:00">
+                2018-07-14
               </time>
             
 
@@ -998,8 +1036,8 @@ z- 将光标所在行移动到屏幕低端
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-08-10T19:37:49+08:00">
-                2018-08-10
+              <time title="更新于" itemprop="dateModified" datetime="2018-07-14T08:14:40+08:00">
+                2018-07-14
               </time>
             
           </span>
@@ -1017,8 +1055,8 @@ z- 将光标所在行移动到屏幕低端
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/sql/" itemprop="url" rel="index">
-                    <span itemprop="name">sql</span>
+                  <a href="/categories/linux/" itemprop="url" rel="index">
+                    <span itemprop="name">linux</span>
                   </a>
                 </span>
 
@@ -1048,7 +1086,7 @@ z- 将光标所在行移动到屏幕低端
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  287
+                  4,566
                 </span>
               
 
@@ -1064,7 +1102,7 @@ z- 将光标所在行移动到屏幕低端
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1
+                  18
                 </span>
               
             </div>
@@ -1087,399 +1125,124 @@ z- 将光标所在行移动到屏幕低端
       
         
           
-          当我在将大小写忽略的时候之前使用大写的数据库的名字就进不去了,因为系统自动将我打的大写换成了小写…..
-每一个检查点都会记录他自己的操作对象的信息状态,当共用的是同一个硬盘上的数据,硬盘上的数据是会被最近的检查点所覆盖掉的,当要回复在之前的某一个特定的检查点的时候,是先通过最近的检查点来逐级向上恢复
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/07/10/sql基本知识/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.unblog.top/2018/07/10/git基本操作/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="兔子春">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/7.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Eden">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/10/git基本操作/" itemprop="url">git基本操作</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-10T15:53:14+08:00">
-                2018-07-10
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2018-07-10T20:27:44+08:00">
-                2018-07-10
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/git/" itemprop="url" rel="index">
-                    <span itemprop="name">git</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
+            <h3 id="编译临时工具软件包过程"><a href="#编译临时工具软件包过程" class="headerlink" title="编译临时工具软件包过程"></a>编译临时工具软件包过程</h3><p>说明:主要列出重要信息(来自官方),切忌不要按照本文编译<br>我只是把它们列出来加深理解,还有一些配置我没有列出<br>包括make与make install</p>
+<h4 id="Binutils-2-25-Pass-1"><a href="#Binutils-2-25-Pass-1" class="headerlink" title="Binutils-2.25 - Pass 1"></a>Binutils-2.25 - Pass 1</h4><p>Binutils 软件包包括了一个<strong>链接器</strong>、<strong>汇编器</strong> 和 <strong>其它处理目标文件</strong> 的工具。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">../binutils-2.25/configure     \</span><br><span class="line">    --prefix=/tools            \</span><br><span class="line">    --with-sysroot=$LFS        \</span><br><span class="line">    --with-lib-path=/tools/lib \</span><br><span class="line">    --target=$LFS_TGT          \</span><br><span class="line">    --disable-nls              \</span><br><span class="line">    --disable-werror</span><br></pre></td></tr></table></figure>
+<p>配置选项的含义：</p>
+<p><code>--prefix=/tools</code></p>
+<blockquote>
+<p>告诉配置脚本将 Binutils 程序安装到 /tools 文件夹。</p>
+</blockquote>
+<p><code>--with-sysroot=$LFS</code></p>
+<blockquote>
+<p>用于交叉编译，告诉编译系统在 $LFS 中查找所需的目标系统库。</p>
+</blockquote>
+<p><code>--with-lib-path=/tools/lib</code></p>
+<blockquote>
+<p>指定需要配置使用的<strong>链接器</strong>的库路径。</p>
+</blockquote>
+<p><code>--target=$LFS_TGT</code> (这个还不是很清楚)</p>
+<blockquote>
+<p>因为 LFS_TGT 变量中的机器描述和 config.guess 脚本返回的值略有不同，这个选项会告诉 configure 脚本调整 Binutils 的编译系统来编译一个交叉链接器。</p>
+</blockquote>
+<p><code>--disable-nls</code></p>
+<blockquote>
+<p>这会禁止国际化（i18n），因为国际化对临时工具来说没有必要。</p>
+</blockquote>
+<p><code>--disable-werror</code></p>
+<blockquote>
+<p>这会防止来自宿主编译器的警告事件导致停止编译。</p>
+</blockquote>
+<h4 id="GCC-7-3-0-Pass-1"><a href="#GCC-7-3-0-Pass-1" class="headerlink" title="GCC-7.3.0 - Pass 1"></a>GCC-7.3.0 - Pass 1</h4><p>GCC 软件包是 <strong>GNU 编译器</strong> 集合的一部分，其中包括 C 和 C++ 的编译器。</p>
+<p>下面的指令将会修改 GCC 默认的<strong>动态链接器</strong>为安装在 <code>/tools</code> 文件夹中的。它也会从 GCC 的 include 搜索路径中移除 <code>/usr/include</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">for file in \</span><br><span class="line"> $(find gcc/config -name linux64.h -o -name linux.h -o -name sysv4.h)</span><br><span class="line">do</span><br><span class="line">  cp -uv $file&#123;,.orig&#125;</span><br><span class="line">  sed -e &apos;s@/lib\(64\)\?\(32\)\?/ld@/tools&amp;@g&apos; \</span><br><span class="line">      -e &apos;s@/usr@/tools@g&apos; $file.orig &gt; $file</span><br><span class="line">  echo &apos;</span><br><span class="line">#undef STANDARD_STARTFILE_PREFIX_1</span><br><span class="line">#undef STANDARD_STARTFILE_PREFIX_2</span><br><span class="line">#define STANDARD_STARTFILE_PREFIX_1 &quot;/tools/lib/&quot;</span><br><span class="line">#define STANDARD_STARTFILE_PREFIX_2 &quot;&quot;&apos; &gt;&gt; $file</span><br><span class="line">  touch $file.orig</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>如果上面的看起来难以理解，让我们分开来看一下吧。首先我们找到 gcc/config 文件夹下的所有命名为 <code>linux.h</code>, <code>linux64.h</code> 或<code>sysv4.h</code> 的文件。对于找到的每个文件，我们把它复制到相同名称的文件，但增加了后缀 “<code>.orig</code>”。然后第一个 sed 表达式在每个 “<code>/lib/ld</code>”, “<code>/lib64/ld</code>” 或 “<code>/lib32/ld</code>” 实例前面增加“<code>/tools</code>”，第二个 sed 表达式替换 “<code>/usr</code>” 的硬编码实例。然后，我们添加这改变默认 <code>startfile</code> 前缀到文件末尾的定义语句。注意 “<code>/tools/lib/</code>” 后面的 “<code>/</code>” 是必须的。最后，我们用 <code>touch</code> 更新复制文件的时间戳。当与 <code>cp -u</code> 一起使用时，可以防止命令被无意中运行两次造成对原始文件意外的更改。(厉害厉害)</p>
+</blockquote>
+<p>8.2版本中不用以下命令(可能修复了这个错误):<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">GCC 不能正确检测栈保护，这会导致编译 Glibc-2.21 时出现问题，用下面的命令修复这个问题：</span><br><span class="line">sed -i &apos;/k prot/agcc_cv_libc_provides_ssp=yes&apos; gcc/configure</span><br></pre></td></tr></table></figure></p>
+<p><strong>准备编译 GCC:</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">../gcc-4.9.2/configure                             \</span><br><span class="line">    --target=$LFS_TGT                              \</span><br><span class="line">    --prefix=/tools                                \</span><br><span class="line">    --with-sysroot=$LFS                            \</span><br><span class="line">    --with-newlib                                  \</span><br><span class="line">    --without-headers                              \</span><br><span class="line">    --with-local-prefix=/tools                     \</span><br><span class="line">    --with-native-system-header-dir=/tools/include \</span><br><span class="line">    --disable-nls                                  \</span><br><span class="line">    --disable-shared                               \</span><br><span class="line">    --disable-multilib                             \</span><br><span class="line">    --disable-decimal-float                        \</span><br><span class="line">    --disable-threads                              \</span><br><span class="line">    --disable-libatomic                            \</span><br><span class="line">    --disable-libgomp                              \</span><br><span class="line">    --disable-libitm                               \</span><br><span class="line">    --disable-libquadmath                          \</span><br><span class="line">    --disable-libsanitizer                         \</span><br><span class="line">    --disable-libssp                               \</span><br><span class="line">    --disable-libvtv                               \</span><br><span class="line">    --disable-libcilkrts                           \</span><br><span class="line">    --disable-libstdc++-v3                         \</span><br><span class="line">    --enable-languages=c,c++</span><br></pre></td></tr></table></figure></p>
+<p><code>--with-newlib</code><br>由于<strong>还没有可用的 C 库</strong>，这确保编译 <code>libgcc</code> 时定义了常数 inhibit_libc。这可以防止编译任何需要 libc 支持的代码。</p>
+<p><code>--without-headers</code><br>创建一个完成的交叉编译器的时候，GCC 要求标准头文件和目标系统兼容。对于我们的目的来说，不需要这些头文件。这个选项可以防止 GCC 查找它们。</p>
+<p><code>--with-local-prefix=/tools</code><br>GCC 会查找本地已安装的 include 文件的系统位置。默认是 /usr/local。把它设置为 /tools 能把主机位置中的 /usr/local 从 GCC 的搜索路径中排除。</p>
+<p><code>--with-native-system-header-dir=/tools/include</code><br>GCC 默认会在/usr/include 中查找系统头文件。和 sysroot 选项一起使用，会转换为 $LFS/usr/include。在后面两个章节中头文件会被安装到 $LFS/tools/include。这个选项确保 gcc 能正确找到它们。第二次编译 GCC 时，<strong>同样的选项可以保证不会去寻找主机系统的头文件。</strong></p>
+<p><code>--disable-shared</code><br>这个选项强制 GCC 静态链接到它的内部库。我们这样做是<em>为了避免与主机系统可能出现的问题。</em></p>
+<p><code>--disable-decimal-float</code>, <code>--disable-threads</code>, <code>--disable-libatomic</code>, <code>--disable-libgomp</code>, <code>--disable-libitm</code>, <code>--disable-libquadmath</code>, <code>--disable-libsanitizer</code>, <code>--disable-libssp</code>, <code>--disable-libvtv</code>, <code>--disable-libcilkrts</code>, <code>--disable-libstdc++-v3</code><br>这些选项取消了对十进制浮点数扩展、线程化、libatomic、 libgomp、 libitm、 libquadmath、 libsanitizer、 libssp、 libvtv、 libcilkrts 和 C++ 标准库的支持。这些功能在编译交叉编译器的时候会导致编译失败，对于交叉编译 临时 libc 来说也没有必要。</p>
+<p>–disable-multilib<br>在 x86_64 机器上， LFS 还不支持 multilib 配置。这个选项对 x86 来说无害。</p>
+<p>–enable-languages=c,c++<br>这个选项确保只编译 C 和 C++ 编译器。这些是现在唯一需要的语言。</p>
+<h4 id="Linux-4-15-3-API-Headers"><a href="#Linux-4-15-3-API-Headers" class="headerlink" title="Linux-4.15.3 API Headers"></a>Linux-4.15.3 API Headers</h4><p>供系统 C 库（在 LFS 中是 Glibc）使用的应用程序编程接口（API）</p>
+<h4 id="Glibc-2-27"><a href="#Glibc-2-27" class="headerlink" title="Glibc-2.27"></a>Glibc-2.27</h4><p>Glibc 软件包包括主要的 C 库。这个库提供了基本的<strong>内存分配</strong>、<strong>文件夹搜素</strong>、<strong>读写文件</strong>、<strong>字符串处理</strong>、<strong>模式匹配</strong>、<strong>算术</strong> 等等例程。</p>
+<p>编译:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">../glibc-2.21/configure                             \</span><br><span class="line">      --prefix=/tools                               \</span><br><span class="line">      --host=$LFS_TGT                               \</span><br><span class="line">      --build=$(../glibc-2.21/scripts/config.guess) \</span><br><span class="line">      --disable-profile                             \</span><br><span class="line">      --enable-kernel=2.6.32                        \</span><br><span class="line">      --with-headers=/tools/include                 \</span><br><span class="line">      libc_cv_forced_unwind=yes                     \</span><br><span class="line">      libc_cv_ctors_header=yes                      \</span><br><span class="line">      libc_cv_c_cleanup=yes</span><br></pre></td></tr></table></figure></p>
+<p><code>--host=$LFS_TGT, --build=$(../glibc-2.21/scripts/config.guess)</code><br>这些选项的组合效果是 Glibc 的构建系统配置它自己用 /tools 里面的交叉链接器和交叉编译器交叉编译自己。</p>
+<p><code>--disable-profile</code><br>编译库但不包含分析信息。如果临时工具需要分析信息则忽略此选项。</p>
+<p><code>--enable-kernel=3.2</code><br>这告诉 Glibc 编译能支持 Linux 3.2 以及之后的内核库。更早的内核版本不受支持。</p>
+<p><code>--with-headers=/tools/include</code><br>告诉 Glibc 利用刚刚安装在 tools 文件夹中的头文件编译自身，此能够根据内核的具体特性提供更好的优化。</p>
+<p><code>libc_cv_forced_unwind=yes</code><br>在 “Binutils-2.25 - Pass 1” 中安装的链接器是交叉编译的，在安装完 Glibc 之前不能使用。由于依赖于工作的链接器，这意味着 force-unwind 支持的配置测试会失败。将 libccvforced_unwind=yes 变量传递进去告诉configure 命令 force-unwind 支持是可用的，不需要进行测试。</p>
+<p><code>libc_cv_c_cleanup=yes</code><br>类似的，我们传递 libc_cv_c_cleanup=yes 到 configure 脚本<em>跳过测试</em>就完成了 C 清理支持的配置。</p>
+<p><code>libc_cv_ctors_header=yes</code><br>类似的，我们传递 libc_cv_ctors_header=yes 到 configure 脚本<em>跳过测试</em>就完成了 gcc 构建器支持的配置。</p>
+<h4 id="Libstdc-7-3-0"><a href="#Libstdc-7-3-0" class="headerlink" title="Libstdc++-7.3.0"></a>Libstdc++-7.3.0</h4><p>Libstdc++ 是标准的 C++ 库。g++ 编译器正确运行需要它。Libstdc++ 是标准的 C++ 库。g++ 编译器正确运行需要它。</p>
+<p>编译:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">../gcc-4.9.2/libstdc++-v3/configure \</span><br><span class="line">    --host=$LFS_TGT                 \</span><br><span class="line">    --prefix=/tools                 \</span><br><span class="line">    --disable-multilib              \</span><br><span class="line">    --disable-shared                \</span><br><span class="line">    --disable-nls                   \</span><br><span class="line">    --disable-libstdcxx-threads     \</span><br><span class="line">    --disable-libstdcxx-pch         \</span><br><span class="line">    --with-gxx-include-dir=/tools/$LFS_TGT/include/c++/4.9.2</span><br></pre></td></tr></table></figure></p>
+<p>–host=…<br>指示使用我们刚才编译的交叉编译器，而不是 /usr/bin 中的。</p>
+<p>–disable-libstdcxx-threads<br>由于我们还没有编译 C 线程库，C++ 的也还不能编译。</p>
+<p>–disable-libstdcxx-pch<br>此选项防止安装预编译文件，此步骤并不需要。</p>
+<p>–with-gxx-include-dir=/tools/$LFS_TGT/include/c++/7.3.0<br>这是 C++ 编译器搜索标准 <em>include</em> 文件的位置。在<strong>一般的编译</strong>中，这个信息自动从顶层文件夹中传入 Libstdc++ configure 选项。<em>在我们的例子中，必须明确给出这信息。</em></p>
+<h4 id="Binutils-2-30-Pass-2"><a href="#Binutils-2-30-Pass-2" class="headerlink" title="Binutils-2.30 - Pass 2"></a>Binutils-2.30 - Pass 2</h4><p>编译:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">CC=$LFS_TGT-gcc                \</span><br><span class="line">AR=$LFS_TGT-ar                 \</span><br><span class="line">RANLIB=$LFS_TGT-ranlib         \</span><br><span class="line">../binutils-2.25/configure     \</span><br><span class="line">    --prefix=/tools            \</span><br><span class="line">    --disable-nls              \</span><br><span class="line">    --disable-werror           \</span><br><span class="line">    --with-lib-path=/tools/lib \</span><br><span class="line">    --with-sysroot</span><br></pre></td></tr></table></figure></p>
+<p><code>CC=$LFS_TGT-gcc AR=$LFS_TGT-ar RANLIB=$LFS_TGT-ranlib</code><br>因为这是真正的原生编译 Binutils，设置这些变量能<em>确保编译系统使用交叉编译器和相关的工具</em>，而不是宿主系统中已有的。</p>
+<p><code>--with-lib-path=/tools/lib</code><br>这告诉配置脚本在编译 Binutils 的时候指定库搜索目录，此处将 /tools/lib 传递到链接器。这可以<em>防止链接器搜索宿主系统的库目录</em>。</p>
+<p><code>--with-sysroot</code><br>sysroot 功能<em>使链接器可以找到包括在其命令行中的其它共享对象明确需要的共享对象</em>。 否则的话，在某些主机上一些软件包可能会编译不成功。(….未理解)</p>
+<p>为下一章的“再调整”阶段准备链接器：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">make -C ld clean</span><br><span class="line">make -C ld LIB_PATH=/usr/lib:/lib</span><br><span class="line">cp -v ld/ld-new /tools/bin</span><br></pre></td></tr></table></figure></p>
+<p><code>-C ld clean</code><br>告诉 make 程序移除所有 ld 子目录中编译过的文件。</p>
+<p><code>-C ld LIB_PATH=/usr/lib:/lib</code><br>这个选项重新编译 ld 子目录中的所有文件。在命令行中指定 Makefile 的 LIB_PATH 变量可以使我们能够重写临时工具的默认值并指向正确的最终路径。该变量的值指定链接器的默认库搜索路径。 下一章中会用到这个准备。</p>
+<h4 id="GCC-7-3-0-Pass-2"><a href="#GCC-7-3-0-Pass-2" class="headerlink" title="GCC-7.3.0 - Pass 2"></a>GCC-7.3.0 - Pass 2</h4><p>我们第一次编译 GCC 的时候安装了一些内部系统头文件。其中的一个 <code>limits.h</code> 会反过来包括对应的系统头文件 <code>limits.h</code>， 在我们的例子中，是 <code>/tools/include/limits.h</code>。但是，第一次编译 gcc 的时候 <code>/tools/include/limits.h</code> <strong>并不存在</strong>，因此 GCC 安装的内部头文件只是部分的自包含文件， 并不包括系统头文件的扩展功能。这足以编译临时 libc，但是这次编译 GCC 要求完整的内部头文件。 使用和正常情况下 GCC 编译系统使用的相同的命令创建一个<em>完整版本</em>的内部头文件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cat gcc/limitx.h gcc/glimits.h gcc/limity.h &gt; \</span><br><span class="line">  `dirname $($LFS_TGT-gcc -print-libgcc-file-name)`/include-fixed/limits.h</span><br></pre></td></tr></table></figure>
+<p>准备编译 GCC:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">CC=$LFS_TGT-gcc                                    \</span><br><span class="line">CXX=$LFS_TGT-g++                                   \</span><br><span class="line">AR=$LFS_TGT-ar                                     \</span><br><span class="line">RANLIB=$LFS_TGT-ranlib                             \</span><br><span class="line">../gcc-4.9.2/configure                             \</span><br><span class="line">    --prefix=/tools                                \</span><br><span class="line">    --with-local-prefix=/tools                     \</span><br><span class="line">    --with-native-system-header-dir=/tools/include \</span><br><span class="line">    --enable-languages=c,c++                       \</span><br><span class="line">    --disable-libstdcxx-pch                        \</span><br><span class="line">    --disable-multilib                             \</span><br><span class="line">    --disable-bootstrap                            \</span><br><span class="line">    --disable-libgomp</span><br></pre></td></tr></table></figure></p>
+<p><code>--enable-languages=c,c++</code><br>这个选项确保编译了 C 和 C++ 编译器。</p>
+<p><code>--disable-libstdcxx-pch</code><br>不为 <code>libstdc++</code> 编译预编译的头文件(PCH)。<em>这会花费很多时间，却对我们没有用处。</em></p>
+<p><code>--disable-bootstrap</code><br>对于原生编译的 GCC，默认是做一个<strong>“引导”构建</strong>。这不仅会编译 GCC，而且会<em>多次编译</em>。 它用第一次编译的程序去第二次编译自己，然后同样进行第三次。 比较第二次和第三次迭代确保它可以完美复制自身。这也意味着已经成功编译。 <em>但是，LFS 的构建方法能够提供一个稳定的编译器，而不需要每次都重新引导。</em></p>
+<h4 id="Tcl-core-8-6-8"><a href="#Tcl-core-8-6-8" class="headerlink" title="Tcl-core-8.6.8"></a>Tcl-core-8.6.8</h4><p>Tcl软件包包含工具命令语言（Tool Command Language）相关程序。</p>
+<p>此软件包和后面三个包（<code>Expect</code>、<code>DejaGNU</code> 和 <code>Check</code>）用来为 <code>GCC</code> 和 <code>Binutils</code>还有其他的一些软件包的测试套件<em>提供运行支持</em>。仅仅为了测试目的而安装 4 个软件包，看上去有点奢侈，虽然因为大部分重要的工具都能正常工作而并不需要去做测试。 尽管在本章中并没有执行测试套件（并不做要求），但是在第六章 中都要求执行这些软件包自带的测试套件。<br><em>不强求为本章中所构建的临时工具运行测试套件。</em></p>
+<h4 id="Expect-5-45"><a href="#Expect-5-45" class="headerlink" title="Expect-5.45"></a>Expect-5.45</h4><p>Expect 软件包包含一个实现用脚本和其他交互式程序进行对话的程序。</p>
+<p>首先，强制 <code>Expect</code> 的 <code>configure</code> 配置脚本使用 <code>/bin/stty</code> 替代宿主机系统里可能存在的 <code>/usr/local/bin/stty</code>。这样可以保证我们的测试套件工具在工具链的最后一次构建能够正常。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cp -v configure&#123;,.orig&#125;</span><br><span class="line">sed &apos;s:/usr/local/bin:/bin:&apos; configure.orig &gt; configure</span><br></pre></td></tr></table></figure></p>
+<p>编译:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">./configure --prefix=/tools       \</span><br><span class="line">            --with-tcl=/tools/lib \</span><br><span class="line">            --with-tclinclude=/tools/include</span><br></pre></td></tr></table></figure></p>
+<p><code>--with-tcl=/tools/lib</code><br>这个选项可以保证 <code>configure</code> 配置脚本会从临时工具目录里找 <code>Tcl</code> 的安装位置， 而不是在宿主机系统中寻找。</p>
+<p><code>--with-tclinclude=/tools/include</code><br>这个选项会给 <code>Expect</code> 显式地指定 <code>Tcl</code> 内部头文件的位置。通过这个选项可以避免 <code>configure</code> 脚本不能自动发现 <code>Tcl</code> 头文件位置的情况。</p>
+<h4 id="DejaGNU-1-6-1"><a href="#DejaGNU-1-6-1" class="headerlink" title="DejaGNU-1.6.1"></a>DejaGNU-1.6.1</h4><p><code>./configure --prefix=/tools</code></p>
+<h4 id="M4-1-4-18"><a href="#M4-1-4-18" class="headerlink" title="M4-1.4.18"></a>M4-1.4.18</h4><p>M4 软件包包含一个宏预处理器。<br><code>./configure --prefix=/tools</code></p>
+<h4 id="Ncurses-6-1"><a href="#Ncurses-6-1" class="headerlink" title="Ncurses-6.1"></a>Ncurses-6.1</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">./configure --prefix=/tools \</span><br><span class="line">            --with-shared   \</span><br><span class="line">            --without-debug \</span><br><span class="line">            --without-ada   \</span><br><span class="line">            --enable-widec  \</span><br><span class="line">            --enable-overwrite</span><br></pre></td></tr></table></figure>
+<p><code>--without-ada</code><br>这个选项会保证 <code>Ncurse</code> 不会编译对宿主机系统里可能存在的 Ada 编译器的支持， <em>而这在我们 chroot 切换环境后就不再可用</em>。</p>
+<p><code>--enable-overwrite</code><br>这个选项会告诉 <code>Ncurses</code> 安装它的头文件到 <code>/tools/include</code> 目录， 而不是 <code>/tools/include/ncurses</code> 目录， 保证其他软件包可以正常找到 <code>Ncurses</code> 的头文件。</p>
+<p><code>--enable-widec</code><br>这个选项会控制编译<code>宽字符库</code>（比如，libncursesw.so.5.9） 而不是<code>默认的普通库</code>（比如，libncurses.so.5.9）。 这些宽字符库在多字节和传统的 8 位环境下使用，而普通库只能用于 8 位环境。 宽字符库和普通库的源代码是兼容的，但并不是二进制兼容。</p>
+<h4 id="Bash-4-4-18"><a href="#Bash-4-4-18" class="headerlink" title="Bash-4.4.18"></a>Bash-4.4.18</h4><p>Bash 软件包包含 Bourne-Again SHell 终端程序<br>编译:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./configure --prefix=/tools --without-bash-malloc</span><br></pre></td></tr></table></figure></p>
+<p><code>--without-bash-malloc</code>这个选项会禁用 Bash 的内存分配功能（malloc）， 这个功能已知会导致段错误。而禁用这个功能后，Bash 将使用 Glibc 的 malloc 函数，这样会更稳定。</p>
+<h4 id="Bison-3-0-4"><a href="#Bison-3-0-4" class="headerlink" title="Bison-3.0.4"></a>Bison-3.0.4</h4><p>The Bison package contains a parser generator.(解析器生成器)</p>
+<h4 id="Bzip2-1-0-6"><a href="#Bzip2-1-0-6" class="headerlink" title="Bzip2-1.0.6"></a>Bzip2-1.0.6</h4><p>Bzip2 软件包包含压缩和解压文件的工具。 用 bzip2 压缩文本文件比传统的 gzip 压缩比高得多。</p>
+<h4 id="Coreutils-8-29"><a href="#Coreutils-8-29" class="headerlink" title="Coreutils-8.29"></a>Coreutils-8.29</h4><p>Coreutils 软件包包含一套用于显示和设定基本系统属性的工具。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">./configure --prefix=/tools --enable-install-program=hostname</span><br><span class="line">--enable-install-program=hostname</span><br></pre></td></tr></table></figure></p>
+<p>这个选项会允许编译和安装 hostname 程序 – 默认是不安装的但是 Perl 测试套件需要它。</p>
+<h4 id="Diffutils-3-6"><a href="#Diffutils-3-6" class="headerlink" title="Diffutils-3.6"></a>Diffutils-3.6</h4><p>Diffutils软件包包含用来比较文件或目录之间差异的工具。</p>
+<h4 id="File-5-32"><a href="#File-5-32" class="headerlink" title="File-5.32"></a>File-5.32</h4><p>File 软件包包含用来判断文件类型的工具。</p>
+<h4 id="Findutils-4-6-0"><a href="#Findutils-4-6-0" class="headerlink" title="Findutils-4.6.0"></a>Findutils-4.6.0</h4><p>Findutils 软件包包含用来查找文件的工具。这些工具可以用来在目录树中递归查找，或者创建、维护和搜索数据库（一般会比递归查找快，但是如果不经常更新数据库的话结果不可靠）。</p>
+<h4 id="Gawk-4-2-0"><a href="#Gawk-4-2-0" class="headerlink" title="Gawk-4.2.0"></a>Gawk-4.2.0</h4><p>Gawk 软件包包含处理文本文件的工具。</p>
+<h4 id="Gettext-0-19-8-1"><a href="#Gettext-0-19-8-1" class="headerlink" title="Gettext-0.19.8.1"></a>Gettext-0.19.8.1</h4><p>Gettext 软件包包含了国际化和本地化的相关应用。它支持程序使用 NLS（本地语言支持）编译，允许程序用用户本地语言输出信息。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd gettext-tools</span><br><span class="line">EMACS=&quot;no&quot; ./configure --prefix=/tools --disable-shared</span><br></pre></td></tr></table></figure></p>
+<p><code>EMACS=&quot;no&quot;</code><br>这个选项会禁止配置脚本侦测安装 Emacs Lisp 文件的位置，已知在某些系统中会引起错误。</p>
+<p><code>--disable-shared</code><br>这次我们不需要安装任何的 Gettext 动态库，所以不需要编译。</p>
+<h4 id="Grep-3-1"><a href="#Grep-3-1" class="headerlink" title="Grep-3.1"></a>Grep-3.1</h4><p>Grep 软件包包含了在文件中搜索的工具。</p>
+<h4 id="Gzip-1-9"><a href="#Gzip-1-9" class="headerlink" title="Gzip-1.9"></a>Gzip-1.9</h4><p>Gzip 软件包包含压缩和解压缩文件的工具。</p>
+<h4 id="Make-4-2-1"><a href="#Make-4-2-1" class="headerlink" title="Make-4.2.1"></a>Make-4.2.1</h4><p>Make 软件包包含了一个用来编译软件包的程序。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">./configure --prefix=/tools --without-guile</span><br><span class="line">--without-guile</span><br></pre></td></tr></table></figure></p>
+<p>这个选项会保证 Make 不会链接宿主系统上可能存在的 Guile 库，而在下一章里通过 chroot 切换环境后就不再可用</p>
+<h4 id="Patch-2-7-6"><a href="#Patch-2-7-6" class="headerlink" title="Patch-2.7.6"></a>Patch-2.7.6</h4><p>Patch 软件包包含一个可以通过应用“补丁”文件来修改或创建文件的程序，补丁文件通常由diff程序生成。</p>
+<h4 id="Perl-5-26-1"><a href="#Perl-5-26-1" class="headerlink" title="Perl-5.26.1"></a>Perl-5.26.1</h4><p>Perl 软件包包含了处理实用报表提取语言（Practical Extraction and Report Language）的程序。</p>
+<h4 id="Sed-4-4"><a href="#Sed-4-4" class="headerlink" title="Sed-4.4"></a>Sed-4.4</h4><p>Sed 软件包包含一个字符流编辑器。</p>
+<h4 id="Tar-1-30"><a href="#Tar-1-30" class="headerlink" title="Tar-1.30"></a>Tar-1.30</h4><p>Tar 软件包包含了一个存档工具。</p>
+<h4 id="Texinfo-6-5"><a href="#Texinfo-6-5" class="headerlink" title="Texinfo-6.5"></a>Texinfo-6.5</h4><p>Texinfo软件包包含了读写和转换info文档的工具。</p>
+<h4 id="Util-linux-2-31-1"><a href="#Util-linux-2-31-1" class="headerlink" title="Util-linux-2.31.1"></a>Util-linux-2.31.1</h4><p>Util-linux 软件包包含了各种各样的小工具。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">./configure --prefix=/tools                \</span><br><span class="line">            --without-python               \</span><br><span class="line">            --disable-makeinstall-chown    \</span><br><span class="line">            --without-systemdsystemunitdir \</span><br><span class="line">            PKG_CONFIG=&quot;&quot;</span><br></pre></td></tr></table></figure></p>
+<p><code>--without-python</code><br>这个选项会禁止使用宿主系统中可能安装了的 Python。这样可以避免构建一些不必要的捆绑应用。</p>
+<p><code>--disable-makeinstall-chown</code><br>这个选项会禁止在安装的时候使用 chown 命令。这对我们安装到 /tools 目录没有意义而且可以避免使用 root 用户安装。</p>
+<p><code>--without-systemdsystemunitdir</code><br>对于使用 systemd 的系统，这个软件包会尝试安装 systemd 特定文件到 /tools 下一个不存在的目录里。这个选项可以避免这个不必要的动作。</p>
+<p><code>PKG_CONFIG=&quot;&quot;</code><br>设定这个环境变量可以避免增加一些宿主机上存在却不必要的功能。请注意这里设定环境变量的方式和 LFS 其他部分放在命令前面的方式不同。<em>在这里是为了展示一下使用 configure 脚本配置时设定环境变量的另一种方式。</em></p>
+<h4 id="Xz-5-2-3"><a href="#Xz-5-2-3" class="headerlink" title="Xz-5.2.3"></a>Xz-5.2.3</h4><p>Xz 软件包包含了用于压缩和解压文件的程序。它提供了对 lzma 和更新的 xz 压缩格式的支持。使用 xz 压缩文本文件能比传统的 gzip 或 bzip2 命令有更高的压缩比。</p>
+<h4 id="提醒"><a href="#提醒" class="headerlink" title="提醒"></a>提醒</h4><p>$LFS/tools 目录可以在 LFS 系统构建完成后删除，但仍然可以保留下来用于构建额外的相同版本 LFS 系统。备份 $LFS/tools 目录到底有多少好处取决于你个人<br><em>如果你想保留临时工具用来构建新的 LFS 系统，现在就要备份好。本书随后第六章中的指令将对当前的工具做些调整，导致在构建新系统时会失效</em></p>
+<p><strong>到此,准备工作完成</strong></p>
 
           
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  38
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  1
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          一般提交操作为:1234git add -all ==&gt;  gaagit commit -m &quot;xxxx&quot; ==&gt; gcgit pull ==&gt;   glgit push  ==&gt;  gp
-自动保存密码:git config --global creden
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/07/10/git基本操作/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.unblog.top/2018/07/10/css渐变动画/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="兔子春">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/7.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Eden">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/10/css渐变动画/" itemprop="url">css渐变动画</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-10T15:47:23+08:00">
-                2018-07-10
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2018-07-10T15:50:41+08:00">
-                2018-07-10
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/css/" itemprop="url" rel="index">
-                    <span itemprop="name">css</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  58
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  1
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          鼠标放上去渐变12345678div&#123;width:100px;transition: width 2s;-moz-transition: width 2s; /* Firefox 4 */-webkit-transition: width 2s; /* Safari 和 Chrome */
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/07/10/css渐变动画/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
         
       
     </div>
@@ -1517,7 +1280,7 @@ z- 将光标所在行移动到屏幕低端
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
