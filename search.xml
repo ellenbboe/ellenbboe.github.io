@@ -25,7 +25,7 @@
   <entry>
     <title><![CDATA[2018-08-12 java plane war记录日志]]></title>
     <url>%2F2018%2F08%2F12%2F2018-08-12%2F</url>
-    <content type="text"><![CDATA[linux下workbanch闪退rm -rf .mysql/workbench/]]></content>
+    <content type="text"><![CDATA[之前旧的游戏没有完成,里面用的是timer.schdule本次重新写打算用thread现在还没有想好使用什么方法写子弹和敌人(是不是上一次一样使用list)linux下似乎swing的绘制有点卡,不知道是什么问题…. 还有就是遇到了linux下workbanch闪退的问题解决方法是: rm -rf .mysql/workbench/]]></content>
       <categories>
         <category>开发日志</category>
       </categories>
