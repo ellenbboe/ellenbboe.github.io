@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[2018-08-14 plane war日志]]></title>
+    <url>%2F2018%2F08%2F14%2F2018-08-14%2F</url>
+    <content type="text"><![CDATA[基本构建完成判断碰撞的逻辑没有作用,需要改进]]></content>
+      <categories>
+        <category>开发日志</category>
+      </categories>
+      <tags>
+        <tag>日志</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[java_swing 绘制图形]]></title>
     <url>%2F2018%2F08%2F12%2Fjava-swing%2F</url>
     <content type="text"><![CDATA[在java的jpanel绘制图形使用paint方法,在里面使用super.paint清除之前的残留在while里使用repaint进行循环绘画12345678public void display() &#123; this.repaint(); &#125; public void paint(Graphics g) &#123; super.paint(g); dao.drawBackground(g); dao.drawState(g, hero); &#125; 123456789101112while(true) &#123; start.display(); try &#123; Thread.sleep(300); &#125; catch (InterruptedException e) &#123; e.printStackTrace(); &#125; &#125;]]></content>
