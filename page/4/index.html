@@ -378,6 +378,251 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.unblog.top/2018/07/25/lfs5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="兔子春">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/7.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Eden">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/07/25/lfs5/" itemprop="url">Linux For Scratch Pass 5</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-25T13:18:36+08:00">
+                2018-07-25
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-08-09T10:15:10+08:00">
+                2018-08-09
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index">
+                    <span itemprop="name">linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  5,127
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  20
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>System V is the classic boot process that has been used in Unix and Unix-like systems such as Linux since about 1983.It consists of a small program, init, that sets up basic programs such as login (via getty) and runs a script. This script, usually named rc, controls the execution of a set of additional scripts that perform the tasks required to initialize the system.</p>
+<p>The init program is controlled by the /etc/inittab file and is organized into run levels that can be run by the user:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">0 — halt</span><br><span class="line">1 — Single user mode(单用户模式)</span><br><span class="line">2 — Multiuser, without networking</span><br><span class="line">3 — Full multiuser mode</span><br><span class="line">4 — User definable</span><br><span class="line">5 — Full multiuser mode with display manager</span><br><span class="line">6 — reboot</span><br><span class="line">The usual default run level is 3 or 5.</span><br></pre></td></tr></table></figure>
+<h4 id="安装LFS-Bootscripts"><a href="#安装LFS-Bootscripts" class="headerlink" title="安装LFS-Bootscripts"></a>安装LFS-Bootscripts</h4><p>该软件包里面有一系列系统启动和关机的脚本</p>
+<h4 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h4><p>传统的 Linux 不管硬件是否真实存在，都以创建<strong>静态设备</strong>的方法来处理硬件，因此需要在 <code>/dev</code> 目录下<strong>创建大量的设备节点文件</strong>(<strong>有时会有上千个</strong>)。这通常由 <code>MAKEDEV</code> <strong>脚本</strong>完成，它通过<strong>大量调用 <code>mknod</code> 程序</strong> 为这个世界上可能存在的<strong>每一个设备</strong>建立对应的主设备号和次设备号。</p>
+<p>而使用 <code>udev</code>方法，<strong>只有</strong>当内核检测到硬件接入，<strong>才</strong> 会建立对应的节点文件。因为需要在系统启动的时候<strong>重新</strong>建立设备节点文件(动态建立文件)，所以将它存储在 <code>devtmpfs</code> 文件系统中（<em>完全存在于内存中的虚拟文件系统</em>）。设备节点文件无需太多的空间，所以占用的内存也很小。(动态建立)</p>
+<h4 id="历史"><a href="#历史" class="headerlink" title="历史"></a>历史</h4><p>2000 年 2 月，一种名叫 <code>devfs</code> 的文件系统被合并到 <code>2.3.46</code> 内核版本，<code>2.4</code> 系列的稳定内核中基本可用。尽管它存在于内核的源代码中，但是这种动态创建设备的方法却从来都得不到核心内核开发者的大力支持。</p>
+<p>问题存在于它处理设备的检测、创建和命令的方式，其中最大的问题莫过于它对设备节点的命名方式。大部分开发者的观点是，设备的命名应该由系统的所有者决定，而不是开发者。 devfs 存在一个严重的设计缺陷：它存在严重的 <code>race conditions</code> 问题(<em>有两个方面的问题,两个不相干的进程争取一个相同资源,两个相干的进程竞争同一资源,相互等待,命名的方式会使得目标不明确</em>)，如不对内核做大量的修改就无法修正这一问题。最终，因为缺乏有效的维护，在 2006 年 6 月终被移出内核源代码。<br>再后来，随着非稳定的 2.5 版本的内核开发，到稳定的 2.6 内核，又出现了一种全新的虚拟文件系统 <code>sysfs</code>。<code>sysfs</code> 的工作是将系统的硬件配置导入到用户空间进程。通过对用户空间可视化的改善，代替<code>devfs</code>变得更加现实。</p>
+<h4 id="Sysfs"><a href="#Sysfs" class="headerlink" title="Sysfs"></a>Sysfs</h4><p>上文简单的提及了 <code>sysfs</code> 文件系统。有些人可能会问，<code>sysfs</code> 到底是如何知道当前系统有哪些设备，这些设备又该使用什么设备号呢。对于<strong>那些已经编译进内核的设备</strong>，会在内核检测到时<strong>直接注册为 sysfs 对象</strong>（<strong>devtmpfs 内建</strong>）(<em>通过保存在内存的设备系统,来注册设备</em>)。对于编译为内核模块的设备，将会在<strong>模块载入的时候注册</strong>。一旦 <code>sysfs</code> 文件系统挂载到 <code>/sys</code>，已经在 <code>sysfs</code> 注册的硬件数据就可以被<strong>用户空间的进程</strong>使用， <code>udevd</code>也就能够处理了（包括对设备节点进行修改）。(<strong>总的来说,是先通过<code>devtmpfs</code>来注册电脑上有的设备,动态注册设备,之后一旦 sysfs 文件系统挂载到 /sys,就将这些注册的设备给用户进程使用</strong>)</p>
+<h4 id="设备节点的创建"><a href="#设备节点的创建" class="headerlink" title="设备节点的创建"></a>设备节点的创建</h4><p>设备文件是<strong>通过内核中的 <code>devtmpfs</code> 文件系统创建</strong>的。任何想要注册的设备都需要通过 <code>devtmpfs</code> （通过驱动程序核心）实现。<strong>每当一个</strong><code>devtmpfs</code>实例挂载到 <code>/dev</code>，<strong>就</strong> 会建立一个设备节点文件，它拥有固定 的名称、权限、所有者。<br>很短的时间之后，内核将给 <code>udevd</code> 一个 <code>uevent</code>。基于 <code>/etc/udev/rules.d</code>，<code>/lib/udev/rules.d</code> 和 <code>/run/udev/rules.d</code>目录内文件指定的规则，<code>udevd</code> 将会<strong>建立</strong>到设备节点文件的<strong>额外符号链接</strong>，<strong>这有可能更改其权限，所有者，所在组，或者是更改 <code>udevd</code> 内建接口（名称）。</strong>(<em>创建符号链接的时候可能会出现问题</em>)<br>这三个目录下的规则都像 <code>LFS-Bootscripts</code> 包那样标有数字，<strong>所有三个目录都会统一到一起</strong>。如果 <code>udevd</code> <strong>找不到</strong> 和所创建设备相应的规则，它会保留 <code>devtmpfs</code> 里<strong>初始化时</strong>使用过的权限和属主。</p>
+<h4 id="加载模块"><a href="#加载模块" class="headerlink" title="加载模块"></a>加载模块</h4><p>编译成模块的设备驱动<strong>可能会包含别名</strong>。别名可以通过<code>modinfo</code>打印出来查看，一般是<strong>模块支持的特定总线的设备描述符</strong>。举个例子，驱动<code>snd-fm801</code>支持厂商 ID 为 <code>0x1319</code> 以及设备 ID 为 <code>0x0801</code> 的设备，它包含一个 “<code>pci:v00001319d00000801sv*sd*bc04sc01i*</code>” (<em>vesion,device,sv*sd*bc04sc01i*</em>)的<strong>别名</strong>，总线驱动导出该驱动别名并通过 <code>sysfs</code> 处理相关设备。例如，文件 <code>/sys/bus/pci/devices/0000:00:0d.0/modalias</code> 应该会包含字符串 “<code>pci:v00001319d00000801sv00001319sd00001319bc04sc01i00</code>”。<code>Udev</code> 采用的默认规则会让 <code>udevd</code> 根据 <code>uevent</code> 环境变量 <code>MODALIAS</code> 的内容（它应该和 <code>sysfs</code> 里的 <code>modalias</code> 文件内容一样）调用 <code>/sbin/modprobe</code>，这样就可以加载在通配符扩展后能和这个字符串一致的<strong>所有模块</strong>。(<em>modprobe命令 用于智能地向内核中加载模块或者从内核中移除模块。</em>)<br>在这个例子里，意味着，除了 <code>snd-fm801</code> 之外，一个已经废弃的（不是我们所希望的）驱动 <code>forte</code> 如果存在的话也会被加载。下面有几种可以避免加载多余驱动的方式。</p>
+<p>内核本身也能够根据需要加载网络协议，文件系统以及 <code>NLS</code> 支持模块。</p>
+<h5 id="处理热插拔-动态设备"><a href="#处理热插拔-动态设备" class="headerlink" title="处理热插拔/动态设备"></a>处理热插拔/动态设备</h5><p>在你插入一个设备时，例如一个通用串行总线（USB）MP3 播放器，内核检测到设备已连接就会生成一个<code>uevent</code>。这个 <code>uevent</code> 随后会被上面所说的<code>udevd</code>处理。</p>
+<h4 id="加载模块和创建设备时可能碰到的问题"><a href="#加载模块和创建设备时可能碰到的问题" class="headerlink" title="加载模块和创建设备时可能碰到的问题"></a>加载模块和创建设备时可能碰到的问题</h4><p>在自动创建设备节点时可能会碰到一些问题。</p>
+<h5 id="内核模块没有自动加载"><a href="#内核模块没有自动加载" class="headerlink" title="内核模块没有自动加载"></a>内核模块没有自动加载</h5><p><code>Udev</code> 只会加载包含有特定总线别名而且已经被总线驱动导出到 <code>sysfs</code> 下的模块。在其它情况下，你应该考虑用其它方式加载模块。采用 Linux-4.15.3，<code>Udev</code> 可以加载编写合适的 <code>INPUT</code>、<code>IDE</code>、<code>PCI</code>、<code>USB</code>、<code>SCSI</code>、<code>SERIO</code> 和 <code>FireWire</code>设备驱动。</p>
+<p>要确定你希望加载的驱动是否支持 <code>Udev</code>，可以用模块名字作为参数运行 <code>modinfo</code>。然后查看<code>/sys/bus</code>下的设备目录里是否有个<code>modalias</code>文件。</p>
+<p>如果在 <code>sysfs</code> 下能找到<code>modalias</code>文件，那么就能驱动这个设备并可以直接操作它，但是如果该文件里没有包含设备别名，那意味着这个驱动有问题。我们可以先尝试不依靠 <code>Udev</code>直接加载驱动，等这个问题以后解决。</p>
+<p>如果在 <code>/sys/bus</code> 下的相应目录里没有 <code>modalias</code> 的话，意味着内核开发人员还没有为这个总线类型增加 modalias 支持。使用 Linux-4.15.3 内核，应该是 ISA 总线的问题。希望这个可以在后面的内核版本里得到解决。</p>
+<p><code>Udev</code> 不会尝试加载类似 <code>snd-pcm-oss</code> 这样的“封装”驱动，也不会加载类似 <code>loop</code> 这样的非硬件驱动。(loop是指循环?)</p>
+<h5 id="内核驱动没有自动加载，Udev-也没有尝试加载"><a href="#内核驱动没有自动加载，Udev-也没有尝试加载" class="headerlink" title="内核驱动没有自动加载，Udev 也没有尝试加载"></a>内核驱动没有自动加载，Udev 也没有尝试加载</h5><p>如果是 “封装” 模块只是强化其它模块的功能（比如，<code>snd-pcm-oss</code> 模块通过允许 OSS 应用直接访问声卡的方式加强了 <code>snd-pcm</code> 模块的功能），需要配置 <code>modprobe</code> 在 <code>Udev</code> 加载硬件驱动模块后再加载相应的封装模块。可以在任意 <code>/etc/modprobe.d/&lt;filename&gt;.conf</code>文件里增加一行 “<code>softdep</code>”，例如：<br><code>softdep snd-pcm post: snd-pcm-oss</code>(设置加载模块方式)<br>请注意 “<code>softdep</code>” 也支持 <code>pre</code>: 的依赖方式，或者混合 <code>pre</code>: 和 <code>post</code>:。查看 <code>modprobe.d(5</code>) 手册了解更多关于 “<code>softdep</code>” 语法和功能的信息。</p>
+<p>如果问题模块不是一个<strong>封装</strong>而且也是有用的，配置 <code>modules</code>开机脚本在引导系统的时候加载模块。这样需要把模块名字添加到 <code>/etc/sysconfig/modules</code> 文件里的单独一行。这个也可以用于封装模块，但是只是<strong>备用</strong>方式。</p>
+<h5 id="Udev-加载了一些无用模块"><a href="#Udev-加载了一些无用模块" class="headerlink" title="Udev 加载了一些无用模块"></a>Udev 加载了一些无用模块</h5><p>要么不要编译该模块，或者把它加入到模块黑名单 <code>/etc/modprobe.d/blacklist.conf</code> 里，像下面的例子里屏蔽了 forte 模块：<code>blacklist forte</code></p>
+<blockquote>
+<p>被屏蔽的模块仍然可以用 modprobe 强行加载。</p>
+</blockquote>
+<h5 id="Udev-创建了错误的设备节点，或错误的软链接"><a href="#Udev-创建了错误的设备节点，或错误的软链接" class="headerlink" title="Udev 创建了错误的设备节点，或错误的软链接"></a>Udev 创建了错误的设备节点，或错误的软链接</h5><p>这个情况通常是因为设备匹配错误。例如，一条写的不好的规则可能同时匹配到 SCSI 磁盘（希望加载的）和对应厂商的 SCSI 通用设备（错误的）。找出这条问题规则，并通过 udevadm info 命令的帮助改得更具体一些。(<em>一条规则对应到两个设备</em>)</p>
+<h5 id="Udev-规则工作不可靠"><a href="#Udev-规则工作不可靠" class="headerlink" title="Udev 规则工作不可靠"></a>Udev 规则工作不可靠</h5><p>这可能是上个问题的另一种表现形式。如果不是，而且你的规则使用了 <code>sysfs</code> 特性，那可能是内核时序问题，希望在后面版本内核里能解决。目前的话，你可以暂时建立一条规则等待使用的 <code>sysfs</code> 特性，并附加到<code>/etc/udev/rules.d/10-wait_for_sysfs.rules</code> 文件里（如果没有这个文件就创建一个）。如果你碰到这种情形请通知 LFS 开发邮件列表，这个对我们有帮助。</p>
+<h5 id="Udev-没有创建设备"><a href="#Udev-没有创建设备" class="headerlink" title="Udev 没有创建设备"></a>Udev 没有创建设备</h5><p>后面的内容会假设驱动已经静态编译进内核或已经作为模块加载，而且你也已经确认 <code>Udev</code> 没有创建相应的设备节点。<br>如果内核驱动没有将自己的数据导出到 <code>sysfs</code> 里，<code>Udev</code> 就没有相关信息来创建设备节点。这通常发生在内核树之外的第三方驱动里。我们可以使用合适的主/副设备数字 ID（查看内核文档里或第三方驱动厂商提供的文档里的 devices.txt 文件） 在 <code>/lib/udev/devices</code> 目录里创建一个静态设备节点。这个静态设备节点随后会被 <code>udev</code> 引导脚本复制到 <code>/dev</code> 里。</p>
+<h5 id="设备名称顺序在重启后随机改变"><a href="#设备名称顺序在重启后随机改变" class="headerlink" title="设备名称顺序在重启后随机改变"></a>设备名称顺序在重启后随机改变</h5><p>这是因为 <code>Udev</code>被设计成并行处理 <code>uevents</code> 并加载模块，所以是不可预期的顺序。这个不会“修复”。你不应该依赖稳定的内核模块名称。而是，在检测到设备的稳定特征，比如序列号或 Udev 安装的一些*_id应用的输出，来判断设备的稳定名称，之后  创建自己的规则生成相应的软链接。</p>
+<h4 id="管理设备"><a href="#管理设备" class="headerlink" title="管理设备"></a>管理设备</h4><h5 id="网络设备"><a href="#网络设备" class="headerlink" title="网络设备"></a>网络设备</h5><p>Udev, by default, names network devices according to Firmware/BIOS data or physical characteristics like the bus, slot, or MAC address.</p>
+<blockquote>
+<p>(通过固件/bios或者说是设备自带的属性进行命名)这种方式使得命名一致,而不是基于发现网卡的时间来确定(老方法)</p>
+</blockquote>
+<p>新的方法一般会变成enp5s0 or wlp3s0这样的形式<br>你也可以禁用新的方法使用老的</p>
+<p>创建传统的udev规则<br>根据现有的初始化规则来创建<br><code>bash /lib/udev/init-net-rules.sh</code><br><code>cat /etc/udev/rules.d/70-persistent-net.rules</code></p>
+<p>具有相同功能的设备出现在 <code>/dev</code> 目录下的顺序是随机的。假如你有一个 USB 摄像头和一个电视调谐器，<code>/dev/video0</code> 有可能是 USB 摄像头，<code>/dev/video1</code> 是电视调谐器，有时候又可能是反过来的。对于<strong>除声卡和网卡</strong>外的设备，都可以通过创建自定义持久性符号链接的 udev 规则来固定。</p>
+<h5 id="处理类似的设备"><a href="#处理类似的设备" class="headerlink" title="处理类似的设备"></a>处理类似的设备</h5><p>对于你所有的硬件，都有可能遇到此问题（尽管此问题可能在你当前的 Linux 发行版上不存在），在 <code>/sys/class</code> 或 <code>/sys/block</code> 目录下找到对应目录，比如，显卡可能的路径为 <code>/sys/class/video4linux/videoX</code>。找到该设备的唯一设备标识（通常，厂商和产品 ID 以及/或 序列号会有用）：<br><code>udevadm info -a -p /sys/class/video4linux/video0</code><br>然后通过写入规则建立符号链接：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">cat &gt; /etc/udev/rules.d/83-duplicate_devs.rules &lt;&lt; &quot;EOF&quot;</span><br><span class="line"># Persistent symlinks for webcam and tuner</span><br><span class="line">KERNEL==&quot;video*&quot;, ATTRS&#123;idProduct&#125;==&quot;1910&quot;, ATTRS&#123;idVendor&#125;==&quot;0d81&quot;, \</span><br><span class="line">    SYMLINK+=&quot;webcam&quot;</span><br><span class="line">KERNEL==&quot;video*&quot;, ATTRS&#123;device&#125;==&quot;0x036f&quot;, ATTRS&#123;vendor&#125;==&quot;0x109e&quot;, \</span><br><span class="line">    SYMLINK+=&quot;tvtuner&quot;</span><br><span class="line"></span><br><span class="line">EOF</span><br></pre></td></tr></table></figure></p>
+<p>最终，<code>/dev/video0</code> 和 <code>/dev/video1</code> 依旧会<strong>随机</strong>分配给 USB 摄像头和电视调谐器，但是 <code>/dev/tvtuner</code> 和 <code>/dev/webcam</code> 将会<strong>固定</strong>的分配给正确的设备。</p>
+<h4 id="通用网络设置"><a href="#通用网络设置" class="headerlink" title="通用网络设置"></a>通用网络设置</h4><p>网络脚本启动和关闭哪些接口通常取决于<code>/etc/sysconfig/</code>中的文件。此目录应包含要配置的每个接口的文件，例如ifconfig.xyz，其中“xyz”应描述网卡。<br>使用<code>ip link</code> 或者 <code>ls /sys/class/net</code> 查看接口名称</p>
+<p>通过配置文件配置接口(静态ip)<br>具体按照自己情况来<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">cd /etc/sysconfig/</span><br><span class="line">cat &gt; ifconfig.eth0 &lt;&lt; &quot;EOF&quot;</span><br><span class="line">ONBOOT=yes 是否在booting的时候调用nic(网卡全称 network interface card)</span><br><span class="line">IFACE=eth0 接口名称</span><br><span class="line">SERVICE=ipv4-static 获取IP地址的方法</span><br><span class="line">IP=192.168.1.2</span><br><span class="line">GATEWAY=192.168.1.1 默认网关IP地址</span><br><span class="line">PREFIX=24 网络掩码</span><br><span class="line">BROADCAST=192.168.1.255 广播地址</span><br><span class="line">EOF</span><br></pre></td></tr></table></figure></p>
+<p>For more information see the <code>ifup</code> man page.</p>
+<p><strong>DNS解析</strong><br>通过将ISP服务器或网络管理员提供的DNS服务器的IP地址放入/etc/resolv.conf来实现ip地址的解析。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">cat &gt; /etc/resolv.conf &lt;&lt; &quot;EOF&quot;</span><br><span class="line"># Begin /etc/resolv.conf</span><br><span class="line"></span><br><span class="line">domain &lt;Your Domain Name&gt;</span><br><span class="line">nameserver &lt;IP address of your primary nameserver&gt;</span><br><span class="line">nameserver &lt;IP address of your secondary nameserver&gt;</span><br><span class="line"></span><br><span class="line"># End /etc/resolv.conf</span><br><span class="line">EOF</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>Google 公开 IPv4 DNS 解析服务器地址为 8.8.8.8 和 8.8.4.4。<br>译者注：国内也有一些 IT 公司提供公开可用的 DNS 解析服务：<br>114 DNS：114.114.114.114 和 114.114.115.115<br>阿里 DNS：223.5.5.5 和 223.6.6.6<br>百度 DNS：180.76.76.76<br>OpenDNS：208.67.220.220）</p>
+</blockquote>
+<p><strong>自定义host文件</strong>(一般是自动从dns的服务器中得到缓存,也可以手动配置)<br>就算没有网卡，也应该提供有效的完整域名，否则某些软件可能无法正常运行。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Private Network Address Range      Normal Prefix</span><br><span class="line">10.0.0.1 - 10.255.255.254           8</span><br><span class="line">172.x.0.1 - 172.x.255.254           16</span><br><span class="line">192.168.y.1 - 192.168.y.254         24</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>x can be any number in the range 16-31. y can be any number in the range 0-255.</p>
+</blockquote>
+<h4 id="System-V-Bootscript"><a href="#System-V-Bootscript" class="headerlink" title="System V Bootscript"></a>System V Bootscript</h4><p>SysVinit(init)默认处于3的级别<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">0: halt the computer 关闭计算机</span><br><span class="line">1: single-user mode 单人模式</span><br><span class="line">2: multi-user mode without networking 多人单机</span><br><span class="line">3: multi-user mode with networking 多人联机</span><br><span class="line">4: reserved for customization, otherwise does the same as 3</span><br><span class="line">5: same as 4, it is usually used for GUI login (like X&apos;s xdm or KDE&apos;s kdm)</span><br><span class="line">6: reboot the computer 重启</span><br></pre></td></tr></table></figure></p>
+<p>内核初始化的时候，无论是命令行指定运行的第一个程序，还是默认的 init。该程序会读入初始化文件 <code>/etc/inittab</code><br>初始化文件的解释可以参考 <code>inittab</code> 的 <code>man</code> 手册页面。对于LFS，运行的核心命令是 <strong>rc</strong>。上面的初始化文件将指示 <code>rc</code> 运行 <code>/etc/rc.d/rcS.d</code> 目录中，所有以 <code>S</code> 开头的脚本，然后便是 <code>/etc/rc.d/rc?.d</code> 目录中，所有以 <code>S</code> 开头的脚本。目录中的问号由指定的 <code>initdefault</code> 值来决定。</p>
+<p>为了方便，<code>rc</code> 会从 <code>/lib/lsb/init-functions</code> 中读取函数库。该库还会读取一个可选的配置文件 <code>/etc/sysconfig/rc.site</code>。任何在后续章节中描述到的系统配置文件中的参数，都可以放在这个文件中，允许将所有的系统参数合并到该文件中。</p>
+<p>为了调试方便，函数脚本会将日志输出到 <code>/run/var/bootlog</code> 文件中。由于 <code>/run</code> 目录是个 <code>tmpfs</code>（临时文件系统），所以该文件在启动之后就不会持续存在了，但在启动过程的最后，这些内容会被添附到更为持久的 <code>/var/log/boot.log</code> 文件中。</p>
+<p>想要改变运行级，可以使用命令 <code>init &lt;runlevel&gt;</code>，其中的 <code>&lt;runlevel&gt;</code> 便是想要切换到的运行级。举个例子，若是想要重启计算机，可以使用命令 <code>init 6</code>，这是 <code>reboot</code> 命令的别名。就像，<code>init 0</code> 是 <code>halt</code> 的别名一样。</p>
+<p>对于中文，日语，韩语以及一些其他的语言需要的字符，Linux 的控制台还无法通过配置是之正常显示。用户若要使用这些语言，需要安装 <code>X Window 系统</code>，用于扩充所需字符域的字体，以及合适的输入法.</p>
+<p>可选的 <code>/etc/sysconfig/rc.site</code> 文件中包含着那些为每个 <code>System V</code> 启动脚本自动设置好的设定。这些设定也可以在 <code>/etc/sysconfig/</code> 目录中的 <code>hostname</code>，<code>console</code>，和<code>clock</code> 文件中设置。如果这些设定值同时在以上的这些文件和 <code>rc.site</code> 中设定了，那么脚本中的设定值将会被<strong>优先采用</strong></p>
+<p><strong>自定义启动和关闭的脚本</strong></p>
+<blockquote>
+<p>LFS 启动脚本会以相当效率的方式启动和关闭系统，不过你可以在 <code>rc.site</code> 文件中进行调整，来提升速度或是根据需求调整消息。若是有这样的需求，就去调整上面 <code>/etc/sysconfig/rc.site</code> 文件的设置吧！<br>在启动脚本 <code>udev</code> 运行时，会调用一次 <code>udev settle</code>，完成检测需要很长时间。这段时间根据当前系统的设备，可花可不花。如果你需要的仅仅是简单的分区和单个网卡，在启动的过程中，就没有必要等待这个命令执行。通过设置变量 <code>OMIT_UDEV_SETTLE=y</code>，可以跳过此命令。<br>启动脚本<code>udev_retry</code> 默认也执行<code>udev settle</code>。该命令仅在 <code>/var</code> 目录是分开挂载的情况下需要。因为这种情况下时钟需要文件 <code>/var/lib/hwclock/adjtime</code>。其他的自定义设置可能也需要等待 <code>udev</code> 执行完成，但是在许多的安装中不需要。设置变量 <code>OMIT_UDEV_RETRY_SETTLE=y</code> 跳过命令。<br>默认情况下，文件系统检测静默执行。看上去就像是启动过程中的一个延迟。想要打开 <code>fsck</code> 的输出，设置变量。<br>重起时，你可能想完全的跳过文件系统检测 <code>fsck</code>。为此，可以创建 <code>/fastboot</code> 文件或是以 <code>/sbin/shutdown -f -r now</code> 命令重启系统。另一方面，你也可以通过创建 <code>/forcefsck</code>，或是在运行 <code>shutdown</code> 命令时，用 <code>-F</code> 参数代替<code>-f</code>，以此来强制检测整个文件系统。<br>设置变量 <code>FASTBOOT=y</code> 将禁用启动过程中的 <code>fsck</code>，直至你将其移除。不推荐长时间地使用该方式。<br>通常，<code>/tmp</code> 目录中的所有文件会在启动时删除。根据存在目录与文件的数量，该操作会导致启动过程中明显的延迟。如果要跳过移除文件的操作，设置变量 <code>SKIPTMPCLEAN=y</code>。<br>在关机的过程中，<code>init</code> 程序会向每一个已经启动的程序（例如，<code>agetty</code>）发送一个 <code>TERM</code> 信号，等一段时间（默认为 3 秒），然后给每个进程发送 <code>KILL</code> 信号。对没有被自身脚本关闭的进程，<code>sendsignals</code> 脚本会<strong>重复</strong>此过程。<code>init</code> 的延迟可以通过参数来设置。比方说，想去掉 <code>init</code> 的延迟，可以通过在关机或重启时使用 <code>-t0</code> 参数（如，<code>/sbin/shutdown -t0 -r now</code>）。<code>sendsignals</code> 脚本的延迟可以通过设置参数 <code>KILLDELAY=0</code> 跳过。</p>
+</blockquote>
+<p>创建 /etc/inputrc 文件 可编辑控制行的语句<br>创建 /etc/shells 文件 shell的类似索引的东西</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://www.unblog.top/2018/07/25/xiaoshi2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1074,192 +1319,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.unblog.top/2018/07/17/xiaoshi1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="兔子春">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/7.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Eden">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/17/xiaoshi1/" itemprop="url">迷时</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-17T15:11:33+08:00">
-                2018-07-17
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2018-07-25T12:51:36+08:00">
-                2018-07-25
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/诗歌集/" itemprop="url" rel="index">
-                    <span itemprop="name">诗歌集</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  91
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  1
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote class="blockquote-center"><br><strong>时光<br>从不给人告白的机会<br>慢慢的<br>便失去了感觉<br>直到<br>掌心温度渐渐流逝<br>眼眶才湿润起来<br>到底<br>我该以怎样的眼神看着你<br>抉择中<br>我总自以为抓住了时光<br>却不想陷入了它的把戏<br>可惜<br>一生只够走一次<br>只愿<br>能给我留个念想</strong><br><br><img src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1531821474889&amp;di=ac791f31d263121a9dfee43e3196d205&amp;imgtype=0&amp;src=http%3A%2F%2Fs9.rr.itc.cn%2Fr%2FwapChange%2F201612_22_14%2Fa8wng67926599546855.gif" alt=""></blockquote>
-
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1316,7 +1375,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">33</span>
+                  <span class="site-state-item-count">34</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1327,7 +1386,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -1338,7 +1397,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -1411,7 +1470,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">29.9k</span>
+    <span title="Site words total count">30.1k</span>
   
 </div>
 
