@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[2018-08-15 plane war日志]]></title>
+    <url>%2F2018%2F08%2F15%2F2018-08-15%2F</url>
+    <content type="text"><![CDATA[小游戏制作完成算是一个类似躲避球的游戏吧..花了两三天时间(大部分在上个学期完成了这次算是重新构建了一下,变了一下形式总的来说还可以接受吧]]></content>
+      <categories>
+        <category>开发日志</category>
+      </categories>
+      <tags>
+        <tag>日志</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[2018-08-14 plane war日志]]></title>
     <url>%2F2018%2F08%2F14%2F2018-08-14%2F</url>
     <content type="text"><![CDATA[基本构建完成判断碰撞的逻辑没有作用,需要改进]]></content>
