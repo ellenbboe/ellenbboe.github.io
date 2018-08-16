@@ -378,6 +378,388 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.unblog.top/2018/08/10/备份arch系统/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="兔子春">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/7.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Eden">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/10/备份arch系统/" itemprop="url">备份arch系统</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-10T19:28:31+08:00">
+                2018-08-10
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-08-10T19:29:33+08:00">
+                2018-08-10
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/rsync/" itemprop="url" rel="index">
+                    <span itemprop="name">rsync</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1,450
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  6
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="使用rsync进行备份"><a href="#使用rsync进行备份" class="headerlink" title="使用rsync进行备份"></a>使用rsync进行备份</h3><p>rsync的六种模式<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">rsync [OPTION]... SRC DEST</span><br><span class="line">rsync [OPTION]... SRC [USER@]host:DEST</span><br><span class="line">rsync [OPTION]... [USER@]HOST:SRC DEST</span><br><span class="line">rsync [OPTION]... [USER@]HOST::SRC DEST</span><br><span class="line">rsync [OPTION]... SRC [USER@]HOST::DEST</span><br><span class="line">rsync [OPTION]... rsync://[USER@]HOST[:PORT]/SRC [DEST]</span><br></pre></td></tr></table></figure></p>
+<p>本地备份的话我们使用第一种</p>
+<p>大佬使用的备份脚本,通过指定<code>/</code>的目录来进行备份<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/zsh -e</span><br><span class="line"></span><br><span class="line">#进入主目录</span><br><span class="line">cd $(dirname $0)</span><br><span class="line">#判断参数个数时候小于2或者大于3(也就是可以是2个参数或者是3个参数)</span><br><span class="line">if [[ $# -lt 2 || $# -gt 3 ]]; then</span><br><span class="line">  echo &quot;usage: $0 SRC_DIR DEST_DIR [-w]&quot;</span><br><span class="line">  exit 1</span><br><span class="line">fi</span><br><span class="line">#得到参数</span><br><span class="line">src=$1</span><br><span class="line">dest=$2</span><br><span class="line">doit=$3</span><br><span class="line"></span><br><span class="line">if [[ $doit == -w ]]; then</span><br><span class="line">  dry=</span><br><span class="line">else</span><br><span class="line">  dry=&apos;-n&apos;</span><br><span class="line">fi</span><br><span class="line"></span><br><span class="line">rsync --archive --one-file-system --inplace --hard-links \</span><br><span class="line">  --human-readable --numeric-ids --delete --delete-excluded \</span><br><span class="line">  --acls --xattrs --sparse \</span><br><span class="line">  --itemize-changes --verbose --progress \</span><br><span class="line">  --exclude=&apos;*~&apos; --exclude=__pycache__ \</span><br><span class="line">  --exclude-from=root.exclude \</span><br><span class="line">  $src $dest $dry</span><br></pre></td></tr></table></figure></p>
+<p>以下列出rsync参数,使用到的将使用<strong>加粗</strong>列出</p>
+<blockquote>
+<p><strong>-v, –verbose 详细模式输出</strong>。<br><strong>-i, –itemize-changes 列出改变(不知道是不是这个意思)</strong><br>-q, –quiet 精简输出模式。<br>-c, –checksum 打开校验开关，强制对文件传输进行校验。<br><strong>-a, –archive 归档模式，表示以递归方式传输文件，并保持所有文件属性，等于-rlptgoD。</strong><br><strong>-A   –acls This option causes rsync to update the destination ACLs to be the same as the source ACLs.  The option also implies –perms.</strong><br><strong>-X –xattrs This option causes rsync to update the destination extended attributes to be the same as the source ones.</strong><br>(上面两个选项保留文件 ACL 和扩展属性)<br>-r, –recursive 对子目录以递归模式处理。<br>-R, –relative 使用相对路径信息。<br>-b, –backup 创建备份，也就是对于目的已经存在有同样的文件名时，将老的文件重新命名为~filename。可以使用–suffix选项来指定不同的备份文件前缀。<br>–backup-dir 将备份文件(如~filename)存放在在目录下。<br>-suffix=SUFFIX 定义备份文件前缀。<br>-u, –update 仅仅进行更新，也就是跳过所有已经存在于DST，并且文件时间晚于要备份的文件，不覆盖更新的文件。<br><strong>–inplace 更新目标文件,RSYNC将写入的更新数据直接写入目标文件。</strong><br>-l, –links 保留软链结。<br>-L, –copy-links 想对待常规文件一样处理软链结。<br>–copy-unsafe-links 仅仅拷贝指向SRC路径目录树以外的链结。<br>–safe-links 忽略指向SRC路径目录树以外的链结。<br>-H, –hard-links 保留硬链结。<br><strong>-p, –perms 保持文件权限。就是 –acls</strong><br>-o, –owner 保持文件属主信息。<br>-g, –group 保持文件属组信息。<br>-D, –devices 保持设备文件信息。<br>-t, –times 保持文件时间信息。<br><strong>-S, –sparse 对稀疏文件进行特殊处理以节省DST的空间。</strong><br><strong>-n, –dry-run 进行try的尝试,不做改变。</strong><br>-w, –whole-file 拷贝文件，不进行增量检测。<br><strong>-x, –one-file-system 不要跨越文件系统边界。</strong><br>-B, –block-size=SIZE 检验算法使用的块尺寸，默认是700字节。<br>-e, –rsh=command 指定使用rsh、ssh方式进行数据同步。<br>–rsync-path=PATH 指定远程服务器上的rsync命令所在路径信息。<br>-C, –cvs-exclude 使用和CVS一样的方法自动忽略文件，用来排除那些不希望传输的文件。<br>–existing 仅仅更新那些已经存在于DST的文件，而不备份那些新创建的文件。<br><strong>–delete 删除那些DST中SRC没有的文件。</strong><br><strong>–delete-excluded 同样删除接收端那些被该选项指定排除的文件。</strong><br>–delete-after 传输结束以后再删除。<br>–ignore-errors 及时出现IO错误也进行删除。<br>–max-delete=NUM 最多删除NUM个文件。<br>–partial 保留那些因故没有完全传输的文件，以是加快随后的再次传输。<br>–force 强制删除目录，即使不为空。<br><strong>–numeric-ids 将数字的用户和组id匹配为用户名和组名。</strong><br>–timeout=time ip超时时间，单位为秒。<br>-I, –ignore-times 不跳过那些有同样的时间和长度的文件。<br>–size-only 当决定是否要备份文件时，仅仅察看文件大小而不考虑文件时间。<br>–modify-window=NUM 决定文件是否时间相同时使用的时间戳窗口，默认为0。<br>-T –temp-dir=DIR 在DIR中创建临时文件。<br>–compare-dest=DIR 同样比较DIR中的文件来决定是否需要备份。<br>-P 等同于 –partial。<br>–progress 显示备份过程。<br>-z, –compress 对备份的文件在传输时进行压缩处理。<br><strong>–include=PATTERN 指定不排除而需要传输的文件模式。</strong><br><strong>–exclude-from=FILE 排除FILE中指定模式的文件。</strong><br>–include-from=FILE 不排除FILE指定模式匹配的文件。<br>–version 打印版本信息。<br>–address 绑定到特定的地址。<br>–config=FILE 指定其他的配置文件，不使用默认的rsyncd.conf文件。<br>–port=PORT 指定其他的rsync服务端口。<br>–blocking-io 对远程shell使用阻塞IO。<br>-stats 给出某些文件的传输状态。<br><strong>–progress 在传输时现实传输过程。</strong><br>–log-format=formAT 指定日志文件格式。<br>–password-file=FILE 从FILE中得到密码。<br>–bwlimit=KBPS 限制I/O带宽，KBytes per second。<br>-h, –help 显示帮助信息。<br><strong>–human-readable 以更可读的格式输出数字。</strong></p>
+</blockquote>
+<p>看了好多教程<br><a href="https://blog.lilydjwg.me/2013/12/29/rsync-btrfs-dm-crypt-full-backup.42219.html" target="_blank" rel="noopener">rsync+btrfs</a><br><a href="https://www.cnblogs.com/Gbeniot/p/5482366.html" target="_blank" rel="noopener">单纯使用rsync</a><br>..发现还是单纯的使用rsync比较省事</p>
+<p>排除的目录<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">/media/*</span><br><span class="line">/sys/*</span><br><span class="line">/proc/*</span><br><span class="line">/mnt/*</span><br><span class="line">/tmp/*</span><br></pre></td></tr></table></figure></p>
+<p>但 @依云仙子 所说 <code>--one-file-system</code> 已经排除了特殊的目录</p>
+<p>目前就先这样备份了<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sudo rsync --archive --one-file-system --hard-links \</span><br><span class="line">  --acls --xattrs --sparse \</span><br><span class="line">  --human-readable --numeric-ids --delete --delete-excluded \</span><br><span class="line">  --itemize-changes --verbose --progress \</span><br><span class="line">  --exclude-from=backup.exclude \</span><br><span class="line">  / /run/media/s/5ff9a14c-20ba-41c5-8b7e-f6b095326200/Backup/backup</span><br></pre></td></tr></table></figure></p>
+<p>(讲道理应该可以)<br><img src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1112296731,3767662191&amp;fm=27&amp;gp=0.jpg" alt=""></p>
+<p>再把代码备份到github上就差不多了(溜了)</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.unblog.top/2018/08/10/2018-08-10/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="兔子春">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/7.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Eden">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/10/2018-08-10/" itemprop="url">2018-08-10 备份日志</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-10T19:26:48+08:00">
+                2018-08-10
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-08-10T19:39:53+08:00">
+                2018-08-10
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/arch备份日志/" itemprop="url" rel="index">
+                    <span itemprop="name">arch备份日志</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  48
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  1
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>看了好多教程,还是不懂<br>与其这样不如使用最简单的备份操作进行备份(借口,就是懒)<br>还是得学习啊,感觉神码也不懂..<br><img src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3408476346,590146552&amp;fm=27&amp;gp=0.jpg" alt=""></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://www.unblog.top/2018/08/09/2018-08-09-1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -735,380 +1117,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.unblog.top/2018/08/09/lfs6/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="兔子春">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/7.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Eden">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/09/lfs6/" itemprop="url">Linux For Scratch Pass 6</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-09T10:15:00+08:00">
-                2018-08-09
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2018-08-12T19:55:58+08:00">
-                2018-08-12
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index">
-                    <span itemprop="name">linux</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  570
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  3
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="让-LFS-系统可引导"><a href="#让-LFS-系统可引导" class="headerlink" title="让 LFS 系统可引导"></a>让 LFS 系统可引导</h3><h4 id="创建-etc-fstab-文件"><a href="#创建-etc-fstab-文件" class="headerlink" title="创建 /etc/fstab 文件"></a>创建 /etc/fstab 文件</h4><p>/etc/fstab 文件的作用是让其它程序确定存储设备的默认挂载点、挂载参数和检查信息（例如完整性检测）。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">cat &gt; /etc/fstab &lt;&lt; &quot;EOF&quot;</span><br><span class="line"># Begin /etc/fstab</span><br><span class="line"></span><br><span class="line"># file system  mount-point  type     options             dump  fsck</span><br><span class="line">#                                                              order</span><br><span class="line"></span><br><span class="line">/dev/&lt;xxx&gt;     /            &lt;fff&gt;    defaults            1     1</span><br><span class="line">/dev/&lt;yyy&gt;     swap         swap     pri=1               0     0</span><br><span class="line">proc           /proc        proc     nosuid,noexec,nodev 0     0</span><br><span class="line">sysfs          /sys         sysfs    nosuid,noexec,nodev 0     0</span><br><span class="line">devpts         /dev/pts     devpts   gid=5,mode=620      0     0</span><br><span class="line">tmpfs          /run         tmpfs    defaults            0     0</span><br><span class="line">devtmpfs       /dev         devtmpfs mode=0755,nosuid    0     0</span><br><span class="line"></span><br><span class="line"># End /etc/fstab</span><br><span class="line">EOF</span><br></pre></td></tr></table></figure></p>
-<p>其中，<xxx>，<yyy> 和 <fff> 请使用适当的值替换。例如 <code>sda2</code>，<code>sda5</code> 和 <code>ext4</code>。关于文件中六个字段的含义，请查看 man 5 fstab（译者注：fsck 列的数值来决定需要检查的文件系统的检查顺序。允许的数字是0, 1, 和2。根目录应当获得最高的优先权 1, 其它所有需要被检查的设备设置为 2。0 表示设备不会被 fsck 所检查）。</fff></yyy></xxx></p>
-<p>基于 <code>MS-DOS</code> 或者是来源于 <code>Windows</code> 的文件系统<code>（例如：vfat，ntfs，smbfs，cifs，iso9660，udf）</code>需要在挂载选项中添加「iocharset」，才能让非 ASCII 字符的文件名正确解析。此选项的值应该与语言区域设置的值相同，以便让内核能正确处理。此选项在相关字符集定义已为内核内建或是编译为模块时生效（在文件系统 -&gt; 本地语言支持中查看）。此外，<code>vfat</code> 和 <code>smbfs</code> 还需启用「codepage」支持。例如，想要挂载 <code>USB</code> 闪存设备，<code>zh-CN.GBK</code> 用户需要在 <code>/etc/fstab</code> 中添加以下的挂载选项：<br><code>noauto,user,quiet,showexec,iocharset=koi8r,codepage=866</code><br>对于 <code>zh_CN.UTF-8</code> 用户的对应选项是：<br><code>noauto,user,quiet,showexec,iocharset=utf8,codepage=936</code><br>主要是设置挂载参数<br><strong>本机</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$ cat /etc/fstab</span><br><span class="line"># Static information about the filesystems.</span><br><span class="line"># See fstab(5) for details.</span><br><span class="line"></span><br><span class="line"># &lt;file system&gt; &lt;dir&gt; &lt;type&gt; &lt;options&gt; &lt;dump&gt; &lt;pass&gt;</span><br><span class="line"># /dev/sda5</span><br><span class="line">UUID=c36eedfb-08b3-4e28-8483-03f6d5f1ad0c	/         	ext4      	rw,relatime,data=ordered	0 1</span><br><span class="line"></span><br><span class="line"># /dev/sda2</span><br><span class="line">UUID=608A-F457      	/boot     	vfat      	rw,relatime,fmask=0022,dmask=0022,codepage=437,iocharset=iso8859-1,shortname=mixed,utf8,errors=remount-ro	0 0</span><br></pre></td></tr></table></figure></p>
-<p>之后就是<br>1.编译内核<br>2.安装grub引导(注意备份)<br>3.重新启动</p>
-<p>之后安装其他的小程序 sudo,dhcp,wget等</p>
-<h2 id="结束"><a href="#结束" class="headerlink" title="结束"></a>结束</h2>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.unblog.top/2018/07/25/2018-07-25/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="兔子春">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/7.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Eden">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/25/2018-07-25/" itemprop="url">2018-07-25 lfs编译日志</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-25T13:25:10+08:00">
-                2018-07-25
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2018-08-09T10:22:19+08:00">
-                2018-08-09
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/lfs编译日志/" itemprop="url" rel="index">
-                    <span itemprop="name">lfs编译日志</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  15
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  1
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>lfs编译告一段落<br>系统大半构建完成</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1165,7 +1173,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-count">36</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1187,7 +1195,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -1260,7 +1268,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">30.1k</span>
+    <span title="Site words total count">33.0k</span>
   
 </div>
 
