@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[2018-08-20 文字判断游戏]]></title>
+    <url>%2F2018%2F08%2F20%2F2018-08-20%2F</url>
+    <content type="text"><![CDATA[开发时间花了两天时间前一天没有写日志总的来说,还行,主要还是框架的功劳今天pressed的判断上想了一天时间….(真菜主要是要press放在了loop中之后时放在外面监听,实现了press一次之后还要添加音乐,应该还算是可以吧…]]></content>
+      <categories>
+        <category>开发日志</category>
+      </categories>
+      <tags>
+        <tag>日志</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[2018-08-19]]></title>
     <url>%2F2018%2F08%2F19%2F2018-08-19%2F</url>
     <content type="text"><![CDATA[scrapy json中文乱码可以在setting.py文件中修改默认的输出编码方式，只需要在setting.py中增加如下语句（默认似乎是没有指定的，所以要增加，如果默认有，就直接修改）FEED_EXPORT_ENCODING = &#39;utf-8&#39; rot13ROT13 (“rotate by 13 places”, sometimes hyphenated ROT-13) is a simple letter substitution cipher that replaces a letter with the 13th letter after it, in the alphabet. ROT13 is a special case of the Caesar cipher which was developed in ancient Rome. Because there are 26 letters (2×13) in the basic Latin alphabet, ROT13 is its own inverse; that is, to undo ROT13, the same algorithm is applied, so the same action can be used for encoding and decoding. The algorithm provides virtually no cryptographic security, and is often cited as a canonical example of weak encryption. ROT13 is used in online forums as a means of hiding spoilers, punchlines, puzzle solutions, and offensive materials from the casual glance. ROT13 has inspired a variety of letter and word games on-line, and is frequently mentioned in newsgroup conversations. 加密:tr &#39;A-Za-z&#39; &#39;N-ZA-Mn-za-m&#39; &lt;&lt;&lt; &quot;The Quick Brown Fox Jumps Over The Lazy Dog&quot; 解密:echo &quot;The Quick Brown Fox Jumps Over The Lazy Dog&quot; |tr &#39;N-ZA-Mn-za-m&#39; &#39;A-Za-z&#39; Hex dump(十六进制转储)In computing,a hex dump is a hexadecimal view (on screen or paper) of computer data, from RAM or from a file or storage device. Looking at a hex dump of data is commonly done as a part of debugging, or of reverse engineering. In a hex dump, each byte (8-bits) is represented as a two-digit hexadecimal number.(每个字节==&gt;两个十六进制的数) Hex dumps are commonly organized into rows of 8 or 16 bytes, sometimes separated by whitespaces. Some hex dumps have the hexadecimal memory address at the beginning and/or a checksum byte at the end of each line. Although the name implies the use of base-16 output, some hex dumping software may have options for base-8 (octal) or base-10 (decimal) output. Some common names for this program function are hexdump, od, xxd and simply dump or even D. xxd 得到文件的头 得到的xxd文件要先-r出原来的文件哦 解压方式gzip -d(gunzip)tar -zxvftar -xvfbzip2 -d]]></content>
