@@ -1,9 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[2018-09-03 机器人脚本编写]]></title>
+    <url>%2F2018%2F09%2F03%2F2018-09-03%2F</url>
+    <content type="text"><![CDATA[今天完成文章简介与脑筋急转弯的模块再加上了别人rebot的api的自动回复显得更加人性化预计其他功能的编写需要有存在服务器的情况下进行编写 随机文章 脑筋急转弯以及答案 人性化回复所以说:qqbot脚本的编写可能要告一段落了byebye ^.^]]></content>
+      <categories>
+        <category>开发日志</category>
+      </categories>
+      <tags>
+        <tag>日志</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[2018-09-02 机器人脚本编写]]></title>
     <url>%2F2018%2F09%2F02%2F2018-09-02%2F</url>
-    <content type="text"><![CDATA[qqbot的脚本逐渐完善今天加入天气查询与随机名人名言的模块明天预计加入推文的功能和脑筋急转弯的功能 ps:api真好用(溜了溜了]]></content>
+    <content type="text"><![CDATA[qqbot的脚本逐渐完善今天加入天气查询与随机名人名言的模块明天预计加入推文的功能和脑筋急转弯的功能 天气查询 随机名人名言]]></content>
       <categories>
         <category>开发日志</category>
       </categories>
@@ -69,7 +80,7 @@
   <entry>
     <title><![CDATA[2018-08-21 文字判断游戏]]></title>
     <url>%2F2018%2F08%2F21%2F2018-08-21%2F</url>
-    <content type="text"><![CDATA[今天将小游戏的界面和声音添加上去还可以接受本次开发就结束了总结:主要是用了kontra的框架结构总的来说远远时小于13kb的…(就算不压缩的话感觉有点一般不过毕竟才花了两天的时间才搞出来也不好太要求过高(借口..ps:之后的安排就是更新博客了scrapy的还没有写完,额(感觉好多要写,之后就是介绍各个部件了还有一些碎片的知识 wiki上的看得头大英文wiki没有被强,中文的wiki倒是被强了.还好就是中文wiki垃圾的很,可能这就是理由吧(手动狗头]]></content>
+    <content type="text"><![CDATA[今天将小游戏的界面和声音添加上去还可以接受本次开发就结束了总结:主要是用了kontra的框架结构总的来说远远时小于13kb的…(就算不压缩的话感觉有点一般不过毕竟才花了两天的时间才搞出来也不好太要求过高(借口.. 游戏启动界面 游戏主界面ps:之后的安排就是更新博客了scrapy的还没有写完,额(感觉好多要写,之后就是介绍各个部件了还有一些碎片的知识 wiki上的看得头大英文wiki没有被强,中文的wiki倒是被强了.还好就是中文wiki垃圾的很,可能这就是理由吧(手动狗头]]></content>
       <categories>
         <category>开发日志</category>
       </categories>
