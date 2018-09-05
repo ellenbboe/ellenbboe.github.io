@@ -150,7 +150,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://www.unblog.top/images/forpost/encrypt_base64.png">
 <meta property="og:image" content="https://www.unblog.top/images/forpost/decrypt_base64.png">
-<meta property="og:updated_time" content="2018-09-05T09:30:42.271Z">
+<meta property="og:updated_time" content="2018-09-05T09:52:02.406Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用base64编码加密解密">
 <meta name="twitter:description" content="Base64编码简介Base64这个术语最初是在“MIME内容传输编码规范”中提出的。Base64不是一种加密算法，虽然编码后的字符串看起来有点加密的赶脚。它实际上是一种“二进制到文本”的编码方法，它能够将给定的任意二进制数据转换（映射）为ASCII字符串的形式，以便在只支持文本的环境中也能够顺利地传输二进制数据。例如支持MIME的电子邮件应用，或需要在XML中存储复杂数据（例如图片）时。 要实现">
@@ -426,7 +426,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-09-05T17:30:42+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-09-05T17:52:02+08:00">
                 2018-09-05
               </time>
             
@@ -476,7 +476,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,262
+                  1,267
                 </span>
               
 
@@ -518,11 +518,11 @@
 <p>我们经常会在Base64编码字符串中看到最后有”=”字符，这就是通过填充生成的。填充就是当出现编码时的情况2和3时，在后面补上”=”字符，使编码后的字符数为4的倍数。</p>
 <p>下面这段文本：</p>
 <blockquote>
-<p>Man is distinguished, not only by his reason, but by this singular passion from other animals, which is a lust of the mind, that by a perseverance of delight in the continued and indefatigable generation of knowledge, exceeds the short vehemence of any carnal pleasure.</p>
+<p>Man is distinguished, not only by his reason, but by this singular passion from other<br>animals, which is a lust of the mind, that by a perseverance of delight in the continued and<br>indefatigable generation of knowledge, exceeds the short vehemence of any carnal pleasure.</p>
 </blockquote>
 <p>通过MIME Base64进行转换后就成为：</p>
 <blockquote>
-<p>TWFuIGlzIGRpc3Rpbmd1aXNoZWQsIG5vdCBvbmx5IGJ5IGhpcyByZWFzb24sIGJ1dCBieSB0aGlzIHNpbmd1bGFyIHBhc3Npb24gZnJvbSBvdGhlciBhbmltYWxzLCB3aGljaCBpcyBhIGx1c3Qgb2YgdGhlIG1pbmQsIHRoYXQgYnkgYSBwZXJzZXZlcmFuY2Ugb2YgZGVsaWdodCBpbiB0aGUgY29udGludWVkIGFuZCBpbmRlZmF0aWdhYmxlIGdlbmVyYXRpb24gb2Yga25vd2xlZGdlLCBleGNlZWRzIHRoZSBzaG9ydCB2ZWhlbWVuY2Ugb2YgYW55IGNhcm5hbCBwbGVhc3VyZS4=</p>
+<p>TWFuIGlzIGRpc3Rpbmd1aXNoZWQsIG5vdCBvbmx5IGJ5IGhpcyByZWFzb24sIGJ1dC<br>BieSB0aGlzIHNpbmd1bGFyIHBhc3Npb24gZnJvbSBvdGhlciBhbmltYWxzLCB3aGlja<br>CBpcyBhIGx1c3Qgb2YgdGhlIG1pbmQsIHRoYXQgYnkgYSBwZXJzZXZlcmFuY2Ugb2YgZ<br>GVsaWdodCBpbiB0aGUgY29udGludWVkIGFuZCBpbmRlZmF0aWdhYmxlIGdlbmVyYXRpb<br>24gb2Yga25vd2xlZGdlLCBleGNlZWRzIHRoZSBzaG9ydCB2ZWhlbWVuY2Ugb2YgYW55<br>IGNhcm5hbCBwbGVhc3VyZS4=</p>
 </blockquote>
 <ol>
 <li><p>开发Base64的目的就不是为了加密，而是为了方便在文本环境中传输二进制数据</p>
