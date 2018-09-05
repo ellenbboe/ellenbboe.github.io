@@ -150,7 +150,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://www.unblog.top/images/forpost/encrypt_rot13.png">
 <meta property="og:image" content="https://www.unblog.top/images/forpost/decrypt_rot13.png">
-<meta property="og:updated_time" content="2018-09-05T11:06:13.765Z">
+<meta property="og:updated_time" content="2018-09-05T11:13:36.627Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用rot13加密解密">
 <meta name="twitter:description" content="使用ROT13加密解密ROT13（回转13位）是一种简易的替换式密码算法。它是一种在英文网络论坛用作隐藏八卦、妙句、谜题解答以及某些脏话的工具，目的是逃过版主或管理员的匆匆一瞥。ROT13 也是过去在古罗马开发的凯撒密码的一种变体。ROT13是它自身的逆反，即：要还原成原文只要使用同一算法即可得，故同样的操作可用于加密与解密。该算法并没有提供真正密码学上的保全，故它不应该被用于需要保全的用途上。它">
@@ -426,7 +426,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-09-05T19:06:13+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-09-05T19:13:36+08:00">
                 2018-09-05
               </time>
             
@@ -476,7 +476,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  452
+                  503
                 </span>
               
 
@@ -519,6 +519,8 @@
 <p>加密与解密是相同的函数</p>
 <p><strong>加密与解密:</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">def encrypt_rot13():</span><br><span class="line">    src=input(&quot;输入加密字符串:&quot;)</span><br><span class="line">    result = &quot;&quot;</span><br><span class="line">    for x in src:</span><br><span class="line">        if(x.isalpha()):</span><br><span class="line">            if(x.isupper()):</span><br><span class="line">                x = ord(x)+13</span><br><span class="line">                if(x&gt;90):</span><br><span class="line">                    x=x-26</span><br><span class="line">            else:</span><br><span class="line">                x = ord(x)+13</span><br><span class="line">                if(x&gt;122):</span><br><span class="line">                    x=x-26</span><br><span class="line">            result = result + chr(x)</span><br><span class="line">        else:</span><br><span class="line">            result = result + x</span><br><span class="line">    return result</span><br></pre></td></tr></table></figure></p>
 <p><strong>运行过程</strong><br><strong>加密</strong><br><img src="/images/forpost/encrypt_rot13.png" alt=""><br><strong>解密</strong><br><img src="/images/forpost/decrypt_rot13.png" alt=""></p>
+<h3 id="linux下使用加密rot13加密解密"><a href="#linux下使用加密rot13加密解密" class="headerlink" title="linux下使用加密rot13加密解密"></a>linux下使用加密rot13加密解密</h3><h4 id="加密"><a href="#加密" class="headerlink" title="加密:"></a>加密:</h4><p><code>tr &#39;A-Za-z&#39; &#39;N-ZA-Mn-za-m&#39; &lt;&lt;&lt; &quot;The Quick Brown Fox Jumps Over The Lazy Dog&quot;</code></p>
+<h4 id="解密"><a href="#解密" class="headerlink" title="解密:"></a>解密:</h4><p><code>echo &quot;The Quick Brown Fox Jumps Over The Lazy Dog&quot; |tr &#39;N-ZA-Mn-za-m&#39; &#39;A-Za-z&#39;</code></p>
 
       
     </div>
@@ -744,7 +746,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用ROT13加密解密"><span class="nav-number">1.</span> <span class="nav-text">使用ROT13加密解密</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码区"><span class="nav-number">2.</span> <span class="nav-text">代码区:</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用ROT13加密解密"><span class="nav-number">1.</span> <span class="nav-text">使用ROT13加密解密</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码区"><span class="nav-number">2.</span> <span class="nav-text">代码区:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#linux下使用加密rot13加密解密"><span class="nav-number">3.</span> <span class="nav-text">linux下使用加密rot13加密解密</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#加密"><span class="nav-number">3.1.</span> <span class="nav-text">加密:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解密"><span class="nav-number">3.2.</span> <span class="nav-text">解密:</span></a></li></ol></li></ol></div>
             
 
           </div>
