@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[使用凯撒加密法进行加密解密]]></title>
+    <url>%2F2018%2F09%2F06%2Fcaesar-cipher%2F</url>
+    <content type="text"><![CDATA[凯撒加密法凯撒加密法，或称恺撒加密、恺撒变换、变换加密，是一种最简单且最广为人知的加密技术。它是一种替换加密的技术，明文中的所有字母都在字母表上向后（或向前）按照一个固定数目进行偏移后被替换成密文。 代码区主要思想:与rot13方式相似,向后向前偏移进行加密解密加密123456789101112131415161718def encrypt_caesar(): shift=input(&quot;输入偏移量:&quot;) if(not shift.isdigit()): return &quot;请输入数字!&quot; src=input(&quot;输入加密字符串:&quot;) result = &quot;&quot; for x in src: if(x.isalpha()): if(x.islower()): x=x.upper() x=ord(x) x=x+int(shift) if(x &gt; 90): x = x - 26 x = chr(x) result = result + x return result 运行结果 解密123456789101112131415161718def decrypt_caesar(): shift=input(&quot;输入偏移量:&quot;) if(not shift.isdigit()): return &quot;请输入数字!&quot; src=input(&quot;输入解密字符串:&quot;) result = &quot;&quot; for x in src: if(x.isalpha()): if(x.isupper()): x=x.lower() x=ord(x) x=x-int(shift) if(x &lt; 96): x = x + 26 x = chr(x) result = result + x return result 运行结果 ps:linux还可以使用tr进行解密 具体可见rot13下面]]></content>
+      <categories>
+        <category>python</category>
+      </categories>
+      <tags>
+        <tag>算法</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[使用rot13加密解密]]></title>
     <url>%2F2018%2F09%2F05%2Frot13%2F</url>
     <content type="text"><![CDATA[使用ROT13加密解密ROT13（回转13位）是一种简易的替换式密码算法。它是一种在英文网络论坛用作隐藏八卦、妙句、谜题解答以及某些脏话的工具，目的是逃过版主或管理员的匆匆一瞥。ROT13 也是过去在古罗马开发的凯撒密码的一种变体。ROT13是它自身的逆反，即：要还原成原文只要使用同一算法即可得，故同样的操作可用于加密与解密。该算法并没有提供真正密码学上的保全，故它不应该被用于需要保全的用途上。它常常被当作弱加密示例的典型。 应用ROT13到一段文字上仅仅只需要检查字母顺序并取代它在13位之后的对应字母，有需要超过时则重新绕回26英文字母开头即可。A换成N、B换成O、依此类推到M换成Z，然后串行反转：N换成A、O换成B、最后Z换成M（如图所示）。只有这些出现在英文字母里的字符受影响；数字、符号、空白字符以及所有其他字符都不变。替换后的字母大小写保持不变。 代码区:主要思想:将所有的字符向后移动13位就行了,但要保持大写和小写其余其他字符不变 加密与解密是相同的函数 加密与解密:1234567891011121314151617def encrypt_rot13(): src=input(&quot;输入加密字符串:&quot;) result = &quot;&quot; for x in src: if(x.isalpha()): if(x.isupper()): x = ord(x)+13 if(x&gt;90): x=x-26 else: x = ord(x)+13 if(x&gt;122): x=x-26 result = result + chr(x) else: result = result + x return result 运行过程加密解密 linux下使用加密rot13加密解密加密:tr &#39;A-Za-z&#39; &#39;N-ZA-Mn-za-m&#39; &lt;&lt;&lt; &quot;The Quick Brown Fox Jumps Over The Lazy Dog&quot; 解密:echo &quot;The Quick Brown Fox Jumps Over The Lazy Dog&quot; |tr &#39;N-ZA-Mn-za-m&#39; &#39;A-Za-z&#39;]]></content>
