@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[frequency_analysis(频率分析)]]></title>
+    <url>%2F2018%2F09%2F06%2Ffrequency-analysis%2F</url>
+    <content type="text"><![CDATA[frequency_analysisIn cryptanalysis, frequency analysis is the study of the frequency of letters or groups of letters in a ciphertext. The method is used as an aid(0.0) to breaking classical ciphers. Frequency analysis is based on the fact that, in any given stretch(范围) of written language, certain letters and combinations of letters occur with varying frequencies. Moreover, there is a characteristic distribution of letters that is roughly the same for almost all samples of that language. For instance, given a section of English language, E, T, A and O are the most common, while Z, Q and X are rare. Likewise, TH, ER, ON, and AN are the most common pairs of letters (termed bigrams or digraphs), and SS, EE, TT, and FF are the most common repeats. The nonsense phrase “ETAOIN SHRDLU” represents the 12 most frequent letters in typical English language text. In some ciphers, such properties of the natural language plaintext are preserved in the ciphertext, and these patterns have the potential to be exploited in a ciphertext-only attack. 代码区: 统计:1234567891011121314151617def start(): filename=input(&quot;输入文件名称:&quot;) print(&quot;-----文件名: &quot;+filename+&quot;-------&quot;) with open(filename, &apos;r&apos;) as f: file = f.read() d=&#123;&#125; for i in file: if(i.isalpha()): if(d.get(i) == None): d[i] = 0 d[i] = d.get(i) + 1 filename = filename+&quot;_result&quot; with open(filename,&quot;w&quot;) as f: for k,v in d.items(): string =str(v)+&quot; &quot;+k+&quot;\n&quot; #将values写在前面有助于sort(偷懒) f.write(string) return &quot;done&quot; 使用 sort 进行排序sort -n -r file 可以参考频率表 频率分析网站 http://www.richkni.co.uk/php/crypta/freq.php然后猜猜猜(划重点)然而对于我来说是太难了 0.0毕竟母语不是英文,对单词模式没有辨识度]]></content>
+      <categories>
+        <category>python</category>
+      </categories>
+      <tags>
+        <tag>算法</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[使用凯撒加密法进行加密解密]]></title>
     <url>%2F2018%2F09%2F06%2Fcaesar-cipher%2F</url>
     <content type="text"><![CDATA[凯撒加密法凯撒加密法，或称恺撒加密、恺撒变换、变换加密，是一种最简单且最广为人知的加密技术。它是一种替换加密的技术，明文中的所有字母都在字母表上向后（或向前）按照一个固定数目进行偏移后被替换成密文。 代码区主要思想:与rot13方式相似,向后向前偏移进行加密解密加密123456789101112131415161718def encrypt_caesar(): shift=input(&quot;输入偏移量:&quot;) if(not shift.isdigit()): return &quot;请输入数字!&quot; src=input(&quot;输入加密字符串:&quot;) result = &quot;&quot; for x in src: if(x.isalpha()): if(x.islower()): x=x.upper() x=ord(x) x=x+int(shift) if(x &gt; 90): x = x - 26 x = chr(x) result = result + x return result 运行结果 解密123456789101112131415161718def decrypt_caesar(): shift=input(&quot;输入偏移量:&quot;) if(not shift.isdigit()): return &quot;请输入数字!&quot; src=input(&quot;输入解密字符串:&quot;) result = &quot;&quot; for x in src: if(x.isalpha()): if(x.isupper()): x=x.lower() x=ord(x) x=x-int(shift) if(x &lt; 96): x = x + 26 x = chr(x) result = result + x return result 运行结果 ps:linux还可以使用tr进行解密 具体可见rot13下面]]></content>
