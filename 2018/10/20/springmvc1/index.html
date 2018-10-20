@@ -140,18 +140,18 @@
 
 
 
-<meta name="description" content="###第一次使用mvc###使用spring mvc框架构建,还没有使用到maven通过该框架较快速的搭建了一个mvc项目创建完成后需要在configuration 中添加tomcat,在同界面有deployment里点加号添加A神码的然后如果不能访问的话就去file里project strxxxxx里选A神码的下面有fix,点到他没有提示就好了..之后就只创建了一个controller类 @Co">
+<meta name="description" content="第一次使用mvc使用spring mvc框架构建,还没有使用到maven通过该框架较快速的搭建了一个mvc项目创建完成后需要在configuration 中添加tomcat,在同界面有deployment里点加号添加A神码的然后如果不能访问的话就去file里project strxxxxx里选A神码的下面有fix,点到他没有提示就好了..之后就只创建了一个controller类 @Controll">
 <meta name="keywords" content="Spring">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Spring mvc第一次尝试">
 <meta property="og:url" content="https://www.unblog.top/2018/10/20/springmvc1/index.html">
 <meta property="og:site_name" content="Eden">
-<meta property="og:description" content="###第一次使用mvc###使用spring mvc框架构建,还没有使用到maven通过该框架较快速的搭建了一个mvc项目创建完成后需要在configuration 中添加tomcat,在同界面有deployment里点加号添加A神码的然后如果不能访问的话就去file里project strxxxxx里选A神码的下面有fix,点到他没有提示就好了..之后就只创建了一个controller类 @Co">
+<meta property="og:description" content="第一次使用mvc使用spring mvc框架构建,还没有使用到maven通过该框架较快速的搭建了一个mvc项目创建完成后需要在configuration 中添加tomcat,在同界面有deployment里点加号添加A神码的然后如果不能访问的话就去file里project strxxxxx里选A神码的下面有fix,点到他没有提示就好了..之后就只创建了一个controller类 @Controll">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-20T07:32:51.512Z">
+<meta property="og:updated_time" content="2018-10-20T07:36:49.397Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spring mvc第一次尝试">
-<meta name="twitter:description" content="###第一次使用mvc###使用spring mvc框架构建,还没有使用到maven通过该框架较快速的搭建了一个mvc项目创建完成后需要在configuration 中添加tomcat,在同界面有deployment里点加号添加A神码的然后如果不能访问的话就去file里project strxxxxx里选A神码的下面有fix,点到他没有提示就好了..之后就只创建了一个controller类 @Co">
+<meta name="twitter:description" content="第一次使用mvc使用spring mvc框架构建,还没有使用到maven通过该框架较快速的搭建了一个mvc项目创建完成后需要在configuration 中添加tomcat,在同界面有deployment里点加号添加A神码的然后如果不能访问的话就去file里project strxxxxx里选A神码的下面有fix,点到他没有提示就好了..之后就只创建了一个controller类 @Controll">
 
 
 
@@ -423,7 +423,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-10-20T15:32:51+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-10-20T15:36:49+08:00">
                 2018-10-20
               </time>
             
@@ -510,7 +510,7 @@
       
 
       
-        <p>###第一次使用mvc###<br>使用spring mvc框架构建,还没有使用到maven<br>通过该框架较快速的搭建了一个mvc项目<br>创建完成后需要在configuration 中添加tomcat,在同界面有deployment里点加号添加A神码的<br>然后如果不能访问的话就去file里project strxxxxx里选A神码的下面有fix,点到他没有提示就好了..<br>之后就只创建了一个controller类</p>
+        <h3 id="第一次使用mvc"><a href="#第一次使用mvc" class="headerlink" title="第一次使用mvc"></a>第一次使用mvc</h3><p>使用spring mvc框架构建,还没有使用到maven<br>通过该框架较快速的搭建了一个mvc项目<br>创建完成后需要在configuration 中添加tomcat,在同界面有deployment里点加号添加A神码的<br>然后如果不能访问的话就去file里project strxxxxx里选A神码的下面有fix,点到他没有提示就好了..<br>之后就只创建了一个controller类</p>
 <p>@Controller<br>    在src包里面创建 package,把控制类放到里面,使用注解将其标出<br>@RequestMapping(“”)<br>    类上的注解@RequestMapping(“/hi”)指定 Url路径前边一部分,方法上的注解@RequestMapping(“/say”)指定 Url路径最后一部分<br>也可以只把注解写在方法上，比如@RequestMapping(“/hi/say”)</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> testmvc;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Controller;</span><br><span class="line"><span class="keyword">import</span> org.springframework.ui.Model;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestMapping;</span><br><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/hi"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HiController</span> </span>&#123;</span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/say"</span>)<span class="comment">//之后访问就访问/hi/say 他会return say 然后去访问下面我们设置好的路径+return的字符串+后缀名称</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">say</span><span class="params">(Model model)</span> </span>&#123;</span><br><span class="line">        model.addAttribute(<span class="string">"name"</span>,<span class="string">"eden"</span>);<span class="comment">//似乎是将name传递给了jsp</span></span><br><span class="line">        model.addAttribute(<span class="string">"url"</span>,<span class="string">"https://www/unblog.top"</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"say"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>一般上面return 绝对地址<br>然后在servelr.xml里写上<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">context:component-scan</span> <span class="attr">base-package</span>=<span class="string">"testmvc"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"org.springframework.web.servlet.view.InternalResourceViewResolver"</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 视图的路径 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"prefix"</span> <span class="attr">value</span>=<span class="string">"/WEB-INF/jsp/"</span>/&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 视图名称后缀  --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"suffix"</span> <span class="attr">value</span>=<span class="string">".jsp"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
@@ -643,8 +643,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -724,6 +733,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#第一次使用mvc"><span class="nav-number">1.</span> <span class="nav-text">第一次使用mvc</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
