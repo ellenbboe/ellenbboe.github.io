@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Spring mvc第一次尝试]]></title>
+    <url>%2F2018%2F10%2F20%2Fspringmvc1%2F</url>
+    <content type="text"><![CDATA[###第一次使用mvc###使用spring mvc框架构建,还没有使用到maven通过该框架较快速的搭建了一个mvc项目创建完成后需要在configuration 中添加tomcat,在同界面有deployment里点加号添加A神码的然后如果不能访问的话就去file里project strxxxxx里选A神码的下面有fix,点到他没有提示就好了..之后就只创建了一个controller类 @Controller 在src包里面创建 package,把控制类放到里面,使用注解将其标出@RequestMapping(“”) 类上的注解@RequestMapping(“/hi”)指定 Url路径前边一部分,方法上的注解@RequestMapping(“/say”)指定 Url路径最后一部分也可以只把注解写在方法上，比如@RequestMapping(“/hi/say”) 1234567891011121314package testmvc;import org.springframework.stereotype.Controller;import org.springframework.ui.Model;import org.springframework.web.bind.annotation.RequestMapping;@Controller@RequestMapping("/hi")public class HiController &#123; @RequestMapping("/say")//之后访问就访问/hi/say 他会return say 然后去访问下面我们设置好的路径+return的字符串+后缀名称 public String say(Model model) &#123; model.addAttribute("name","eden");//似乎是将name传递给了jsp model.addAttribute("url","https://www/unblog.top"); return "say"; &#125;&#125; 一般上面return 绝对地址然后在servelr.xml里写上1234567&lt;context:component-scan base-package="testmvc"/&gt; &lt;bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"&gt; &lt;!-- 视图的路径 --&gt; &lt;property name="prefix" value="/WEB-INF/jsp/"/&gt; &lt;!-- 视图名称后缀 --&gt; &lt;property name="suffix" value=".jsp"/&gt; &lt;/bean&gt; 这样就把路径与后缀给固定下来了 在*servelt.xml中 1234&lt;servlet-mapping&gt; &lt;servlet-name&gt;dispatcher&lt;/servlet-name&gt; &lt;url-pattern&gt;/&lt;/url-pattern&gt; &lt;/servlet-mapping&gt; 这样似乎就不用在地址栏里面写上后缀了]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>Spring</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[观无双有感]]></title>
     <url>%2F2018%2F10%2F07%2Fxiaoshi4%2F</url>
     <content type="text"><![CDATA[任何事做到极致就是艺术我因假而生为假而活待假成真真亦是假假即是真 他因假而活为假而疯以假乱真若已成假何以辩真当我成为他的时候他替我谋财当他代替我的时候我替他害命画皮画肉难画骨知人知面不知心无双即我亦是他]]></content>
