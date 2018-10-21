@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[fork函数的简单记录]]></title>
+    <url>%2F2018%2F10%2F21%2Ffork1%2F</url>
+    <content type="text"><![CDATA[关与操作系统fork的记录由于fork()出来的子进程与父进程时并行执行的,所以在父进程结束后子进程还有可能存在(如果不让父进程等待子进程结束的话) 单次执行的代码123456789101112131415161718#include &lt;stdio.h&gt;#include &lt;unistd.h&gt;#include &lt;stdlib.h&gt;int main()&#123; int p1,p2; while((p1=fork())==-1); if(p1==0)&#123; putchar('b'); &#125;else&#123; while((p2=fork())==-1); if(p2==0)&#123; putchar('c'); &#125;else&#123; putchar('a'); &#125; &#125; return 0;&#125; 由于不会在c里面写多次执行的方法,所以改用shell脚本调用可执行文件 123456for((a=0;a&lt;10000;a++))do ./a.out sleep 1 echo -e "\n"done sleep主要是为了等本程序子进程执行完,不留到下一程序输出,测试一下还是有用的 ubuntu结果:123452150 2 abc 2147 acb 1 bac 1 bca arch结果:1234521502007 abc 52 acb 90 bac 1 cab 结论:主要是系统的进程调度问题,在不同系统里面出现不同结果,是一个概率事件呢…我之前还以为是固定的=.=]]></content>
+      <categories>
+        <category>杂食动物</category>
+      </categories>
+      <tags>
+        <tag>日志</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[关于3方块连接3方块的思考]]></title>
     <url>%2F2018%2F10%2F20%2F3v3%2F</url>
     <content type="text"><![CDATA[上面三个方块连接下面三个方块游戏结束的状态,出现一个环路,环路内存在一个或者两个没有被连满的方块概念方法:第一个方块分别连接三个方块(简单) 第二个方块连接两个方块的时候第一次出现环路环路状况: 1.环路内没有方块 2.环路内有方块 出现第一种状况,再连一条的时候会出现一个更大的环路,包含一个没有被连满的方块或者两个,游戏结束出现第二种状况,游戏结束 下面是一些例子: 暂无理论方法…..]]></content>
