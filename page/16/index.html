@@ -378,6 +378,260 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.unblog.top/2018/07/12/lfs1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="兔子春">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/7.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Eden">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/07/12/lfs1/" itemprop="url">Linux From Scrach Pass 1</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-12T14:14:07+08:00">
+                2018-07-12
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-07-14T08:14:37+08:00">
+                2018-07-14
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index">
+                    <span itemprop="name">linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2,779
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  11
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h3><p>准备空间大概8g 准备在u盘上构建系统<br>我准备将u盘对半分成两个盘<br>一个安装系统,就用ext4<br>一个当作普通的u盘来用<br>记得分区的时候格式化<br>可以使用fdisk 或者 其他工具</p>
+<p>另外: 我的arch上没有创建swap分区</p>
+<h3 id="挂载U盘-移动硬盘"><a href="#挂载U盘-移动硬盘" class="headerlink" title="挂载U盘/移动硬盘"></a>挂载U盘/移动硬盘</h3><p>使用fdisk -l命令<br>得到<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Disk /dev/sdb：29 GiB，31104958464 字节，60751872 个扇区</span><br><span class="line">单元：扇区 / 1 * 512 = 512 字节</span><br><span class="line">扇区大小(逻辑/物理)：512 字节 / 512 字节</span><br><span class="line">I/O 大小(最小/最佳)：512 字节 / 512 字节</span><br><span class="line">磁盘标签类型：dos</span><br><span class="line">磁盘标识符：0xcad4ebea</span><br><span class="line"></span><br><span class="line">设备       启动 起点     末尾     扇区 大小 Id 类型</span><br><span class="line">/dev/sdb4  *      63 60751871 60751809  29G  c W95 FAT32 (LBA)</span><br></pre></td></tr></table></figure></p>
+<p>创建文件夹 将sdb4挂载到文件夹上</p>
+<p>一般u盘会自动挂载,像我的系统就是挂载到run/s/xxx 下面<br>不过官方建议还是挂载到 /mnt/lfs 下面</p>
+<p><code>mount -v -t ext4 /dev/&lt;xxx&gt; $LFS</code>    # 将 /dev/<xxx> 挂载到 $LFS</xxx></p>
+<p>如果重启设备，可能进入后发现 /mnt/lfs 目录下没有内容，这是只需要再次挂载 /dev/<xxx> 到 /mnt/lfs。 此处 <xxx> 用实际的设备名称代替</xxx></xxx></p>
+<p>这里我只使用一个 / 分区</p>
+<p>如果 LFS 使用了多个分区，(比如：一个 /，一个 /usr)，用下面的命令挂载它们：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mkdir -pv $LFS	# 建立 / 分区的挂载点</span><br><span class="line">mount -v -t ext4 /dev/&lt;xxx&gt; $LFS	# 将 /dev/&lt;xxx&gt; 挂载到 $LFS</span><br><span class="line">mkdir -v $LFS/usr	# 建立 $LFS/usr 挂载点，用于挂载 /usr</span><br><span class="line">mount -v -t ext4 /dev/&lt;yyy&gt; $LFS/usr	# 将 /dev/&lt;yyy&gt; 挂载到 $LFS/usr</span><br></pre></td></tr></table></figure>
+<p>附:<br>如果你正在使用交换分区，用 swapon 命令确保它已经启用。</p>
+<p><code>/sbin/swapon -v /dev/&lt;zzz&gt;</code><br>用 swap 分区的名字替换<zzz>。</zzz></p>
+<p>注意:确保你的 echo $LFS 在root与用户帐号上时/mnt/lfs 你可以使用全局变量来设置</p>
+<h3 id="软件包和补丁"><a href="#软件包和补丁" class="headerlink" title="软件包和补丁"></a>软件包和补丁</h3><p><code>mkdir -v $LFS/sources</code><br>在$lfs里创建sources文件夹 来存放 下载好的软件包和补丁</p>
+<p>设置目录的写权限和粘滞模式。“粘滞模式”意思是就算有多个用户对某个目录有写权限，仍然只有该文件的主人能删除一个粘滞目录里的文件。下面的命令可以打开写权限和粘滞模式：<br><code>chmod -v a+wt $LFS/sources</code></p>
+<p>下载软件包可以去中科院镜像里面去下载<br>里面已经有了md5sums 解压放到source里面就行<br>下载完成后使用md5sums检验====&gt;将下载的md5sums 放到sources目录下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pushd $LFS/sources</span><br><span class="line">md5sum -c md5sums</span><br><span class="line">popd</span><br></pre></td></tr></table></figure>
+<h3 id="最后的准备工作"><a href="#最后的准备工作" class="headerlink" title="最后的准备工作"></a>最后的准备工作</h3><p> 我们还需要为构建临时系统做一些额外的准备工作。我们会在 $LFS 中新建一个文件夹用于临时工具的安装，增加一个非特权用户用于降低风险，并为该用户创建合适的构建环境。我们也会解释用于测量构建 LFS 软件包花费时间的单位，或者称为“标准编译单位（SBU）”，并给出一些关于软件包测试套件的信息</p>
+<p>以 root 用户运行以下的命令来创建需要的文件夹：<br><code>mkdir -v $LFS/tools</code></p>
+<p>下一步是在宿主系统中创建 /tools 的符号链接，将其指向 LFS 分区中新建的文件夹。同样以 root 用户运行下面的命令：</p>
+<p><code>ln -sv $LFS/tools /</code></p>
+<h4 id="添加-LFS-用户"><a href="#添加-LFS-用户" class="headerlink" title="添加 LFS 用户"></a>添加 LFS 用户</h4><p>当以 root 用户登录时，犯一个小错误可能会破坏或摧毁整个系统。因此，我们建议在本章中以非特权用户编译软件包。你可以使用你自己的用户名，但要容易的话，就建立一个干净的工作环境，创建一个名为 lfs 的新用户作为新组（名字也是 lfs ）的成员，并在安装过程中使用这个用户。以 root 用户运行以下命令来添加新用户：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">groupadd lfs</span><br><span class="line">useradd -s /bin/bash -g lfs -m -k /dev/null lfs</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">命令行选项的意思：</span><br><span class="line"></span><br><span class="line">-s /bin/bash</span><br><span class="line">把 bash 设置为 lfs 用户的默认 shell。</span><br><span class="line"></span><br><span class="line">-g lfs</span><br><span class="line">这个选项将用户 lfs 添加到组 lfs 中。</span><br><span class="line"></span><br><span class="line">-m</span><br><span class="line">为 lfs 用户创建主目录。</span><br><span class="line"></span><br><span class="line">-k /dev/null</span><br><span class="line">这个参数通过改变输入位置为特殊的空（null）设备，以防止可能从一个模版目录中（默认是 /etc/skel）复制文件。</span><br></pre></td></tr></table></figure>
+<p>lfs<br>这是创建的组和用户的实际名称。</p>
+<p>要以 lfs 用户身份登录（以 root 身份登录切换到 lfs 用户时不要求 lfs 用户设置了密码），需要给 lfs 用户一个密码：<br><code>passwd lfs</code></p>
+<p>通过更改文件夹所有者为 lfs，为用户 lfs 赋予了访问 $LFS/tools 文件夹的所有权限：</p>
+<p><code>chown -v lfs $LFS/tools</code></p>
+<p>如果正如建议的一样创建了一个单独的工作目录，给 lfs 用户赋予这个文件夹的所有权：<br><code>chown -v lfs $LFS/sources</code></p>
+<p>下一步，以 lfs 用户身份登录。可以能通过一个虚拟控制台、显示控制器，或者下面的切换用户命令完成：<br><code>su - lfs</code></p>
+<h4 id="设置环境"><a href="#设置环境" class="headerlink" title="设置环境"></a>设置环境</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cat &gt; ~/.bash_profile &lt;&lt; &quot;EOF&quot;</span><br><span class="line">exec env -i HOME=$HOME TERM=$TERM PS1=&apos;\u:\w\$ &apos; /bin/bash</span><br><span class="line">EOF</span><br></pre></td></tr></table></figure>
+<p>当以 <code>lfs</code> 用户身份登录时，初始 shell 通常是一个可登录的 shell，它先读取宿主机的 <code>/etc/profile</code>文件（很可能包括一些设置和环境变量），然后是 <code>.bash_profile</code> 文件。<code>.bash_profile</code> 文件中的<code>exec env -i.../bin/bash</code> 命令用一个除了 <code>HOME</code>、<code>TERM</code>和 <code>PS1</code> 变量，完全空环境的 shell 代替运行中的 shell。<strong>这可以确保没有不必要的或者有潜在风险的环境变量从宿主机系统中泄露到构建环境</strong>。这里使用的技巧是为了有一个干净环境。</p>
+<p>新的 shell 实例是一个非登录 shell，不会读取 <code>/etc/profile</code> 或者 <code>.bash_profile</code>文件，而是读取 <code>.bashrc</code>文件。 现在创建 <code>.bashrc</code> 文件：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">cat &gt; ~/.bashrc &lt;&lt; &quot;EOF&quot;</span><br><span class="line">set +h</span><br><span class="line">umask 022</span><br><span class="line">LFS=/mnt/lfs</span><br><span class="line">LC_ALL=POSIX</span><br><span class="line">LFS_TGT=$(uname -m)-lfs-linux-gnu</span><br><span class="line">PATH=/tools/bin:/bin:/usr/bin</span><br><span class="line">export LFS LC_ALL LFS_TGT PATH</span><br><span class="line">EOF</span><br></pre></td></tr></table></figure></p>
+<p><code>set +h</code>命令关闭了 <code>bash</code>的哈希功能。 哈希通常是一个有用的功能，<code>bash</code> 用一个哈希表来记录可执行文件的完整路径，以避免搜索<code>PATH</code> 的时间和又找到一个相同的可执行文件。然而，新工具要一安装后就使用。通过关闭哈希功能，一个程序准备运行时 <code>shell</code> 总是会搜索<code>PATH</code>变量。如此，<code>shell</code> 能在新编译的工具可用时马上在文件夹 <code>$LFS/tools</code> 中找到，而不是记录相同程序在其它地方的之前版本。</p>
+<p>设置用户文件新建掩码<code>（umask）</code>为 <code>022</code>，确保新建的文件和目录只有它们自己的所有者可写，任何人都可读和可执行(假定<code>open(2)</code> 系统调用使用的默认模式是新文件使用 <code>644</code>模式，文件夹使用<code>755</code>模式)。</p>
+<p><code>LFS</code> 变量应该设置为选定的挂载点。</p>
+<p><code>LC_ALL</code> 变量控制特定程序的本地化，使得它们的消息能遵循特定国家的惯例。设置 <code>LC_ALL</code> 为 <code>“POSIX”</code> 或 <code>“C”</code>（两者是等价的），确保 <code>chroot</code> 环境中一切如期望的那样进行。</p>
+<p>当编译我们的交叉编译器和链接器以及交叉编译我们的临时工具链时，<code>LFS_TGT</code>变量设置了一个非默认，但兼容的机器说明。5.2,“工具链技术说明”包含更多的信息。</p>
+<p>把 <code>/tools/bin</code> 放在标准的 <code>PATH</code> 变量前面， 第五章中安装的软件一安装完成 shell 就可使用。这和关闭哈希功能一起，降低了在第五章环境中新程序可用时宿主机器使用旧程序的风险。</p>
+<p>生效配置文件:<br><code>source ~/.bash_profile</code></p>
+<h4 id="关于-SBU"><a href="#关于-SBU" class="headerlink" title="关于 SBU"></a>关于 SBU</h4><p>SBU 衡量方式如下。我们以第五章编译的第一个软件包 Binutils 所用时间作为一个标准编译单位（SBU），其它软件的生成时间都以其为标准进行比较。</p>
+<p>例如，假如编译一个软件耗时 4.5 SBU，而编译安装初代 Binutils 用时 10 分钟的话，那么编译这个软件包大约耗时 45 分钟。当然啦，对于大多数人来说，编译 Binutils 可用不了 10 分钟那么久。</p>
+<p>在一些情况下，使用多处理器同时编译可能失败，分析错误日志变得异常困难：因为不同处理器之间的执行路线是交错的。如果你在编译的时候遇到问题，那么请回过来使用单处理器编译，以正确地查看错误消息。</p>
+<h3 id="构建临时系统"><a href="#构建临时系统" class="headerlink" title="构建临时系统"></a>构建临时系统</h3><p>目标是生成一个临时的系统，它包含一个已知的较好工具集，该工具集可与宿主系统分离。通过使用 <code>chroot</code>，其余各章中的命令将被包含在此环境中，以保证目标 LFS 系统能够洁净且无故障地生成。该构建过程的设计就是为了使得新读者有最少的风险，同时还能有最好的指导价值。</p>
+<p><strong>最后确认一次是否正确设置了 LFS 环境变量：</strong><br><code>echo $LFS</code><br>确认输出显示的是 LFS 分区挂载点的路径，在我们的例子中也就是 /mnt/lfs。</p>
+<p>最后，必须强调两个重要的点：</p>
+<p><strong>[重要] 重要</strong></p>
+<p>编译指南假定你已经正确地设置了宿主系统需求和符号链接：</p>
+<p><code>shell</code>使用的是 <code>bash</code>。</p>
+<p><code>sh</code> 是到 <code>bash</code>的符号链接。</p>
+<p><code>/usr/bin/awk</code> 是到 <code>gawk</code>的符号链接。</p>
+<p><code>/usr/bin/yacc</code> 是到<code>bison</code>的符号链接或者一个执行 <code>bison</code> 的小脚本。</p>
+<p><strong>[重要] 重要</strong></p>
+<p>再次强调构建过程：</p>
+<p>把所有源文件和补丁放到 <code>chroot</code> 环境可访问的目录，例如 <code>/mnt/lfs/sources/</code>。但是千万不能把源文件放在 <code>/mnt/lfs/tools/</code> 中。</p>
+<p>进入到源文件目录。</p>
+<blockquote>
+<p>对于每个软件包:</p>
+<ol>
+<li>用 tar 程序解压要编译的软件包。在第五章中，确保解压软件包时你使用的是 lfs 用户。<br>2.</li>
+<li>进入到解压后创建的目录中。<br>4.</li>
+<li>根据指南说明编译软件包。<br>6.</li>
+<li>回退到源文件目录。<br>8.</li>
+<li>除非特别说明，删除解压出来的目录和所有编译过程中生成的  &lt;package>-build 目录。</li>
+</ol>
+</blockquote>
+<p>这里我在使用lfs帐号进入lfs文件夹的时候出现了权限不足,我使用了chmod加了权限</p>
+<p>之后就是漫长的编译过程<br>具体按照官方资料上进行编译<br>注意在编译过程中必须清楚知道当前步骤 make 与 make install 防止错误</p>
+<p>====&gt;之后的构建过程 之后补充上</p>
+<h4 id="资料-建议配合使用"><a href="#资料-建议配合使用" class="headerlink" title="资料(建议配合使用)"></a>资料(建议配合使用)</h4><h5 id="中文资料-已过期7-7-但翻译还是可以用"><a href="#中文资料-已过期7-7-但翻译还是可以用" class="headerlink" title="中文资料(已过期7.7,但翻译还是可以用)"></a>中文资料(已过期7.7,但翻译还是可以用)</h5><p><a href="https://linux.cn/lfs/LFS-BOOK-7.7-systemd/index.html" target="_blank" rel="noopener">https://linux.cn/lfs/LFS-BOOK-7.7-systemd/index.html</a></p>
+<h5 id="英文资料-目前是8-2"><a href="#英文资料-目前是8-2" class="headerlink" title="英文资料(目前是8.2)"></a>英文资料(目前是8.2)</h5><p><a href="http://www.linuxfromscratch.org/lfs/view/stable/index.html" target="_blank" rel="noopener">http://www.linuxfromscratch.org/lfs/view/stable/index.html</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://www.unblog.top/2018/07/11/git443错误/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -923,282 +1177,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.unblog.top/2018/07/10/shell基础/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="兔子春">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/7.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Eden">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/10/shell基础/" itemprop="url">shell基础</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-10T16:31:11+08:00">
-                2018-07-10
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2018-09-05T18:01:53+08:00">
-                2018-09-05
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index">
-                    <span itemprop="name">linux</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  1,587
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  6
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="shell开头"><a href="#shell开头" class="headerlink" title="shell开头"></a>shell开头</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line">#!/bin/sh</span><br><span class="line">#!/usr/bin/awk</span><br><span class="line">#!/usr/bin/env python</span><br><span class="line">#!/usr/bin/perl</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>这几行在第一行,不再第一行就是注释<br>不用的话就用相关解释器带上文件名执行<br>在写脚本的时候如果不加前面的也会交给bash解释,但是还是指定解释器比较好</p>
-</blockquote>
-<h4 id="注意点一"><a href="#注意点一" class="headerlink" title="注意点一"></a>注意点一</h4><p>定义变量名的时候等号旁边没有空格</p>
-<p>要在登录后显示初始化内容可以将脚本文件放到 /etc/profile.d/</p>
-<p>的下面或者是更改/etc/motd 文件</p>
-<p>单引号中`` 命令无效</p>
-<p>当参数大于9个要使用${}方式</p>
-<blockquote>
-<p>touch 主要是用来更新时间的….</p>
-</blockquote>
-<blockquote>
-<p>使用cat连接两个文件</p>
-</blockquote>
-<blockquote>
-<p>ln -s 源文件 快捷方式 s表示链接</p>
-</blockquote>
-<p>有多个命令就使用;号,若将输出全都重定向用{}扩起来,{}是父shell,()是子shell</p>
-<h4 id="注意点二"><a href="#注意点二" class="headerlink" title="注意点二"></a>注意点二</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">read读到换行符为止,所以就使用循环可以将文件读完,不然好像只能读一行</span><br><span class="line">黑洞/dev/null 了解一下-.-</span><br><span class="line">cp mv rm 加上-i 进行确认</span><br><span class="line">`command` == $(command)</span><br><span class="line">`read file` 是要求用户输入并且保存到file变量中...</span><br><span class="line">`read -p &quot;&quot; ver `就像scanf一样..(我下所的)</span><br><span class="line">readonly xxx=1 或者readonly xxx(已定义) 表示只读无法改变包括unset</span><br><span class="line">用重定向代替输入</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>shell中0给了stdin 1给了stdout 2给了stderr</p>
-</blockquote>
-<blockquote>
-<p>其余数字可以来关联输出文件 例如文件中&gt;&amp;3 命令用3&gt;文件 输出到文件中</p>
-</blockquote>
-<p><code>exec</code> 将文件关联<br><code>paste</code>两个文件连接<br><code>tr</code>替换<br><code>if</code>空格<code>[]</code> <code>while</code>空格:</p>
-<blockquote>
-<p>expand unexpand 将tab 转换成空格 一般只早开头 使用-a 替换全部</p>
-</blockquote>
-<blockquote>
-<p>unset 消除定义的变量</p>
-</blockquote>
-<blockquote>
-<p>${array[*]} == ${array[@]} “”${array[*]}  != “${array[@]}”前面是整个数组的字符串,后面时整个数组</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">条件语句if or elif 后面要跟上 then 如:</span><br><span class="line"></span><br><span class="line">if [ xx ]</span><br><span class="line">then</span><br><span class="line">    xxxxx</span><br><span class="line">elif [ xxx ]</span><br><span class="line">then</span><br><span class="line">    xxxxx</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[  ]是shell的内置命令 下列给出操作符:</span><br><span class="line">-eq equal to</span><br><span class="line">-ne not equal to</span><br><span class="line">-lt less than</span><br><span class="line">-gt great than</span><br><span class="line">ge (没有-哦) great or equal</span><br><span class="line">如果条件判断与then写在统一行then前面加;</span><br><span class="line">[]两侧要有空格</span><br></pre></td></tr></table></figure>
-<h4 id="注意点三"><a href="#注意点三" class="headerlink" title="注意点三"></a>注意点三</h4><blockquote>
-<p>在case中 中止case语句用;;如果用;&amp; or ;;&amp;来终止还是执行下去,他中止的是子句,会使用word在去匹配pattern,直到遇到;;结束case<br>递增可以使用let x=$x+1 当然也可以使用expr语句-.-我也是随机选择的….<br>do 和while [  ]写在一起的时候do前面有分号<br>while 后面可以加上命令list 使用分号;来隔开,决定是否推出循环的是最后一个命令返回值,注意是最后一个!!!<br>其中命令都是用[]扩起来的列入[];[];[]<br>[] 是条件<br>-n String 判断字符串长度是否非0<br>-z Stirng 判断字符串长度为0时就断(zero)<br>String=String<br>String!=String</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">for 后面不加in就选择传入的参数</span><br><span class="line">同时也可以写的像c的for一样但是写成要这样</span><br><span class="line"></span><br><span class="line">for((p=1,k=321;p&lt;10;p++,k++))</span><br><span class="line">do</span><br><span class="line">    xxxxx</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">select var in xxx xxx xxx xxx</span><br><span class="line">do</span><br><span class="line">    xxxx(可以是case或者是if条件判断)</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
-<p>在select中要写退出循环的条件,不然会一直循环下去,还有就是要写其他选项的条件,不然不科学-.-</p>
-<h4 id="option-参数的代码"><a href="#option-参数的代码" class="headerlink" title="option 参数的代码"></a>option 参数的代码</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">while getopts x:x:x: OPTION 这个option可以随便定义</span><br><span class="line">do</span><br><span class="line">    case $OPTION in</span><br><span class="line">        x)</span><br><span class="line">            xxx=$OPTAGE;; 这个变量时规定的 与$REPLY一样</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
-<p>写的函数可以直接调用 条件中-r 可读 -w 可写 -a and<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$&#123;xx:-dsa&#125;等:(也可以通过其他方式来实现)</span><br><span class="line">    :-先默认后赋值,不改变</span><br><span class="line">    :+先赋值,不改变</span><br><span class="line">    :=改变</span><br><span class="line">    :?若是空的则输出错误退出脚本</span><br></pre></td></tr></table></figure></p>
-<p><code>$PAGER</code> 似乎是系统变量</p>
-<blockquote>
-<p>显示文档的less也可以通过其他方式来实现</p>
-</blockquote>
-<blockquote>
-<p>echo -n 不换行输出 -e 激活转移字符</p>
-</blockquote>
-<blockquote>
-<p>sort -u 忽略相同行</p>
-</blockquote>
-<blockquote>
-<p>当不能使用管道时可以使用命令替代参数</p>
-</blockquote>
-<blockquote>
-<p>数字或者字符串expression不能出现在$()中,要用()扩起来后在放到$()中间……</p>
-</blockquote>
-<blockquote>
-<p>循环的话要注意变量的赋值</p>
-</blockquote>
-<blockquote>
-<p>find 命令 从给定的文件位置开始找 -iname 忽略大小写<br>-mtime 表示修改时间 -mtime n修改时间为n天<br>-mtime +n 大于n天<br>-mtime -n 小于n天</p>
-</blockquote>
-<blockquote>
-<p>如果有多个命令使用-a来连接 其中如果有()要使用\ 来转义 -o 或者</p>
-</blockquote>
-<blockquote>
-<p>xargs 可以处理很多参数</p>
-<p>locate 查询本地的数据库 find是直接查找文件系统</p>
-<p>dd if=file of=file count=blocks bs=bytes</p>
-</blockquote>
-<h4 id="信号"><a href="#信号" class="headerlink" title="信号"></a>信号</h4><blockquote>
-<p>通过trap xx(函数名) 数字 可以将让函数才该信号出现的时候调用该函数<br>使用trap也可以脚本结束后调用函数,数字是0<br>使用’’ 或者: 是屏蔽中断INT信号<br>使用trap INT 来恢复<br>exit xx 中xx是信号<br>kill 进程的时候要先kill掉子进程,不然会交给init进程接管<br>使用&amp;&amp;连接多个命令的时候是一个一个执行的,会创建子bash执行进程</p>
-</blockquote>
-<p><code>command|sed &#39;command&#39;</code><br><code>sed &#39;command&#39; file</code></p>
-<blockquote>
-<p>使用;分号来连接多个command(不用另起’’) 或者使用-e(要’’分离每个命令)<br>也可以将多个command写在一个文件中,-f指定文件<br>!可以对取值范围取反<br>sed stream editor 可以从管道或者文件中读取参数</p>
-</blockquote>
-<p><code>sed -n &#39;1~2p&#39; 1 start  2 step</code></p>
-<blockquote>
-<p>sed还能加上正则/^$/<br>使用正则还能代替行号<br>使用&amp;表示正则表达式获取的结果</p>
-</blockquote>
-<h4 id="awk-‘script’-files"><a href="#awk-‘script’-files" class="headerlink" title="awk ‘script’ files"></a>awk ‘script’ files</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&apos;script&apos; 中一般为</span><br><span class="line">    /pattern/&#123;action&#125;</span><br><span class="line">    exprssion &#123;action&#125;其中特殊的有: value ~ /pattern/ 与正则匹配 加个!就是不匹配  可以使用()将判断分离,这样()间可以使用||或者&amp;&amp;链接</span><br><span class="line"></span><br><span class="line">分割符通过-F指定</span><br><span class="line">可以在awk文件中写好命令之后使用-f来指定文件</span><br><span class="line">使用BEGIN&#123;</span><br><span class="line"></span><br><span class="line">&#125;来执行处理数据之前执行的初始化操作</span><br><span class="line">使用next来表示 将两个命令的结果连接起来</span><br></pre></td></tr></table></figure>
-<p><code>#!/bin/bash/awk -f awk脚本 .awk</code></p>
-<blockquote>
-<p>awk中有内建变量<br>    NR为行数<br>    FS分割符<br>    等等</p>
-</blockquote>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1255,7 +1233,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">69</span>
+                  <span class="site-state-item-count">70</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1344,7 +1322,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">76.0k</span>
+    <span title="Site words total count">76.1k</span>
   
 </div>
 
