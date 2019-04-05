@@ -378,6 +378,206 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.unblog.top/2018/09/07/vigenere-cipher/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="兔子春">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/7.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Eden">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/07/vigenere-cipher/" itemprop="url">vigenere_cipher(维西尼亚)密码</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-07T10:26:04+08:00">
+                2018-09-07
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-09-07T10:35:38+08:00">
+                2018-09-07
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1,044
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  4
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="Vigenere-Cipher"><a href="#Vigenere-Cipher" class="headerlink" title="Vigenere Cipher"></a>Vigenere Cipher</h3><p>凯撒密码<br>凯撒密码是一种简单的加密方法，即将文本中的每一个字符都位移相同的位置。</p>
+<p>如选定位移3位：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">原文：a b c</span><br><span class="line">密文：d e f</span><br></pre></td></tr></table></figure></p>
+<p>由于出现了字母频度分析，凯撒密码变得很容易破解。<br>“如果我们知道一条加密信息所使用的语言，那么破译这条加密信息的方法就是找出同样的语言写的一篇其他文章，大约一页纸长，然后我们计算其中每个字母的出现频率。我们将 <strong>频率最高的字母标为1号</strong>，<strong>频率排第2的标为2号</strong>，<strong>第三标为3号</strong>，依次类推，直到数完样品文章中所有字母。然后我们观察<strong>需要破译的密文</strong>，同样分类出所有的字母，<strong>找出频率最高的字母</strong>，并<strong>全部用样本文章中最高频率的字母替换</strong>。第二高频的字母用样本中2号代替，第三则用3号替换，<strong>直到密文中所有字母均已被样本中的字母替换</strong>。”  <strong>(0.0 厉害啊)</strong></p>
+<p>维吉尼亚密码分解后实则就是多个凯撒密码，只要知道密钥的长度，我们就可以将其分解。<br><img src="/images/forpost/vigenere_cipher.png" alt=""><br>如密文为：<code>ABCDEFGHIJKLMN</code><br>如果我们知道密钥长度为3，就可将其分解为三组：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">组1：A D G J N</span><br><span class="line">组2：B E H K</span><br><span class="line">组3：C F I M</span><br></pre></td></tr></table></figure></p>
+<p><strong>分解后每组就是一个凯撒密码，即组内的位移量是一致的，对每一组即可用频度分析法来解密。</strong><br>所以破解维吉尼亚密码的关键就是确定密钥的长度。<br>两种方法确定密钥的长度<br>一种是<strong>Kasiski测试法</strong>:确定两个相同字符串之间长度(至少为3)的公因数(目前用这个)<br>一种是<strong>重合指数法</strong><br>定义公式：<br><img src="/images/forpost/vigenere1.png" alt=""></p>
+<p>pi(字母的出现频率–已知)<br><img src="/images/forpost/vigenere3.png" alt=""></p>
+<p>常用公式：xi为字母的频数，L为密文的长度<br><img src="/images/forpost/vigenere2.png" alt=""></p>
+<p>英语文本的重合指数为<code>P(A)^2 + P(B)^2+……+P(Z)^2 = 0.065</code><br>利用重合指数推测密钥长度的原理在于，对于一个由凯撒密码加密的序列，由于所有字母的位移程度相同，所以密文的重合指数应等于原文语言的重合指数<br>假设使用维吉尼亚密码加密的密文串为y=y1y2…yn。将串y分割成m个长度相等的子串(m组)，分别为y1，y2，…，ym，这样就可以以列的形式写出密文，组成一个m×(n/m)矩阵。矩阵的每一行对应于子串yi,(每一行对应一组) 1≤i≤m</p>
+<p>如果y1，y2，…，ym按如上方式构造，则m实际上就是密钥字的长度，每一组的CI值大约为0.065。</p>
+<p>另外，如果m<strong>不是</strong>密钥字的长度，那么子串yi看起来<strong>更为随机</strong>，因为它们是通过<strong>不同密钥以移位加密方式获得的</strong>。对于一个随机串，其重合指数为<strong>0.038</strong> (通过猜测密钥的长度,看是否接近0.065)</p>
+<p>在知道了密钥长度n以后，就可将密文分解为n组，每一组都是一个凯撒密码，然后对每一组用字母频度分析进行解密，和在一起就能成功解密凯撒密码</p>
+<p>首先对子密文段重各个字母的频率进行统计（记为<code>fi</code>, i∈<code>a – z</code>），查看字母频率分布统计概率表(记<code>pi</code>)，计算子密文段长度为<code>n</code>，使用公式<br><img src="/images/forpost/vigenere4.png" alt=""></p>
+<p>计算出M0，然后对子密文段移位25次，同样按照上述方法求出M1 — M25的值</p>
+<p>根据重合指数的定义知：一个有意义的英文文本，M ≈0.065，所以找出M值接近0.065的移位数，就是秘钥中的对应字母</p>
+<p>推荐网站 <a href="http://www.richkni.co.uk/php/crypta/vignere.php" target="_blank" rel="noopener">http://www.richkni.co.uk/php/crypta/vignere.php</a><br>解密很有用(0.0)</p>
+<p>ps:<br>这篇文章虽然被分类到python中,但还没有用python实现 orz</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://www.unblog.top/2018/09/06/frequency-analysis/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -939,222 +1139,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.unblog.top/2018/09/05/encrypt-base64/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="兔子春">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/7.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Eden">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/09/05/encrypt-base64/" itemprop="url">使用base64编码加密解密</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-05T17:23:51+08:00">
-                2018-09-05
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2018-09-05T17:52:02+08:00">
-                2018-09-05
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/python/" itemprop="url" rel="index">
-                    <span itemprop="name">python</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  1,267
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  5
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="Base64编码简介"><a href="#Base64编码简介" class="headerlink" title="Base64编码简介"></a>Base64编码简介</h3><p>Base64这个术语最初是在“MIME内容传输编码规范”中提出的。Base64不是一种加密算法，虽然编码后的字符串看起来有点加密的赶脚。它实际上是一种“二进制到文本”的编码方法，它能够将给定的任意二进制数据转换（映射）为ASCII字符串的形式，以便在只支持文本的环境中也能够顺利地传输二进制数据。例如支持MIME的电子邮件应用，或需要在XML中存储复杂数据（例如图片）时。</p>
-<p>要实现Base64，首先需要选取适当的64个字符组成字符集。一条通用的原则是从某种常用字符集中选取64个可打印字符，这样就能避免在传输过程中丢失数据（不可打印字符在传输过程中可能会被当做特殊字符处理，从而导致丢失）。例如，MIME的Base64实现选用了大写字母、小写字母和0~9的数字作为前62个字符。其他实现通常会沿用MIME的这种方式，而仅仅在最后2个字符上有所不同，例如UTF-7编码。</p>
-<p>我们经常会在Base64编码字符串中看到最后有”=”字符，这就是通过填充生成的。填充就是当出现编码时的情况2和3时，在后面补上”=”字符，使编码后的字符数为4的倍数。</p>
-<p>下面这段文本：</p>
-<blockquote>
-<p>Man is distinguished, not only by his reason, but by this singular passion from other<br>animals, which is a lust of the mind, that by a perseverance of delight in the continued and<br>indefatigable generation of knowledge, exceeds the short vehemence of any carnal pleasure.</p>
-</blockquote>
-<p>通过MIME Base64进行转换后就成为：</p>
-<blockquote>
-<p>TWFuIGlzIGRpc3Rpbmd1aXNoZWQsIG5vdCBvbmx5IGJ5IGhpcyByZWFzb24sIGJ1dC<br>BieSB0aGlzIHNpbmd1bGFyIHBhc3Npb24gZnJvbSBvdGhlciBhbmltYWxzLCB3aGlja<br>CBpcyBhIGx1c3Qgb2YgdGhlIG1pbmQsIHRoYXQgYnkgYSBwZXJzZXZlcmFuY2Ugb2YgZ<br>GVsaWdodCBpbiB0aGUgY29udGludWVkIGFuZCBpbmRlZmF0aWdhYmxlIGdlbmVyYXRpb<br>24gb2Yga25vd2xlZGdlLCBleGNlZWRzIHRoZSBzaG9ydCB2ZWhlbWVuY2Ugb2YgYW55<br>IGNhcm5hbCBwbGVhc3VyZS4=</p>
-</blockquote>
-<ol>
-<li><p>开发Base64的目的就不是为了加密，而是为了方便在文本环境中传输二进制数据</p>
-</li>
-<li><p>所以，与开发一个加密算法不同，安全性并不是Base64的目标，只是它的一个副产物。</p>
-</li>
-</ol>
-<p>实际上，Base64的安全性是非常差的，这就是在实际应用中不用它加密的原因。如果你对常用加密方法有所了解的话，你应该知道有一种古老的加密方法，称为“字符替换法”。即指定一个规则，将每个字符用其他字符替换，例如将a变为c、b变为d等，这样替换后生成的结果就是密文。解密时只需要反过来操作，将c变为a、将d变为b就可以了。用不同的替换规则加密，生成的密文也不同。</p>
-<p>用Base64来加密实际上就相当于字符替换，只不过它先对字节做了一些变换，然后再进行替换，对加密过程来说，本质上是一样的。</p>
-<p><strong>字符替换法</strong> 虽然简单，但却是一个伟大的发明，它被使用了超过1千年，一直都没有有效的方法来破解它。后来人们终于发现了它的弱点：基于词频和字母频率的统计规律，就能够轻松得到它的密钥。从那以后，加密者与解密者之间的战争从来就没有停歇过，加密者不断发明更复杂更安全的加密算法，解密者则绞尽脑汁去破解它们。<br>喽。</p>
-<h3 id="代码区"><a href="#代码区" class="headerlink" title="代码区:"></a>代码区:</h3><p><strong>主要思想:</strong><br>将信息的每一个字母抓换为ascii码,并且将所有的ascii码连接起来,补上不足的0,使得长度能被6整除,将他们以6的间距分开,将之转化为array中的字母,加上=号(是0数量的1/2)</p>
-<p>加密与解密是相对的</p>
-<p>使用同一数组array<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">array=[</span><br><span class="line">        &apos;A&apos;, &apos;B&apos;, &apos;C&apos;, &apos;D&apos;, &apos;E&apos;, &apos;F&apos;, &apos;G&apos;, &apos;H&apos;,</span><br><span class="line">        &apos;I&apos;, &apos;J&apos;, &apos;K&apos;, &apos;L&apos;, &apos;M&apos;, &apos;N&apos;, &apos;O&apos;, &apos;P&apos;,</span><br><span class="line">        &apos;Q&apos;, &apos;R&apos;, &apos;S&apos;, &apos;T&apos;, &apos;U&apos;, &apos;V&apos;, &apos;W&apos;, &apos;X&apos;,</span><br><span class="line">        &apos;Y&apos;, &apos;Z&apos;, &apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;d&apos;, &apos;e&apos;, &apos;f&apos;,</span><br><span class="line">        &apos;g&apos;, &apos;h&apos;, &apos;i&apos;, &apos;j&apos;, &apos;k&apos;, &apos;l&apos;, &apos;m&apos;, &apos;n&apos;,</span><br><span class="line">        &apos;o&apos;, &apos;p&apos;, &apos;q&apos;, &apos;r&apos;, &apos;s&apos;, &apos;t&apos;, &apos;u&apos;, &apos;v&apos;,</span><br><span class="line">        &apos;w&apos;, &apos;x&apos;, &apos;y&apos;, &apos;z&apos;, &apos;0&apos;, &apos;1&apos;, &apos;2&apos;, &apos;3&apos;,</span><br><span class="line">        &apos;4&apos;, &apos;5&apos;, &apos;6&apos;, &apos;7&apos;, &apos;8&apos;, &apos;9&apos;, &apos;+&apos;, &apos;/&apos;</span><br><span class="line">]</span><br></pre></td></tr></table></figure></p>
-<p>加密:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&apos;&apos;&apos;</span><br><span class="line">使用base64方式加密</span><br><span class="line">&apos;&apos;&apos;</span><br><span class="line">def encrypt_base64():</span><br><span class="line">    src=input(&quot;加密字符串:&quot;)</span><br><span class="line">    tmp = &quot;&quot;</span><br><span class="line">    result=&quot;&quot;</span><br><span class="line">    eqcount=0</span><br><span class="line">    for char in src:</span><br><span class="line">        char = ord(char) #turn to the ascii</span><br><span class="line">        char = bin(char) #turn to the bin(二进制)</span><br><span class="line">        char = char.replace(&quot;0b&quot;,&quot;&quot;)</span><br><span class="line">        if(len(char) != 8):</span><br><span class="line">            char = (8-len(char))*&quot;0&quot;+char</span><br><span class="line">        tmp = tmp + char</span><br><span class="line">    if(len(tmp)%6!= 0):</span><br><span class="line">        eqcount = 6 - len(tmp)%6</span><br><span class="line">        tmp = tmp + (6-len(tmp)%6)*&quot;0&quot;</span><br><span class="line">    for i in range(0,len(tmp),6):</span><br><span class="line">        base64bin=tmp[i:i+6]</span><br><span class="line">        base64bin=int(base64bin,2)</span><br><span class="line">        result=result + array[base64bin]</span><br><span class="line">    result = result + int(eqcount/2)*&quot;=&quot;</span><br><span class="line">    return result</span><br></pre></td></tr></table></figure></p>
-<p><strong>运行结果</strong><br><img src="/images/forpost/encrypt_base64.png" alt=""></p>
-<p>解密:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">#-------------------------------------</span><br><span class="line">&apos;&apos;&apos;</span><br><span class="line">使用base64方式解密</span><br><span class="line">&apos;&apos;&apos;</span><br><span class="line">def decrypt_base64():</span><br><span class="line">    src=input(&quot;解密字符串&quot;)</span><br><span class="line">    eqcount = 0</span><br><span class="line">    for i in src:</span><br><span class="line">        if(i == &quot;=&quot;):</span><br><span class="line">            eqcount=eqcount+1</span><br><span class="line">    src = src.replace(&quot;=&quot;,&apos;&apos;)</span><br><span class="line">    tmp = &quot;&quot;</span><br><span class="line">    result = &quot;&quot;</span><br><span class="line">    for char in src:</span><br><span class="line">        for i in range(len(array)):</span><br><span class="line">            if(array[i] == char):</span><br><span class="line">                tmpbin=bin(i).replace(&quot;0b&quot;,&quot;&quot;)</span><br><span class="line">                if(len(tmpbin) !=6):</span><br><span class="line">                    tmpbin = (6-len(tmpbin))*&quot;0&quot; + tmpbin</span><br><span class="line">                tmp = tmp + tmpbin</span><br><span class="line"></span><br><span class="line">    for i in range(0,len(tmp)-eqcount*2,8):</span><br><span class="line">       result=result + chr(int(tmp[i:i+8],2))</span><br><span class="line">    return result</span><br></pre></td></tr></table></figure></p>
-<p><strong>运行结果</strong><br><img src="/images/forpost/decrypt_base64.png" alt=""></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/18/">18</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/19/">19</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1206,7 +1195,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">72</span>
+                  <span class="site-state-item-count">73</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1217,7 +1206,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -1281,7 +1270,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heartbeat"></i>
   </span>
@@ -1295,7 +1284,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">77.6k</span>
+    <span title="Site words total count">79.3k</span>
   
 </div>
 
