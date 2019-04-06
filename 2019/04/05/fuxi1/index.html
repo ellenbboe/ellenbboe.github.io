@@ -140,18 +140,18 @@
 
 
 
-<meta name="description" content="3 数组中重复的数字在一个长度为 n 的数组里的所有数字都在 0 到 n-1 的范围内。数组中某些数字是重复的，但不知道有几个数字是重复的，也不知道每个数字重复几次。请找出数组中任意一个重复的数字。 要求是时间复杂度 O(N)，空间复杂度 O(1)。因此不能使用排序的方法，也不能使用额外的标记数组。对于这种数组元素在 [0, n-1] 范围内的问题，可以将值为 i 的元素调整到第 i 个位置上进行">
+<meta name="description" content="友情提示:代码在这里 3 数组中重复的数字在一个长度为 n 的数组里的所有数字都在 0 到 n-1 的范围内。数组中某些数字是重复的，但不知道有几个数字是重复的，也不知道每个数字重复几次。请找出数组中任意一个重复的数字。 要求是时间复杂度 O(N)，空间复杂度 O(1)。因此不能使用排序的方法，也不能使用额外的标记数组。对于这种数组元素在 [0, n-1] 范围内的问题，可以将值为 i 的元素调整">
 <meta name="keywords" content="算法">
 <meta property="og:type" content="article">
-<meta property="og:title" content="牛客网算法_Part1">
+<meta property="og:title" content="剑指offer_Part1">
 <meta property="og:url" content="https://www.unblog.top/2019/04/05/fuxi1/index.html">
 <meta property="og:site_name" content="Eden">
-<meta property="og:description" content="3 数组中重复的数字在一个长度为 n 的数组里的所有数字都在 0 到 n-1 的范围内。数组中某些数字是重复的，但不知道有几个数字是重复的，也不知道每个数字重复几次。请找出数组中任意一个重复的数字。 要求是时间复杂度 O(N)，空间复杂度 O(1)。因此不能使用排序的方法，也不能使用额外的标记数组。对于这种数组元素在 [0, n-1] 范围内的问题，可以将值为 i 的元素调整到第 i 个位置上进行">
+<meta property="og:description" content="友情提示:代码在这里 3 数组中重复的数字在一个长度为 n 的数组里的所有数字都在 0 到 n-1 的范围内。数组中某些数字是重复的，但不知道有几个数字是重复的，也不知道每个数字重复几次。请找出数组中任意一个重复的数字。 要求是时间复杂度 O(N)，空间复杂度 O(1)。因此不能使用排序的方法，也不能使用额外的标记数组。对于这种数组元素在 [0, n-1] 范围内的问题，可以将值为 i 的元素调整">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-06T07:59:37.155Z">
+<meta property="og:updated_time" content="2019-04-06T08:08:07.201Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="牛客网算法_Part1">
-<meta name="twitter:description" content="3 数组中重复的数字在一个长度为 n 的数组里的所有数字都在 0 到 n-1 的范围内。数组中某些数字是重复的，但不知道有几个数字是重复的，也不知道每个数字重复几次。请找出数组中任意一个重复的数字。 要求是时间复杂度 O(N)，空间复杂度 O(1)。因此不能使用排序的方法，也不能使用额外的标记数组。对于这种数组元素在 [0, n-1] 范围内的问题，可以将值为 i 的元素调整到第 i 个位置上进行">
+<meta name="twitter:title" content="剑指offer_Part1">
+<meta name="twitter:description" content="友情提示:代码在这里 3 数组中重复的数字在一个长度为 n 的数组里的所有数字都在 0 到 n-1 的范围内。数组中某些数字是重复的，但不知道有几个数字是重复的，也不知道每个数字重复几次。请找出数组中任意一个重复的数字。 要求是时间复杂度 O(N)，空间复杂度 O(1)。因此不能使用排序的方法，也不能使用额外的标记数组。对于这种数组元素在 [0, n-1] 范围内的问题，可以将值为 i 的元素调整">
 
 
 
@@ -187,7 +187,7 @@
 
 
 
-  <title>牛客网算法_Part1 | Eden</title>
+  <title>剑指offer_Part1 | Eden</title>
   
 
 
@@ -395,7 +395,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">牛客网算法_Part1</h1>
+          <h1 class="post-title" itemprop="name headline">剑指offer_Part1</h1>
         
 
         <div class="post-meta">
@@ -423,7 +423,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-04-06T15:59:37+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2019-04-06T16:08:07+08:00">
                 2019-04-06
               </time>
             
@@ -473,7 +473,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,669
+                  1,678
                 </span>
               
 
@@ -510,7 +510,8 @@
       
 
       
-        <h2 id="3-数组中重复的数字"><a href="#3-数组中重复的数字" class="headerlink" title="3 数组中重复的数字"></a>3 数组中重复的数字</h2><p>在一个长度为 n 的数组里的所有数字都在 0 到 n-1 的范围内。数组中某些数字是重复的，但不知道有几个数字是重复的，也不知道每个数字重复几次。请找出数组中任意一个重复的数字。</p>
+        <p>友情提示:代码在<a href="https://github.com/apersonlikesc/sosoalgorithm" target="_blank" rel="noopener">这里</a></p>
+<h2 id="3-数组中重复的数字"><a href="#3-数组中重复的数字" class="headerlink" title="3 数组中重复的数字"></a>3 数组中重复的数字</h2><p>在一个长度为 n 的数组里的所有数字都在 0 到 n-1 的范围内。数组中某些数字是重复的，但不知道有几个数字是重复的，也不知道每个数字重复几次。请找出数组中任意一个重复的数字。</p>
 <p>要求是时间复杂度 O(N)，空间复杂度 O(1)。因此不能使用排序的方法，也不能使用额外的标记数组。<br>对于这种数组元素在 [0, n-1] 范围内的问题，可以将值为 i 的元素调整到第 i 个位置上进行求解。<br>以 (2, 3, 1, 0, 2, 5) 为例，遍历到位置 4 时，该位置上的数为 2，但是第 2 个位置上已经有一个 2 的值了，因此可以知道 2 重复</p>
 <h2 id="4-二维数组中的查找"><a href="#4-二维数组中的查找" class="headerlink" title="4 二维数组中的查找"></a>4 二维数组中的查找</h2><p>给定一个二维数组，其每一行从左到右递增排序，从上到下也是递增排序。给定一个数，判断这个数是否在该二维数组中。</p>
 <p>该二维数组中的一个数，它左边的数都比它小，下边的数都比它大。因此，从右上角开始查找，就可以根据 target 和当前元素的大小关系来缩小查找区间，当前元素的查找区间为左下角的所有元素。</p>
@@ -556,7 +557,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://www.unblog.top/2019/04/05/fuxi1/" title="牛客网算法_Part1">https://www.unblog.top/2019/04/05/fuxi1/</a>
+    <a href="https://www.unblog.top/2019/04/05/fuxi1/" title="剑指offer_Part1">https://www.unblog.top/2019/04/05/fuxi1/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -609,8 +610,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/04/06/fuxi2/" rel="prev" title="牛客网算法_Part2">
-                牛客网算法_Part2 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/04/06/fuxi2/" rel="prev" title="剑指offer_Part2">
+                剑指offer_Part2 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
