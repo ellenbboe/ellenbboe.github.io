@@ -425,8 +425,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-04-10T22:17:04+08:00">
-                2019-04-10
+              <time title="更新于" itemprop="dateModified" datetime="2019-04-11T17:01:09+08:00">
+                2019-04-11
               </time>
             
           </span>
@@ -475,7 +475,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,196
+                  1,929
                 </span>
               
 
@@ -491,7 +491,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  5
+                  8
                 </span>
               
             </div>
@@ -531,6 +531,19 @@
 <h2 id="43-从-1-到-n-整数中-1-出现的次数"><a href="#43-从-1-到-n-整数中-1-出现的次数" class="headerlink" title="43 从 1 到 n 整数中 1 出现的次数"></a>43 从 1 到 n 整数中 1 出现的次数</h2><p>求出1~13的整数中1出现的次数,并算出100~1300的整数中1出现的次数？为此他特别数了一下1~13中包含1的数字有1、10、11、12、13因此共出现6次,但是对于后面问题他就没辙了。ACMer希望你们帮帮他,并把问题更加普遍化,可以很快的求出任意非负整数区间中1出现的次数（从1 到 n 中1出现的次数）。</p>
 <p>链接：<a href="https://www.nowcoder.com/questionTerminal/bd7f978302044eee894445e244c7eee6" target="_blank" rel="noopener">https://www.nowcoder.com/questionTerminal/bd7f978302044eee894445e244c7eee6</a><br>来源：牛客网<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">NumberOf1Between1AndN_Solution</span><span class="params">(<span class="keyword">int</span> n)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">    <span class="comment">//主要思路：设定整数点（如1、10、100等等）作为位置点i（对应n的各位、十位、百位等等），分别对每个数位上有多少包含1的点进行分析</span></span><br><span class="line">    <span class="comment">//根据设定的整数位置，对n进行分割，分为两部分，高位n/i，低位n%i</span></span><br><span class="line">    <span class="comment">//当i表示百位，且百位对应的数&gt;=2,如n=31456,i=100，则a=314,b=56，此时百位为1的次数有a/10+1=32（最高两位0~31），每一次都包含100个连续的点，即共有(a/10+1)* 100个点的百位为1</span></span><br><span class="line">    <span class="comment">//当i表示百位，且百位对应的数为1，如n=31156,i=100，则a=311,b=56，此时百位对应的就是1，则共有a/10(最高两位0-30)次是包含100个连续点，当最高两位为31（即a=311），本次只对应局部点00~56，共b+1次，所有点加起来共有（a/10*100）+(b+1)，这些点百位对应为1</span></span><br><span class="line">    <span class="comment">//当i表示百位，且百位对应的数为0,如n=31056,i=100，则a=310,b=56，此时百位为1的次数有a/10=31（最高两位0~30）</span></span><br><span class="line">    <span class="comment">//综合以上三种情况，当百位对应0或&gt;=2时，有(a+8)/10次包含所有100个点，还有当百位为1(a/10==1)，需要增加局部点b+1</span></span><br><span class="line">    <span class="comment">//之所以补8，是因为当百位为0，则a/10==(a+8)/10，当百位&gt;=2，补8会产生进位位，效果等同于(a/10+1)</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> count=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> i=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i*=<span class="number">10</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">//i表示当前分析的是哪一个数位</span></span><br><span class="line">        <span class="keyword">int</span> a = n/i,b = n%i;</span><br><span class="line">        count=count+(a+<span class="number">8</span>)/<span class="number">10</span>*i+(a%<span class="number">10</span>==<span class="number">1</span>)* (b+<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> count;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
 <h2 id="44-数字序列中的某一位数字"><a href="#44-数字序列中的某一位数字" class="headerlink" title="44 数字序列中的某一位数字"></a>44 数字序列中的某一位数字</h2><p>数字以 0123456789101112131415… 的格式序列化到一个字符串中，求这个字符串的第 index 位</p>
+<h2 id="45-把数组排成最小的数"><a href="#45-把数组排成最小的数" class="headerlink" title="45 把数组排成最小的数"></a>45 把数组排成最小的数</h2><p>输入一个正整数数组，把数组里所有数字拼接起来排成一个数，打印能拼接出的所有数字中最小的一个。例如输入数组 {3，32，321}，则打印出这三个数字能排成的最小数字为 321323。</p>
+<p>可以看成是一个排序问题，在比较两个字符串 S1 和 S2 的大小时，应该比较的是 S1+S2 和 S2+S1 的大小，如果 S1+S2 &lt; S2+S1，那么应该把 S1 排在前面，否则应该把 S2 排在前面。</p>
+<h2 id="46-把数字翻译成字符串"><a href="#46-把数字翻译成字符串" class="headerlink" title="46 把数字翻译成字符串"></a>46 把数字翻译成字符串</h2><p>给定一个数字，按照如下规则翻译成字符串：1 翻译成“a”，2 翻译成“b”… 26 翻译成“z”。一个数字有多种翻译可能，例如 12258 一共有 5 种，分别是 abbeh，lbeh，aveh，abyh，lyh。实现一个函数，用来计算一个数字有多少种不同的翻译方法。’<br>‘</p>
+<h2 id="47-礼物的最大价值"><a href="#47-礼物的最大价值" class="headerlink" title="47 礼物的最大价值"></a>47 礼物的最大价值</h2><p>在一个 m*n 的棋盘的每一个格都放有一个礼物，每个礼物都有一定价值（大于 0）。从左上角开始拿礼物，每次向右或向下移动一格，直到右下角结束。给定一个棋盘，求拿到礼物的最大价值。例如，对于如下棋盘<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1    10   3    8</span><br><span class="line">12   2    9    6</span><br><span class="line">5    7    4    11</span><br><span class="line">3    7    16   5</span><br></pre></td></tr></table></figure></p>
+<p>礼物的最大价值为 1+12+5+7+7+16+5=53。</p>
+<p>应该用动态规划求解，而不是深度优先搜索，深度优先搜索过于复杂，不是最优解。(厉害!)</p>
+<h2 id="48-最长不含重复字符的子字符串"><a href="#48-最长不含重复字符的子字符串" class="headerlink" title="48 最长不含重复字符的子字符串"></a>48 最长不含重复字符的子字符串</h2><p>输入一个字符串（只包含 a~z 的字符），求其最长不含重复字符的子字符串的长度。例如对于 arabcacfr，最长不含重复字符的子字符串为 acfr，长度为 4。</p>
+<h2 id="49-丑数"><a href="#49-丑数" class="headerlink" title="49 丑数"></a>49 丑数</h2><p>把只包含因子 2、3 和 5 的数称作丑数（Ugly Number）。例如 6、8 都是丑数，但 14 不是，因为它包含因子 7。习惯上我们把 1 当做是第一个丑数。求按从小到大的顺序的第 N 个丑数。</p>
+<p>作者：HelloHello233<br>链接：<a href="https://www.nowcoder.com/questionTerminal/6aa9e04fc3794f68acf8778237ba065b" target="_blank" rel="noopener">https://www.nowcoder.com/questionTerminal/6aa9e04fc3794f68acf8778237ba065b</a><br>来源：牛客网</p>
+<p>丑数的定义是1或者因子只有2 3 5，可推出丑数=丑数<em>丑数，假定丑数有序序列为：a1,a2,a3…….an<br>所以可以将以上序列（a1除外）可以分成3类，必定满足：<br>包含2的有序丑数序列：2</em>a1, 2<em>a2, 2</em>a3 …..<br>包含3的有序丑数序列：3<em>a1, 3</em>a2, 3<em>a3 …..<br>包含5的有序丑数序列：5</em>a1, 5<em>a2, 5</em>a3 …..<br>以上3个序列的个数总数和为n个，而且已知a1 = 1了，将以上三个序列合并成一个有序序列即可<br>程序中t2,t3,t5实际就是合并过程中三个序列中带排序的字段索引</p>
+<blockquote>
+<p>(歪日) 太强了</p>
+</blockquote>
 
           
         
@@ -1413,7 +1426,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">94.8k</span>
+    <span title="Site words total count">95.5k</span>
   
 </div>
 
