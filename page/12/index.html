@@ -378,6 +378,469 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.unblog.top/2018/08/18/2018-08-18/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="兔子春">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/7.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Eden">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/18/2018-08-18/" itemprop="url">2018-08-18</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-18T10:19:30+08:00">
+                2018-08-18
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-08-18T10:22:00+08:00">
+                2018-08-18
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/杂食动物/" itemprop="url" rel="index">
+                    <span itemprop="name">杂食动物</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  334
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  1
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="SQL注入"><a href="#SQL注入" class="headerlink" title="SQL注入"></a>SQL注入</h3><p>所谓SQL注入，就是通过把SQL命令插入到Web表单提交或输入域名或页面请求的查询字符串，最终达到欺骗服务器执行恶意的SQL命令。<br><code>select * from username = ____ and password=_____</code><br><code>select * from username   &quot;test&quot; or &quot;&quot;=&quot;&quot; and password=&quot;123456&quot;</code></p>
+<h3 id="XSS"><a href="#XSS" class="headerlink" title="XSS"></a>XSS</h3><p>XSS则是攻击者往Web页面里插入恶意Script代码，当用户浏览该页之时，嵌入Web里面的Script代码会被执行，从而达到恶意攻击用户的目的。<br><code>&lt;p style=&#39;color:red&#39;&gt;你好啊，尊敬的______&lt;p&gt;</code><br><code>&lt;p style=&#39;color:red&#39;&gt;你好啊，尊敬的 xxx&lt;script&gt;alert(1)&lt;/script&gt;&lt;p&gt;</code></p>
+<h3 id="远程命令执行"><a href="#远程命令执行" class="headerlink" title="远程命令执行"></a>远程命令执行</h3><p>而远程命令执行，是用户通过浏览器提交执行命令，由于服务器端没有针对执行函数做过滤，导致执行命令。<br>ping  <strong>___</strong><br>ping <a href="http://www.baidu.com" target="_blank" rel="noopener">www.baidu.com</a> &amp; wget xxxxxxxxxxx</p>
+<h3 id="越权"><a href="#越权" class="headerlink" title="越权"></a>越权</h3><p>越权漏洞是比较常见的漏洞类型，越权漏洞可以理解为，一个正常的用户A通常只能够对自己的一些信息进行增删改查，但是由于程序员的一时疏忽 ，对信息进行增删改查的时候没有进行一个判断，判断所需要操作的信息是否属于对应的用户，可以导致用户A可以操作其他人的信息。<br><code>Cookie: uid=11426;</code><br><code>Cookie: uid=1;</code></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.unblog.top/2018/08/17/scrapy4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="兔子春">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/7.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Eden">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/17/scrapy4/" itemprop="url">Scrapy Pass 4</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-17T14:29:08+08:00">
+                2018-08-17
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-08-17T14:30:54+08:00">
+                2018-08-17
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2,033
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  12
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="Command-line-tool"><a href="#Command-line-tool" class="headerlink" title="Command line tool"></a>Command line tool</h2><p>New in version 0.10.</p>
+<p>Scrapy is controlled through the <code>scrapy</code> command-line tool, to be referred here as the “Scrapy tool” to differentiate it from the sub-commands, which we just call “<code>commands</code>” or “<code>Scrapy commands</code>”.</p>
+<p>The Scrapy tool provides several commands, for multiple purposes, and each one accepts a different set of arguments and options.</p>
+<h3 id="Configuration-settings"><a href="#Configuration-settings" class="headerlink" title="Configuration settings"></a>Configuration settings</h3><p>Scrapy will <strong>look for</strong> configuration parameters in ini-style <code>scrapy.cfg</code> files in standard locations:</p>
+<ol>
+<li><code>/etc/scrapy.cfg</code> or <code>c:\scrapy\scrapy.cfg</code> (system-wide),</li>
+<li>~/.config/scrapy.cfg ($XDG_CONFIG_HOME) and ~/.scrapy.cfg ($HOME) for global (user-wide) settings, and</li>
+<li>scrapy.cfg inside a scrapy project’s root (see next section).<br>Settings from these files are merged in the listed order of preference: user-defined values have higher priority than system-wide defaults and project-wide settings will override all others, when defined.<br><strong>(优先级依次递增)</strong><br>Scrapy also understands, and can be configured through, a number of environment variables. Currently these are:</li>
+</ol>
+<blockquote>
+<p>SCRAPY_SETTINGS_MODULE (see Designating the settings)<br>SCRAPY_PROJECT<br>SCRAPY_PYTHON_SHELL (see Scrapy shell)</p>
+</blockquote>
+<h3 id="Default-structure-of-Scrapy-projects"><a href="#Default-structure-of-Scrapy-projects" class="headerlink" title="Default structure of Scrapy projects"></a>Default structure of Scrapy projects</h3><p>Before delving into the command-line tool and its sub-commands, let’s first understand the directory structure of a Scrapy project.</p>
+<p>Though it can be modified, all Scrapy projects have the same file structure by default, similar to this:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">scrapy.cfg</span><br><span class="line">myproject/</span><br><span class="line">    __init__.py</span><br><span class="line">    items.py</span><br><span class="line">    middlewares.py</span><br><span class="line">    pipelines.py</span><br><span class="line">    settings.py</span><br><span class="line">    spiders/</span><br><span class="line">        __init__.py</span><br><span class="line">        spider1.py</span><br><span class="line">        spider2.py</span><br><span class="line">        ...</span><br></pre></td></tr></table></figure></p>
+<p>The directory where the <code>scrapy.cfg</code> file resides is known as the project root directory. <strong>That file</strong> contains the name of the python module that defines the project settings. Here is an example:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[settings]</span><br><span class="line">default = myproject.settings</span><br></pre></td></tr></table></figure></p>
+<h3 id="Using-the-scrapy-tool"><a href="#Using-the-scrapy-tool" class="headerlink" title="Using the scrapy tool"></a>Using the scrapy tool</h3><p>You can start by running the Scrapy tool with no arguments and it will print some usage help and the available commands:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Scrapy X.Y - no active project</span><br><span class="line"></span><br><span class="line">Usage:</span><br><span class="line">  scrapy &lt;command&gt; [options] [args]</span><br><span class="line"></span><br><span class="line">Available commands:</span><br><span class="line">  crawl         Run a spider</span><br><span class="line">  fetch         Fetch a URL using the Scrapy downloader</span><br><span class="line">[...]</span><br></pre></td></tr></table></figure></p>
+<p>The first line will print the currently active project if you’re inside a Scrapy project. In this example it was run from outside a project. If run from inside a project it would have printed something like this:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Scrapy X.Y - project: myproject</span><br><span class="line"></span><br><span class="line">Usage:</span><br><span class="line">  scrapy &lt;command&gt; [options] [args]</span><br><span class="line"></span><br><span class="line">[...]</span><br></pre></td></tr></table></figure></p>
+<h3 id="Creating-projects"><a href="#Creating-projects" class="headerlink" title="Creating projects"></a>Creating projects</h3><p>The first thing you typically do with the scrapy tool is create your Scrapy project:<br><code>scrapy startproject myproject [project_dir]</code><br>That will create a Scrapy project under the project_dir directory. If project_dir wasn’t specified, project_dir will be the same as myproject.<br>Next, you go inside the new project directory:<br><code>cd project_dir</code><br>And you’re ready to use the <code>scrapy command</code> to manage and control your project from <strong>there</strong>(<strong>project_dir</strong>).</p>
+<h3 id="Controlling-projects"><a href="#Controlling-projects" class="headerlink" title="Controlling projects"></a>Controlling projects</h3><p>You use the scrapy tool from inside your projects to control and manage them.<br>For example, to create a new spider:<br><code>scrapy genspider mydomain mydomain.com</code><br>Some Scrapy commands (like <code>crawl</code>) must be run from <strong>inside</strong> a Scrapy project.</p>
+<p>Also keep in mind that some commands may have slightly different behaviours when running them from inside projects. For example, the fetch command will use spider-overridden behaviours (such as the <code>user_agent</code> attribute to override the user-agent) if the url being fetched is associated with some specific spider. This is intentional, as the fetch command is meant to be used to check how spiders are downloading pages.(注意某一些特殊命令会有不同的行为,这不废话吗)</p>
+<h3 id="Available-tool-commands"><a href="#Available-tool-commands" class="headerlink" title="Available tool commands"></a>Available tool commands</h3><p>This section contains a list of the available built-in commands with a description and some usage examples. Remember, you can always get more info about each command by running:<br><code>scrapy &lt;command&gt; -h</code><br>And you can see all available commands with:<br><code>scrapy -h</code><br>There are <strong>two</strong> kinds of commands, those that only work from inside a Scrapy project (<strong>Project-specific commands</strong>) and those that also work without an active Scrapy project (<strong>Global commands</strong>), though they may behave slightly different when running from inside a project (as they would use the project overridden settings).</p>
+<h4 id="Global-commands"><a href="#Global-commands" class="headerlink" title="Global commands:"></a>Global commands:</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">startproject</span><br><span class="line">genspider</span><br><span class="line">settings</span><br><span class="line">runspider</span><br><span class="line">shell</span><br><span class="line">fetch</span><br><span class="line">view</span><br><span class="line">version</span><br></pre></td></tr></table></figure>
+<h4 id="Project-only-commands"><a href="#Project-only-commands" class="headerlink" title="Project-only commands:"></a>Project-only commands:</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">crawl</span><br><span class="line">check</span><br><span class="line">list</span><br><span class="line">edit</span><br><span class="line">parse</span><br><span class="line">bench</span><br></pre></td></tr></table></figure>
+<h4 id="startproject-创建项目"><a href="#startproject-创建项目" class="headerlink" title="startproject(创建项目)"></a>startproject(创建项目)</h4><blockquote>
+<p>Syntax: scrapy startproject &lt;project_name&gt; [project_dir]<br>Requires project: no</p>
+</blockquote>
+<p>Creates a new <code>Scrapy projec</code>t named <code>project_name</code>, under the project_dir directory. If <code>project_dir</code> wasn’t specified, <code>project_dir</code> will be the same as <code>project_name</code>.</p>
+<p>Usage example:<br><code>$ scrapy startproject myproject</code></p>
+<h4 id="genspider"><a href="#genspider" class="headerlink" title="genspider"></a>genspider</h4><blockquote>
+<p>Syntax: scrapy genspider [-t template] <name> <domain><br>Requires project: no</domain></name></p>
+</blockquote>
+<p>Create a new spider in the current folder or in the current project’s spiders folder, if called from inside a project. The <strong><name></name></strong> parameter is set as the <strong>spider’s name</strong>, while <strong><domain></domain></strong> is used to <strong>generate the allowed_domains</strong> and <strong>start_urls</strong> spider’s attributes.</p>
+<p>Usage example:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$ scrapy genspider -l</span><br><span class="line">Available templates:</span><br><span class="line">  basic</span><br><span class="line">  crawl</span><br><span class="line">  csvfeed</span><br><span class="line">  xmlfeed</span><br><span class="line"></span><br><span class="line">$ scrapy genspider example example.com</span><br><span class="line">Created spider &apos;example&apos; using template &apos;basic&apos;</span><br><span class="line"></span><br><span class="line">$ scrapy genspider -t crawl scrapyorg scrapy.org</span><br><span class="line">Created spider &apos;scrapyorg&apos; using template &apos;crawl&apos;</span><br></pre></td></tr></table></figure></p>
+<p>This is just a convenience shortcut command for creating spiders based on pre-defined templates, but certainly not the only way to create spiders. You can just create the spider source code files yourself, instead of using this command.</p>
+<h4 id="crawl"><a href="#crawl" class="headerlink" title="crawl"></a>crawl</h4><blockquote>
+<p>Syntax: scrapy crawl <spider><br>Requires project: yes<br>Start crawling using a spider.</spider></p>
+</blockquote>
+<p>Usage examples:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ scrapy crawl myspider</span><br><span class="line">[ ... myspider starts crawling ... ]</span><br></pre></td></tr></table></figure></p>
+<h4 id="check"><a href="#check" class="headerlink" title="check"></a>check</h4><blockquote>
+<p>Syntax: scrapy check [-l] <spider><br>Requires project: yes<br>Run contract checks.(链接测试)</spider></p>
+</blockquote>
+<p>Usage examples:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">$ scrapy check -l</span><br><span class="line">first_spider</span><br><span class="line">  * parse</span><br><span class="line">  * parse_item</span><br><span class="line">second_spider</span><br><span class="line">  * parse</span><br><span class="line">  * parse_item</span><br><span class="line"></span><br><span class="line">$ scrapy check</span><br><span class="line">[FAILED] first_spider:parse_item</span><br><span class="line">&gt;&gt;&gt; &apos;RetailPricex&apos; field is missing</span><br><span class="line"></span><br><span class="line">[FAILED] first_spider:parse</span><br><span class="line">&gt;&gt;&gt; Returned 92 requests, expected 0..4</span><br></pre></td></tr></table></figure></p>
+<h4 id="list-列出项目中的所有spider"><a href="#list-列出项目中的所有spider" class="headerlink" title="list(列出项目中的所有spider)"></a>list(列出项目中的所有spider)</h4><blockquote>
+<p>Syntax: scrapy list<br>Requires project: yes<br>List all available <strong>spiders</strong> in the current project. The output is one spider per line.</p>
+</blockquote>
+<p>Usage example:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ scrapy list</span><br><span class="line">spider1</span><br><span class="line">spider2</span><br></pre></td></tr></table></figure></p>
+<h4 id="edit-编辑"><a href="#edit-编辑" class="headerlink" title="edit(编辑)"></a>edit(编辑)</h4><blockquote>
+<p>Syntax: scrapy edit <spider><br>Requires project: yes<br>Edit the given spider using the editor defined in the EDITOR environment variable or (if unset) the EDITOR setting.<br>(我觉得我可能不会用到)</spider></p>
+</blockquote>
+<p>This command is provided only as a convenience shortcut for the most common case, the developer is of course free to choose any tool or IDE to write and debug spiders.</p>
+<p>Usage example:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ scrapy edit spider1</span><br></pre></td></tr></table></figure></p>
+<h4 id="fetch-下载页面代码"><a href="#fetch-下载页面代码" class="headerlink" title="fetch (下载页面代码)"></a>fetch (下载页面代码)</h4><blockquote>
+<p>Syntax: scrapy fetch <url><br>Requires project: no<br>Downloads the given URL using the Scrapy downloader and writes the contents to standard output.</url></p>
+</blockquote>
+<p>The interesting thing about this command is that it fetches the page how the spider would download it. For example, if the spider has a USER_AGENT attribute which overrides the User Agent, it will use that one.</p>
+<p>So this command can be used to “see” how your spider would fetch a certain page.</p>
+<p>If used <strong>outside a project</strong>, no particular per-spider behaviour would be applied and it will just use the <strong>default Scrapy downloader settings</strong>.</p>
+<p>Supported options:</p>
+<p><code>--spider=SPIDER</code>: bypass spider autodetection and force use of specific spider<br><code>--headers</code>: print the response’s HTTP headers instead of the response’s body<br><code>--no-redirect</code>: do not follow HTTP 3xx redirects (default is to follow them)</p>
+<p>Usage examples:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">$ scrapy fetch --nolog http://www.example.com/some/page.html</span><br><span class="line">[ ... html content here ... ]</span><br><span class="line"></span><br><span class="line">$ scrapy fetch --nolog --headers http://www.example.com/</span><br><span class="line">&#123;&apos;Accept-Ranges&apos;: [&apos;bytes&apos;],</span><br><span class="line"> &apos;Age&apos;: [&apos;1263   &apos;],</span><br><span class="line"> &apos;Connection&apos;: [&apos;close     &apos;],</span><br><span class="line"> &apos;Content-Length&apos;: [&apos;596&apos;],</span><br><span class="line"> &apos;Content-Type&apos;: [&apos;text/html; charset=UTF-8&apos;],</span><br><span class="line"> &apos;Date&apos;: [&apos;Wed, 18 Aug 2010 23:59:46 GMT&apos;],</span><br><span class="line"> &apos;Etag&apos;: [&apos;&quot;573c1-254-48c9c87349680&quot;&apos;],</span><br><span class="line"> &apos;Last-Modified&apos;: [&apos;Fri, 30 Jul 2010 15:30:18 GMT&apos;],</span><br><span class="line"> &apos;Server&apos;: [&apos;Apache/2.2.3 (CentOS)&apos;]&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="view"><a href="#view" class="headerlink" title="view"></a>view</h4><blockquote>
+<p>Syntax: scrapy view <url><br>Requires project: no<br>Opens the given URL in a browser, as your Scrapy spider would “see” it. Sometimes spiders see pages differently from regular users, so this can be used to check what the spider “sees” and confirm it’s what you expect.</url></p>
+</blockquote>
+<p>Supported options:</p>
+<p><code>--spider=SPIDER</code>: bypass spider autodetection and force use of specific spider<br><code>--no-redirect</code>: do not follow HTTP 3xx redirects (default is to follow them)<br>Usage example:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ scrapy view http://www.example.com/some/page.html</span><br><span class="line">[ ... browser starts ... ]</span><br></pre></td></tr></table></figure></p>
+<h4 id="shell"><a href="#shell" class="headerlink" title="shell"></a>shell</h4><blockquote>
+<p>Syntax: scrapy shell [url]<br>Requires project: no<br>Starts the Scrapy shell for the given URL (if given) or empty if no URL is given. Also supports UNIX-style local file paths, either relative with ./ or ../ prefixes or absolute file paths. See Scrapy shell for more info.</p>
+</blockquote>
+<p>Supported options:</p>
+<p><code>--spider=SPIDER</code>: bypass spider autodetection and force use of specific spider<br><code>-c code</code>(设置返回状态): evaluate the code in the shell, print the result and exit<br><code>--no-redirect</code>: do not follow HTTP 3xx redirects (default is to follow them); this only affects the URL you may pass as argument on the command line; once you are inside the shell, fetch(url) will still follow HTTP redirects by default.<br>Usage example:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">$ scrapy shell http://www.example.com/some/page.html</span><br><span class="line">[ ... scrapy shell starts ... ]</span><br><span class="line"></span><br><span class="line">$ scrapy shell --nolog http://www.example.com/ -c &apos;(response.status, response.url)&apos;</span><br><span class="line">(200, &apos;http://www.example.com/&apos;)</span><br><span class="line"></span><br><span class="line"># shell follows HTTP redirects by default</span><br><span class="line">$ scrapy shell --nolog http://httpbin.org/redirect-to?url=http%3A%2F%2Fexample.com%2F -c &apos;(response.status, response.url)&apos;</span><br><span class="line">(200, &apos;http://example.com/&apos;)</span><br><span class="line"></span><br><span class="line"># you can disable this with --no-redirect</span><br><span class="line"># (only for the URL passed as command line argument)</span><br><span class="line">$ scrapy shell --no-redirect --nolog http://httpbin.org/redirect-to?url=http%3A%2F%2Fexample.com%2F -c &apos;(response.status, response.url)&apos;</span><br><span class="line">(302, &apos;http://httpbin.org/redirect-to?url=http%3A%2F%2Fexample.com%2F&apos;)</span><br></pre></td></tr></table></figure></p>
+<h4 id="parse"><a href="#parse" class="headerlink" title="parse"></a>parse</h4><blockquote>
+<p>Syntax: scrapy parse <url> [options]<br>Requires project: yes<br>Fetches the given URL and parses it with the spider that handles it, using the method passed with the –callback option, or parse if not given.</url></p>
+</blockquote>
+<p>Supported options:</p>
+<p><code>--spider=SPIDER</code>: bypass spider autodetection and force use of specific spider<br><code>--a NAME=VALUE</code>: set spider argument (may be repeated)<br><code>--callback or -c</code>: spider method to use as callback for parsing the response<br><code>--meta or -m</code>: additional request meta that will be passed to the callback request. This must be a valid json string. Example: –meta=’{“foo” : “bar”}’<br><code>--pipelines</code>: process items through pipelines<br><code>--rules or -r</code>: use CrawlSpider rules to discover the callback (i.e. spider method) to use for parsing the response<br><code>--noitems</code>: don’t show scraped items<br><code>--nolinks</code>: don’t show extracted links<br><code>--nocolour</code>: avoid using pygments to colorize the output<br><code>--depth or -d</code>: depth level for which the requests should be followed recursively (default: 1)<br><code>--verbose or -v</code>: display information for each depth level<br>Usage example:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$ scrapy parse http://www.example.com/ -c parse_item</span><br><span class="line">[ ... scrapy log lines crawling example.com spider ... ]</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt; STATUS DEPTH LEVEL 1 &lt;&lt;&lt;</span><br><span class="line"># Scraped Items  ------------------------------------------------------------</span><br><span class="line">[&#123;&apos;name&apos;: u&apos;Example item&apos;,</span><br><span class="line"> &apos;category&apos;: u&apos;Furniture&apos;,</span><br><span class="line"> &apos;length&apos;: u&apos;12 cm&apos;&#125;]</span><br><span class="line"></span><br><span class="line"># Requests  -----------------------------------------------------------------</span><br><span class="line">[]</span><br></pre></td></tr></table></figure></p>
+<h4 id="settings"><a href="#settings" class="headerlink" title="settings"></a>settings</h4><blockquote>
+<p>Syntax: scrapy settings [options]<br>Requires project: no<br>Get the value of a Scrapy setting.</p>
+</blockquote>
+<p>If used inside a project it’ll show the project setting value, otherwise it’ll show the default Scrapy value for that setting.</p>
+<p>Example usage:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ scrapy settings --get BOT_NAME</span><br><span class="line">scrapybot</span><br><span class="line">$ scrapy settings --get DOWNLOAD_DELAY</span><br><span class="line">0</span><br></pre></td></tr></table></figure></p>
+<h4 id="runspider-单纯的运行文件"><a href="#runspider-单纯的运行文件" class="headerlink" title="runspider(单纯的运行文件)"></a>runspider(单纯的运行文件)</h4><blockquote>
+<p>Syntax: scrapy runspider &lt;spider_file.py&gt;<br>Requires project: no<br>Run a spider self-contained in a Python file, without having to create a project.</p>
+</blockquote>
+<p>Example usage:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ scrapy runspider myspider.py</span><br><span class="line">[ ... spider starts crawling ... ]</span><br></pre></td></tr></table></figure></p>
+<h4 id="version"><a href="#version" class="headerlink" title="version"></a>version</h4><blockquote>
+<p>Syntax: scrapy version [-v]<br>Requires project: no<br>Prints the Scrapy version. If used with -v it also prints Python, Twisted and Platform info, which is useful for bug reports.</p>
+</blockquote>
+<h4 id="bench-估计用不着"><a href="#bench-估计用不着" class="headerlink" title="bench(估计用不着)"></a>bench(估计用不着)</h4><p>New in version 0.17.</p>
+<blockquote>
+<p>Syntax: scrapy bench<br>Requires project: no<br>Run a quick benchmark test. Benchmarking.</p>
+</blockquote>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://www.unblog.top/2018/08/17/2018-08-17/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -794,442 +1257,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.unblog.top/2018/08/16/scrapy2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="兔子春">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/7.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Eden">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/16/scrapy2/" itemprop="url">Scrapy Pass 2</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-16T14:27:23+08:00">
-                2018-08-16
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2018-08-17T14:31:01+08:00">
-                2018-08-17
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/python/" itemprop="url" rel="index">
-                    <span itemprop="name">python</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  2,240
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  13
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="Learn-Scrapy-pass-2"><a href="#Learn-Scrapy-pass-2" class="headerlink" title="Learn Scrapy pass 2"></a>Learn Scrapy pass 2</h2><h3 id="安装-虚拟环境"><a href="#安装-虚拟环境" class="headerlink" title="安装(虚拟环境)"></a>安装(虚拟环境)</h3><p>Python packages can be installed either globally (a.k.a system wide), or in user-space. We do not recommend installing scrapy system wide.<br><strong>(并不推荐把python package安装成系统的一部分)</strong></p>
-<p>Instead, we recommend that you install scrapy within a so-called “<code>virtual environment</code>” (<code>virtualenv</code>). Virtualenvs allow you to not conflict with already-installed Python system packages (which could break some of your system tools and scripts), and still install packages normally with <code>pip</code> (without <code>sudo</code> and the likes).<strong>(不会对系统现有的包产生冲突,可以使用普通用户的形式进行安装)</strong></p>
-<p>Once you have created a virtualenv, you can install scrapy inside it with <code>pip</code>, just like any other Python package.<br><strong>(这里不介绍安装env,提一下,pycharm控制台自带虚拟环境)</strong></p>
-<blockquote>
-<p>Python virtualenvs can be created to use Python 2 by default, or Python 3 by default.<br>If you want to install scrapy with Python 3, install scrapy within a Python 3 virtualenv.<br>And if you want to install scrapy with Python 2, install scrapy within a Python 2 virtualenv.</p>
-</blockquote>
-<h3 id="Scrapy-使用示例"><a href="#Scrapy-使用示例" class="headerlink" title="Scrapy 使用示例"></a>Scrapy 使用示例</h3><p>We are going to scrape <code>quotes.toscrape.com</code>, a website that lists quotes from famous authors.</p>
-<p>This tutorial will walk you through these tasks:</p>
-<ol>
-<li>Creating a new Scrapy project</li>
-<li>Writing a spider to crawl a site and extract data</li>
-<li>Exporting the scraped data using the command line</li>
-<li>Changing spider to recursively follow links</li>
-<li>Using spider arguments</li>
-</ol>
-<h4 id="Creating-a-project"><a href="#Creating-a-project" class="headerlink" title="Creating a project"></a>Creating a project</h4><p><strong>Before</strong> you start scraping, you will have to set up a new <strong>Scrapy project</strong>. Enter a directory where you’d like to store your code and run:<code>scrapy startproject tutorial</code><br>This will create a tutorial directory with the following contents:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">得到默认的初始化目录</span><br><span class="line">tutorial/</span><br><span class="line">    scrapy.cfg            # deploy configuration file 配置文件</span><br><span class="line"></span><br><span class="line">    tutorial/             # project&apos;s Python module, you&apos;ll import your code from here</span><br><span class="line">        __init__.py</span><br><span class="line"></span><br><span class="line">        items.py          # project items definition file</span><br><span class="line"></span><br><span class="line">        middlewares.py    # project middlewares file</span><br><span class="line"></span><br><span class="line">        pipelines.py      # project pipelines file</span><br><span class="line"></span><br><span class="line">        settings.py       # project settings file 配置文件</span><br><span class="line"></span><br><span class="line">        spiders/          # a directory where you&apos;ll later put your spiders</span><br><span class="line">            __init__.py</span><br></pre></td></tr></table></figure></p>
-<h4 id="Our-first-Spider"><a href="#Our-first-Spider" class="headerlink" title="Our first Spider"></a>Our first Spider</h4><p>Spiders are classes that you define and that Scrapy uses to scrape information from a website (or a group of websites). They must subclass scrapy.Spider and define the initial requests to make, optionally how to follow links in the pages, and how to parse the downloaded page content to extract data.<br><strong>(Spiders目录是自己定义的,通过爬虫来爬取website)</strong><br>This is the code for our first Spider. Save it in a file named <code>quotes_spider.py</code> under the <strong>(注意位置)</strong> <code>tutorial/spiders</code>directory in your project:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">import scrapy</span><br><span class="line"></span><br><span class="line">class QuotesSpider(scrapy.Spider):</span><br><span class="line">    name = &quot;quotes&quot;</span><br><span class="line"></span><br><span class="line">    def start_requests(self):</span><br><span class="line">        urls = [</span><br><span class="line">            &apos;http://quotes.toscrape.com/page/1/&apos;,</span><br><span class="line">            &apos;http://quotes.toscrape.com/page/2/&apos;,</span><br><span class="line">        ]</span><br><span class="line">        for url in urls:</span><br><span class="line">            yield scrapy.Request(url=url, callback=self.parse)</span><br><span class="line"></span><br><span class="line">    def parse(self, response):</span><br><span class="line">        page = response.url.split(&quot;/&quot;)[-2]</span><br><span class="line">        filename = &apos;quotes-%s.html&apos; % page</span><br><span class="line">        with open(filename, &apos;wb&apos;) as f:</span><br><span class="line">            f.write(response.body)</span><br><span class="line">        self.log(&apos;Saved file %s&apos; % filename)</span><br></pre></td></tr></table></figure></p>
-<blockquote>
-<p>一个带有 yield 的函数就是一个 generator，它和普通函数不同，生成一个 generator 看起来像函数调用，但不会执行任何函数代码，直到对其调用 next()（在 for 循环中会自动调用 next()）才开始执行。虽然执行流程仍按函数的流程执行，但每执行到一个 yield 语句就会中断，并返回一个迭代值，下次执行时从 yield 的下一个语句继续执行。看起来就好像一个函数在正常执行的过程中被 yield 中断了数次，每次中断都会通过 yield 返回当前的迭代值。</p>
-</blockquote>
-<blockquote>
-<p>yield 的好处是显而易见的，把一个函数改写为一个 generator 就获得了迭代能力，比起用类的实例保存状态来计算下一个 next() 的值，不仅代码简洁，而且执行流程异常清晰。<br>As you can see, our Spider subclasses scrapy.Spider and defines some attributes and methods:</p>
-</blockquote>
-<p><strong>name:</strong></p>
-<blockquote>
-<p>identifies the Spider.(定义爬虫名字) It must be <strong>unique</strong> within a project, that is, you can’t set the same name for different Spiders.</p>
-</blockquote>
-<p><strong>start_requests():</strong></p>
-<blockquote>
-<p>must <strong>return an iterable of Requests</strong> (you can return <strong>a list of requests</strong> or <strong>write a generator function</strong>) which the Spider will <strong>begin</strong> to crawl from. Subsequent requests will be generated successively from these initial requests.</p>
-</blockquote>
-<p><strong>parse()</strong>:</p>
-<blockquote>
-<p>a method that will be called to <strong>handle the response downloaded</strong> for each of the requests made. The response parameter is an instance of TextResponse that holds the page content and has further helpful methods to handle it.</p>
-</blockquote>
-<blockquote>
-<p>The parse() method usually parses the response, extracting the scraped data as dicts and also finding new URLs to follow and creating new requests (Request) from them.<strong>(提取信息并得到下一步url)</strong></p>
-</blockquote>
-<h4 id="How-to-run-our-spider"><a href="#How-to-run-our-spider" class="headerlink" title="How to run our spider"></a>How to run our spider</h4><p>To put our spider to work, go to the project’s top level directory and run:<code>scrapy crawl quotes</code>(quotes就是之前定义的name)<br>This command runs the spider with name quotes that we’ve just added, that will send some requests for the <code>quotes.toscrape.com</code> domain. You will get an output similar to this:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">... (omitted for brevity)</span><br><span class="line">2016-12-16 21:24:05 [scrapy.core.engine] INFO: Spider opened</span><br><span class="line">2016-12-16 21:24:05 [scrapy.extensions.logstats] INFO: Crawled 0 pages (at 0 pages/min), scraped 0 items (at 0 items/min)</span><br><span class="line">2016-12-16 21:24:05 [scrapy.extensions.telnet] DEBUG: Telnet console listening on 127.0.0.1:6023</span><br><span class="line">2016-12-16 21:24:05 [scrapy.core.engine] DEBUG: Crawled (404) &lt;GET http://quotes.toscrape.com/robots.txt&gt; (referer: None)</span><br><span class="line">2016-12-16 21:24:05 [scrapy.core.engine] DEBUG: Crawled (200) &lt;GET http://quotes.toscrape.com/page/1/&gt; (referer: None)</span><br><span class="line">2016-12-16 21:24:05 [scrapy.core.engine] DEBUG: Crawled (200) &lt;GET http://quotes.toscrape.com/page/2/&gt; (referer: None)</span><br><span class="line">2016-12-16 21:24:05 [quotes] DEBUG: Saved file quotes-1.html</span><br><span class="line">2016-12-16 21:24:05 [quotes] DEBUG: Saved file quotes-2.html</span><br><span class="line">2016-12-16 21:24:05 [scrapy.core.engine] INFO: Closing spider (finished)</span><br></pre></td></tr></table></figure></p>
-<p>Now, check the files in the current directory. You should notice that two new files have been created: <code>quotes-1.html</code> and <code>quotes-2.html</code>, with the content for the respective URLs, as our <code>parse</code> method instructs.</p>
-<h4 id="What-just-happened-under-the-hood"><a href="#What-just-happened-under-the-hood" class="headerlink" title="What just happened under the hood?"></a>What just happened under the hood?</h4><p>Scrapy schedules the scrapy.Request objects returned by the start_requests method of the Spider. Upon receiving a response for each one, it instantiates Response objects and calls the callback method associated with the request (in this case, the parse method) passing the response as argument.<br><strong>(通过the start_requests method of the Spider将request的请求发出去,得到response,然后对于每个response调用callback)</strong></p>
-<h3 id="A-shortcut-to-the-start-requests-method"><a href="#A-shortcut-to-the-start-requests-method" class="headerlink" title="A shortcut to the start_requests method"></a>A shortcut to the start_requests method</h3><p>Instead of implementing(执行) a <code>start_requests()</code> method that generates <code>scrapy.Request</code> objects from URLs, you can just define a <code>start_urls</code> class attribute with a list of URLs. <strong>This list will then be used by the default implementation of <code>start_requests()</code> to create the initial requests for your spider:</strong><br><strong>(这个start_urls会自动调用默认的方法去生成初始的requests)</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">import scrapy</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class QuotesSpider(scrapy.Spider):</span><br><span class="line">    name = &quot;quotes&quot;</span><br><span class="line">    start_urls = [</span><br><span class="line">        &apos;http://quotes.toscrape.com/page/1/&apos;,</span><br><span class="line">        &apos;http://quotes.toscrape.com/page/2/&apos;,</span><br><span class="line">    ]</span><br><span class="line"></span><br><span class="line">    def parse(self, response):</span><br><span class="line">        page = response.url.split(&quot;/&quot;)[-2]</span><br><span class="line">        filename = &apos;quotes-%s.html&apos; % page</span><br><span class="line">        with open(filename, &apos;wb&apos;) as f:</span><br><span class="line">            f.write(response.body)</span><br></pre></td></tr></table></figure></p>
-<p>The <code>parse()</code> method will be called to handle each of the requests for those URLs, even though we haven’t explicitly told Scrapy to do so. This happens because parse() is <strong>Scrapy’s default callback method</strong>, which is called for requests without an explicitly assigned callback.<strong>(默认会处理response,无需明显调用)</strong></p>
-<h4 id="Extracting-data"><a href="#Extracting-data" class="headerlink" title="Extracting data"></a>Extracting data</h4><p>The best way to learn how to extract data with Scrapy is trying selectors using the shell (Scrapy shell). Run:<br><code>scrapy shell &#39;http://quotes.toscrape.com/page/1/&#39;`</code><br>You will see something like:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">[ ... Scrapy log here ... ]</span><br><span class="line">2016-09-19 12:09:27 [scrapy.core.engine] DEBUG: Crawled (200) &lt;GET http://quotes.toscrape.com/page/1/&gt; (referer: None)</span><br><span class="line">[s] Available Scrapy objects:</span><br><span class="line">[s]   scrapy     scrapy module (contains scrapy.Request, scrapy.Selector, etc)</span><br><span class="line">[s]   crawler    &lt;scrapy.crawler.Crawler object at 0x7fa91d888c90&gt;</span><br><span class="line">[s]   item       &#123;&#125;</span><br><span class="line">[s]   request    &lt;GET http://quotes.toscrape.com/page/1/&gt;</span><br><span class="line">[s]   response   &lt;200 http://quotes.toscrape.com/page/1/&gt;</span><br><span class="line">[s]   settings   &lt;scrapy.settings.Settings object at 0x7fa91d888c10&gt;</span><br><span class="line">[s]   spider     &lt;DefaultSpider &apos;default&apos; at 0x7fa91c8af990&gt;</span><br><span class="line">[s] Useful shortcuts:</span><br><span class="line">[s]   shelp()           Shell help (print this help)</span><br><span class="line">[s]   fetch(req_or_url) Fetch request (or URL) and update local objects</span><br><span class="line">[s]   view(response)    View response in a browser</span><br><span class="line">&gt;&gt;&gt;</span><br></pre></td></tr></table></figure></p>
-<p>Using the shell, you can try selecting elements using CSS with the response object:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; response.css(&apos;title&apos;)</span><br><span class="line">[&lt;Selector xpath=&apos;descendant-or-self::title&apos; data=&apos;&lt;title&gt;Quotes to Scrape&lt;/title&gt;&apos;&gt;]</span><br></pre></td></tr></table></figure></p>
-<p>(弱弱的说一句,有点像选择器啊)<br>The result of running <code>response.css(&#39;title&#39;)</code> is a list-like object called SelectorList, which represents a list of Selector objects that wrap around XML/HTML elements and allow you to run further queries to fine-grain the selection or extract the data.<br>(果然)<br>To extract the text from the title above, you can do:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; response.css(&apos;title::text&apos;).extract()</span><br><span class="line">[&apos;Quotes to Scrape&apos;]</span><br></pre></td></tr></table></figure></p>
-<p>There are two things to note here:<br>one is that we’ve added <code>::text</code> to the CSS query, to mean we want to select <strong>only</strong> the text elements directly inside <title> element. If we don’t specify <code>::text</code>, we’d get the full title element, including its tags:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; response.css(&apos;title&apos;).extract()</span><br><span class="line">[&apos;&lt;title&gt;Quotes to Scrape&lt;/title&gt;&apos;]</span><br></pre></td></tr></table></figure></title></p>
-<p>The other thing is that the result of calling .extract() is a <strong>list</strong>, because we’re dealing with an instance of SelectorList. When you know you just want the first result, as in this case, you can do:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; response.css(&apos;title::text&apos;).extract_first()</span><br><span class="line">&apos;Quotes to Scrape&apos;</span><br></pre></td></tr></table></figure></p>
-<p>As an alternative, you could’ve written:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; response.css(&apos;title::text&apos;)[0].extract()</span><br><span class="line">&apos;Quotes to Scrape&apos;</span><br></pre></td></tr></table></figure></p>
-<p>However, using <code>.extract_first()</code> avoids an <code>IndexError</code> and returns <code>None</code> <strong>when</strong> it <strong>doesn’t find</strong> any element matching the selection.</p>
-<p>There’s a lesson here: for most scraping code, you want it to be resilient to errors due to things not being found on a page, so that even if some parts fail to be scraped, you can at least get some data.<br><strong>(即使你没有得到你想要的东西,你也可以得到一些data)</strong></p>
-<p>Besides the <code>extract()</code> and <code>extract_first()</code> methods, you can also use the <code>re()</code> method to extract using regular expressions:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; response.css(&apos;title::text&apos;).re(r&apos;Quotes.*&apos;)</span><br><span class="line">[&apos;Quotes to Scrape&apos;]</span><br><span class="line">&gt;&gt;&gt; response.css(&apos;title::text&apos;).re(r&apos;Q\w+&apos;)</span><br><span class="line">[&apos;Quotes&apos;]</span><br><span class="line">&gt;&gt;&gt; response.css(&apos;title::text&apos;).re(r&apos;(\w+) to (\w+)&apos;)</span><br><span class="line">[&apos;Quotes&apos;, &apos;Scrape&apos;]</span><br></pre></td></tr></table></figure></p>
-<p>In order to find the proper CSS selectors to use, you might find useful opening the response page from the shell in your web browser using <code>view(response)</code>. You can use your browser developer tools or extensions like Firebug (see sections about <a href="https://doc.scrapy.org/en/latest/topics/firebug.html#topics-firebug" target="_blank" rel="noopener">Using Firebug for scraping</a> and <a href="https://doc.scrapy.org/en/latest/topics/firefox.html#topics-firefox" target="_blank" rel="noopener">Using Firefox for scraping</a>).</p>
-<p><a href="http://selectorgadget.com/" target="_blank" rel="noopener">Selector Gadget</a> is also a nice tool to quickly find CSS selector for visually selected elements, which works in many browsers.</p>
-<p>不止可以使用css选择器,还可以使用xpath<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; response.xpath(&apos;//title&apos;)</span><br><span class="line">[&lt;Selector xpath=&apos;//title&apos; data=&apos;&lt;title&gt;Quotes to Scrape&lt;/title&gt;&apos;&gt;]</span><br><span class="line">&gt;&gt;&gt; response.xpath(&apos;//title/text()&apos;).extract_first()</span><br><span class="line">&apos;Quotes to Scrape&apos;</span><br></pre></td></tr></table></figure></p>
-<p>XPath expressions are very powerful, and are the foundation of Scrapy Selectors. In fact, CSS selectors are converted to XPath under-the-hood. You can see that if you read closely the text representation of the selector objects in the shell.(没想到啊,竟然是这样)</p>
-<blockquote>
-<p>we encourage you to learn XPath even if you already know how to construct CSS selectors, it will make scraping much easier.</p>
-</blockquote>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.unblog.top/2018/08/16/scrapy1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="兔子春">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/7.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Eden">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/16/scrapy1/" itemprop="url">Scrapy Pass 1</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-16T14:26:02+08:00">
-                2018-08-16
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2018-08-16T14:27:19+08:00">
-                2018-08-16
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/python/" itemprop="url" rel="index">
-                    <span itemprop="name">python</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  650
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  4
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="Learn-Scrapy-pass-1"><a href="#Learn-Scrapy-pass-1" class="headerlink" title="Learn Scrapy pass 1"></a>Learn Scrapy pass 1</h2><h3 id="Walk-through-of-an-example-spider"><a href="#Walk-through-of-an-example-spider" class="headerlink" title="Walk-through of an example spider"></a>Walk-through of an example spider</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">import scrapy</span><br><span class="line">class QuotesSpider(scrapy.Spider):</span><br><span class="line">    name = &quot;quotes&quot;</span><br><span class="line">    start_urls = [</span><br><span class="line">        &apos;http://quotes.toscrape.com/tag/humor/&apos;,</span><br><span class="line">    ]</span><br><span class="line"></span><br><span class="line">    def parse(self, response):</span><br><span class="line">        for quote in response.css(&apos;div.quote&apos;):</span><br><span class="line">            yield &#123;</span><br><span class="line">                &apos;text&apos;: quote.css(&apos;span.text::text&apos;).extract_first(),</span><br><span class="line">                &apos;author&apos;: quote.xpath(&apos;span/small/text()&apos;).extract_first(),</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        next_page = response.css(&apos;li.next a::attr(&quot;href&quot;)&apos;).extract_first()</span><br><span class="line">        if next_page is not None:</span><br><span class="line">            yield response.follow(next_page, self.parse)</span><br></pre></td></tr></table></figure>
-<p>Put this in a text file, name it to something like <code>quotes_spider.py</code> and run the spider using the <code>runspider</code> command:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scrapy runspider quotes_spider.py -o quotes.json</span><br></pre></td></tr></table></figure></p>
-<p>When this finishes you will have in the <code>quotes.json</code> file a list of the quotes in JSON format, containing text and author, looking like this (<strong>reformatted here for better readability</strong>):<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">[&#123;</span><br><span class="line">    &quot;author&quot;: &quot;Jane Austen&quot;,</span><br><span class="line">    &quot;text&quot;: &quot;\u201cThe person, be it gentleman or lady, who has not pleasure in a good novel, must be intolerably stupid.\u201d&quot;</span><br><span class="line">&#125;,</span><br><span class="line">&#123;</span><br><span class="line">    &quot;author&quot;: &quot;Groucho Marx&quot;,</span><br><span class="line">    &quot;text&quot;: &quot;\u201cOutside of a dog, a book is man&apos;s best friend. Inside of a dog it&apos;s too dark to read.\u201d&quot;</span><br><span class="line">&#125;,</span><br><span class="line">&#123;</span><br><span class="line">    &quot;author&quot;: &quot;Steve Martin&quot;,</span><br><span class="line">    &quot;text&quot;: &quot;\u201cA day without sunshine is like, you know, night.\u201d&quot;</span><br><span class="line">&#125;,</span><br><span class="line">...]</span><br></pre></td></tr></table></figure></p>
-<p>When you ran the command <code>scrapy runspider quotes_spider.py</code>, Scrapy looked for a Spider definition inside it and ran it through its crawler engine.<strong>(在爬取引擎中运行爬虫)</strong></p>
-<p>The crawl started by making requests to the URLs defined in the <code>start_urls</code> attribute (in this case, only the URL for quotes in humor category)<strong>(发送请求给<code>start_urls</code>)</strong> and called the default callback method <code>parse</code>, passing the response object as an argument.<strong>(回调函数处理<code>response</code>)</strong> In the parse callback, we loop through the quote elements using a CSS Selector <strong>(通过使用css选择器)</strong>, yield a Python dict with the extracted quote text and author<strong>(使用python字典去提取text文本与作者)</strong> , look for a link to the next page and schedule another request using the same <code>parse</code> method as callback.<strong>(找到下一个<code>page</code>,调用相同的<code>parse</code>)</strong></p>
-<p>Here you notice one of the main advantages about Scrapy: requests are scheduled and processed asynchronously. This means that Scrapy doesn’t need to wait for a request to be finished and processed, it can send another request or do other things in the meantime. This also means that other requests can keep going even if some request fails or an error happens while handling it.<strong>(处理异步,请求储存在调度器里面,不知道是不是队列形式)</strong></p>
-<p>While this enables you to do very fast crawls (sending multiple concurrent requests at the same time, in a fault-tolerant way) Scrapy also gives you control over the politeness of the crawl through a few settings. You can do things like setting a download delay between each request, limiting amount of concurrent requests per domain or per IP, and even using an auto-throttling extension that tries to figure out these automatically.<strong>(可控制性:可以控制scrapy每个域名,ip访问的数量等)</strong></p>
-<p>This is using feed exports to generate the JSON file, you can easily change the export format (XML or CSV, for example) or the storage backend (FTP or Amazon S3, for example). You can also write an item pipeline to store the items in a database.<strong>(输出形式可以多样)</strong></p>
-<p>还有等等等等的特性,先不了解(看了也不懂),之后学了再看看</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1286,7 +1313,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">82</span>
+                  <span class="site-state-item-count">84</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1375,7 +1402,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">97.7k</span>
+    <span title="Site words total count">100.5k</span>
   
 </div>
 

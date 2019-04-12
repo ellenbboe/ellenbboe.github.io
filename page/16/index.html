@@ -378,6 +378,380 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.unblog.top/2018/08/09/lfs6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="兔子春">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/7.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Eden">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/09/lfs6/" itemprop="url">Linux For Scratch Pass 6</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-09T10:15:00+08:00">
+                2018-08-09
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-08-12T19:55:58+08:00">
+                2018-08-12
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index">
+                    <span itemprop="name">linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  570
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  3
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="让-LFS-系统可引导"><a href="#让-LFS-系统可引导" class="headerlink" title="让 LFS 系统可引导"></a>让 LFS 系统可引导</h3><h4 id="创建-etc-fstab-文件"><a href="#创建-etc-fstab-文件" class="headerlink" title="创建 /etc/fstab 文件"></a>创建 /etc/fstab 文件</h4><p>/etc/fstab 文件的作用是让其它程序确定存储设备的默认挂载点、挂载参数和检查信息（例如完整性检测）。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">cat &gt; /etc/fstab &lt;&lt; &quot;EOF&quot;</span><br><span class="line"># Begin /etc/fstab</span><br><span class="line"></span><br><span class="line"># file system  mount-point  type     options             dump  fsck</span><br><span class="line">#                                                              order</span><br><span class="line"></span><br><span class="line">/dev/&lt;xxx&gt;     /            &lt;fff&gt;    defaults            1     1</span><br><span class="line">/dev/&lt;yyy&gt;     swap         swap     pri=1               0     0</span><br><span class="line">proc           /proc        proc     nosuid,noexec,nodev 0     0</span><br><span class="line">sysfs          /sys         sysfs    nosuid,noexec,nodev 0     0</span><br><span class="line">devpts         /dev/pts     devpts   gid=5,mode=620      0     0</span><br><span class="line">tmpfs          /run         tmpfs    defaults            0     0</span><br><span class="line">devtmpfs       /dev         devtmpfs mode=0755,nosuid    0     0</span><br><span class="line"></span><br><span class="line"># End /etc/fstab</span><br><span class="line">EOF</span><br></pre></td></tr></table></figure></p>
+<p>其中，<xxx>，<yyy> 和 <fff> 请使用适当的值替换。例如 <code>sda2</code>，<code>sda5</code> 和 <code>ext4</code>。关于文件中六个字段的含义，请查看 man 5 fstab（译者注：fsck 列的数值来决定需要检查的文件系统的检查顺序。允许的数字是0, 1, 和2。根目录应当获得最高的优先权 1, 其它所有需要被检查的设备设置为 2。0 表示设备不会被 fsck 所检查）。</fff></yyy></xxx></p>
+<p>基于 <code>MS-DOS</code> 或者是来源于 <code>Windows</code> 的文件系统<code>（例如：vfat，ntfs，smbfs，cifs，iso9660，udf）</code>需要在挂载选项中添加「iocharset」，才能让非 ASCII 字符的文件名正确解析。此选项的值应该与语言区域设置的值相同，以便让内核能正确处理。此选项在相关字符集定义已为内核内建或是编译为模块时生效（在文件系统 -&gt; 本地语言支持中查看）。此外，<code>vfat</code> 和 <code>smbfs</code> 还需启用「codepage」支持。例如，想要挂载 <code>USB</code> 闪存设备，<code>zh-CN.GBK</code> 用户需要在 <code>/etc/fstab</code> 中添加以下的挂载选项：<br><code>noauto,user,quiet,showexec,iocharset=koi8r,codepage=866</code><br>对于 <code>zh_CN.UTF-8</code> 用户的对应选项是：<br><code>noauto,user,quiet,showexec,iocharset=utf8,codepage=936</code><br>主要是设置挂载参数<br><strong>本机</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$ cat /etc/fstab</span><br><span class="line"># Static information about the filesystems.</span><br><span class="line"># See fstab(5) for details.</span><br><span class="line"></span><br><span class="line"># &lt;file system&gt; &lt;dir&gt; &lt;type&gt; &lt;options&gt; &lt;dump&gt; &lt;pass&gt;</span><br><span class="line"># /dev/sda5</span><br><span class="line">UUID=c36eedfb-08b3-4e28-8483-03f6d5f1ad0c	/         	ext4      	rw,relatime,data=ordered	0 1</span><br><span class="line"></span><br><span class="line"># /dev/sda2</span><br><span class="line">UUID=608A-F457      	/boot     	vfat      	rw,relatime,fmask=0022,dmask=0022,codepage=437,iocharset=iso8859-1,shortname=mixed,utf8,errors=remount-ro	0 0</span><br></pre></td></tr></table></figure></p>
+<p>之后就是<br>1.编译内核<br>2.安装grub引导(注意备份)<br>3.重新启动</p>
+<p>之后安装其他的小程序 sudo,dhcp,wget等</p>
+<h2 id="结束"><a href="#结束" class="headerlink" title="结束"></a>结束</h2>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.unblog.top/2018/07/25/2018-07-25/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="兔子春">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/7.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Eden">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/07/25/2018-07-25/" itemprop="url">2018-07-25 lfs编译日志</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-25T13:25:10+08:00">
+                2018-07-25
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-08-09T10:22:19+08:00">
+                2018-08-09
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/lfs编译日志/" itemprop="url" rel="index">
+                    <span itemprop="name">lfs编译日志</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  15
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  1
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>lfs编译告一段落<br>系统大半构建完成</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://www.unblog.top/2018/07/25/lfs5/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -795,530 +1169,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.unblog.top/2018/07/18/2018-07-18/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="兔子春">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/7.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Eden">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/18/2018-07-18/" itemprop="url">2018-07-18 lfs编译日志</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-18T10:55:54+08:00">
-                2018-07-18
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2018-07-18T10:58:55+08:00">
-                2018-07-18
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/lfs编译日志/" itemprop="url" rel="index">
-                    <span itemprop="name">lfs编译日志</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  49
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  1
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>主要在写md文档,有点无聊,写了几天只写了20个左右的工具编译<br>打算不写了,主要还是看文档,之后是配置系统的过程</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.unblog.top/2018/07/18/lfs4/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="兔子春">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/7.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Eden">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/18/lfs4/" itemprop="url">Linux For Scratch Pass 4</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-18T10:53:57+08:00">
-                2018-07-18
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2018-07-18T10:55:13+08:00">
-                2018-07-18
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index">
-                    <span itemprop="name">linux</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  6,849
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  32
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="安装基本系统软件过程-重点过程"><a href="#安装基本系统软件过程-重点过程" class="headerlink" title="安装基本系统软件过程(重点过程)"></a>安装基本系统软件过程(重点过程)</h3><p>部分在中文版中没有,取自英文版</p>
-<h4 id="Linux-4-15-3-API-Headers"><a href="#Linux-4-15-3-API-Headers" class="headerlink" title="Linux-4.15.3 API Headers"></a>Linux-4.15.3 API Headers</h4><p>Linux API 头文件（在 linux-3.19.tar.xz 里）会将内核 API 导出给 Glibc 使用。</p>
-<p>Linux 内核需要提供一个应用编程接口（API）供系统的 C 库（LFS 中的 Glibc）调用。这通过整理 Linux 内核源码包中的多个 C 头文件来完成。</p>
-<p>确保在之前的动作里没有留下旧文件和依赖关系：<br><code>make mrproper</code><br>现在要从源代码里解压出用户需要的内核头文件。因为解压过程会删除目标目录下所有文件，所以我们会先输出到一个本地中间目录后再拷贝到需要的地方。而且里面还有一些隐藏文件是给内核开发人员用的，而 LFS 不需要，所以会将它们从中间目录里删除。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">make INSTALL_HDR_PATH=dest headers_install</span><br><span class="line">find dest/include \( -name .install -o -name ..install.cmd \) -delete</span><br><span class="line">cp -rv dest/include/* /usr/include</span><br></pre></td></tr></table></figure>
-<h4 id="Man-pages-4-15"><a href="#Man-pages-4-15" class="headerlink" title="Man-pages-4.15"></a>Man-pages-4.15</h4><p>Man-pages 软件包里包含了超过 2,200 份 man 手册页面。</p>
-<p>Install Man-pages by running:<br><code>make install</code></p>
-<h4 id="Glibc-2-21"><a href="#Glibc-2-21" class="headerlink" title="Glibc-2.21"></a>Glibc-2.21</h4><p>Glibc 软件包包含了主要的 C 函数库。这个库提供了分配内存、搜索目录、打开关闭文件、读写文件、操作字符串、模式匹配、基础算法等基本程序。<br><strong>注意</strong><br>有些 LFS 之外的软件包会建议安装 <code>GNU libiconv</code> 来转换不同编码的文字。根据项目主页（<a href="http://www.gnu.org/software/libiconv/" target="_blank" rel="noopener">http://www.gnu.org/software/libiconv/</a> ）上的说法“这个库会提供函数 <code>iconv()</code> 的实现，应用于那些没有这个函数的系统，或者函数实现中不支持 <code>Unicode</code> 转换的系统。” <code>Glibc</code> 提供了函数 <code>iconv()</code> 的实现而且支持 <code>Unicode</code> 转换，所以对于 LFS 系统来说并不需要 <code>libiconv</code> 库。</p>
-<p>有些 <code>Glibc</code> 程序会用到和 FHS 不兼容的 <code>/var/db</code> 目录来存储它们的运行时数据。打上如下的补丁让这些程序在 FHS 兼容的位置存储它们的运行时数据。</p>
-<p><code>patch -Np1 -i ../glibc-2.21-fhs-1.patch</code></p>
-<p>创建链接:<br><code>ln -sfv /tools/lib/gcc /usr/lib</code></p>
-<p>创建系统链接(<em>create a symlink for LSB compliance</em>):<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">case $(uname -m) in</span><br><span class="line">    i?86)    GCC_INCDIR=/usr/lib/gcc/$(uname -m)-pc-linux-gnu/7.3.0/include</span><br><span class="line">            ln -sfv ld-linux.so.2 /lib/ld-lsb.so.3</span><br><span class="line">    ;;</span><br><span class="line">    x86_64) GCC_INCDIR=/usr/lib/gcc/x86_64-pc-linux-gnu/7.3.0/include</span><br><span class="line">            ln -sfv ../lib/ld-linux-x86-64.so.2 /lib64</span><br><span class="line">            ln -sfv ../lib/ld-linux-x86-64.so.2 /lib64/ld-lsb-x86-64.so.3</span><br><span class="line">    ;;</span><br><span class="line">esac</span><br></pre></td></tr></table></figure></p>
-<p>删除前面可能遗留的文件:<br><code>rm -f /usr/include/limits.h</code></p>
-<p>编译:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">CC=&quot;gcc -isystem $GCC_INCDIR -isystem /usr/include&quot; \</span><br><span class="line">../configure --prefix=/usr                          \</span><br><span class="line">             --disable-werror                       \</span><br><span class="line">             --enable-kernel=3.2                    \</span><br><span class="line">             --enable-stack-protector=strong        \</span><br><span class="line">             libc_cv_slibdir=/lib</span><br><span class="line">unset GCC_INCDIR</span><br></pre></td></tr></table></figure></p>
-<p><code>CC=&quot;gcc -isystem $GCC_INCDIR -isystem /usr/include&quot;</code><br>Setting the location of both gcc and system include directories avoids introduction of invalid(无效) paths in debugging symbols.</p>
-<p><code>--disable-werror</code><br>This option disables the -Werror option passed to GCC. This is necessary for running the test suite.</p>
-<p><code>--enable-stack-protector=strong</code><br>This option increases system security by adding extra code to check for buffer overflows(缓冲溢出), such as stack smashing attacks.</p>
-<p><code>libc_cv_slibdir=/lib</code><br>This variable sets the correct library for all systems. We do not want lib64 to be used.</p>
-<p>在安装 Glibc 时会抱怨找不到<code>/etc/ld.so.conf</code>文件，这只是无关紧要的输出信息。下面的方式可以避免这个警告：<br><code>touch /etc/ld.so.conf</code></p>
-<p>Fix the generated Makefile to skip an unneeded sanity check that fails in the LFS partial environment:</p>
-<p><code>sed &#39;/test-installation/s@$(PERL)@echo not running@&#39; -i ../Makefile</code></p>
-<p>Install the configuration file and runtime directory for nscd:</p>
-<p><code>cp -v ../nscd/nscd.conf /etc/nscd.conf</code><br><code>mkdir -pv /var/cache/nscd</code></p>
-<h5 id="安装语言环境"><a href="#安装语言环境" class="headerlink" title="安装语言环境"></a>安装语言环境</h5><p>上面的命令并没有安装可以让你的电脑用不同语言响应的语言环境。语言环境并不是必须的，只是如果有些语言环境缺失，后续的测试套件可能会跳过一些重要测试用例。</p>
-<p>单独的语言环境可以用 <code>localedef</code> 程序安装。例如，下面第一个 <code>localedef</code> 命令将 <code>/usr/share/i18n/locales/cs_CZ</code> 字符无关的语言环境定义和 <code>/usr/share/i18n/charmaps/UTF-8.gz</code> 字符表定义组合在一起，并将结果附加到 <code>/usr/lib/locale/locale-archive</code> 文件末尾。下面的命令将安装能完美覆盖测试所需语言环境的最小集合：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">mkdir -pv /usr/lib/locale</span><br><span class="line">localedef -i cs_CZ -f UTF-8 cs_CZ.UTF-8</span><br><span class="line">localedef -i de_DE -f ISO-8859-1 de_DE</span><br><span class="line">localedef -i de_DE@euro -f ISO-8859-15 de_DE@euro</span><br><span class="line">localedef -i de_DE -f UTF-8 de_DE.UTF-8</span><br><span class="line">localedef -i en_GB -f UTF-8 en_GB.UTF-8</span><br><span class="line">localedef -i en_HK -f ISO-8859-1 en_HK</span><br><span class="line">localedef -i en_PH -f ISO-8859-1 en_PH</span><br><span class="line">localedef -i en_US -f ISO-8859-1 en_US</span><br><span class="line">localedef -i en_US -f UTF-8 en_US.UTF-8</span><br><span class="line">localedef -i es_MX -f ISO-8859-1 es_MX</span><br><span class="line">localedef -i fa_IR -f UTF-8 fa_IR</span><br><span class="line">localedef -i fr_FR -f ISO-8859-1 fr_FR</span><br><span class="line">localedef -i fr_FR@euro -f ISO-8859-15 fr_FR@euro</span><br><span class="line">localedef -i fr_FR -f UTF-8 fr_FR.UTF-8</span><br><span class="line">localedef -i it_IT -f ISO-8859-1 it_IT</span><br><span class="line">localedef -i it_IT -f UTF-8 it_IT.UTF-8</span><br><span class="line">localedef -i ja_JP -f EUC-JP ja_JP</span><br><span class="line">localedef -i ru_RU -f KOI8-R ru_RU.KOI8-R</span><br><span class="line">localedef -i ru_RU -f UTF-8 ru_RU.UTF-8</span><br><span class="line">localedef -i tr_TR -f UTF-8 tr_TR.UTF-8</span><br><span class="line">localedef -i zh_CN -f GB18030 zh_CN.GB18030</span><br></pre></td></tr></table></figure></p>
-<p>另外，安装适合你自己国家、语言和字符集的语言环境。</p>
-<p>或者，也可以一次性安装在 <code>glibc-2.21/localedata/SUPPORTED</code> 文件里列出的所有语言环境（包括以上列出的所有语言环境以及其它更多），执行下面这个非常耗时的命令：<br><code>make localedata/install-locales</code><br>你需要的语言环境几乎不大可能没列在 <code>glibc-2.21/localedata/SUPPORTED</code> 文件中，但如果真的没有可以使用 <code>localedef</code> 命令创建和安装。</p>
-<h5 id="配置-Glibc"><a href="#配置-Glibc" class="headerlink" title="配置 Glibc"></a>配置 Glibc</h5><p>尽管 <code>Glibc</code> 在文件 <code>/etc/nsswitch.conf</code> 丢失或损坏的情况下会创建一个默认的，但是我们需要手动该创建文件，因为 <code>Glibc</code> 的默认文件在网络环境下工作时有问题。另外，也需要设置一下时区。</p>
-<p>运行下面的命令创建一个新文件 <code>/etc/nsswitch.conf</code>：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">cat &gt; /etc/nsswitch.conf &lt;&lt; &quot;EOF&quot;</span><br><span class="line">#Begin /etc/nsswitch.conf</span><br><span class="line"></span><br><span class="line">passwd: files</span><br><span class="line">group: files</span><br><span class="line">shadow: files</span><br><span class="line"></span><br><span class="line">hosts: files dns</span><br><span class="line">networks: files</span><br><span class="line"></span><br><span class="line">protocols: files</span><br><span class="line">services: files</span><br><span class="line">ethers: files</span><br><span class="line">rpc: files</span><br><span class="line"></span><br><span class="line">#End /etc/nsswitch.conf</span><br><span class="line">EOF</span><br></pre></td></tr></table></figure>
-<p>安装时区数据：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">tar -xf ../../tzdata2018c.tar.gz</span><br><span class="line"></span><br><span class="line">ZONEINFO=/usr/share/zoneinfo</span><br><span class="line">mkdir -pv $ZONEINFO/&#123;posix,right&#125;</span><br><span class="line"></span><br><span class="line">for tz in etcetera southamerica northamerica europe africa antarctica  \</span><br><span class="line">          asia australasia backward pacificnew systemv; do</span><br><span class="line">    zic -L /dev/null   -d $ZONEINFO       -y &quot;sh yearistype.sh&quot; $&#123;tz&#125;</span><br><span class="line">    zic -L /dev/null   -d $ZONEINFO/posix -y &quot;sh yearistype.sh&quot; $&#123;tz&#125;</span><br><span class="line">    zic -L leapseconds -d $ZONEINFO/right -y &quot;sh yearistype.sh&quot; $&#123;tz&#125;</span><br><span class="line">done</span><br><span class="line"></span><br><span class="line">cp -v zone.tab zone1970.tab iso3166.tab $ZONEINFO</span><br><span class="line">zic -d $ZONEINFO -p America/New_York</span><br><span class="line">unset ZONEINFO</span><br></pre></td></tr></table></figure>
-<p><code>zic -L /dev/null ...</code><br>这会创建没有时间补偿的 <code>posix</code> 时区数据。一般将它们同时放在 <code>zoneinfo</code> 和 <code>zoneinfo/posix</code> 目录下。另外需要将 <code>POSIX</code> 时区数据放到 <code>zoneinfo</code> 目录下，否则很多测试套件会报错。在嵌入式平台，如果存储空间紧张而且你也不准备更新时区，也可以不用 <code>posix</code> 目录从而节省 1.9MB，但是一些应用程序或测试套件也许会出错。</p>
-<p><code>zic -L leapseconds ...</code><br>这会创建包含时间补偿的 right 时区数据。在嵌入式平台，空间比较紧张而且你也不打算更新时区或者不需要准确时间，你可以忽略 right 目录从而节省 1.9MB。</p>
-<p><code>zic ... -p ...</code><br>这会创建 <code>posixrules</code> 文件。我们使用纽约是因为 <code>POSIX</code> 要求夏令时规则与 <code>US</code> 标准一致。</p>
-<p>一种确定本地时区的方式是运行下面的脚本：<br><code>tzselect</code></p>
-<p>然后运行下面的命令创建 <code>/etc/localtime</code> 文件：<br><code>ln -sfv /usr/share/zoneinfo/&lt;xxx&gt; /etc/localtime</code><br>将命令中的 <xxx> 替换成你所在实际时区的名字（比如 Canada/Eastern）。<br>我的是 <code>Asia/Shanghai</code>.</xxx></p>
-<h5 id="配置动态库加载器"><a href="#配置动态库加载器" class="headerlink" title="配置动态库加载器"></a>配置动态库加载器</h5><p>默认情况下，动态库加载器（<code>/lib/ld-linux.so.2</code>）会搜索目录 <code>/lib</code> 和 <code>/usr/lib</code> 查找程序运行时所需的动态库文件。不过，如果库文件不在 <code>/lib</code> 和 <code>/usr/lib</code> 目录下，需要把它所在目录加到 <code>/etc/ld.so.conf</code> 文件里，保证动态库加载器能找到这些库。通常有两个目录包含额外的动态库，<code>/usr/local/lib</code> 和 <code>/opt/lib</code>，把这两个目录加到动态库加载器的搜索路径中。</p>
-<p>运行下面的命令创建一个新文件<code>/etc/ld.so.conf</code>：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">cat &gt; /etc/ld.so.conf &lt;&lt; &quot;EOF&quot;</span><br><span class="line"># Begin /etc/ld.so.conf</span><br><span class="line">/usr/local/lib</span><br><span class="line">/opt/lib</span><br><span class="line"></span><br><span class="line">EOF</span><br></pre></td></tr></table></figure></p>
-<p>如果需要的话，动态库加载器也可以查找目录并包含里面配置文件的内容。通常在这个包含目录下的文件只有一行字指向库目录。运行下面的命令增加这个功能：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">cat &gt;&gt; /etc/ld.so.conf &lt;&lt; &quot;EOF&quot;</span><br><span class="line"># Add an include directory</span><br><span class="line">include /etc/ld.so.conf.d/*.conf</span><br><span class="line"></span><br><span class="line">EOF</span><br><span class="line"></span><br><span class="line">mkdir -pv /etc/ld.so.conf.d</span><br></pre></td></tr></table></figure>
-<h4 id="调整工具链-测试"><a href="#调整工具链-测试" class="headerlink" title="调整工具链(测试)"></a>调整工具链(测试)</h4><p>现在最后的 C 语言库已经装好了，是时候调整工具链，让新编译的程序链接到这些新的库上。</p>
-<p>首先,备份 /tools 链接器，然后用我们在第五章调整过的链接器代替它。我们还会创建一个链接，链接到 /tools/$(gcc -dumpmachine)/bin 的副本：</p>
-<p>mv -v /tools/bin/{ld,ld-old}<br>mv -v /tools/$(gcc -dumpmachine)/bin/{ld,ld-old}<br>mv -v /tools/bin/{ld-new,ld}<br>ln -sv /tools/bin/ld /tools/$(gcc -dumpmachine)/bin/ld</p>
-<p>接下来，修改 GCC 参数文件，让它指向新的动态连接器。只需删除所有 “/tools” 的实例，这样应该可以留下到达动态链接器的正确路径。还要调整参数文件，这样 GCC 就知道怎样找到正确的头文件和 Glibc 启动文件。一个 sed 命令就能完成这些:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">gcc -dumpspecs | sed -e &apos;s@/tools@@g&apos;                   \</span><br><span class="line">-e &apos;/\*startfile_prefix_spec:/&#123;n;s@.*@/usr/lib/ @&#125;&apos; \</span><br><span class="line">-e &apos;/\*cpp:/&#123;n;s@$@ -isystem /usr/include@&#125;&apos; &gt;      \</span><br><span class="line">`dirname $(gcc --print-libgcc-file-name)`/specs</span><br></pre></td></tr></table></figure></p>
-<p>确保已调整的工具链的基本功能（编译和链接）都能如期进行是非常必要的。 怎样做呢？执行下面这条命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">echo &apos;main()&#123;&#125;&apos; &gt; dummy.c</span><br><span class="line">cc dummy.c -v -Wl,--verbose &amp;&gt; dummy.log</span><br><span class="line">readelf -l a.out | grep &apos;: /lib&apos;</span><br></pre></td></tr></table></figure></p>
-<p>如果没有任何错误，上条命令的输出应该是（不同的平台上的动态链接器可能名字不同）：</p>
-<p><code>[Requesting program interpreter: /lib/ld-linux.so.2]</code><br>注意 /lib 现在是我们动态链接库的前缀。</p>
-<p>现在确保我们已经设置好了启动文件：<br><code>grep -o &#39;/usr/lib.*/crt[1in].*succeeded&#39; dummy.log</code><br>上一条命令的输出应该是：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">/usr/lib/crt1.o succeeded</span><br><span class="line">/usr/lib/crti.o succeeded</span><br><span class="line">/usr/lib/crtn.o succeeded</span><br></pre></td></tr></table></figure></p>
-<p>确保链接器能找到正确的头文件：<br><code>grep -B1 &#39;^ /usr/include&#39; dummy.log</code><br>这条命令应该返回如下输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;...&gt; search starts here:</span><br><span class="line"> /usr/include</span><br></pre></td></tr></table></figure></p>
-<p>接下来，确认新的链接器已经在使用正确的搜索路径：</p>
-<p><code>grep &#39;SEARCH.*/usr/lib&#39; dummy.log |sed &#39;s|; |\n|g&#39;</code><br>应该忽略指向带有 ‘-linux-gnu’ 的路径，上条命令的输出应该是：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SEARCH_DIR(&quot;/usr/lib&quot;)</span><br><span class="line">SEARCH_DIR(&quot;/lib&quot;);</span><br></pre></td></tr></table></figure></p>
-<p>然后我们要确定我们使用的是正确的 libc:<br><code>grep &quot;/lib.*/libc.so.6 &quot; dummy.log</code></p>
-<p>上条命令的输出应该是（在 64 位主机上会有 lib64 目录）：<br><code>attempt to open /lib/libc.so.6 succeeded</code></p>
-<p>最后，确保 GCC 使用的是正确的动态链接器：<br><code>grep found dummy.log</code></p>
-<p>上条命令的结果应该是（不同的平台上链接器名字可以不同，64 位主机上是 lib64 目录）：<br><code>found ld-linux.so.2 at /lib/ld-linux.so.2</code></p>
-<p>如果显示的结果不一样或者根本没有显示，那就出了大问题。检查并回溯之前的步骤，找到出错的地方并改正。最有可能的原因是参数文件的调整出了问题。在进行下一步之前所有的问题都要解决。<br>一旦所有的事情都正常了，清除测试文件：<br><code>rm -v dummy.c a.out dummy.log</code></p>
-<h4 id="Zlib-1-2-11"><a href="#Zlib-1-2-11" class="headerlink" title="Zlib-1.2.11"></a>Zlib-1.2.11</h4><p>Zlib 软件包包括一些程序所使用的压缩和解压缩例程。</p>
-<p>共享库需要移动到 /lib，因此需要重建 /usr/lib 里面的 .so 文件：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mv -v /usr/lib/libz.so.* /lib</span><br><span class="line">ln -sfv ../../lib/$(readlink /usr/lib/libz.so) /usr/lib/libz.so</span><br></pre></td></tr></table></figure></p>
-<h4 id="File-5-22"><a href="#File-5-22" class="headerlink" title="File-5.22"></a>File-5.22</h4><p>File 软件包包括一个判断给定的某个或某些文件文件类型的工具。</p>
-<h4 id="Readline-7-0"><a href="#Readline-7-0" class="headerlink" title="Readline-7.0"></a>Readline-7.0</h4><p>Readline 软件包是一个提供命令行编辑和历史能力的一些库</p>
-<p><code>sed -i &#39;/MV.*old/d&#39; Makefile.in</code><br><code>sed -i &#39;/{OLDSUFF}/c:&#39;support/shlib-install</code></p>
-<p>编译:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">./configure --prefix=/usr    \</span><br><span class="line">            --disable-static \</span><br><span class="line">            --docdir=/usr/share/doc/readline-7.0</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make SHLIB_LIBS=&quot;-L/tools/lib -lncursesw&quot;</span><br></pre></td></tr></table></figure>
-<p><code>SHLIB_LIBS=&quot;-L/tools/lib -lncursesw&quot;</code><br>This option forces Readline to link against the libncursesw library.</p>
-<p>转移动态库到合适位置,修复一些链接符号:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mv -v /usr/lib/lib&#123;readline,history&#125;.so.* /lib</span><br><span class="line">ln -sfv ../../lib/$(readlink /usr/lib/libreadline.so) /usr/lib/libreadline.so</span><br><span class="line">ln -sfv ../../lib/$(readlink /usr/lib/libhistory.so ) /usr/lib/libhistory.so</span><br></pre></td></tr></table></figure></p>
-<p>如果需要的话,安装文档:<br><code>install -v -m644 doc/*.{ps,pdf,html,dvi} /usr/share/doc/readline-7.0</code></p>
-<h4 id="M4-1-4-18"><a href="#M4-1-4-18" class="headerlink" title="M4-1.4.18"></a>M4-1.4.18</h4><p>M4软件包包含一个宏处理器</p>
-<h4 id="Bc-1-07-1"><a href="#Bc-1-07-1" class="headerlink" title="Bc-1.07.1"></a>Bc-1.07.1</h4><p>Bc软件包用于数学处理<br>change an internal script to use sed instead of ed:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">cat &gt; bc/fix-libmath_h &lt;&lt; &quot;EOF&quot;</span><br><span class="line">#! /bin/bash</span><br><span class="line">sed -e &apos;1   s/^/&#123;&quot;/&apos; \</span><br><span class="line">    -e     &apos;s/$/&quot;,/&apos; \</span><br><span class="line">    -e &apos;2,$ s/^/&quot;/&apos;  \</span><br><span class="line">    -e   &apos;$ d&apos;       \</span><br><span class="line">    -i libmath.h</span><br><span class="line"></span><br><span class="line">sed -e &apos;$ s/$/0&#125;/&apos; \</span><br><span class="line">    -i libmath.h</span><br><span class="line">EOF</span><br></pre></td></tr></table></figure></p>
-<p>Create temporary symbolic links so the package can find the readline library and confirm that its required libncurses library is available. Even though the libraries are in /tools/lib at this point, <em>the system will use /usr/lib at the end of this chapter.</em><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ln -sv /tools/lib/libncursesw.so.6 /usr/lib/libncursesw.so.6</span><br><span class="line">ln -sfv libncurses.so.6 /usr/lib/libncurses.so</span><br></pre></td></tr></table></figure></p>
-<p>Fix an issue in configure due to missing files in the early stages of LFS:<br><code>sed -i -e &#39;/flex/s/as_fn_error/: ;; # &amp;/&#39; configure</code><br>编译:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">./configure --prefix=/usr           \</span><br><span class="line">            --with-readline         \</span><br><span class="line">            --mandir=/usr/share/man \</span><br><span class="line">            --infodir=/usr/share/info</span><br></pre></td></tr></table></figure></p>
-<p><code>--with-readline</code><br>This option tells Bc to use the <em>readline library</em> that is already installed on the system rather than <em>using its own readline version.</em></p>
-<p>To test bc, run the commands below. There is quite a bit of output, so you may want to redirect it to a file. There are a very small percentage of tests (10 of 12,144) that will indicate a round off error at the last digit.<br><code>echo &quot;quit&quot; | ./bc/bc -l Test/checklib.b</code></p>
-<h4 id="Binutils-2-25"><a href="#Binutils-2-25" class="headerlink" title="Binutils-2.25"></a>Binutils-2.25</h4><p>Binutils 软件包包含一个链接器、一个汇编器、以及其它处理目标文件的工具。<br>验证:<br><code>expect -c &quot;spawn ls</code>“<br>正常输出:<br><code>spawn ls</code><br>假如输出包括下面的信息，那么表示没有为 PTY 操作设置好环境。在运行 Binutils 和 GCC 的测试套件之前需要解决这个问题：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">The system has no more ptys.</span><br><span class="line">Ask your system administrator to create more.</span><br></pre></td></tr></table></figure></p>
-<p>编译:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">../configure --prefix=/usr       \</span><br><span class="line">             --enable-gold       \</span><br><span class="line">             --enable-ld=default \</span><br><span class="line">             --enable-plugins    \</span><br><span class="line">             --enable-shared     \</span><br><span class="line">             --disable-werror    \</span><br><span class="line">             --enable-64-bit-bfd \</span><br><span class="line">             --with-system-zlib</span><br></pre></td></tr></table></figure></p>
-<p><code>--enable-gold</code><br>Build the gold linker and install it as ld.gold (along side the default linker).</p>
-<p><code>--enable-ld=default</code><br>Build the original bdf linker and install it as both ld (the default linker) and ld.bfd.</p>
-<p><code>--enable-plugins</code><br>Enables plugin support for the linker.</p>
-<p><code>--enable-64-bit-bfd</code><br>Enables 64-bit support (on hosts with narrower word sizes). May not be needed on 64-bit systems, but <em>does no harm</em>.</p>
-<p><code>--with-system-zlib</code><br>Use the installed zlib library rather than building the included version.</p>
-<p>编译:<br><code>make tooldir=/usr</code></p>
-<p><code>tooldir=/usr</code><br>一般来说，<code>tooldir</code> (最终存放可执行文件的目录) 设置为 <code>$(exec_prefix)/$(target_alias)</code>。例如,<code>x86_64</code>机器会把它扩展为<code>/usr/x86_64-unknown-linux-gnu</code>。因为这是个自定制的系统，并不需要 <code>/usr</code> 中的特定目标目录。如果系统用于交叉编译（例如，在 Intel 机器上编译能生成在 PowerPC 机器上运行的代码的软件包）会使用 <code>$(exec_prefix)/$(target_alias)</code>。</p>
-<p>测试<br><code>make -k check</code><br>安装:<br><code>make tooldir=/usr install</code></p>
-<h4 id="GMP-6-1-2"><a href="#GMP-6-1-2" class="headerlink" title="GMP-6.1.2"></a>GMP-6.1.2</h4><p>GMP 软件包包含一些数学库。这里有对任意精度数值计算很有用的函数。</p>
-<p>如果你是为 32 位的 x86 系统编译，但是你的 CPU 可以运行 64 位代码 而且 环境中你有指定的 <code>CFLAGS</code>，那么配置脚本会尝试配置为 64 位并导致失败。用下面的方式执行配置命令来避免这个问题:<br><code>ABI=32 ./configure ...</code></p>
-<p>The default settings of GMP produce libraries optimized for the host processor. If libraries suitable for processors less capable than the host’s CPU are desired,<br>(库对于处理器的适合度小于宿主的cpu的能力,然后创建通用的库),generic libraries can be created by running the following:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cp -v configfsf.guess config.guess</span><br><span class="line">cp -v configfsf.sub   config.sub</span><br></pre></td></tr></table></figure></p>
-<p><code>--enable-cxx</code><br>这个参数启用 C++ 支持</p>
-<p><code>--docdir=/usr/share/doc/gmp-6.1.2</code><br>这个变量指定保存文档的正确位置。</p>
-<p>Ensure that all 190 tests in the test suite passed.<br><code>awk &#39;/# PASS:/{total+=$3} ; END{print total}&#39; gmp-check-log</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">./configure --prefix=/usr    \</span><br><span class="line">            --enable-cxx     \</span><br><span class="line">            --disable-static \</span><br><span class="line">            --docdir=/usr/share/doc/gmp-6.1.2</span><br></pre></td></tr></table></figure>
-<h4 id="MPFR-4-0-1"><a href="#MPFR-4-0-1" class="headerlink" title="MPFR-4.0.1"></a>MPFR-4.0.1</h4><p>编译:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">./configure --prefix=/usr        \</span><br><span class="line">            --disable-static     \</span><br><span class="line">            --enable-thread-safe \</span><br><span class="line">            --docdir=/usr/share/doc/mpfr-4.0.1</span><br></pre></td></tr></table></figure></p>
-<h4 id="MPC-1-1-0"><a href="#MPC-1-1-0" class="headerlink" title="MPC-1.1.0"></a>MPC-1.1.0</h4><p>编译:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">./configure --prefix=/usr    \</span><br><span class="line">            --disable-static \</span><br><span class="line">            --docdir=/usr/share/doc/mpc-1.1.0</span><br></pre></td></tr></table></figure></p>
-<h4 id="GCC-7-3-0"><a href="#GCC-7-3-0" class="headerlink" title="GCC-7.3.0"></a>GCC-7.3.0</h4><p>If building on x86_64, change the default directory name for 64-bit libraries to “lib”:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">case $(uname -m) in</span><br><span class="line">  x86_64)</span><br><span class="line">    sed -e &apos;/m64=/s/lib64/lib/&apos; \</span><br><span class="line">        -i.orig gcc/config/i386/t-linux64</span><br><span class="line">  ;;</span><br><span class="line">esac</span><br></pre></td></tr></table></figure></p>
-<p>Remove the symlink created earlier as the final gcc includes will be installed here:<br><code>rm -f /usr/lib/gcc</code></p>
-<p>编译:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">SED=sed                               \</span><br><span class="line">../configure --prefix=/usr            \</span><br><span class="line">             --enable-languages=c,c++ \</span><br><span class="line">             --disable-multilib       \</span><br><span class="line">             --disable-bootstrap      \</span><br><span class="line">             --with-system-zlib</span><br></pre></td></tr></table></figure></p>
-<p><code>SED=sed</code><br>Setting this environment variable prevents a hard-coded path to /tools/bin/sed.</p>
-<p><code>--with-system-zlib</code><br>This switch tells GCC to link to the system installed copy of the Zlib library, rather than its own internal copy.</p>
-<p>One set of tests in the GCC test suite is known to exhaust the stack, so increase the stack size prior to running the tests:<br>(一个测试会用尽tests,需要扩大栈的容量)<br><code>ulimit -s 32768</code><br>一些意料之外的错误总是难以避免。GCC 开发者通常意识到了这些问题，但还没有解决。除非测试结果和上面 URL 中的相差很大，不然就可以安全继续。</p>
-<blockquote>
-<p>On some combinations of kernel configuration and AMD processors there may be more than 1100 failures in the gcc.target/i386/mpx tests (which are designed to test the MPX option on recent Intel processors). These can safely be ignored on AMD processors.<br>我表示震惊….</p>
-</blockquote>
-<p>一些软件包希望 GCC 安装在 /lib 目录。为了支持那些软件包，可以建立一个符号链接：</p>
-<p><code>ln -sv ../usr/bin/cpp /lib</code><br>译者注：如果还在 gcc-build 目录，这里应该是 <code>ln -sv ../../usr/bin/cpp /lib</code> 。<br>很多软件包用命令 cc 调用 C 编译器。为了满足这些软件包，创建一个符号链接：<br><code>ln -sv gcc /usr/bin/cc</code></p>
-<p>增加一个兼容符号链接启用编译程序时进行链接时间优化（Link Time Optimization，LTO）：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">install -v -dm755 /usr/lib/bfd-plugins</span><br><span class="line">ln -sfv ../../libexec/gcc/$(gcc -dumpmachine)/7.3.0/liblto_plugin.so \</span><br><span class="line">        /usr/lib/bfd-plugins/</span><br></pre></td></tr></table></figure></p>
-<p>然后进行检验(步骤省略)<br>最后，移动位置放错的文件：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir -pv /usr/share/gdb/auto-load/usr/lib</span><br><span class="line">mv -v /usr/lib/*gdb.py /usr/share/gdb/auto-load/usr/lib</span><br></pre></td></tr></table></figure></p>
-<h4 id="Bzip2-1-0-6"><a href="#Bzip2-1-0-6" class="headerlink" title="Bzip2-1.0.6"></a>Bzip2-1.0.6</h4><p><code>Bzip2</code> 软件包包含压缩和解压缩的程序。用 <code>bzip2</code> 压缩文本文件能获得比传统的 <code>gzip</code> 更好的压缩比。<br>使用能为这个软件包安装帮助文档的补丁：<br><code>patch -Np1 -i ../bzip2-1.0.6-install_docs-1.patch</code></p>
-<p>下面的命令确保安装的符号链接是相对链接：<br><code>sed -i &#39;s@\(ln -s -f \)$(PREFIX)/bin/@\1@&#39; Makefile</code></p>
-<p>确认 man 页面安装到了正确的位置：<br><code>sed -i &quot;s@(PREFIX)/man@(PREFIX)/share/man@g&quot; Makefile</code></p>
-<p>编译:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">make -f Makefile-libbz2_so</span><br><span class="line">make clean</span><br></pre></td></tr></table></figure></p>
-<p><code>-f Makefile-libbz2_so</code><br>这会使用不同的 Makefile 文件编译 <code>Bzip2</code>，在这里是 <code>Makefile-libbz2_so</code>，它会创建动态 <code>libbz2.so</code> 库，并把它链接到 <code>Bzip2</code> 工具。</p>
-<p>安装使用动态链接库的 <code>bzip2</code> 二进制文件到 <code>/bin</code> 目录， 创建一些必须的符号链接并清理：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">cp -v bzip2-shared /bin/bzip2</span><br><span class="line">cp -av libbz2.so* /lib</span><br><span class="line">ln -sv ../../lib/libbz2.so.1.0 /usr/lib/libbz2.so</span><br><span class="line">rm -v /usr/bin/&#123;bunzip2,bzcat,bzip2&#125;</span><br><span class="line">ln -sv bzip2 /bin/bunzip2</span><br><span class="line">ln -sv bzip2 /bin/bzcat</span><br></pre></td></tr></table></figure></p>
-<h4 id="Pkg-config-0-29-2"><a href="#Pkg-config-0-29-2" class="headerlink" title="Pkg-config-0.29.2"></a>Pkg-config-0.29.2</h4><p>pkg-config 软件包包含一个在配置和 make 文件运行时把 include 路径和库路径传递给编译工具的工具。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">./configure --prefix=/usr              \</span><br><span class="line">            --with-internal-glib       \</span><br><span class="line">            --disable-host-tool        \</span><br><span class="line">            --docdir=/usr/share/doc/pkg-config-0.29.2</span><br></pre></td></tr></table></figure></p>
-<p><code>--with-internal-glib</code><br>这会让 pkg-config 使用它自己内部版本的 Glib，因为在 LFS 中没有可用的外部版本。</p>
-<p><code>--disable-host-tool</code><br>这个选项取消创建到 pkg-config 程序的不必要的硬链接。</p>
-<h4 id="Ncurses-6-1"><a href="#Ncurses-6-1" class="headerlink" title="Ncurses-6.1"></a>Ncurses-6.1</h4><p>Ncurses 软件包包含用于不依赖于特定终端的字符屏幕处理的库。<br>Don’t install a static library that is not handled by configure:<br><code>sed -i &#39;/LIBTOOL_INSTALL/d&#39; c++/Makefile.in</code></p>
-<p>编译:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">./configure --prefix=/usr           \</span><br><span class="line">            --mandir=/usr/share/man \</span><br><span class="line">            --with-shared           \</span><br><span class="line">            --without-debug         \</span><br><span class="line">            --without-normal        \</span><br><span class="line">            --enable-pc-files       \</span><br><span class="line">            --enable-widec</span><br></pre></td></tr></table></figure></p>
-<p><code>--enable-widec</code><br>这个选项会编译宽字符库（例如 libncursesw.so.5.9）而不是常规的）例如 libncurses.so.5.9）。宽字符库可用于多字节和传统的 8 位本地字符， 而常规的库只能用于 8 位本地字符。宽字符库和常规的库是源文件兼容的，而不是二进制文件兼容的。</p>
-<p><code>--enable-pc-files</code><br>该选项为 pkg-config 生成和安装 .pc 文件。</p>
-<p><code>--without-normal</code><br>该选项取消生成与安装静态库</p>
-<p>Move the shared libraries to the /lib directory, where they are expected to reside(转移库文件):<br><code>mv -v /usr/lib/libncursesw.so.6* /lib</code></p>
-<p>Because the libraries have been moved, one symlink points to a non-existent file. Recreate it(重新链接库文件):<br><code>ln -sfv ../../lib/$(readlink /usr/lib/libncursesw.so) /usr/lib/libncursesw.so</code></p>
-<p>很多应用程序仍然希望编辑器能找到非宽字符的 Ncurses 库。通过符号链接和链接器脚本欺骗这样的应用链接到宽字符库：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">for lib in ncurses form panel menu ; do</span><br><span class="line">    rm -vf                    /usr/lib/lib$&#123;lib&#125;.so</span><br><span class="line">    echo &quot;INPUT(-l$&#123;lib&#125;w)&quot; &gt; /usr/lib/lib$&#123;lib&#125;.so</span><br><span class="line">    ln -sfv $&#123;lib&#125;w.pc        /usr/lib/pkgconfig/$&#123;lib&#125;.pc</span><br><span class="line">done</span><br></pre></td></tr></table></figure></p>
-<p>最后，确保在编译时会查找 -lcurses 的旧应用程序仍然可以编译：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">rm -vf                     /usr/lib/libcursesw.so</span><br><span class="line">echo &quot;INPUT(-lncursesw)&quot; &gt; /usr/lib/libcursesw.so</span><br><span class="line">ln -sfv libncurses.so      /usr/lib/libcurses.so</span><br></pre></td></tr></table></figure>
-<p><strong>注意</strong><br>上面的指令并<strong>不会创建</strong>非宽字符 <code>Ncurses</code> 库，因为<em>没有从源文件中编译安装的软件包会在运行时链接它们</em>。如果你由于一些仅有二进制的应用程序或要和 <code>LSB</code> 兼容而必须要有这样的库，用下面的命令重新编译软件包：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">make distclean</span><br><span class="line">./configure --prefix=/usr    \</span><br><span class="line">            --with-shared    \</span><br><span class="line">            --without-normal \</span><br><span class="line">            --without-debug  \</span><br><span class="line">            --without-cxx-binding \</span><br><span class="line">            --with-abi-version=5</span><br><span class="line">make sources libs</span><br><span class="line">cp -av lib/lib*.so.5* /usr/lib</span><br></pre></td></tr></table></figure></p>
-<h4 id="Attr-2-4-47"><a href="#Attr-2-4-47" class="headerlink" title="Attr-2.4.47"></a>Attr-2.4.47</h4><p>attr 软件包包含管理文件系统对象的扩展属性的工具。<br>Modify the documentation directory so that it is a versioned directory:<br><code>sed -i -e &#39;s|/@pkg_name@|&amp;-@pkg_version@|&#39; include/builddefs.in</code></p>
-<p>Prevent installation of manual pages that were already installed by the man pages package:<br><code>sed -i -e &quot;/SUBDIRS/s|man[25]||g&quot; man/Makefile</code></p>
-<p>Fix a problem in the test procedures caused by changes in perl-5.26:<br>(修复问题)<br><code>sed -i &#39;s:{(:\\{(:&#39; test/run</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">./configure --prefix=/usr \</span><br><span class="line">            --bindir=/bin \</span><br><span class="line">            --disable-static</span><br></pre></td></tr></table></figure>
-<p>The shared library needs to be moved to /lib, and as a result the .so file in /usr/lib will need to be recreated:<br><code>mv -v /usr/lib/libattr.so.* /lib</code><br><code>ln -sfv ../../lib/$(readlink /usr/lib/libattr.so) /usr/lib/libattr.so</code></p>
-<h4 id="Acl-2-2-52"><a href="#Acl-2-2-52" class="headerlink" title="Acl-2.2.52"></a>Acl-2.2.52</h4><p>Modify the documentation directory so that it is a versioned directory:</p>
-<p><code>sed -i -e &#39;s|/@pkg_name@|&amp;-@pkg_version@|&#39; include/builddefs.in</code><br>Fix some broken tests:</p>
-<p><code>sed -i &quot;s:| sed.*::g&quot; test/{sbits-restore,cp,misc}.test</code><br>Fix a problem in the test procedures caused by changes in perl-5.26:</p>
-<p><code>sed -i &#39;s/{(/\\{(/&#39; test/run</code><br>Additionally, fix a bug that causes getfacl -e to segfault on overly long group name:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sed -i -e &quot;/TABS-1;/a if (x &gt; (TABS-1)) x = (TABS-1);&quot; \</span><br><span class="line">    libacl/__acl_to_any_text.c</span><br></pre></td></tr></table></figure></p>
-<p>Prepare Acl for compilation:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">./configure --prefix=/usr    \</span><br><span class="line">            --bindir=/bin    \</span><br><span class="line">            --disable-static \</span><br><span class="line">            --libexecdir=/usr/lib</span><br></pre></td></tr></table></figure></p>
-<h4 id="Libcap-2-25"><a href="#Libcap-2-25" class="headerlink" title="Libcap-2.25"></a>Libcap-2.25</h4><p>Libcap 软件包实现了可用在 Linux 内核上的对 POSIX 1003.1e 功能的用户空间接口。 这些功能将所有强大 root 权限划分为不同的权限组合。<br>Install the package:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">make RAISE_SETFCAP=no lib=lib prefix=/usr install</span><br><span class="line">chmod -v 755 /usr/lib/libcap.so</span><br></pre></td></tr></table></figure></p>
-<p>The meaning of the make option:<br><code>RAISE_SETFCAP=no</code><br>This parameter skips trying to use setcap on itself. This avoids an installation error if the kernel or file system does not support extended capabilities.</p>
-<p><code>lib=lib</code><br>This parameter installs the library in <code>$prefix/lib</code> rather than <code>$prefix/lib64</code> on <code>x86_64</code>. It has no effect on<code>x86</code>.</p>
-<h4 id="Sed-4-4"><a href="#Sed-4-4" class="headerlink" title="Sed-4.4"></a>Sed-4.4</h4><p>The Sed package contains a stream editor.<br>First fix an issue in the LFS environment and remove a failing test:<br><code>sed -i &#39;s/usr/tools/&#39;                 build-aux/help2man</code><br><code>sed -i &#39;s/testsuite.panic-tests.sh//&#39; Makefile.in</code></p>
-<p>Prepare Sed for compilation:<br><code>./configure --prefix=/usr --bindir=/bin</code></p>
-<h4 id="Shadow-4-5"><a href="#Shadow-4-5" class="headerlink" title="Shadow-4.5"></a>Shadow-4.5</h4><p>Shadow 软件包包含以安全方式处理密码的程序。<br><strong>注意</strong><br>如果你喜欢强制使用更强的密码，在编译 Shadow 之前可以根据 <a href="http://www.linuxfromscratch.org/blfs/view/systemd/postlfs/cracklib.html" target="_blank" rel="noopener">http://www.linuxfromscratch.org/blfs/view/systemd/postlfs/cracklib.html</a> 安装 <code>CrackLib</code>。然后在下面的 configure 命令中增加 <code>--with-libcrack</code>。</p>
-<p>取消安装 <code>groups</code> 程序以及它的 <code>man</code> 文档，因为 Coreutils 提供了一个更好的版本：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sed -i &apos;s/groups$(EXEEXT) //&apos; src/Makefile.in</span><br><span class="line">find man -name Makefile.in -exec sed -i &apos;s/groups\.1 / /&apos;   &#123;&#125; \;</span><br><span class="line">find man -name Makefile.in -exec sed -i &apos;s/getspnam\.3 / /&apos; &#123;&#125; \;</span><br><span class="line">find man -name Makefile.in -exec sed -i &apos;s/passwd\.5 / /&apos;   &#123;&#125; \;</span><br></pre></td></tr></table></figure></p>
-<p>比起默认的 crypt 方法，用更安全的 SHA-512 方法加密密码，它允许密码长度超过 8 个字符。也需要把 Shadow 默认使用的用户邮箱由陈旧的 /var/spool/mail 位置改为正在使用的 /var/mail 位置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sed -i -e &apos;s@#ENCRYPT_METHOD DES@ENCRYPT_METHOD SHA512@&apos; \</span><br><span class="line">         -e &apos;s@/var/spool/mail@/var/mail@&apos; etc/login.defs</span><br></pre></td></tr></table></figure></p>
-<p><strong>Note</strong><br>如果你选择编译支持 Cracklib 的 Shadow，运行下面的命令：<br><code>sed -i &#39;s@DICTPATH.*@DICTPATH\t/lib/cracklib/pw_dict@&#39; etc/login.defs</code></p>
-<p>做个小的改动使 useradd 的默认设置和 LFS 的组文件一致：<br><code>sed -i &#39;s/1000/999/&#39; etc/useradd</code></p>
-<p>Prepare Shadow for compilation:<br><code>./configure --sysconfdir=/etc --with-group-name-max-length=32</code></p>
-<p>The meaning of the configure option:<br><code>--with-group-name-max-length=32</code><br>最长用户名为 32 个字符，使组名称也是如此</p>
-<h5 id="Configuring-Shadow"><a href="#Configuring-Shadow" class="headerlink" title="Configuring Shadow"></a>Configuring Shadow</h5><p>该软件包包含增加、更改、以及删除用户和组的工具；设置和修改密码；执行其它特权级任务。软件包解压后的 <code>doc/HOWTO</code> 文件有关于 <code>password</code> <code>shadowing</code> 的完整解释。如果使用 <code>Shadow</code> 支持，记住需要验证密码（显示管理器、FTP 程序、pop3 守护进程等）的程序必须和 <code>Shadow</code> 兼容。 也就是说，它们要能使用 Shadow 加密的密码。</p>
-<p>运行下面的命令启用 shadow 密码；<br><code>pwconv</code></p>
-<p>运行下面的命令启用 shadow 组密码：<br><code>grpconv</code></p>
-<p>用于 useradd 工具的 Shadow 配置有一些需要解释的注意事项。首先，useradd 工具的默认操作是创建用户以及和用户名相同的组。默认情况下，用户 ID(UID) 和组 ID(GID) 的数字从 1000 开始。这意味着如果你不传递参数给 useradd，系统中的每个用户都会属于一个不同的组。如果不需要这样的结果，你需要传递参数 -g 到 useradd。默认参数保存在 /etc/default/useradd 文件中。你需要修改该文件中的两个参数来实现你的特定需求。</p>
-<p><code>/etc/default/useradd</code> 参数解释</p>
-<p><code>GROUP=1000</code><br>该参数设定 /etc/group 文件中使用的起始组序号。你可以把它更改为任何你需要的数字。注意 useradd 永远不会重用 UID 或 GID。如果该参数指定的数字已经被使用了，将会使用它之后的下一个可用数字。另外注意如果你系统中没有序号为 1000 的组，第一次使用useradd 而没有参数 -g 的话，你会在终端中看到一个提示信息： useradd: unknown GID 1000。你可以忽视这个信息，它会使用组号 1000。</p>
-<p><code>CREATE_MAIL_SPOOL=yes</code><br>这个参数会为 useradd 新添加的用户创建邮箱文件。useradd 会使组 mail 拥有该文件的所有权，并赋予组 0660 的权限。如果你希望 useradd 不创建这些邮箱文件，你可以运行下面的命令：<br><code>sed -i &#39;s/yes/no/&#39; /etc/default/useradd</code></p>
-<h5 id="设置-root-密码"><a href="#设置-root-密码" class="headerlink" title="设置 root 密码"></a>设置 root 密码</h5><p>运行下面的命令为用户 root 设置密码：<br><code>passwd root</code></p>
-<h4 id="由于构建文档太长-此篇到此结束-还有50多个工具的编译过程没有记录-主要还是要看构建文档"><a href="#由于构建文档太长-此篇到此结束-还有50多个工具的编译过程没有记录-主要还是要看构建文档" class="headerlink" title="(由于构建文档太长,此篇到此结束,还有50多个工具的编译过程没有记录,主要还是要看构建文档)"></a>(由于构建文档太长,此篇到此结束,还有50多个工具的编译过程没有记录,主要还是要看构建文档)</h4>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1375,7 +1225,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">82</span>
+                  <span class="site-state-item-count">84</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1464,7 +1314,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">97.7k</span>
+    <span title="Site words total count">100.5k</span>
   
 </div>
 

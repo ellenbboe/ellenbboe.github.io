@@ -378,6 +378,495 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.unblog.top/2019/04/09/fuxi5-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="兔子春">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/7.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Eden">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/04/09/fuxi5-1/" itemprop="url">操作系统之链接</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-09T16:31:47+08:00">
+                2019-04-09
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-04-09T16:34:08+08:00">
+                2019-04-09
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/操作系统/" itemprop="url" rel="index">
+                    <span itemprop="name">操作系统</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  697
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  2
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>本文采用复习拷贝重新阅读大法<br>本文来自该<a href="https://github.com/CyC2018/CS-Notes" target="_blank" rel="noopener">仓库</a></p>
+<h1 id="编译系统"><a href="#编译系统" class="headerlink" title="编译系统"></a>编译系统</h1><p>以下是一个 hello.c 程序：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"hello, world\n"</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在 Unix 系统上，由编译器把源文件转换为目标文件。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcc -o hello hello.c</span><br></pre></td></tr></table></figure>
+<p>这个过程大致如下：</p>
+<p><div align="center"> <img src="https://gitee.com/CyC2018/CS-Notes/raw/master/docs/pics/b396d726-b75f-4a32-89a2-03a7b6e19f6f.jpg" width="800"> </div><br></p>
+<ul>
+<li>预处理阶段：处理以 # 开头的预处理命令；</li>
+<li>编译阶段：翻译成汇编文件；</li>
+<li>汇编阶段：将汇编文件翻译成可重定向目标文件；</li>
+<li>链接阶段：将可重定向目标文件和 printf.o 等单独预编译好的目标文件进行合并，得到最终的可执行目标文件。</li>
+</ul>
+<h1 id="静态链接"><a href="#静态链接" class="headerlink" title="静态链接"></a>静态链接</h1><p>静态链接器以一组可重定向目标文件为输入，生成一个完全链接的可执行目标文件作为输出。链接器主要完成以下两个任务：</p>
+<ul>
+<li>符号解析：每个符号对应于一个函数、一个全局变量或一个静态变量，符号解析的目的是将每个符号引用与一个符号定义关联起来。</li>
+<li>重定位：链接器通过把每个符号定义与一个内存位置关联起来，然后修改所有对这些符号的引用，使得它们指向这个内存位置。</li>
+</ul>
+<p><div align="center"> <img src="https://gitee.com/CyC2018/CS-Notes/raw/master/docs/pics/47d98583-8bb0-45cc-812d-47eefa0a4a40.jpg"> </div><br></p>
+<h1 id="目标文件"><a href="#目标文件" class="headerlink" title="目标文件"></a>目标文件</h1><ul>
+<li>可执行目标文件：可以直接在内存中执行；</li>
+<li>可重定向目标文件：可与其它可重定向目标文件在链接阶段合并，创建一个可执行目标文件；</li>
+<li>共享目标文件：这是一种特殊的可重定向目标文件，可以在运行时被动态加载进内存并链接；</li>
+</ul>
+<h1 id="动态链接"><a href="#动态链接" class="headerlink" title="动态链接"></a>动态链接</h1><p>静态库有以下两个问题：</p>
+<ul>
+<li>当静态库更新时那么整个程序都要重新进行链接；</li>
+<li>对于 printf 这种标准函数库，如果每个程序都要有代码，这会极大浪费资源。</li>
+</ul>
+<p>共享库是为了解决静态库的这两个问题而设计的，在 Linux 系统中通常用 .so 后缀来表示，Windows 系统上它们被称为 DLL。它具有以下特点：</p>
+<ul>
+<li>在给定的文件系统中一个库只有一个文件，所有引用该库的可执行目标文件都共享这个文件，它不会被复制到引用它的可执行文件中；</li>
+<li>在内存中，一个共享库的 .text 节（已编译程序的机器代码）的一个副本可以被不同的正在运行的进程共享。</li>
+</ul>
+<p><div align="center"> <img src="https://gitee.com/CyC2018/CS-Notes/raw/master/docs/pics/76dc7769-1aac-4888-9bea-064f1caa8e77.jpg"> </div><br></p>
+<blockquote>
+<p>个人认为:简单的来说 静态链接和动态链接就是指在运行程序的时候要不要调用系统的库文件来帮助程序运行</p>
+</blockquote>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.unblog.top/2019/04/09/fuxi5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="兔子春">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/7.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Eden">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/04/09/fuxi5/" itemprop="url">操作系统之死锁</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-09T16:29:35+08:00">
+                2019-04-09
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-04-09T16:33:08+08:00">
+                2019-04-09
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/操作系统/" itemprop="url" rel="index">
+                    <span itemprop="name">操作系统</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2,182
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  7
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>本文采用复习拷贝重新阅读大法<br>本文来自该<a href="https://github.com/CyC2018/CS-Notes" target="_blank" rel="noopener">仓库</a></p>
+<h1 id="必要条件"><a href="#必要条件" class="headerlink" title="必要条件"></a>必要条件</h1><p><div align="center"> <img src="https://gitee.com/CyC2018/CS-Notes/raw/master/docs/pics/c037c901-7eae-4e31-a1e4-9d41329e5c3e.png"> </div><br></p>
+<ul>
+<li>互斥：每个资源要么已经分配给了一个进程，要么就是可用的。</li>
+<li>占有和等待：已经得到了某个资源的进程可以再请求新的资源。</li>
+<li>不可抢占：已经分配给一个进程的资源不能<strong>强制性地</strong>被抢占，它只能被占有它的进程显式地释放。</li>
+<li>环路等待：有两个或者两个以上的进程组成一条环路，该环路中的每个进程都在等待下一个进程所占有的资源。<br>其他解释:<br>互斥条件：一个资源每次只能被一个进程使用，即在一段时间内某 资源仅为一个进程所占有。此时若有其他进程请求该资源，则请求进程只能等待。</li>
+</ul>
+<p>请求与保持条件：进程已经保持了至少一个资源，但又提出了新的资源请求，而该资源 已被其他进程占有，此时请求进程被阻塞，但对自己已获得的资源保持不放。</p>
+<p>不可剥夺条件:进程所获得的资源在未使用完毕之前，不能被其他进程强行夺走，即只能 由获得该资源的进程自己来释放（只能是主动释放)。</p>
+<p>循环等待条件: 若干进程间形成首尾相接循环等待资源的关系</p>
+<p>这四个条件是死锁的必要条件，只要系统发生死锁，这些条件必然成立，而只要上述条件之一不满足，就不会发生死锁。</p>
+<h1 id="处理方法"><a href="#处理方法" class="headerlink" title="处理方法"></a>处理方法</h1><p>主要有以下四种方法：</p>
+<ul>
+<li>鸵鸟策略</li>
+<li>死锁检测与死锁恢复</li>
+<li>死锁预防</li>
+<li>死锁避免</li>
+</ul>
+<h1 id="鸵鸟策略"><a href="#鸵鸟策略" class="headerlink" title="鸵鸟策略"></a>鸵鸟策略</h1><p>把头埋在沙子里，假装根本没发生问题。</p>
+<p>因为解决死锁问题的代价很高，因此鸵鸟策略这种不采取任务措施的方案会获得更高的性能。</p>
+<p>当发生死锁时不会对用户造成多大影响，或发生死锁的概率很低，可以采用鸵鸟策略。</p>
+<p>大多数操作系统，包括 Unix，Linux 和 Windows，处理死锁问题的办法仅仅是忽略它。</p>
+<h1 id="死锁检测与死锁恢复"><a href="#死锁检测与死锁恢复" class="headerlink" title="死锁检测与死锁恢复"></a>死锁检测与死锁恢复</h1><p>不试图阻止死锁，而是当检测到死锁发生时，采取措施进行恢复。</p>
+<h2 id="1-每种类型一个资源的死锁检测"><a href="#1-每种类型一个资源的死锁检测" class="headerlink" title="1. 每种类型一个资源的死锁检测"></a>1. 每种类型一个资源的死锁检测</h2><p><div align="center"> <img src="https://gitee.com/CyC2018/CS-Notes/raw/master/docs/pics/b1fa0453-a4b0-4eae-a352-48acca8fff74.png"> </div><br></p>
+<p>上图为资源分配图，其中方框表示资源，圆圈表示进程。资源指向进程表示该资源已经分配给该进程，进程指向资源表示进程请求获取该资源。</p>
+<p>图 a 可以抽取出环，如图 b，它满足了环路等待条件，因此会发生死锁。</p>
+<p><strong>每种类型一个资源的死锁检测算法是通过检测有向图是否存在环来实现</strong>，从一个节点出发进行深度优先搜索，对访问过的节点进行标记，如果访问了已经标记的节点，就表示有向图存在环，也就是检测到死锁的发生。</p>
+<h2 id="2-每种类型多个资源的死锁检测"><a href="#2-每种类型多个资源的死锁检测" class="headerlink" title="2. 每种类型多个资源的死锁检测"></a>2. 每种类型多个资源的死锁检测</h2><p><div align="center"> <img src="https://gitee.com/CyC2018/CS-Notes/raw/master/docs/pics/e1eda3d5-5ec8-4708-8e25-1a04c5e11f48.png"> </div><br></p>
+<p>上图中，有三个进程四个资源，每个数据代表的含义如下：</p>
+<ul>
+<li>E 向量：资源总量</li>
+<li>A 向量：资源剩余量</li>
+<li>C 矩阵：每个进程所拥有的资源数量，每一行都代表一个进程拥有资源的数量</li>
+<li>R 矩阵：每个进程请求的资源数量</li>
+</ul>
+<p>进程 P<sub>1</sub> 和 P<sub>2</sub> 所请求的资源都得不到满足，只有进程 P<sub>3</sub> 可以，让 P<sub>3</sub> 执行，之后释放 P<sub>3</sub> 拥有的资源，此时 A = (2 2 2 0)。P<sub>2</sub> 可以执行，执行后释放 P<sub>2</sub> 拥有的资源，A = (4 2 2 1) 。P<sub>1</sub> 也可以执行。所有进程都可以顺利执行，没有死锁。</p>
+<p>算法总结如下：</p>
+<p>每个进程最开始时都不被标记，执行过程有可能被标记。当算法结束时，任何没有被标记的进程都是死锁进程。</p>
+<ol>
+<li>寻找一个没有标记的进程 P<sub>i</sub>，它所请求的资源小于等于 A。</li>
+<li>如果找到了这样一个进程，那么将 C 矩阵的第 i 行向量加到 A 中，标记该进程，并转回 1。</li>
+<li>如果没有这样一个进程，算法终止。</li>
+</ol>
+<h2 id="3-死锁恢复"><a href="#3-死锁恢复" class="headerlink" title="3. 死锁恢复"></a>3. 死锁恢复</h2><ul>
+<li>利用抢占恢复</li>
+<li>利用回滚恢复</li>
+<li>通过杀死进程恢复</li>
+</ul>
+<h1 id="死锁预防"><a href="#死锁预防" class="headerlink" title="死锁预防"></a>死锁预防</h1><p>在程序运行之前预防发生死锁。</p>
+<h2 id="1-破坏互斥条件"><a href="#1-破坏互斥条件" class="headerlink" title="1. 破坏互斥条件"></a>1. 破坏互斥条件</h2><p>例如假脱机打印机技术允许若干个进程同时输出，唯一真正请求物理打印机的进程是打印机守护进程。</p>
+<blockquote>
+<p>由于资源互斥是资源使用的固有特性是无法改变的。</p>
+</blockquote>
+<h2 id="2-破坏占有和等待条件"><a href="#2-破坏占有和等待条件" class="headerlink" title="2. 破坏占有和等待条件"></a>2. 破坏占有和等待条件</h2><p>一种实现方式是规定所有进程在开始执行前请求所需要的全部资源。</p>
+<blockquote>
+<p>第一种方法静态分配即每个进程在开始执行时就申请他所需要的全部资源。第二种是动态分配即每个进程在申请所需要的资源时他本身不占用系统资源。</p>
+</blockquote>
+<h2 id="3-破坏不可抢占条件"><a href="#3-破坏不可抢占条件" class="headerlink" title="3. 破坏不可抢占条件"></a>3. 破坏不可抢占条件</h2><p>把资源还回来!!</p>
+<blockquote>
+<p>一个进程不能获得所需要的全部资源时便处于等待状态，等待期间他占有的资源将被隐式的释放重新加入到 系统的资源列表中，可以被其他的进程使用，而等待的进程只有重新获得自己原有的资源以及新申请的资源才可以重新启动，执行。</p>
+</blockquote>
+<h2 id="4-破坏环路等待"><a href="#4-破坏环路等待" class="headerlink" title="4. 破坏环路等待"></a>4. 破坏环路等待</h2><p>给资源统一编号，进程只能按编号顺序来请求资源。</p>
+<blockquote>
+<p>采用资源有序分配其基本思想是将系统中的所有资源顺序编号，将紧缺的，稀少的采用较大的编号，在申请资源时必须按照编号的顺序进行，一个进程只有获得较小编号的进程才能申请较大编号的进程。</p>
+</blockquote>
+<h1 id="死锁避免"><a href="#死锁避免" class="headerlink" title="死锁避免"></a>死锁避免</h1><p>在程序运行时避免发生死锁。</p>
+<h2 id="1-安全状态"><a href="#1-安全状态" class="headerlink" title="1. 安全状态"></a>1. 安全状态</h2><p><div align="center"> <img src="https://gitee.com/CyC2018/CS-Notes/raw/master/docs/pics/ed523051-608f-4c3f-b343-383e2d194470.png"> </div><br></p>
+<p>图 a 的第二列 Has 表示已拥有的资源数，第三列 Max 表示总共需要的资源数，Free 表示还有可以使用的资源数。从图 a 开始出发，先让 B 拥有所需的所有资源（图 b），运行结束后释放 B，此时 Free 变为 5（图 c）；接着以同样的方式运行 C 和 A，使得所有进程都能成功运行，因此可以称图 a 所示的状态时安全的。</p>
+<p>定义：<strong>如果没有死锁发生，并且即使所有进程突然请求对资源的最大需求，也仍然存在某种调度次序能够使得每一个进程运行完毕，则称该状态是安全的。</strong></p>
+<p><strong>安全状态的检测</strong>与<strong>死锁的检测</strong> 类似，因为安全状态必须要求不能发生死锁。下面的银行家算法与死锁检测算法非常类似，可以结合着做参考对比。</p>
+<h2 id="2-单个资源的银行家算法"><a href="#2-单个资源的银行家算法" class="headerlink" title="2. 单个资源的银行家算法"></a>2. 单个资源的银行家算法</h2><p>一个小城镇的银行家，他向一群客户分别承诺了一定的贷款额度，算法要做的是判断对请求的满足是否会进入不安全状态，如果是，就拒绝请求；否则予以分配。</p>
+<p><div align="center"> <img src="https://gitee.com/CyC2018/CS-Notes/raw/master/docs/pics/d160ec2e-cfe2-4640-bda7-62f53e58b8c0.png"> </div><br></p>
+<p>上图 c 为不安全状态，因此算法会<strong>拒绝</strong>之前的请求，从而避免进入图 c 中的状态。</p>
+<h2 id="3-多个资源的银行家算法"><a href="#3-多个资源的银行家算法" class="headerlink" title="3. 多个资源的银行家算法"></a>3. 多个资源的银行家算法</h2><p><div align="center"> <img src="https://gitee.com/CyC2018/CS-Notes/raw/master/docs/pics/62e0dd4f-44c3-43ee-bb6e-fedb9e068519.png"> </div><br></p>
+<p>上图中有五个进程，四个资源。左边的图表示已经分配的资源，右边的图表示还需要分配的资源。最右边的 E、P 以及 A 分别表示：总资源、已分配资源以及可用资源，注意这三个为向量，而不是具体数值，例如 A=(1020)，表示 4 个资源分别还剩下 1/0/2/0。</p>
+<p>检查一个状态是否安全的算法如下：</p>
+<ul>
+<li>查找右边的矩阵是否存在一行小于等于向量 A。如果不存在这样的行，那么系统将会发生死锁，状态是不安全的。</li>
+<li>假若找到这样一行，将该进程标记为终止，并将其已分配资源加到 A 中。</li>
+<li>重复以上两步，直到所有进程都标记为终止，则状态时安全的。</li>
+</ul>
+<p>如果一个状态不是安全的，需要拒绝进入这个状态。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://www.unblog.top/2019/04/08/fuxi4/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -967,460 +1456,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.unblog.top/2019/04/07/fuxi3-1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="兔子春">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/7.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Eden">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/04/07/fuxi3-1/" itemprop="url">操作系统概要</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-07T14:55:51+08:00">
-                2019-04-07
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2019-04-07T14:58:36+08:00">
-                2019-04-07
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/操作系统/" itemprop="url" rel="index">
-                    <span itemprop="name">操作系统</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  1,131
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  4
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>本文采用复习拷贝重新阅读大法<br>本文来自该<a href="https://github.com/CyC2018/CS-Notes" target="_blank" rel="noopener">仓库</a></p>
-<h1 id="基本特征"><a href="#基本特征" class="headerlink" title="基本特征"></a>基本特征</h1><h2 id="1-并发"><a href="#1-并发" class="headerlink" title="1. 并发"></a>1. 并发</h2><p>并发是指宏观上在 <strong>一段时间</strong> 内能同时 <strong>运行多个程序</strong>，而并行则指 <strong>同一时刻</strong> 能 <strong>运行多个指令</strong>。</p>
-<p>并行需要 <strong>硬件支持</strong>，如多流水线、多核处理器或者分布式计算系统。</p>
-<p>操作系统通过引入 <strong>进程</strong> 和 <strong>线程</strong>，使得程序能够并发运行。</p>
-<h2 id="2-共享"><a href="#2-共享" class="headerlink" title="2. 共享"></a>2. 共享</h2><p>共享是指系统中的资源可以 <strong>被多个并发进程共同使用</strong>。</p>
-<p>有两种共享方式：<strong>互斥共享</strong> 和 <strong>同时共享</strong>。</p>
-<p>互斥共享的资源称为 <strong>临界资源</strong>，例如打印机等，在 <strong>同一时间只允许一个进程访问</strong>，需要用同步机制来实现对临界资源的访问。<br><strong>同时共享</strong> 就是适合所有程序共同访问资源,但是应该需要访问控制,防止某一进程对资源进行了修改(我的想法)</p>
-<h2 id="3-虚拟"><a href="#3-虚拟" class="headerlink" title="3. 虚拟"></a>3. 虚拟</h2><p>虚拟技术把一个物理实体转换为多个逻辑实体。</p>
-<p>主要有两种虚拟技术：<strong>时分复用技术</strong> 和 <strong>空分复用技术</strong>。</p>
-<blockquote>
-<p>时间片轮转法</p>
-</blockquote>
-<p>多个进程能在同一个处理器上并发执行使用了时分复用技术，让每个进程轮流占有处理器，每次只执行一小个时间片并快速切换。</p>
-<p>虚拟内存使用了空分复用技术，它将物理内存抽象为地址空间，每个进程都有各自的地址空间。<strong>地址空间的页被映射到物理内存</strong>，地址空间的页并不需要全部在物理内存中，当使用到一个没有在物理内存的页时，执行 <strong>页面置换算法</strong>，将该页置换到内存中。</p>
-<blockquote>
-<p>页面置换(一种移来移去的算法) 十分任性的概括</p>
-</blockquote>
-<h2 id="4-异步"><a href="#4-异步" class="headerlink" title="4. 异步"></a>4. 异步</h2><p>异步指进程 <strong>不是一次性执行完毕</strong>，而是走走停停，以不可知的速度向前推进。</p>
-<h1 id="基本功能"><a href="#基本功能" class="headerlink" title="基本功能"></a>基本功能</h1><h2 id="1-进程管理"><a href="#1-进程管理" class="headerlink" title="1. 进程管理"></a>1. 进程管理</h2><p>进程控制、进程同步、进程通信、死锁处理、处理机调度等。</p>
-<h2 id="2-内存管理"><a href="#2-内存管理" class="headerlink" title="2. 内存管理"></a>2. 内存管理</h2><p>内存分配、地址映射、内存保护与共享、虚拟内存等。</p>
-<h2 id="3-文件管理"><a href="#3-文件管理" class="headerlink" title="3. 文件管理"></a>3. 文件管理</h2><p>文件存储空间的管理、目录管理、文件读写管理和保护等。</p>
-<h2 id="4-设备管理"><a href="#4-设备管理" class="headerlink" title="4. 设备管理"></a>4. 设备管理</h2><p>完成用户的 I/O 请求，方便用户使用各种设备，并提高设备的利用率。</p>
-<p>主要包括缓冲管理、设备分配、设备处理、虛拟设备等。</p>
-<h1 id="系统调用"><a href="#系统调用" class="headerlink" title="系统调用"></a>系统调用</h1><p>如果一个进程在用户态需要使用内核态的功能，就进行系统调用从而陷入内核，由操作系统代为完成。</p>
-<p><div align="center"> <img src="https://gitee.com/CyC2018/CS-Notes/raw/master/docs/pics/tGPV0.png" width="600"> </div><br></p>
-<p>Linux 的系统调用主要有以下这些：</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">Task</th>
-<th>Commands</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">进程控制</td>
-<td>fork(); exit(); wait();</td>
-</tr>
-<tr>
-<td style="text-align:center">进程通信</td>
-<td>pipe(); shmget(); mmap();</td>
-</tr>
-<tr>
-<td style="text-align:center">文件操作</td>
-<td>open(); read(); write();</td>
-</tr>
-<tr>
-<td style="text-align:center">设备操作</td>
-<td>ioctl(); read(); write();</td>
-</tr>
-<tr>
-<td style="text-align:center">信息维护</td>
-<td>getpid(); alarm(); sleep();</td>
-</tr>
-<tr>
-<td style="text-align:center">安全</td>
-<td>chmod(); umask(); chown();</td>
-</tr>
-</tbody>
-</table>
-<h1 id="大内核和微内核"><a href="#大内核和微内核" class="headerlink" title="大内核和微内核"></a>大内核和微内核</h1><h2 id="1-大内核"><a href="#1-大内核" class="headerlink" title="1. 大内核"></a>1. 大内核</h2><p>放了一整个操作系统,操作系统变成了一个整体 -.-<br>大内核是将操作系统功能作为一个紧密结合的整体放到内核。</p>
-<p>由于各模块共享信息，因此有很高的性能。</p>
-<h2 id="2-微内核"><a href="#2-微内核" class="headerlink" title="2. 微内核"></a>2. 微内核</h2><p>就只有一个核心的控制,其他的被分成不同的功能,一般都是这个吧<br>由于操作系统不断复杂，因此将一部分操作系统功能移出内核，从而降低内核的复杂性。移出的部分根据分层的原则划分成若干服务，相互独立。</p>
-<p>在微内核结构下，操作系统被划分成小的、定义良好的模块，只有微内核这一个模块运行在内核态，其余模块运行在用户态。</p>
-<p>因为需要频繁地在用户态和核心态之间进行切换，所以会有一定的性能损失。</p>
-<p><div align="center"> <img src="https://gitee.com/CyC2018/CS-Notes/raw/master/docs/pics/2_14_microkernelArchitecture.jpg"> </div><br></p>
-<h1 id="中断分类"><a href="#中断分类" class="headerlink" title="中断分类"></a>中断分类</h1><p>中断分为三类</p>
-<h2 id="1-外中断"><a href="#1-外中断" class="headerlink" title="1. 外中断"></a>1. 外中断</h2><p>由 CPU 执行指令以外的事件引起，如 I/O 完成中断，表示设备输入/输出处理已经完成，处理器能够发送下一个输入/输出请求。此外还有时钟中断、控制台中断等。</p>
-<h2 id="2-异常"><a href="#2-异常" class="headerlink" title="2. 异常"></a>2. 异常</h2><p>由 CPU 执行指令的内部事件引起，如非法操作码、地址越界、算术溢出等。</p>
-<h2 id="3-陷入-人为的可控"><a href="#3-陷入-人为的可控" class="headerlink" title="3. 陷入(人为的可控)"></a>3. 陷入(人为的可控)</h2><p>在用户程序中使用系统调用。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.unblog.top/2019/04/07/fuxi3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="兔子春">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/7.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Eden">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/04/07/fuxi3/" itemprop="url">剑指offer_Part3</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-07T10:09:28+08:00">
-                2019-04-07
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2019-04-07T10:12:59+08:00">
-                2019-04-07
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法基础/" itemprop="url" rel="index">
-                    <span itemprop="name">算法基础</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  938
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  4
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>友情提示: 代码在<a href="https://github.com/apersonlikesc/sosoalgorithm" target="_blank" rel="noopener">这里</a><br>本文参照该<a href="https://github.com/CyC2018/CS-Notes" target="_blank" rel="noopener">仓库</a>学习,大家可以star</p>
-<h2 id="20-表示数值的字符串"><a href="#20-表示数值的字符串" class="headerlink" title="20 表示数值的字符串"></a>20 表示数值的字符串</h2><p>true<br>“+100”<br>“5e2”<br>“-123”<br>“3.1416”<br>“-1E-16”</p>
-<p>false<br>“12e”<br>“1a3.14”<br>“1.2.3”<br>“+-5”<br>“12e+4.3”</p>
-<p>链接：<a href="https://www.nowcoder.com/questionTerminal/6f8c901d091949a5837e24bb82a731f2" target="_blank" rel="noopener">https://www.nowcoder.com/questionTerminal/6f8c901d091949a5837e24bb82a731f2</a><br>来源：牛客网<br>使用正则表达式来解决<br>[\+\-]?            -&gt; 正或负符号出现与否<br>\d*                 -&gt; 整数部分是否出现，如-.34 或 +3.34均符合<br>(\.\d+)?           -&gt; 如果出现小数点，那么小数点后面必须有数字；<br>                        否则一起不出现<br>([eE][\+\-]?\d+)? -&gt; 如果存在指数部分，那么e或E肯定出现，+或-可以不出现，<br>                        紧接着必须跟着整数；或者整个部分都不出现</p>
-<h2 id="21-调整数组顺序使奇数位于偶数前面"><a href="#21-调整数组顺序使奇数位于偶数前面" class="headerlink" title="21 调整数组顺序使奇数位于偶数前面"></a>21 调整数组顺序使奇数位于偶数前面</h2><p>需要保证奇数和奇数，偶数和偶数之间的相对位置不变，这和书本不太一样。<br>先统计出奇数的个数然后在空出位置放奇数,后面放偶数</p>
-<h2 id="22-链表中倒数第-K-个结点"><a href="#22-链表中倒数第-K-个结点" class="headerlink" title="22 链表中倒数第 K 个结点"></a>22 链表中倒数第 K 个结点</h2><p>设链表的长度为 N。设两个指针 P1 和 P2，先让 P1 移动 K 个节点，则还有 N - K 个节点可以移动。此时让 P1 和 P2 同时移动，可以知道当 P1 移动到链表结尾时，P2 移动到 N - K 个节点处，该位置就是倒数第 K 个节点。</p>
-<h2 id="23-链表中环的入口结点"><a href="#23-链表中环的入口结点" class="headerlink" title="23 链表中环的入口结点"></a>23 链表中环的入口结点</h2><p>一个链表中包含环，请找出该链表的环的入口结点。要求不能使用额外的空间。</p>
-<p>使用双指针，一个指针 fast 每次移动两个节点，一个指针 slow 每次移动一个节点。因为存在环，所以两个指针必定相遇在环中的某个节点上。假设相遇点在下图的 z1 位置，此时 fast 移动的节点数为 x+2y+z，slow 为 x+y，由于 fast 速度比 slow 快一倍，因此 x+2y+z=2(x+y)，得到 x=z。</p>
-<p>在相遇点，slow 要到环的入口点还需要移动 z 个节点，如果让 fast 重新从头开始移动，并且速度变为每次移动一个节点，那么它到环入口点还需要移动 x 个节点。在上面已经推导出 x=z，因此 fast 和 slow 将在环入口点相遇。</p>
-<p>链接：<a href="https://www.nowcoder.com/questionTerminal/253d2c59ec3e4bc68da16833f79a38e4" target="_blank" rel="noopener">https://www.nowcoder.com/questionTerminal/253d2c59ec3e4bc68da16833f79a38e4</a><br>来源：牛客网<br>这个说的清楚一点<br>第一步，找环中相汇点。分别用p1，p2指向链表头部，p1每次走一步，p2每次走二步，直到p1==p2找到在环中的相汇点。<br>第二步，找环的入口。接上步，当p1==p2时，p2所经过节点数为2x,p1所经过节点数为x,设环中有n个节点,p2比p1多走一圈有2x=n+x; n=x;可以看出p1实际走了一个环的步数，再让p2指向链表头部，p1位置不变，p1,p2每次走一步直到p1==p2; 此时p1指向环的入口。</p>
-<h2 id="24-反转链表"><a href="#24-反转链表" class="headerlink" title="24 反转链表"></a>24 反转链表</h2><p>递归<br>迭代(头插法)</p>
-<h2 id="25-合并两个排序的链表"><a href="#25-合并两个排序的链表" class="headerlink" title="25 合并两个排序的链表"></a>25 合并两个排序的链表</h2><p>递归<br>迭代(头插法)</p>
-<h2 id="26-树的子结构"><a href="#26-树的子结构" class="headerlink" title="26 树的子结构"></a>26 树的子结构</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">HasSubtree</span><span class="params">(TreeNode root1,TreeNode root2)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(root1 == <span class="keyword">null</span>||root2==<span class="keyword">null</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> HasSubtree(root1.left,root2)||HasSubtree(root1.right,root2)||isSubtreewithRoot(root1,root2);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">isSubtreewithRoot</span><span class="params">(TreeNode root1, TreeNode root2)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(root2==<span class="keyword">null</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(root1== <span class="keyword">null</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(root1.val!=root2.val)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> isSubtreewithRoot(root1.left,root2.left)&amp;&amp;isSubtreewithRoot(root1.right, root2.right);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<h2 id="27-二叉树的镜像"><a href="#27-二叉树的镜像" class="headerlink" title="27 二叉树的镜像"></a>27 二叉树的镜像</h2><p>将左右结点交换,一层一层下去</p>
-<h2 id="28-对称的二叉树"><a href="#28-对称的二叉树" class="headerlink" title="28 对称的二叉树"></a>28 对称的二叉树</h2><p>先比较root结点,然后在用结点的左结点和右结点比较 右结点和左结点比较</p>
-<h2 id="29-顺时针打印矩阵"><a href="#29-顺时针打印矩阵" class="headerlink" title="29 顺时针打印矩阵"></a>29 顺时针打印矩阵</h2><p>就照着顺序打印,用四个变量,定义一下边界值</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1477,7 +1512,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">82</span>
+                  <span class="site-state-item-count">84</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1566,7 +1601,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">97.7k</span>
+    <span title="Site words total count">100.5k</span>
   
 </div>
 
