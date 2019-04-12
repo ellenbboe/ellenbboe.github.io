@@ -378,6 +378,282 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.unblog.top/2018/07/10/shell基础/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="兔子春">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/7.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Eden">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/07/10/shell基础/" itemprop="url">shell基础</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-10T16:31:11+08:00">
+                2018-07-10
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-09-05T18:01:53+08:00">
+                2018-09-05
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index">
+                    <span itemprop="name">linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1,587
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  6
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="shell开头"><a href="#shell开头" class="headerlink" title="shell开头"></a>shell开头</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line">#!/bin/sh</span><br><span class="line">#!/usr/bin/awk</span><br><span class="line">#!/usr/bin/env python</span><br><span class="line">#!/usr/bin/perl</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>这几行在第一行,不再第一行就是注释<br>不用的话就用相关解释器带上文件名执行<br>在写脚本的时候如果不加前面的也会交给bash解释,但是还是指定解释器比较好</p>
+</blockquote>
+<h4 id="注意点一"><a href="#注意点一" class="headerlink" title="注意点一"></a>注意点一</h4><p>定义变量名的时候等号旁边没有空格</p>
+<p>要在登录后显示初始化内容可以将脚本文件放到 /etc/profile.d/</p>
+<p>的下面或者是更改/etc/motd 文件</p>
+<p>单引号中`` 命令无效</p>
+<p>当参数大于9个要使用${}方式</p>
+<blockquote>
+<p>touch 主要是用来更新时间的….</p>
+</blockquote>
+<blockquote>
+<p>使用cat连接两个文件</p>
+</blockquote>
+<blockquote>
+<p>ln -s 源文件 快捷方式 s表示链接</p>
+</blockquote>
+<p>有多个命令就使用;号,若将输出全都重定向用{}扩起来,{}是父shell,()是子shell</p>
+<h4 id="注意点二"><a href="#注意点二" class="headerlink" title="注意点二"></a>注意点二</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">read读到换行符为止,所以就使用循环可以将文件读完,不然好像只能读一行</span><br><span class="line">黑洞/dev/null 了解一下-.-</span><br><span class="line">cp mv rm 加上-i 进行确认</span><br><span class="line">`command` == $(command)</span><br><span class="line">`read file` 是要求用户输入并且保存到file变量中...</span><br><span class="line">`read -p &quot;&quot; ver `就像scanf一样..(我下所的)</span><br><span class="line">readonly xxx=1 或者readonly xxx(已定义) 表示只读无法改变包括unset</span><br><span class="line">用重定向代替输入</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>shell中0给了stdin 1给了stdout 2给了stderr</p>
+</blockquote>
+<blockquote>
+<p>其余数字可以来关联输出文件 例如文件中&gt;&amp;3 命令用3&gt;文件 输出到文件中</p>
+</blockquote>
+<p><code>exec</code> 将文件关联<br><code>paste</code>两个文件连接<br><code>tr</code>替换<br><code>if</code>空格<code>[]</code> <code>while</code>空格:</p>
+<blockquote>
+<p>expand unexpand 将tab 转换成空格 一般只早开头 使用-a 替换全部</p>
+</blockquote>
+<blockquote>
+<p>unset 消除定义的变量</p>
+</blockquote>
+<blockquote>
+<p>${array[*]} == ${array[@]} “”${array[*]}  != “${array[@]}”前面是整个数组的字符串,后面时整个数组</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">条件语句if or elif 后面要跟上 then 如:</span><br><span class="line"></span><br><span class="line">if [ xx ]</span><br><span class="line">then</span><br><span class="line">    xxxxx</span><br><span class="line">elif [ xxx ]</span><br><span class="line">then</span><br><span class="line">    xxxxx</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[  ]是shell的内置命令 下列给出操作符:</span><br><span class="line">-eq equal to</span><br><span class="line">-ne not equal to</span><br><span class="line">-lt less than</span><br><span class="line">-gt great than</span><br><span class="line">ge (没有-哦) great or equal</span><br><span class="line">如果条件判断与then写在统一行then前面加;</span><br><span class="line">[]两侧要有空格</span><br></pre></td></tr></table></figure>
+<h4 id="注意点三"><a href="#注意点三" class="headerlink" title="注意点三"></a>注意点三</h4><blockquote>
+<p>在case中 中止case语句用;;如果用;&amp; or ;;&amp;来终止还是执行下去,他中止的是子句,会使用word在去匹配pattern,直到遇到;;结束case<br>递增可以使用let x=$x+1 当然也可以使用expr语句-.-我也是随机选择的….<br>do 和while [  ]写在一起的时候do前面有分号<br>while 后面可以加上命令list 使用分号;来隔开,决定是否推出循环的是最后一个命令返回值,注意是最后一个!!!<br>其中命令都是用[]扩起来的列入[];[];[]<br>[] 是条件<br>-n String 判断字符串长度是否非0<br>-z Stirng 判断字符串长度为0时就断(zero)<br>String=String<br>String!=String</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">for 后面不加in就选择传入的参数</span><br><span class="line">同时也可以写的像c的for一样但是写成要这样</span><br><span class="line"></span><br><span class="line">for((p=1,k=321;p&lt;10;p++,k++))</span><br><span class="line">do</span><br><span class="line">    xxxxx</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">select var in xxx xxx xxx xxx</span><br><span class="line">do</span><br><span class="line">    xxxx(可以是case或者是if条件判断)</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
+<p>在select中要写退出循环的条件,不然会一直循环下去,还有就是要写其他选项的条件,不然不科学-.-</p>
+<h4 id="option-参数的代码"><a href="#option-参数的代码" class="headerlink" title="option 参数的代码"></a>option 参数的代码</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">while getopts x:x:x: OPTION 这个option可以随便定义</span><br><span class="line">do</span><br><span class="line">    case $OPTION in</span><br><span class="line">        x)</span><br><span class="line">            xxx=$OPTAGE;; 这个变量时规定的 与$REPLY一样</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
+<p>写的函数可以直接调用 条件中-r 可读 -w 可写 -a and<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$&#123;xx:-dsa&#125;等:(也可以通过其他方式来实现)</span><br><span class="line">    :-先默认后赋值,不改变</span><br><span class="line">    :+先赋值,不改变</span><br><span class="line">    :=改变</span><br><span class="line">    :?若是空的则输出错误退出脚本</span><br></pre></td></tr></table></figure></p>
+<p><code>$PAGER</code> 似乎是系统变量</p>
+<blockquote>
+<p>显示文档的less也可以通过其他方式来实现</p>
+</blockquote>
+<blockquote>
+<p>echo -n 不换行输出 -e 激活转移字符</p>
+</blockquote>
+<blockquote>
+<p>sort -u 忽略相同行</p>
+</blockquote>
+<blockquote>
+<p>当不能使用管道时可以使用命令替代参数</p>
+</blockquote>
+<blockquote>
+<p>数字或者字符串expression不能出现在$()中,要用()扩起来后在放到$()中间……</p>
+</blockquote>
+<blockquote>
+<p>循环的话要注意变量的赋值</p>
+</blockquote>
+<blockquote>
+<p>find 命令 从给定的文件位置开始找 -iname 忽略大小写<br>-mtime 表示修改时间 -mtime n修改时间为n天<br>-mtime +n 大于n天<br>-mtime -n 小于n天</p>
+</blockquote>
+<blockquote>
+<p>如果有多个命令使用-a来连接 其中如果有()要使用\ 来转义 -o 或者</p>
+</blockquote>
+<blockquote>
+<p>xargs 可以处理很多参数</p>
+<p>locate 查询本地的数据库 find是直接查找文件系统</p>
+<p>dd if=file of=file count=blocks bs=bytes</p>
+</blockquote>
+<h4 id="信号"><a href="#信号" class="headerlink" title="信号"></a>信号</h4><blockquote>
+<p>通过trap xx(函数名) 数字 可以将让函数才该信号出现的时候调用该函数<br>使用trap也可以脚本结束后调用函数,数字是0<br>使用’’ 或者: 是屏蔽中断INT信号<br>使用trap INT 来恢复<br>exit xx 中xx是信号<br>kill 进程的时候要先kill掉子进程,不然会交给init进程接管<br>使用&amp;&amp;连接多个命令的时候是一个一个执行的,会创建子bash执行进程</p>
+</blockquote>
+<p><code>command|sed &#39;command&#39;</code><br><code>sed &#39;command&#39; file</code></p>
+<blockquote>
+<p>使用;分号来连接多个command(不用另起’’) 或者使用-e(要’’分离每个命令)<br>也可以将多个command写在一个文件中,-f指定文件<br>!可以对取值范围取反<br>sed stream editor 可以从管道或者文件中读取参数</p>
+</blockquote>
+<p><code>sed -n &#39;1~2p&#39; 1 start  2 step</code></p>
+<blockquote>
+<p>sed还能加上正则/^$/<br>使用正则还能代替行号<br>使用&amp;表示正则表达式获取的结果</p>
+</blockquote>
+<h4 id="awk-‘script’-files"><a href="#awk-‘script’-files" class="headerlink" title="awk ‘script’ files"></a>awk ‘script’ files</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&apos;script&apos; 中一般为</span><br><span class="line">    /pattern/&#123;action&#125;</span><br><span class="line">    exprssion &#123;action&#125;其中特殊的有: value ~ /pattern/ 与正则匹配 加个!就是不匹配  可以使用()将判断分离,这样()间可以使用||或者&amp;&amp;链接</span><br><span class="line"></span><br><span class="line">分割符通过-F指定</span><br><span class="line">可以在awk文件中写好命令之后使用-f来指定文件</span><br><span class="line">使用BEGIN&#123;</span><br><span class="line"></span><br><span class="line">&#125;来执行处理数据之前执行的初始化操作</span><br><span class="line">使用next来表示 将两个命令的结果连接起来</span><br></pre></td></tr></table></figure>
+<p><code>#!/bin/bash/awk -f awk脚本 .awk</code></p>
+<blockquote>
+<p>awk中有内建变量<br>    NR为行数<br>    FS分割符<br>    等等</p>
+</blockquote>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://www.unblog.top/2018/07/10/vim基础/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -929,193 +1205,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.unblog.top/2018/07/10/css渐变动画/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="兔子春">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/7.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Eden">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/10/css渐变动画/" itemprop="url">css渐变动画</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-10T15:47:23+08:00">
-                2018-07-10
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2018-09-05T17:58:45+08:00">
-                2018-09-05
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/css/" itemprop="url" rel="index">
-                    <span itemprop="name">css</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  58
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  1
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="鼠标放上去渐变"><a href="#鼠标放上去渐变" class="headerlink" title="鼠标放上去渐变"></a>鼠标放上去渐变</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">div</span><br><span class="line">&#123;</span><br><span class="line">width:100px;</span><br><span class="line">transition: width 2s;</span><br><span class="line">-moz-transition: width 2s; /* Firefox 4 */</span><br><span class="line">-webkit-transition: width 2s; /* Safari 和 Chrome */</span><br><span class="line">-o-transition: width 2s; /* Opera */</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="使div居中"><a href="#使div居中" class="headerlink" title="使div居中:"></a>使div居中:</h4><pre><code>要设置div的宽度
-再使用margin 0 auto设置
-</code></pre>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1172,7 +1261,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">81</span>
+                  <span class="site-state-item-count">82</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1261,7 +1350,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">95.5k</span>
+    <span title="Site words total count">97.7k</span>
   
 </div>
 
