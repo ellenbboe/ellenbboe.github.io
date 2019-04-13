@@ -378,6 +378,415 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.unblog.top/2018/08/19/ssh2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="兔子春">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/7.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Eden">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/19/ssh2/" itemprop="url">ssh教程(another)</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-19T10:20:20+08:00">
+                2018-08-19
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-09-05T18:01:17+08:00">
+                2018-09-05
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index">
+                    <span itemprop="name">linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1,978
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  12
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="ssh-another-page"><a href="#ssh-another-page" class="headerlink" title="ssh(another page)"></a>ssh(another page)</h2><h3 id="Public-and-Private-Keys"><a href="#Public-and-Private-Keys" class="headerlink" title="Public and Private Keys"></a>Public and Private Keys</h3><p>Public key authentication is more secure than password authentication. This is particularly important if the computer is visible on the internet. If you don’t think it’s important, try logging the login attempts you get for the next week. My computer - a perfectly ordinary desktop PC - had over 4,000 attempts to guess my password and almost 2,500 break-in attempts in the last week alone.</p>
+<p>With public key authentication, the authenticating entity has a public key and a private key. Each key is a large number with special mathematical properties. The private key is kept on the computer you log in <strong>from</strong>, while the public key is stored on the .ssh/authorized_keys file on all the computers you want to log in <strong>to</strong>. When you log in to a computer, <strong>the SSH server uses the public key to “lock” messages in a way that can only be “unlocked” by your private key</strong> - this means that even the most resourceful attacker can’t snoop(探听) on, or interfere(接入) with, your session. As an extra security measure, most SSH programs store the private key in a passphrase-protected format, so that if your computer is stolen or broken in to, you should have enough time to disable your old public key before they break the passphrase and start using your key. Wikipedia has a more detailed explanation of how keys work.</p>
+<p>Public key authentication is a much better solution than passwords for most people. In fact, if you don’t mind leaving a private key unprotected on your hard disk, you can even use keys to do secure automatic log-ins - as part of a network backup, for example. Different SSH programs generate public keys in different ways, but they all generate public keys in a similar format:<br><code>&lt;ssh-rsa or ssh-dss&gt; &lt;really long string of nonsense&gt; &lt;username&gt;@&lt;host&gt;</code></p>
+<h3 id="Key-Based-SSH-Logins"><a href="#Key-Based-SSH-Logins" class="headerlink" title="Key-Based SSH Logins"></a>Key-Based SSH Logins</h3><p>Key-based authentication is the most secure of several modes of authentication usable with OpenSSH, such as plain password and <code>Kerberos tickets</code>(一种安全方式). Key-based authentication has several advantages over password authentication, for example the key values are significantly more difficult to brute-force, or guess than plain passwords, provided an ample key length. Other authentication methods are only used in very specific situations.</p>
+<p>SSH can use <strong>either</strong> “RSA” (Rivest-Shamir-Adleman)(人名) <strong>or</strong> “DSA” (“Digital Signature Algorithm”) keys. Both of these were considered state-of-the-art(最先进的) algorithms when SSH was invented, but DSA has come to be seen as less secure in recent years. RSA is the only recommended choice for new keys, so this guide uses “RSA key” and “SSH key” interchangeably.</p>
+<p>Key-based authentication uses <strong>two keys</strong>, one “public” key that anyone is allowed to see, and another “private” key that only the owner is allowed to see. To securely communicate using key-based authentication, one needs to create a key pair, securely store the private key on the computer one wants to log in from, and store the public key on the computer one wants to log in to.</p>
+<p>Using key based logins with ssh is generally considered more secure than using plain password logins. This section of the guide will explain the process of generating a set of public/private RSA keys, and using them for logging into your Ubuntu computer(s) via OpenSSH.</p>
+<h3 id="Generating-RSA-Keys"><a href="#Generating-RSA-Keys" class="headerlink" title="Generating RSA Keys"></a>Generating RSA Keys</h3><p>The first step involves creating a set of RSA keys for use in authentication.</p>
+<p>This should be done on the client.</p>
+<p>To create your public and private SSH keys on the command-line:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mkdir ~/.ssh</span><br><span class="line">chmod 700 ~/.ssh</span><br><span class="line">ssh-keygen -t rsa</span><br></pre></td></tr></table></figure></p>
+<p>You will be prompted for a location to save the keys, and a passphrase for the keys. This passphrase will protect your private key while it’s stored on the hard drive:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Generating public/private rsa key pair.</span><br><span class="line">Enter file in which to save the key (/home/b/.ssh/id_rsa):</span><br><span class="line">Enter passphrase (empty for no passphrase):</span><br><span class="line">Enter same passphrase again:</span><br><span class="line">Your identification has been saved in /home/b/.ssh/id_rsa.</span><br><span class="line">Your public key has been saved in /home/b/.ssh/id_rsa.pub.</span><br><span class="line">Your public key is now available as .ssh/id_rsa.pub in your home folder.</span><br></pre></td></tr></table></figure></p>
+<p>Congratulations! You now have a set of keys. Now it’s time to make your systems allow you to login with them</p>
+<h3 id="Choosing-a-good-passphrase"><a href="#Choosing-a-good-passphrase" class="headerlink" title="Choosing a good passphrase"></a>Choosing a good passphrase</h3><p>You need to change all your locks if your RSA key is stolen. Otherwise the thief could impersonate(扮演) you wherever you authenticate with that key.</p>
+<p>An SSH key passphrase is a secondary form of security that gives you a little time when your keys are stolen. If your RSA key has a strong passphrase, it might take your attacker a few hours to guess by brute force. That extra time should be enough to log in to any computers you have an account on, delete your old key from the .ssh/authorized_keys file, and add a new key.</p>
+<p>Your SSH key passphrase is only used to protect your private key from thieves. It’s never transmitted over the Internet, and <strong>the strength of your key has nothing to do with the strength of your passphrase.</strong></p>
+<p>The decision to protect your key with a passphrase involves convenience x security. Note that if you protect your key with a passphrase, then when you type the passphrase to unlock it, your local computer will generally leave the key unlocked for a time. So if you use the key multiple times without logging out of your local account in the meantime, you will probably only have to type the passphrase once.</p>
+<p>If you do adopt a passphrase, pick a strong one and store it securely in a password manager. You may also write it down on a piece of paper and keep it in a secure place. If you choose not to protect the key with a passphrase, then just press the return when ssh-keygen asks.</p>
+<h3 id="Key-Encryption-Level"><a href="#Key-Encryption-Level" class="headerlink" title="Key Encryption Level"></a>Key Encryption Level</h3><p>Note: The default is a 2048 bit key. You can increase this to 4096 bits with the -b flag (Increasing the bits makes it harder to crack the key by brute force methods).<br><code>ssh-keygen -t rsa -b 4096</code></p>
+<h3 id="Password-Authentication"><a href="#Password-Authentication" class="headerlink" title="Password Authentication"></a>Password Authentication</h3><p>The main problem with public key authentication is that you need a secure way of getting the public key onto a computer before you can log in with it. If you will only ever use an SSH key to log in to your own computer from a few other computers (such as logging in to your PC from your laptop), you should copy your SSH keys over on a memory stick, and disable password authentication altogether. If you would like to log in from other computers from time to time (such as a friend’s PC), make sure you have a strong password.</p>
+<h3 id="Transfer-Client-Key-to-Host"><a href="#Transfer-Client-Key-to-Host" class="headerlink" title="Transfer Client Key to Host"></a>Transfer Client Key to Host</h3><p>The key you need to transfer to the host is the public one. If you can log in to a computer over SSH using a password, you can transfer your RSA key by doing the following from your own computer:<br><code>ssh-copy-id &lt;username&gt;@&lt;host&gt;</code><br>Where <code>&lt;username&gt;</code> and <code>&lt;host&gt;</code> should be replaced by your username and the name of the computer you’re transferring your key to.</p>
+<p>(i) Due to this bug, you cannot specify a port other than the standard port 22. You can work around this by issuing the command like this: <code>ssh-copy-id &quot;&lt;username&gt;@&lt;host&gt; -p &lt;port_nr&gt;&quot;</code>. If you are using the standard port 22, you can ignore this tip.</p>
+<p>Another alternative is to copy the public key file to the server and concatenate it onto the authorized_keys file manually. It is wise to back that up first:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cp authorized_keys authorized_keys_Backup</span><br><span class="line">cat id_rsa.pub &gt;&gt; authorized_keys</span><br></pre></td></tr></table></figure></p>
+<p>You can make sure this worked by doing:<br><code>ssh &lt;username&gt;@&lt;host&gt;</code><br>You should be prompted for the passphrase for your key:<br>Enter passphrase for key ‘/home/<user>/.ssh/id_rsa’:<br>Enter your passphrase, and provided host is configured to allow key-based logins, you should then be logged in as usual.</user></p>
+<h3 id="Troubleshooting"><a href="#Troubleshooting" class="headerlink" title="Troubleshooting"></a>Troubleshooting</h3><h4 id="Encrypted-Home-Directory"><a href="#Encrypted-Home-Directory" class="headerlink" title="Encrypted Home Directory"></a>Encrypted Home Directory</h4><p>If you have an encrypted home directory, SSH cannot access your authorized_keys file because it is inside your encrypted home directory and won’t be available until after you are authenticated. Therefore, SSH will default to password authentication.</p>
+<p>To solve this, create a folder outside your home named <code>/etc/ssh/&lt;username&gt;</code> (replace <code>&quot;&lt;username&gt;&quot;</code> with your actual username). This directory should have <code>755</code> permissions and be owned by the user. Move the authorized_keys file into it. The authorized_keys file should have <code>644</code> permissions and be owned by the user.<br>Then edit your /etc/ssh/sshd_config and add:<br><code>AuthorizedKeysFile    /etc/ssh/%u/authorized_keys</code><br>Finally, restart ssh with:<br><code>sudo service ssh restart</code><br>The next time you connect with SSH you should not have to enter your password.</p>
+<h4 id="username-host’s-password"><a href="#username-host’s-password" class="headerlink" title="username@host’s password:"></a>username@host’s password:</h4><p>If you are not prompted for the passphrase, and instead get just the<br><code>username@host&#39;s password:</code><br>prompt as usual with password logins, then read on. There are a few things which could prevent this from working as easily as demonstrated above. On default Ubuntu installs however, the above examples should work. If not, then check the following condition, as it is the most frequent cause:</p>
+<p>On the host computer, ensure that the <code>/etc/ssh/sshd_config</code> contains the following lines, and that they are uncommented;<br><code>PubkeyAuthentication yes</code><br><code>RSAAuthentication yes</code><br>If not, add them, or uncomment them, restart OpenSSH, and try logging in again. If you get the passphrase prompt now, then congratulations, you’re logging in with a key!</p>
+<h4 id="Permission-denied-publickey"><a href="#Permission-denied-publickey" class="headerlink" title="Permission denied (publickey)"></a>Permission denied (publickey)</h4><p>If you’re sure you’ve correctly configured sshd_config, copied your ID, and have your private key in the .ssh directory, and still getting this error:<br><code>Permission denied (publickey).</code><br>Chances are, your <code>/home/&lt;user&gt;</code> or <code>~/.ssh/authorized_keys</code> permissions are <strong>too</strong> open by OpenSSH standards. You can get rid of this problem by issuing the following commands:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">chmod go-w ~/</span><br><span class="line">chmod 700 ~/.ssh</span><br><span class="line">chmod 600 ~/.ssh/authorized_keys</span><br></pre></td></tr></table></figure>
+<h4 id="Error-Agent-admitted-failure-to-sign-using-the-key"><a href="#Error-Agent-admitted-failure-to-sign-using-the-key" class="headerlink" title="Error: Agent admitted failure to sign using the key."></a>Error: Agent admitted failure to sign using the key.</h4><p>This error occurs when the ssh-agent on the client is not yet managing the key. Issue the following commands to fix:<br><code>ssh-add</code><br><strong>This command should be entered after you have copied your public key to the host computer</strong>.</p>
+<h4 id="Debugging-and-sorting-out-further-problems"><a href="#Debugging-and-sorting-out-further-problems" class="headerlink" title="Debugging and sorting out further problems"></a>Debugging and sorting out further problems</h4><p>The permissions of files and folders is crucial to this working. You can get debugging information from both the client and server.<br>if you think you have set it up correctly , yet still get asked for the password, try starting the server with debugging output to the terminal.<br><code>sudo /usr/sbin/sshd -d</code><br>To connect and send information to the client terminal<br><code>ssh -v ( or -vv) username@host&#39;s</code></p>
+<h3 id="Where-to-From-Here"><a href="#Where-to-From-Here" class="headerlink" title="Where to From Here?"></a>Where to From Here?</h3><p>No matter how your public key was generated, you can add it to your Ubuntu system by opening the file <code>.ssh/authorized_keys</code> in your favourite text editor and adding the key to the bottom of the file. You can also limit the SSH features that the key can use, such as disallowing port-forwarding or only allowing a specific command to be run. This is done by adding “options” before the SSH key, on the same line in the <code>authorized_keys</code> file. For example, if you maintain a CVS repository, you could add a line like this:<br><code>command=&quot;/usr/bin/cvs server&quot;,no-agent-forwarding,no-port-forwarding,no-X11-forwarding,no-user-rc ssh-dss &lt;string of nonsense&gt;...</code><br>When the user with the specified key logged in, the server would automatically run /usr/bin/cvs server, ignoring any requests from the client to run another command such as a shell. For more information, see the sshd man page. </p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.unblog.top/2018/08/18/ssh/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="兔子春">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/7.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Eden">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/18/ssh/" itemprop="url">ssh教程</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-18T10:19:39+08:00">
+                2018-08-18
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-09-05T18:01:30+08:00">
+                2018-09-05
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index">
+                    <span itemprop="name">linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  834
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  5
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="ssh"><a href="#ssh" class="headerlink" title="ssh"></a>ssh</h2><p>If you’re connecting to another computer over the Internet, you’ll probably want to keep your data safe. SSH is one way to help do that. To make it happen, you’ll need to set up SSH properly on your computer, and then create an encrypted(加密) connection to your server. Just remember, in order for the connection to be secure, both ends of the connection need to have SSH enabled. Follow this guide to make sure that your connection is as safe as possible.</p>
+<h3 id="Connecting-for-the-First-Time"><a href="#Connecting-for-the-First-Time" class="headerlink" title="Connecting for the First Time"></a>Connecting for the First Time</h3><h4 id="Install-SSH"><a href="#Install-SSH" class="headerlink" title="Install SSH."></a>Install SSH.</h4><p>For Windows, you will need to download and install an SSH client program. The most popular one is Cygwin, which is available for free from the developer’s website. Download and install it like you would any other program. Another popular free program is PuTTY.<br>During the Cygwin installation, you must choose to install OpenSSH from the Net section.<br>Linux and Mac OS X come with SSH already installed on the system. This is because SSH is a UNIX system, and Linux and OS X are derived from UNIX.<br>If you have Windows 10 with the Anniversary Update, you can install the Windows Subsystem for Linux which comes with SSH preinstalled.</p>
+<h4 id="Run-SSH"><a href="#Run-SSH" class="headerlink" title="Run SSH."></a>Run SSH.</h4><p>Open the terminal program that is installed by Cygwin, or Bash on Ubuntu on Windows for Windows 10, or open the Terminal in OS X or Linux. SSH uses the terminal interface to interact with other computers. There is no graphical interface for SSH, so you will need to get comfortable typing in commands.</p>
+<h4 id="Test-the-connection"><a href="#Test-the-connection" class="headerlink" title="Test the connection."></a>Test the connection.</h4><p>Before you dive into creating secure keys and moving files, you’ll want to test that SSH is properly configured on your computer as well as the system you are connecting to. Enter the following command, replacing <username> with your username on the remote computer, and <remote> with the address for the remote computer or server:<br><code>$ ssh &lt;username&gt;@&lt;remote&gt;</code><br>You will be asked for your password once the connection is established. You will not see the cursor move or any characters input when you type your password.<br>If this step fails, then either SSH is configured incorrectly on your computer or the remote computer is not accepting SSH connections.</remote></username></p>
+<h3 id="basic-commands-a-part"><a href="#basic-commands-a-part" class="headerlink" title="basic commands(a part)"></a>basic commands(a part)</h3><p>Copy files from your location to the remote computer. If you need to copy files from your local computer to the computer you are accessing remotely, you can use the scp command:<br><code>scp /localdirectory/example1.txt &lt;username&gt;@&lt;remote&gt;:&lt;path&gt;</code>will copy example1.txt to the <strong>specified <path></path> on the remote computer</strong>. You can leave <path></path> blank to copy to the root folder of the remote computer.<br><code>scp &lt;username&gt;@&lt;remote&gt;:/home/example1.txt ./</code> will move example1.txt from the home directory on the remote computer to the current directory on the local computer.</p>
+<h3 id="Creating-Encrypted-Keys"><a href="#Creating-Encrypted-Keys" class="headerlink" title="Creating Encrypted Keys"></a>Creating Encrypted Keys</h3><h4 id="Create-your-SSH-keys"><a href="#Create-your-SSH-keys" class="headerlink" title="Create your SSH keys."></a>Create your SSH keys.</h4><p>These keys will allow you to connect to the remote location <strong>without</strong> having to enter your password each time. This is a much more secure way to connect to the remote computer, as the password will not have to transmitted over the network.<br>Create the key folder on your computer by entering the command <code>$ mkdir .ssh</code><br>Create the public and private keys by using the command <code>$ ssh-keygen –t rsa</code><br>You will be asked if you would like to create a passphrase for the keys; this is optional. If you don’t want to create a passphrase, press Enter. This will create two keys in the .ssh directory: <code>id_rsa</code> and id_<code>rsa.pub</code><br>Change your private key’s permissions. In order to ensure that the private key is only <strong>readable</strong> by you, enter the command <code>$ chmod 600 .ssh/id_rsa</code></p>
+<h4 id="Place-the-public-key-on-the-remote-computer"><a href="#Place-the-public-key-on-the-remote-computer" class="headerlink" title="Place the public key on the remote computer."></a>Place the public key on the remote computer.</h4><p>Once your keys are created, you’re ready to place the public key on the remote computer so that you can connect without a password. Enter the following command, replacing the appropriate parts as explained earlier:<br><code>$ scp .ssh/id_rsa.pub &lt;username&gt;@&lt;remote&gt;:</code><br>Make sure to include the colon (:) at the end of the command.<br>You will be asked to input your password before the file transfer starts.</p>
+<h4 id="Install-the-public-key-on-the-remote-computer"><a href="#Install-the-public-key-on-the-remote-computer" class="headerlink" title="Install the public key on the remote computer."></a>Install the public key on the remote computer.</h4><p>Once you’ve placed the key on the remote computer, you will need to install it so that it works correctly. First, log in to the remote computer the same way.<br>Create an SSH folder on the remote computer, if it does not already exist: <code>$ mkdir .ssh</code><br>Append your key to the authorized keys file. If the file does not exist yet, it will be created: <code>$ cat id_rsa.pub &gt;&gt; .ssh/authorized_keys</code><br>Change the permissions for the SSH folder to allow access: <code>$ chmod 700 .ssh</code></p>
+<h4 id="Check-that-the-connection-works"><a href="#Check-that-the-connection-works" class="headerlink" title="Check that the connection works."></a>Check that the connection works.</h4><p>Once the key has been installed on the remote computer, you should be able to initiate a connection without being asked to enter your password. Enter the following command to test the connection: <code>$ ssh &lt;username&gt;@&lt;remote&gt;</code><br>If you connect without being prompted for the password, then the keys are configured correctly.</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://www.unblog.top/2018/08/18/2018-08-18/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -828,440 +1237,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.unblog.top/2018/08/17/2018-08-17/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="兔子春">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/7.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Eden">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/17/2018-08-17/" itemprop="url">2018-08-17</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-17T08:37:59+08:00">
-                2018-08-17
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2018-08-17T08:39:42+08:00">
-                2018-08-17
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/杂食动物/" itemprop="url" rel="index">
-                    <span itemprop="name">杂食动物</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  1,672
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  6
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="暴露真实IP会遭到DDos攻击"><a href="#暴露真实IP会遭到DDos攻击" class="headerlink" title="暴露真实IP会遭到DDos攻击"></a>暴露真实IP会遭到DDos攻击</h3><p>(DDoS:Distributed Denial of Service)分布式拒绝攻击</p>
-<p>Windows 用户“一般被默认授予管理员权限，那意味着他们几乎可以访问系统中的一切”。Linux，反而很好地限制了“root”权限</p>
-<p>macos “通过隐匿实现的安全”，这秉承了“让软件内部运作保持专有，从而不为人知是抵御攻击的最好方法”的理念</p>
-<p>Windows 的流行本身就是个问题，操作系统的安全性可能很大程度上依赖于装机用户量的规模。对于恶意软件作者来说，Windows 提供了大的施展平台。专注其中可以让他们的努力发挥最大作用。</p>
-<h3 id="手机IMEI码"><a href="#手机IMEI码" class="headerlink" title="手机IMEI码"></a>手机IMEI码</h3><p>在手机拨号处输入”*#06#”得到手机IMEI码,相当于手机的身份证号码,移动运营商通过IMEI码分辨用户设备，追踪用户地理位置，记录用户拨打电话、发送短信、上网等行为。(可怕)</p>
-<h3 id="python控制浏览器"><a href="#python控制浏览器" class="headerlink" title="python控制浏览器"></a>python控制浏览器</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">import webbrowser</span><br><span class="line">webbrowser.open(&apos;http://baidu.com&apos;)</span><br></pre></td></tr></table></figure>
-<h3 id="pychram-安装第三方库失败解决方法"><a href="#pychram-安装第三方库失败解决方法" class="headerlink" title="pychram 安装第三方库失败解决方法"></a>pychram 安装第三方库失败解决方法</h3><p><code>pip install -i https://pypi.tuna.tsinghua.edu.cn/simple some-package</code></p>
-<h3 id="ed2k"><a href="#ed2k" class="headerlink" title="ed2k"></a>ed2k</h3><p><code>ed2k</code>全称叫“<code>eDonkey2000 network</code>”(电驴???)，是一种文件共享网络，最初用于共享音乐、电影和软件。与多数文件共享网络一样，它是分布式的；<strong>文件基于P2P原理存放于用户的电脑上而不是存储于一个中枢服务器</strong>。</p>
-<p><code>eDonkey</code>客户端程序连接到这个网络来共享文件。而<code>eDonkey</code>服务器作为一个通讯中心，使用户在<code>ed2k</code>网络内查找文件。它的客户端和服务端可以工作于<code>Windows</code>、<code>Macintosh</code>(这是mac..汗颜)、<code>Linux</code>、<code>UNIX</code>操作系统。<strong>任何人</strong> 都可以作为服务器加入这个网络。由于服务器经常变化，客户端会经常更新它的服务器列表。<br><code>eDonkey</code>用混合MD4摘要算法检查来识别文件。<strong>这使ed2k网络可以将不同文件名的同一文件成功识别为一个文件，并使同一文件名的不同文件得以区分</strong>(厉害)。<code>eDonkeyd</code>的另一特性是：<strong>对大于9.8MB的文件，它在下载完成前将其分割；这将加速大型文件的发送</strong>。为了便于文件搜索，一些Web站点对比较热门的文件建立 ed2k链接 ，这些网站通常也提供热门服务器列表便于用户更新。</p>
-<h3 id="fork-boom"><a href="#fork-boom" class="headerlink" title="fork boom"></a>fork boom</h3><p>fork炸弹（fork bomb）在计算机领域中是一种利用系统调用fork（或其他等效的方式）进行的<strong>拒绝服务攻击</strong>。与病毒与蠕虫不同的是，fork炸弹<strong>没有传染性</strong>，而且fork炸弹会使对<strong>同时执行进程、程序数设限的系统无法执行新程序</strong>，<strong>对于不设限的系统则使之停止响应</strong>。<br>fork炸弹通过进程递归式派生(fork，亦即自我复制)，以使<strong>系统拒绝服务甚至崩溃</strong>。</p>
-<p>fork炸弹以极快的速度创建大量进程（进程数呈以2为底数的指数增长趋势），并以此<strong>消耗系统分配予进程的可用空间使进程表饱和</strong>，而系统在进程表饱和后就无法运行新程序，<strong>除非进程表中的某一进程终止</strong>；但由于fork炸弹程序所创建的所有实例都会不断探测空缺的进程槽并尝试取用以创建新进程，因而即使在某进程终止后也基本不可能运行新进程。fork炸弹生成的子程序在消耗进程表空间的同时也会占用CPU和内存，从而导致系统与现有进程运行速度放缓，响应时间也会随之大幅增加，以致于无法正常完成任务，从而使系统的正常运作受到严重影响。由于现代Unix操作系统普遍采用运用写实拷贝技术，fork炸弹通常不会使进程表饱和。<br>除了恶意触发fork炸弹破坏的情况外，软件开发中有时也会不慎在程序中嵌入fork炸弹，如在用于监听网络套接字并行使客户端-服务器结构系统中服务器端职责的应用程序中可能需要无限地进行循环（loop）与派生（fork）操作（类似下节示例程序所示），而在这种情况下源代码内的细微错误就可能在测试中“引爆”fork炸弹。<br>以下程序段就是由Jaromil所作的在类UNIX系统的shell环境下触发fork炸弹的shell脚本代码，总共只用了13个字符（包括空格）：<br><code>:(){ :|:&amp; };:</code><br>注解如下：</p>
-<blockquote>
-<p>:() # 定义函数,函数名为”:”,即每当输入”:”时就会自动调用{}内代码<br>{ # “:”函数开始标识<br>: # 用递归方式调用”:”函数本身<br>| # 并用管道(pipe)将其输出引至…<br>: # 另一次递归调用的”:”函数<br>综上,”:|:”表示的即是每次调用函数”:”的时候就会生成两份拷贝<br>&amp; # 调用间脱钩,以使最初的”:”函数被杀死后为其所调用的两个”:”函数还能继续执行<br>} # “:”函数结束标识<br>; # “:”函数定义结束后将要进行的操作…<br>: # 调用”:”函数,”引爆”fork炸弹<br>其中函数名“:”只是简化的一例，实际实现时可以随意设定，一个较易理解（将函数名替换为“forkbomb”）的版本如下：<br>forkbomb(){ forkbomb|forkbomb &amp;} ; forkbomb<br>(自身调用自身?….理解成死循环好了)</p>
-</blockquote>
-<p>Windows下则可以批处理命令如下实现：<br><code>%0|%0</code></p>
-<p>POSIX标准下的C与C++的实现：<br><code>#include &lt;unistd.h&gt;int main(){while(1) fork();return0;}</code></p>
-<p>Perl语言的实现：<br><code>fork while fork</code></p>
-<p>在系统中成功“引爆”fork炸弹后，我们可重启来使系统恢复正常运行；而若要以手动的方法使fork炸弹“熄火”，那前提就是必须杀死fork炸弹产生的所有进程。为此我们可以考虑使用程序来杀死fork炸弹产生的进程，但由于这一般需要创建新进程，且由于fork炸弹一直在探测与占用进程槽与内存空间，因而这一方法几乎不可能实现，而且用kill命令杀死进程后，释放出的进程槽又会被余下的fork炸弹线程所产生的新进程占用，<br>在Windows下，用户可以退出当前用户会话的方式使系统恢复正常，但此法奏效的前提是fork炸弹是在该用户的特定会话内触发的</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.unblog.top/2018/08/16/scrapy3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="兔子春">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/7.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Eden">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/16/scrapy3/" itemprop="url">Scrapy Pass 3</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-16T18:59:48+08:00">
-                2018-08-16
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2018-08-16T19:01:23+08:00">
-                2018-08-16
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/python/" itemprop="url" rel="index">
-                    <span itemprop="name">python</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  2,368
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  15
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="Learn-Scrapy-pass-3"><a href="#Learn-Scrapy-pass-3" class="headerlink" title="Learn Scrapy pass 3"></a>Learn Scrapy pass 3</h2><h3 id="接上文Extract-data"><a href="#接上文Extract-data" class="headerlink" title="接上文Extract data"></a>接上文Extract data</h3><h4 id="Extracting-quotes-and-authors"><a href="#Extracting-quotes-and-authors" class="headerlink" title="Extracting quotes and authors"></a>Extracting quotes and authors</h4><p>Now that you know a bit about <code>selection</code> and <code>extraction</code>, let’s complete our spider by writing the code to extract the quotes from the web page.</p>
-<p>Each quote in <code>http://quotes.toscrape.com</code>is represented by HTML elements that look like this:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;quote&quot;&gt;</span><br><span class="line">    &lt;span class=&quot;text&quot;&gt;“The world as we have created it is a process of our</span><br><span class="line">    thinking. It cannot be changed without changing our thinking.”&lt;/span&gt;</span><br><span class="line">    &lt;span&gt;</span><br><span class="line">        by &lt;small class=&quot;author&quot;&gt;Albert Einstein&lt;/small&gt;</span><br><span class="line">        &lt;a href=&quot;/author/Albert-Einstein&quot;&gt;(about)&lt;/a&gt;</span><br><span class="line">    &lt;/span&gt;</span><br><span class="line">    &lt;div class=&quot;tags&quot;&gt;</span><br><span class="line">        Tags:</span><br><span class="line">        &lt;a class=&quot;tag&quot; href=&quot;/tag/change/page/1/&quot;&gt;change&lt;/a&gt;</span><br><span class="line">        &lt;a class=&quot;tag&quot; href=&quot;/tag/deep-thoughts/page/1/&quot;&gt;deep-thoughts&lt;/a&gt;</span><br><span class="line">        &lt;a class=&quot;tag&quot; href=&quot;/tag/thinking/page/1/&quot;&gt;thinking&lt;/a&gt;</span><br><span class="line">        &lt;a class=&quot;tag&quot; href=&quot;/tag/world/page/1/&quot;&gt;world&lt;/a&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
-<p>Let’s open up scrapy shell and play a bit to find out how to extract the data we want:<br><code>$ scrapy shell &#39;http://quotes.toscrape.com&#39;</code><br>We get a <strong>list</strong> of selectors for the quote HTML elements with:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; response.css(&quot;div.quote&quot;)</span><br></pre></td></tr></table></figure></p>
-<p>Each of the selectors <strong>returned by the query</strong> above allows us to run further queries over their sub-elements. Let’s assign the first selector to a variable, so that we can run our CSS selectors directly on a particular quote:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; quote = response.css(&quot;div.quote&quot;)[0]</span><br></pre></td></tr></table></figure></p>
-<p>Now, let’s extract title, author and the tags from that quote using the quote object we just created:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; title = quote.css(&quot;span.text::text&quot;).extract_first()</span><br><span class="line">&gt;&gt;&gt; title</span><br><span class="line">&apos;“The world as we have created it is a process of our thinking. It cannot be changed without changing our thinking.”&apos;</span><br><span class="line">&gt;&gt;&gt; author = quote.css(&quot;small.author::text&quot;).extract_first()</span><br><span class="line">&gt;&gt;&gt; author</span><br><span class="line">&apos;Albert Einstein&apos;</span><br></pre></td></tr></table></figure></p>
-<p>Given that the tags are a <strong>list</strong> of strings, we can use the <code>.extract()</code> method to get all of them:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; tags = quote.css(&quot;div.tags a.tag::text&quot;).extract()</span><br><span class="line">&gt;&gt;&gt; tags</span><br><span class="line">[&apos;change&apos;, &apos;deep-thoughts&apos;, &apos;thinking&apos;, &apos;world&apos;]</span><br></pre></td></tr></table></figure></p>
-<p>Having figured out how to extract each bit, we can now iterate over all the quotes elements and put them together into a Python dictionary:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; for quote in response.css(&quot;div.quote&quot;):</span><br><span class="line">...     text = quote.css(&quot;span.text::text&quot;).extract_first()</span><br><span class="line">...     author = quote.css(&quot;small.author::text&quot;).extract_first()</span><br><span class="line">...     tags = quote.css(&quot;div.tags a.tag::text&quot;).extract()</span><br><span class="line">...     print(dict(text=text, author=author, tags=tags))</span><br><span class="line">&#123;&apos;tags&apos;: [&apos;change&apos;, &apos;deep-thoughts&apos;, &apos;thinking&apos;, &apos;world&apos;], &apos;author&apos;: &apos;Albert Einstein&apos;, &apos;text&apos;: &apos;“The world as we have created it is a process of our thinking. It cannot be changed without changing our thinking.”&apos;&#125;</span><br><span class="line">&#123;&apos;tags&apos;: [&apos;abilities&apos;, &apos;choices&apos;], &apos;author&apos;: &apos;J.K. Rowling&apos;, &apos;text&apos;: &apos;“It is our choices, Harry, that show what we truly are, far more than our abilities.”&apos;&#125;</span><br><span class="line">    ... a few more of these, omitted for brevity</span><br><span class="line">&gt;&gt;&gt;</span><br></pre></td></tr></table></figure></p>
-<h4 id="Extracting-data-in-our-spider"><a href="#Extracting-data-in-our-spider" class="headerlink" title="Extracting data in our spider"></a>Extracting data in our spider</h4><p>Let’s get back to our spider. Until now, it doesn’t extract any data in particular, just saves the whole HTML page to a local file <em>(额)</em> . Let’s integrate the extraction logic(逻辑) above into our spider.</p>
-<p>A Scrapy spider typically <strong>generates many dictionaries</strong> containing the data extracted from the page. To do that, we use the <strong>yield</strong> Python keyword in the callback, as you can see below:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">import scrapy</span><br><span class="line">class QuotesSpider(scrapy.Spider):</span><br><span class="line">    name = &quot;quotes&quot;</span><br><span class="line">    start_urls = [</span><br><span class="line">        &apos;http://quotes.toscrape.com/page/1/&apos;,</span><br><span class="line">        &apos;http://quotes.toscrape.com/page/2/&apos;,</span><br><span class="line">    ]</span><br><span class="line"></span><br><span class="line">    def parse(self, response):</span><br><span class="line">        for quote in response.css(&apos;div.quote&apos;):</span><br><span class="line">            yield &#123;</span><br><span class="line">                &apos;text&apos;: quote.css(&apos;span.text::text&apos;).extract_first(),</span><br><span class="line">                &apos;author&apos;: quote.css(&apos;small.author::text&apos;).extract_first(),</span><br><span class="line">                &apos;tags&apos;: quote.css(&apos;div.tags a.tag::text&apos;).extract(),</span><br><span class="line">            &#125;</span><br><span class="line">            (yield 不断调用,似乎不用储存)</span><br></pre></td></tr></table></figure></p>
-<p>If you run this spider, it will output the extracted data with the log:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">2016-09-19 18:57:19 [scrapy.core.scraper] DEBUG: Scraped from &lt;200 http://quotes.toscrape.com/page/1/&gt;</span><br><span class="line">&#123;&apos;tags&apos;: [&apos;life&apos;, &apos;love&apos;], &apos;author&apos;: &apos;André Gide&apos;, &apos;text&apos;: &apos;“It is better to be hated for what you are than to be loved for what you are not.”&apos;&#125;</span><br><span class="line">2016-09-19 18:57:19 [scrapy.core.scraper] DEBUG: Scraped from &lt;200 http://quotes.toscrape.com/page/1/&gt;</span><br><span class="line">&#123;&apos;tags&apos;: [&apos;edison&apos;, &apos;failure&apos;, &apos;inspirational&apos;, &apos;paraphrased&apos;], &apos;author&apos;: &apos;Thomas A. Edison&apos;, &apos;text&apos;: &quot;“I have not failed. I&apos;ve just found 10,000 ways that won&apos;t work.”&quot;&#125;</span><br></pre></td></tr></table></figure></p>
-<h4 id="Storing-the-scraped-data"><a href="#Storing-the-scraped-data" class="headerlink" title="Storing the scraped data"></a>Storing the scraped data</h4><p>The simplest way to store the scraped data is by using <strong>Feed exports</strong>, with the following command:<br><code>scrapy crawl quotes -o quotes.json</code></p>
-<p>That will generate an quotes.json file containing all scraped items, serialized in <code>JSON</code>.</p>
-<p>For historic reasons, Scrapy <strong>appends to</strong> a given file <strong>instead of overwriting</strong> its contents. If you run this command twice without removing the file before the second time, you’ll end up with a broken JSON file.<br><strong>(两次使用会损坏json文件)</strong><br>You can also use other formats, like JSON Lines:<br><code>scrapy crawl quotes -o quotes.jl</code></p>
-<blockquote>
-<p>The JSON Lines format is useful because it’s <strong>stream-like</strong>, <strong>you can easily append new records to it.</strong> It doesn’t have the same problem of JSON when you run twice. Also, <strong>as each record is a separate line</strong>, you can process big files without having to fit everything in memory, there are tools like JQ to help doing that at the command-line.</p>
-</blockquote>
-<p>In small projects (like the one in this tutorial), that should be enough. However, if you want to <strong>perform more complex things with the scraped items, you can write an Item Pipeline</strong>. A placeholder file for Item Pipelines has been set up for you when the project is created, in tutorial/pipelines.py.<strong>(预先创建好了pipelines文件)</strong> Though you <strong>don’t need to implement any item pipelines</strong> if you just want to store the scraped items.</p>
-<h4 id="Following-links"><a href="#Following-links" class="headerlink" title="Following links"></a>Following links</h4><p>Let’s say, instead of just scraping the stuff from the first two pages from <code>http://quotes.toscrape.com</code>, you want quotes from all the pages in the website.</p>
-<p>Now that you know how to extract data from pages, let’s see how to follow links from them.</p>
-<p>First thing is to extract the link to the page we want to follow. Examining our page, we can see there is a link to the next page with the following markup:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;ul class=&quot;pager&quot;&gt;</span><br><span class="line">    &lt;li class=&quot;next&quot;&gt;</span><br><span class="line">        &lt;a href=&quot;/page/2/&quot;&gt;Next &lt;span aria-hidden=&quot;true&quot;&gt;&amp;rarr;&lt;/span&gt;&lt;/a&gt;</span><br><span class="line">    &lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;</span><br></pre></td></tr></table></figure></p>
-<p>We can try extracting it in the shell:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; response.css(&apos;li.next a&apos;).extract_first()</span><br><span class="line">&apos;&lt;a href=&quot;/page/2/&quot;&gt;Next &lt;span aria-hidden=&quot;true&quot;&gt;→&lt;/span&gt;&lt;/a&gt;&apos;</span><br></pre></td></tr></table></figure></p>
-<p>This gets the anchor element, but we want the attribute href. For that, Scrapy supports a CSS extension that let’s you select the attribute contents, like this:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; response.css(&apos;li.next a::attr(href)&apos;).extract_first()</span><br><span class="line">&apos;/page/2/&apos;</span><br></pre></td></tr></table></figure></p>
-<p>Let’s see now our spider modified to recursively follow the link to the next page, extracting data from it:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">import scrapy</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class QuotesSpider(scrapy.Spider):</span><br><span class="line">    name = &quot;quotes&quot;</span><br><span class="line">    start_urls = [</span><br><span class="line">        &apos;http://quotes.toscrape.com/page/1/&apos;,</span><br><span class="line">    ]</span><br><span class="line"></span><br><span class="line">    def parse(self, response):</span><br><span class="line">        for quote in response.css(&apos;div.quote&apos;):</span><br><span class="line">            yield &#123;</span><br><span class="line">                &apos;text&apos;: quote.css(&apos;span.text::text&apos;).extract_first(),</span><br><span class="line">                &apos;author&apos;: quote.css(&apos;small.author::text&apos;).extract_first(),</span><br><span class="line">                &apos;tags&apos;: quote.css(&apos;div.tags a.tag::text&apos;).extract(),</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        next_page = response.css(&apos;li.next a::attr(href)&apos;).extract_first()</span><br><span class="line">        if next_page is not None:</span><br><span class="line">            next_page = response.urljoin(next_page)</span><br><span class="line">            yield scrapy.Request(next_page, callback=self.parse)</span><br></pre></td></tr></table></figure></p>
-<p>Now, after extracting the data, the parse() method looks for the link to the next page, builds a full absolute URL <strong>using the urljoin() method</strong> (since the links can be relative) and yields a new request to the next page, registering itself <strong>as callback</strong> to <strong>handle the data</strong> extraction for the next page and to keep the crawling going through all the pages.</p>
-<p>What you see here is Scrapy’s mechanism(机制) of following links: <strong>when you yield a Request in a callback method, Scrapy will schedule that request to be sent and register a callback method to be executed when that request finishes.</strong></p>
-<p>Using this, you can build complex crawlers that follow links according to rules you define, and extract different kinds of data depending on the page it’s visiting.</p>
-<p>In our example, it creates a sort of loop, following all the links to the next page until it doesn’t find one – handy for crawling blogs, forums and other sites with pagination.</p>
-<h4 id="A-shortcut-for-creating-Requests"><a href="#A-shortcut-for-creating-Requests" class="headerlink" title="A shortcut for creating Requests"></a>A shortcut for creating Requests</h4><p>As a shortcut for creating Request objects you can use response.follow:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">import scrapy</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class QuotesSpider(scrapy.Spider):</span><br><span class="line">    name = &quot;quotes&quot;</span><br><span class="line">    start_urls = [</span><br><span class="line">        &apos;http://quotes.toscrape.com/page/1/&apos;,</span><br><span class="line">    ]</span><br><span class="line"></span><br><span class="line">    def parse(self, response):</span><br><span class="line">        for quote in response.css(&apos;div.quote&apos;):</span><br><span class="line">            yield &#123;</span><br><span class="line">                &apos;text&apos;: quote.css(&apos;span.text::text&apos;).extract_first(),</span><br><span class="line">                &apos;author&apos;: quote.css(&apos;span small::text&apos;).extract_first(),</span><br><span class="line">                &apos;tags&apos;: quote.css(&apos;div.tags a.tag::text&apos;).extract(),</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        next_page = response.css(&apos;li.next a::attr(href)&apos;).extract_first()</span><br><span class="line">        if next_page is not None:</span><br><span class="line">            yield response.follow(next_page, callback=self.parse)</span><br></pre></td></tr></table></figure></p>
-<p>Unlike scrapy.Request, <strong>response.follow supports relative URLs directly - no need to call urljoin</strong>.(震惊,似乎挺厉害的) Note that response.follow just returns a Request instance; you still have to yield this Request.</p>
-<p>You can also pass a selector to response.follow instead of a string; this selector should extract necessary attributes:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">for href in response.css(&apos;li.next a::attr(href)&apos;):</span><br><span class="line">    yield response.follow(href, callback=self.parse)</span><br></pre></td></tr></table></figure></p>
-<p>For <a> elements there is a shortcut: response.follow uses their href attribute automatically. So the code can be shortened further:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">for a in response.css(&apos;li.next a&apos;):</span><br><span class="line">    yield response.follow(a, callback=self.parse)</span><br></pre></td></tr></table></figure></a></p>
-<p><strong>Note</strong><br><code>response.follow(response.css(&#39;li.next a&#39;))</code> is not valid because <code>response.css</code> returns a list-like object with selectors for all results, not a single selector. A for loop like in the example above, or <code>response.follow(response.css(&#39;li.next a&#39;)[0])</code> is fine.</p>
-<h4 id="More-examples-and-patterns"><a href="#More-examples-and-patterns" class="headerlink" title="More examples and patterns"></a>More examples and patterns</h4><p>Here is another spider that illustrates callbacks and following links, this time for scraping author information:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">import scrapy</span><br><span class="line">class AuthorSpider(scrapy.Spider):</span><br><span class="line">    name = &apos;author&apos;</span><br><span class="line">    start_urls = [&apos;http://quotes.toscrape.com/&apos;]</span><br><span class="line">    def parse(self, response):</span><br><span class="line">        # follow links to author pages</span><br><span class="line">        for href in response.css(&apos;.author + a::attr(href)&apos;):</span><br><span class="line">            yield response.follow(href, self.parse_author)</span><br><span class="line"></span><br><span class="line">        # follow pagination links</span><br><span class="line">        for href in response.css(&apos;li.next a::attr(href)&apos;):</span><br><span class="line">            yield response.follow(href, self.parse)</span><br><span class="line"></span><br><span class="line">    def parse_author(self, response):</span><br><span class="line">        def extract_with_css(query):</span><br><span class="line">            return response.css(query).extract_first().strip()</span><br><span class="line"></span><br><span class="line">        yield &#123;</span><br><span class="line">            &apos;name&apos;: extract_with_css(&apos;h3.author-title::text&apos;),</span><br><span class="line">            &apos;birthdate&apos;: extract_with_css(&apos;.author-born-date::text&apos;),</span><br><span class="line">            &apos;bio&apos;: extract_with_css(&apos;.author-description::text&apos;),</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure></p>
-<p>This spider will start from the main page, it will follow all the links to the authors pages calling the parse_author callback for each of them, and also the pagination links with the parse callback as we saw before.</p>
-<p>Here we’re passing callbacks to response.follow as positional arguments to make the code shorter; it also works for <code>scrapy.Request</code>.</p>
-<p>The parse_author callback <strong>defines a helper function</strong> to extract and cleanup the data from a CSS query and yields the Python dict with the author data.</p>
-<p>Another interesting thing this spider demonstrates(显示) is that, even if there are many quotes from the same author, we don’t need to worry about visiting the same author page multiple times. By default, Scrapy filters out duplicated requests to URLs already visited, avoiding the problem of hitting servers too much because of a programming mistake. This can be configured by the setting DUPEFILTER_CLASS.(不用担心死循环)</p>
-<p>Hopefully by now you have a good understanding of how to use the mechanism of following links and callbacks with Scrapy.</p>
-<p>As yet another example spider that leverages the mechanism of following links, check out the CrawlSpider class for a generic spider that implements a small rules engine that you can use to write your crawlers on top of it.(可以写自己的规则?是这个意思吧)<br>Also, a common pattern is to build an item with data from more than one page, using <a href="https://doc.scrapy.org/en/latest/topics/request-response.html#topics-request-response-ref-request-callback-arguments" target="_blank" rel="noopener">a trick to pass additional data to the callbacks</a>.</p>
-<h4 id="Using-spider-arguments"><a href="#Using-spider-arguments" class="headerlink" title="Using spider arguments"></a>Using spider arguments</h4><p>You can provide command line arguments to your spiders by using the -a option when running them:<br><code>scrapy crawl quotes -o quotes-humor.json -a tag=humor</code><br>(使用-a选项 添加attr)<br>These arguments are passed to the Spider’s __init__ method and become spider attributes by default.</p>
-<p>In this example, the value provided for the tag argument will be available via self.tag. You can use this to make your spider fetch only quotes with a specific tag, building the URL based on the argument:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">import scrapy</span><br><span class="line">class QuotesSpider(scrapy.Spider):</span><br><span class="line">    name = &quot;quotes&quot;</span><br><span class="line">    def start_requests(self):</span><br><span class="line">        url = &apos;http://quotes.toscrape.com/&apos;</span><br><span class="line">        tag = getattr(self, &apos;tag&apos;, None)</span><br><span class="line">        if tag is not None:</span><br><span class="line">            url = url + &apos;tag/&apos; + tag</span><br><span class="line">        yield scrapy.Request(url, self.parse)</span><br><span class="line"></span><br><span class="line">    def parse(self, response):</span><br><span class="line">        for quote in response.css(&apos;div.quote&apos;):</span><br><span class="line">            yield &#123;</span><br><span class="line">                &apos;text&apos;: quote.css(&apos;span.text::text&apos;).extract_first(),</span><br><span class="line">                &apos;author&apos;: quote.css(&apos;small.author::text&apos;).extract_first(),</span><br><span class="line">            &#125;(先处理得到的文本)</span><br><span class="line">        next_page = response.css(&apos;li.next a::attr(href)&apos;).extract_first()</span><br><span class="line">        (再去获取下一个page)</span><br><span class="line">        if next_page is not None:</span><br><span class="line">            yield response.follow(next_page, self.parse)</span><br></pre></td></tr></table></figure></p>
-<p>If you pass the <code>tag=humor</code> argument to this spider, you’ll notice that it will only visit URLs from the humor tag, such as <code>http://quotes.toscrape.com/tag/humor</code>.</p>
-<p>You can learn more about <a href="https://doc.scrapy.org/en/latest/topics/spiders.html#spiderargs" target="_blank" rel="noopener">handling spider arguments here</a>.</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/11/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><span class="page-number current">12</span><a class="page-number" href="/page/13/">13</a><span class="space">&hellip;</span><a class="page-number" href="/page/21/">21</a><a class="extend next" rel="next" href="/page/13/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/11/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><span class="page-number current">12</span><a class="page-number" href="/page/13/">13</a><span class="space">&hellip;</span><a class="page-number" href="/page/22/">22</a><a class="extend next" rel="next" href="/page/13/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1313,7 +1293,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">84</span>
+                  <span class="site-state-item-count">86</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1402,7 +1382,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">100.5k</span>
+    <span title="Site words total count">111.1k</span>
   
 </div>
 
