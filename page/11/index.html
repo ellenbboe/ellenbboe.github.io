@@ -378,6 +378,367 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.unblog.top/2018/08/26/git2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="兔子春">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/7.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Eden">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/26/git2/" itemprop="url">git学习</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-26T15:19:35+08:00">
+                2018-08-26
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-09-05T18:05:42+08:00">
+                2018-09-05
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index">
+                    <span itemprop="name">linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  8,542
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  53
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="git-教程"><a href="#git-教程" class="headerlink" title="git 教程"></a>git 教程</h2><h3 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h3><p>Git is currently the most widely used version control system in the world, mostly thanks to GitHub.(感谢github) By that measure, I’d argue that it’s also the most misunderstood version control system in the world.</p>
+<p>This statement probably doesn’t ring true straight away because on the surface, Git is pretty simple. It’s really easy to pick up if you’ve come from another VCS like Subversion or Mercurial. It’s even relatively easy to pick up if you’ve never used a VCS before. Everybody understands adding, committing, pushing and pulling; but this is about as far as Git’s simplicity goes. Past this point, Git is shrouded by fear, uncertainty and doubt.</p>
+<p>Once you start talking about branching, merging, rebasing, multiple remotes, remote-tracking branches, detached HEAD states… Git becomes less of an easily-understood tool and more of a feared deity. Anybody who talks about no-fast-forward merges is regarded with quiet superstition, and even veteran hackers would rather stay away from rebasing “just to be safe”.</p>
+<p>I think a big part of this is due to many people coming to Git from a conceptually simpler VCS – probably Subversion – and trying to apply their past knowledge to Git. It’s easy to understand why people want to do this. Subversion is simple, right? It’s just files and folders. Commits are numbered sequentially. Even branching and tagging is simple – it’s just like taking a backup of a folder.</p>
+<p>Basically, Subversion fits in nicely with our existing computing paradigms. Everybody understands files and folders. Everybody knows that revision #10 was the one after #9 and before #11. But these paradigms break down when you try to apply them to Git.</p>
+<p>That’s why trying to understand Git in this way is wrong. Git doesn’t work like Subversion at all. Which can be pretty confusing. You can add and remove files. You can commit your changes. You can generate diffs and patches which look just like the ones that Subversion generates. So how can something which appears so similar really be so different?</p>
+<p>Complex systems like Git become much easier to understand once you figure out how they really work. The goal of this guide is to shed some light on how Git works under the hood. We’re going to take a look at some of Git’s core concepts including its basic object storage, how commits work, how branches and tags work, and we’ll look at the different kinds of merging in Git including the much-feared rebase. Hopefully at the end of it all, you’ll have a solid understanding of these concepts and will be able to use some of Git’s more advanced features with confidence.</p>
+<p>It’s worth noting at this point that this guide is not intended to be a beginner’s introduction to Git. This guide was written for people who already use Git, but would like to better understand it by taking a peek under the hood, and learn a few neat tricks along the way. With that said, let’s begin.</p>
+<h3 id="Repositories"><a href="#Repositories" class="headerlink" title="Repositories"></a>Repositories</h3><p>At the core of Git, like other VCS, is the repository. A Git repository is really just a simple key-value data store. This is where Git stores, among other things:<br><strong>Blobs</strong>, which are the most basic data type in Git. Essentially, a blob is just a bunch of bytes; usually a binary representation of a file.<br><strong>Tree objects</strong>, which are a bit like directories. Tree objects can contain pointers to blobs and other tree objects.<br><strong>Commit objects</strong>, which point to a single tree object, and contain some metadata including the commit author and any parent commits.<br><strong>Tag objects</strong>, which point to a single commit object, and contain some metadata.<br><strong>References</strong>, which are pointers to a single object (usually a commit or tag object).<br>You don’t need to worry about all of this just yet; we’ll cover these things in more detail later.</p>
+<p>The important thing to remember about a Git repository is that it exists entirely in a single .git directory in your project root. There is no central repository like in Subversion or CVS. This is what allows Git to be a distributed version control system – everybody has their own self-contained version of a repository.</p>
+<p>You can initialize a Git repository anywhere with the git init command. Take a look inside the .git folder to get a glimpse of what a repository looks like.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$ git init</span><br><span class="line">Initialized empty Git repository in /home/demo/demo-repository/.git/</span><br><span class="line">$ ls -l .git</span><br><span class="line">total 32</span><br><span class="line">drwxrwxr-x 2 demo demo 4096 May 24 20:10 branches</span><br><span class="line">-rw-rw-r-- 1 demo demo 92 May 24 20:10 config</span><br><span class="line">-rw-rw-r-- 1 demo demo 73 May 24 20:10 description</span><br><span class="line">-rw-rw-r-- 1 demo demo 23 May 24 20:10 HEAD</span><br><span class="line">drwxrwxr-x 2 demo demo 4096 May 24 20:10 hooks</span><br><span class="line">drwxrwxr-x 2 demo demo 4096 May 24 20:10 info</span><br><span class="line">drwxrwxr-x 4 demo demo 4096 May 24 20:10 objects</span><br><span class="line">drwxrwxr-x 4 demo demo 4096 May 24 20:10 refs</span><br></pre></td></tr></table></figure></p>
+<p>The important directories are .git/objects, where Git stores all of its objects; and .git/refs, where Git stores all of its references(标记).</p>
+<p>We’ll see how all of this fits together as we learn about the rest of Git. For now, let’s learn a little bit more about tree objects.</p>
+<h3 id="Tree-Objects"><a href="#Tree-Objects" class="headerlink" title="Tree Objects"></a>Tree Objects</h3><p>A tree object in Git can be thought of as a directory. It contains a list of blobs (<strong>files</strong>) and other tree objects (<strong>sub-directories</strong>).</p>
+<p>Imagine we had a simple repository, with a README file and a src/ directory containing a hello.c file.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">README</span><br><span class="line">src/</span><br><span class="line">    hello.c</span><br></pre></td></tr></table></figure></p>
+<p>This would be represented by two tree objects: one for the root directory, and another for the src/ directory. Here’s what they would look like.</p>
+<p><strong>tree 4da454..</strong><br>blob|976165..    |README<br>tree|    81fc8b..|    src<br><strong>tree 81fc8b..</strong><br>blob|    1febef..|    hello.c</p>
+<p>Notice how given the root tree object, we can recurse through every tree object to figure out the state of the entire working tree. The root tree object, therefore, is essentially a snapshot of your repository at a given time. Usually when Git refers to “the tree”, it is referring to the root tree object.</p>
+<p>Now let’s learn how you can track the history of your repository with commit objects.<br>(Tree 是文件夹 ,blob 是文件)</p>
+<h3 id="Commits"><a href="#Commits" class="headerlink" title="Commits"></a>Commits</h3><p>A commit object is essentially(本质上) a pointer that contains a few pieces of important metadata. The commit itself has a hash, which is built from a combination of the metadata that it contains:<br>(每一次提交会有一个hash,这个hash是由所包含的内容决定的,包含以下内容)</p>
+<ol>
+<li><strong>The hash of the tree (the root tree object) at the time of the commit.</strong> As we learned in Tree Objects, this means that with a single commit, Git can build the entire working tree by recursing into the tree.(每一次简单的提交git都会递归的扫描整个tree去建立tree)</li>
+<li><strong>The hash of any parent commits</strong>. This is what gives a repository its history: every commit has a parent commit, all the way back to the very first commit.</li>
+<li><strong>The author’s name and email address, and the time that the changes were authored.</strong></li>
+<li><strong>The committer’s name and email address, and the time that the commit was made.</strong></li>
+<li><strong>The commit message.</strong><br>Let’s see a commit object in action by creating a simple repository.<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ git init</span><br><span class="line">Initialized empty Git repository in /home/demo/simple-repository/.git/</span><br><span class="line">$ echo &apos;This is the readme.&apos; &gt; README</span><br><span class="line">$ git add README</span><br><span class="line">$ git commit -m &quot;First commit&quot;</span><br><span class="line">[master (root-commit) d409ca7] First commit</span><br><span class="line">1 file changed, 1 insertion(+)</span><br><span class="line">create mode 100644 README</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>When you create a commit, Git will give you <strong>the hash of that commit</strong>. Using git show with the <code>--format=raw</code> flag, we can see this newly-created commit’s metadata.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">$ git show --format=raw d409ca7</span><br><span class="line"></span><br><span class="line">commit d409ca76bc919d9ca797f39ae724b7c65700fd27</span><br><span class="line">tree 9d073fcdfaf07a39631ef94bcb3b8268bc2106b1</span><br><span class="line">author Joseph Wynn &lt;joseph@wildlyinaccurate.com&gt; 1400976134 -0400</span><br><span class="line">committer Joseph Wynn &lt;joseph@wildlyinaccurate.com&gt; 1400976134 -0400</span><br><span class="line"></span><br><span class="line">    First commit</span><br><span class="line"></span><br><span class="line">diff --git a/README b/README</span><br><span class="line">new file mode 100644</span><br><span class="line">index 0000000..9761654</span><br><span class="line">--- /dev/null</span><br><span class="line">+++ b/README</span><br><span class="line">@@ -0,0 +1 @@</span><br><span class="line">+This is the readme.</span><br></pre></td></tr></table></figure>
+<p>Notice how although we referenced the commit by the partial hash d409ca7, Git was able to figure out that we actually meant d409ca76bc919d9ca797f39ae724b7c65700fd27. This is because the hashes that Git assigns to objects are unique enough to be identified by the first few characters. You can see here that Git is able to find this commit with as few as four characters; after which point Git will tell you that the reference is ambiguous.<br>(git 可以通过commit的hash的部分字母就可以将commit给你列出来,如果不足,他会提醒你这是模糊的)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ git show d409c</span><br><span class="line">$ git show d409</span><br><span class="line">$ git show d40</span><br><span class="line">fatal: ambiguous argument &apos;d40&apos;: unknown revision or path not in the working tree.</span><br></pre></td></tr></table></figure></p>
+<h3 id="References"><a href="#References" class="headerlink" title="References"></a>References</h3><p>In previous sections, we saw how objects in Git are identified by a hash. Since we want to manipulate objects quite often in Git, it’s important to know their hashes. You could run all your Git commands referencing each object’s hash, like git show d409ca7, but that would require you to remember the hash of every object you want to manipulate.</p>
+<p>To save you from having to memorize these hashes, Git has references, or “refs”. A reference is simply a file stored somewhere in .git/refs, containing the hash of a commit object.</p>
+<p>To carry on the example from Commits, let’s figure out the hash of “First commit” using references only.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git status</span><br><span class="line">On branch master</span><br><span class="line">nothing to commit, working directory clean</span><br></pre></td></tr></table></figure></p>
+<p><code>git status</code>has told us that we are on branch <code>master</code>. As we will learn in a later section, branches are just references. We can see this by looking in <code>.git/refs/heads</code>.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ ls -l .git/refs/heads/</span><br><span class="line">total 4</span><br><span class="line">-rw-rw-r-- 1 demo demo 41 May 24 20:02 master</span><br></pre></td></tr></table></figure></p>
+<p>We can easily see which commit <code>master</code> points to by reading the file.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ cat .git/refs/heads/master</span><br><span class="line">d409ca76bc919d9ca797f39ae724b7c65700fd27</span><br></pre></td></tr></table></figure></p>
+<p>Sure enough, <code>master</code> contains the hash of the “First commit” object.</p>
+<p>Of course, it’s possible to simplify this process. Git can tell us which commit a reference is pointing to with the <code>show</code> and <code>rev-parse</code> commands.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ git show --oneline master</span><br><span class="line">d409ca7 First commit</span><br><span class="line">$ git rev-parse master</span><br><span class="line">d409ca76bc919d9ca797f39ae724b7c65700fd27</span><br></pre></td></tr></table></figure></p>
+<p>Git also has a special reference, <code>HEAD</code>. This is a “symbolic” reference which points to the tip of the current branch rather than an actual commit. If we inspect <code>HEAD</code>, we see that it simply points to <code>refs/head/master</code>.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ cat .git/HEAD</span><br><span class="line">ref: refs/heads/master</span><br></pre></td></tr></table></figure></p>
+<p>It is actually possible for <code>HEAD</code> to point directly to a commit object. When this happens, Git will tell you that you are in a “detached HEAD state”. We’ll talk a bit more about this later, but really all this means is that you’re not currently on a branch.(你不是在branch上)</p>
+<h3 id="Branches"><a href="#Branches" class="headerlink" title="Branches"></a>Branches</h3><p>Git’s branches are often touted as being one of its strongest features. This is because branches in Git are very lightweight, compared to other VCS where a branch is usually a clone of the entire repository.</p>
+<p>The reason branches are so lightweight in Git is because they’re just references. We saw in References that the master branch was simply a file inside .git/refs/heads. Let’s create another branch to see what happens under the hood.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git branch test-branch</span><br><span class="line">$ cat .git/refs/heads/test-branch</span><br><span class="line">d409ca76bc919d9ca797f39ae724b7c65700fd27</span><br></pre></td></tr></table></figure></p>
+<p>It’s as simple as that. Git has created a new <strong>entry</strong> in <code>.git/refs/heads</code> and pointed it at the current commit.</p>
+<p>We also saw in References that <strong>HEAD</strong> is Git’s reference to the current branch. Let’s see that in action by switching to our newly-created branch.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ cat .git/HEAD(0当前branch)</span><br><span class="line">ref: refs/heads/master</span><br><span class="line">$ git checkout test-branch</span><br><span class="line">Switched to branch &apos;test-branch&apos;</span><br><span class="line">$ cat .git/HEAD</span><br><span class="line">ref: refs/heads/test-branch</span><br></pre></td></tr></table></figure></p>
+<p>When you create a new commit, Git simply changes the current branch to point to the newly-created commit object.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ echo &apos;Some more information here.&apos; &gt;&gt; README</span><br><span class="line">$ git add README</span><br><span class="line">$ git commit -m &quot;Update README in a new branch&quot;</span><br><span class="line">[test-branch 7604067] Update README in a new branch</span><br><span class="line"> 1 file changed, 1 insertion(+)</span><br><span class="line">$ cat .git/refs/heads/test-branch</span><br><span class="line">76040677d717fd090e327681064ac6af9f0083fb</span><br></pre></td></tr></table></figure></p>
+<p>Later on we’ll look at the difference between local branches and remote-tracking branches.</p>
+<p>Before we look at how tags work, let’s switch back to the master branch.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout master</span><br><span class="line">Switched to branch &apos;master&apos;</span><br></pre></td></tr></table></figure></p>
+<h3 id="Tags"><a href="#Tags" class="headerlink" title="Tags"></a>Tags</h3><p>There are two types of tags in Git – lightweight tags and annotated tags.</p>
+<p>On the surface, these two types of tags look very similar. Both of them are references stored in .git/refs/tags. However, that’s about as far as the similarities go. Let’s create a lightweight tag to see how they work.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git tag 1.0-lightweight</span><br><span class="line">$ cat .git/refs/tags/1.0-lightweight</span><br><span class="line">d409ca76bc919d9ca797f39ae724b7c65700fd27</span><br></pre></td></tr></table></figure></p>
+<p>We can see that Git has created a tag reference which points to <strong>the current commit</strong>(指向当前的提交). By default, git tag will create a lightweight tag. <strong>Note that this is not a tag object</strong>. We can verify this by using <code>git cat-file</code> to inspect(检查) the tag.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$ git cat-file -p 1.0-lightweight</span><br><span class="line">tree 9d073fcdfaf07a39631ef94bcb3b8268bc2106b1</span><br><span class="line">author Joseph Wynn &lt;joseph@wildlyinaccurate.com&gt; 1400976134 -0400</span><br><span class="line">committer Joseph Wynn &lt;joseph@wildlyinaccurate.com&gt; 1400976134 -0400</span><br><span class="line"></span><br><span class="line">First commit</span><br><span class="line">$ git cat-file -p d409ca7</span><br><span class="line">tree 9d073fcdfaf07a39631ef94bcb3b8268bc2106b1</span><br><span class="line">author Joseph Wynn &lt;joseph@wildlyinaccurate.com&gt; 1400976134 -0400</span><br><span class="line">committer Joseph Wynn &lt;joseph@wildlyinaccurate.com&gt; 1400976134 -0400</span><br><span class="line"></span><br><span class="line">First commit</span><br></pre></td></tr></table></figure></p>
+<p>You can see that as far as Git is concerned, the 1.0-lightweight tag and the d409ca7 commit are the same object. That’s because the lightweight tag is <strong>only a reference to the commit object</strong>.</p>
+<p>Let’s compare this to an annotated tag.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git tag -a -m &quot;Tagged 1.0&quot; 1.0</span><br><span class="line">$ cat .git/refs/tags/1.0</span><br><span class="line">10589beae63c6e111e99a0cd631c28479e2d11bf</span><br></pre></td></tr></table></figure></p>
+<p>We’ve passed the <code>-a</code> (<code>--annotate</code>) flag to git tag to create an annotated tag. Notice how Git creates a reference for the tag just like the lightweight tag, <strong>but this reference is not pointing to the same object as the lightweight tag</strong>. Let’s use git cat-file again to inspect the object.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ git cat-file -p 1.0</span><br><span class="line">object d409ca76bc919d9ca797f39ae724b7c65700fd27</span><br><span class="line">type commit</span><br><span class="line">tag 1.0</span><br><span class="line">tagger Joseph Wynn &lt;joseph@wildlyinaccurate.com&gt; 1401029229 -0400</span><br><span class="line"></span><br><span class="line">Tagged 1.0</span><br></pre></td></tr></table></figure></p>
+<p>This is <strong>a tag object</strong>, separate to the commit that it points to. As well as containing a pointer to a commit, tag objects also store a tag message and information about the tagger. Tag objects can also be signed with a GPG key to prevent commit or email spoofing.</p>
+<p>Aside from being GPG-signable, there are a few reasons why annotated tags are preferred over lightweight tags.</p>
+<p>Probably the most important reason is that annotated tags have their own author information. This can be helpful when you want to know who created the tag, rather than who created the commit that the tag is referring to.</p>
+<p>Annotated tags are also timestamped. Since new versions are usually tagged right before they are released, an annotated tag can tell you when a version was released rather than just when the final commit was made.(annotated tags 比light-weight tags更优先是由于他信息更详细,使项目更容易控制)</p>
+<h3 id="Merging"><a href="#Merging" class="headerlink" title="Merging"></a>Merging</h3><p>Merging in Git is the process of joining two histories (usually branches) together. Let’s start with a simple example. Say you’ve created a new feature branch from master, and done some work on it.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout -b feature-branch</span><br><span class="line">Switched to a new branch &apos;feature-branch&apos;</span><br><span class="line">$ vim feature.html</span><br><span class="line">$ git commit -am &quot;Finished the new feature&quot;</span><br><span class="line">[feature-branch 0c21359] Finished the new feature</span><br><span class="line"> 1 file changed, 1 insertion(+)</span><br></pre></td></tr></table></figure></p>
+<p>At the same time, you need to fix an urgent bug. So you create a hotfix branch from master, and do some work in there.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout master</span><br><span class="line">Switched to branch &apos;master&apos;</span><br><span class="line">$ git checkout -b hotfix</span><br><span class="line">Switched to a new branch &apos;hotfix&apos;</span><br><span class="line">$ vim index.html</span><br><span class="line">$ git commit -am &quot;Fixed some wording&quot;</span><br><span class="line">[hotfix 40837f1] Fixed some wording</span><br><span class="line"> 1 file changed, 1 insertion(+), 1 deletion(-)</span><br></pre></td></tr></table></figure></p>
+<p>Now you want to bring the bug fix into master so that you can tag it and release it.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout master</span><br><span class="line">Switched to branch &apos;master&apos;</span><br><span class="line">$ git merge hotfix</span><br><span class="line">Updating d939a3a..40837f1</span><br><span class="line">Fast-forward</span><br><span class="line"> index.html | 2 +-</span><br><span class="line"> 1 file changed, 1 insertion(+), 1 deletion(-)</span><br></pre></td></tr></table></figure></p>
+<p>Notice how Git mentions fast-forward during the merge. What this means is that all of the commits in hotfix were directly upstream from master. This allows Git to simply move the master pointer up the tree to hotfix.<br>Now let’s try and merge feature-branch into master.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ git merge feature-branch</span><br><span class="line">Merge made by the &apos;recursive&apos; strategy.</span><br><span class="line"> feature.html | 1 +</span><br><span class="line"> 1 file changed, 1 insertion(+)</span><br></pre></td></tr></table></figure></p>
+<p>This time, Git wasn’t able to perform a fast-forward. This is because feature-branch isn’t directly upstream from master. This is clear on the graph above, where master is at commit D which is in a different history tree to feature-branch at commit C.</p>
+<p>So how did Git handle this merge? Taking a look at the log, we see that Git has actually created a new ”merge” commit, as well as bringing the commit from feature-branch.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ git log --oneline</span><br><span class="line">8ad0923 Merge branch &apos;feature-branch&apos;</span><br><span class="line">0c21359 Finished the new feature</span><br><span class="line">40837f1 Fixed some wording</span><br><span class="line">d939a3a Initial commit</span><br></pre></td></tr></table></figure></p>
+<p>Upon closer inspection, we can see that this is a special kind of commit object – it has two parent commits. This is referred to as a merge commit.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$ git show --format=raw 8ad0923</span><br><span class="line"></span><br><span class="line">commit 8ad09238b0dff99e8a99c84d68161ebeebbfc714</span><br><span class="line">tree e5ee97c8f9a4173f07aa4c46cb7f26b7a9ff7a17</span><br><span class="line">parent 40837f14b8122ac6b37c0919743b1fd429b3bbab</span><br><span class="line">parent 0c21359730915c7888c6144aa8e9063345330f1f</span><br><span class="line">author Joseph Wynn &lt;joseph@wildlyinaccurate.com&gt; 1401134489 +0100</span><br><span class="line">committer Joseph Wynn &lt;joseph@wildlyinaccurate.com&gt; 1401134489 +0100</span><br><span class="line"></span><br><span class="line"> Merge branch &apos;feature-branch&apos;</span><br></pre></td></tr></table></figure></p>
+<p>This means that our history graph now looks something like this (commit E is the new merge commit).</p>
+<p>Some people believe that this sort of history graph is undesirable. In the Rebasing (Continued) section, we’ll learn how to prevent non-fast-forward merges by rebasing feature branches before merging them with master.</p>
+<h3 id="Rebasing"><a href="#Rebasing" class="headerlink" title="Rebasing"></a>Rebasing</h3><p>Rebasing is without a doubt one of Git’s most misunderstood features. For most people, git rebase is a command that should be avoided at all costs. This is probably due to the extraordinary amount of scaremongering around rebasing. “Rebase Considered Harmful”, and “Please, stay away from rebase” are just two of the many anti-rebase articles you will find in the vast archives of the Internet.</p>
+<p>But rebase isn’t scary, or dangerous, so long as you understand what it does. But before we get into rebasing, I’m going to take a quick digression, because it’s actually much easier to explain rebasing in the context of cherry-picking.(呦)</p>
+<h3 id="Cherry-Picking"><a href="#Cherry-Picking" class="headerlink" title="Cherry-Picking"></a>Cherry-Picking</h3><p>What git cherry-pick does is take one or more commits, and replay them on top of the current commit. Imagine a repository with the following history graph.</p>
+<p>If you are on commit D and you run git cherry-pick F, Git will take the changes that were introduced in commit F and replay them as a new commit (shown as F’) on top of commit D.</p>
+<p>The reason you end up with a copy of commit F rather than commit F itself is due to the way commits are constructed. Recall that the parent commit is part of a commit’s hash. So despite containing the exact same changes, author information and timestamp; F’ will have a different parent to F, giving it a different hash.</p>
+<p>A common workflow in Git is to develop features on small branches, and merge the features one at a time into the master branch. Let’s recreate this scenario(方案) by adding some branch labels to the graphs.</p>
+<p>As you can see, master has been updated since foo was created. To avoid potential conflicts when foo is merged with master, we want to bring master’s changes into foo. Because master is the base branch, we want to play foo’s commits on top of master. Essentially, we want to change commit C’s parent from B to F.<br>It’s not going to be easy, but we can achieve this with git cherry-pick. First, we need to create a temporary branch at commit F.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout master</span><br><span class="line">$ git checkout -b foo-tmp</span><br></pre></td></tr></table></figure></p>
+<p>Now that we have a base on commit F, we can cherry-pick all of foo’s commits on top of it.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git cherry-pick C D</span><br></pre></td></tr></table></figure></p>
+<p>Now all that’s left to do is point foo at commit D’, and delete the temporary branch foo-tmp. We do this with the reset command, which points HEAD (and therefore the current branch) at a specified commit. The <code>--hard</code> flag ensures our working tree is updated as well.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout foo</span><br><span class="line">$ git reset --hard foo-tmp</span><br><span class="line">$ git branch -D foo-tmp</span><br></pre></td></tr></table></figure></p>
+<p>This gives the desired result of foo’s commits being upstream of master. Note that the original C and D commits are no longer reachable because no branch points to them.</p>
+<h3 id="Rebasing-Continued"><a href="#Rebasing-Continued" class="headerlink" title="Rebasing (Continued)"></a>Rebasing (Continued)</h3><p>While the example in Cherry-Picking worked, it’s not practical. In Git, rebasing allows us to replace our verbose cherry-pick workflow…<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout master</span><br><span class="line">$ git checkout -b foo-tmp</span><br><span class="line">$ git cherry-pick C D</span><br><span class="line">$ git checkout foo</span><br><span class="line">$ git reset --hard foo-tmp</span><br><span class="line">$ git branch -D foo-tmp</span><br></pre></td></tr></table></figure></p>
+<p>…With a single command.<br><code>git rebase master foo</code><br>With the format git rebase <base> <target>, the rebase command will take all of the commits from <target> and play them on top of <base> one by one. It does this without actually modifying <base>, so the end result is a linear history in which <base> can be fast-forwarded to <target>.</target></target></target></p>
+<p>In a sense, performing a rebase is like telling Git, “Hey, I want to pretend that <target> was actually branched from <base>. Take all of the commits from <target>, and pretend that they happened after <base>“.</target></target></p>
+<p>Let’s take a look again at the example graph from Merging to see how rebasing can prevent us from having to do a non-fast-forward merge.<br>All we have to do to enable a fast-forward merge of feature-branch into master is run <code>git rebase master feature-branch</code> before performing the merge.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git rebase master feature-branch</span><br><span class="line">First, rewinding head to replay your work on top of it...</span><br><span class="line">Applying: Finished the new feature</span><br></pre></td></tr></table></figure></p>
+<p>This has brought feature-branch directly upstream of master.<br>Git is now able to perform a fast-forward merge.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout master</span><br><span class="line">$ git merge feature-branch</span><br><span class="line">Updating 40837f1..2a534dd</span><br><span class="line">Fast-forward</span><br><span class="line"> feature.html | 1 +</span><br><span class="line"> 1 file changed, 1 insertion(+)</span><br></pre></td></tr></table></figure></p>
+<h3 id="Remotes"><a href="#Remotes" class="headerlink" title="Remotes"></a>Remotes</h3><p>In order to collaborate(合作) on any Git project, you need to utilise(利用) at least one remote(远程) repository. Unlike centralised(集中) VCS which require a dedicated server daemon, a Git remote is simply another Git repository. In order to demonstrate this, we first need to understand the concept(观点) of a bare repository.</p>
+<p>Recall that Git stores the entire repository inside the .git directory. Inside this directory are blobs and tree objects which can be traversed to build a snapshot of the entire project. This means that Git doesn’t actually need a working tree – it only uses the working tree to figure out what changes have been made since the last commit. This is easily demonstrated if you delete a file from a repository, and then run <code>git checkout &lt;file&gt;</code>. Despite being removed from the file system, Git can still restore the file because it has previously stored it in the repository. You can do the same thing with entire directories and Git will still be able to restore everything by traversing its tree objects.</p>
+<p><strong>It is therefore possible to have a repository which can store your project’s history without actually having a working tree. This is called a bare repository.</strong> <strong>Bare repositories are most commonly used as a “central” repository where collaborators can share changes. The mechanism for sharing these changes will be explained in detail in the Pushing and Pulling sections.</strong> For now, let’s look at creating a bare repository.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$ git init --bare</span><br><span class="line">Initialised empty Git repository in /home/demo/bare-repo/</span><br><span class="line">$ ls -l</span><br><span class="line">total 12</span><br><span class="line">drwxrwxr-x 1 demo demo   0 May 31 12:58 branches</span><br><span class="line">-rw-rw-r-- 1 demo demo  66 May 31 12:58 config</span><br><span class="line">-rw-rw-r-- 1 demo demo  73 May 31 12:58 description</span><br><span class="line">-rw-rw-r-- 1 demo demo  23 May 31 12:58 HEAD</span><br><span class="line">drwxrwxr-x 1 demo demo 328 May 31 12:58 hooks</span><br><span class="line">drwxrwxr-x 1 demo demo  14 May 31 12:58 info</span><br><span class="line">drwxrwxr-x 1 demo demo  16 May 31 12:58 objects</span><br><span class="line">drwxrwxr-x 1 demo demo  18 May 31 12:58 refs</span><br></pre></td></tr></table></figure>
+<p>Notice how rather than creating a .git directory for the repository, git init –bare simply treats the current directory as the .git directory.</p>
+<p>There’s really not much to this repository. The only interesting things it contains are a HEAD reference which points to the master branch (which doesn’t exist yet), and a config file which has the bare flag set to true. The other files aren’t of much interest to us.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">$ find . -type f</span><br><span class="line">./info/exclude</span><br><span class="line">./hooks/commit-msg.sample</span><br><span class="line">./hooks/pre-commit.sample</span><br><span class="line">./hooks/pre-push.sample</span><br><span class="line">./hooks/pre-rebase.sample</span><br><span class="line">./hooks/pre-applypatch.sample</span><br><span class="line">./hooks/applypatch-msg.sample</span><br><span class="line">./hooks/post-update.sample</span><br><span class="line">./hooks/prepare-commit-msg.sample</span><br><span class="line">./hooks/update.sample</span><br><span class="line">./description</span><br><span class="line">./HEAD</span><br><span class="line">./config</span><br><span class="line"></span><br><span class="line">$ cat HEAD</span><br><span class="line">ref: refs/heads/master</span><br><span class="line">$ cat config</span><br><span class="line">[core]</span><br><span class="line">    repositoryformatversion = 0</span><br><span class="line">    filemode = true</span><br><span class="line">    bare = true</span><br></pre></td></tr></table></figure></p>
+<p>So what can we do with this repository? Well, nothing much right now. Git won’t let us modify the repository because it doesn’t have a working tree to modify. (Note: this isn’t strictly true. We could painstakingly use Git’s low-level commands to manually create and store objects in Git’s data store, but that is beyond the scope of this guide. If you’re really interested, read Git Internals - Git Objects).<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ touch README</span><br><span class="line">$ git add README</span><br><span class="line">fatal: This operation must be run in a work tree</span><br></pre></td></tr></table></figure></p>
+<p>The intended use of this repository is for other collaborators to clone and pull changes from, as well as push their own changes to.</p>
+<h3 id="Cloning"><a href="#Cloning" class="headerlink" title="Cloning"></a>Cloning</h3><p>Now that we’ve set up a bare repository, let’s look at the concept of cloning a repository.</p>
+<p>The git clone command is really just a shortcut which does a few things for you. With its default configuration, it will:</p>
+<ol>
+<li>Create remote-tracking branches for each branch in the remote.</li>
+<li>Check out the branch which is currently active (HEAD) on the remote.</li>
+<li>Perform a git pull to bring the current branch and working tree up-to-date with the remote.</li>
+</ol>
+<p>The clone command takes a URL and supports a number of transport protocols including HTTP, SSH, and Git’s own protocol. It also supports plain old file paths, which is what we’ll use.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ cd ..</span><br><span class="line">$ git clone bare-repo/ clone-of-bare-repo</span><br><span class="line">Cloning into &apos;clone-of-bare-repo&apos;...</span><br><span class="line">warning: You appear to have cloned an empty repository.</span><br><span class="line">done.</span><br></pre></td></tr></table></figure></p>
+<p>Let’s inspect this cloned repository to see how Git has set it up.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">$ cd clone-of-bare-repo/</span><br><span class="line">$ find . -type f</span><br><span class="line">./.git/info/exclude</span><br><span class="line">./.git/hooks/commit-msg.sample</span><br><span class="line">./.git/hooks/pre-commit.sample</span><br><span class="line">./.git/hooks/pre-push.sample</span><br><span class="line">./.git/hooks/pre-rebase.sample</span><br><span class="line">./.git/hooks/pre-applypatch.sample</span><br><span class="line">./.git/hooks/applypatch-msg.sample</span><br><span class="line">./.git/hooks/post-update.sample</span><br><span class="line">./.git/hooks/prepare-commit-msg.sample</span><br><span class="line">./.git/hooks/update.sample</span><br><span class="line">./.git/description</span><br><span class="line">./.git/HEAD</span><br><span class="line">./.git/config</span><br><span class="line"></span><br><span class="line">$ cat .git/HEAD</span><br><span class="line">ref: refs/heads/master</span><br><span class="line">$ ls -l .git/refs/heads/</span><br><span class="line">total 0</span><br><span class="line">$ cat .git/config</span><br><span class="line">[core]</span><br><span class="line">    repositoryformatversion = 0</span><br><span class="line">    filemode = true</span><br><span class="line">    bare = false</span><br><span class="line">    logallrefupdates = true</span><br><span class="line">[remote &quot;origin&quot;]</span><br><span class="line">    url = /home/demo/bare-repo/</span><br><span class="line">    fetch = +refs/heads/*:refs/remotes/origin/*</span><br><span class="line">[branch &quot;master&quot;]</span><br><span class="line">    remote = origin</span><br><span class="line">    merge = refs/heads/master</span><br></pre></td></tr></table></figure></p>
+<p>This is quite literally a clone of <code>bare-repo</code>. The only difference is that this repository contains a few extra lines in <code>.git/config</code>.</p>
+<p>First, it contains a <code>remote</code> listing for “origin”, which is the default name given to a repository’s main remote. This tells Git the URL of the repository, and which references it should retrieve when performing a <code>git fetch</code>.</p>
+<p>Below that is a <code>branch</code> listing. This is the configuration for a remote-tracking branch. But before we get into that, let’s store some data in the remote repository.</p>
+<h3 id="Pushing"><a href="#Pushing" class="headerlink" title="Pushing"></a>Pushing</h3><p>We’ve just cloned a completely empty repository, and we want to start working on it.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ echo &apos;Project v1.0&apos; &gt; README</span><br><span class="line">$ git add README</span><br><span class="line">$ git commit -m &quot;Add readme&quot;</span><br><span class="line">[master (root-commit) 5d591d5] Add readme</span><br><span class="line"> 1 file changed, 1 insertion(+)</span><br><span class="line"> create mode 100644 README</span><br></pre></td></tr></table></figure></p>
+<p>Notice that even though it didn’t technically exist (there was nothing in <code>.git/refs/heads</code>), this commit has been made to the master branch. That’s because the HEAD of this repository pointed to master, so Git has gone ahead and created the branch for us.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ cat .git/refs/heads/master</span><br><span class="line">5d591d5fafd538610291f45bec470d1b4e77891e</span><br></pre></td></tr></table></figure></p>
+<p>Now that we’ve completed some work, we need to share this with our collaborators who have also cloned this repository. Git makes this really easy.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ git push origin master</span><br><span class="line">Counting objects: 3, done.</span><br><span class="line">Writing objects: 100% (3/3), 231 bytes | 0 bytes/s, done.</span><br><span class="line">Total 3 (delta 0), reused 0 (delta 0)</span><br><span class="line">To /home/demo/bare-repo/</span><br><span class="line"> * [new branch] master -&gt; master</span><br></pre></td></tr></table></figure></p>
+<p>Notice how we specified both the remote (origin) and the branch (master) that we want Git to push. It is possible to simply run git push, but this can be dangerous and is generally advised against. Running git push without any arguments can (depending on your configuration) push all remote-tracking branches. This is usually okay, but it can result in you pushing changes which you don’t want collaborators to pull. In the worst case, you can destroy other collaborators’ changes if you specify the –force flag.</p>
+<p>So, let’s take a look at the remote repository to see what happened.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">$ cd ../bare-repo/</span><br><span class="line">$ cat refs/heads/master</span><br><span class="line">5d591d5fafd538610291f45bec470d1b4e77891e</span><br><span class="line"></span><br><span class="line">$ git show 5d591d5</span><br><span class="line">commit 5d591d5fafd538610291f45bec470d1b4e77891e</span><br><span class="line">Author: Joseph Wynn &lt;joseph@wildlyinaccurate.com&gt;</span><br><span class="line">Date: Sat May 31 14:08:34 2014 +0100</span><br><span class="line"></span><br><span class="line"> Add readme</span><br><span class="line"></span><br><span class="line">diff --git a/README b/README</span><br><span class="line">new file mode 100644</span><br><span class="line">index 0000000..5cecdfb</span><br><span class="line">--- /dev/null</span><br><span class="line">+++ b/README</span><br><span class="line">@@ -0,0 +1 @@</span><br><span class="line">+Project v1.0</span><br></pre></td></tr></table></figure></p>
+<p>As we expected, the remote repository now contains a master branch which points to the commit that we just created.</p>
+<p>Essentially what happened when we ran git push, is Git updated the remote’s references, and sent it any objects required to build those references. In this case, git push updated the remote’s master to point at 5d591d5, and sent it the 5d591d5 commit object as well as any tree and blob objects related to that commit.</p>
+<h3 id="Remote-Tracking-Branches"><a href="#Remote-Tracking-Branches" class="headerlink" title="Remote-Tracking Branches"></a>Remote-Tracking Branches</h3><p>As we saw in Cloning, a remote-tracking branch is essentially just a few lines in <code>.git/config</code>. Let’s take a look at those lines again.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[branch &quot;master&quot;]</span><br><span class="line">    remote = origin</span><br><span class="line">    merge = refs/heads/master</span><br></pre></td></tr></table></figure></p>
+<p>The line <code>[branch &quot;master&quot;]</code> denotes that the following configuration applies to the local master branch.</p>
+<p>The rest of the configuration specifies that when this remote-tracking branch is fetched, Git should fetch the master branch from the origin remote.</p>
+<p>Besides storing this configuration, Git also stores a local copy of the remote branch. This is simply stored as a reference in .git/refs/remotes/<remote>/<branch>. We’ll see more about how this works in Fetching.</branch></remote></p>
+<h3 id="Fetching"><a href="#Fetching" class="headerlink" title="Fetching"></a>Fetching</h3><p>The git fetch command is fairly simple. It takes the name of a remote (unless used with the –all flag, which fetches all remotes), and retrieves any new references and all objects necessary to complete them.</p>
+<p>Recall what a remote’s configuration looks like.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[remote &quot;origin&quot;]</span><br><span class="line">    url = /home/demo/bare-repo/</span><br><span class="line">    fetch = +refs/heads/*:refs/remotes/origin/*</span><br></pre></td></tr></table></figure></p>
+<p>The fetch parameter here specifies a mapping of <remote-refs>:<local-refs>. The example above simply states that the references found in origin’s refs/heads/<em> should be stored locally in refs/remotes/origin/</em> . We can see this in the repository that we cloned earlier.</local-refs></remote-refs></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ ls -l .git/refs/remotes/origin/</span><br><span class="line">total 4</span><br><span class="line">-rw-rw-r-- 1 demo demo 41 May 31 14:12 master</span><br></pre></td></tr></table></figure>
+<p>Let’s see a fetch in action to get a better idea of what happens. First, we’ll create a new branch on the <strong>remote repository</strong>.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ cd ../bare-repo/</span><br><span class="line">$ git branch feature-branch</span><br></pre></td></tr></table></figure></p>
+<p>Now we’ll run git fetch from the clone.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ cd ../clone-of-bare-repo/</span><br><span class="line">$ git fetch origin</span><br><span class="line">From /home/demo/bare-repo</span><br><span class="line"> * [new branch] feature-branch -&gt; origin/feature-branch</span><br></pre></td></tr></table></figure></p>
+<p>This has done a couple of things. First, it has created a reference for the remote branch in <code>.git/refs/remotes/origin</code>.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ cat .git/refs/remotes/origin/feature-branch</span><br><span class="line">5d591d5fafd538610291f45bec470d1b4e77891e</span><br></pre></td></tr></table></figure></p>
+<p>It has also updated a special file, <code>.git/FETCH_HEAD</code> with some important information. We’ll talk about this file in more detail soon.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ cat .git/FETCH_HEAD</span><br><span class="line">5d591d5fafd538610291f45bec470d1b4e77891e branch &apos;master&apos; of /home/demo/bare-repo</span><br><span class="line">5d591d5fafd538610291f45bec470d1b4e77891e not-for-merge branch &apos;feature-branch&apos; of /home/demo/bare-repo</span><br></pre></td></tr></table></figure></p>
+<p>What is hasn’t done is created a local branch. This is because Git understands that even though the remote has a feature-branch, you might not want it in your local repository.</p>
+<p>But what if we do want a local branch which tracks the remote feature-branch? Git makes this easy. If we run git checkout feature-branch, rather than failing because no local feature-branch exists, Git will see that there is a remote feature-branch available and create a local branch for us.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout feature-branch</span><br><span class="line"></span><br><span class="line">Branch feature-branch set up to track remote branch feature-branch from origin.</span><br><span class="line">Switched to a new branch &apos;feature-branch&apos;</span><br></pre></td></tr></table></figure></p>
+<p>Git has done a couple of things for us here. First, it has created a local feature-branch reference which points to the same commit as the remote feature-branch.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ cat .git/refs/remotes/origin/feature-branch</span><br><span class="line">5d591d5fafd538610291f45bec470d1b4e77891e</span><br><span class="line">$ cat .git/refs/heads/feature-branch</span><br><span class="line">5d591d5fafd538610291f45bec470d1b4e77891e</span><br></pre></td></tr></table></figure></p>
+<p>It has also created a remote-tracking branch entry in <code>.git/config</code>.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">$ cat .git/config</span><br><span class="line">[core]</span><br><span class="line">    repositoryformatversion = 0</span><br><span class="line">    filemode = true</span><br><span class="line">    bare = false</span><br><span class="line">    logallrefupdates = true</span><br><span class="line">[remote &quot;origin&quot;]</span><br><span class="line">    url = /home/demo/bare-repo/</span><br><span class="line">    fetch = +refs/heads/*:refs/remotes/origin/*</span><br><span class="line">[branch &quot;master&quot;]</span><br><span class="line">    remote = origin</span><br><span class="line">    merge = refs/heads/master</span><br><span class="line">[branch &quot;feature-branch&quot;]</span><br><span class="line">    remote = origin</span><br><span class="line">    merge = refs/heads/feature-branch</span><br></pre></td></tr></table></figure></p>
+<h3 id="Pulling"><a href="#Pulling" class="headerlink" title="Pulling"></a>Pulling</h3><p>The git pull command is, like git clone, a nice shortcut which essentially just runs a few lower-level commands. In short, with the format git pull <remote> <branch>, the git pull command does the following:</branch></remote></p>
+<ol>
+<li>Runs git fetch <remote>.</remote></li>
+<li>Reads .git/FETCH_HEAD to figure out if <branch> has a remote-tracking branch which should be merged.</branch></li>
+<li>Runs git merge if required, otherwise quits with an appropriate message.<br>At this point, it helps to understand Git’s <code>FETCH_HEAD</code>. Every time you run git fetch, Git stores information about the fetched branches in <code>.git/FETCH_HEAD</code>. This is referred to as a short-lived reference, because by default Git will override the contents of <code>FETCH_HEAD</code> every time you run git fetch.</li>
+</ol>
+<p>Let’s introduce some new commits to our remote repository so that we can see this in practice.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">$ git clone bare-repo/ new-clone-of-bare-repo</span><br><span class="line">Cloning into &apos;new-clone-of-bare-repo&apos;...</span><br><span class="line">done.</span><br><span class="line"></span><br><span class="line">$ cd new-clone-of-bare-repo/</span><br><span class="line">$ git checkout feature-branch</span><br><span class="line">Branch feature-branch set up to track remote branch feature-branch from origin.</span><br><span class="line">Switched to a new branch &apos;feature-branch&apos;</span><br><span class="line"></span><br><span class="line">$ echo &apos;Some more information.&apos; &gt;&gt; README</span><br><span class="line">$ git commit -am &quot;Add more information to readme&quot;</span><br><span class="line">[feature-branch 7cd83c2] Add more information to readme</span><br><span class="line"> 1 file changed, 1 insertion(+)</span><br><span class="line">$ git push origin feature-branch</span><br><span class="line">Counting objects: 5, done.</span><br><span class="line">Writing objects: 100% (3/3), 298 bytes | 0 bytes/s, done.</span><br><span class="line">Total 3 (delta 0), reused 0 (delta 0)</span><br><span class="line">To /home/demo/bare-repo/</span><br><span class="line">   5d591d5..7cd83c2  feature-branch -&gt; feature-branch</span><br></pre></td></tr></table></figure></p>
+<p>At this point, Git has updated our local copy of the remote branch, and updated the information in <code>FETCH_HEAD</code>.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ git merge FETCH_HEAD</span><br><span class="line">Updating 5d591d5..7cd83c2</span><br><span class="line">Fast-forward</span><br><span class="line"> README | 1 +</span><br><span class="line"> 1 file changed, 1 insertion(+)</span><br></pre></td></tr></table></figure></p>
+<p>And that’s it – we’ve just performed a git pull without actually running git pull. Of course, it is much easier to let Git take care of these details. Just to be sure that the outcome is the same, we can run git pull as well.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ git reset --hard HEAD^1</span><br><span class="line">HEAD is now at 5d591d5 Add readme</span><br><span class="line">$ git pull origin feature-branch</span><br><span class="line">From /home/demo/bare-repo</span><br><span class="line"> * branch            feature-branch -&gt; FETCH_HEAD</span><br><span class="line">Updating 5d591d5..7cd83c2</span><br><span class="line">Fast-forward</span><br><span class="line"> README | 1 +</span><br><span class="line"> 1 file changed, 1 insertion(+)</span><br></pre></td></tr></table></figure></p>
+<h3 id="Toolkit"><a href="#Toolkit" class="headerlink" title="Toolkit"></a>Toolkit</h3><p>With a solid understanding of Git’s inner workings, some of the more advanced Git tools start to make more sense.</p>
+<h4 id="git-reflog"><a href="#git-reflog" class="headerlink" title="git-reflog"></a>git-reflog</h4><p>Whenever you <strong>make a change</strong> in Git that affects the tip of a branch, Git <strong>records information about that change</strong> in what’s called the reflog. Usually you shouldn’t need to look at these logs, but sometimes they can come in very handy.</p>
+<p>Let’s say you have a repository with a few commits.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ git log --oneline</span><br><span class="line">d6f2a84 Add empty LICENSE file</span><br><span class="line">51c4b49 Add some actual content to readme</span><br><span class="line">3413f46 Add TODO note to readme</span><br><span class="line">322c826 Add empty readme</span><br></pre></td></tr></table></figure></p>
+<p>You decide, for some reason, to perform a destructive action on your master branch.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git reset --hard 3413f46</span><br></pre></td></tr></table></figure></p>
+<p>HEAD is now at 3413f46 Add TODO note to readme<br>Since performing this action, you’ve realised that you lost some commits and you have no idea what their hashes were. You never pushed the changes; they were only in your local repository. git log is no help, since the commits are no longer reachable from HEAD.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git log --oneline</span><br><span class="line">3413f46 Add TODO note to readme</span><br><span class="line">322c826 Add empty readme</span><br></pre></td></tr></table></figure></p>
+<p>This is where git reflog can be useful.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ git reflog</span><br><span class="line">3413f46 HEAD@&#123;0&#125;: reset: moving to 3413f46</span><br><span class="line">d6f2a84 HEAD@&#123;1&#125;: commit: Add empty LICENSE file</span><br><span class="line">51c4b49 HEAD@&#123;2&#125;: commit: Add some actual content to readme</span><br><span class="line">3413f46 HEAD@&#123;3&#125;: commit: Add TODO note to readme</span><br><span class="line">322c826 HEAD@&#123;4&#125;: commit (initial): Add empty readme</span><br></pre></td></tr></table></figure></p>
+<p>The reflog shows a list of all changes to HEAD in reverse chronological order. The hash in the first column is the value of HEAD after the action on the right was performed. We can see, therefore, that we were at commit d6f2a84 before the destructive change.</p>
+<p>How you want to recover commits depends on the situation. In this particular example, we can simply do a <code>git reset --hard d6f2a84</code> to restore HEAD to its original position. However if we have introduced new commits since the destructive change, we may need to do something like cherry-pick all the commits that were lost.</p>
+<p>Note that Git’s reflog is only a record of changes for your local repository. If your local repository becomes corrupt or is deleted, the reflog won’t be of any use (if the repository is deleted the reflog won’t exist at all!)</p>
+<p>Depending on the situation, you may find git fsck more suitable for recovering lost commits.</p>
+<h3 id="git-fsck"><a href="#git-fsck" class="headerlink" title="git-fsck"></a>git-fsck</h3><p>In a way, Git’s object storage works like a primitive file system – objects are like files on a hard drive, and their hashes are the objects’ physical address on the disk. The Git index is exactly like the index of a file system, in that it contains references which point at an object’s physical location.</p>
+<p>By this analogy, git fsck is aptly named after fsck (“file system check”). This tool is able to check Git’s database and verify the validity and reachability of every object that it finds.</p>
+<p>When a reference (like a branch) is deleted from Git’s index, the object(s) they refer to usually aren’t deleted, even if they are no longer reachable by any other references. Using a simple example, we can see this in practice. Here we have a branch, feature-branch, which points at f71bb43. If we delete feature-branch, the commit will no longer be reachable.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ git branch</span><br><span class="line">  feature-branch</span><br><span class="line">* master</span><br><span class="line">$ git rev-parse --short feature-branch</span><br><span class="line">f71bb43</span><br><span class="line">$ git branch -D feature-branch</span><br><span class="line">Deleted branch feature-branch (was f71bb43).</span><br></pre></td></tr></table></figure></p>
+<p>At this point, commit f71bb43 still exists in our repository, but there are no references pointing to it. By searching through the database, git fsck is able to find it.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git fsck --lost-found</span><br><span class="line">Checking object directories: 100% (256/256), done.</span><br><span class="line">dangling commit f71bb43907bffe0bce2967504341a0ece7a8cb68</span><br></pre></td></tr></table></figure></p>
+<p>For simple cases, git reflog may be preferred. Where git fsck excels over git reflog, though, is when you need to find objects which you <strong>never referenced</strong> in your local repository (and therefore would not be in your reflog). An example of this is when you delete a remote branch through an interface like GitHub. Assuming the objects haven’t been garbage-collected, you can clone the remote repository and use git fsck to recover the deleted branch.</p>
+<h3 id="git-stash"><a href="#git-stash" class="headerlink" title="git-stash"></a>git-stash</h3><p>git stash takes all changes to your working tree and index, and “stashes” them away, giving you a clean working tree. You can then retrieve those changes from your stash and re-apply them to the working tree at any time with git stash apply. A common use for the stash command is to save some half-finished changes in order to checkout another branch.</p>
+<p>This seems fairly simple at first, but the mechanism behind the stash command is actually quite complex. Let’s build a simple repository to see how it works.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ git init</span><br><span class="line">Initialised empty Git repository in /home/demo/demo-repo/.git/</span><br><span class="line">$ echo &apos;Foo&apos; &gt; test.txt</span><br><span class="line">$ git add test.txt</span><br><span class="line">$ git commit -m &quot;Initial commit&quot;</span><br><span class="line">[master (root-commit) 2522332] Initial commit</span><br><span class="line"> 1 file changed, 1 insertion(+)</span><br><span class="line"> create mode 100644 test.txt</span><br></pre></td></tr></table></figure></p>
+<p>Now let’s make some changes, and stash them.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ echo &apos;Bar&apos; &gt;&gt; test.txt</span><br><span class="line">$ git stash</span><br><span class="line">Saved working directory and index state WIP on master: 2522332 Initial commit</span><br><span class="line">HEAD is now at 2522332 Initial commit</span><br></pre></td></tr></table></figure></p>
+<p>Stashes in Git are put onto a stack, with the most recently-stashed on top. You can list all current stashes with git stash list.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git stash list</span><br><span class="line">stash@&#123;0&#125;: WIP on master: 2522332 Initial commit</span><br></pre></td></tr></table></figure></p>
+<p>Right now we only have one stash: stash@{0}. This is actually a reference, which we can inspect.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">$ git show stash@&#123;0&#125;</span><br><span class="line">commit f949b46a417a4f1595a9d12773c89cce4454a958</span><br><span class="line">Merge: 2522332 1fbe1cc</span><br><span class="line">Author: Joseph Wynn &lt;joseph@wildlyinaccurate.com&gt;</span><br><span class="line">Date:   Sat Jul 5 00:15:51 2014 +0100</span><br><span class="line"></span><br><span class="line">    WIP on master: 2522332 Initial commit</span><br><span class="line"></span><br><span class="line">diff --cc test.txt</span><br><span class="line">index bc56c4d,bc56c4d..3b71d5b</span><br><span class="line">--- a/test.txt</span><br><span class="line">+++ b/test.txt</span><br><span class="line">@@@ -1,1 -1,1 +1,2 @@@</span><br><span class="line">  Foo</span><br><span class="line">++Bar</span><br></pre></td></tr></table></figure></p>
+<p>From this we can see that the stash is pointing to a commit object. What’s interesting is that the stash commit is a merge commit. We’ll look into that in a bit, but first: where is this commit?<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ git log --oneline</span><br><span class="line">2522332 Initial commit</span><br><span class="line"></span><br><span class="line">$ git branch</span><br><span class="line">* master</span><br><span class="line"></span><br><span class="line">$ git fsck --lost-found</span><br><span class="line">Checking object directories: 100% (256/256), done.</span><br></pre></td></tr></table></figure></p>
+<p>It’s not in the current branch, and there are no other branches it could be in. <code>git-fsck</code> hasn’t found any dangling commits, so it must be referenced somewhere. But where?</p>
+<p>The answer is simple: Git creates a special reference for the stash which isn’t seen by commands like git branch and git tag. This reference lives in <code>.git/refs/stash</code>. We can verify this with git show-ref.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git show-ref</span><br><span class="line">25223321ec2fbcb718b7fbf99485f1cb4d2f2042 refs/heads/master</span><br><span class="line">f949b46a417a4f1595a9d12773c89cce4454a958 refs/stash</span><br></pre></td></tr></table></figure></p>
+<p>So why does Git create a merge commit for a stash? The answer is relatively simple: as well as recording the state of the working tree, git stash also records the state of the index (also known as the “staging area”). Since it’s possible for the index and the working tree to contain changes to the same file, Git needs to store the states separately.</p>
+<h3 id="git-describe"><a href="#git-describe" class="headerlink" title="git-describe"></a>git-describe</h3><p>Git’s describe command is summed up pretty neatly in the documentation:</p>
+<blockquote>
+<p>git-describe - Show the most recent tag that is reachable from a commit</p>
+</blockquote>
+<p>This can be helpful for things like build and release scripts, as well as figuring out which version a change was introduced in.</p>
+<p>git describe will take any reference or commit hash, and return the name of the most recent tag. If the tag points at the commit you gave it, git describe will return only the tag name. Otherwise, it will suffix the tag name with some information including the number of commits since the tag and an abbreviation of the commit hash.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ git describe v1.2.15</span><br><span class="line">v1.2.15</span><br><span class="line">$ git describe 2db66f</span><br><span class="line">v1.2.15-80-g2db66f5</span><br></pre></td></tr></table></figure></p>
+<p>If you want to ensure that only the tag name is returned, you can force Git to remove the suffix by passing –abbrev=0.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git describe --abbrev=0 2db66f</span><br><span class="line">v1.2.15</span><br></pre></td></tr></table></figure></p>
+<h3 id="git-rev-parse"><a href="#git-rev-parse" class="headerlink" title="git-rev-parse"></a>git-rev-parse</h3><p>git rev-parse is an ancillary plumbing command which takes a wide range of inputs and returns one or more commit hashes. The most common use case is figuring out which commit a tag or branch points to.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ git rev-parse v1.2.15</span><br><span class="line">2a46f5e2fbe83ccb47a1cd42b81f815f2f36ee9d</span><br><span class="line">$ git rev-parse --short v1.2.15</span><br><span class="line">2a46f5e</span><br></pre></td></tr></table></figure></p>
+<h3 id="git-bisect"><a href="#git-bisect" class="headerlink" title="git-bisect"></a>git-bisect</h3><p>git bisect is an indispensable tool when you need to figure out which commit introduced a breaking change. The bisect command does a binary search through your commit history to help you find the breaking change as quickly as possible. To get started, simply run git bisect start, and tell Git that the commit you’re currently on is broken with <code>git bisect bad</code>. Then, you can give Git a commit that you know is working with git bisect good <commit>.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ git bisect start</span><br><span class="line">$ git bisect bad</span><br><span class="line">$ git bisect good v1.2.15</span><br><span class="line">Bisecting: 41 revisions left to test after this (roughly 5 steps)</span><br><span class="line">[b87713687ecaa7a873eeb3b83952ebf95afdd853] docs(misc/index): add header; general links</span><br></pre></td></tr></table></figure></commit></p>
+<p>Git will then checkout a commit and ask you to test whether it’s broken or not. If the commit is broken, run git bisect bad. If the commit is fine, run git bisect good. After doing this a few times, Git will be able to pinpoint the commit which first introduced the breaking change.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git bisect bad</span><br><span class="line">e145a8df72f309d5fb80eaa6469a6148b532c821 is the first bad commit</span><br></pre></td></tr></table></figure></p>
+<p>Once the bisect is finished (or when you want to abort it), be sure to run <code>git bisect reset</code> to reset HEAD to where it was before the bisect.</p>
+<h3 id="Useful-commands"><a href="#Useful-commands" class="headerlink" title="Useful commands"></a>Useful commands</h3><h4 id="Find-which-commit-a-reference-points-at"><a href="#Find-which-commit-a-reference-points-at" class="headerlink" title="Find which commit a reference points at"></a>Find which commit a reference points at</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ git rev-parse HEAD</span><br><span class="line">0f64e9e759c904553309858070f444e5e64847c4</span><br><span class="line"></span><br><span class="line">$ git rev-parse --short HEAD</span><br><span class="line">0f64e9e</span><br></pre></td></tr></table></figure>
+<h4 id="Find-which-branches-a-commit-is-in"><a href="#Find-which-branches-a-commit-is-in" class="headerlink" title="Find which branches a commit is in"></a>Find which branches a commit is in</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git branch --contains HEAD</span><br><span class="line">  master</span><br><span class="line">* other-branch</span><br></pre></td></tr></table></figure>
+<h4 id="Find-commits-that-are-in-one-branch-but-not-another"><a href="#Find-commits-that-are-in-one-branch-but-not-another" class="headerlink" title="Find commits that are in one branch but not another"></a>Find commits that are in one branch but not another</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ git log --oneline --right-only master...hotfix-1</span><br><span class="line"></span><br><span class="line">0f64e9e Apply hotfix patch from #2914 to hotfix-1</span><br><span class="line">bc3bff5 [Cherry-pick] Fix issue #2926</span><br></pre></td></tr></table></figure>
+<h4 id="Exclude-commits-that-were-cherry-picked"><a href="#Exclude-commits-that-were-cherry-picked" class="headerlink" title="Exclude commits that were cherry-picked"></a>Exclude commits that were cherry-picked</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git log --oneline --cherry-pick --right-only master...hotfix-1</span><br><span class="line"></span><br><span class="line">0f64e9e Apply hotfix patch from #2914 to hotfix-1</span><br></pre></td></tr></table></figure>
+<h4 id="View-details-of-an-object"><a href="#View-details-of-an-object" class="headerlink" title="View details of an object"></a>View details of an object</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ git cat-file -p HEAD</span><br><span class="line">tree af22d0482b89640c95986f3b4663026bcb7f764b</span><br><span class="line">parent bc3bff555f573ac76f0d3e71f0e54d63f50b8434</span><br><span class="line">author Foo Bar &lt;foo@bar.com&gt; 1436294582 +0100</span><br><span class="line">committer Foo Bar &lt;foo@bar.com&gt; 1436294582 +0100</span><br><span class="line"></span><br><span class="line">Lorem ipsum dolor sit amet, consectetur adipiscing elit</span><br></pre></td></tr></table></figure>
+<h4 id="Show-an-object’s-type"><a href="#Show-an-object’s-type" class="headerlink" title="Show an object’s type"></a>Show an object’s type</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git cat-file -t HEAD</span><br><span class="line">commit</span><br></pre></td></tr></table></figure>
+<h4 id="Show-an-object’s-size"><a href="#Show-an-object’s-size" class="headerlink" title="Show an object’s size"></a>Show an object’s size</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git cat-file -s HEAD</span><br><span class="line">253</span><br></pre></td></tr></table></figure>
+<h4 id="Print-the-tree-of-a-given-reference"><a href="#Print-the-tree-of-a-given-reference" class="headerlink" title="Print the tree of a given reference"></a>Print the tree of a given reference</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">$ git ls-tree -t -r HEAD</span><br><span class="line">100644 blob 59e004af21a725c9b378001a1b231967f955b992    .gitignore</span><br><span class="line">100644 blob 9f5d366d261317d8ff881ee2945ef2c7960fa2ea    .travis.yml</span><br><span class="line">100644 blob 148fc67781eba8c08bbb4db1fc9e92b9781ec28d    LICENSE</span><br><span class="line">100644 blob 4a2727bb9afae5782510e7ce764608540dd7c04a    Makefile</span><br><span class="line">100644 blob b07b8d5f39d6f62a18a1b0791f33a784ec34556e    README.md</span><br><span class="line">100644 blob 9a994af677b0dfd41b4e3b76b3e7e604003d64e1    Setup.hs</span><br><span class="line">100644 blob 66820894ca2c16725e8527e16785f2eebd89871a    lishp.cabal</span><br><span class="line">040000 tree eda8357ddb73fa384f283291bac84d7fe1bce436    src</span><br><span class="line">040000 tree 6a84cb52f17c7e1ff691fe45f4c70df5269bdab0    src/Lishp</span><br><span class="line">100644 blob 1f7677ed0c7f3e713c7e6a16d94cc3db89d911cd    src/Lishp/Interpreter.hs</span><br><span class="line">100644 blob 1a0fe9394bc2d7789d783a467626301204de700a    src/Lishp/Primitives.hs</span><br><span class="line">100644 blob caf0fcf1cd265436efbaa6cc39338e653197a3ee    src/Lishp/Readline.hs</span><br><span class="line">100644 blob 92cf693d29169066356bed3f1ae794a624db49a5    src/Lishp/Types.hs</span><br><span class="line">100644 blob 82ec4d14e01598f38a083ab2dea326615cd048dd    src/Main.hs</span><br><span class="line">040000 tree ba0974cba2e671b840bb3cefa69569f62cec29b5    test</span><br><span class="line">100644 blob 2589b7aeb1562a3aa951c2fa52f64891db87d1c6    test/assignment.sh</span><br><span class="line">100644 blob d54fa0437e13ba5ee15ad13330ac07b9a6abcdcc    test/equality.sh</span><br><span class="line">100644 blob ee61aa5dffca43032b5aeef6f4e79ff1f9f2df85    test/functions.sh</span><br><span class="line">100644 blob 22fbec9189d2641c590836c4bb19431d3c6d3df3    test/primitives.sh</span><br><span class="line">100644 blob c455f01b3d88b5d510ff4ebb50e93c5d7f8f0b26    test/types.sh</span><br></pre></td></tr></table></figure>
+<h4 id="Find-the-first-tag-that-contains-a-reference"><a href="#Find-the-first-tag-that-contains-a-reference" class="headerlink" title="Find the first tag that contains a reference"></a>Find the first tag that contains a reference</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git describe HEAD</span><br><span class="line">v1.6.1</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://www.unblog.top/2018/08/24/2018-08-24/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -922,201 +1283,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.unblog.top/2018/08/19/2018-08-19/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="兔子春">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/7.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Eden">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/19/2018-08-19/" itemprop="url">2018-08-19</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-19T10:22:00+08:00">
-                2018-08-19
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2018-08-19T10:23:28+08:00">
-                2018-08-19
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/杂食动物/" itemprop="url" rel="index">
-                    <span itemprop="name">杂食动物</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  445
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  2
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="scrapy-json中文乱码"><a href="#scrapy-json中文乱码" class="headerlink" title="scrapy json中文乱码"></a>scrapy json中文乱码</h3><p>可以在setting.py文件中修改默认的输出编码方式，只需要在setting.py中增加如下语句（默认似乎是没有指定的，所以要增加，如果默认有，就直接修改）<br><code>FEED_EXPORT_ENCODING = &#39;utf-8&#39;</code></p>
-<h3 id="rot13"><a href="#rot13" class="headerlink" title="rot13"></a>rot13</h3><p>ROT13 (“rotate by 13 places”, sometimes hyphenated ROT-13) is a simple letter substitution cipher that <strong>replaces a letter with the 13th letter after it</strong>, in the alphabet. ROT13 is a special case of the Caesar cipher which was developed in ancient Rome.</p>
-<p>Because there are 26 letters (2×13) in the basic Latin alphabet, ROT13 is its own inverse; that is, to undo ROT13, the same algorithm is applied, so the same action can be used for encoding and decoding. The algorithm provides virtually no cryptographic security, and is often cited as a canonical example of weak encryption.</p>
-<p>ROT13 is used in online forums as a means of hiding spoilers, punchlines, puzzle solutions, and offensive materials from the casual glance. ROT13 has inspired a variety of letter and word games on-line, and is frequently mentioned in newsgroup conversations.</p>
-<h4 id="加密"><a href="#加密" class="headerlink" title="加密:"></a>加密:</h4><p><code>tr &#39;A-Za-z&#39; &#39;N-ZA-Mn-za-m&#39; &lt;&lt;&lt; &quot;The Quick Brown Fox Jumps Over The Lazy Dog&quot;</code></p>
-<h4 id="解密"><a href="#解密" class="headerlink" title="解密:"></a>解密:</h4><p><code>echo &quot;The Quick Brown Fox Jumps Over The Lazy Dog&quot; |tr &#39;N-ZA-Mn-za-m&#39; &#39;A-Za-z&#39;</code></p>
-<h3 id="Hex-dump-十六进制转储"><a href="#Hex-dump-十六进制转储" class="headerlink" title="Hex dump(十六进制转储)"></a>Hex dump(十六进制转储)</h3><p>In computing,a hex dump is a hexadecimal view (on screen or paper) of computer data, from RAM or from a file or storage device. Looking at a hex dump of data is commonly done as a part of debugging, or of reverse engineering.</p>
-<p>In a hex dump, each byte (8-bits) is represented as a two-digit hexadecimal number.(每个字节==&gt;两个十六进制的数) Hex dumps are commonly organized into rows of 8 or 16 bytes, sometimes separated by whitespaces. Some hex dumps have the hexadecimal memory address at the beginning and/or a checksum byte at the end of each line.</p>
-<p>Although the name implies the use of base-16 output, some hex dumping software may have options for base-8 (octal) or base-10 (decimal) output. Some common names for this program function are hexdump, od, xxd and simply dump or even D.</p>
-<p><strong>xxd 得到文件的头 得到的xxd文件要先-r出原来的文件哦</strong></p>
-<h3 id="解压方式"><a href="#解压方式" class="headerlink" title="解压方式"></a>解压方式</h3><p>gzip -d(gunzip)<br>tar -zxvf<br>tar -xvf<br>bzip2 -d</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1173,7 +1339,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">86</span>
+                  <span class="site-state-item-count">87</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1262,7 +1428,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">111.1k</span>
+    <span title="Site words total count">111.7k</span>
   
 </div>
 

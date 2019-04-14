@@ -378,6 +378,199 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.unblog.top/2018/08/16/scrapy1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="兔子春">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/7.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Eden">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/16/scrapy1/" itemprop="url">Scrapy Pass 1</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-16T14:26:02+08:00">
+                2018-08-16
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-08-16T14:27:19+08:00">
+                2018-08-16
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  650
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  4
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="Learn-Scrapy-pass-1"><a href="#Learn-Scrapy-pass-1" class="headerlink" title="Learn Scrapy pass 1"></a>Learn Scrapy pass 1</h2><h3 id="Walk-through-of-an-example-spider"><a href="#Walk-through-of-an-example-spider" class="headerlink" title="Walk-through of an example spider"></a>Walk-through of an example spider</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">import scrapy</span><br><span class="line">class QuotesSpider(scrapy.Spider):</span><br><span class="line">    name = &quot;quotes&quot;</span><br><span class="line">    start_urls = [</span><br><span class="line">        &apos;http://quotes.toscrape.com/tag/humor/&apos;,</span><br><span class="line">    ]</span><br><span class="line"></span><br><span class="line">    def parse(self, response):</span><br><span class="line">        for quote in response.css(&apos;div.quote&apos;):</span><br><span class="line">            yield &#123;</span><br><span class="line">                &apos;text&apos;: quote.css(&apos;span.text::text&apos;).extract_first(),</span><br><span class="line">                &apos;author&apos;: quote.xpath(&apos;span/small/text()&apos;).extract_first(),</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        next_page = response.css(&apos;li.next a::attr(&quot;href&quot;)&apos;).extract_first()</span><br><span class="line">        if next_page is not None:</span><br><span class="line">            yield response.follow(next_page, self.parse)</span><br></pre></td></tr></table></figure>
+<p>Put this in a text file, name it to something like <code>quotes_spider.py</code> and run the spider using the <code>runspider</code> command:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scrapy runspider quotes_spider.py -o quotes.json</span><br></pre></td></tr></table></figure></p>
+<p>When this finishes you will have in the <code>quotes.json</code> file a list of the quotes in JSON format, containing text and author, looking like this (<strong>reformatted here for better readability</strong>):<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">[&#123;</span><br><span class="line">    &quot;author&quot;: &quot;Jane Austen&quot;,</span><br><span class="line">    &quot;text&quot;: &quot;\u201cThe person, be it gentleman or lady, who has not pleasure in a good novel, must be intolerably stupid.\u201d&quot;</span><br><span class="line">&#125;,</span><br><span class="line">&#123;</span><br><span class="line">    &quot;author&quot;: &quot;Groucho Marx&quot;,</span><br><span class="line">    &quot;text&quot;: &quot;\u201cOutside of a dog, a book is man&apos;s best friend. Inside of a dog it&apos;s too dark to read.\u201d&quot;</span><br><span class="line">&#125;,</span><br><span class="line">&#123;</span><br><span class="line">    &quot;author&quot;: &quot;Steve Martin&quot;,</span><br><span class="line">    &quot;text&quot;: &quot;\u201cA day without sunshine is like, you know, night.\u201d&quot;</span><br><span class="line">&#125;,</span><br><span class="line">...]</span><br></pre></td></tr></table></figure></p>
+<p>When you ran the command <code>scrapy runspider quotes_spider.py</code>, Scrapy looked for a Spider definition inside it and ran it through its crawler engine.<strong>(在爬取引擎中运行爬虫)</strong></p>
+<p>The crawl started by making requests to the URLs defined in the <code>start_urls</code> attribute (in this case, only the URL for quotes in humor category)<strong>(发送请求给<code>start_urls</code>)</strong> and called the default callback method <code>parse</code>, passing the response object as an argument.<strong>(回调函数处理<code>response</code>)</strong> In the parse callback, we loop through the quote elements using a CSS Selector <strong>(通过使用css选择器)</strong>, yield a Python dict with the extracted quote text and author<strong>(使用python字典去提取text文本与作者)</strong> , look for a link to the next page and schedule another request using the same <code>parse</code> method as callback.<strong>(找到下一个<code>page</code>,调用相同的<code>parse</code>)</strong></p>
+<p>Here you notice one of the main advantages about Scrapy: requests are scheduled and processed asynchronously. This means that Scrapy doesn’t need to wait for a request to be finished and processed, it can send another request or do other things in the meantime. This also means that other requests can keep going even if some request fails or an error happens while handling it.<strong>(处理异步,请求储存在调度器里面,不知道是不是队列形式)</strong></p>
+<p>While this enables you to do very fast crawls (sending multiple concurrent requests at the same time, in a fault-tolerant way) Scrapy also gives you control over the politeness of the crawl through a few settings. You can do things like setting a download delay between each request, limiting amount of concurrent requests per domain or per IP, and even using an auto-throttling extension that tries to figure out these automatically.<strong>(可控制性:可以控制scrapy每个域名,ip访问的数量等)</strong></p>
+<p>This is using feed exports to generate the JSON file, you can easily change the export format (XML or CSV, for example) or the storage backend (FTP or Amazon S3, for example). You can also write an item pipeline to store the items in a database.<strong>(输出形式可以多样)</strong></p>
+<p>还有等等等等的特性,先不了解(看了也不懂),之后学了再看看</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://www.unblog.top/2018/08/15/Bumblebee控制独显/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -923,192 +1116,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.unblog.top/2018/08/12/java-swing/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="兔子春">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/7.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Eden">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/12/java-swing/" itemprop="url">java_swing 绘制图形</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-12T11:47:16+08:00">
-                2018-08-12
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2018-09-05T18:03:00+08:00">
-                2018-09-05
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/java/" itemprop="url" rel="index">
-                    <span itemprop="name">java</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  90
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  1
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="在java的jpanel绘制图形"><a href="#在java的jpanel绘制图形" class="headerlink" title="在java的jpanel绘制图形"></a>在java的jpanel绘制图形</h4><p>使用paint方法,在里面使用super.paint清除之前的残留<br>在while里使用repaint进行循环绘画<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public void display() &#123;</span><br><span class="line">		this.repaint();</span><br><span class="line">	&#125;</span><br><span class="line">	public void paint(Graphics g) &#123;</span><br><span class="line">		super.paint(g);</span><br><span class="line">		dao.drawBackground(g);</span><br><span class="line">		dao.drawState(g, hero);</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">while(true) &#123;</span><br><span class="line">			start.display();</span><br><span class="line">			try</span><br><span class="line">			&#123;</span><br><span class="line">				Thread.sleep(300);</span><br><span class="line"></span><br><span class="line">			&#125;</span><br><span class="line">			catch (InterruptedException e)</span><br><span class="line">			&#123;</span><br><span class="line">				e.printStackTrace();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1165,7 +1172,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">86</span>
+                  <span class="site-state-item-count">87</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1254,7 +1261,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">111.1k</span>
+    <span title="Site words total count">111.7k</span>
   
 </div>
 
