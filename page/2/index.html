@@ -378,6 +378,225 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.unblog.top/2019/04/12/fuxi7-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="兔子春">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/7.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Eden">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/04/12/fuxi7-2/" itemprop="url">操作系统之磁盘</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-12T16:01:55+08:00">
+                2019-04-12
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-04-12T16:04:33+08:00">
+                2019-04-12
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/操作系统/" itemprop="url" rel="index">
+                    <span itemprop="name">操作系统</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  590
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  2
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>本文采用复习拷贝重新阅读大法<br>本文来自该<a href="https://github.com/CyC2018/CS-Notes" target="_blank" rel="noopener">仓库</a></p>
+<h1 id="磁盘结构"><a href="#磁盘结构" class="headerlink" title="磁盘结构"></a>磁盘结构</h1><ul>
+<li>盘面（Platter）：一个磁盘有多个盘面；</li>
+<li>磁道（Track）：盘面上的圆形带状区域，一个盘面可以有多个磁道；</li>
+<li>扇区（Track Sector）：磁道上的一个弧段，一个磁道可以有多个扇区，它是最小的物理储存单位，目前主要有 512 bytes 与 4 K 两种大小；</li>
+<li>磁头（Head）：与盘面非常接近，能够将盘面上的磁场转换为电信号（读），或者将电信号转换为盘面的磁场（写）；</li>
+<li>制动手臂（Actuator arm）：用于在磁道之间移动磁头；</li>
+<li>主轴（Spindle）：使整个盘面转动。</li>
+</ul>
+<p><div align="center"> <img src="https://gitee.com/CyC2018/CS-Notes/raw/master/docs/pics/014fbc4d-d873-4a12-b160-867ddaed9807.jpg"> </div><br></p>
+<h1 id="磁盘调度算法"><a href="#磁盘调度算法" class="headerlink" title="磁盘调度算法"></a>磁盘调度算法</h1><p>读写一个磁盘块的时间的影响因素有：</p>
+<ul>
+<li>旋转时间（主轴转动盘面，使得磁头移动到适当的扇区上）</li>
+<li>寻道时间（制动手臂移动，使得磁头移动到适当的磁道上）</li>
+<li>实际的数据传输时间</li>
+</ul>
+<p>其中，寻道时间最长，因此磁盘调度的主要目标是使磁盘的平均寻道时间最短。</p>
+<h2 id="1-先来先服务"><a href="#1-先来先服务" class="headerlink" title="1. 先来先服务"></a>1. 先来先服务</h2><blockquote>
+<p>FCFS, First Come First Served</p>
+</blockquote>
+<p>按照磁盘请求的顺序进行调度。</p>
+<p>优点是公平和简单。缺点也很明显，因为未对寻道做任何优化，使平均寻道时间可能较长。</p>
+<h2 id="2-最短寻道时间优先"><a href="#2-最短寻道时间优先" class="headerlink" title="2. 最短寻道时间优先"></a>2. 最短寻道时间优先</h2><blockquote>
+<p>SSTF, Shortest Seek Time First</p>
+</blockquote>
+<p>优先调度与当前磁头所在磁道距离最近的磁道。</p>
+<p>虽然平均寻道时间比较低，但是不够公平。如果新到达的磁道请求总是比一个在等待的磁道请求近，那么在等待的磁道请求会一直等待下去，也就是出现饥饿现象。具体来说，两端的磁道请求更容易出现饥饿现象。</p>
+<p><div align="center"> <img src="https://gitee.com/CyC2018/CS-Notes/raw/master/docs/pics/4e2485e4-34bd-4967-9f02-0c093b797aaa.png"> </div><br></p>
+<h2 id="3-电梯算法"><a href="#3-电梯算法" class="headerlink" title="3. 电梯算法"></a>3. 电梯算法</h2><blockquote>
+<p>SCAN</p>
+</blockquote>
+<p>电梯总是保持一个方向运行，直到该方向没有请求为止，然后改变运行方向。</p>
+<p>电梯算法（扫描算法）和电梯的运行过程类似，总是按一个方向来进行磁盘调度，直到该方向上没有未完成的磁盘请求，然后改变方向。</p>
+<p>因为考虑了移动方向，因此所有的磁盘请求都会被满足，解决了 SSTF 的饥饿问题。</p>
+<p><div align="center"> <img src="https://gitee.com/CyC2018/CS-Notes/raw/master/docs/pics/271ce08f-c124-475f-b490-be44fedc6d2e.png"> </div><br></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://www.unblog.top/2019/04/12/fuxi7-1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1073,228 +1292,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.unblog.top/2019/04/09/fuxi5-1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="兔子春">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/7.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Eden">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/04/09/fuxi5-1/" itemprop="url">操作系统之链接</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-09T16:31:47+08:00">
-                2019-04-09
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2019-04-09T16:34:08+08:00">
-                2019-04-09
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/操作系统/" itemprop="url" rel="index">
-                    <span itemprop="name">操作系统</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  697
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  2
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>本文采用复习拷贝重新阅读大法<br>本文来自该<a href="https://github.com/CyC2018/CS-Notes" target="_blank" rel="noopener">仓库</a></p>
-<h1 id="编译系统"><a href="#编译系统" class="headerlink" title="编译系统"></a>编译系统</h1><p>以下是一个 hello.c 程序：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"hello, world\n"</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>在 Unix 系统上，由编译器把源文件转换为目标文件。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcc -o hello hello.c</span><br></pre></td></tr></table></figure>
-<p>这个过程大致如下：</p>
-<p><div align="center"> <img src="https://gitee.com/CyC2018/CS-Notes/raw/master/docs/pics/b396d726-b75f-4a32-89a2-03a7b6e19f6f.jpg" width="800"> </div><br></p>
-<ul>
-<li>预处理阶段：处理以 # 开头的预处理命令；</li>
-<li>编译阶段：翻译成汇编文件；</li>
-<li>汇编阶段：将汇编文件翻译成可重定向目标文件；</li>
-<li>链接阶段：将可重定向目标文件和 printf.o 等单独预编译好的目标文件进行合并，得到最终的可执行目标文件。</li>
-</ul>
-<h1 id="静态链接"><a href="#静态链接" class="headerlink" title="静态链接"></a>静态链接</h1><p>静态链接器以一组可重定向目标文件为输入，生成一个完全链接的可执行目标文件作为输出。链接器主要完成以下两个任务：</p>
-<ul>
-<li>符号解析：每个符号对应于一个函数、一个全局变量或一个静态变量，符号解析的目的是将每个符号引用与一个符号定义关联起来。</li>
-<li>重定位：链接器通过把每个符号定义与一个内存位置关联起来，然后修改所有对这些符号的引用，使得它们指向这个内存位置。</li>
-</ul>
-<p><div align="center"> <img src="https://gitee.com/CyC2018/CS-Notes/raw/master/docs/pics/47d98583-8bb0-45cc-812d-47eefa0a4a40.jpg"> </div><br></p>
-<h1 id="目标文件"><a href="#目标文件" class="headerlink" title="目标文件"></a>目标文件</h1><ul>
-<li>可执行目标文件：可以直接在内存中执行；</li>
-<li>可重定向目标文件：可与其它可重定向目标文件在链接阶段合并，创建一个可执行目标文件；</li>
-<li>共享目标文件：这是一种特殊的可重定向目标文件，可以在运行时被动态加载进内存并链接；</li>
-</ul>
-<h1 id="动态链接"><a href="#动态链接" class="headerlink" title="动态链接"></a>动态链接</h1><p>静态库有以下两个问题：</p>
-<ul>
-<li>当静态库更新时那么整个程序都要重新进行链接；</li>
-<li>对于 printf 这种标准函数库，如果每个程序都要有代码，这会极大浪费资源。</li>
-</ul>
-<p>共享库是为了解决静态库的这两个问题而设计的，在 Linux 系统中通常用 .so 后缀来表示，Windows 系统上它们被称为 DLL。它具有以下特点：</p>
-<ul>
-<li>在给定的文件系统中一个库只有一个文件，所有引用该库的可执行目标文件都共享这个文件，它不会被复制到引用它的可执行文件中；</li>
-<li>在内存中，一个共享库的 .text 节（已编译程序的机器代码）的一个副本可以被不同的正在运行的进程共享。</li>
-</ul>
-<p><div align="center"> <img src="https://gitee.com/CyC2018/CS-Notes/raw/master/docs/pics/76dc7769-1aac-4888-9bea-064f1caa8e77.jpg"> </div><br></p>
-<blockquote>
-<p>个人认为:简单的来说 静态链接和动态链接就是指在运行程序的时候要不要调用系统的库文件来帮助程序运行</p>
-</blockquote>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1351,7 +1348,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">87</span>
+                  <span class="site-state-item-count">88</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1440,7 +1437,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">111.7k</span>
+    <span title="Site words total count">112.7k</span>
   
 </div>
 

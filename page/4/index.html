@@ -378,6 +378,260 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.unblog.top/2019/04/07/fuxi3-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="兔子春">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/7.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Eden">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/04/07/fuxi3-1/" itemprop="url">操作系统概要</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-07T14:55:51+08:00">
+                2019-04-07
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-04-07T14:58:36+08:00">
+                2019-04-07
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/操作系统/" itemprop="url" rel="index">
+                    <span itemprop="name">操作系统</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1,131
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  4
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>本文采用复习拷贝重新阅读大法<br>本文来自该<a href="https://github.com/CyC2018/CS-Notes" target="_blank" rel="noopener">仓库</a></p>
+<h1 id="基本特征"><a href="#基本特征" class="headerlink" title="基本特征"></a>基本特征</h1><h2 id="1-并发"><a href="#1-并发" class="headerlink" title="1. 并发"></a>1. 并发</h2><p>并发是指宏观上在 <strong>一段时间</strong> 内能同时 <strong>运行多个程序</strong>，而并行则指 <strong>同一时刻</strong> 能 <strong>运行多个指令</strong>。</p>
+<p>并行需要 <strong>硬件支持</strong>，如多流水线、多核处理器或者分布式计算系统。</p>
+<p>操作系统通过引入 <strong>进程</strong> 和 <strong>线程</strong>，使得程序能够并发运行。</p>
+<h2 id="2-共享"><a href="#2-共享" class="headerlink" title="2. 共享"></a>2. 共享</h2><p>共享是指系统中的资源可以 <strong>被多个并发进程共同使用</strong>。</p>
+<p>有两种共享方式：<strong>互斥共享</strong> 和 <strong>同时共享</strong>。</p>
+<p>互斥共享的资源称为 <strong>临界资源</strong>，例如打印机等，在 <strong>同一时间只允许一个进程访问</strong>，需要用同步机制来实现对临界资源的访问。<br><strong>同时共享</strong> 就是适合所有程序共同访问资源,但是应该需要访问控制,防止某一进程对资源进行了修改(我的想法)</p>
+<h2 id="3-虚拟"><a href="#3-虚拟" class="headerlink" title="3. 虚拟"></a>3. 虚拟</h2><p>虚拟技术把一个物理实体转换为多个逻辑实体。</p>
+<p>主要有两种虚拟技术：<strong>时分复用技术</strong> 和 <strong>空分复用技术</strong>。</p>
+<blockquote>
+<p>时间片轮转法</p>
+</blockquote>
+<p>多个进程能在同一个处理器上并发执行使用了时分复用技术，让每个进程轮流占有处理器，每次只执行一小个时间片并快速切换。</p>
+<p>虚拟内存使用了空分复用技术，它将物理内存抽象为地址空间，每个进程都有各自的地址空间。<strong>地址空间的页被映射到物理内存</strong>，地址空间的页并不需要全部在物理内存中，当使用到一个没有在物理内存的页时，执行 <strong>页面置换算法</strong>，将该页置换到内存中。</p>
+<blockquote>
+<p>页面置换(一种移来移去的算法) 十分任性的概括</p>
+</blockquote>
+<h2 id="4-异步"><a href="#4-异步" class="headerlink" title="4. 异步"></a>4. 异步</h2><p>异步指进程 <strong>不是一次性执行完毕</strong>，而是走走停停，以不可知的速度向前推进。</p>
+<h1 id="基本功能"><a href="#基本功能" class="headerlink" title="基本功能"></a>基本功能</h1><h2 id="1-进程管理"><a href="#1-进程管理" class="headerlink" title="1. 进程管理"></a>1. 进程管理</h2><p>进程控制、进程同步、进程通信、死锁处理、处理机调度等。</p>
+<h2 id="2-内存管理"><a href="#2-内存管理" class="headerlink" title="2. 内存管理"></a>2. 内存管理</h2><p>内存分配、地址映射、内存保护与共享、虚拟内存等。</p>
+<h2 id="3-文件管理"><a href="#3-文件管理" class="headerlink" title="3. 文件管理"></a>3. 文件管理</h2><p>文件存储空间的管理、目录管理、文件读写管理和保护等。</p>
+<h2 id="4-设备管理"><a href="#4-设备管理" class="headerlink" title="4. 设备管理"></a>4. 设备管理</h2><p>完成用户的 I/O 请求，方便用户使用各种设备，并提高设备的利用率。</p>
+<p>主要包括缓冲管理、设备分配、设备处理、虛拟设备等。</p>
+<h1 id="系统调用"><a href="#系统调用" class="headerlink" title="系统调用"></a>系统调用</h1><p>如果一个进程在用户态需要使用内核态的功能，就进行系统调用从而陷入内核，由操作系统代为完成。</p>
+<p><div align="center"> <img src="https://gitee.com/CyC2018/CS-Notes/raw/master/docs/pics/tGPV0.png" width="600"> </div><br></p>
+<p>Linux 的系统调用主要有以下这些：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Task</th>
+<th>Commands</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">进程控制</td>
+<td>fork(); exit(); wait();</td>
+</tr>
+<tr>
+<td style="text-align:center">进程通信</td>
+<td>pipe(); shmget(); mmap();</td>
+</tr>
+<tr>
+<td style="text-align:center">文件操作</td>
+<td>open(); read(); write();</td>
+</tr>
+<tr>
+<td style="text-align:center">设备操作</td>
+<td>ioctl(); read(); write();</td>
+</tr>
+<tr>
+<td style="text-align:center">信息维护</td>
+<td>getpid(); alarm(); sleep();</td>
+</tr>
+<tr>
+<td style="text-align:center">安全</td>
+<td>chmod(); umask(); chown();</td>
+</tr>
+</tbody>
+</table>
+<h1 id="大内核和微内核"><a href="#大内核和微内核" class="headerlink" title="大内核和微内核"></a>大内核和微内核</h1><h2 id="1-大内核"><a href="#1-大内核" class="headerlink" title="1. 大内核"></a>1. 大内核</h2><p>放了一整个操作系统,操作系统变成了一个整体 -.-<br>大内核是将操作系统功能作为一个紧密结合的整体放到内核。</p>
+<p>由于各模块共享信息，因此有很高的性能。</p>
+<h2 id="2-微内核"><a href="#2-微内核" class="headerlink" title="2. 微内核"></a>2. 微内核</h2><p>就只有一个核心的控制,其他的被分成不同的功能,一般都是这个吧<br>由于操作系统不断复杂，因此将一部分操作系统功能移出内核，从而降低内核的复杂性。移出的部分根据分层的原则划分成若干服务，相互独立。</p>
+<p>在微内核结构下，操作系统被划分成小的、定义良好的模块，只有微内核这一个模块运行在内核态，其余模块运行在用户态。</p>
+<p>因为需要频繁地在用户态和核心态之间进行切换，所以会有一定的性能损失。</p>
+<p><div align="center"> <img src="https://gitee.com/CyC2018/CS-Notes/raw/master/docs/pics/2_14_microkernelArchitecture.jpg"> </div><br></p>
+<h1 id="中断分类"><a href="#中断分类" class="headerlink" title="中断分类"></a>中断分类</h1><p>中断分为三类</p>
+<h2 id="1-外中断"><a href="#1-外中断" class="headerlink" title="1. 外中断"></a>1. 外中断</h2><p>由 CPU 执行指令以外的事件引起，如 I/O 完成中断，表示设备输入/输出处理已经完成，处理器能够发送下一个输入/输出请求。此外还有时钟中断、控制台中断等。</p>
+<h2 id="2-异常"><a href="#2-异常" class="headerlink" title="2. 异常"></a>2. 异常</h2><p>由 CPU 执行指令的内部事件引起，如非法操作码、地址越界、算术溢出等。</p>
+<h2 id="3-陷入-人为的可控"><a href="#3-陷入-人为的可控" class="headerlink" title="3. 陷入(人为的可控)"></a>3. 陷入(人为的可控)</h2><p>在用户程序中使用系统调用。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://www.unblog.top/2019/04/07/fuxi3/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -978,199 +1232,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.unblog.top/2018/12/27/xiaoshi5/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="兔子春">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/7.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Eden">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/12/27/xiaoshi5/" itemprop="url">风华依在</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-27T23:06:13+08:00">
-                2018-12-27
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2018-12-28T00:08:32+08:00">
-                2018-12-28
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/诗歌集/" itemprop="url" rel="index">
-                    <span itemprop="name">诗歌集</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  145
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  1
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote>
-<p>一场风华一云烟<br>散去时光无情人</p>
-</blockquote>
-<blockquote>
-<p>我不奢求上天能给我多少眷顾，<br>但我希望即使我是孤身一人<br>我也能有温度</p>
-</blockquote>
-<blockquote class="blockquote-center"><br><br><strong>记得蒙着面纱的你<br>在远方望着我<br>身旁花开芬芳，随风飘动<br>我缓缓走近你的身旁<br>清晰的感受到你温和的体温<br>将我身躯的冰凉慢慢缓解<br>血管中涌现出新的生机<br>你给我你的面纱<br>让我保管它<br>说它是你唯一你的标识<br>我点了点头<br>答应带着它远行</strong><br><br></blockquote>
-
-<p><img src="/images/forpost/xiaoshi5.jpg" alt=""></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1227,7 +1288,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">87</span>
+                  <span class="site-state-item-count">88</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1316,7 +1377,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">111.7k</span>
+    <span title="Site words total count">112.7k</span>
   
 </div>
 

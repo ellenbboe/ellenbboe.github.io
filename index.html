@@ -378,6 +378,190 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.unblog.top/2019/04/14/fuxi9-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="兔子春">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/7.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Eden">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/04/14/fuxi9-1/" itemprop="url">Leetcode之排序(部分)</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-14T16:23:18+08:00">
+                2019-04-14
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-04-15T09:25:39+08:00">
+                2019-04-15
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  952
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  4
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>导航:<br>快速排序 堆排序 桶排序 荷兰国旗问题</p>
+<p>友情提示: 代码在<a href="https://github.com/apersonlikesc/sosoalgorithm" target="_blank" rel="noopener">这里</a><br>本文参照该<a href="https://github.com/CyC2018/CS-Notes" target="_blank" rel="noopener">仓库</a>学习,大家可以star</p>
+<h3 id="快速选择"><a href="#快速选择" class="headerlink" title="快速选择"></a>快速选择</h3><p>用于求解 Kth Element 问题，使用快速排序的 partition() 进行实现。</p>
+<p>需要先打乱数组，否则最坏情况下时间复杂度为 O(N2)。</p>
+<h3 id="堆排序"><a href="#堆排序" class="headerlink" title="堆排序"></a>堆排序</h3><p>用于求解 TopK Elements 问题，通过维护一个大小为 K 的堆，堆中的元素就是 TopK Elements。</p>
+<p>堆排序也可以用于求解 Kth Element 问题，堆顶元素就是 Kth Element。</p>
+<p>快速选择也可以求解 TopK Elements 问题，因为找到 Kth Element 之后，再遍历一次数组，所有小于等于 Kth Element 的元素都是 TopK Elements。</p>
+<p>可以看到，快速选择和堆排序都可以求解 Kth Element 和 TopK Elements 问题。</p>
+<p>排序 ：时间复杂度 O(NlogN)，空间复杂度 O(1)<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findKthLargest</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">    Arrays.sort(nums);</span><br><span class="line">    <span class="keyword">return</span> nums[nums.length - k];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>堆排序 ：时间复杂度 O(NlogK)，空间复杂度 O(K)。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findKthLargest</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">    PriorityQueue&lt;Integer&gt; pq = <span class="keyword">new</span> PriorityQueue&lt;&gt;(); <span class="comment">// 小顶堆</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> val : nums) &#123;</span><br><span class="line">        pq.add(val);</span><br><span class="line">        <span class="keyword">if</span> (pq.size() &gt; k)  <span class="comment">// 维护堆的大小为 K</span></span><br><span class="line">            pq.poll();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> pq.peek();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>快速选择 ：时间复杂度 O(N)，空间复杂度 O(1)<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findKthLargest</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">    k = nums.length - k;</span><br><span class="line">    <span class="keyword">int</span> l = <span class="number">0</span>, h = nums.length - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (l &lt; h) &#123;</span><br><span class="line">        <span class="keyword">int</span> j = partition(nums, l, h);</span><br><span class="line">        <span class="keyword">if</span> (j == k) &#123;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (j &lt; k) &#123;</span><br><span class="line">            l = j + <span class="number">1</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            h = j - <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> nums[k];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">partition</span><span class="params">(<span class="keyword">int</span>[] a, <span class="keyword">int</span> l, <span class="keyword">int</span> h)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i = l, j = h + <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</span><br><span class="line">        <span class="keyword">while</span> (a[++i] &lt; a[l] &amp;&amp; i &lt; h) ;</span><br><span class="line">        <span class="keyword">while</span> (a[--j] &gt; a[l] &amp;&amp; j &gt; l) ;</span><br><span class="line">        <span class="keyword">if</span> (i &gt;= j) &#123;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        swap(a, i, j);</span><br><span class="line">    &#125;</span><br><span class="line">    swap(a, l, j);</span><br><span class="line">    <span class="keyword">return</span> j;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">swap</span><span class="params">(<span class="keyword">int</span>[] a, <span class="keyword">int</span> i, <span class="keyword">int</span> j)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> t = a[i];</span><br><span class="line">    a[i] = a[j];</span><br><span class="line">    a[j] = t;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="桶排序"><a href="#桶排序" class="headerlink" title="桶排序"></a>桶排序</h2><h3 id="出现频率最多的-k-个数"><a href="#出现频率最多的-k-个数" class="headerlink" title="出现频率最多的 k 个数"></a>出现频率最多的 k 个数</h3><p>设置若干个桶，每个桶存储出现频率相同的数，并且桶的下标代表桶中数出现的频率，即第 i 个桶中存储的数出现的频率为 i。</p>
+<p>把数都放到桶之后，从后向前遍历桶，最先得到的 k 个数就是出现频率最多的的 k 个数。</p>
+<h3 id="按照字符出现次数对字符串排序"><a href="#按照字符出现次数对字符串排序" class="headerlink" title="按照字符出现次数对字符串排序"></a>按照字符出现次数对字符串排序</h3><p>给定一个字符串，请将字符串里的字符按照出现的频率降序排列。</p>
+<h2 id="荷兰国旗问题"><a href="#荷兰国旗问题" class="headerlink" title="荷兰国旗问题"></a>荷兰国旗问题</h2><p>荷兰国旗包含三种颜色：红、白、蓝。</p>
+<p>有三种颜色的球，算法的目标是将这三种球按颜色顺序正确地排列。</p>
+<p>它<strong>其实是三向切分快速排序的一种变种</strong>，在三向切分快速排序中，每次切分都将数组分成三个区间：小于切分元素、等于切分元素、大于切分元素，而该算法是将数组分成三个区间：等于红色、等于白色、等于蓝色。</p>
+<p>给定一个包含红色、白色和蓝色，一共 n 个元素的数组，原地对它们进行排序，使得<strong>相同颜色的元素相邻</strong>，并按照红色、白色、蓝色顺序排列。</p>
+<p>此题中，我们使用整数 0、 1 和 2 分别表示红色、白色和蓝色。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sortColors</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> zero = -<span class="number">1</span>, one = <span class="number">0</span>, two = nums.length;</span><br><span class="line">    <span class="keyword">while</span> (one &lt; two) &#123;</span><br><span class="line">        <span class="keyword">if</span> (nums[one] == <span class="number">0</span>) &#123;</span><br><span class="line">            swap(nums, ++zero, one++);</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (nums[one] == <span class="number">2</span>) &#123;</span><br><span class="line">            swap(nums, --two, one);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            ++one;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">swap</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> i, <span class="keyword">int</span> j)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> t = nums[i];</span><br><span class="line">    nums[i] = nums[j];</span><br><span class="line">    nums[j] = t;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>快速排序的思想 nums[one]指向中间的数 中间的数比左边小就swap 比右边大就swap 左边的和中间的排序 中间和右边的排序 (这里只有三个数)</p>
+</blockquote>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://www.unblog.top/2019/04/14/fuxi9/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1587,225 +1771,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.unblog.top/2019/04/12/fuxi7-2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="兔子春">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/7.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Eden">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/04/12/fuxi7-2/" itemprop="url">操作系统之磁盘</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-12T16:01:55+08:00">
-                2019-04-12
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2019-04-12T16:04:33+08:00">
-                2019-04-12
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/操作系统/" itemprop="url" rel="index">
-                    <span itemprop="name">操作系统</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  590
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  2
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>本文采用复习拷贝重新阅读大法<br>本文来自该<a href="https://github.com/CyC2018/CS-Notes" target="_blank" rel="noopener">仓库</a></p>
-<h1 id="磁盘结构"><a href="#磁盘结构" class="headerlink" title="磁盘结构"></a>磁盘结构</h1><ul>
-<li>盘面（Platter）：一个磁盘有多个盘面；</li>
-<li>磁道（Track）：盘面上的圆形带状区域，一个盘面可以有多个磁道；</li>
-<li>扇区（Track Sector）：磁道上的一个弧段，一个磁道可以有多个扇区，它是最小的物理储存单位，目前主要有 512 bytes 与 4 K 两种大小；</li>
-<li>磁头（Head）：与盘面非常接近，能够将盘面上的磁场转换为电信号（读），或者将电信号转换为盘面的磁场（写）；</li>
-<li>制动手臂（Actuator arm）：用于在磁道之间移动磁头；</li>
-<li>主轴（Spindle）：使整个盘面转动。</li>
-</ul>
-<p><div align="center"> <img src="https://gitee.com/CyC2018/CS-Notes/raw/master/docs/pics/014fbc4d-d873-4a12-b160-867ddaed9807.jpg"> </div><br></p>
-<h1 id="磁盘调度算法"><a href="#磁盘调度算法" class="headerlink" title="磁盘调度算法"></a>磁盘调度算法</h1><p>读写一个磁盘块的时间的影响因素有：</p>
-<ul>
-<li>旋转时间（主轴转动盘面，使得磁头移动到适当的扇区上）</li>
-<li>寻道时间（制动手臂移动，使得磁头移动到适当的磁道上）</li>
-<li>实际的数据传输时间</li>
-</ul>
-<p>其中，寻道时间最长，因此磁盘调度的主要目标是使磁盘的平均寻道时间最短。</p>
-<h2 id="1-先来先服务"><a href="#1-先来先服务" class="headerlink" title="1. 先来先服务"></a>1. 先来先服务</h2><blockquote>
-<p>FCFS, First Come First Served</p>
-</blockquote>
-<p>按照磁盘请求的顺序进行调度。</p>
-<p>优点是公平和简单。缺点也很明显，因为未对寻道做任何优化，使平均寻道时间可能较长。</p>
-<h2 id="2-最短寻道时间优先"><a href="#2-最短寻道时间优先" class="headerlink" title="2. 最短寻道时间优先"></a>2. 最短寻道时间优先</h2><blockquote>
-<p>SSTF, Shortest Seek Time First</p>
-</blockquote>
-<p>优先调度与当前磁头所在磁道距离最近的磁道。</p>
-<p>虽然平均寻道时间比较低，但是不够公平。如果新到达的磁道请求总是比一个在等待的磁道请求近，那么在等待的磁道请求会一直等待下去，也就是出现饥饿现象。具体来说，两端的磁道请求更容易出现饥饿现象。</p>
-<p><div align="center"> <img src="https://gitee.com/CyC2018/CS-Notes/raw/master/docs/pics/4e2485e4-34bd-4967-9f02-0c093b797aaa.png"> </div><br></p>
-<h2 id="3-电梯算法"><a href="#3-电梯算法" class="headerlink" title="3. 电梯算法"></a>3. 电梯算法</h2><blockquote>
-<p>SCAN</p>
-</blockquote>
-<p>电梯总是保持一个方向运行，直到该方向没有请求为止，然后改变运行方向。</p>
-<p>电梯算法（扫描算法）和电梯的运行过程类似，总是按一个方向来进行磁盘调度，直到该方向上没有未完成的磁盘请求，然后改变方向。</p>
-<p>因为考虑了移动方向，因此所有的磁盘请求都会被满足，解决了 SSTF 的饥饿问题。</p>
-<p><div align="center"> <img src="https://gitee.com/CyC2018/CS-Notes/raw/master/docs/pics/271ce08f-c124-475f-b490-be44fedc6d2e.png"> </div><br></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1862,7 +1827,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">87</span>
+                  <span class="site-state-item-count">88</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1951,7 +1916,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">111.7k</span>
+    <span title="Site words total count">112.7k</span>
   
 </div>
 
