@@ -140,18 +140,18 @@
 
 
 
-<meta name="description" content="关与操作系统fork的记录由于fork()出来的子进程与父进程时并行执行的,所以在父进程结束后子进程还有可能存在(如果不让父进程等待子进程结束的话) 单次执行的代码123456789101112131415161718#include &amp;lt;stdio.h&amp;gt;#include &amp;lt;unistd.h&amp;gt;#include &amp;lt;stdlib.h&amp;gt;int main()&amp;#123;">
+<meta name="description" content="关于操作系统fork的记录由于fork()出来的子进程与父进程时并行执行的,所以在父进程结束后子进程还有可能存在(如果不让父进程等待子进程结束的话) 单次执行的代码123456789101112131415161718#include &amp;lt;stdio.h&amp;gt;#include &amp;lt;unistd.h&amp;gt;#include &amp;lt;stdlib.h&amp;gt;int main()&amp;#123;">
 <meta name="keywords" content="日志">
 <meta property="og:type" content="article">
 <meta property="og:title" content="fork函数的简单记录">
 <meta property="og:url" content="https://www.unblog.top/2018/10/21/fork1/index.html">
 <meta property="og:site_name" content="Eden">
-<meta property="og:description" content="关与操作系统fork的记录由于fork()出来的子进程与父进程时并行执行的,所以在父进程结束后子进程还有可能存在(如果不让父进程等待子进程结束的话) 单次执行的代码123456789101112131415161718#include &amp;lt;stdio.h&amp;gt;#include &amp;lt;unistd.h&amp;gt;#include &amp;lt;stdlib.h&amp;gt;int main()&amp;#123;">
+<meta property="og:description" content="关于操作系统fork的记录由于fork()出来的子进程与父进程时并行执行的,所以在父进程结束后子进程还有可能存在(如果不让父进程等待子进程结束的话) 单次执行的代码123456789101112131415161718#include &amp;lt;stdio.h&amp;gt;#include &amp;lt;unistd.h&amp;gt;#include &amp;lt;stdlib.h&amp;gt;int main()&amp;#123;">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-21T07:34:47.410Z">
+<meta property="og:updated_time" content="2019-04-16T09:38:38.671Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="fork函数的简单记录">
-<meta name="twitter:description" content="关与操作系统fork的记录由于fork()出来的子进程与父进程时并行执行的,所以在父进程结束后子进程还有可能存在(如果不让父进程等待子进程结束的话) 单次执行的代码123456789101112131415161718#include &amp;lt;stdio.h&amp;gt;#include &amp;lt;unistd.h&amp;gt;#include &amp;lt;stdlib.h&amp;gt;int main()&amp;#123;">
+<meta name="twitter:description" content="关于操作系统fork的记录由于fork()出来的子进程与父进程时并行执行的,所以在父进程结束后子进程还有可能存在(如果不让父进程等待子进程结束的话) 单次执行的代码123456789101112131415161718#include &amp;lt;stdio.h&amp;gt;#include &amp;lt;unistd.h&amp;gt;#include &amp;lt;stdlib.h&amp;gt;int main()&amp;#123;">
 
 
 
@@ -423,8 +423,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-10-21T15:34:47+08:00">
-                2018-10-21
+              <time title="更新于" itemprop="dateModified" datetime="2019-04-16T17:38:38+08:00">
+                2019-04-16
               </time>
             
           </span>
@@ -510,7 +510,7 @@
       
 
       
-        <h4 id="关与操作系统fork的记录"><a href="#关与操作系统fork的记录" class="headerlink" title="关与操作系统fork的记录"></a>关与操作系统fork的记录</h4><p>由于<code>fork()</code>出来的子进程与父进程时并行执行的,所以在父进程结束后子进程还有可能存在(如果不让父进程等待子进程结束的话)</p>
+        <h4 id="关于操作系统fork的记录"><a href="#关于操作系统fork的记录" class="headerlink" title="关于操作系统fork的记录"></a>关于操作系统fork的记录</h4><p>由于<code>fork()</code>出来的子进程与父进程时并行执行的,所以在父进程结束后子进程还有可能存在(如果不让父进程等待子进程结束的话)</p>
 <p><strong>单次执行的代码</strong><br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> p1,p2;</span><br><span class="line">    <span class="keyword">while</span>((p1=fork())==<span class="number">-1</span>);</span><br><span class="line">    <span class="keyword">if</span>(p1==<span class="number">0</span>)&#123;</span><br><span class="line">        <span class="built_in">putchar</span>(<span class="string">'b'</span>);</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">while</span>((p2=fork())==<span class="number">-1</span>);</span><br><span class="line">        <span class="keyword">if</span>(p2==<span class="number">0</span>)&#123;</span><br><span class="line">            <span class="built_in">putchar</span>(<span class="string">'c'</span>);</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="built_in">putchar</span>(<span class="string">'a'</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>由于不会在c里面写多次执行的方法,所以改用<code>shell</code>脚本调用可执行文件</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>((a=0;a&lt;10000;a++))</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">        ./a.out</span><br><span class="line">        sleep 1</span><br><span class="line">        <span class="built_in">echo</span> -e <span class="string">"\n"</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
@@ -676,7 +676,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">88</span>
+                  <span class="site-state-item-count">89</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -687,7 +687,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -747,7 +747,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#关与操作系统fork的记录"><span class="nav-number">1.</span> <span class="nav-text">关与操作系统fork的记录</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#关于操作系统fork的记录"><span class="nav-number">1.</span> <span class="nav-text">关于操作系统fork的记录</span></a></li></ol></div>
             
 
           </div>
@@ -781,7 +781,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">112.7k</span>
+    <span title="Site words total count">113.5k</span>
   
 </div>
 

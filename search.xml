@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Leetcode之贪心思想]]></title>
+    <url>%2F2019%2F04%2F16%2Ffuxi10%2F</url>
+    <content type="text"><![CDATA[友情提示: 代码在这里本文参照该仓库学习,大家可以star 贪心思想保证每次操作都是局部最优的，并且最后得到的结果是全局最优的。 分配饼干题目描述：每个孩子都有一个满足度，每个饼干都有一个大小，只有饼干的大小大于等于一个孩子的满足度，该孩子才会获得满足。求解最多可以获得满足的孩子数量。 给一个孩子的饼干应当尽量小又能满足该孩子，这样大饼干就能拿来给满足度比较大的孩子。因为最小的孩子最容易得到满足，所以先满足最小的孩子。 证明：假设在某次选择中，贪心策略选择给当前满足度最小的孩子分配第 m 个饼干，第 m 个饼干为可以满足该孩子的最小饼干。假设存在一种最优策略，给该孩子分配第 n 个饼干，并且 m &lt; n。我们可以发现，经过这一轮分配，贪心策略分配后剩下的饼干一定有一个比最优策略来得大。因此在后续的分配中，贪心策略一定能满足更多的孩子。也就是说不存在比贪心策略更优的策略，即贪心策略就是最优策略。 不重叠的区间个数题目描述：计算让一组区间不重叠所需要移除的区间个数。 先计算最多能组成的不重叠区间个数，然后用区间总个数减去不重叠区间的个数。 在每次选择中，区间的结尾最为重要，选择的区间结尾越小，留给后面的区间的空间越大，那么后面能够选择的区间个数也就越大。 按区间的结尾进行排序，每次选择结尾最小，并且和前一个区间不重叠的区间。 用最少数量的箭引爆气球题目描述：气球在一个水平数轴上摆放，可以重叠，飞镖垂直投向坐标轴，使得路径上的气球都会刺破。求解最小的投飞镖次数使所有气球都被刺破。 也是计算不重叠的区间个数，不过和 Non-overlapping Intervals 的区别在于，[1, 2] 和 [2, 3] 在本题中算是重叠区间。 与标题无关 自己随便找的 记录一下 分糖果给定一个偶数长度的数组，其中不同的数字代表着不同种类的糖果，每一个数字代表一个糖果。你需要把这些糖果平均分给一个弟弟和一个妹妹。返回妹妹可以获得的最大糖果的种类数。 思路:种类与数量一半比较 如果比一半大就返回数量的一半 如果比一半小就返回种类 从英文中重建数字给定一个非空字符串，其中包含字母顺序打乱的英文单词表示的数字0-9。按升序输出原始的数字。思路:先将有特征值的数字统计出来 然后在依次统计出拥有独特字母的数字]]></content>
+      <categories>
+        <category>算法基础</category>
+      </categories>
+      <tags>
+        <tag>算法</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Leetcode之排序(部分)]]></title>
     <url>%2F2019%2F04%2F14%2Ffuxi9-1%2F</url>
     <content type="text"><![CDATA[导航:快速排序 堆排序 桶排序 荷兰国旗问题 友情提示: 代码在这里本文参照该仓库学习,大家可以star 快速选择用于求解 Kth Element 问题，使用快速排序的 partition() 进行实现。 需要先打乱数组，否则最坏情况下时间复杂度为 O(N2)。 堆排序用于求解 TopK Elements 问题，通过维护一个大小为 K 的堆，堆中的元素就是 TopK Elements。 堆排序也可以用于求解 Kth Element 问题，堆顶元素就是 Kth Element。 快速选择也可以求解 TopK Elements 问题，因为找到 Kth Element 之后，再遍历一次数组，所有小于等于 Kth Element 的元素都是 TopK Elements。 可以看到，快速选择和堆排序都可以求解 Kth Element 和 TopK Elements 问题。 排序 ：时间复杂度 O(NlogN)，空间复杂度 O(1)1234public int findKthLargest(int[] nums, int k) &#123; Arrays.sort(nums); return nums[nums.length - k];&#125; 堆排序 ：时间复杂度 O(NlogK)，空间复杂度 O(K)。123456789public int findKthLargest(int[] nums, int k) &#123; PriorityQueue&lt;Integer&gt; pq = new PriorityQueue&lt;&gt;(); // 小顶堆 for (int val : nums) &#123; pq.add(val); if (pq.size() &gt; k) // 维护堆的大小为 K pq.poll(); &#125; return pq.peek();&#125; 快速选择 ：时间复杂度 O(N)，空间复杂度 O(1)1234567891011121314151617181920212223242526272829303132333435public int findKthLargest(int[] nums, int k) &#123; k = nums.length - k; int l = 0, h = nums.length - 1; while (l &lt; h) &#123; int j = partition(nums, l, h); if (j == k) &#123; break; &#125; else if (j &lt; k) &#123; l = j + 1; &#125; else &#123; h = j - 1; &#125; &#125; return nums[k];&#125;private int partition(int[] a, int l, int h) &#123; int i = l, j = h + 1; while (true) &#123; while (a[++i] &lt; a[l] &amp;&amp; i &lt; h) ; while (a[--j] &gt; a[l] &amp;&amp; j &gt; l) ; if (i &gt;= j) &#123; break; &#125; swap(a, i, j); &#125; swap(a, l, j); return j;&#125;private void swap(int[] a, int i, int j) &#123; int t = a[i]; a[i] = a[j]; a[j] = t;&#125; 桶排序出现频率最多的 k 个数设置若干个桶，每个桶存储出现频率相同的数，并且桶的下标代表桶中数出现的频率，即第 i 个桶中存储的数出现的频率为 i。 把数都放到桶之后，从后向前遍历桶，最先得到的 k 个数就是出现频率最多的的 k 个数。 按照字符出现次数对字符串排序给定一个字符串，请将字符串里的字符按照出现的频率降序排列。 荷兰国旗问题荷兰国旗包含三种颜色：红、白、蓝。 有三种颜色的球，算法的目标是将这三种球按颜色顺序正确地排列。 它其实是三向切分快速排序的一种变种，在三向切分快速排序中，每次切分都将数组分成三个区间：小于切分元素、等于切分元素、大于切分元素，而该算法是将数组分成三个区间：等于红色、等于白色、等于蓝色。 给定一个包含红色、白色和蓝色，一共 n 个元素的数组，原地对它们进行排序，使得相同颜色的元素相邻，并按照红色、白色、蓝色顺序排列。 此题中，我们使用整数 0、 1 和 2 分别表示红色、白色和蓝色。123456789101112131415161718public void sortColors(int[] nums) &#123; int zero = -1, one = 0, two = nums.length; while (one &lt; two) &#123; if (nums[one] == 0) &#123; swap(nums, ++zero, one++); &#125; else if (nums[one] == 2) &#123; swap(nums, --two, one); &#125; else &#123; ++one; &#125; &#125;&#125;private void swap(int[] nums, int i, int j) &#123; int t = nums[i]; nums[i] = nums[j]; nums[j] = t;&#125; 快速排序的思想 nums[one]指向中间的数 中间的数比左边小就swap 比右边大就swap 左边的和中间的排序 中间和右边的排序 (这里只有三个数)]]></content>
@@ -220,7 +231,7 @@
   <entry>
     <title><![CDATA[fork函数的简单记录]]></title>
     <url>%2F2018%2F10%2F21%2Ffork1%2F</url>
-    <content type="text"><![CDATA[关与操作系统fork的记录由于fork()出来的子进程与父进程时并行执行的,所以在父进程结束后子进程还有可能存在(如果不让父进程等待子进程结束的话) 单次执行的代码123456789101112131415161718#include &lt;stdio.h&gt;#include &lt;unistd.h&gt;#include &lt;stdlib.h&gt;int main()&#123; int p1,p2; while((p1=fork())==-1); if(p1==0)&#123; putchar('b'); &#125;else&#123; while((p2=fork())==-1); if(p2==0)&#123; putchar('c'); &#125;else&#123; putchar('a'); &#125; &#125; return 0;&#125; 由于不会在c里面写多次执行的方法,所以改用shell脚本调用可执行文件 123456for((a=0;a&lt;10000;a++))do ./a.out sleep 1 echo -e "\n"done sleep主要是为了等本程序子进程执行完,不留到下一程序输出,测试一下还是有用的 ubuntu结果:123452150 2 abc 2147 acb 1 bac 1 bca arch结果:1234521502007 abc 52 acb 90 bac 1 cab 结论:主要是系统的进程调度问题,在不同系统里面出现不同结果,是一个概率事件呢…我之前还以为是固定的=.=]]></content>
+    <content type="text"><![CDATA[关于操作系统fork的记录由于fork()出来的子进程与父进程时并行执行的,所以在父进程结束后子进程还有可能存在(如果不让父进程等待子进程结束的话) 单次执行的代码123456789101112131415161718#include &lt;stdio.h&gt;#include &lt;unistd.h&gt;#include &lt;stdlib.h&gt;int main()&#123; int p1,p2; while((p1=fork())==-1); if(p1==0)&#123; putchar('b'); &#125;else&#123; while((p2=fork())==-1); if(p2==0)&#123; putchar('c'); &#125;else&#123; putchar('a'); &#125; &#125; return 0;&#125; 由于不会在c里面写多次执行的方法,所以改用shell脚本调用可执行文件 123456for((a=0;a&lt;10000;a++))do ./a.out sleep 1 echo -e "\n"done sleep主要是为了等本程序子进程执行完,不留到下一程序输出,测试一下还是有用的 ubuntu结果:123452150 2 abc 2147 acb 1 bac 1 bca arch结果:1234521502007 abc 52 acb 90 bac 1 cab 结论:主要是系统的进程调度问题,在不同系统里面出现不同结果,是一个概率事件呢…我之前还以为是固定的=.=]]></content>
       <categories>
         <category>杂食动物</category>
       </categories>
@@ -288,7 +299,7 @@
     <url>%2F2018%2F09%2F15%2Fandroid-linux%2F</url>
     <content type="text"><![CDATA[失败原因:三星note2 N7100 的 kernel版本太低实验推迟 ……..]]></content>
       <categories>
-        <category>不定时记录</category>
+        <category>杂食动物</category>
       </categories>
       <tags>
         <tag>日志</tag>
@@ -464,7 +475,7 @@
     <url>%2F2018%2F08%2F24%2F2018-08-24%2F</url>
     <content type="text"><![CDATA[bandit 已经通关了 但是还是借助其他人的帮助下才做出来的自己思考估计时间要花出几倍之后要学习 git的操作 还有scrapy 还有ip?(似乎有得多写一下杂食动物的一类文章,增加自己经验 that’s all]]></content>
       <categories>
-        <category>不定时的记录</category>
+        <category>杂食动物</category>
       </categories>
       <tags>
         <tag>日志</tag>

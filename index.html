@@ -378,6 +378,206 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.unblog.top/2019/04/16/fuxi10/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="兔子春">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/7.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Eden">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/04/16/fuxi10/" itemprop="url">Leetcode之贪心思想</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-16T17:34:34+08:00">
+                2019-04-16
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-04-16T17:35:29+08:00">
+                2019-04-16
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法基础/" itemprop="url" rel="index">
+                    <span itemprop="name">算法基础</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  828
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  3
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>友情提示: 代码在<a href="https://github.com/apersonlikesc/sosoalgorithm" target="_blank" rel="noopener">这里</a><br>本文参照该<a href="https://github.com/CyC2018/CS-Notes" target="_blank" rel="noopener">仓库</a>学习,大家可以star</p>
+<h1 id="贪心思想"><a href="#贪心思想" class="headerlink" title="贪心思想"></a>贪心思想</h1><p>保证每次操作都是局部最优的，并且最后得到的结果是全局最优的。</p>
+<h2 id="分配饼干"><a href="#分配饼干" class="headerlink" title="分配饼干"></a>分配饼干</h2><p>题目描述：每个孩子都有一个满足度，每个饼干都有一个大小，只有饼干的大小大于等于一个孩子的满足度，该孩子才会获得满足。求解最多可以获得满足的孩子数量。</p>
+<p>给一个孩子的饼干应当尽量小又能满足该孩子，这样大饼干就能拿来给满足度比较大的孩子。因为最小的孩子最容易得到满足，所以先满足最小的孩子。</p>
+<p>证明：假设在某次选择中，贪心策略选择给当前满足度最小的孩子分配第 m 个饼干，第 m 个饼干为可以满足该孩子的最小饼干。假设存在一种最优策略，给该孩子分配第 n 个饼干，并且 m &lt; n。我们可以发现，经过这一轮分配，贪心策略分配后剩下的饼干一定有一个比最优策略来得大。因此在后续的分配中，贪心策略一定能满足更多的孩子。也就是说不存在比贪心策略更优的策略，即贪心策略就是最优策略。</p>
+<h2 id="不重叠的区间个数"><a href="#不重叠的区间个数" class="headerlink" title="不重叠的区间个数"></a>不重叠的区间个数</h2><p>题目描述：计算让一组区间不重叠所需要移除的区间个数。</p>
+<p>先计算最多能组成的不重叠区间个数，然后用区间总个数减去不重叠区间的个数。</p>
+<p>在每次选择中，区间的结尾最为重要，选择的区间结尾越小，留给后面的区间的空间越大，那么后面能够选择的区间个数也就越大。</p>
+<p>按区间的结尾进行排序，每次选择结尾最小，并且和前一个区间不重叠的区间。</p>
+<h2 id="用最少数量的箭引爆气球"><a href="#用最少数量的箭引爆气球" class="headerlink" title="用最少数量的箭引爆气球"></a>用最少数量的箭引爆气球</h2><p>题目描述：气球在一个水平数轴上摆放，可以重叠，飞镖垂直投向坐标轴，使得路径上的气球都会刺破。求解最小的投飞镖次数使所有气球都被刺破。</p>
+<p>也是计算不重叠的区间个数，不过和 Non-overlapping Intervals 的区别在于，[1, 2] 和 [2, 3] 在本题中算是重叠区间。</p>
+<hr>
+<p>与标题无关 自己随便找的 记录一下</p>
+<h2 id="分糖果"><a href="#分糖果" class="headerlink" title="分糖果"></a>分糖果</h2><p>给定一个偶数长度的数组，其中不同的数字代表着不同种类的糖果，每一个数字代表一个糖果。你需要把这些糖果平均分给一个弟弟和一个妹妹。返回妹妹可以获得的最大糖果的种类数。</p>
+<p>思路:<br>种类与数量一半比较  如果比一半大就返回数量的一半 如果比一半小就返回种类</p>
+<h2 id="从英文中重建数字"><a href="#从英文中重建数字" class="headerlink" title="从英文中重建数字"></a>从英文中重建数字</h2><p>给定一个非空字符串，其中包含字母顺序打乱的英文单词表示的数字0-9。按升序输出原始的数字。<br>思路:<br>先将有特征值的数字统计出来 然后在依次统计出拥有独特字母的数字</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://www.unblog.top/2019/04/14/fuxi9-1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1558,224 +1758,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.unblog.top/2019/04/13/fuxi8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="兔子春">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/7.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Eden">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/04/13/fuxi8/" itemprop="url">剑指offer_Part7</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-13T12:27:35+08:00">
-                2019-04-13
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2019-04-13T12:28:37+08:00">
-                2019-04-13
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法基础/" itemprop="url" rel="index">
-                    <span itemprop="name">算法基础</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  1,189
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  5
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>友情提示: 代码在<a href="https://github.com/apersonlikesc/sosoalgorithm" target="_blank" rel="noopener">这里</a><br>本文参照该<a href="https://github.com/CyC2018/CS-Notes" target="_blank" rel="noopener">仓库</a>学习,大家可以star</p>
-<h2 id="60-n-个骰子的点数"><a href="#60-n-个骰子的点数" class="headerlink" title="60 n 个骰子的点数"></a>60 n 个骰子的点数</h2><p>把 n 个骰子仍在地上，求点数和为 s 的概率。<br>使用一个二维数组 dp 存储点数出现的次数，其中 dp[i][j] 表示前 i 个骰子产生点数 j 的次数。</p>
-<p>动态规划解法<br>空间复杂度：O(N2)</p>
-<p>动态规划解法 + 旋转数组<br>空间复杂度：O(N)</p>
-<h2 id="61-扑克牌顺子"><a href="#61-扑克牌顺子" class="headerlink" title="61 扑克牌顺子"></a>61 扑克牌顺子</h2><p>五张牌，其中大小鬼牌面大小为 0,可变换成任意数字。判断这五张牌是否能组成顺子。</p>
-<h2 id="62-圆圈中最后剩下的数"><a href="#62-圆圈中最后剩下的数" class="headerlink" title="62 圆圈中最后剩下的数"></a>62 圆圈中最后剩下的数</h2><p>题目描述<br>让小朋友们围成一个大圈。然后，随机指定一个数 m，让编号为 0 的小朋友开始报数。每次喊到 m-1 的那个小朋友要出列唱首歌，然后可以在礼品箱中任意的挑选礼物，并且不再回到圈中，从他的下一个小朋友开始，继续 0…m-1 报数 …. 这样下去 …. 直到剩下最后一个小朋友，可以不用表演。</p>
-<p>解题思路<br>约瑟夫环，圆圈长度为 n 的解可以看成长度为 n-1 的解再加上报数的长度 m。因为是圆圈，所以最后需要对 n 取余。</p>
-<blockquote>
-<p>记公式吧…</p>
-</blockquote>
-<p>另外的一种方法<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">LastRemaining_Solution</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> m)</span> </span>&#123;</span><br><span class="line">       LinkedList&lt;Integer&gt; list = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">       <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;n;i++)</span><br><span class="line">       &#123;</span><br><span class="line">           list.add(i);</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">int</span> bt = <span class="number">0</span>;</span><br><span class="line">       <span class="keyword">while</span>(list.size()&gt;<span class="number">1</span>)</span><br><span class="line">       &#123;</span><br><span class="line">           bt = (bt + m-<span class="number">1</span>)%list.size();</span><br><span class="line">           list.remove(bt);</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> list.size()==<span class="number">1</span>?list.get(<span class="number">0</span>):-<span class="number">1</span>;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure></p>
-<h2 id="63-股票的最大利润"><a href="#63-股票的最大利润" class="headerlink" title="63 股票的最大利润"></a>63 股票的最大利润</h2><p>可以有一次买入和一次卖出，那么买入必须在前。求最大收益。<br>使用贪心策略，假设第 i 轮进行卖出操作，买入操作价格应该在 i 之前并且价格最低。</p>
-<h2 id="64-求-1-2-3-…-n"><a href="#64-求-1-2-3-…-n" class="headerlink" title="64 求 1+2+3+…+n"></a>64 求 1+2+3+…+n</h2><p>题目描述<br>要求不能使用乘除法、for、while、if、else、switch、case 等关键字及条件判断语句 A ? B : C。</p>
-<p>解题思路<br>使用递归解法最重要的是指定返回条件，但是本题无法直接使用 if 语句来指定返回条件。</p>
-<p>条件与 &amp;&amp; 具有短路原则，即在第一个条件语句为 false 的情况下不会去执行第二个条件语句。利用这一特性，将递归的返回条件取非然后作为 &amp;&amp; 的第一个条件语句，递归的主体转换为第二个条件语句，那么当递归的返回条件为 true 的情况下就不会执行递归的主体部分，递归返回。</p>
-<p>本题的递归返回条件为 n &lt;= 0，取非后就是 n &gt; 0；递归的主体部分为 sum += Sum_Solution(n - 1)，转换为条件语句后就是 (sum += Sum_Solution(n - 1)) &gt; 0。</p>
-<h2 id="65-不用加减乘除做加法"><a href="#65-不用加减乘除做加法" class="headerlink" title="65 不用加减乘除做加法"></a>65 不用加减乘除做加法</h2><p>写一个函数，求两个整数之和，要求不得使用 +、-、* 、/ 四则运算符号。</p>
-<h2 id="66-构建乘积数组"><a href="#66-构建乘积数组" class="headerlink" title="66 构建乘积数组"></a>66 构建乘积数组</h2><p>给定一个数组 A[0, 1,…, n-1]，请构建一个数组 B[0, 1,…, n-1]，其中 B 中的元素 B[i]=A[0]<em> A[1]</em> …<em> A[i-1]</em> A[i+1]<em> …</em> A[n-1]。要求不能使用除法。</p>
-<h2 id="67-把字符串转换成整数"><a href="#67-把字符串转换成整数" class="headerlink" title="67 把字符串转换成整数"></a>67 把字符串转换成整数</h2><p>将一个字符串转换成一个整数，字符串不是一个合法的数值则返回 0，要求不能使用字符串转换整数的库函数。<br>Iuput:<br>+2147483647<br>1a33</p>
-<p>Output:<br>2147483647<br>0</p>
-<h2 id="68-树中两个节点的最低公共祖先"><a href="#68-树中两个节点的最低公共祖先" class="headerlink" title="68 树中两个节点的最低公共祖先"></a>68 树中两个节点的最低公共祖先</h2><p>二叉查找树<br><img src="https://gitee.com/CyC2018/CS-Notes/raw/master/docs/pics/b39a085e-e7a2-4657-b75e-ba1652a4b132.jpg" alt=""><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> TreeNode <span class="title">lowestCommonAncestor</span><span class="params">(TreeNode root, TreeNode p, TreeNode q)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(root==<span class="keyword">null</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> root;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(root.val &gt; p.val&amp;&amp;root.val&lt;q.val)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> lowestCommonAncestor(root.left,p,q);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(root.val &lt;p.val &amp;&amp; root.val &gt; q.val)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> lowestCommonAncestor(root.right,p,q);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> root;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
-<p>普通二叉树</p>
-<p>注意p,q必然存在树内, 且所有节点的值唯一!!!<br>递归思想, 对以root为根的(子)树进行查找p和q, 如果root == null || p || q 直接返回root<br>表示对于当前树的查找已经完毕, 否则对左右子树进行查找, 根据左右子树的返回值判断:</p>
-<ol>
-<li>左右子树的返回值都不为null, 由于值唯一左右子树的返回值就是p和q, 此时root为LCA</li>
-<li>如果左右子树返回值只有一个不为null, 说明只有p和q存在与左或右子树中, 最先找到的那个节点为LCA</li>
-<li>左右子树返回值均为null, p和q均不在树中, 返回null</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> TreeNode <span class="title">lowestCommonAncestor</span><span class="params">(TreeNode root, TreeNode p, TreeNode q)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(root == <span class="keyword">null</span>||root == p||root == q)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> root;</span><br><span class="line">        &#125;</span><br><span class="line">        TreeNode left = lowestCommonAncestor(root.left,p,q);</span><br><span class="line">        TreeNode right = lowestCommonAncestor(root.right,p,q);</span><br><span class="line">        <span class="keyword">return</span> left==<span class="keyword">null</span>?right:right==<span class="keyword">null</span>?left:root;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/22/">22</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/23/">23</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1827,7 +1814,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">88</span>
+                  <span class="site-state-item-count">89</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1838,7 +1825,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -1916,7 +1903,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">112.7k</span>
+    <span title="Site words total count">113.5k</span>
   
 </div>
 
