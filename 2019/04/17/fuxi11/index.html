@@ -148,7 +148,7 @@
 <meta property="og:site_name" content="Eden">
 <meta property="og:description" content="友情提示: 代码在这里本文参照该仓库学习,大家可以star 二分查找原理1. 正常实现12345678910111213141516171819public class binarySearch &amp;#123;    public int BinarySearch(int[] nums,int key)&amp;#123;        int l = 0,h = nums.length-1;">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-17T12:21:17.911Z">
+<meta property="og:updated_time" content="2019-04-18T01:08:35.665Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Leetcode之二分思想">
 <meta name="twitter:description" content="友情提示: 代码在这里本文参照该仓库学习,大家可以star 二分查找原理1. 正常实现12345678910111213141516171819public class binarySearch &amp;#123;    public int BinarySearch(int[] nums,int key)&amp;#123;        int l = 0,h = nums.length-1;">
@@ -423,8 +423,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-04-17T20:21:17+08:00">
-                2019-04-17
+              <time title="更新于" itemprop="dateModified" datetime="2019-04-18T09:08:35+08:00">
+                2019-04-18
               </time>
             
           </span>
@@ -473,7 +473,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,068
+                  1,397
                 </span>
               
 
@@ -489,7 +489,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  4
+                  6
                 </span>
               
             </div>
@@ -538,6 +538,22 @@
 </blockquote>
 <p>从上面的规律可以知道，如果 nums[m] == nums[m + 1]，那么 index 所在的数组位置为 [m + 2, h]，此时令 l = m + 2；如果 nums[m] != nums[m + 1]，那么 index 所在的数组位置为 [l, m]，此时令 h = m。</p>
 <p>因为 h 的赋值表达式为 h = m，那么循环条件也就只能使用 l &lt; h 这种形式。</p>
+<h2 id="278-第一个错误的版本"><a href="#278-第一个错误的版本" class="headerlink" title="278 第一个错误的版本"></a>278 第一个错误的版本</h2><p>题目描述：给定一个元素 n 代表有 [1, 2, …, n] 版本，可以调用 isBadVersion(int x) 知道某个版本是否错误，要求找到第一个错误的版本。</p>
+<p>如果第 m 个版本出错，则表示第一个错误的版本在 [l, m] 之间，令 h = m；否则第一个错误的版本在 [m + 1, h] 之间，令 l = m + 1。</p>
+<p>因为 h 的赋值表达式为 h = m，因此循环条件为 l &lt; h。</p>
+<h2 id="153-旋转数组的最小数字"><a href="#153-旋转数组的最小数字" class="headerlink" title="153 旋转数组的最小数字"></a>153 旋转数组的最小数字</h2><p>假设按照升序排序的数组在预先未知的某个点上进行了旋转。</p>
+<p>( 例如，数组 [0,1,2,4,5,6,7] 可能变为 [4,5,6,7,0,1,2] )。</p>
+<p>请找出其中最小的元素。</p>
+<p>你可以假设数组中不存在重复元素。</p>
+<blockquote>
+<p>中间值和最后的比较进行范围的缩小</p>
+</blockquote>
+<h2 id="34-在排序数组中查找元素的第一个和最后一个位置"><a href="#34-在排序数组中查找元素的第一个和最后一个位置" class="headerlink" title="34 在排序数组中查找元素的第一个和最后一个位置"></a>34 在排序数组中查找元素的第一个和最后一个位置</h2><p>给定一个按照升序排列的整数数组 nums，和一个目标值 target。找出给定目标值在数组中的开始位置和结束位置。</p>
+<p>你的算法时间复杂度必须是 O(log n) 级别。</p>
+<p>如果数组中不存在目标值，返回 [-1, -1]。</p>
+<blockquote>
+<p>两个二分查找</p>
+</blockquote>
 
       
     </div>
@@ -763,7 +779,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#二分查找"><span class="nav-number">1.</span> <span class="nav-text">二分查找</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#原理"><span class="nav-number">2.</span> <span class="nav-text">原理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-正常实现"><span class="nav-number">2.1.</span> <span class="nav-text">1. 正常实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#时间复杂度"><span class="nav-number">2.2.</span> <span class="nav-text">时间复杂度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#m-计算"><span class="nav-number">2.3.</span> <span class="nav-text">m 计算</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#返回值"><span class="nav-number">2.4.</span> <span class="nav-text">返回值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#变种"><span class="nav-number">2.5.</span> <span class="nav-text">变种</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#例题"><span class="nav-number">3.</span> <span class="nav-text">例题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#69-求开方"><span class="nav-number">3.1.</span> <span class="nav-text">69 求开方</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#744-大于给定元素的最小元素"><span class="nav-number">3.2.</span> <span class="nav-text">744 大于给定元素的最小元素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#540-有序数组的-Single-Element"><span class="nav-number">3.3.</span> <span class="nav-text">540 有序数组的 Single Element</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#二分查找"><span class="nav-number">1.</span> <span class="nav-text">二分查找</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#原理"><span class="nav-number">2.</span> <span class="nav-text">原理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-正常实现"><span class="nav-number">2.1.</span> <span class="nav-text">1. 正常实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#时间复杂度"><span class="nav-number">2.2.</span> <span class="nav-text">时间复杂度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#m-计算"><span class="nav-number">2.3.</span> <span class="nav-text">m 计算</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#返回值"><span class="nav-number">2.4.</span> <span class="nav-text">返回值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#变种"><span class="nav-number">2.5.</span> <span class="nav-text">变种</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#例题"><span class="nav-number">3.</span> <span class="nav-text">例题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#69-求开方"><span class="nav-number">3.1.</span> <span class="nav-text">69 求开方</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#744-大于给定元素的最小元素"><span class="nav-number">3.2.</span> <span class="nav-text">744 大于给定元素的最小元素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#540-有序数组的-Single-Element"><span class="nav-number">3.3.</span> <span class="nav-text">540 有序数组的 Single Element</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#278-第一个错误的版本"><span class="nav-number">3.4.</span> <span class="nav-text">278 第一个错误的版本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#153-旋转数组的最小数字"><span class="nav-number">3.5.</span> <span class="nav-text">153 旋转数组的最小数字</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#34-在排序数组中查找元素的第一个和最后一个位置"><span class="nav-number">3.6.</span> <span class="nav-text">34 在排序数组中查找元素的第一个和最后一个位置</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -797,7 +813,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">115.8k</span>
+    <span title="Site words total count">116.2k</span>
   
 </div>
 

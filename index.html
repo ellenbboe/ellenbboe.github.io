@@ -425,8 +425,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-04-17T20:21:17+08:00">
-                2019-04-17
+              <time title="更新于" itemprop="dateModified" datetime="2019-04-18T09:08:35+08:00">
+                2019-04-18
               </time>
             
           </span>
@@ -475,7 +475,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,068
+                  1,397
                 </span>
               
 
@@ -491,7 +491,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  4
+                  6
                 </span>
               
             </div>
@@ -542,6 +542,22 @@
 </blockquote>
 <p>从上面的规律可以知道，如果 nums[m] == nums[m + 1]，那么 index 所在的数组位置为 [m + 2, h]，此时令 l = m + 2；如果 nums[m] != nums[m + 1]，那么 index 所在的数组位置为 [l, m]，此时令 h = m。</p>
 <p>因为 h 的赋值表达式为 h = m，那么循环条件也就只能使用 l &lt; h 这种形式。</p>
+<h2 id="278-第一个错误的版本"><a href="#278-第一个错误的版本" class="headerlink" title="278 第一个错误的版本"></a>278 第一个错误的版本</h2><p>题目描述：给定一个元素 n 代表有 [1, 2, …, n] 版本，可以调用 isBadVersion(int x) 知道某个版本是否错误，要求找到第一个错误的版本。</p>
+<p>如果第 m 个版本出错，则表示第一个错误的版本在 [l, m] 之间，令 h = m；否则第一个错误的版本在 [m + 1, h] 之间，令 l = m + 1。</p>
+<p>因为 h 的赋值表达式为 h = m，因此循环条件为 l &lt; h。</p>
+<h2 id="153-旋转数组的最小数字"><a href="#153-旋转数组的最小数字" class="headerlink" title="153 旋转数组的最小数字"></a>153 旋转数组的最小数字</h2><p>假设按照升序排序的数组在预先未知的某个点上进行了旋转。</p>
+<p>( 例如，数组 [0,1,2,4,5,6,7] 可能变为 [4,5,6,7,0,1,2] )。</p>
+<p>请找出其中最小的元素。</p>
+<p>你可以假设数组中不存在重复元素。</p>
+<blockquote>
+<p>中间值和最后的比较进行范围的缩小</p>
+</blockquote>
+<h2 id="34-在排序数组中查找元素的第一个和最后一个位置"><a href="#34-在排序数组中查找元素的第一个和最后一个位置" class="headerlink" title="34 在排序数组中查找元素的第一个和最后一个位置"></a>34 在排序数组中查找元素的第一个和最后一个位置</h2><p>给定一个按照升序排列的整数数组 nums，和一个目标值 target。找出给定目标值在数组中的开始位置和结束位置。</p>
+<p>你的算法时间复杂度必须是 O(log n) 级别。</p>
+<p>如果数组中不存在目标值，返回 [-1, -1]。</p>
+<blockquote>
+<p>两个二分查找</p>
+</blockquote>
 
           
         
@@ -1323,7 +1339,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">115.8k</span>
+    <span title="Site words total count">116.2k</span>
   
 </div>
 
