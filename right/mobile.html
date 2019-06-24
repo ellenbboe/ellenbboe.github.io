@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="user-scalable=0">
+    <script src="js/kontra.js"></script>
+    <script src="js/TinyMusic.js"></script>
+    <script src="js/music.js"></script>
+    <script src="js/startphone.js" charset="utf-8"></script>
+    <style>
+    html,body{
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background-color: black;
+    }
+    #panel{
+      padding: 0;
+      margin: 0;
+    }
+    #canvas{
+      padding: 0;
+      margin: 0;
+    }
+    button{
+      font-size: 40px;
+      border-radius:15px;
+    }
+    #Start{
+      width:20%;
+      height:9%;
+      margin-left: 10px;
+      border-radius:100px;
+    }
+    #Right{
+      float: right;
+      margin-right: 10px;
+      width:20%;
+      height:9%;
+    }
+    #Wrong{
+      float: right;
+      margin-right: 40px;
+      width:20%;
+      height:9%;
+    }
+    </style>
+  </head>
+  <body>
+    <div id="panel">
+      <canvas id='canvas'></canvas>
+
+  </div>
+  <button id="Start" onclick="startgo()">Start</button>
+  <button id="Right" onclick="rightgo()">Right</button>
+  <button id="Wrong" onclick="leftgo()">Wrong</button>
+  </div>
+  </body>
+  <script>
+  var  cvs = document.getElementById("canvas");
+  cvs.width = document.documentElement.clientWidth;
+  cvs.height = document.documentElement.clientHeight*0.9;
+
+  a();
+  </script>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <script src="js/kontra.js"></script>
+    <script src="js/TinyMusic.js"></script>
+    <script src="js/music.js"></script>
+    <script src="js/startkeyboard.js" charset="utf-8"></script>
+    <style>
+    html,body{
+      margin: 0;
+      padding: 0;
+      height: 80%;
+      background-color: black;
+    }
+    
+    #panel{
+      margin:0;
+      padding: 0;
+    }
+    canvas{
+      margin: 0;
+      padding: 0;
+    }
+    </style>
+  </head>
+  <body>
+    <div id="panel">
+      <canvas id='canvas'></canvas>
+    </div>
+  </body>
+  <script>
+  var cvs = document.getElementById("canvas");
+  cvs.width = document.documentElement.clientWidth*0.99;
+  cvs.height = document.documentElement.clientHeight*0.99;
+  a();
+  </script>
+</html>
