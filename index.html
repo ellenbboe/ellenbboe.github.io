@@ -1,1995 +1,575 @@
 <!DOCTYPE html>
-
-
-
-  
-
-
-<html class="theme-next mist use-motion" lang="zh-Hans">
+<html>
 <head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-<meta name="theme-color" content="#222">
-
-
-
-  
-  
+<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>Kosmos</title><meta name="description" content="开源,开发者,笔记,kosmos"/><meta property="og:description" content="开源,开发者,笔记,kosmos"/>    <meta name="keywords" content="开源,开发者,笔记,kosmos"/><link rel="dns-prefetch" href="https://ellenbboe.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://ellenbboe.github.io"><link rel="icon" type="image/png" href="https://s2.ax1x.com/2020/01/12/loApPe.png"/><link rel="apple-touch-icon" href="https://s2.ax1x.com/2020/01/12/loApPe.png"><link rel="shortcut icon" type="image/x-icon" href="https://s2.ax1x.com/2020/01/12/loApPe.png"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="Kosmos"/><meta property="og:site_name" content="Kosmos"/><meta property="og:url"      content="https://ellenbboe.github.io/index.html?"/><meta property="og:image" content="https://s2.ax1x.com/2020/01/12/loApPe.png"/><link rel="search" type="application/opensearchdescription+xml" title="Kosmos" href="/opensearch.xml"><link href="https://ellenbboe.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://ellenbboe.github.io/manifest.json">            <link rel="canonical" href="https://ellenbboe.github.io/index.html">    <link rel="stylesheet" href="https://ellenbboe.github.io/skins/Casper/css/base.css?1578931371974"/>
+    </head>
+<body class="fn__flex-column">
+<div id="pjax" class="fn__flex-1">
     
-    
-  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
-  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
-
-
-
-
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
-
-
-
-
-  
-  
-  
-  
-
-  
-    
-    
-  
-
-  
-    
-      
-    
-
-    
-  
-
-  
-    
-      
-    
-
-    
-  
-
-  
-    
-      
-    
-
-    
-  
-
-  
-    
-      
-    
-
-    
-  
-
-  
-    
-    
-    <link href="//fonts.googleapis.com/css?family=Microsoft YaHei:300,300italic,400,400italic,700,700italic|Microsoft YaHei:300,300italic,400,400italic,700,700italic|Microsoft YaHei:300,300italic,400,400italic,700,700italic|Microsoft YaHei:300,300italic,400,400italic,700,700italic|consolas:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=5.1.4">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=5.1.4">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=5.1.4">
-
-
-  <link rel="mask-icon" href="/images/safari-pinned-tab.svg?v=5.1.4" color="#222">
-
-
-  <link rel="manifest" href="/images/site.manifest">
-
-
-  <meta name="msapplication-config" content="/images/browserconfig.xml" />
-
-
-
-  <meta name="keywords" content="Hexo, NexT" />
-
-
-
-
-
-
-
-
-
-
-<meta name="description" content="热爱生活的程序员">
-<meta name="keywords" content="blog">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Eden">
-<meta property="og:url" content="https://www.unblog.top/index.html">
-<meta property="og:site_name" content="Eden">
-<meta property="og:description" content="热爱生活的程序员">
-<meta property="og:locale" content="zh-Hans">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Eden">
-<meta name="twitter:description" content="热爱生活的程序员">
-
-
-
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Mist',
-    version: '5.1.4',
-    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":true},
-    fancybox: true,
-    tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    duoshuo: {
-      userId: '0',
-      author: '博主'
-    },
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
-
-
-
-  <link rel="canonical" href="https://www.unblog.top/"/>
-
-
-
-
-
-  <title>Eden</title>
-  
-
-
-
-
-
-  <script type="text/javascript">
-    var _hmt = _hmt || [];
-    (function() {
-      var hm = document.createElement("script");
-      hm.src = "https://hm.baidu.com/hm.js?070140e78adcb25cf2b649c2985789db";
-      var s = document.getElementsByTagName("script")[0];
-      s.parentNode.insertBefore(hm, s);
-    })();
-  </script>
-
-
-
-
-</head>
-
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
-
-  
-  
-    
-  
-
-  <div class="container sidebar-position-left 
-  page-home">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
-    
-
-    <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Eden</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
-    </div>
-      
-        <p class="site-subtitle">中二少年的博客</p>
-      
-  </div>
-
-  <div class="site-nav-toggle">
-    <button>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
-  </div>
-</div>
-
-<nav class="site-nav">
-  
-
-  
-    <ul id="menu" class="menu">
-      
-        
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
-            首页
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
-            
-            关于
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
-            
-            标签
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-categories">
-          <a href="/categories/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
-            
-            分类
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            归档
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-commonweal">
-          <a href="/404/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
-            
-            公益404
-          </a>
-        </li>
-      
-
-      
-        <li class="menu-item menu-item-search">
-          
-            <a href="javascript:;" class="popup-trigger">
-          
-            
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
-            
-            搜索
-          </a>
-        </li>
-      
-    </ul>
-  
-
-  
-    <div class="site-search">
-      
-  <div class="popup search-popup local-search-popup">
-  <div class="local-search-header clearfix">
-    <span class="search-icon">
-      <i class="fa fa-search"></i>
-    </span>
-    <span class="popup-btn-close">
-      <i class="fa fa-times-circle"></i>
-    </span>
-    <div class="local-search-input-wrapper">
-      <input autocomplete="off"
-             placeholder="搜索..." spellcheck="false"
-             type="text" id="local-search-input">
-    </div>
-  </div>
-  <div id="local-search-result"></div>
-</div>
-
-
-
-    </div>
-  
-</nav>
-
-
-
- </div>
+    <header class="header header--index">
+        <div class="wrapper header__title">
+            <h1 class="header__h1 fn__flex-inline">
+                <img src="https://s2.ax1x.com/2020/01/12/loApPe.png">
+                <a href="https://ellenbboe.github.io" rel="start" class="header__title">Kosmos</a>
+            </h1>
+            <h2 class="header__h2">---就算是痛苦难受，也要去体会那被称为生存的分量---</h2>
+        </div>
+        <nav class="wrapper header__nav fn__clear">
+            <a href="https://ellenbboe.github.io" rel="start">
+                    首页
+            </a>
+
+                <a class="fn__flex-inline" href="/my-github-repos" target="_self" rel="section">
+                    <img src="/images/github-icon.png"> 我的开源
+                </a>
+                <a class="fn__flex-inline" href="/readlist" target="_self" rel="section">
+                     阅读列表
+                </a>
+
+
+            <div class="fn__right">
+    <a href="https://hacpai.com/member/ellenbboe"
+       title="https://hacpai.com/member/ellenbboe"
+       class="user__site"
+       target="_blank" rel="noopener nofollow">
+        <svg viewBox="0 0 32 32" width="100%" height="100%">
+            <path fill="#d23f31" style="fill: var(--color1, #d23f31)" d="M5.787 17.226h17.033l5.954 9.528c0.47 0.752 0.003 1.361-1.042 1.361h-15.141z"></path>
+            <path d="M10.74 3.927h17.033c1.045 0 1.512 0.609 1.042 1.361l-5.954 9.528h-19.872l6.379-10.209c0.235-0.376 0.849-0.681 1.372-0.681z"></path>
+            <path d="M2.953 17.226h2.839l6.804 10.889h-1.892c-0.523 0-1.137-0.305-1.372-0.681z"></path>
+        </svg>
+    </a>
+
+        <a href="https://github.com/ellenbboe"
+           title="https://github.com/ellenbboe"
+           class="user__site"
+           target="_blank" rel="noopener nofollow">
+            <svg viewBox="0 0 32 32" width="100%" height="100%">
+                <path d="M16 0.331c-8.836 0-16 7.163-16 16 0 7.069 4.585 13.067 10.942 15.182 0.8 0.148 1.094-0.347 1.094-0.77 0-0.381-0.015-1.642-0.022-2.979-4.452 0.968-5.391-1.888-5.391-1.888-0.728-1.849-1.776-2.341-1.776-2.341-1.452-0.993 0.11-0.973 0.11-0.973 1.606 0.113 2.452 1.649 2.452 1.649 1.427 2.446 3.743 1.739 4.656 1.33 0.143-1.034 0.558-1.74 1.016-2.14-3.554-0.404-7.29-1.777-7.29-7.907 0-1.747 0.625-3.174 1.649-4.295-0.166-0.403-0.714-2.030 0.155-4.234 0 0 1.344-0.43 4.401 1.64 1.276-0.355 2.645-0.532 4.005-0.539 1.359 0.006 2.729 0.184 4.008 0.539 3.054-2.070 4.395-1.64 4.395-1.64 0.871 2.204 0.323 3.831 0.157 4.234 1.026 1.12 1.647 2.548 1.647 4.295 0 6.145-3.743 7.498-7.306 7.895 0.574 0.497 1.085 1.47 1.085 2.963 0 2.141-0.019 3.864-0.019 4.391 0 0.426 0.288 0.925 1.099 0.768 6.354-2.118 10.933-8.113 10.933-15.18 0-8.837-7.164-16-16-16z"></path>
+            </svg>
+        </a>
+
+                <a rel="alternate" href="https://ellenbboe.github.io/rss.xml">
+                    RSS
+                </a>
+
+            </div>
+        </nav>
     </header>
-
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          <div id="content" class="content">
-            
-  <section id="posts" class="posts-expand">
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.unblog.top/2019/04/21/fuxi12/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="兔子春">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/7.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Eden">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/04/21/fuxi12/" itemprop="url">计算机网络_part1</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-21T18:38:45+08:00">
-                2019-04-21
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2019-04-21T18:39:30+08:00">
-                2019-04-21
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/计算机网络/" itemprop="url" rel="index">
-                    <span itemprop="name">计算机网络</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  3,687
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  13
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>本文参照该<a href="https://github.com/CyC2018/CS-Notes" target="_blank" rel="noopener">仓库</a>学习,大家可以star</p>
-<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><h1 id="网络的网络"><a href="#网络的网络" class="headerlink" title="网络的网络"></a>网络的网络</h1><p>网络把主机连接起来，而互联网是把多种不同的网络连接起来，因此互联网是网络的网络。</p>
-<p><div align="center"> <img src="https://gitee.com/CyC2018/CS-Notes/raw/master/docs/pics/network-of-networks.gif" width="450"> </div><br></p>
-<h1 id="ISP"><a href="#ISP" class="headerlink" title="ISP"></a>ISP</h1><p>互联网服务提供商 ISP 可以从互联网管理机构获得许多 IP 地址，同时拥有通信线路以及路由器等联网设备，个人或机构向 ISP 缴纳一定的费用就可以接入互联网。</p>
-<p><div align="center"> <img src="https://gitee.com/CyC2018/CS-Notes/raw/master/docs/pics/7_2001550811502556.png" width="500"> </div><br></p>
-<p>目前的互联网是一种多层次 ISP 结构，ISP 根据覆盖面积的大小分为第一层 ISP、区域 ISP 和接入 ISP。互联网交换点 IXP 允许两个 ISP 直接相连而不用经过第三个 ISP。</p>
-<p><div align="center"> <img src="https://gitee.com/CyC2018/CS-Notes/raw/master/docs/pics/8_2001550812038190.png" width="500"> </div><br></p>
-<h1 id="主机之间的通信方式"><a href="#主机之间的通信方式" class="headerlink" title="主机之间的通信方式"></a>主机之间的通信方式</h1><ul>
-<li>客户-服务器（C/S）：客户是服务的请求方，服务器是服务的提供方。</li>
-</ul>
-<p><div align="center"> <img src="https://gitee.com/CyC2018/CS-Notes/raw/master/docs/pics/2_2001550810366269.png"> </div><br></p>
-<ul>
-<li>对等（P2P）：不区分客户和服务器。</li>
-</ul>
-<p><div align="center"> <img src="https://gitee.com/CyC2018/CS-Notes/raw/master/docs/pics/3_2001550810442775.png"> </div><br></p>
-<h1 id="电路交换与分组交换"><a href="#电路交换与分组交换" class="headerlink" title="电路交换与分组交换"></a>电路交换与分组交换</h1><h2 id="1-电路交换"><a href="#1-电路交换" class="headerlink" title="1. 电路交换"></a>1. 电路交换</h2><p>电路交换用于电话通信系统，两个用户要通信之前需要建立一条 <strong>专用</strong> 的物理链路，并且在整个通信过程中始终占用该链路。由于通信的过程中不可能一直在使用传输线路，因此电路交换对线路的利用率很低，往往不到 10%。</p>
-<h2 id="2-分组交换"><a href="#2-分组交换" class="headerlink" title="2. 分组交换"></a>2. 分组交换</h2><p>每个分组都有首部和尾部，包含了源地址和目的地址等控制信息，<strong>在同一个传输线路上同时传输多个分组互相不会影响</strong>，因此在同一条传输线路上允许同时传输多个分组，也就是说分组交换不需要占用传输线路。</p>
-<p>在一个邮局通信系统中，邮局收到一份邮件之后，先存储下来，然后把相同目的地的邮件一起转发到下一个目的地，这个过程就是存储转发过程，分组交换也使用了存储转发过程。</p>
-<h1 id="时延"><a href="#时延" class="headerlink" title="时延"></a>时延</h1><p><strong>总时延 = 排队时延 + 处理时延 + 传输时延 + 传播时延</strong></p>
-<p><div align="center"> <img src="https://gitee.com/CyC2018/CS-Notes/raw/master/docs/pics/4_2001550810732828.png" width="600"> </div><br></p>
-<h2 id="1-排队时延"><a href="#1-排队时延" class="headerlink" title="1. 排队时延"></a>1. 排队时延</h2><p>分组在路由器的输入队列和输出队列中排队等待的时间，取决于网络当前的通信量。</p>
-<h2 id="2-处理时延"><a href="#2-处理时延" class="headerlink" title="2. 处理时延"></a>2. 处理时延</h2><p>主机或路由器收到分组时进行处理所需要的时间，例如分析首部、从分组中提取数据、进行差错检验或查找适当的路由等。</p>
-<h2 id="3-传输时延"><a href="#3-传输时延" class="headerlink" title="3. 传输时延"></a>3. 传输时延</h2><p>主机或路由器传输数据帧所需要的时间。</p>
-<p><div align="center"><img src="https://latex.codecogs.com/gif.latex?delay=\frac{l(bit)}{v(bit/s)}"></div> <br></p>
-<p>其中 l 表示数据帧的长度，v 表示传输速率。</p>
-<h2 id="4-传播时延"><a href="#4-传播时延" class="headerlink" title="4. 传播时延"></a>4. 传播时延</h2><p>电磁波在信道中传播所需要花费的时间，电磁波传播的速度接近光速。</p>
-<p><div align="center"><img src="https://latex.codecogs.com/gif.latex?delay=\frac{l(m)}{v(m/s)}"></div> <br></p>
-<p>其中 l 表示信道长度，v 表示电磁波在信道上的传播速度。</p>
-<h1 id="计算机网络体系结构"><a href="#计算机网络体系结构" class="headerlink" title="计算机网络体系结构"></a>计算机网络体系结构</h1><p><div align="center"> <img src="https://gitee.com/CyC2018/CS-Notes/raw/master/docs/pics/f5d40b01-abf2-435e-9ce7-7889c41b2fa6.jpg" width="500"> </div><br></p>
-<h2 id="1-五层协议"><a href="#1-五层协议" class="headerlink" title="1. 五层协议"></a>1. 五层协议</h2><ul>
-<li><p><strong>应用层</strong> ：为特定应用程序提供数据传输服务，例如 HTTP、DNS 等协议。数据单位为报文。</p>
-</li>
-<li><p><strong>传输层</strong> ：为进程提供通用数据传输服务。由于应用层协议很多，定义通用的传输层协议就可以支持不断增多的应用层协议。运输层包括两种协议：传输控制协议 TCP，提供面向连接、可靠的数据传输服务，数据单位为报文段；用户数据报协议 UDP，提供无连接、尽最大努力的数据传输服务，数据单位为用户数据报。<strong>TCP 主要提供完整性服务，UDP 主要提供及时性服务。</strong></p>
-</li>
-<li><p><strong>网络层</strong> ：为主机提供数据传输服务。而传输层协议是为主机中的进程提供数据传输服务。网络层把传输层传递下来的报文段或者用户数据报封装成分组。</p>
-</li>
-<li><p><strong>数据链路层</strong> ：网络层针对的还是主机之间的数据传输服务，而主机之间可以有很多链路，链路层协议就是为同一链路的主机提供数据传输服务。数据链路层把网络层传下来的分组封装成帧。</p>
-</li>
-<li><p><strong>物理层</strong> ：考虑的是怎样在传输媒体上传输数据比特流，而不是指具体的传输媒体。物理层的作用是尽可能屏蔽传输媒体和通信手段的差异，使数据链路层感觉不到这些差异。</p>
-</li>
-</ul>
-<h2 id="2-OSI"><a href="#2-OSI" class="headerlink" title="2. OSI"></a>2. OSI</h2><p>其中表示层和会话层用途如下：</p>
-<ul>
-<li><p><strong>表示层</strong> ：数据压缩、加密以及数据描述，这使得应用程序不必关心在各台主机中数据内部格式不同的问题。</p>
-</li>
-<li><p><strong>会话层</strong> ：建立及管理会话。</p>
-</li>
-</ul>
-<p>五层协议没有表示层和会话层，而是将这些功能留给应用程序开发者处理。</p>
-<h2 id="3-TCP-IP"><a href="#3-TCP-IP" class="headerlink" title="3. TCP/IP"></a>3. TCP/IP</h2><p>它只有四层，相当于五层协议中数据链路层和物理层合并为网络接口层。</p>
-<p>TCP/IP 体系结构不严格遵循 OSI 分层概念，应用层可能会直接使用 IP 层或者网络接口层。</p>
-<p><div align="center"> <img src="https://gitee.com/CyC2018/CS-Notes/raw/master/docs/pics/6_2001550811175246.png" width="250"> </div><br></p>
-<blockquote>
-<p>上课学的是5层协议,现在流行的似乎时tcp/ip的协议(我也不是横清楚)</p>
-</blockquote>
-<h2 id="4-数据在各层之间的传递过程"><a href="#4-数据在各层之间的传递过程" class="headerlink" title="4. 数据在各层之间的传递过程"></a>4. 数据在各层之间的传递过程</h2><p>在向下的过程中，需要添加下层协议所需要的首部或者尾部，而在向上的过程中不断拆开首部和尾部。</p>
-<p>路由器只有下面三层协议，因为路由器位于网络核心中，不需要为进程或者应用程序提供服务，因此也就不需要传输层和应用层。</p>
-<h1 id="链路层"><a href="#链路层" class="headerlink" title="链路层"></a>链路层</h1><h1 id="基本问题"><a href="#基本问题" class="headerlink" title="基本问题"></a>基本问题</h1><h2 id="1-封装成帧"><a href="#1-封装成帧" class="headerlink" title="1. 封装成帧"></a>1. 封装成帧</h2><p>将网络层传下来的分组添加首部和尾部，用于标记帧的开始和结束。</p>
-<p><div align="center"> <img src="https://gitee.com/CyC2018/CS-Notes/raw/master/docs/pics/9c60793f-5e7f-453b-8413-35890c24abc4.png" width="500"> </div><br></p>
-<h2 id="2-透明传输"><a href="#2-透明传输" class="headerlink" title="2. 透明传输"></a>2. 透明传输</h2><p>透明表示一个实际存在的事物看起来好像不存在一样。</p>
-<p>帧使用首部和尾部进行定界，如果帧的数据部分含有和首部尾部相同的内容，那么帧的开始和结束位置就会被错误的判定。需要在数据部分出现首部尾部相同的内容前面插入转义字符。如果数据部分出现转义字符，那么就在转义字符前面再加个转义字符。在接收端进行处理之后可以还原出原始数据。这个过程透明传输的内容是转义字符，用户察觉不到转义字符的存在。</p>
-<p><div align="center"> <img src="https://gitee.com/CyC2018/CS-Notes/raw/master/docs/pics/839207f5-52fd-4516-9370-956dcdf2c2b5.png" width="600"> </div><br></p>
-<h2 id="3-差错检测"><a href="#3-差错检测" class="headerlink" title="3. 差错检测"></a>3. 差错检测</h2><p>目前数据链路层广泛使用了循环冗余检验（CRC）来检查比特差错。</p>
-<h1 id="信道分类"><a href="#信道分类" class="headerlink" title="信道分类"></a>信道分类</h1><h2 id="1-广播信道"><a href="#1-广播信道" class="headerlink" title="1. 广播信道"></a>1. 广播信道</h2><p>一对多通信，一个节点发送的数据能够被广播信道上所有的节点接收到。</p>
-<p>所有的节点都在同一个广播信道上发送数据，因此需要有专门的控制方法进行协调，避免发生冲突（冲突也叫碰撞）。</p>
-<p>主要有两种控制方法进行协调，一个是使用信道复用技术，一是使用 CSMA/CD 协议。</p>
-<h2 id="2-点对点信道"><a href="#2-点对点信道" class="headerlink" title="2. 点对点信道"></a>2. 点对点信道</h2><p>一对一通信。</p>
-<p>因为不会发生碰撞，因此也比较简单，使用 PPP 协议进行控制。</p>
-<h1 id="信道复用技术"><a href="#信道复用技术" class="headerlink" title="信道复用技术"></a>信道复用技术</h1><h2 id="1-频分复用"><a href="#1-频分复用" class="headerlink" title="1. 频分复用"></a>1. 频分复用</h2><p>频分复用的所有主机在相同的时间占用不同的频率带宽资源。</p>
-<p><div align="center"> <img src="https://gitee.com/CyC2018/CS-Notes/raw/master/docs/pics/7e6cb8fc-1b82-4135-8b03-ebcfc546d94c.png" width="450"> </div><br></p>
-<h2 id="2-时分复用"><a href="#2-时分复用" class="headerlink" title="2. 时分复用"></a>2. 时分复用</h2><p>时分复用的所有主机在不同的时间占用相同的频率带宽资源。</p>
-<p><div align="center"> <img src="https://gitee.com/CyC2018/CS-Notes/raw/master/docs/pics/49e53613-46f8-4308-9ee5-c09d62367577.png" width="450"> </div><br></p>
-<p>使用频分复用和时分复用进行通信，在通信的过程中主机会一直占用一部分信道资源。但是由于计算机数据的突发性质，通信过程没必要一直占用信道资源而不让出给其它用户使用，因此这两种方式对信道的利用率都不高。</p>
-<h2 id="3-统计时分复用"><a href="#3-统计时分复用" class="headerlink" title="3. 统计时分复用"></a>3. 统计时分复用</h2><p>是对时分复用的一种改进，不固定每个用户在时分复用帧中的位置，只要有数据就集中起来组成统计时分复用帧然后发送。</p>
-<p><div align="center"> <img src="https://gitee.com/CyC2018/CS-Notes/raw/master/docs/pics/e3360fa0-680e-486b-945f-09ff5d8612e4.png" width="450"> </div><br></p>
-<h2 id="4-波分复用"><a href="#4-波分复用" class="headerlink" title="4. 波分复用"></a>4. 波分复用</h2><p>光的频分复用。由于光的频率很高，因此习惯上用波长而不是频率来表示所使用的光载波。</p>
-<h2 id="5-码分复用"><a href="#5-码分复用" class="headerlink" title="5. 码分复用"></a>5. 码分复用</h2><p>为每个用户分配 m bit 的码片，并且所有的码片正交，对于任意两个码片 <img src="https://latex.codecogs.com/gif.latex?\vec{S}"> 和 <img src="https://latex.codecogs.com/gif.latex?\vec{T}"> 有</p>
-<p><div align="center"><img src="https://latex.codecogs.com/gif.latex?\frac{1}{m}\vec{S}\cdot\vec{T}=0"></div> <br></p>
-<p>为了讨论方便，取 m=8，设码片 <img src="https://latex.codecogs.com/gif.latex?\vec{S}"> 为 00011011。在拥有该码片的用户发送比特 1 时就发送该码片，发送比特 0 时就发送该码片的反码 11100100。</p>
-<p>在计算时将 00011011 记作 (-1 -1 -1 +1 +1 -1 +1 +1)，可以得到</p>
-<p><div align="center"><img src="https://latex.codecogs.com/gif.latex?\frac{1}{m}\vec{S}\cdot\vec{S}=1"></div> <br></p>
-<p><div align="center"><img src="https://latex.codecogs.com/gif.latex?\frac{1}{m}\vec{S}\cdot\vec{S'}=-1"></div> <br></p>
-<p>其中 <img src="https://latex.codecogs.com/gif.latex?\vec{S'}"> 为 <img src="https://latex.codecogs.com/gif.latex?\vec{S}"> 的反码。</p>
-<p>利用上面的式子我们知道，当接收端使用码片 <img src="https://latex.codecogs.com/gif.latex?\vec{S}"> 对接收到的数据进行内积运算时，结果为 0 的是其它用户发送的数据，结果为 1 的是用户发送的比特 1，结果为 -1 的是用户发送的比特 0。</p>
-<p>码分复用需要发送的数据量为原先的 m 倍。</p>
-<p><div align="center"> <img src="https://gitee.com/CyC2018/CS-Notes/raw/master/docs/pics/c7875be7-fce5-43c7-ac77-d8dbe6c0ae1b.png" width="600"> </div><br></p>
-<h1 id="CSMA-CD-协议"><a href="#CSMA-CD-协议" class="headerlink" title="CSMA/CD 协议"></a>CSMA/CD 协议</h1><p>CSMA/CD 表示载波监听多点接入 / 碰撞检测。</p>
-<ul>
-<li><strong>多点接入</strong> ：说明这是总线型网络，许多主机以多点的方式连接到总线上。</li>
-<li><strong>载波监听</strong> ：每个主机都必须不停地监听信道。在发送前，如果监听到信道正在使用，就必须等待。</li>
-<li><strong>碰撞检测</strong> ：在发送中，如果监听到信道已有其它主机正在发送数据，就表示发生了碰撞。虽然每个主机在发送数据之前都已经监听到信道为空闲，但是由于电磁波的传播时延的存在，还是有可能会发生碰撞。</li>
-</ul>
-<p>记端到端的传播时延为 τ，最先发送的站点最多经过 2τ 就可以知道是否发生了碰撞，称 2τ 为  <strong>争用期</strong> 。只有经过争用期之后还没有检测到碰撞，才能肯定这次发送不会发生碰撞。</p>
-<p>当发生碰撞时，站点要停止发送，等待一段时间再发送。这个时间采用  <strong>截断二进制指数退避算法</strong>  来确定。从离散的整数集合 {0, 1, .., (2<sup>k</sup>-1)} 中随机取出一个数，记作 r，然后取 r 倍的争用期作为重传等待时间。</p>
-<p><div align="center"> <img src="https://gitee.com/CyC2018/CS-Notes/raw/master/docs/pics/9bd12b89-f99c-49f4-ae45-410f76a713d6.png" width="500"> </div><br></p>
-<h1 id="PPP-协议"><a href="#PPP-协议" class="headerlink" title="PPP 协议"></a>PPP 协议</h1><p>互联网用户通常需要连接到某个 ISP 之后才能接入到互联网，<strong>PPP 协议是用户计算机和 ISP 进行通信时所使用的数据链路层协议</strong>。(这个我之前不知道)</p>
-<p><div align="center"> <img src="https://gitee.com/CyC2018/CS-Notes/raw/master/docs/pics/2f237854-bb35-4c57-a7fe-ab2ab144f56e.jpg" width="300"> </div><br></p>
-<p>PPP 的帧格式：</p>
-<ul>
-<li>F 字段为帧的定界符</li>
-<li>A 和 C 字段暂时没有意义</li>
-<li>FCS 字段是使用 CRC 的检验序列</li>
-<li>信息部分的长度不超过 1500</li>
-</ul>
-<p><div align="center"> <img src="https://gitee.com/CyC2018/CS-Notes/raw/master/docs/pics/63010737-2cb4-48f3-999f-09194481b227.png" width="500"> </div><br></p>
-<h1 id="MAC-地址"><a href="#MAC-地址" class="headerlink" title="MAC 地址"></a>MAC 地址</h1><p>MAC 地址是链路层地址，长度为 6 字节（48 位），用于唯一标识网络适配器（网卡）。</p>
-<p>一台主机拥有多少个网络适配器就有多少个 MAC 地址。例如笔记本电脑普遍存在无线网络适配器和有线网络适配器，因此就有两个 MAC 地址。</p>
-<h1 id="局域网"><a href="#局域网" class="headerlink" title="局域网"></a>局域网</h1><p>局域网是一种典型的广播信道，主要特点是网络为一个单位所拥有，且地理范围和站点数目均有限。</p>
-<p>主要有以太网、令牌环网、FDDI 和 ATM 等局域网技术，目前以太网占领着有线局域网市场。</p>
-<p>可以按照网络拓扑结构对局域网进行分类：</p>
-<p><div align="center"> <img src="https://gitee.com/CyC2018/CS-Notes/raw/master/docs/pics/df01dbcd-4a3c-4877-86e8-5590d7589788.jpg" width="800"> </div><br></p>
-<h1 id="以太网"><a href="#以太网" class="headerlink" title="以太网"></a>以太网</h1><p>以太网是一种星型拓扑结构局域网。</p>
-<p>早期使用集线器进行连接，集线器是一种物理层设备， 作用于比特而不是帧，当一个比特到达接口时，集线器重新生成这个比特，并将其能量强度放大，从而扩大网络的传输距离，之后再将这个比特发送到其它所有接口。如果集线器同时收到两个不同接口的帧，那么就发生了碰撞。</p>
-<p>目前以太网使用交换机替代了集线器，交换机是一种链路层设备，它不会发生碰撞，能根据 MAC 地址进行存储转发。</p>
-<p>以太网帧格式：</p>
-<ul>
-<li><strong>类型</strong> ：标记上层使用的协议；</li>
-<li><strong>数据</strong> ：长度在 46-1500 之间，如果太小则需要填充；</li>
-<li><strong>FCS</strong> ：帧检验序列，使用的是 CRC 检验方法；</li>
-</ul>
-<p><div align="center"> <img src="https://gitee.com/CyC2018/CS-Notes/raw/master/docs/pics/420f4dc0-6c4b-486c-afea-274299014462.png" width="550"> </div><br></p>
-<h1 id="交换机"><a href="#交换机" class="headerlink" title="交换机"></a>交换机</h1><p>交换机具有自学习能力，学习的是交换表的内容，交换表中存储着 MAC 地址到接口的映射。</p>
-<p>正是由于这种自学习能力，因此交换机是一种即插即用设备，不需要网络管理员手动配置交换表内容。</p>
-<p>下图中，交换机有 4 个接口，主机 A 向主机 B 发送数据帧时，交换机把主机 A 到接口 1 的映射写入交换表中。为了发送数据帧到 B，先查交换表，此时没有主机 B 的表项，那么主机 A 就发送广播帧，主机 C 和主机 D 会丢弃该帧，主机 B 回应该帧向主机 A 发送数据包时，交换机查找交换表得到主机 A 映射的接口为 1，就发送数据帧到接口 1，同时交换机添加主机 B 到接口 2 的映射。</p>
-<p><div align="center"> <img src="https://gitee.com/CyC2018/CS-Notes/raw/master/docs/pics/80646c77-1f32-484c-810e-af80ce00f902.png" width="800"> </div><br></p>
-<blockquote>
-<p>要防止循环产生,所以有ttl</p>
-</blockquote>
-<h2 id="虚拟局域网"><a href="#虚拟局域网" class="headerlink" title="虚拟局域网"></a>虚拟局域网</h2><p>虚拟局域网可以建立与物理位置无关的逻辑组，只有在同一个虚拟局域网中的成员才会收到链路层广播信息。</p>
-<p>例如下图中 (A1, A2, A3, A4) 属于一个虚拟局域网，A1 发送的广播会被 A2、A3、A4 收到，而其它站点收不到。</p>
-<p>使用 VLAN 干线连接来建立虚拟局域网，每台交换机上的一个特殊接口被设置为干线接口，以互连 VLAN 交换机。IEEE 定义了一种扩展的以太网帧格式 802.1Q，它在标准以太网帧上加进了 4 字节首部 VLAN 标签，用于表示该帧属于哪一个虚拟局域网。</p>
-<p><div align="center"> <img src="https://gitee.com/CyC2018/CS-Notes/raw/master/docs/pics/99208bd0-1454-4618-9969-0c2deb8bba0f.png" width="500"> </div><br></p>
-<h1 id="物理层"><a href="#物理层" class="headerlink" title="物理层"></a>物理层</h1><h2 id="通信方式"><a href="#通信方式" class="headerlink" title="通信方式"></a>通信方式</h2><p>根据信息在传输线上的传送方向，分为以下三种通信方式：</p>
-<ul>
-<li>单工通信：单向传输</li>
-<li>半双工通信：双向交替传输</li>
-<li>全双工通信：双向同时传输(双绞线)</li>
-</ul>
-<h2 id="带通调制"><a href="#带通调制" class="headerlink" title="带通调制"></a>带通调制</h2><p>模拟信号是连续的信号，数字信号是离散的信号。带通调制把数字信号转换为模拟信号。</p>
-<p><div align="center"> <img src="https://gitee.com/CyC2018/CS-Notes/raw/master/docs/pics/c34f4503-f62c-4043-9dc6-3e03288657df.jpg" width="500"> </div><br></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.unblog.top/2019/04/17/fuxi11/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="兔子春">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/7.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Eden">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/04/17/fuxi11/" itemprop="url">Leetcode之二分思想</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-17T20:20:01+08:00">
-                2019-04-17
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2019-04-18T09:08:35+08:00">
-                2019-04-18
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法思想/" itemprop="url" rel="index">
-                    <span itemprop="name">算法思想</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  1,397
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  6
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>友情提示: 代码在<a href="https://github.com/apersonlikesc/sosoalgorithm" target="_blank" rel="noopener">这里</a><br>本文参照该<a href="https://github.com/CyC2018/CS-Notes" target="_blank" rel="noopener">仓库</a>学习,大家可以star</p>
-<h1 id="二分查找"><a href="#二分查找" class="headerlink" title="二分查找"></a>二分查找</h1><h1 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h1><h2 id="1-正常实现"><a href="#1-正常实现" class="headerlink" title="1. 正常实现"></a>1. 正常实现</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">binarySearch</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">BinarySearch</span><span class="params">(<span class="keyword">int</span>[] nums,<span class="keyword">int</span> key)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> l = <span class="number">0</span>,h = nums.length-<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span>(l&lt;=h)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">int</span> m = (l+h)/<span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span>(nums[m] == key)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">return</span> m;</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span>(nums[m]&lt;key)</span><br><span class="line">            &#123;</span><br><span class="line">                l = m+<span class="number">1</span>;</span><br><span class="line">            &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">                h = m-<span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="时间复杂度"><a href="#时间复杂度" class="headerlink" title="时间复杂度"></a>时间复杂度</h2><p>二分查找也称为折半查找，每次都能将查找区间减半，这种折半特性的算法时间复杂度为 O(logN)。</p>
-<h2 id="m-计算"><a href="#m-计算" class="headerlink" title="m 计算"></a>m 计算</h2><p>有两种计算中值 m 的方式：</p>
-<p>m = (l + h) / 2<br>m = l + (h - l) / 2<br>l + h 可能出现加法溢出，最好使用第二种方式。(竟然是这样,改正)</p>
-<h2 id="返回值"><a href="#返回值" class="headerlink" title="返回值"></a>返回值</h2><p>循环退出时如果仍然没有查找到 key，那么表示查找失败。可以有两种返回值：</p>
-<p>-1：以一个错误码表示没有查找到 key<br>l：将 key 插入到 nums 中的正确位置</p>
-<h2 id="变种"><a href="#变种" class="headerlink" title="变种"></a>变种</h2><p>二分查找可以有很多变种，变种实现要注意边界值的判断。例如在一个有重复元素的数组中查找 key 的最左位置的实现如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">BinarySearch2</span><span class="params">(<span class="keyword">int</span>[] nums,<span class="keyword">int</span> key)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> l = <span class="number">0</span>,h = nums.length-<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span>(l&lt;h)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">int</span> m = l + (h-l)/<span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span>(nums[m] &gt;= key)</span><br><span class="line">            &#123;</span><br><span class="line">                h=m;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                l = m+<span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> l;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
-<p>该实现和正常实现有以下不同：</p>
-<p>循环条件为 l &lt; h<br>h 的赋值表达式为 h = m<br>最后返回 l 而不是 -1<br>在 nums[m] &gt;= key 的情况下，可以推导出最左 key 位于 [l, m] 区间中，这是一个闭区间。h 的赋值表达式为 h = m，因为 m 位置也可能是解。</p>
-<p>在 h 的赋值表达式为 h = mid 的情况下，如果循环条件为 l &lt;= h，那么会出现循环无法退出的情况，因此循环条件只能是 l &lt; h。以下演示了循环条件为 l &lt;= h 时循环无法退出的情况：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">nums = &#123;0, 1, 2&#125;, key = 1</span><br><span class="line">l   m   h</span><br><span class="line">0   1   2  nums[m] &gt;= key</span><br><span class="line">0   0   1  nums[m] &lt; key</span><br><span class="line">1   1   1  nums[m] &gt;= key</span><br><span class="line">1   1   1  nums[m] &gt;= key</span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
-<p>当循环体退出时，不表示没有查找到 key，因此最后返回的结果不应该为 -1。为了验证有没有查找到，需要在调用端判断一下返回位置上的值和 key 是否相等。</p>
-<h1 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h1><h2 id="69-求开方"><a href="#69-求开方" class="headerlink" title="69 求开方"></a>69 求开方</h2><p>实现 int sqrt(int x) 函数。</p>
-<p>计算并返回 x 的平方根，其中 x 是非负整数。</p>
-<p>由于返回类型是整数，结果只保留整数的部分，小数部分将被舍去。</p>
-<p>一个数 x 的开方 sqrt 一定在 0 ~ x 之间，并且满足 sqrt == x / sqrt。可以利用二分查找在 0 ~ x 之间查找 sqrt。</p>
-<p>对于 x = 8，它的开方是 2.82842…，最后应该返回 2 而不是 3。在循环条件为 l &lt;= h 并且循环退出时，h 总是比 l 小 1，也就是说 h = 2，l = 3，因此最后的返回值应该为 h 而不是 l。</p>
-<blockquote>
-<p>或者说采用返回x/l 也可以</p>
-</blockquote>
-<h2 id="744-大于给定元素的最小元素"><a href="#744-大于给定元素的最小元素" class="headerlink" title="744 大于给定元素的最小元素"></a>744 大于给定元素的最小元素</h2><p>题目描述：给定一个有序的字符数组 letters 和一个字符 target，要求找出 letters 中大于 target 的最小字符，如果找不到就返回第 1 个字符。</p>
-<h2 id="540-有序数组的-Single-Element"><a href="#540-有序数组的-Single-Element" class="headerlink" title="540 有序数组的 Single Element"></a>540 有序数组的 Single Element</h2><p>题目描述：一个有序数组只有一个数不出现两次，找出这个数。要求以 O(logN) 时间复杂度进行求解。</p>
-<p>令 index 为 Single Element 在数组中的位置。如果 m 为偶数，并且 m + 1 &lt; index，那么 nums[m] == nums[m + 1]；m + 1 &gt;= index，那么 nums[m] != nums[m + 1]。</p>
-<blockquote>
-<p>这是由于是偶数对中间插了一个奇数,奇数后面都向后移动一位所以不等于</p>
-</blockquote>
-<p>从上面的规律可以知道，如果 nums[m] == nums[m + 1]，那么 index 所在的数组位置为 [m + 2, h]，此时令 l = m + 2；如果 nums[m] != nums[m + 1]，那么 index 所在的数组位置为 [l, m]，此时令 h = m。</p>
-<p>因为 h 的赋值表达式为 h = m，那么循环条件也就只能使用 l &lt; h 这种形式。</p>
-<h2 id="278-第一个错误的版本"><a href="#278-第一个错误的版本" class="headerlink" title="278 第一个错误的版本"></a>278 第一个错误的版本</h2><p>题目描述：给定一个元素 n 代表有 [1, 2, …, n] 版本，可以调用 isBadVersion(int x) 知道某个版本是否错误，要求找到第一个错误的版本。</p>
-<p>如果第 m 个版本出错，则表示第一个错误的版本在 [l, m] 之间，令 h = m；否则第一个错误的版本在 [m + 1, h] 之间，令 l = m + 1。</p>
-<p>因为 h 的赋值表达式为 h = m，因此循环条件为 l &lt; h。</p>
-<h2 id="153-旋转数组的最小数字"><a href="#153-旋转数组的最小数字" class="headerlink" title="153 旋转数组的最小数字"></a>153 旋转数组的最小数字</h2><p>假设按照升序排序的数组在预先未知的某个点上进行了旋转。</p>
-<p>( 例如，数组 [0,1,2,4,5,6,7] 可能变为 [4,5,6,7,0,1,2] )。</p>
-<p>请找出其中最小的元素。</p>
-<p>你可以假设数组中不存在重复元素。</p>
-<blockquote>
-<p>中间值和最后的比较进行范围的缩小</p>
-</blockquote>
-<h2 id="34-在排序数组中查找元素的第一个和最后一个位置"><a href="#34-在排序数组中查找元素的第一个和最后一个位置" class="headerlink" title="34 在排序数组中查找元素的第一个和最后一个位置"></a>34 在排序数组中查找元素的第一个和最后一个位置</h2><p>给定一个按照升序排列的整数数组 nums，和一个目标值 target。找出给定目标值在数组中的开始位置和结束位置。</p>
-<p>你的算法时间复杂度必须是 O(log n) 级别。</p>
-<p>如果数组中不存在目标值，返回 [-1, -1]。</p>
-<blockquote>
-<p>两个二分查找</p>
-</blockquote>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.unblog.top/2019/04/16/fuxi10/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="兔子春">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/7.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Eden">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/04/16/fuxi10/" itemprop="url">Leetcode之贪心思想</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-16T17:34:34+08:00">
-                2019-04-16
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2019-04-17T20:19:46+08:00">
-                2019-04-17
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法基础/" itemprop="url" rel="index">
-                    <span itemprop="name">算法基础</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  2,103
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  7
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>友情提示: 代码在<a href="https://github.com/apersonlikesc/sosoalgorithm" target="_blank" rel="noopener">这里</a><br>本文参照该<a href="https://github.com/CyC2018/CS-Notes" target="_blank" rel="noopener">仓库</a>学习,大家可以star</p>
-<h1 id="贪心思想"><a href="#贪心思想" class="headerlink" title="贪心思想"></a>贪心思想</h1><p>保证每次操作都是局部最优的，并且最后得到的结果是全局最优的。</p>
-<h2 id="455-分配饼干"><a href="#455-分配饼干" class="headerlink" title="455 分配饼干"></a>455 分配饼干</h2><p>题目描述：每个孩子都有一个满足度，每个饼干都有一个大小，只有饼干的大小大于等于一个孩子的满足度，该孩子才会获得满足。求解最多可以获得满足的孩子数量。</p>
-<p>给一个孩子的饼干应当尽量小又能满足该孩子，这样大饼干就能拿来给满足度比较大的孩子。因为最小的孩子最容易得到满足，所以先满足最小的孩子。</p>
-<p>证明：假设在某次选择中，贪心策略选择给当前满足度最小的孩子分配第 m 个饼干，第 m 个饼干为可以满足该孩子的最小饼干。假设存在一种最优策略，给该孩子分配第 n 个饼干，并且 m &lt; n。我们可以发现，经过这一轮分配，贪心策略分配后剩下的饼干一定有一个比最优策略来得大。因此在后续的分配中，贪心策略一定能满足更多的孩子。也就是说不存在比贪心策略更优的策略，即贪心策略就是最优策略。</p>
-<h2 id="435-不重叠的区间个数"><a href="#435-不重叠的区间个数" class="headerlink" title="435 不重叠的区间个数"></a>435 不重叠的区间个数</h2><p>题目描述：计算让一组区间不重叠所需要移除的区间个数。</p>
-<p>先计算最多能组成的不重叠区间个数，然后用区间总个数减去不重叠区间的个数。</p>
-<p>在每次选择中，区间的结尾最为重要，选择的区间结尾越小，留给后面的区间的空间越大，那么后面能够选择的区间个数也就越大。</p>
-<p>按区间的结尾进行排序，每次选择结尾最小，并且和前一个区间不重叠的区间。</p>
-<h2 id="452-用最少数量的箭引爆气球"><a href="#452-用最少数量的箭引爆气球" class="headerlink" title="452 用最少数量的箭引爆气球"></a>452 用最少数量的箭引爆气球</h2><p>题目描述：气球在一个水平数轴上摆放，可以重叠，飞镖垂直投向坐标轴，使得路径上的气球都会刺破。求解最小的投飞镖次数使所有气球都被刺破。</p>
-<p>也是计算不重叠的区间个数，不过和 Non-overlapping Intervals 的区别在于，[1, 2] 和 [2, 3] 在本题中算是重叠区间。</p>
-<h2 id="406-根据身高和序号重组队列"><a href="#406-根据身高和序号重组队列" class="headerlink" title="406 根据身高和序号重组队列"></a>406 根据身高和序号重组队列</h2><p>题目描述：一个学生用两个分量 (h, k) 描述，h 表示身高，k 表示排在前面的有 k 个学生的身高比他高或者和他一样高。</p>
-<p>为了使插入操作不影响后续的操作，身高较高的学生应该先做插入操作，否则身高较小的学生原先正确插入的第 k 个位置可能会变成第 k+1 个位置。</p>
-<p>身高降序、k 值升序，然后按排好序的顺序插入队列的第 k 个位置中。<br>由于后面插上来的不会改变前面的k值,因为身高都是比前面的小的…所以必满足条件 先考虑身高高的,再考虑身高低的</p>
-<h2 id="763-分隔字符串使同种字符出现在一起"><a href="#763-分隔字符串使同种字符出现在一起" class="headerlink" title="763 分隔字符串使同种字符出现在一起"></a>763 分隔字符串使同种字符出现在一起</h2><p>字符串 S 由小写字母组成。我们要把这个字符串划分为尽可能多的片段，同一个字母只会出现在其中的一个片段。返回一个表示每个字符串片段的长度的列表<br>思路:<br>假如在第一个和最后一个中 里面每一个字母最后出现的位置都在里面 这个就是结果</p>
-<h2 id="605-种植花朵"><a href="#605-种植花朵" class="headerlink" title="605 种植花朵"></a>605 种植花朵</h2><p>假设你有一个很长的花坛，一部分地块种植了花，另一部分却没有。可是，花卉不能种植在相邻的地块上，它们会争夺水源，两者都会死去。</p>
-<p>给定一个花坛（表示为一个数组包含0和1，其中0表示没种植花，1表示种植了花），和一个数 n 。能否在不打破种植规则的情况下种入 n 朵花？能则返回True，不能则返回False。</p>
-<h2 id="392-判断是否为子序列"><a href="#392-判断是否为子序列" class="headerlink" title="392 判断是否为子序列"></a>392 判断是否为子序列</h2><p>给定字符串 s 和 t ，判断 s 是否为 t 的子序列。</p>
-<p>你可以认为 s 和 t 中仅包含英文小写字母。字符串 t 可能会很长（长度 ~= 500,000），而 s 是个短字符串（长度 &lt;=100）。</p>
-<p>字符串的一个子序列是原始字符串删除一些（也可以不删除）字符而不改变剩余字符相对位置形成的新字符串。（例如，”ace”是”abcde”的一个子序列，而”aec”不是）。</p>
-<h2 id="665-修改一个数成为非递减数组"><a href="#665-修改一个数成为非递减数组" class="headerlink" title="665 修改一个数成为非递减数组"></a>665 修改一个数成为非递减数组</h2><p>给定一个长度为 n 的整数数组，你的任务是判断在最多改变 1 个元素的情况下，该数组能否变成一个非递减数列。</p>
-<p>我们是这样定义一个非递减数列的： 对于数组中所有的 i (1 &lt;= i &lt; n)，满足 array[i] &lt;= array[i + 1]。</p>
-<p>在出现 nums[i] &lt; nums[i - 1] 时，需要考虑的是应该修改数组的哪个数，使得本次修改能使 i 之前的数组成为非递减数组，并且 不影响后续的操作 。优先考虑令 nums[i - 1] = nums[i]，因为如果修改 nums[i] = nums[i - 1] 的话，那么 nums[i] 这个数会变大，就有可能比 nums[i + 1] 大，从而影响了后续操作。还有一个比较特别的情况就是 nums[i] &lt; nums[i - 2]，只修改 nums[i - 1] = nums[i] 不能使数组成为非递减数组，只能修改 nums[i] = nums[i - 1]。</p>
-<h2 id="122-股票的最大收益"><a href="#122-股票的最大收益" class="headerlink" title="122 股票的最大收益"></a>122 股票的最大收益</h2><p>给定一个数组，它的第 i 个元素是一支给定股票第 i 天的价格。</p>
-<p>设计一个算法来计算你所能获取的最大利润。你可以尽可能地完成更多的交易（多次买卖一支股票）。</p>
-<p>注意：你不能同时参与多笔交易（你必须在再次购买前出售掉之前的股票）。</p>
-<p>输入: [7,1,5,3,6,4]<br>输出: 7<br>解释: 在第 2 天（股票价格 = 1）的时候买入，在第 3 天（股票价格 = 5）的时候卖出, 这笔交易所能获得利润 = 5-1 = 4 。<br>     随后，在第 4 天（股票价格 = 3）的时候买入，在第 5 天（股票价格 = 6）的时候卖出, 这笔交易所能获得利润 = 6-3 = 3 。</p>
-<p>对于 [a, b, c, d]，如果有 a &lt;= b &lt;= c &lt;= d ，那么最大收益为 d - a。而 d - a = (d - c) + (c - b) + (b - a) ，因此当访问到一个 prices[i] 且 prices[i] - prices[i-1] &gt; 0，那么就把 prices[i] - prices[i-1] 添加到收益中，从而在局部最优的情况下也保证全局最优。</p>
-<h2 id="53-子数组最大的和"><a href="#53-子数组最大的和" class="headerlink" title="53 子数组最大的和"></a>53 子数组最大的和</h2><p>给定一个整数数组 nums ，找到一个具有最大和的连续子数组（子数组最少包含一个元素），返回其最大和。</p>
-<h2 id="121-买入和售出股票最大的收益"><a href="#121-买入和售出股票最大的收益" class="headerlink" title="121 买入和售出股票最大的收益"></a>121 买入和售出股票最大的收益</h2><p>给定一个数组，它的第 i 个元素是一支给定股票第 i 天的价格。</p>
-<p>如果你最多只允许完成一笔交易（即买入和卖出一支股票），设计一个算法来计算你所能获取的最大利润。</p>
-<p>注意你不能在买入股票前卖出股票。<br>思路:</p>
-<h2 id="找到最小的-找到相差最大的"><a href="#找到最小的-找到相差最大的" class="headerlink" title="找到最小的 找到相差最大的"></a>找到最小的 找到相差最大的</h2><p>与标题无关 自己随便找的 记录一下</p>
-<h2 id="575-分糖果"><a href="#575-分糖果" class="headerlink" title="575 分糖果"></a>575 分糖果</h2><p>给定一个偶数长度的数组，其中不同的数字代表着不同种类的糖果，每一个数字代表一个糖果。你需要把这些糖果平均分给一个弟弟和一个妹妹。返回妹妹可以获得的最大糖果的种类数。</p>
-<p>思路:<br>种类与数量一半比较  如果比一半大就返回数量的一半 如果比一半小就返回种类</p>
-<h2 id="423-从英文中重建数字"><a href="#423-从英文中重建数字" class="headerlink" title="423 从英文中重建数字"></a>423 从英文中重建数字</h2><p>给定一个非空字符串，其中包含字母顺序打乱的英文单词表示的数字0-9。按升序输出原始的数字。<br>思路:<br>先将有特征值的数字统计出来 然后在依次统计出拥有独特字母的数字</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.unblog.top/2019/04/14/fuxi9-1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="兔子春">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/7.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Eden">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/04/14/fuxi9-1/" itemprop="url">Leetcode之排序(部分)</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-14T16:23:18+08:00">
-                2019-04-14
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2019-04-15T09:25:39+08:00">
-                2019-04-15
-              </time>
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  952
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  4
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>导航:<br>快速排序 堆排序 桶排序 荷兰国旗问题</p>
-<p>友情提示: 代码在<a href="https://github.com/apersonlikesc/sosoalgorithm" target="_blank" rel="noopener">这里</a><br>本文参照该<a href="https://github.com/CyC2018/CS-Notes" target="_blank" rel="noopener">仓库</a>学习,大家可以star</p>
-<h3 id="快速选择"><a href="#快速选择" class="headerlink" title="快速选择"></a>快速选择</h3><p>用于求解 Kth Element 问题，使用快速排序的 partition() 进行实现。</p>
-<p>需要先打乱数组，否则最坏情况下时间复杂度为 O(N2)。</p>
-<h3 id="堆排序"><a href="#堆排序" class="headerlink" title="堆排序"></a>堆排序</h3><p>用于求解 TopK Elements 问题，通过维护一个大小为 K 的堆，堆中的元素就是 TopK Elements。</p>
-<p>堆排序也可以用于求解 Kth Element 问题，堆顶元素就是 Kth Element。</p>
-<p>快速选择也可以求解 TopK Elements 问题，因为找到 Kth Element 之后，再遍历一次数组，所有小于等于 Kth Element 的元素都是 TopK Elements。</p>
-<p>可以看到，快速选择和堆排序都可以求解 Kth Element 和 TopK Elements 问题。</p>
-<p>排序 ：时间复杂度 O(NlogN)，空间复杂度 O(1)<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findKthLargest</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">    Arrays.sort(nums);</span><br><span class="line">    <span class="keyword">return</span> nums[nums.length - k];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>堆排序 ：时间复杂度 O(NlogK)，空间复杂度 O(K)。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findKthLargest</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">    PriorityQueue&lt;Integer&gt; pq = <span class="keyword">new</span> PriorityQueue&lt;&gt;(); <span class="comment">// 小顶堆</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> val : nums) &#123;</span><br><span class="line">        pq.add(val);</span><br><span class="line">        <span class="keyword">if</span> (pq.size() &gt; k)  <span class="comment">// 维护堆的大小为 K</span></span><br><span class="line">            pq.poll();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> pq.peek();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>快速选择 ：时间复杂度 O(N)，空间复杂度 O(1)<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findKthLargest</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">    k = nums.length - k;</span><br><span class="line">    <span class="keyword">int</span> l = <span class="number">0</span>, h = nums.length - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (l &lt; h) &#123;</span><br><span class="line">        <span class="keyword">int</span> j = partition(nums, l, h);</span><br><span class="line">        <span class="keyword">if</span> (j == k) &#123;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (j &lt; k) &#123;</span><br><span class="line">            l = j + <span class="number">1</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            h = j - <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> nums[k];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">partition</span><span class="params">(<span class="keyword">int</span>[] a, <span class="keyword">int</span> l, <span class="keyword">int</span> h)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i = l, j = h + <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</span><br><span class="line">        <span class="keyword">while</span> (a[++i] &lt; a[l] &amp;&amp; i &lt; h) ;</span><br><span class="line">        <span class="keyword">while</span> (a[--j] &gt; a[l] &amp;&amp; j &gt; l) ;</span><br><span class="line">        <span class="keyword">if</span> (i &gt;= j) &#123;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        swap(a, i, j);</span><br><span class="line">    &#125;</span><br><span class="line">    swap(a, l, j);</span><br><span class="line">    <span class="keyword">return</span> j;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">swap</span><span class="params">(<span class="keyword">int</span>[] a, <span class="keyword">int</span> i, <span class="keyword">int</span> j)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> t = a[i];</span><br><span class="line">    a[i] = a[j];</span><br><span class="line">    a[j] = t;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h2 id="桶排序"><a href="#桶排序" class="headerlink" title="桶排序"></a>桶排序</h2><h3 id="出现频率最多的-k-个数"><a href="#出现频率最多的-k-个数" class="headerlink" title="出现频率最多的 k 个数"></a>出现频率最多的 k 个数</h3><p>设置若干个桶，每个桶存储出现频率相同的数，并且桶的下标代表桶中数出现的频率，即第 i 个桶中存储的数出现的频率为 i。</p>
-<p>把数都放到桶之后，从后向前遍历桶，最先得到的 k 个数就是出现频率最多的的 k 个数。</p>
-<h3 id="按照字符出现次数对字符串排序"><a href="#按照字符出现次数对字符串排序" class="headerlink" title="按照字符出现次数对字符串排序"></a>按照字符出现次数对字符串排序</h3><p>给定一个字符串，请将字符串里的字符按照出现的频率降序排列。</p>
-<h2 id="荷兰国旗问题"><a href="#荷兰国旗问题" class="headerlink" title="荷兰国旗问题"></a>荷兰国旗问题</h2><p>荷兰国旗包含三种颜色：红、白、蓝。</p>
-<p>有三种颜色的球，算法的目标是将这三种球按颜色顺序正确地排列。</p>
-<p>它<strong>其实是三向切分快速排序的一种变种</strong>，在三向切分快速排序中，每次切分都将数组分成三个区间：小于切分元素、等于切分元素、大于切分元素，而该算法是将数组分成三个区间：等于红色、等于白色、等于蓝色。</p>
-<p>给定一个包含红色、白色和蓝色，一共 n 个元素的数组，原地对它们进行排序，使得<strong>相同颜色的元素相邻</strong>，并按照红色、白色、蓝色顺序排列。</p>
-<p>此题中，我们使用整数 0、 1 和 2 分别表示红色、白色和蓝色。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sortColors</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> zero = -<span class="number">1</span>, one = <span class="number">0</span>, two = nums.length;</span><br><span class="line">    <span class="keyword">while</span> (one &lt; two) &#123;</span><br><span class="line">        <span class="keyword">if</span> (nums[one] == <span class="number">0</span>) &#123;</span><br><span class="line">            swap(nums, ++zero, one++);</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (nums[one] == <span class="number">2</span>) &#123;</span><br><span class="line">            swap(nums, --two, one);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            ++one;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">swap</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> i, <span class="keyword">int</span> j)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> t = nums[i];</span><br><span class="line">    nums[i] = nums[j];</span><br><span class="line">    nums[j] = t;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<blockquote>
-<p>快速排序的思想 nums[one]指向中间的数 中间的数比左边小就swap 比右边大就swap 左边的和中间的排序 中间和右边的排序 (这里只有三个数)</p>
-</blockquote>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-  </section>
-
-  
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/23/">23</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
-  </nav>
-
-
-
-          </div>
-          
-
-
-          
-
-        </div>
-        
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
-
-  <aside id="sidebar" class="sidebar">
-    
-      <div id="sidebar-dimmer"></div>
-    
-    <div class="sidebar-inner">
-
-      
-
-      
-
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
-        <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-            
-              <img class="site-author-image" itemprop="image"
-                src="/images/7.jpg"
-                alt="兔子春" />
-            
-              <p class="site-author-name" itemprop="name">兔子春</p>
-              <p class="site-description motion-element" itemprop="description">热爱生活的程序员</p>
-          </div>
-
-          <nav class="site-state motion-element">
-
-            
-              <div class="site-state-item site-state-posts">
-              
-                <a href="/archives/">
-              
-                  <span class="site-state-item-count">91</span>
-                  <span class="site-state-item-name">日志</span>
+    <div class="wrapper">
+<div class="articles">
+    <article class="item item--large">
+        <a href="https://ellenbboe.github.io/articles/2019/12/09/1575889655832.html" class="item__cover"
+           style="background-image: url(https://img.hacpai.com/bing/20190916.jpg?imageView2/1/w/1280/h/720/interlace/1/q/100)">
+        </a>
+        <div class="item__main">
+                    <a rel="tag" class="item__tag" href="https://ellenbboe.github.io/tags/%E6%97%A5%E5%BF%97">
+                        日志
+                    </a>
+            <h2 class="item__title">
+                <a rel="bookmark" href="https://ellenbboe.github.io/articles/2019/12/09/1575889655832.html">
+                    开发错误记录手册
                 </a>
-              </div>
-            
+                    <sup>
+                        置顶！
+                    </sup>
+                    <sup>
+                        <a href="https://ellenbboe.github.io/articles/2019/12/09/1575889655832.html">
+                            有更新！
+                        </a>
+                    </sup>
+            </h2>
+            <a class="item__abstract" pjax-title="开发错误记录手册"
+               href="https://ellenbboe.github.io/articles/2019/12/09/1575889655832.html">
+                    开发中遇到的错误记录 😰 2019/12/08 始
 
-            
-              
-              
-              <div class="site-state-item site-state-categories">
-                <a href="/categories/index.html">
-                  <span class="site-state-item-count">14</span>
-                  <span class="site-state-item-name">分类</span>
+            </a>
+            <div class="fn__clear">
+                <a href="https://ellenbboe.github.io/authors/1560999734029"
+                   aria-label="ellenbboe"
+                   class="vditor-tooltipped vditor-tooltipped__n item__avatar">
+                    <img src="https://img.hacpai.com/avatar/1560335521987_1576387741689.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100" />
                 </a>
-              </div>
-            
-
-            
-              
-              
-              <div class="site-state-item site-state-tags">
-                <a href="/tags/index.html">
-                  <span class="site-state-item-count">15</span>
-                  <span class="site-state-item-name">标签</span>
-                </a>
-              </div>
-            
-
-          </nav>
-
-          
-
-          
-            <div class="links-of-author motion-element">
-                
-                  <span class="links-of-author-item">
-                    <a href="https://github.com/apersonlikesc" target="_blank" title="GitHub">
-                      
-                        <i class="fa fa-fw fa-github"></i>GitHub</a>
-                  </span>
-                
-                  <span class="links-of-author-item">
-                    <a href="mailto:ztb52cgfls@163.com" target="_blank" title="E-Mail">
-                      
-                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
-                  </span>
-                
+                    <a class="item__meta" href="https://ellenbboe.github.io/articles/2019/12/09/1575889655832.html">
+                        <span data-uvstaturl="https://ellenbboe.github.io/articles/2019/12/09/1575889655832.html">38</span> 浏览
+                    </a>
             </div>
-          
-
-          
-          
-
-          
-          
-
-          
-
         </div>
-      </section>
+    </article>
+    <article class="item">
+        <a href="https://ellenbboe.github.io/readlist" class="item__cover"
+           style="background-image: url(https://img.hacpai.com/bing/20180627.jpg?imageView2/1/w/1280/h/720/interlace/1/q/100)">
+        </a>
+        <div class="item__main">
+                    <a rel="tag" class="item__tag" href="https://ellenbboe.github.io/tags/%E6%80%BB%E7%BB%93">
+                        总结
+                    </a>
+            <h2 class="item__title">
+                <a rel="bookmark" href="https://ellenbboe.github.io/readlist">
+                    ReadList
+                </a>
+                    <sup>
+                        <a href="https://ellenbboe.github.io/readlist">
+                            有更新！
+                        </a>
+                    </sup>
+            </h2>
+            <a class="item__abstract" pjax-title="ReadList"
+               href="https://ellenbboe.github.io/readlist">
+                    万象，皆入我眼！
 
-      
+            </a>
+            <div class="fn__clear">
+                <a href="https://ellenbboe.github.io/authors/1560999734029"
+                   aria-label="ellenbboe"
+                   class="vditor-tooltipped vditor-tooltipped__n item__avatar">
+                    <img src="https://img.hacpai.com/avatar/1560335521987_1576387741689.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100" />
+                </a>
+                    <a class="item__meta" href="https://ellenbboe.github.io/readlist">
+                        <span data-uvstaturl="https://ellenbboe.github.io/readlist">0</span> 浏览
+                    </a>
+            </div>
+        </div>
+    </article>
+    <article class="item">
+        <a href="https://ellenbboe.github.io/articles/2020/01/12/1578804303182.html" class="item__cover"
+           style="background-image: url(https://img.hacpai.com/bing/20180927.jpg?imageView2/1/w/960/h/540/interlace/1/q/100)">
+        </a>
+        <div class="item__main">
+                    <a rel="tag" class="item__tag" href="https://ellenbboe.github.io/tags/%E6%80%BB%E7%BB%93">
+                        总结
+                    </a>
+            <h2 class="item__title">
+                <a rel="bookmark" href="https://ellenbboe.github.io/articles/2020/01/12/1578804303182.html">
+                    千磨万击还坚劲,任尔东南西北风 For 2019
+                </a>
+                    <sup>
+                        <a href="https://ellenbboe.github.io/articles/2020/01/12/1578804303182.html">
+                            有更新！
+                        </a>
+                    </sup>
+            </h2>
+            <a class="item__abstract" pjax-title="千磨万击还坚劲,任尔东南西北风 For 2019"
+               href="https://ellenbboe.github.io/articles/2020/01/12/1578804303182.html">
+                    总结过去，面向未来，冲冲冲 😿
 
-      
+            </a>
+            <div class="fn__clear">
+                <a href="https://ellenbboe.github.io/authors/1560999734029"
+                   aria-label="ellenbboe"
+                   class="vditor-tooltipped vditor-tooltipped__n item__avatar">
+                    <img src="https://img.hacpai.com/avatar/1560335521987_1576387741689.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100" />
+                </a>
+                <a class="item__meta" href="https://ellenbboe.github.io/articles/2020/01/12/1578804303182.html#comments">
+                    3 评论
+                </a>
+            </div>
+        </div>
+    </article>
+    <article class="item">
+        <a href="https://ellenbboe.github.io/articles/2020/01/10/1578589632211.html" class="item__cover"
+           style="background-image: url(https://img.hacpai.com/bing/20171111.jpg?imageView2/1/w/960/h/540/interlace/1/q/100)">
+        </a>
+        <div class="item__main">
+                    <a rel="tag" class="item__tag" href="https://ellenbboe.github.io/tags/shiro">
+                        shiro
+                    </a>
+            <h2 class="item__title">
+                <a rel="bookmark" href="https://ellenbboe.github.io/articles/2020/01/10/1578589632211.html">
+                    SpringBoot框架下shiro与jwt的结合的用户登录
+                </a>
+                    <sup>
+                        <a href="https://ellenbboe.github.io/articles/2020/01/10/1578589632211.html">
+                            有更新！
+                        </a>
+                    </sup>
+            </h2>
+            <a class="item__abstract" pjax-title="SpringBoot框架下shiro与jwt的结合的用户登录"
+               href="https://ellenbboe.github.io/articles/2020/01/10/1578589632211.html">
+                    瓜皮技术总结：shiro+jwt 将会擦除怎么的火花？ 🤒
 
-    </div>
-  </aside>
+            </a>
+            <div class="fn__clear">
+                <a href="https://ellenbboe.github.io/authors/1560999734029"
+                   aria-label="ellenbboe"
+                   class="vditor-tooltipped vditor-tooltipped__n item__avatar">
+                    <img src="https://img.hacpai.com/avatar/1560335521987_1576387741689.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100" />
+                </a>
+                    <a class="item__meta" href="https://ellenbboe.github.io/articles/2020/01/10/1578589632211.html">
+                        <span data-uvstaturl="https://ellenbboe.github.io/articles/2020/01/10/1578589632211.html">0</span> 浏览
+                    </a>
+            </div>
+        </div>
+    </article>
+    <article class="item">
+        <a href="https://ellenbboe.github.io/articles/2020/01/10/1578664639048.html" class="item__cover"
+           style="background-image: url(https://img.hacpai.com/bing/20180223.jpg?imageView2/1/w/960/h/540/interlace/1/q/100)">
+        </a>
+        <div class="item__main">
+                    <a rel="tag" class="item__tag" href="https://ellenbboe.github.io/tags/idea">
+                        idea
+                    </a>
+            <h2 class="item__title">
+                <a rel="bookmark" href="https://ellenbboe.github.io/articles/2020/01/10/1578664639048.html">
+                    Idea中添加缩写
+                </a>
+                    <sup>
+                        <a href="https://ellenbboe.github.io/articles/2020/01/10/1578664639048.html">
+                            有更新！
+                        </a>
+                    </sup>
+            </h2>
+            <a class="item__abstract" pjax-title="Idea中添加缩写"
+               href="https://ellenbboe.github.io/articles/2020/01/10/1578664639048.html">
+                    变着法偷懒 👍
 
+            </a>
+            <div class="fn__clear">
+                <a href="https://ellenbboe.github.io/authors/1560999734029"
+                   aria-label="ellenbboe"
+                   class="vditor-tooltipped vditor-tooltipped__n item__avatar">
+                    <img src="https://img.hacpai.com/avatar/1560335521987_1576387741689.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100" />
+                </a>
+                <a class="item__meta" href="https://ellenbboe.github.io/articles/2020/01/10/1578664639048.html#comments">
+                    2 评论
+                </a>
+            </div>
+        </div>
+    </article>
+    <article class="item">
+        <a href="https://ellenbboe.github.io/articles/2020/01/08/1578464371766.html" class="item__cover"
+           style="background-image: url(https://img.hacpai.com/bing/20180226.jpg?imageView2/1/w/1280/h/720/interlace/1/q/100)">
+        </a>
+        <div class="item__main">
+                    <a rel="tag" class="item__tag" href="https://ellenbboe.github.io/tags/rabbitmq">
+                        rabbitmq
+                    </a>
+            <h2 class="item__title">
+                <a rel="bookmark" href="https://ellenbboe.github.io/articles/2020/01/08/1578464371766.html">
+                    安装Rabbitmq
+                </a>
+                    <sup>
+                        <a href="https://ellenbboe.github.io/articles/2020/01/08/1578464371766.html">
+                            有更新！
+                        </a>
+                    </sup>
+            </h2>
+            <a class="item__abstract" pjax-title="安装Rabbitmq"
+               href="https://ellenbboe.github.io/articles/2020/01/08/1578464371766.html">
+                    安装记录 rabbitmq
 
-        
-      </div>
-    </main>
+            </a>
+            <div class="fn__clear">
+                <a href="https://ellenbboe.github.io/authors/1560999734029"
+                   aria-label="ellenbboe"
+                   class="vditor-tooltipped vditor-tooltipped__n item__avatar">
+                    <img src="https://img.hacpai.com/avatar/1560335521987_1576387741689.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100" />
+                </a>
+                    <a class="item__meta" href="https://ellenbboe.github.io/articles/2020/01/08/1578464371766.html">
+                        <span data-uvstaturl="https://ellenbboe.github.io/articles/2020/01/08/1578464371766.html">3</span> 浏览
+                    </a>
+            </div>
+        </div>
+    </article>
+    <article class="item item--large">
+        <a href="https://ellenbboe.github.io/articles/2019/12/21/1576940518877.html" class="item__cover"
+           style="background-image: url(https://img.hacpai.com/bing/20190813.jpg?imageView2/1/w/1280/h/720/interlace/1/q/100)">
+        </a>
+        <div class="item__main">
+                    <a rel="tag" class="item__tag" href="https://ellenbboe.github.io/tags/Mysql">
+                        Mysql
+                    </a>
+            <h2 class="item__title">
+                <a rel="bookmark" href="https://ellenbboe.github.io/articles/2019/12/21/1576940518877.html">
+                    mysql删库勒索?
+                </a>
+                    <sup>
+                        <a href="https://ellenbboe.github.io/articles/2019/12/21/1576940518877.html">
+                            有更新！
+                        </a>
+                    </sup>
+            </h2>
+            <a class="item__abstract" pjax-title="mysql删库勒索?"
+               href="https://ellenbboe.github.io/articles/2019/12/21/1576940518877.html">
+                    看到有人中招了,提前打打预防针😰
 
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2019</span>
-  <span class="with-love">
-    <i class="fa fa-heartbeat"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">由一位中二艺术家创作</span>
+            </a>
+            <div class="fn__clear">
+                <a href="https://ellenbboe.github.io/authors/1560999734029"
+                   aria-label="ellenbboe"
+                   class="vditor-tooltipped vditor-tooltipped__n item__avatar">
+                    <img src="https://img.hacpai.com/avatar/1560335521987_1576387741689.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100" />
+                </a>
+                    <a class="item__meta" href="https://ellenbboe.github.io/articles/2019/12/21/1576940518877.html">
+                        <span data-uvstaturl="https://ellenbboe.github.io/articles/2019/12/21/1576940518877.html">10</span> 浏览
+                    </a>
+            </div>
+        </div>
+    </article>
+    <article class="item">
+        <a href="https://ellenbboe.github.io/articles/2019/12/15/1576386330771.html" class="item__cover"
+           style="background-image: url(https://img.hacpai.com/bing/20190616.jpg?imageView2/1/w/1280/h/720/interlace/1/q/100)">
+        </a>
+        <div class="item__main">
+                    <a rel="tag" class="item__tag" href="https://ellenbboe.github.io/tags/Mybatis">
+                        Mybatis
+                    </a>
+            <h2 class="item__title">
+                <a rel="bookmark" href="https://ellenbboe.github.io/articles/2019/12/15/1576386330771.html">
+                    使用Mybatis-Generator来生成mapper,xml和实体对象
+                </a>
+                    <sup>
+                        <a href="https://ellenbboe.github.io/articles/2019/12/15/1576386330771.html">
+                            有更新！
+                        </a>
+                    </sup>
+            </h2>
+            <a class="item__abstract" pjax-title="使用Mybatis-Generator来生成mapper,xml和实体对象"
+               href="https://ellenbboe.github.io/articles/2019/12/15/1576386330771.html">
+                    👶 第一次使用Mybatis-generator记录
 
-  
-    <span class="post-meta-divider">|</span>
-    <span class="post-meta-item-icon">
-      <i class="fa fa-area-chart"></i>
-    </span>
-    
-      <span class="post-meta-item-text">Site words total count&#58;</span>
-    
-    <span title="Site words total count">119.8k</span>
-  
+            </a>
+            <div class="fn__clear">
+                <a href="https://ellenbboe.github.io/authors/1560999734029"
+                   aria-label="ellenbboe"
+                   class="vditor-tooltipped vditor-tooltipped__n item__avatar">
+                    <img src="https://img.hacpai.com/avatar/1560335521987_1576387741689.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100" />
+                </a>
+                <a class="item__meta" href="https://ellenbboe.github.io/articles/2019/12/15/1576386330771.html#comments">
+                    2 评论
+                </a>
+            </div>
+        </div>
+    </article>
+    <article class="item">
+        <a href="https://ellenbboe.github.io/articles/2019/12/09/1575889323934.html" class="item__cover"
+           style="background-image: url(https://img.hacpai.com/bing/20181204.jpg?imageView2/1/w/1280/h/720/interlace/1/q/100)">
+        </a>
+        <div class="item__main">
+                    <a rel="tag" class="item__tag" href="https://ellenbboe.github.io/tags/Spring">
+                        Spring
+                    </a>
+            <h2 class="item__title">
+                <a rel="bookmark" href="https://ellenbboe.github.io/articles/2019/12/09/1575889323934.html">
+                    使用validation自定义注解
+                </a>
+            </h2>
+            <a class="item__abstract" pjax-title="使用validation自定义注解"
+               href="https://ellenbboe.github.io/articles/2019/12/09/1575889323934.html">
+                    第一步 在pom中引入  &lt;dependency&gt; &lt;groupId&gt;org.springframework.boot&lt;/group
+
+            </a>
+            <div class="fn__clear">
+                <a href="https://ellenbboe.github.io/authors/1560999734029"
+                   aria-label="ellenbboe"
+                   class="vditor-tooltipped vditor-tooltipped__n item__avatar">
+                    <img src="https://img.hacpai.com/avatar/1560335521987_1576387741689.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100" />
+                </a>
+                    <a class="item__meta" href="https://ellenbboe.github.io/articles/2019/12/09/1575889323934.html">
+                        <span data-uvstaturl="https://ellenbboe.github.io/articles/2019/12/09/1575889323934.html">160</span> 浏览
+                    </a>
+            </div>
+        </div>
+    </article>
+    <article class="item">
+        <a href="https://ellenbboe.github.io/articles/2019/08/18/1566125443482.html" class="item__cover"
+           style="background-image: url(https://img.hacpai.com/bing/20190503.jpg?imageView2/1/w/1280/h/720/interlace/1/q/100)">
+        </a>
+        <div class="item__main">
+                    <a rel="tag" class="item__tag" href="https://ellenbboe.github.io/tags/%E7%AE%97%E6%B3%95">
+                        算法
+                    </a>
+            <h2 class="item__title">
+                <a rel="bookmark" href="https://ellenbboe.github.io/articles/2019/08/18/1566125443482.html">
+                    算法|随便刷刷LeetCode
+                </a>
+                    <sup>
+                        <a href="https://ellenbboe.github.io/articles/2019/08/18/1566125443482.html">
+                            有更新！
+                        </a>
+                    </sup>
+            </h2>
+            <a class="item__abstract" pjax-title="算法|随便刷刷LeetCode"
+               href="https://ellenbboe.github.io/articles/2019/08/18/1566125443482.html">
+                    随便刷一刷算法题还是不错的,编程能力还需提高 🐼
+
+            </a>
+            <div class="fn__clear">
+                <a href="https://ellenbboe.github.io/authors/1560999734029"
+                   aria-label="ellenbboe"
+                   class="vditor-tooltipped vditor-tooltipped__n item__avatar">
+                    <img src="https://img.hacpai.com/avatar/1560335521987_1576387741689.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100" />
+                </a>
+                    <a class="item__meta" href="https://ellenbboe.github.io/articles/2019/08/18/1566125443482.html">
+                        <span data-uvstaturl="https://ellenbboe.github.io/articles/2019/08/18/1566125443482.html">428</span> 浏览
+                    </a>
+            </div>
+        </div>
+    </article>
+    <article class="item">
+        <a href="https://ellenbboe.github.io/articles/2019/08/10/1565417420305.html" class="item__cover"
+           style="background-image: url(https://img.hacpai.com/bing/20180128.jpg?imageView2/1/w/1280/h/720/interlace/1/q/100)">
+        </a>
+        <div class="item__main">
+                    <a rel="tag" class="item__tag" href="https://ellenbboe.github.io/tags/%E7%AC%94%E8%AE%B0">
+                        笔记
+                    </a>
+            <h2 class="item__title">
+                <a rel="bookmark" href="https://ellenbboe.github.io/articles/2019/08/10/1565417420305.html">
+                    学习笔记|泛型
+                </a>
+                    <sup>
+                        <a href="https://ellenbboe.github.io/articles/2019/08/10/1565417420305.html">
+                            有更新！
+                        </a>
+                    </sup>
+            </h2>
+            <a class="item__abstract" pjax-title="学习笔记|泛型"
+               href="https://ellenbboe.github.io/articles/2019/08/10/1565417420305.html">
+                    泛型就像一个接口,适配某一些类,可以通过extends,super加限制 🌴
+
+            </a>
+            <div class="fn__clear">
+                <a href="https://ellenbboe.github.io/authors/1560999734029"
+                   aria-label="ellenbboe"
+                   class="vditor-tooltipped vditor-tooltipped__n item__avatar">
+                    <img src="https://img.hacpai.com/avatar/1560335521987_1576387741689.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100" />
+                </a>
+                    <a class="item__meta" href="https://ellenbboe.github.io/articles/2019/08/10/1565417420305.html">
+                        <span data-uvstaturl="https://ellenbboe.github.io/articles/2019/08/10/1565417420305.html">254</span> 浏览
+                    </a>
+            </div>
+        </div>
+    </article>
+    <article class="item">
+        <a href="https://ellenbboe.github.io/articles/2019/08/09/1565336255411.html" class="item__cover"
+           style="background-image: url(https://img.hacpai.com/file/2019/08/42707615755acdf3e0845f8articlex-7e5748da.png?imageView2/2/w/1280/format/jpg/interlace/1/q/100)">
+        </a>
+        <div class="item__main">
+                    <a rel="tag" class="item__tag" href="https://ellenbboe.github.io/tags/%E7%AC%94%E8%AE%B0">
+                        笔记
+                    </a>
+            <h2 class="item__title">
+                <a rel="bookmark" href="https://ellenbboe.github.io/articles/2019/08/09/1565336255411.html">
+                    学习笔记|List,Set和Map
+                </a>
+                    <sup>
+                        <a href="https://ellenbboe.github.io/articles/2019/08/09/1565336255411.html">
+                            有更新！
+                        </a>
+                    </sup>
+            </h2>
+            <a class="item__abstract" pjax-title="学习笔记|List,Set和Map"
+               href="https://ellenbboe.github.io/articles/2019/08/09/1565336255411.html">
+                    一些List,Set和Map的特点🌊  List:Arraylist,LinkedList,Vector Set依赖Map存在 Map:Hashtable,Ha
+
+            </a>
+            <div class="fn__clear">
+                <a href="https://ellenbboe.github.io/authors/1560999734029"
+                   aria-label="ellenbboe"
+                   class="vditor-tooltipped vditor-tooltipped__n item__avatar">
+                    <img src="https://img.hacpai.com/avatar/1560335521987_1576387741689.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100" />
+                </a>
+                    <a class="item__meta" href="https://ellenbboe.github.io/articles/2019/08/09/1565336255411.html">
+                        <span data-uvstaturl="https://ellenbboe.github.io/articles/2019/08/09/1565336255411.html">392</span> 浏览
+                    </a>
+            </div>
+        </div>
+    </article>
 </div>
 
-
-
-
-
-
-
-
-
-        
-
-
-
-
-
-
-
-        
-      </div>
-    </footer>
-
+<nav class="pagination">
+            <span class="pagination__item pagination__item--active">1</span>
+            <a pjax-title="Kosmos" class="pagination__item" href="https://ellenbboe.github.io/p/2">2</a>
+            <a pjax-title="Kosmos" class="pagination__item" href="https://ellenbboe.github.io/p/3">3</a>
+            <a pjax-title="Kosmos" class="pagination__item" href="https://ellenbboe.github.io/p/4">4</a>
+            <a pjax-title="Kosmos" class="pagination__item" href="https://ellenbboe.github.io/p/5">5</a>
+            <a pjax-title="Kosmos" class="pagination__item" href="https://ellenbboe.github.io/p/6">6</a>
+            <a pjax-title="Kosmos" class="pagination__item" href="https://ellenbboe.github.io/p/7">7</a>
+            <a pjax-title="Kosmos" class="pagination__item" href="https://ellenbboe.github.io/p/8">8</a>
+            <a pjax-title="Kosmos" class="pagination__item" href="https://ellenbboe.github.io/p/9">9</a>
+            <a pjax-title="Kosmos" class="pagination__item" href="https://ellenbboe.github.io/p/10">10</a>
+</nav>
+    </div>
     
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
-    
-
-    
-
-  </div>
-
-  
-
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
+</div>
+<footer class="footer">
+    <div class="wrapper fn__clear">
+        <div class="fn__left">
+            &copy; 2020
+            <a href="https://ellenbboe.github.io">Kosmos</a>
+            <a href="http://www.beian.miit.gov.cn/">浙ICP备18045840号-1</a>--------Let's move on
+本站已安全运行:
+<span id="momk"></span>
+<script language=javascript>
+function show_date_time(){
+window.setTimeout("show_date_time()", 1000);
+BirthDay=new Date("09-10-2018 19:47:57");//建站日期
+today=new Date();
+timeold=(today.getTime()-BirthDay.getTime());
+sectimeold=timeold/1000
+secondsold=Math.floor(sectimeold);
+msPerDay=24*60*60*1000
+e_daysold=timeold/msPerDay
+daysold=Math.floor(e_daysold);
+e_hrsold=(daysold-e_daysold)*-24;
+hrsold=Math.floor(e_hrsold);
+e_minsold=(hrsold-e_hrsold)*-60;
+minsold=Math.floor((hrsold-e_hrsold)*-60);
+seconds=Math.floor((minsold-e_minsold)*-60);
+momk.innerHTML=daysold+"天"+hrsold+"小时"+minsold+"分"+seconds+"秒" ;
+}
+show_date_time();
 </script>
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-
-  
-  
-
-
-
-
-
-
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/three/three.min.js"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/three/canvas_lines.min.js"></script>
-  
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
-
-
-
-  
-  
-
-  
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
-
-
-
-  
-
-
-  
-
-
-
-
-	
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-  <script type="text/javascript">
-    // Popup Window;
-    var isfetched = false;
-    var isXml = true;
-    // Search DB path;
-    var search_path = "search.xml";
-    if (search_path.length === 0) {
-      search_path = "search.xml";
-    } else if (/json$/i.test(search_path)) {
-      isXml = false;
+<style>
+#momk{animation:change 10s infinite;font-weight:800; }
+@keyframes change{0%{color:#5cb85c;}25%{color:#556bd8;}50%{color:#e40707;}75%{color:#66e616;}100% {color:#67bd31;}}
+</style> &nbsp;•&nbsp;
+            Powered by <a href="https://solo.b3log.org" target="_blank">Solo</a>
+            <br>
+            Theme Casper
+            <sup>[<a href="https://github.com/TryGhost/Casper" target="_blank">ref</a>]</sup>
+            by <a href="http://vanessa.b3log.org" target="_blank">Vanessa</a>
+        </div>
+        <div class="fn__right">
+            <a href="https://ellenbboe.github.io/tags.html" rel="section">
+            标签墙
+            </a>
+            &nbsp;•&nbsp;
+            <a href="https://ellenbboe.github.io/archives.html">
+            存档
+            </a>
+            &nbsp;•&nbsp;
+            <a rel="archive" href="https://ellenbboe.github.io/links.html">
+            友情链接
+            </a>
+            <br>
+            115 文章 &nbsp;
+            9 评论 &nbsp;
+            <span data-uvstaturl="https://ellenbboe.github.io">11608</span> 浏览 &nbsp;
+            4 当前访客
+        </div>
+    </div>
+</footer>
+
+<script type="text/javascript" src="https://ellenbboe.github.io/js/lib/compress/pjax.min.js" charset="utf-8"></script>
+<script type="text/javascript" src="https://ellenbboe.github.io/js/common.min.js?1578931371974"
+        charset="utf-8"></script>
+<script type="text/javascript"
+        src="https://ellenbboe.github.io/skins/Casper/js/common.min.js?1578931371974"
+        charset="utf-8"></script>
+<script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.4/dist/index.min.js"></script>
+<script>
+    var Label = {
+        servePath: "https://ellenbboe.github.io",
+        staticServePath: "https://ellenbboe.github.io",
+        luteAvailable: false,
+        hljsStyle: 'colorful',
+        langLabel: "zh_CN",
+        version: "3.7.0",
     }
-    var path = "/" + search_path;
-    // monitor main search box;
-
-    var onPopupClose = function (e) {
-      $('.popup').hide();
-      $('#local-search-input').val('');
-      $('.search-result-list').remove();
-      $('#no-result').remove();
-      $(".local-search-pop-overlay").remove();
-      $('body').css('overflow', '');
-    }
-
-    function proceedsearch() {
-      $("body")
-        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
-        .css('overflow', 'hidden');
-      $('.search-popup-overlay').click(onPopupClose);
-      $('.popup').toggle();
-      var $localSearchInput = $('#local-search-input');
-      $localSearchInput.attr("autocapitalize", "none");
-      $localSearchInput.attr("autocorrect", "off");
-      $localSearchInput.focus();
-    }
-
-    // search function;
-    var searchFunc = function(path, search_id, content_id) {
-      'use strict';
-
-      // start loading animation
-      $("body")
-        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
-          '<div id="search-loading-icon">' +
-          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
-          '</div>' +
-          '</div>')
-        .css('overflow', 'hidden');
-      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
-
-      $.ajax({
-        url: path,
-        dataType: isXml ? "xml" : "json",
-        async: true,
-        success: function(res) {
-          // get the contents from search data
-          isfetched = true;
-          $('.popup').detach().appendTo('.header-inner');
-          var datas = isXml ? $("entry", res).map(function() {
-            return {
-              title: $("title", this).text(),
-              content: $("content",this).text(),
-              url: $("url" , this).text()
-            };
-          }).get() : res;
-          var input = document.getElementById(search_id);
-          var resultContent = document.getElementById(content_id);
-          var inputEventFunction = function() {
-            var searchText = input.value.trim().toLowerCase();
-            var keywords = searchText.split(/[\s\-]+/);
-            if (keywords.length > 1) {
-              keywords.push(searchText);
-            }
-            var resultItems = [];
-            if (searchText.length > 0) {
-              // perform local searching
-              datas.forEach(function(data) {
-                var isMatch = false;
-                var hitCount = 0;
-                var searchTextCount = 0;
-                var title = data.title.trim();
-                var titleInLowerCase = title.toLowerCase();
-                var content = data.content.trim().replace(/<[^>]+>/g,"");
-                var contentInLowerCase = content.toLowerCase();
-                var articleUrl = decodeURIComponent(data.url);
-                var indexOfTitle = [];
-                var indexOfContent = [];
-                // only match articles with not empty titles
-                if(title != '') {
-                  keywords.forEach(function(keyword) {
-                    function getIndexByWord(word, text, caseSensitive) {
-                      var wordLen = word.length;
-                      if (wordLen === 0) {
-                        return [];
-                      }
-                      var startPosition = 0, position = [], index = [];
-                      if (!caseSensitive) {
-                        text = text.toLowerCase();
-                        word = word.toLowerCase();
-                      }
-                      while ((position = text.indexOf(word, startPosition)) > -1) {
-                        index.push({position: position, word: word});
-                        startPosition = position + wordLen;
-                      }
-                      return index;
-                    }
-
-                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
-                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
-                  });
-                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
-                    isMatch = true;
-                    hitCount = indexOfTitle.length + indexOfContent.length;
-                  }
-                }
-
-                // show search results
-
-                if (isMatch) {
-                  // sort index by position of keyword
-
-                  [indexOfTitle, indexOfContent].forEach(function (index) {
-                    index.sort(function (itemLeft, itemRight) {
-                      if (itemRight.position !== itemLeft.position) {
-                        return itemRight.position - itemLeft.position;
-                      } else {
-                        return itemLeft.word.length - itemRight.word.length;
-                      }
-                    });
-                  });
-
-                  // merge hits into slices
-
-                  function mergeIntoSlice(text, start, end, index) {
-                    var item = index[index.length - 1];
-                    var position = item.position;
-                    var word = item.word;
-                    var hits = [];
-                    var searchTextCountInSlice = 0;
-                    while (position + word.length <= end && index.length != 0) {
-                      if (word === searchText) {
-                        searchTextCountInSlice++;
-                      }
-                      hits.push({position: position, length: word.length});
-                      var wordEnd = position + word.length;
-
-                      // move to next position of hit
-
-                      index.pop();
-                      while (index.length != 0) {
-                        item = index[index.length - 1];
-                        position = item.position;
-                        word = item.word;
-                        if (wordEnd > position) {
-                          index.pop();
-                        } else {
-                          break;
-                        }
-                      }
-                    }
-                    searchTextCount += searchTextCountInSlice;
-                    return {
-                      hits: hits,
-                      start: start,
-                      end: end,
-                      searchTextCount: searchTextCountInSlice
-                    };
-                  }
-
-                  var slicesOfTitle = [];
-                  if (indexOfTitle.length != 0) {
-                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
-                  }
-
-                  var slicesOfContent = [];
-                  while (indexOfContent.length != 0) {
-                    var item = indexOfContent[indexOfContent.length - 1];
-                    var position = item.position;
-                    var word = item.word;
-                    // cut out 100 characters
-                    var start = position - 20;
-                    var end = position + 80;
-                    if(start < 0){
-                      start = 0;
-                    }
-                    if (end < position + word.length) {
-                      end = position + word.length;
-                    }
-                    if(end > content.length){
-                      end = content.length;
-                    }
-                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
-                  }
-
-                  // sort slices in content by search text's count and hits' count
-
-                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
-                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
-                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
-                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
-                      return sliceRight.hits.length - sliceLeft.hits.length;
-                    } else {
-                      return sliceLeft.start - sliceRight.start;
-                    }
-                  });
-
-                  // select top N slices in content
-
-                  var upperBound = parseInt('1');
-                  if (upperBound >= 0) {
-                    slicesOfContent = slicesOfContent.slice(0, upperBound);
-                  }
-
-                  // highlight title and content
-
-                  function highlightKeyword(text, slice) {
-                    var result = '';
-                    var prevEnd = slice.start;
-                    slice.hits.forEach(function (hit) {
-                      result += text.substring(prevEnd, hit.position);
-                      var end = hit.position + hit.length;
-                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
-                      prevEnd = end;
-                    });
-                    result += text.substring(prevEnd, slice.end);
-                    return result;
-                  }
-
-                  var resultItem = '';
-
-                  if (slicesOfTitle.length != 0) {
-                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
-                  } else {
-                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
-                  }
-
-                  slicesOfContent.forEach(function (slice) {
-                    resultItem += "<a href='" + articleUrl + "'>" +
-                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
-                      "...</p>" + "</a>";
-                  });
-
-                  resultItem += "</li>";
-                  resultItems.push({
-                    item: resultItem,
-                    searchTextCount: searchTextCount,
-                    hitCount: hitCount,
-                    id: resultItems.length
-                  });
-                }
-              })
-            };
-            if (keywords.length === 1 && keywords[0] === "") {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
-            } else if (resultItems.length === 0) {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
-            } else {
-              resultItems.sort(function (resultLeft, resultRight) {
-                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
-                  return resultRight.searchTextCount - resultLeft.searchTextCount;
-                } else if (resultLeft.hitCount !== resultRight.hitCount) {
-                  return resultRight.hitCount - resultLeft.hitCount;
-                } else {
-                  return resultRight.id - resultLeft.id;
-                }
-              });
-              var searchResultList = '<ul class=\"search-result-list\">';
-              resultItems.forEach(function (result) {
-                searchResultList += result.item;
-              })
-              searchResultList += "</ul>";
-              resultContent.innerHTML = searchResultList;
-            }
-          }
-
-          if ('auto' === 'auto') {
-            input.addEventListener('input', inputEventFunction);
-          } else {
-            $('.search-icon').click(inputEventFunction);
-            input.addEventListener('keypress', function (event) {
-              if (event.keyCode === 13) {
-                inputEventFunction();
-              }
-            });
-          }
-
-          // remove loading animation
-          $(".local-search-pop-overlay").remove();
-          $('body').css('overflow', '');
-
-          proceedsearch();
-        }
-      });
-    }
-
-    // handle and trigger popup window;
-    $('.popup-trigger').click(function(e) {
-      e.stopPropagation();
-      if (isfetched === false) {
-        searchFunc(path, 'local-search-input', 'local-search-result');
-      } else {
-        proceedsearch();
-      };
-    });
-
-    $('.popup-btn-close').click(onPopupClose);
-    $('.popup').click(function(e){
-      e.stopPropagation();
-    });
-    $(document).on('keyup', function (event) {
-      var shouldDismissSearchPopup = event.which === 27 &&
-        $('.search-popup').is(':visible');
-      if (shouldDismissSearchPopup) {
-        onPopupClose();
-      }
-    });
-  </script>
-
-
-
-
-
-  
-
-  
-
-  
-
-  
-  
-  
-  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
-
-  
-  
-  <script src="/lib/needsharebutton/needsharebutton.js"></script>
-
-  <script>
-    
-      pbOptions = {};
-      
-          pbOptions.iconStyle = "box";
-      
-          pbOptions.boxForm = "horizontal";
-      
-          pbOptions.position = "bottomCenter";
-      
-          pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Evernote,Mailto";
-      
-      new needShareButton('#needsharebutton-postbottom', pbOptions);
-    
-    
-  </script>
-
-  
-
-  
-
-  
-
-  
+    Util.init()
+</script>
 
 </body>
 </html>
+<!-- Generated by Latke (https://github.com/88250/latke) in 33ms, 2020/01/14 12:34:56 -->

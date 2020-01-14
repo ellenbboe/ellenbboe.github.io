@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>Scrapy Pass 2 - Kosmos</title><meta name="description" content="Learn Scrapy pass 2 安装(虚拟环境) Python packages can be installed either globally (a.k.a system wide), or in user-space. We do not recommend installing scrapy system wide. (并不推荐把python package安装成系统的一部分) Instead, we recommend that you install scrapy within a so-called “virtual environment” (virtualenv). Virtualenvs allow you to not conflict with already-installed Python system packages (which could break some of your system tools and scripts), and still install packages normally with pip (without sud...."/><meta property="og:description" content="Learn Scrapy pass 2 安装(虚拟环境) Python packages can be installed either globally (a.k.a system wide), or in user-space. We do not recommend installing scrapy system wide. (并不推荐把python package安装成系统的一部分) Instead, we recommend that you install scrapy within a so-called “virtual environment” (virtualenv). Virtualenvs allow you to not conflict with already-installed Python system packages (which could break some of your system tools and scripts), and still install packages normally with pip (without sud...."/>    <meta name="keywords" content="开源,开发者,笔记,kosmos"/><link rel="dns-prefetch" href="https://ellenbboe.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://ellenbboe.github.io"><link rel="icon" type="image/png" href="https://s2.ax1x.com/2020/01/12/loApPe.png"/><link rel="apple-touch-icon" href="https://s2.ax1x.com/2020/01/12/loApPe.png"><link rel="shortcut icon" type="image/x-icon" href="https://s2.ax1x.com/2020/01/12/loApPe.png"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="Scrapy Pass 2 - Kosmos"/><meta property="og:site_name" content="Kosmos"/><meta property="og:url"      content="https://ellenbboe.github.io/articles/2018/08/16/1561009675671.html?"/><meta property="og:image" content="https://s2.ax1x.com/2020/01/12/loApPe.png"/><link rel="search" type="application/opensearchdescription+xml" title="Scrapy Pass 2 - Kosmos" href="/opensearch.xml"><link href="https://ellenbboe.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://ellenbboe.github.io/manifest.json">        <link rel="canonical" href="https://ellenbboe.github.io/articles/2018/08/16/1561009675671.html">        <link rel="stylesheet"
+              href="https://ellenbboe.github.io/skins/Casper/css/base.css?1578931371974"/>
+            <link rel="prev" title="Scrapy Pass 1" href="https://ellenbboe.github.io/articles/2018/08/16/1561009689409.html">
+            <link rel="next" title="Scrapy Pass 3" href="https://ellenbboe.github.io/articles/2018/08/17/1561009680520.html">
+    </head>
+<body class="fn__flex-column">
+<div id="pjax" class="fn__flex-1">
+    
+    <header class="header header--article">
+        <div class="wrapper header__title">
+            <h1 class="header__h1 fn__flex-inline">
+                <img src="https://s2.ax1x.com/2020/01/12/loApPe.png">
+                <a href="https://ellenbboe.github.io" rel="start" class="header__title">Kosmos</a>
+            </h1>
+            <h2 class="header__h2">---就算是痛苦难受，也要去体会那被称为生存的分量---</h2>
+        </div>
+        <nav class="wrapper header__nav fn__clear">
+            <a href="https://ellenbboe.github.io" rel="start">
+                    Kosmos
+            </a>
+
+                <a class="fn__flex-inline" href="/my-github-repos" target="_self" rel="section">
+                    <img src="/images/github-icon.png"> 我的开源
+                </a>
+                <a class="fn__flex-inline" href="/readlist" target="_self" rel="section">
+                     阅读列表
+                </a>
+
+
+            <div class="fn__right">
+    <a href="https://hacpai.com/member/ellenbboe"
+       title="https://hacpai.com/member/ellenbboe"
+       class="user__site"
+       target="_blank" rel="noopener nofollow">
+        <svg viewBox="0 0 32 32" width="100%" height="100%">
+            <path fill="#d23f31" style="fill: var(--color1, #d23f31)" d="M5.787 17.226h17.033l5.954 9.528c0.47 0.752 0.003 1.361-1.042 1.361h-15.141z"></path>
+            <path d="M10.74 3.927h17.033c1.045 0 1.512 0.609 1.042 1.361l-5.954 9.528h-19.872l6.379-10.209c0.235-0.376 0.849-0.681 1.372-0.681z"></path>
+            <path d="M2.953 17.226h2.839l6.804 10.889h-1.892c-0.523 0-1.137-0.305-1.372-0.681z"></path>
+        </svg>
+    </a>
+
+        <a href="https://github.com/ellenbboe"
+           title="https://github.com/ellenbboe"
+           class="user__site"
+           target="_blank" rel="noopener nofollow">
+            <svg viewBox="0 0 32 32" width="100%" height="100%">
+                <path d="M16 0.331c-8.836 0-16 7.163-16 16 0 7.069 4.585 13.067 10.942 15.182 0.8 0.148 1.094-0.347 1.094-0.77 0-0.381-0.015-1.642-0.022-2.979-4.452 0.968-5.391-1.888-5.391-1.888-0.728-1.849-1.776-2.341-1.776-2.341-1.452-0.993 0.11-0.973 0.11-0.973 1.606 0.113 2.452 1.649 2.452 1.649 1.427 2.446 3.743 1.739 4.656 1.33 0.143-1.034 0.558-1.74 1.016-2.14-3.554-0.404-7.29-1.777-7.29-7.907 0-1.747 0.625-3.174 1.649-4.295-0.166-0.403-0.714-2.030 0.155-4.234 0 0 1.344-0.43 4.401 1.64 1.276-0.355 2.645-0.532 4.005-0.539 1.359 0.006 2.729 0.184 4.008 0.539 3.054-2.070 4.395-1.64 4.395-1.64 0.871 2.204 0.323 3.831 0.157 4.234 1.026 1.12 1.647 2.548 1.647 4.295 0 6.145-3.743 7.498-7.306 7.895 0.574 0.497 1.085 1.47 1.085 2.963 0 2.141-0.019 3.864-0.019 4.391 0 0.426 0.288 0.925 1.099 0.768 6.354-2.118 10.933-8.113 10.933-15.18 0-8.837-7.164-16-16-16z"></path>
+            </svg>
+        </a>
+
+                <a rel="alternate" href="https://ellenbboe.github.io/rss.xml">
+                    RSS
+                </a>
+
+            </div>
+        </nav>
+    </header>
+    <div class="article__top">
+        <div class="fn__clear">
+            <div class="toc fn__none" onclick="$('.post__toc').slideToggle()">目录</div>
+            <div class="title fn__pointer" onclick="Util.goTop()">Scrapy Pass 2</div>
+<div class="article__share"
+     data-title="Scrapy Pass 2"
+     data-blogtitle="Kosmos"
+     data-url="https://ellenbboe.github.io/articles/2018/08/16/1561009675671.html"
+     data-avatar="https://img.hacpai.com/avatar/1560335521987_1576387741689.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100">
+    <span class="item" data-type="qqz">
+        <svg viewBox="0 0 32 32" width="100%" height="100%">
+            <path d="M22.824 13.989l-8.348 6.287s3.351 0.522 8.404 0.461l-0.23-1.040 7.2-6.549c0.132-0.12 0.183-0.312 0.129-0.487s-0.203-0.299-0.377-0.314l-9.492-0.856-3.708-9.213c-0.068-0.169-0.226-0.279-0.401-0.279s-0.333 0.11-0.401 0.279l-3.708 9.213-9.492 0.856c-0.174 0.015-0.323 0.139-0.377 0.314s-0.004 0.366 0.129 0.487l7.2 6.549-2.158 9.742c-0.040 0.178 0.026 0.365 0.168 0.474 0.142 0.107 0.331 0.115 0.481 0.021l8.158-5.165 8.158 5.165c0.070 0.045 0.147 0.066 0.225 0.066 0.090 0 0.18-0.029 0.256-0.086 0.142-0.109 0.208-0.295 0.168-0.474l-1.707-7.704c0.732-0.386 1.538-1.040 1.538-1.040s-3.195 1.638-14.664 0.838l8.312-6.325s-0.327-0.534-10.744-0.914c-0.697-0.026 8.493-1.83 15.281-0.305z"></path>
+        </svg>
+    </span>
+    <span class="item" data-type="wechat">
+        <svg viewBox="0 0 32 32" width="100%" height="100%">
+            <path d="M9.062 9.203c0-0.859-0.562-1.422-1.422-1.422-0.844 0-1.703 0.562-1.703 1.422 0 0.844 0.859 1.406 1.703 1.406 0.859 0 1.422-0.562 1.422-1.406zM20.672 17.125c0-0.562-0.562-1.125-1.422-1.125-0.562 0-1.125 0.562-1.125 1.125 0 0.578 0.562 1.141 1.125 1.141 0.859 0 1.422-0.562 1.422-1.141zM16.984 9.203c0-0.859-0.562-1.422-1.406-1.422-0.859 0-1.703 0.562-1.703 1.422 0 0.844 0.844 1.406 1.703 1.406 0.844 0 1.406-0.562 1.406-1.406zM26.906 17.125c0-0.562-0.578-1.125-1.422-1.125-0.562 0-1.125 0.562-1.125 1.125 0 0.578 0.562 1.141 1.125 1.141 0.844 0 1.422-0.562 1.422-1.141zM22.75 10.922c-0.359-0.047-0.719-0.063-1.094-0.063-5.375 0-9.625 4.016-9.625 8.953 0 0.828 0.125 1.625 0.359 2.375-0.359 0.031-0.703 0.047-1.063 0.047-1.422 0-2.547-0.281-3.969-0.562l-3.953 1.984 1.125-3.406c-2.828-1.984-4.531-4.547-4.531-7.656 0-5.391 5.094-9.625 11.328-9.625 5.563 0 10.453 3.391 11.422 7.953zM32 19.687c0 2.547-1.688 4.813-3.969 6.516l0.859 2.828-3.109-1.703c-1.141 0.281-2.281 0.578-3.406 0.578-5.391 0-9.625-3.688-9.625-8.219s4.234-8.219 9.625-8.219c5.094 0 9.625 3.688 9.625 8.219z"></path>
+        </svg>
+    </span>
+    <span class="item" data-type="weibo">
+        <svg viewBox="0 0 32 32" width="100%" height="100%">
+            <path d="M13.444 27.064c-5.3 0.525-9.875-1.875-10.219-5.35-0.344-3.481 3.675-6.719 8.969-7.244 5.3-0.525 9.875 1.875 10.212 5.35 0.35 3.481-3.669 6.725-8.963 7.244zM24.038 15.521c-0.45-0.137-0.762-0.225-0.525-0.819 0.512-1.287 0.563-2.394 0.006-3.188-1.038-1.481-3.881-1.406-7.137-0.037 0 0-1.025 0.444-0.762-0.363 0.5-1.613 0.425-2.956-0.356-3.737-1.769-1.769-6.469 0.069-10.5 4.1-3.013 3.006-4.763 6.212-4.763 8.981 0 5.287 6.787 8.506 13.425 8.506 8.7 0 14.494-5.056 14.494-9.069 0-2.431-2.044-3.806-3.881-4.375z"></path>
+            <path d="M29.819 5.833c-2.1-2.331-5.2-3.219-8.063-2.612v0c-0.663 0.144-1.081 0.794-0.938 1.45 0.144 0.662 0.788 1.081 1.45 0.938 2.038-0.431 4.238 0.2 5.731 1.856s1.9 3.913 1.256 5.888v0c-0.206 0.644 0.144 1.331 0.788 1.544 0.644 0.206 1.331-0.144 1.544-0.787v-0.006c0.9-2.762 0.331-5.938-1.769-8.269z"></path>
+            <path d="M26.588 8.752c-1.025-1.138-2.538-1.569-3.925-1.269-0.569 0.119-0.931 0.688-0.813 1.256 0.125 0.569 0.688 0.931 1.25 0.806v0c0.681-0.144 1.419 0.069 1.919 0.619 0.5 0.556 0.637 1.313 0.419 1.975v0c-0.175 0.55 0.125 1.15 0.681 1.331 0.556 0.175 1.15-0.125 1.331-0.681 0.438-1.356 0.163-2.906-0.863-4.037z"></path>
+            <path d="M13.738 20.771c-0.188 0.319-0.594 0.469-0.912 0.337-0.319-0.125-0.412-0.488-0.231-0.794 0.188-0.306 0.581-0.456 0.894-0.337 0.313 0.113 0.425 0.469 0.25 0.794zM12.044 22.933c-0.512 0.819-1.613 1.175-2.438 0.8-0.813-0.369-1.056-1.319-0.544-2.119 0.506-0.794 1.569-1.15 2.388-0.806 0.831 0.356 1.1 1.3 0.594 2.125zM13.969 17.146c-2.519-0.656-5.369 0.6-6.463 2.819-1.119 2.262-0.037 4.781 2.506 5.606 2.638 0.85 5.75-0.456 6.831-2.894 1.069-2.394-0.262-4.85-2.875-5.531z"></path>
+        </svg>
+    </span>
+    <span class="item" data-type="twitter">
+        <svg viewBox="0 0 32 32" width="100%" height="100%">
+            <path d="M32.003 6.075c-1.175 0.525-2.444 0.875-3.769 1.031 1.356-0.813 2.394-2.1 2.887-3.631-1.269 0.75-2.675 1.3-4.169 1.594-1.2-1.275-2.906-2.069-4.794-2.069-3.625 0-6.563 2.938-6.563 6.563 0 0.512 0.056 1.012 0.169 1.494-5.456-0.275-10.294-2.888-13.531-6.862-0.563 0.969-0.887 2.1-0.887 3.3 0 2.275 1.156 4.287 2.919 5.463-1.075-0.031-2.087-0.331-2.975-0.819 0 0.025 0 0.056 0 0.081 0 3.181 2.263 5.838 5.269 6.437-0.55 0.15-1.131 0.231-1.731 0.231-0.425 0-0.831-0.044-1.237-0.119 0.838 2.606 3.263 4.506 6.131 4.563-2.25 1.762-5.075 2.813-8.156 2.813-0.531 0-1.050-0.031-1.569-0.094 2.913 1.869 6.362 2.95 10.069 2.95 12.075 0 18.681-10.006 18.681-18.681 0-0.287-0.006-0.569-0.019-0.85 1.281-0.919 2.394-2.075 3.275-3.394z"></path>
+        </svg>
+    </span>
+    <span class="item__qr"></span>
+</div>        </div>
+        <progress class="article__progress"></progress>
+    </div>
+    <div class="article">
+        <div class="ft__center">
+            <div class="item__meta">
+                <time>
+                    2018-08-16
+                </time>
+                /
+                    <a class="tag" rel="tag"
+                       href="https://ellenbboe.github.io/tags/Scrapy">Scrapy</a> &nbsp;
+            </div>
+            <h2 class="item__title">
+                Scrapy Pass 2
+            </h2>
+        </div>
+        <div class="item__cover" style="background-image: url(https://img.hacpai.com/bing/20190211.jpg?imageView2/1/w/1280/h/720/interlace/1/q/100)"></div>
+        <div class="wrapper">
+            <section class="item__content item__content--article vditor-reset">
+                <p></p><h2 id="b3_solo_h2_0">Learn Scrapy pass 2</h2>
+<h3 id="b3_solo_h3_1">安装(虚拟环境)</h3>
+<p>Python packages can be installed either globally (a.k.a system wide), or in user-space. We do not recommend installing scrapy system wide.<br>
+<strong>(并不推荐把python package安装成系统的一部分)</strong></p>
+<p>Instead, we recommend that you install scrapy within a so-called “<code>virtual environment</code>” (<code>virtualenv</code>). Virtualenvs allow you to not conflict with already-installed Python system packages (which could break some of your system tools and scripts), and still install packages normally with <code>pip</code> (without <code>sudo</code> and the likes).<strong>(不会对系统现有的包产生冲突,可以使用普通用户的形式进行安装)</strong></p>
+<p>Once you have created a virtualenv, you can install scrapy inside it with <code>pip</code>, just like any other Python package.<br>
+<strong>(这里不介绍安装env,提一下,pycharm控制台自带虚拟环境)</strong></p>
+<blockquote>
+<p>Python virtualenvs can be created to use Python 2 by default, or Python 3 by default.<br>
+If you want to install scrapy with Python 3, install scrapy within a Python 3 virtualenv.<br>
+And if you want to install scrapy with Python 2, install scrapy within a Python 2 virtualenv.</p>
+</blockquote>
+<h3 id="b3_solo_h3_2">Scrapy 使用示例</h3>
+<p>We are going to scrape <code>quotes.toscrape.com</code>, a website that lists quotes from famous authors.</p>
+<p>This tutorial will walk you through these tasks:</p>
+<ol>
+<li>Creating a new Scrapy project</li>
+<li>Writing a spider to crawl a site and extract data</li>
+<li>Exporting the scraped data using the command line</li>
+<li>Changing spider to recursively follow links</li>
+<li>Using spider arguments</li>
+</ol>
+<h4 id="b3_solo_h4_3">Creating a project</h4>
+<p><strong>Before</strong> you start scraping, you will have to set up a new <strong>Scrapy project</strong>. Enter a directory where you’d like to store your code and run:<code>scrapy startproject tutorial</code><br>
+This will create a tutorial directory with the following contents:</p>
+<pre><code>得到默认的初始化目录
+tutorial/
+    scrapy.cfg            # deploy configuration file 配置文件
+
+    tutorial/             # project's Python module, you'll import your code from here
+        __init__.py
+
+        items.py          # project items definition file
+
+        middlewares.py    # project middlewares file
+
+        pipelines.py      # project pipelines file
+
+        settings.py       # project settings file 配置文件
+
+        spiders/          # a directory where you'll later put your spiders
+            __init__.py
+</code></pre>
+<h4 id="b3_solo_h4_4">Our first Spider</h4>
+<p>Spiders are classes that you define and that Scrapy uses to scrape information from a website (or a group of websites). They must subclass scrapy.Spider and define the initial requests to make, optionally how to follow links in the pages, and how to parse the downloaded page content to extract data.<br>
+<strong>(Spiders目录是自己定义的,通过爬虫来爬取website)</strong><br>
+This is the code for our first Spider. Save it in a file named <code>quotes_spider.py</code> under the <strong>(注意位置)</strong> <code>tutorial/spiders</code>directory in your project:</p>
+<pre><code>import scrapy
+
+class QuotesSpider(scrapy.Spider):
+    name = "quotes"
+
+    def start_requests(self):
+        urls = [
+            'http://quotes.toscrape.com/page/1/',
+            'http://quotes.toscrape.com/page/2/',
+        ]
+        for url in urls:
+            yield scrapy.Request(url=url, callback=self.parse)
+
+    def parse(self, response):
+        page = response.url.split("/")[-2]
+        filename = 'quotes-%s.html' % page
+        with open(filename, 'wb') as f:
+            f.write(response.body)
+        self.log('Saved file %s' % filename)
+</code></pre>
+<blockquote>
+<p>一个带有 yield 的函数就是一个 generator，它和普通函数不同，生成一个 generator 看起来像函数调用，但不会执行任何函数代码，直到对其调用 next()（在 for 循环中会自动调用 next()）才开始执行。虽然执行流程仍按函数的流程执行，但每执行到一个 yield 语句就会中断，并返回一个迭代值，下次执行时从 yield 的下一个语句继续执行。看起来就好像一个函数在正常执行的过程中被 yield 中断了数次，每次中断都会通过 yield 返回当前的迭代值。</p>
+</blockquote>
+<blockquote>
+<p>yield 的好处是显而易见的，把一个函数改写为一个 generator 就获得了迭代能力，比起用类的实例保存状态来计算下一个 next() 的值，不仅代码简洁，而且执行流程异常清晰。<br>
+As you can see, our Spider subclasses scrapy.Spider and defines some attributes and methods:</p>
+</blockquote>
+<p><strong>name:</strong></p>
+<blockquote>
+<p>identifies the Spider.(定义爬虫名字) It must be <strong>unique</strong> within a project, that is, you can’t set the same name for different Spiders.</p>
+</blockquote>
+<p><strong>start_requests():</strong></p>
+<blockquote>
+<p>must <strong>return an iterable of Requests</strong> (you can return <strong>a list of requests</strong> or <strong>write a generator function</strong>) which the Spider will <strong>begin</strong> to crawl from. Subsequent requests will be generated successively from these initial requests.</p>
+</blockquote>
+<p><strong>parse()</strong>:</p>
+<blockquote>
+<p>a method that will be called to <strong>handle the response downloaded</strong> for each of the requests made. The response parameter is an instance of TextResponse that holds the page content and has further helpful methods to handle it.</p>
+</blockquote>
+<blockquote>
+<p>The parse() method usually parses the response, extracting the scraped data as dicts and also finding new URLs to follow and creating new requests (Request) from them.<strong>(提取信息并得到下一步url)</strong></p>
+</blockquote>
+<h4 id="b3_solo_h4_5">How to run our spider</h4>
+<p>To put our spider to work, go to the project’s top level directory and run:<code>scrapy crawl quotes</code>(quotes就是之前定义的name)<br>
+This command runs the spider with name quotes that we’ve just added, that will send some requests for the <code>quotes.toscrape.com</code> domain. You will get an output similar to this:</p>
+<pre><code>... (omitted for brevity)
+2016-12-16 21:24:05 [scrapy.core.engine] INFO: Spider opened
+2016-12-16 21:24:05 [scrapy.extensions.logstats] INFO: Crawled 0 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+2016-12-16 21:24:05 [scrapy.extensions.telnet] DEBUG: Telnet console listening on 127.0.0.1:6023
+2016-12-16 21:24:05 [scrapy.core.engine] DEBUG: Crawled (404) &lt;GET http://quotes.toscrape.com/robots.txt&gt; (referer: None)
+2016-12-16 21:24:05 [scrapy.core.engine] DEBUG: Crawled (200) &lt;GET http://quotes.toscrape.com/page/1/&gt; (referer: None)
+2016-12-16 21:24:05 [scrapy.core.engine] DEBUG: Crawled (200) &lt;GET http://quotes.toscrape.com/page/2/&gt; (referer: None)
+2016-12-16 21:24:05 [quotes] DEBUG: Saved file quotes-1.html
+2016-12-16 21:24:05 [quotes] DEBUG: Saved file quotes-2.html
+2016-12-16 21:24:05 [scrapy.core.engine] INFO: Closing spider (finished)
+</code></pre>
+<p>Now, check the files in the current directory. You should notice that two new files have been created: <code>quotes-1.html</code> and <code>quotes-2.html</code>, with the content for the respective URLs, as our <code>parse</code> method instructs.</p>
+<h4 id="b3_solo_h4_6">What just happened under the hood?</h4>
+<p>Scrapy schedules the scrapy.Request objects returned by the start_requests method of the Spider. Upon receiving a response for each one, it instantiates Response objects and calls the callback method associated with the request (in this case, the parse method) passing the response as argument.<br>
+<strong>(通过the start_requests method of the Spider将request的请求发出去,得到response,然后对于每个response调用callback)</strong></p>
+<h3 id="b3_solo_h3_7">A shortcut to the start_requests method</h3>
+<p>Instead of implementing(执行) a <code>start_requests()</code> method that generates <code>scrapy.Request</code> objects from URLs, you can just define a <code>start_urls</code> class attribute with a list of URLs. <strong>This list will then be used by the default implementation of <code>start_requests()</code> to create the initial requests for your spider:</strong><br>
+<strong>(这个start_urls会自动调用默认的方法去生成初始的requests)</strong></p>
+<pre><code>import scrapy
+
+
+class QuotesSpider(scrapy.Spider):
+    name = "quotes"
+    start_urls = [
+        'http://quotes.toscrape.com/page/1/',
+        'http://quotes.toscrape.com/page/2/',
+    ]
+
+    def parse(self, response):
+        page = response.url.split("/")[-2]
+        filename = 'quotes-%s.html' % page
+        with open(filename, 'wb') as f:
+            f.write(response.body)
+
+</code></pre>
+<p>The <code>parse()</code> method will be called to handle each of the requests for those URLs, even though we haven’t explicitly told Scrapy to do so. This happens because parse() is <strong>Scrapy’s default callback method</strong>, which is called for requests without an explicitly assigned callback.<strong>(默认会处理response,无需明显调用)</strong></p>
+<h4 id="b3_solo_h4_8">Extracting data</h4>
+<p>The best way to learn how to extract data with Scrapy is trying selectors using the shell (Scrapy shell). Run:<br>
+`scrapy shell '<a href="http://quotes.toscrape.com/page/1/'``" target="_blank">http://quotes.toscrape.com/page/1/'``</a><br>
+You will see something like:</p>
+<pre><code>[ ... Scrapy log here ... ]
+2016-09-19 12:09:27 [scrapy.core.engine] DEBUG: Crawled (200) &lt;GET http://quotes.toscrape.com/page/1/&gt; (referer: None)
+[s] Available Scrapy objects:
+[s]   scrapy     scrapy module (contains scrapy.Request, scrapy.Selector, etc)
+[s]   crawler    &lt;scrapy.crawler.Crawler object at 0x7fa91d888c90&gt;
+[s]   item       {}
+[s]   request    &lt;GET http://quotes.toscrape.com/page/1/&gt;
+[s]   response   &lt;200 http://quotes.toscrape.com/page/1/&gt;
+[s]   settings   &lt;scrapy.settings.Settings object at 0x7fa91d888c10&gt;
+[s]   spider     &lt;DefaultSpider 'default' at 0x7fa91c8af990&gt;
+[s] Useful shortcuts:
+[s]   shelp()           Shell help (print this help)
+[s]   fetch(req_or_url) Fetch request (or URL) and update local objects
+[s]   view(response)    View response in a browser
+&gt;&gt;&gt;
+</code></pre>
+<p>Using the shell, you can try selecting elements using CSS with the response object:</p>
+<pre><code>&gt;&gt;&gt; response.css('title')
+[&lt;Selector xpath='descendant-or-self::title' data='&lt;title&gt;Quotes to Scrape&lt;/title&gt;'&gt;]
+</code></pre>
+<p>(弱弱的说一句,有点像选择器啊)<br>
+The result of running <code>response.css('title')</code> is a list-like object called SelectorList, which represents a list of Selector objects that wrap around XML/HTML elements and allow you to run further queries to fine-grain the selection or extract the data.<br>
+(果然)<br>
+To extract the text from the title above, you can do:</p>
+<pre><code>&gt;&gt;&gt; response.css('title::text').extract()
+['Quotes to Scrape']
+</code></pre>
+<p>There are two things to note here:<br>
+one is that we’ve added <code>::text</code> to the CSS query, to mean we want to select <strong>only</strong> the text elements directly inside <title> element. If we don’t specify </title><code>::text</code>, we’d get the full title element, including its tags:</p>
+<pre><code>&gt;&gt;&gt; response.css('title').extract()
+['&lt;title&gt;Quotes to Scrape&lt;/title&gt;']
+</code></pre>
+<p>The other thing is that the result of calling .extract() is a <strong>list</strong>, because we’re dealing with an instance of SelectorList. When you know you just want the first result, as in this case, you can do:</p>
+<pre><code>&gt;&gt;&gt; response.css('title::text').extract_first()
+'Quotes to Scrape'
+</code></pre>
+<p>As an alternative, you could’ve written:</p>
+<pre><code>&gt;&gt;&gt; response.css('title::text')[0].extract()
+'Quotes to Scrape'
+</code></pre>
+<p>However, using <code>.extract_first()</code> avoids an <code>IndexError</code> and returns <code>None</code> <strong>when</strong> it <strong>doesn’t find</strong> any element matching the selection.</p>
+<p>There’s a lesson here: for most scraping code, you want it to be resilient to errors due to things not being found on a page, so that even if some parts fail to be scraped, you can at least get some data.<br>
+<strong>(即使你没有得到你想要的东西,你也可以得到一些data)</strong></p>
+<p>Besides the <code>extract()</code> and <code>extract_first()</code> methods, you can also use the <code>re()</code> method to extract using regular expressions:</p>
+<pre><code>&gt;&gt;&gt; response.css('title::text').re(r'Quotes.*')
+['Quotes to Scrape']
+&gt;&gt;&gt; response.css('title::text').re(r'Q\w+')
+['Quotes']
+&gt;&gt;&gt; response.css('title::text').re(r'(\w+) to (\w+)')
+['Quotes', 'Scrape']
+</code></pre>
+<p>In order to find the proper CSS selectors to use, you might find useful opening the response page from the shell in your web browser using <code>view(response)</code>. You can use your browser developer tools or extensions like Firebug (see sections about <a href="https://doc.scrapy.org/en/latest/topics/firebug.html#topics-firebug" target="_blank">Using Firebug for scraping</a> and <a href="https://doc.scrapy.org/en/latest/topics/firefox.html#topics-firefox" target="_blank">Using Firefox for scraping</a>).</p>
+<p><a href="http://selectorgadget.com/" target="_blank">Selector Gadget</a> is also a nice tool to quickly find CSS selector for visually selected elements, which works in many browsers.</p>
+<p>不止可以使用css选择器,还可以使用xpath</p>
+<pre><code>&gt;&gt;&gt; response.xpath('//title')
+[&lt;Selector xpath='//title' data='&lt;title&gt;Quotes to Scrape&lt;/title&gt;'&gt;]
+&gt;&gt;&gt; response.xpath('//title/text()').extract_first()
+'Quotes to Scrape'
+</code></pre>
+<p>XPath expressions are very powerful, and are the foundation of Scrapy Selectors. In fact, CSS selectors are converted to XPath under-the-hood. You can see that if you read closely the text representation of the selector objects in the shell.(没想到啊,竟然是这样)</p>
+<blockquote>
+<p>we encourage you to learn XPath even if you already know how to construct CSS selectors, it will make scraping much easier.</p>
+</blockquote>
+<p></p>
+                    <div>
+                        <hr>
+<img alt="今日诗词" src="https://v2.jinrishici.com/one.svg" style="max-width:100%; display: block; margin: 0 auto;">
+
+标题：Scrapy Pass 2<br>
+作者：<a href="https://ellenbboe.github.io" target="_blank">ellenbboe</a><br>
+地址：<a href="https://ellenbboe.github.io/articles/2018/08/16/1561009675671.html" target="_blank">https://ellenbboe.github.io/articles/2018/08/16/1561009675671.html</a><br>
+<!-- 签名档内可使用 HTML、JavaScript -->
+<br>
+                    </div>
+            </section>
+        </div>
+    </div>
+        <div class="post__toc">
+<ul class="article__toc">
+        <li class="toc__h2">
+            <a href="#b3_solo_h2_0">Learn Scrapy pass 2</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#b3_solo_h3_1">安装(虚拟环境)</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#b3_solo_h3_2">Scrapy 使用示例</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#b3_solo_h4_3">Creating a project</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#b3_solo_h4_4">Our first Spider</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#b3_solo_h4_5">How to run our spider</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#b3_solo_h4_6">What just happened under the hood?</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#b3_solo_h3_7">A shortcut to the start_requests method</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#b3_solo_h4_8">Extracting data</a>
+        </li>
+</ul>        </div>
+<div class="comment">
+    <div class="comment__wrapper wrapper">
+        <div class="comment__title">
+            评论
+        </div>
+        <textarea rows="3" placeholder="评论内容只能为 2 到 500 个字符！" id="comment"></textarea>
+
+        <ul id="comments">
+        </ul>
+    </div>
+</div>
+    <div class="article__bottom">
+        <div class="wrapper">
+            <div class="fn__flex">
+                <div class="item" id="randomArticles"></div>
+                <div class="item" id="relevantArticles"></div>
+            </div>
+        </div>
+    </div>
+    
+</div>
+<footer class="footer">
+    <div class="wrapper fn__clear">
+        <div class="fn__left">
+            &copy; 2020
+            <a href="https://ellenbboe.github.io">Kosmos</a>
+            <a href="http://www.beian.miit.gov.cn/">浙ICP备18045840号-1</a>--------Let's move on
+本站已安全运行:
+<span id="momk"></span>
+<script language=javascript>
+function show_date_time(){
+window.setTimeout("show_date_time()", 1000);
+BirthDay=new Date("09-10-2018 19:47:57");//建站日期
+today=new Date();
+timeold=(today.getTime()-BirthDay.getTime());
+sectimeold=timeold/1000
+secondsold=Math.floor(sectimeold);
+msPerDay=24*60*60*1000
+e_daysold=timeold/msPerDay
+daysold=Math.floor(e_daysold);
+e_hrsold=(daysold-e_daysold)*-24;
+hrsold=Math.floor(e_hrsold);
+e_minsold=(hrsold-e_hrsold)*-60;
+minsold=Math.floor((hrsold-e_hrsold)*-60);
+seconds=Math.floor((minsold-e_minsold)*-60);
+momk.innerHTML=daysold+"天"+hrsold+"小时"+minsold+"分"+seconds+"秒" ;
+}
+show_date_time();
+</script>
+<style>
+#momk{animation:change 10s infinite;font-weight:800; }
+@keyframes change{0%{color:#5cb85c;}25%{color:#556bd8;}50%{color:#e40707;}75%{color:#66e616;}100% {color:#67bd31;}}
+</style> &nbsp;•&nbsp;
+            Powered by <a href="https://solo.b3log.org" target="_blank">Solo</a>
+            <br>
+            Theme Casper
+            <sup>[<a href="https://github.com/TryGhost/Casper" target="_blank">ref</a>]</sup>
+            by <a href="http://vanessa.b3log.org" target="_blank">Vanessa</a>
+        </div>
+        <div class="fn__right">
+            <a href="https://ellenbboe.github.io/tags.html" rel="section">
+            标签墙
+            </a>
+            &nbsp;•&nbsp;
+            <a href="https://ellenbboe.github.io/archives.html">
+            存档
+            </a>
+            &nbsp;•&nbsp;
+            <a rel="archive" href="https://ellenbboe.github.io/links.html">
+            友情链接
+            </a>
+            <br>
+            115 文章 &nbsp;
+            9 评论 &nbsp;
+            <span data-uvstaturl="https://ellenbboe.github.io">11608</span> 浏览 &nbsp;
+            4 当前访客
+        </div>
+    </div>
+</footer>
+
+<script type="text/javascript" src="https://ellenbboe.github.io/js/lib/compress/pjax.min.js" charset="utf-8"></script>
+<script type="text/javascript" src="https://ellenbboe.github.io/js/common.min.js?1578931371974"
+        charset="utf-8"></script>
+<script type="text/javascript"
+        src="https://ellenbboe.github.io/skins/Casper/js/common.min.js?1578931371974"
+        charset="utf-8"></script>
+<script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.4/dist/index.min.js"></script>
+<script>
+    var Label = {
+        servePath: "https://ellenbboe.github.io",
+        staticServePath: "https://ellenbboe.github.io",
+        luteAvailable: false,
+        hljsStyle: 'colorful',
+        langLabel: "zh_CN",
+        version: "3.7.0",
+    }
+    Util.init()
+</script>
+
+
+<script type="text/javascript">
+    Util.addScript('https://ellenbboe.github.io/js/page.min.js?1578931371974', 'soloPageScript')
+    var page = new Page({
+        "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
+        "oId": "1561009675671",
+        "blogHost": "https://ellenbboe.github.io",
+        "randomArticles1Label": "随机阅读：",
+        "externalRelevantArticles1Label": "站外相关阅读："
+    });
+    $(document).ready(function () {
+        page.load();
+    page.tips.externalRelevantArticlesDisplayCount = "0";
+    Skin.initArticle()
+    });
+</script>
+
+</body>
+</html>
+
+<!-- Generated by Latke (https://github.com/88250/latke) in 39ms, 2020/01/14 12:34:58 -->

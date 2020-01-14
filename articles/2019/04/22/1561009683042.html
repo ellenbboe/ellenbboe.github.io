@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>计算机网络_part1 - Kosmos</title><meta name="description" content="本文参照该仓库学习,大家可以star 概述 网络的网络 网络把主机连接起来，而互联网是把多种不同的网络连接起来，因此互联网是网络的网络。 ISP 互联网服务提供商 ISP 可以从互联网管理机构获得许多 IP 地址，同时拥有通信线路以及路由器等联网设备，个人或机构向 ISP 缴纳一定的费用就可以接入互联网。 目前的互联网是一种多层次 ISP 结构，ISP 根据覆盖面积的大小分为第一层 ISP、区域 ISP 和接入 ISP。互联网交换点 IXP 允许两个 ISP 直接相连而不用经过第三个 ISP。 主机之间的通信方式 客户-服务器（C/S）：客户是服务的请求方，服务器是服务的提供方。 对等（P2P）：不区分客户和服务器。 电路交换与分组交换 1. 电路交换 电路交换用于电话通信系统，两个用户要通信之前需要建立一条 专用 的物理链路，并且在整个通信过程中始终占用该链路。由于通信的过程中不可能一直在使用传输线路，因此电路交换对线路的利用率很低，往往不到 10%。 2. 分组交换 每个分组都有首部和尾部，包含了源地址和目的地址等控制信息，在同一个传输线路上同...."/><meta property="og:description" content="本文参照该仓库学习,大家可以star 概述 网络的网络 网络把主机连接起来，而互联网是把多种不同的网络连接起来，因此互联网是网络的网络。 ISP 互联网服务提供商 ISP 可以从互联网管理机构获得许多 IP 地址，同时拥有通信线路以及路由器等联网设备，个人或机构向 ISP 缴纳一定的费用就可以接入互联网。 目前的互联网是一种多层次 ISP 结构，ISP 根据覆盖面积的大小分为第一层 ISP、区域 ISP 和接入 ISP。互联网交换点 IXP 允许两个 ISP 直接相连而不用经过第三个 ISP。 主机之间的通信方式 客户-服务器（C/S）：客户是服务的请求方，服务器是服务的提供方。 对等（P2P）：不区分客户和服务器。 电路交换与分组交换 1. 电路交换 电路交换用于电话通信系统，两个用户要通信之前需要建立一条 专用 的物理链路，并且在整个通信过程中始终占用该链路。由于通信的过程中不可能一直在使用传输线路，因此电路交换对线路的利用率很低，往往不到 10%。 2. 分组交换 每个分组都有首部和尾部，包含了源地址和目的地址等控制信息，在同一个传输线路上同...."/>    <meta name="keywords" content="开源,开发者,笔记,kosmos"/><link rel="dns-prefetch" href="https://ellenbboe.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://ellenbboe.github.io"><link rel="icon" type="image/png" href="https://s2.ax1x.com/2020/01/12/loApPe.png"/><link rel="apple-touch-icon" href="https://s2.ax1x.com/2020/01/12/loApPe.png"><link rel="shortcut icon" type="image/x-icon" href="https://s2.ax1x.com/2020/01/12/loApPe.png"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="计算机网络_part1 - Kosmos"/><meta property="og:site_name" content="Kosmos"/><meta property="og:url"      content="https://ellenbboe.github.io/articles/2019/04/22/1561009683042.html?"/><meta property="og:image" content="https://s2.ax1x.com/2020/01/12/loApPe.png"/><link rel="search" type="application/opensearchdescription+xml" title="计算机网络_part1 - Kosmos" href="/opensearch.xml"><link href="https://ellenbboe.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://ellenbboe.github.io/manifest.json">        <link rel="canonical" href="https://ellenbboe.github.io/articles/2019/04/22/1561009683042.html">        <link rel="stylesheet"
+              href="https://ellenbboe.github.io/skins/Casper/css/base.css?1578931371974"/>
+            <link rel="prev" title="Leetcode之二分思想" href="https://ellenbboe.github.io/articles/2019/04/18/1561009688641.html">
+            <link rel="next" title="我在 GitHub 上的开源项目" href="https://ellenbboe.github.io/my-github-repos">
+    </head>
+<body class="fn__flex-column">
+<div id="pjax" class="fn__flex-1">
+    
+    <header class="header header--article">
+        <div class="wrapper header__title">
+            <h1 class="header__h1 fn__flex-inline">
+                <img src="https://s2.ax1x.com/2020/01/12/loApPe.png">
+                <a href="https://ellenbboe.github.io" rel="start" class="header__title">Kosmos</a>
+            </h1>
+            <h2 class="header__h2">---就算是痛苦难受，也要去体会那被称为生存的分量---</h2>
+        </div>
+        <nav class="wrapper header__nav fn__clear">
+            <a href="https://ellenbboe.github.io" rel="start">
+                    Kosmos
+            </a>
+
+                <a class="fn__flex-inline" href="/my-github-repos" target="_self" rel="section">
+                    <img src="/images/github-icon.png"> 我的开源
+                </a>
+                <a class="fn__flex-inline" href="/readlist" target="_self" rel="section">
+                     阅读列表
+                </a>
+
+
+            <div class="fn__right">
+    <a href="https://hacpai.com/member/ellenbboe"
+       title="https://hacpai.com/member/ellenbboe"
+       class="user__site"
+       target="_blank" rel="noopener nofollow">
+        <svg viewBox="0 0 32 32" width="100%" height="100%">
+            <path fill="#d23f31" style="fill: var(--color1, #d23f31)" d="M5.787 17.226h17.033l5.954 9.528c0.47 0.752 0.003 1.361-1.042 1.361h-15.141z"></path>
+            <path d="M10.74 3.927h17.033c1.045 0 1.512 0.609 1.042 1.361l-5.954 9.528h-19.872l6.379-10.209c0.235-0.376 0.849-0.681 1.372-0.681z"></path>
+            <path d="M2.953 17.226h2.839l6.804 10.889h-1.892c-0.523 0-1.137-0.305-1.372-0.681z"></path>
+        </svg>
+    </a>
+
+        <a href="https://github.com/ellenbboe"
+           title="https://github.com/ellenbboe"
+           class="user__site"
+           target="_blank" rel="noopener nofollow">
+            <svg viewBox="0 0 32 32" width="100%" height="100%">
+                <path d="M16 0.331c-8.836 0-16 7.163-16 16 0 7.069 4.585 13.067 10.942 15.182 0.8 0.148 1.094-0.347 1.094-0.77 0-0.381-0.015-1.642-0.022-2.979-4.452 0.968-5.391-1.888-5.391-1.888-0.728-1.849-1.776-2.341-1.776-2.341-1.452-0.993 0.11-0.973 0.11-0.973 1.606 0.113 2.452 1.649 2.452 1.649 1.427 2.446 3.743 1.739 4.656 1.33 0.143-1.034 0.558-1.74 1.016-2.14-3.554-0.404-7.29-1.777-7.29-7.907 0-1.747 0.625-3.174 1.649-4.295-0.166-0.403-0.714-2.030 0.155-4.234 0 0 1.344-0.43 4.401 1.64 1.276-0.355 2.645-0.532 4.005-0.539 1.359 0.006 2.729 0.184 4.008 0.539 3.054-2.070 4.395-1.64 4.395-1.64 0.871 2.204 0.323 3.831 0.157 4.234 1.026 1.12 1.647 2.548 1.647 4.295 0 6.145-3.743 7.498-7.306 7.895 0.574 0.497 1.085 1.47 1.085 2.963 0 2.141-0.019 3.864-0.019 4.391 0 0.426 0.288 0.925 1.099 0.768 6.354-2.118 10.933-8.113 10.933-15.18 0-8.837-7.164-16-16-16z"></path>
+            </svg>
+        </a>
+
+                <a rel="alternate" href="https://ellenbboe.github.io/rss.xml">
+                    RSS
+                </a>
+
+            </div>
+        </nav>
+    </header>
+    <div class="article__top">
+        <div class="fn__clear">
+            <div class="toc fn__none" onclick="$('.post__toc').slideToggle()">目录</div>
+            <div class="title fn__pointer" onclick="Util.goTop()">计算机网络_part1</div>
+<div class="article__share"
+     data-title="计算机网络_part1"
+     data-blogtitle="Kosmos"
+     data-url="https://ellenbboe.github.io/articles/2019/04/22/1561009683042.html"
+     data-avatar="https://img.hacpai.com/avatar/1560335521987_1576387741689.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100">
+    <span class="item" data-type="qqz">
+        <svg viewBox="0 0 32 32" width="100%" height="100%">
+            <path d="M22.824 13.989l-8.348 6.287s3.351 0.522 8.404 0.461l-0.23-1.040 7.2-6.549c0.132-0.12 0.183-0.312 0.129-0.487s-0.203-0.299-0.377-0.314l-9.492-0.856-3.708-9.213c-0.068-0.169-0.226-0.279-0.401-0.279s-0.333 0.11-0.401 0.279l-3.708 9.213-9.492 0.856c-0.174 0.015-0.323 0.139-0.377 0.314s-0.004 0.366 0.129 0.487l7.2 6.549-2.158 9.742c-0.040 0.178 0.026 0.365 0.168 0.474 0.142 0.107 0.331 0.115 0.481 0.021l8.158-5.165 8.158 5.165c0.070 0.045 0.147 0.066 0.225 0.066 0.090 0 0.18-0.029 0.256-0.086 0.142-0.109 0.208-0.295 0.168-0.474l-1.707-7.704c0.732-0.386 1.538-1.040 1.538-1.040s-3.195 1.638-14.664 0.838l8.312-6.325s-0.327-0.534-10.744-0.914c-0.697-0.026 8.493-1.83 15.281-0.305z"></path>
+        </svg>
+    </span>
+    <span class="item" data-type="wechat">
+        <svg viewBox="0 0 32 32" width="100%" height="100%">
+            <path d="M9.062 9.203c0-0.859-0.562-1.422-1.422-1.422-0.844 0-1.703 0.562-1.703 1.422 0 0.844 0.859 1.406 1.703 1.406 0.859 0 1.422-0.562 1.422-1.406zM20.672 17.125c0-0.562-0.562-1.125-1.422-1.125-0.562 0-1.125 0.562-1.125 1.125 0 0.578 0.562 1.141 1.125 1.141 0.859 0 1.422-0.562 1.422-1.141zM16.984 9.203c0-0.859-0.562-1.422-1.406-1.422-0.859 0-1.703 0.562-1.703 1.422 0 0.844 0.844 1.406 1.703 1.406 0.844 0 1.406-0.562 1.406-1.406zM26.906 17.125c0-0.562-0.578-1.125-1.422-1.125-0.562 0-1.125 0.562-1.125 1.125 0 0.578 0.562 1.141 1.125 1.141 0.844 0 1.422-0.562 1.422-1.141zM22.75 10.922c-0.359-0.047-0.719-0.063-1.094-0.063-5.375 0-9.625 4.016-9.625 8.953 0 0.828 0.125 1.625 0.359 2.375-0.359 0.031-0.703 0.047-1.063 0.047-1.422 0-2.547-0.281-3.969-0.562l-3.953 1.984 1.125-3.406c-2.828-1.984-4.531-4.547-4.531-7.656 0-5.391 5.094-9.625 11.328-9.625 5.563 0 10.453 3.391 11.422 7.953zM32 19.687c0 2.547-1.688 4.813-3.969 6.516l0.859 2.828-3.109-1.703c-1.141 0.281-2.281 0.578-3.406 0.578-5.391 0-9.625-3.688-9.625-8.219s4.234-8.219 9.625-8.219c5.094 0 9.625 3.688 9.625 8.219z"></path>
+        </svg>
+    </span>
+    <span class="item" data-type="weibo">
+        <svg viewBox="0 0 32 32" width="100%" height="100%">
+            <path d="M13.444 27.064c-5.3 0.525-9.875-1.875-10.219-5.35-0.344-3.481 3.675-6.719 8.969-7.244 5.3-0.525 9.875 1.875 10.212 5.35 0.35 3.481-3.669 6.725-8.963 7.244zM24.038 15.521c-0.45-0.137-0.762-0.225-0.525-0.819 0.512-1.287 0.563-2.394 0.006-3.188-1.038-1.481-3.881-1.406-7.137-0.037 0 0-1.025 0.444-0.762-0.363 0.5-1.613 0.425-2.956-0.356-3.737-1.769-1.769-6.469 0.069-10.5 4.1-3.013 3.006-4.763 6.212-4.763 8.981 0 5.287 6.787 8.506 13.425 8.506 8.7 0 14.494-5.056 14.494-9.069 0-2.431-2.044-3.806-3.881-4.375z"></path>
+            <path d="M29.819 5.833c-2.1-2.331-5.2-3.219-8.063-2.612v0c-0.663 0.144-1.081 0.794-0.938 1.45 0.144 0.662 0.788 1.081 1.45 0.938 2.038-0.431 4.238 0.2 5.731 1.856s1.9 3.913 1.256 5.888v0c-0.206 0.644 0.144 1.331 0.788 1.544 0.644 0.206 1.331-0.144 1.544-0.787v-0.006c0.9-2.762 0.331-5.938-1.769-8.269z"></path>
+            <path d="M26.588 8.752c-1.025-1.138-2.538-1.569-3.925-1.269-0.569 0.119-0.931 0.688-0.813 1.256 0.125 0.569 0.688 0.931 1.25 0.806v0c0.681-0.144 1.419 0.069 1.919 0.619 0.5 0.556 0.637 1.313 0.419 1.975v0c-0.175 0.55 0.125 1.15 0.681 1.331 0.556 0.175 1.15-0.125 1.331-0.681 0.438-1.356 0.163-2.906-0.863-4.037z"></path>
+            <path d="M13.738 20.771c-0.188 0.319-0.594 0.469-0.912 0.337-0.319-0.125-0.412-0.488-0.231-0.794 0.188-0.306 0.581-0.456 0.894-0.337 0.313 0.113 0.425 0.469 0.25 0.794zM12.044 22.933c-0.512 0.819-1.613 1.175-2.438 0.8-0.813-0.369-1.056-1.319-0.544-2.119 0.506-0.794 1.569-1.15 2.388-0.806 0.831 0.356 1.1 1.3 0.594 2.125zM13.969 17.146c-2.519-0.656-5.369 0.6-6.463 2.819-1.119 2.262-0.037 4.781 2.506 5.606 2.638 0.85 5.75-0.456 6.831-2.894 1.069-2.394-0.262-4.85-2.875-5.531z"></path>
+        </svg>
+    </span>
+    <span class="item" data-type="twitter">
+        <svg viewBox="0 0 32 32" width="100%" height="100%">
+            <path d="M32.003 6.075c-1.175 0.525-2.444 0.875-3.769 1.031 1.356-0.813 2.394-2.1 2.887-3.631-1.269 0.75-2.675 1.3-4.169 1.594-1.2-1.275-2.906-2.069-4.794-2.069-3.625 0-6.563 2.938-6.563 6.563 0 0.512 0.056 1.012 0.169 1.494-5.456-0.275-10.294-2.888-13.531-6.862-0.563 0.969-0.887 2.1-0.887 3.3 0 2.275 1.156 4.287 2.919 5.463-1.075-0.031-2.087-0.331-2.975-0.819 0 0.025 0 0.056 0 0.081 0 3.181 2.263 5.838 5.269 6.437-0.55 0.15-1.131 0.231-1.731 0.231-0.425 0-0.831-0.044-1.237-0.119 0.838 2.606 3.263 4.506 6.131 4.563-2.25 1.762-5.075 2.813-8.156 2.813-0.531 0-1.050-0.031-1.569-0.094 2.913 1.869 6.362 2.95 10.069 2.95 12.075 0 18.681-10.006 18.681-18.681 0-0.287-0.006-0.569-0.019-0.85 1.281-0.919 2.394-2.075 3.275-3.394z"></path>
+        </svg>
+    </span>
+    <span class="item__qr"></span>
+</div>        </div>
+        <progress class="article__progress"></progress>
+    </div>
+    <div class="article">
+        <div class="ft__center">
+            <div class="item__meta">
+                <time>
+                    2019-04-22
+                </time>
+                /
+                    <a class="tag" rel="tag"
+                       href="https://ellenbboe.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C">计算机网络</a> &nbsp;
+            </div>
+            <h2 class="item__title">
+                计算机网络_part1
+            </h2>
+        </div>
+        <div class="item__cover" style="background-image: url(https://gitee.com/CyC2018/CS-Notes/raw/master/docs/pics/network-of-networks.gif)"></div>
+        <div class="wrapper">
+            <section class="item__content item__content--article vditor-reset">
+                <p>本文参照该<a href="https://github.com/CyC2018/CS-Notes" target="_blank">仓库</a>学习,大家可以star</p>
+<h1 id="b3_solo_h1_0">概述</h1>
+<h1 id="b3_solo_h1_1">网络的网络</h1>
+<p>网络把主机连接起来，而互联网是把多种不同的网络连接起来，因此互联网是网络的网络。</p>
+<div align="center"> <img src="https://gitee.com/CyC2018/CS-Notes/raw/master/docs/pics/network-of-networks.gif" width="450"> </div><br>
+<h1 id="b3_solo_h1_2">ISP</h1>
+<p>互联网服务提供商 ISP 可以从互联网管理机构获得许多 IP 地址，同时拥有通信线路以及路由器等联网设备，个人或机构向 ISP 缴纳一定的费用就可以接入互联网。</p>
+<div align="center"> <img src="https://gitee.com/CyC2018/CS-Notes/raw/master/docs/pics/7_2001550811502556.png?imageView2/2/w/1280/format/jpg/interlace/1/q/100" width="500"> </div><br>
+<p>目前的互联网是一种多层次 ISP 结构，ISP 根据覆盖面积的大小分为第一层 ISP、区域 ISP 和接入 ISP。互联网交换点 IXP 允许两个 ISP 直接相连而不用经过第三个 ISP。</p>
+<div align="center"> <img src="https://gitee.com/CyC2018/CS-Notes/raw/master/docs/pics/8_2001550812038190.png?imageView2/2/w/1280/format/jpg/interlace/1/q/100" width="500"> </div><br>
+<h1 id="b3_solo_h1_3">主机之间的通信方式</h1>
+<ul>
+<li>客户-服务器（C/S）：客户是服务的请求方，服务器是服务的提供方。</li>
+</ul>
+<div align="center"> <img src="https://gitee.com/CyC2018/CS-Notes/raw/master/docs/pics/2_2001550810366269.png?imageView2/2/w/1280/format/jpg/interlace/1/q/100"> </div><br>
+<ul>
+<li>对等（P2P）：不区分客户和服务器。</li>
+</ul>
+<div align="center"> <img src="https://gitee.com/CyC2018/CS-Notes/raw/master/docs/pics/3_2001550810442775.png?imageView2/2/w/1280/format/jpg/interlace/1/q/100"> </div><br>
+<h1 id="b3_solo_h1_4">电路交换与分组交换</h1>
+<h2 id="b3_solo_h2_5">1. 电路交换</h2>
+<p>电路交换用于电话通信系统，两个用户要通信之前需要建立一条 <strong>专用</strong> 的物理链路，并且在整个通信过程中始终占用该链路。由于通信的过程中不可能一直在使用传输线路，因此电路交换对线路的利用率很低，往往不到 10%。</p>
+<h2 id="b3_solo_h2_6">2. 分组交换</h2>
+<p>每个分组都有首部和尾部，包含了源地址和目的地址等控制信息，<strong>在同一个传输线路上同时传输多个分组互相不会影响</strong>，因此在同一条传输线路上允许同时传输多个分组，也就是说分组交换不需要占用传输线路。</p>
+<p>在一个邮局通信系统中，邮局收到一份邮件之后，先存储下来，然后把相同目的地的邮件一起转发到下一个目的地，这个过程就是存储转发过程，分组交换也使用了存储转发过程。</p>
+<h1 id="b3_solo_h1_7">时延</h1>
+<p><strong>总时延 = 排队时延 + 处理时延 + 传输时延 + 传播时延</strong></p>
+<div align="center"> <img src="https://gitee.com/CyC2018/CS-Notes/raw/master/docs/pics/4_2001550810732828.png?imageView2/2/w/1280/format/jpg/interlace/1/q/100" width="600"> </div><br>
+<h2 id="b3_solo_h2_8">1. 排队时延</h2>
+<p>分组在路由器的输入队列和输出队列中排队等待的时间，取决于网络当前的通信量。</p>
+<h2 id="b3_solo_h2_9">2. 处理时延</h2>
+<p>主机或路由器收到分组时进行处理所需要的时间，例如分析首部、从分组中提取数据、进行差错检验或查找适当的路由等。</p>
+<h2 id="b3_solo_h2_10">3. 传输时延</h2>
+<p>主机或路由器传输数据帧所需要的时间。</p>
+<div align="center"><img src="https://latex.codecogs.com/gif.latex?delay=\frac{l(bit)}{v(bit/s)}?imageView2/2/w/1280/format/jpg/interlace/1/q/100"></div> <br>
+<p>其中 l 表示数据帧的长度，v 表示传输速率。</p>
+<h2 id="b3_solo_h2_11">4. 传播时延</h2>
+<p>电磁波在信道中传播所需要花费的时间，电磁波传播的速度接近光速。</p>
+<div align="center"><img src="https://latex.codecogs.com/gif.latex?delay=\frac{l(m)}{v(m/s)}?imageView2/2/w/1280/format/jpg/interlace/1/q/100"></div> <br>
+<p>其中 l 表示信道长度，v 表示电磁波在信道上的传播速度。</p>
+<h1 id="b3_solo_h1_12">计算机网络体系结构</h1>
+<div align="center"> <img src="https://gitee.com/CyC2018/CS-Notes/raw/master/docs/pics/f5d40b01-abf2-435e-9ce7-7889c41b2fa6.jpg?imageView2/2/w/1280/format/jpg/interlace/1/q/100" width="500"> </div><br>
+<h2 id="b3_solo_h2_13">1. 五层协议</h2>
+<ul>
+<li>
+<p><strong>应用层</strong> ：为特定应用程序提供数据传输服务，例如 HTTP、DNS 等协议。数据单位为报文。</p>
+</li>
+<li>
+<p><strong>传输层</strong> ：为进程提供通用数据传输服务。由于应用层协议很多，定义通用的传输层协议就可以支持不断增多的应用层协议。运输层包括两种协议：传输控制协议 TCP，提供面向连接、可靠的数据传输服务，数据单位为报文段；用户数据报协议 UDP，提供无连接、尽最大努力的数据传输服务，数据单位为用户数据报。<strong>TCP 主要提供完整性服务，UDP 主要提供及时性服务。</strong></p>
+</li>
+<li>
+<p><strong>网络层</strong> ：为主机提供数据传输服务。而传输层协议是为主机中的进程提供数据传输服务。网络层把传输层传递下来的报文段或者用户数据报封装成分组。</p>
+</li>
+<li>
+<p><strong>数据链路层</strong> ：网络层针对的还是主机之间的数据传输服务，而主机之间可以有很多链路，链路层协议就是为同一链路的主机提供数据传输服务。数据链路层把网络层传下来的分组封装成帧。</p>
+</li>
+<li>
+<p><strong>物理层</strong> ：考虑的是怎样在传输媒体上传输数据比特流，而不是指具体的传输媒体。物理层的作用是尽可能屏蔽传输媒体和通信手段的差异，使数据链路层感觉不到这些差异。</p>
+</li>
+</ul>
+<h2 id="b3_solo_h2_14">2. OSI</h2>
+<p>其中表示层和会话层用途如下：</p>
+<ul>
+<li>
+<p><strong>表示层</strong> ：数据压缩、加密以及数据描述，这使得应用程序不必关心在各台主机中数据内部格式不同的问题。</p>
+</li>
+<li>
+<p><strong>会话层</strong> ：建立及管理会话。</p>
+</li>
+</ul>
+<p>五层协议没有表示层和会话层，而是将这些功能留给应用程序开发者处理。</p>
+<h2 id="b3_solo_h2_15">3. TCP/IP</h2>
+<p>它只有四层，相当于五层协议中数据链路层和物理层合并为网络接口层。</p>
+<p>TCP/IP 体系结构不严格遵循 OSI 分层概念，应用层可能会直接使用 IP 层或者网络接口层。</p>
+<div align="center"> <img src="https://gitee.com/CyC2018/CS-Notes/raw/master/docs/pics/6_2001550811175246.png?imageView2/2/w/1280/format/jpg/interlace/1/q/100" width="250"> </div><br>
+<blockquote>
+<p>上课学的是5层协议,现在流行的似乎时tcp/ip的协议(我也不是横清楚)</p>
+</blockquote>
+<h2 id="b3_solo_h2_16">4. 数据在各层之间的传递过程</h2>
+<p>在向下的过程中，需要添加下层协议所需要的首部或者尾部，而在向上的过程中不断拆开首部和尾部。</p>
+<p>路由器只有下面三层协议，因为路由器位于网络核心中，不需要为进程或者应用程序提供服务，因此也就不需要传输层和应用层。</p>
+<h1 id="b3_solo_h1_17">链路层</h1>
+<h1 id="b3_solo_h1_18">基本问题</h1>
+<h2 id="b3_solo_h2_19">1. 封装成帧</h2>
+<p>将网络层传下来的分组添加首部和尾部，用于标记帧的开始和结束。</p>
+<div align="center"> <img src="https://gitee.com/CyC2018/CS-Notes/raw/master/docs/pics/9c60793f-5e7f-453b-8413-35890c24abc4.png?imageView2/2/w/1280/format/jpg/interlace/1/q/100" width="500"> </div><br>
+<h2 id="b3_solo_h2_20">2. 透明传输</h2>
+<p>透明表示一个实际存在的事物看起来好像不存在一样。</p>
+<p>帧使用首部和尾部进行定界，如果帧的数据部分含有和首部尾部相同的内容，那么帧的开始和结束位置就会被错误的判定。需要在数据部分出现首部尾部相同的内容前面插入转义字符。如果数据部分出现转义字符，那么就在转义字符前面再加个转义字符。在接收端进行处理之后可以还原出原始数据。这个过程透明传输的内容是转义字符，用户察觉不到转义字符的存在。</p>
+<div align="center"> <img src="https://gitee.com/CyC2018/CS-Notes/raw/master/docs/pics/839207f5-52fd-4516-9370-956dcdf2c2b5.png?imageView2/2/w/1280/format/jpg/interlace/1/q/100" width="600"> </div><br>
+<h2 id="b3_solo_h2_21">3. 差错检测</h2>
+<p>目前数据链路层广泛使用了循环冗余检验（CRC）来检查比特差错。</p>
+<h1 id="b3_solo_h1_22">信道分类</h1>
+<h2 id="b3_solo_h2_23">1. 广播信道</h2>
+<p>一对多通信，一个节点发送的数据能够被广播信道上所有的节点接收到。</p>
+<p>所有的节点都在同一个广播信道上发送数据，因此需要有专门的控制方法进行协调，避免发生冲突（冲突也叫碰撞）。</p>
+<p>主要有两种控制方法进行协调，一个是使用信道复用技术，一是使用 CSMA/CD 协议。</p>
+<h2 id="b3_solo_h2_24">2. 点对点信道</h2>
+<p>一对一通信。</p>
+<p>因为不会发生碰撞，因此也比较简单，使用 PPP 协议进行控制。</p>
+<h1 id="b3_solo_h1_25">信道复用技术</h1>
+<h2 id="b3_solo_h2_26">1. 频分复用</h2>
+<p>频分复用的所有主机在相同的时间占用不同的频率带宽资源。</p>
+<div align="center"> <img src="https://gitee.com/CyC2018/CS-Notes/raw/master/docs/pics/7e6cb8fc-1b82-4135-8b03-ebcfc546d94c.png?imageView2/2/w/1280/format/jpg/interlace/1/q/100" width="450"> </div><br>
+<h2 id="b3_solo_h2_27">2. 时分复用</h2>
+<p>时分复用的所有主机在不同的时间占用相同的频率带宽资源。</p>
+<div align="center"> <img src="https://gitee.com/CyC2018/CS-Notes/raw/master/docs/pics/49e53613-46f8-4308-9ee5-c09d62367577.png?imageView2/2/w/1280/format/jpg/interlace/1/q/100" width="450"> </div><br>
+<p>使用频分复用和时分复用进行通信，在通信的过程中主机会一直占用一部分信道资源。但是由于计算机数据的突发性质，通信过程没必要一直占用信道资源而不让出给其它用户使用，因此这两种方式对信道的利用率都不高。</p>
+<h2 id="b3_solo_h2_28">3. 统计时分复用</h2>
+<p>是对时分复用的一种改进，不固定每个用户在时分复用帧中的位置，只要有数据就集中起来组成统计时分复用帧然后发送。</p>
+<div align="center"> <img src="https://gitee.com/CyC2018/CS-Notes/raw/master/docs/pics/e3360fa0-680e-486b-945f-09ff5d8612e4.png?imageView2/2/w/1280/format/jpg/interlace/1/q/100" width="450"> </div><br>
+<h2 id="b3_solo_h2_29">4. 波分复用</h2>
+<p>光的频分复用。由于光的频率很高，因此习惯上用波长而不是频率来表示所使用的光载波。</p>
+<h2 id="b3_solo_h2_30">5. 码分复用</h2>
+<p>为每个用户分配 m bit 的码片，并且所有的码片正交，对于任意两个码片 <img src="https://latex.codecogs.com/gif.latex?\vec{S}?imageView2/2/w/1280/format/jpg/interlace/1/q/100?imageView2/2/w/1280/format/jpg/interlace/1/q/100?imageView2/2/w/1280/format/jpg/interlace/1/q/100?imageView2/2/w/1280/format/jpg/interlace/1/q/100"> 和 <img src="https://latex.codecogs.com/gif.latex?\vec{T}?imageView2/2/w/1280/format/jpg/interlace/1/q/100"> 有</p>
+<div align="center"><img src="https://latex.codecogs.com/gif.latex?\frac{1}{m}\vec{S}\cdot\vec{T}=0?imageView2/2/w/1280/format/jpg/interlace/1/q/100"></div> <br>
+<p>为了讨论方便，取 m=8，设码片 <img src="https://latex.codecogs.com/gif.latex?\vec{S}?imageView2/2/w/1280/format/jpg/interlace/1/q/100?imageView2/2/w/1280/format/jpg/interlace/1/q/100?imageView2/2/w/1280/format/jpg/interlace/1/q/100?imageView2/2/w/1280/format/jpg/interlace/1/q/100"> 为 00011011。在拥有该码片的用户发送比特 1 时就发送该码片，发送比特 0 时就发送该码片的反码 11100100。</p>
+<p>在计算时将 00011011 记作 (-1 -1 -1 +1 +1 -1 +1 +1)，可以得到</p>
+<div align="center"><img src="https://latex.codecogs.com/gif.latex?\frac{1}{m}\vec{S}\cdot\vec{S}=1?imageView2/2/w/1280/format/jpg/interlace/1/q/100"></div> <br>
+<div align="center"><img src="https://latex.codecogs.com/gif.latex?\frac{1}{m}\vec{S}\cdot\vec{S'}=-1?imageView2/2/w/1280/format/jpg/interlace/1/q/100"></div> <br>
+<p>其中 <img src="https://latex.codecogs.com/gif.latex?\vec{S'}?imageView2/2/w/1280/format/jpg/interlace/1/q/100"> 为 <img src="https://latex.codecogs.com/gif.latex?\vec{S}?imageView2/2/w/1280/format/jpg/interlace/1/q/100?imageView2/2/w/1280/format/jpg/interlace/1/q/100?imageView2/2/w/1280/format/jpg/interlace/1/q/100?imageView2/2/w/1280/format/jpg/interlace/1/q/100"> 的反码。</p>
+<p>利用上面的式子我们知道，当接收端使用码片 <img src="https://latex.codecogs.com/gif.latex?\vec{S}?imageView2/2/w/1280/format/jpg/interlace/1/q/100?imageView2/2/w/1280/format/jpg/interlace/1/q/100?imageView2/2/w/1280/format/jpg/interlace/1/q/100?imageView2/2/w/1280/format/jpg/interlace/1/q/100"> 对接收到的数据进行内积运算时，结果为 0 的是其它用户发送的数据，结果为 1 的是用户发送的比特 1，结果为 -1 的是用户发送的比特 0。</p>
+<p>码分复用需要发送的数据量为原先的 m 倍。</p>
+<div align="center"> <img src="https://gitee.com/CyC2018/CS-Notes/raw/master/docs/pics/c7875be7-fce5-43c7-ac77-d8dbe6c0ae1b.png?imageView2/2/w/1280/format/jpg/interlace/1/q/100" width="600"> </div><br>
+<h1 id="b3_solo_h1_31">CSMA/CD 协议</h1>
+<p>CSMA/CD 表示载波监听多点接入 / 碰撞检测。</p>
+<ul>
+<li><strong>多点接入</strong> ：说明这是总线型网络，许多主机以多点的方式连接到总线上。</li>
+<li><strong>载波监听</strong> ：每个主机都必须不停地监听信道。在发送前，如果监听到信道正在使用，就必须等待。</li>
+<li><strong>碰撞检测</strong> ：在发送中，如果监听到信道已有其它主机正在发送数据，就表示发生了碰撞。虽然每个主机在发送数据之前都已经监听到信道为空闲，但是由于电磁波的传播时延的存在，还是有可能会发生碰撞。</li>
+</ul>
+<p>记端到端的传播时延为 τ，最先发送的站点最多经过 2τ 就可以知道是否发生了碰撞，称 2τ 为  <strong>争用期</strong> 。只有经过争用期之后还没有检测到碰撞，才能肯定这次发送不会发生碰撞。</p>
+<p>当发生碰撞时，站点要停止发送，等待一段时间再发送。这个时间采用  <strong>截断二进制指数退避算法</strong>  来确定。从离散的整数集合 {0, 1, .., (2<sup>k</sup>-1)} 中随机取出一个数，记作 r，然后取 r 倍的争用期作为重传等待时间。</p>
+<div align="center"> <img src="https://gitee.com/CyC2018/CS-Notes/raw/master/docs/pics/9bd12b89-f99c-49f4-ae45-410f76a713d6.png?imageView2/2/w/1280/format/jpg/interlace/1/q/100" width="500"> </div><br>
+<h1 id="b3_solo_h1_32">PPP 协议</h1>
+<p>互联网用户通常需要连接到某个 ISP 之后才能接入到互联网，<strong>PPP 协议是用户计算机和 ISP 进行通信时所使用的数据链路层协议</strong>。(这个我之前不知道)</p>
+<div align="center"> <img src="https://gitee.com/CyC2018/CS-Notes/raw/master/docs/pics/2f237854-bb35-4c57-a7fe-ab2ab144f56e.jpg?imageView2/2/w/1280/format/jpg/interlace/1/q/100" width="300"> </div><br>
+<p>PPP 的帧格式：</p>
+<ul>
+<li>F 字段为帧的定界符</li>
+<li>A 和 C 字段暂时没有意义</li>
+<li>FCS 字段是使用 CRC 的检验序列</li>
+<li>信息部分的长度不超过 1500</li>
+</ul>
+<div align="center"> <img src="https://gitee.com/CyC2018/CS-Notes/raw/master/docs/pics/63010737-2cb4-48f3-999f-09194481b227.png?imageView2/2/w/1280/format/jpg/interlace/1/q/100" width="500"> </div><br>
+<h1 id="b3_solo_h1_33">MAC 地址</h1>
+<p>MAC 地址是链路层地址，长度为 6 字节（48 位），用于唯一标识网络适配器（网卡）。</p>
+<p>一台主机拥有多少个网络适配器就有多少个 MAC 地址。例如笔记本电脑普遍存在无线网络适配器和有线网络适配器，因此就有两个 MAC 地址。</p>
+<h1 id="b3_solo_h1_34">局域网</h1>
+<p>局域网是一种典型的广播信道，主要特点是网络为一个单位所拥有，且地理范围和站点数目均有限。</p>
+<p>主要有以太网、令牌环网、FDDI 和 ATM 等局域网技术，目前以太网占领着有线局域网市场。</p>
+<p>可以按照网络拓扑结构对局域网进行分类：</p>
+<div align="center"> <img src="https://gitee.com/CyC2018/CS-Notes/raw/master/docs/pics/df01dbcd-4a3c-4877-86e8-5590d7589788.jpg?imageView2/2/w/1280/format/jpg/interlace/1/q/100" width="800"> </div><br>
+<h1 id="b3_solo_h1_35">以太网</h1>
+<p>以太网是一种星型拓扑结构局域网。</p>
+<p>早期使用集线器进行连接，集线器是一种物理层设备， 作用于比特而不是帧，当一个比特到达接口时，集线器重新生成这个比特，并将其能量强度放大，从而扩大网络的传输距离，之后再将这个比特发送到其它所有接口。如果集线器同时收到两个不同接口的帧，那么就发生了碰撞。</p>
+<p>目前以太网使用交换机替代了集线器，交换机是一种链路层设备，它不会发生碰撞，能根据 MAC 地址进行存储转发。</p>
+<p>以太网帧格式：</p>
+<ul>
+<li><strong>类型</strong> ：标记上层使用的协议；</li>
+<li><strong>数据</strong> ：长度在 46-1500 之间，如果太小则需要填充；</li>
+<li><strong>FCS</strong> ：帧检验序列，使用的是 CRC 检验方法；</li>
+</ul>
+<div align="center"> <img src="https://gitee.com/CyC2018/CS-Notes/raw/master/docs/pics/420f4dc0-6c4b-486c-afea-274299014462.png?imageView2/2/w/1280/format/jpg/interlace/1/q/100" width="550"> </div><br>
+<h1 id="b3_solo_h1_36">交换机</h1>
+<p>交换机具有自学习能力，学习的是交换表的内容，交换表中存储着 MAC 地址到接口的映射。</p>
+<p>正是由于这种自学习能力，因此交换机是一种即插即用设备，不需要网络管理员手动配置交换表内容。</p>
+<p>下图中，交换机有 4 个接口，主机 A 向主机 B 发送数据帧时，交换机把主机 A 到接口 1 的映射写入交换表中。为了发送数据帧到 B，先查交换表，此时没有主机 B 的表项，那么主机 A 就发送广播帧，主机 C 和主机 D 会丢弃该帧，主机 B 回应该帧向主机 A 发送数据包时，交换机查找交换表得到主机 A 映射的接口为 1，就发送数据帧到接口 1，同时交换机添加主机 B 到接口 2 的映射。</p>
+<div align="center"> <img src="https://gitee.com/CyC2018/CS-Notes/raw/master/docs/pics/80646c77-1f32-484c-810e-af80ce00f902.png?imageView2/2/w/1280/format/jpg/interlace/1/q/100" width="800"> </div><br>
+<blockquote>
+<p>要防止循环产生,所以有ttl</p>
+</blockquote>
+<h2 id="b3_solo_h2_37">虚拟局域网</h2>
+<p>虚拟局域网可以建立与物理位置无关的逻辑组，只有在同一个虚拟局域网中的成员才会收到链路层广播信息。</p>
+<p>例如下图中 (A1, A2, A3, A4) 属于一个虚拟局域网，A1 发送的广播会被 A2、A3、A4 收到，而其它站点收不到。</p>
+<p>使用 VLAN 干线连接来建立虚拟局域网，每台交换机上的一个特殊接口被设置为干线接口，以互连 VLAN 交换机。IEEE 定义了一种扩展的以太网帧格式 802.1Q，它在标准以太网帧上加进了 4 字节首部 VLAN 标签，用于表示该帧属于哪一个虚拟局域网。</p>
+<div align="center"> <img src="https://gitee.com/CyC2018/CS-Notes/raw/master/docs/pics/99208bd0-1454-4618-9969-0c2deb8bba0f.png?imageView2/2/w/1280/format/jpg/interlace/1/q/100" width="500"> </div><br>
+<h1 id="b3_solo_h1_38">物理层</h1>
+<h2 id="b3_solo_h2_39">通信方式</h2>
+<p>根据信息在传输线上的传送方向，分为以下三种通信方式：</p>
+<ul>
+<li>单工通信：单向传输</li>
+<li>半双工通信：双向交替传输</li>
+<li>全双工通信：双向同时传输(双绞线)</li>
+</ul>
+<h2 id="b3_solo_h2_40">带通调制</h2>
+<p>模拟信号是连续的信号，数字信号是离散的信号。带通调制把数字信号转换为模拟信号。</p>
+<div align="center"> <img src="https://gitee.com/CyC2018/CS-Notes/raw/master/docs/pics/c34f4503-f62c-4043-9dc6-3e03288657df.jpg?imageView2/2/w/1280/format/jpg/interlace/1/q/100" width="500"> </div><br>
+                    <div>
+                        <hr>
+<img alt="今日诗词" src="https://v2.jinrishici.com/one.svg" style="max-width:100%; display: block; margin: 0 auto;">
+
+标题：计算机网络_part1<br>
+作者：<a href="https://ellenbboe.github.io" target="_blank">ellenbboe</a><br>
+地址：<a href="https://ellenbboe.github.io/articles/2019/04/22/1561009683042.html" target="_blank">https://ellenbboe.github.io/articles/2019/04/22/1561009683042.html</a><br>
+<!-- 签名档内可使用 HTML、JavaScript -->
+<br>
+                    </div>
+            </section>
+        </div>
+    </div>
+        <div class="post__toc">
+<ul class="article__toc">
+        <li class="toc__h1">
+            <a href="#b3_solo_h1_0">概述</a>
+        </li>
+        <li class="toc__h1">
+            <a href="#b3_solo_h1_1">网络的网络</a>
+        </li>
+        <li class="toc__h1">
+            <a href="#b3_solo_h1_2">ISP</a>
+        </li>
+        <li class="toc__h1">
+            <a href="#b3_solo_h1_3">主机之间的通信方式</a>
+        </li>
+        <li class="toc__h1">
+            <a href="#b3_solo_h1_4">电路交换与分组交换</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#b3_solo_h2_5">1. 电路交换</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#b3_solo_h2_6">2. 分组交换</a>
+        </li>
+        <li class="toc__h1">
+            <a href="#b3_solo_h1_7">时延</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#b3_solo_h2_8">1. 排队时延</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#b3_solo_h2_9">2. 处理时延</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#b3_solo_h2_10">3. 传输时延</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#b3_solo_h2_11">4. 传播时延</a>
+        </li>
+        <li class="toc__h1">
+            <a href="#b3_solo_h1_12">计算机网络体系结构</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#b3_solo_h2_13">1. 五层协议</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#b3_solo_h2_14">2. OSI</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#b3_solo_h2_15">3. TCP/IP</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#b3_solo_h2_16">4. 数据在各层之间的传递过程</a>
+        </li>
+        <li class="toc__h1">
+            <a href="#b3_solo_h1_17">链路层</a>
+        </li>
+        <li class="toc__h1">
+            <a href="#b3_solo_h1_18">基本问题</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#b3_solo_h2_19">1. 封装成帧</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#b3_solo_h2_20">2. 透明传输</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#b3_solo_h2_21">3. 差错检测</a>
+        </li>
+        <li class="toc__h1">
+            <a href="#b3_solo_h1_22">信道分类</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#b3_solo_h2_23">1. 广播信道</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#b3_solo_h2_24">2. 点对点信道</a>
+        </li>
+        <li class="toc__h1">
+            <a href="#b3_solo_h1_25">信道复用技术</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#b3_solo_h2_26">1. 频分复用</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#b3_solo_h2_27">2. 时分复用</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#b3_solo_h2_28">3. 统计时分复用</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#b3_solo_h2_29">4. 波分复用</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#b3_solo_h2_30">5. 码分复用</a>
+        </li>
+        <li class="toc__h1">
+            <a href="#b3_solo_h1_31">CSMA/CD 协议</a>
+        </li>
+        <li class="toc__h1">
+            <a href="#b3_solo_h1_32">PPP 协议</a>
+        </li>
+        <li class="toc__h1">
+            <a href="#b3_solo_h1_33">MAC 地址</a>
+        </li>
+        <li class="toc__h1">
+            <a href="#b3_solo_h1_34">局域网</a>
+        </li>
+        <li class="toc__h1">
+            <a href="#b3_solo_h1_35">以太网</a>
+        </li>
+        <li class="toc__h1">
+            <a href="#b3_solo_h1_36">交换机</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#b3_solo_h2_37">虚拟局域网</a>
+        </li>
+        <li class="toc__h1">
+            <a href="#b3_solo_h1_38">物理层</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#b3_solo_h2_39">通信方式</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#b3_solo_h2_40">带通调制</a>
+        </li>
+</ul>        </div>
+<div class="comment">
+    <div class="comment__wrapper wrapper">
+        <div class="comment__title">
+            评论
+        </div>
+        <textarea rows="3" placeholder="评论内容只能为 2 到 500 个字符！" id="comment"></textarea>
+
+        <ul id="comments">
+        </ul>
+    </div>
+</div>
+    <div class="article__bottom">
+        <div class="wrapper">
+            <div class="fn__flex">
+                <div class="item" id="randomArticles"></div>
+                <div class="item" id="relevantArticles"></div>
+            </div>
+        </div>
+    </div>
+    
+</div>
+<footer class="footer">
+    <div class="wrapper fn__clear">
+        <div class="fn__left">
+            &copy; 2020
+            <a href="https://ellenbboe.github.io">Kosmos</a>
+            <a href="http://www.beian.miit.gov.cn/">浙ICP备18045840号-1</a>--------Let's move on
+本站已安全运行:
+<span id="momk"></span>
+<script language=javascript>
+function show_date_time(){
+window.setTimeout("show_date_time()", 1000);
+BirthDay=new Date("09-10-2018 19:47:57");//建站日期
+today=new Date();
+timeold=(today.getTime()-BirthDay.getTime());
+sectimeold=timeold/1000
+secondsold=Math.floor(sectimeold);
+msPerDay=24*60*60*1000
+e_daysold=timeold/msPerDay
+daysold=Math.floor(e_daysold);
+e_hrsold=(daysold-e_daysold)*-24;
+hrsold=Math.floor(e_hrsold);
+e_minsold=(hrsold-e_hrsold)*-60;
+minsold=Math.floor((hrsold-e_hrsold)*-60);
+seconds=Math.floor((minsold-e_minsold)*-60);
+momk.innerHTML=daysold+"天"+hrsold+"小时"+minsold+"分"+seconds+"秒" ;
+}
+show_date_time();
+</script>
+<style>
+#momk{animation:change 10s infinite;font-weight:800; }
+@keyframes change{0%{color:#5cb85c;}25%{color:#556bd8;}50%{color:#e40707;}75%{color:#66e616;}100% {color:#67bd31;}}
+</style> &nbsp;•&nbsp;
+            Powered by <a href="https://solo.b3log.org" target="_blank">Solo</a>
+            <br>
+            Theme Casper
+            <sup>[<a href="https://github.com/TryGhost/Casper" target="_blank">ref</a>]</sup>
+            by <a href="http://vanessa.b3log.org" target="_blank">Vanessa</a>
+        </div>
+        <div class="fn__right">
+            <a href="https://ellenbboe.github.io/tags.html" rel="section">
+            标签墙
+            </a>
+            &nbsp;•&nbsp;
+            <a href="https://ellenbboe.github.io/archives.html">
+            存档
+            </a>
+            &nbsp;•&nbsp;
+            <a rel="archive" href="https://ellenbboe.github.io/links.html">
+            友情链接
+            </a>
+            <br>
+            115 文章 &nbsp;
+            9 评论 &nbsp;
+            <span data-uvstaturl="https://ellenbboe.github.io">11608</span> 浏览 &nbsp;
+            4 当前访客
+        </div>
+    </div>
+</footer>
+
+<script type="text/javascript" src="https://ellenbboe.github.io/js/lib/compress/pjax.min.js" charset="utf-8"></script>
+<script type="text/javascript" src="https://ellenbboe.github.io/js/common.min.js?1578931371974"
+        charset="utf-8"></script>
+<script type="text/javascript"
+        src="https://ellenbboe.github.io/skins/Casper/js/common.min.js?1578931371974"
+        charset="utf-8"></script>
+<script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.4/dist/index.min.js"></script>
+<script>
+    var Label = {
+        servePath: "https://ellenbboe.github.io",
+        staticServePath: "https://ellenbboe.github.io",
+        luteAvailable: false,
+        hljsStyle: 'colorful',
+        langLabel: "zh_CN",
+        version: "3.7.0",
+    }
+    Util.init()
+</script>
+
+
+<script type="text/javascript">
+    Util.addScript('https://ellenbboe.github.io/js/page.min.js?1578931371974', 'soloPageScript')
+    var page = new Page({
+        "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
+        "oId": "1561009683042",
+        "blogHost": "https://ellenbboe.github.io",
+        "randomArticles1Label": "随机阅读：",
+        "externalRelevantArticles1Label": "站外相关阅读："
+    });
+    $(document).ready(function () {
+        page.load();
+    page.tips.externalRelevantArticlesDisplayCount = "0";
+    Skin.initArticle()
+    });
+</script>
+
+</body>
+</html>
+
+<!-- Generated by Latke (https://github.com/88250/latke) in 45ms, 2020/01/14 12:34:57 -->

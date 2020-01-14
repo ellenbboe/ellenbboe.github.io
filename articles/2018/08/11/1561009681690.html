@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>备份arch系统 - Kosmos</title><meta name="description" content="使用rsync进行备份 rsync的六种模式 rsync [OPTION]... SRC DEST rsync [OPTION]... SRC [USER@]host:DEST rsync [OPTION]... [USER@]HOST:SRC DEST rsync [OPTION]... [USER@]HOST::SRC DEST rsync [OPTION]... SRC [USER@]HOST::DEST rsync [OPTION]... rsync://[USER@]HOST[:PORT]/SRC [DEST] 本地备份的话我们使用第一种 大佬使用的备份脚本,通过指定/的目录来进行备份 #!/bin/zsh -e #进入主目录 cd $(dirname $0) #判断参数个数时候小于2或者大于3(也就是可以是2个参数或者是3个参数) if [[ $# -lt 2 || $# -gt 3 ]]; then echo &quot;usage: $0 SRC_DIR DEST_DIR [-w]&quot; exit 1 fi #得到参数 src=$1 dest=$2 doit=$3 if [[ $d...."/><meta property="og:description" content="使用rsync进行备份 rsync的六种模式 rsync [OPTION]... SRC DEST rsync [OPTION]... SRC [USER@]host:DEST rsync [OPTION]... [USER@]HOST:SRC DEST rsync [OPTION]... [USER@]HOST::SRC DEST rsync [OPTION]... SRC [USER@]HOST::DEST rsync [OPTION]... rsync://[USER@]HOST[:PORT]/SRC [DEST] 本地备份的话我们使用第一种 大佬使用的备份脚本,通过指定/的目录来进行备份 #!/bin/zsh -e #进入主目录 cd $(dirname $0) #判断参数个数时候小于2或者大于3(也就是可以是2个参数或者是3个参数) if [[ $# -lt 2 || $# -gt 3 ]]; then echo &quot;usage: $0 SRC_DIR DEST_DIR [-w]&quot; exit 1 fi #得到参数 src=$1 dest=$2 doit=$3 if [[ $d...."/>    <meta name="keywords" content="开源,开发者,笔记,kosmos"/><link rel="dns-prefetch" href="https://ellenbboe.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://ellenbboe.github.io"><link rel="icon" type="image/png" href="https://s2.ax1x.com/2020/01/12/loApPe.png"/><link rel="apple-touch-icon" href="https://s2.ax1x.com/2020/01/12/loApPe.png"><link rel="shortcut icon" type="image/x-icon" href="https://s2.ax1x.com/2020/01/12/loApPe.png"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="备份arch系统 - Kosmos"/><meta property="og:site_name" content="Kosmos"/><meta property="og:url"      content="https://ellenbboe.github.io/articles/2018/08/11/1561009681690.html?"/><meta property="og:image" content="https://s2.ax1x.com/2020/01/12/loApPe.png"/><link rel="search" type="application/opensearchdescription+xml" title="备份arch系统 - Kosmos" href="/opensearch.xml"><link href="https://ellenbboe.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://ellenbboe.github.io/manifest.json">        <link rel="canonical" href="https://ellenbboe.github.io/articles/2018/08/11/1561009681690.html">        <link rel="stylesheet"
+              href="https://ellenbboe.github.io/skins/Casper/css/base.css?1578931371974"/>
+            <link rel="prev" title="2018-08-10 arch备份日志" href="https://ellenbboe.github.io/articles/2018/08/11/1561009673673.html">
+            <link rel="next" title="2018-08-12 java plane war记录日志" href="https://ellenbboe.github.io/articles/2018/08/12/1561009685130.html">
+    </head>
+<body class="fn__flex-column">
+<div id="pjax" class="fn__flex-1">
+    
+    <header class="header header--article">
+        <div class="wrapper header__title">
+            <h1 class="header__h1 fn__flex-inline">
+                <img src="https://s2.ax1x.com/2020/01/12/loApPe.png">
+                <a href="https://ellenbboe.github.io" rel="start" class="header__title">Kosmos</a>
+            </h1>
+            <h2 class="header__h2">---就算是痛苦难受，也要去体会那被称为生存的分量---</h2>
+        </div>
+        <nav class="wrapper header__nav fn__clear">
+            <a href="https://ellenbboe.github.io" rel="start">
+                    Kosmos
+            </a>
+
+                <a class="fn__flex-inline" href="/my-github-repos" target="_self" rel="section">
+                    <img src="/images/github-icon.png"> 我的开源
+                </a>
+                <a class="fn__flex-inline" href="/readlist" target="_self" rel="section">
+                     阅读列表
+                </a>
+
+
+            <div class="fn__right">
+    <a href="https://hacpai.com/member/ellenbboe"
+       title="https://hacpai.com/member/ellenbboe"
+       class="user__site"
+       target="_blank" rel="noopener nofollow">
+        <svg viewBox="0 0 32 32" width="100%" height="100%">
+            <path fill="#d23f31" style="fill: var(--color1, #d23f31)" d="M5.787 17.226h17.033l5.954 9.528c0.47 0.752 0.003 1.361-1.042 1.361h-15.141z"></path>
+            <path d="M10.74 3.927h17.033c1.045 0 1.512 0.609 1.042 1.361l-5.954 9.528h-19.872l6.379-10.209c0.235-0.376 0.849-0.681 1.372-0.681z"></path>
+            <path d="M2.953 17.226h2.839l6.804 10.889h-1.892c-0.523 0-1.137-0.305-1.372-0.681z"></path>
+        </svg>
+    </a>
+
+        <a href="https://github.com/ellenbboe"
+           title="https://github.com/ellenbboe"
+           class="user__site"
+           target="_blank" rel="noopener nofollow">
+            <svg viewBox="0 0 32 32" width="100%" height="100%">
+                <path d="M16 0.331c-8.836 0-16 7.163-16 16 0 7.069 4.585 13.067 10.942 15.182 0.8 0.148 1.094-0.347 1.094-0.77 0-0.381-0.015-1.642-0.022-2.979-4.452 0.968-5.391-1.888-5.391-1.888-0.728-1.849-1.776-2.341-1.776-2.341-1.452-0.993 0.11-0.973 0.11-0.973 1.606 0.113 2.452 1.649 2.452 1.649 1.427 2.446 3.743 1.739 4.656 1.33 0.143-1.034 0.558-1.74 1.016-2.14-3.554-0.404-7.29-1.777-7.29-7.907 0-1.747 0.625-3.174 1.649-4.295-0.166-0.403-0.714-2.030 0.155-4.234 0 0 1.344-0.43 4.401 1.64 1.276-0.355 2.645-0.532 4.005-0.539 1.359 0.006 2.729 0.184 4.008 0.539 3.054-2.070 4.395-1.64 4.395-1.64 0.871 2.204 0.323 3.831 0.157 4.234 1.026 1.12 1.647 2.548 1.647 4.295 0 6.145-3.743 7.498-7.306 7.895 0.574 0.497 1.085 1.47 1.085 2.963 0 2.141-0.019 3.864-0.019 4.391 0 0.426 0.288 0.925 1.099 0.768 6.354-2.118 10.933-8.113 10.933-15.18 0-8.837-7.164-16-16-16z"></path>
+            </svg>
+        </a>
+
+                <a rel="alternate" href="https://ellenbboe.github.io/rss.xml">
+                    RSS
+                </a>
+
+            </div>
+        </nav>
+    </header>
+    <div class="article__top">
+        <div class="fn__clear">
+            <div class="toc fn__none" onclick="$('.post__toc').slideToggle()">目录</div>
+            <div class="title fn__pointer" onclick="Util.goTop()">备份arch系统</div>
+<div class="article__share"
+     data-title="备份arch系统"
+     data-blogtitle="Kosmos"
+     data-url="https://ellenbboe.github.io/articles/2018/08/11/1561009681690.html"
+     data-avatar="https://img.hacpai.com/avatar/1560335521987_1576387741689.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100">
+    <span class="item" data-type="qqz">
+        <svg viewBox="0 0 32 32" width="100%" height="100%">
+            <path d="M22.824 13.989l-8.348 6.287s3.351 0.522 8.404 0.461l-0.23-1.040 7.2-6.549c0.132-0.12 0.183-0.312 0.129-0.487s-0.203-0.299-0.377-0.314l-9.492-0.856-3.708-9.213c-0.068-0.169-0.226-0.279-0.401-0.279s-0.333 0.11-0.401 0.279l-3.708 9.213-9.492 0.856c-0.174 0.015-0.323 0.139-0.377 0.314s-0.004 0.366 0.129 0.487l7.2 6.549-2.158 9.742c-0.040 0.178 0.026 0.365 0.168 0.474 0.142 0.107 0.331 0.115 0.481 0.021l8.158-5.165 8.158 5.165c0.070 0.045 0.147 0.066 0.225 0.066 0.090 0 0.18-0.029 0.256-0.086 0.142-0.109 0.208-0.295 0.168-0.474l-1.707-7.704c0.732-0.386 1.538-1.040 1.538-1.040s-3.195 1.638-14.664 0.838l8.312-6.325s-0.327-0.534-10.744-0.914c-0.697-0.026 8.493-1.83 15.281-0.305z"></path>
+        </svg>
+    </span>
+    <span class="item" data-type="wechat">
+        <svg viewBox="0 0 32 32" width="100%" height="100%">
+            <path d="M9.062 9.203c0-0.859-0.562-1.422-1.422-1.422-0.844 0-1.703 0.562-1.703 1.422 0 0.844 0.859 1.406 1.703 1.406 0.859 0 1.422-0.562 1.422-1.406zM20.672 17.125c0-0.562-0.562-1.125-1.422-1.125-0.562 0-1.125 0.562-1.125 1.125 0 0.578 0.562 1.141 1.125 1.141 0.859 0 1.422-0.562 1.422-1.141zM16.984 9.203c0-0.859-0.562-1.422-1.406-1.422-0.859 0-1.703 0.562-1.703 1.422 0 0.844 0.844 1.406 1.703 1.406 0.844 0 1.406-0.562 1.406-1.406zM26.906 17.125c0-0.562-0.578-1.125-1.422-1.125-0.562 0-1.125 0.562-1.125 1.125 0 0.578 0.562 1.141 1.125 1.141 0.844 0 1.422-0.562 1.422-1.141zM22.75 10.922c-0.359-0.047-0.719-0.063-1.094-0.063-5.375 0-9.625 4.016-9.625 8.953 0 0.828 0.125 1.625 0.359 2.375-0.359 0.031-0.703 0.047-1.063 0.047-1.422 0-2.547-0.281-3.969-0.562l-3.953 1.984 1.125-3.406c-2.828-1.984-4.531-4.547-4.531-7.656 0-5.391 5.094-9.625 11.328-9.625 5.563 0 10.453 3.391 11.422 7.953zM32 19.687c0 2.547-1.688 4.813-3.969 6.516l0.859 2.828-3.109-1.703c-1.141 0.281-2.281 0.578-3.406 0.578-5.391 0-9.625-3.688-9.625-8.219s4.234-8.219 9.625-8.219c5.094 0 9.625 3.688 9.625 8.219z"></path>
+        </svg>
+    </span>
+    <span class="item" data-type="weibo">
+        <svg viewBox="0 0 32 32" width="100%" height="100%">
+            <path d="M13.444 27.064c-5.3 0.525-9.875-1.875-10.219-5.35-0.344-3.481 3.675-6.719 8.969-7.244 5.3-0.525 9.875 1.875 10.212 5.35 0.35 3.481-3.669 6.725-8.963 7.244zM24.038 15.521c-0.45-0.137-0.762-0.225-0.525-0.819 0.512-1.287 0.563-2.394 0.006-3.188-1.038-1.481-3.881-1.406-7.137-0.037 0 0-1.025 0.444-0.762-0.363 0.5-1.613 0.425-2.956-0.356-3.737-1.769-1.769-6.469 0.069-10.5 4.1-3.013 3.006-4.763 6.212-4.763 8.981 0 5.287 6.787 8.506 13.425 8.506 8.7 0 14.494-5.056 14.494-9.069 0-2.431-2.044-3.806-3.881-4.375z"></path>
+            <path d="M29.819 5.833c-2.1-2.331-5.2-3.219-8.063-2.612v0c-0.663 0.144-1.081 0.794-0.938 1.45 0.144 0.662 0.788 1.081 1.45 0.938 2.038-0.431 4.238 0.2 5.731 1.856s1.9 3.913 1.256 5.888v0c-0.206 0.644 0.144 1.331 0.788 1.544 0.644 0.206 1.331-0.144 1.544-0.787v-0.006c0.9-2.762 0.331-5.938-1.769-8.269z"></path>
+            <path d="M26.588 8.752c-1.025-1.138-2.538-1.569-3.925-1.269-0.569 0.119-0.931 0.688-0.813 1.256 0.125 0.569 0.688 0.931 1.25 0.806v0c0.681-0.144 1.419 0.069 1.919 0.619 0.5 0.556 0.637 1.313 0.419 1.975v0c-0.175 0.55 0.125 1.15 0.681 1.331 0.556 0.175 1.15-0.125 1.331-0.681 0.438-1.356 0.163-2.906-0.863-4.037z"></path>
+            <path d="M13.738 20.771c-0.188 0.319-0.594 0.469-0.912 0.337-0.319-0.125-0.412-0.488-0.231-0.794 0.188-0.306 0.581-0.456 0.894-0.337 0.313 0.113 0.425 0.469 0.25 0.794zM12.044 22.933c-0.512 0.819-1.613 1.175-2.438 0.8-0.813-0.369-1.056-1.319-0.544-2.119 0.506-0.794 1.569-1.15 2.388-0.806 0.831 0.356 1.1 1.3 0.594 2.125zM13.969 17.146c-2.519-0.656-5.369 0.6-6.463 2.819-1.119 2.262-0.037 4.781 2.506 5.606 2.638 0.85 5.75-0.456 6.831-2.894 1.069-2.394-0.262-4.85-2.875-5.531z"></path>
+        </svg>
+    </span>
+    <span class="item" data-type="twitter">
+        <svg viewBox="0 0 32 32" width="100%" height="100%">
+            <path d="M32.003 6.075c-1.175 0.525-2.444 0.875-3.769 1.031 1.356-0.813 2.394-2.1 2.887-3.631-1.269 0.75-2.675 1.3-4.169 1.594-1.2-1.275-2.906-2.069-4.794-2.069-3.625 0-6.563 2.938-6.563 6.563 0 0.512 0.056 1.012 0.169 1.494-5.456-0.275-10.294-2.888-13.531-6.862-0.563 0.969-0.887 2.1-0.887 3.3 0 2.275 1.156 4.287 2.919 5.463-1.075-0.031-2.087-0.331-2.975-0.819 0 0.025 0 0.056 0 0.081 0 3.181 2.263 5.838 5.269 6.437-0.55 0.15-1.131 0.231-1.731 0.231-0.425 0-0.831-0.044-1.237-0.119 0.838 2.606 3.263 4.506 6.131 4.563-2.25 1.762-5.075 2.813-8.156 2.813-0.531 0-1.050-0.031-1.569-0.094 2.913 1.869 6.362 2.95 10.069 2.95 12.075 0 18.681-10.006 18.681-18.681 0-0.287-0.006-0.569-0.019-0.85 1.281-0.919 2.394-2.075 3.275-3.394z"></path>
+        </svg>
+    </span>
+    <span class="item__qr"></span>
+</div>        </div>
+        <progress class="article__progress"></progress>
+    </div>
+    <div class="article">
+        <div class="ft__center">
+            <div class="item__meta">
+                <time>
+                    2018-08-11
+                </time>
+                /
+                    <a class="tag" rel="tag"
+                       href="https://ellenbboe.github.io/tags/linux">linux</a> &nbsp;
+            </div>
+            <h2 class="item__title">
+                备份arch系统
+            </h2>
+        </div>
+        <div class="item__cover" style="background-image: url(https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1112296731,3767662191&amp;fm=27&amp;gp=0.jpg)"></div>
+        <div class="wrapper">
+            <section class="item__content item__content--article vditor-reset">
+                <p></p><h3 id="b3_solo_h3_0">使用rsync进行备份</h3>
+<p>rsync的六种模式</p>
+<pre><code>rsync [OPTION]... SRC DEST
+rsync [OPTION]... SRC [USER@]host:DEST
+rsync [OPTION]... [USER@]HOST:SRC DEST
+rsync [OPTION]... [USER@]HOST::SRC DEST
+rsync [OPTION]... SRC [USER@]HOST::DEST
+rsync [OPTION]... rsync://[USER@]HOST[:PORT]/SRC [DEST]
+</code></pre>
+<p>本地备份的话我们使用第一种</p>
+<p>大佬使用的备份脚本,通过指定<code>/</code>的目录来进行备份</p>
+<pre><code>#!/bin/zsh -e
+
+#进入主目录
+cd $(dirname $0)
+#判断参数个数时候小于2或者大于3(也就是可以是2个参数或者是3个参数)
+if [[ $# -lt 2 || $# -gt 3 ]]; then
+  echo "usage: $0 SRC_DIR DEST_DIR [-w]"
+  exit 1
+fi
+#得到参数
+src=$1
+dest=$2
+doit=$3
+
+if [[ $doit == -w ]]; then
+  dry=
+else
+  dry='-n'
+fi
+
+rsync --archive --one-file-system --inplace --hard-links \
+  --human-readable --numeric-ids --delete --delete-excluded \
+  --acls --xattrs --sparse \
+  --itemize-changes --verbose --progress \
+  --exclude='*~' --exclude=__pycache__ \
+  --exclude-from=root.exclude \
+  $src $dest $dry
+</code></pre>
+<p>以下列出rsync参数,使用到的将使用<strong>加粗</strong>列出</p>
+<blockquote>
+<p><strong>-v, --verbose 详细模式输出</strong>。<br>
+<strong>-i, --itemize-changes 列出改变(不知道是不是这个意思)</strong><br>
+-q, --quiet 精简输出模式。<br>
+-c, --checksum 打开校验开关，强制对文件传输进行校验。<br>
+<strong>-a, --archive 归档模式，表示以递归方式传输文件，并保持所有文件属性，等于-rlptgoD。</strong><br>
+<strong>-A   --acls This option causes rsync to update the destination ACLs to be the same as the source ACLs.  The option also implies --perms.</strong><br>
+<strong>-X --xattrs This option causes rsync to update the destination extended attributes to be the same as the source ones.</strong><br>
+(上面两个选项保留文件 ACL 和扩展属性)<br>
+-r, --recursive 对子目录以递归模式处理。<br>
+-R, --relative 使用相对路径信息。<br>
+-b, --backup 创建备份，也就是对于目的已经存在有同样的文件名时，将老的文件重新命名为~filename。可以使用--suffix选项来指定不同的备份文件前缀。<br>
+--backup-dir 将备份文件(如~filename)存放在在目录下。<br>
+-suffix=SUFFIX 定义备份文件前缀。<br>
+-u, --update 仅仅进行更新，也就是跳过所有已经存在于DST，并且文件时间晚于要备份的文件，不覆盖更新的文件。<br>
+<strong>--inplace 更新目标文件,RSYNC将写入的更新数据直接写入目标文件。</strong><br>
+-l, --links 保留软链结。<br>
+-L, --copy-links 想对待常规文件一样处理软链结。<br>
+--copy-unsafe-links 仅仅拷贝指向SRC路径目录树以外的链结。<br>
+--safe-links 忽略指向SRC路径目录树以外的链结。<br>
+-H, --hard-links 保留硬链结。<br>
+<strong>-p, --perms 保持文件权限。就是 --acls</strong><br>
+-o, --owner 保持文件属主信息。<br>
+-g, --group 保持文件属组信息。<br>
+-D, --devices 保持设备文件信息。<br>
+-t, --times 保持文件时间信息。<br>
+<strong>-S, --sparse 对稀疏文件进行特殊处理以节省DST的空间。</strong><br>
+<strong>-n, --dry-run 进行try的尝试,不做改变。</strong><br>
+-w, --whole-file 拷贝文件，不进行增量检测。<br>
+<strong>-x, --one-file-system 不要跨越文件系统边界。</strong><br>
+-B, --block-size=SIZE 检验算法使用的块尺寸，默认是700字节。<br>
+-e, --rsh=command 指定使用rsh、ssh方式进行数据同步。<br>
+--rsync-path=PATH 指定远程服务器上的rsync命令所在路径信息。<br>
+-C, --cvs-exclude 使用和CVS一样的方法自动忽略文件，用来排除那些不希望传输的文件。<br>
+--existing 仅仅更新那些已经存在于DST的文件，而不备份那些新创建的文件。<br>
+<strong>--delete 删除那些DST中SRC没有的文件。</strong><br>
+<strong>--delete-excluded 同样删除接收端那些被该选项指定排除的文件。</strong><br>
+--delete-after 传输结束以后再删除。<br>
+--ignore-errors 及时出现IO错误也进行删除。<br>
+--max-delete=NUM 最多删除NUM个文件。<br>
+--partial 保留那些因故没有完全传输的文件，以是加快随后的再次传输。<br>
+--force 强制删除目录，即使不为空。<br>
+<strong>--numeric-ids 将数字的用户和组id匹配为用户名和组名。</strong><br>
+--timeout=time ip超时时间，单位为秒。<br>
+-I, --ignore-times 不跳过那些有同样的时间和长度的文件。<br>
+--size-only 当决定是否要备份文件时，仅仅察看文件大小而不考虑文件时间。<br>
+--modify-window=NUM 决定文件是否时间相同时使用的时间戳窗口，默认为0。<br>
+-T --temp-dir=DIR 在DIR中创建临时文件。<br>
+--compare-dest=DIR 同样比较DIR中的文件来决定是否需要备份。<br>
+-P 等同于 --partial。<br>
+--progress 显示备份过程。<br>
+-z, --compress 对备份的文件在传输时进行压缩处理。<br>
+<strong>--include=PATTERN 指定不排除而需要传输的文件模式。</strong><br>
+<strong>--exclude-from=FILE 排除FILE中指定模式的文件。</strong><br>
+--include-from=FILE 不排除FILE指定模式匹配的文件。<br>
+--version 打印版本信息。<br>
+--address 绑定到特定的地址。<br>
+--config=FILE 指定其他的配置文件，不使用默认的rsyncd.conf文件。<br>
+--port=PORT 指定其他的rsync服务端口。<br>
+--blocking-io 对远程shell使用阻塞IO。<br>
+-stats 给出某些文件的传输状态。<br>
+<strong>--progress 在传输时现实传输过程。</strong><br>
+--log-format=formAT 指定日志文件格式。<br>
+--password-file=FILE 从FILE中得到密码。<br>
+--bwlimit=KBPS 限制I/O带宽，KBytes per second。<br>
+-h, --help 显示帮助信息。<br>
+<strong>--human-readable 以更可读的格式输出数字。</strong></p>
+</blockquote>
+<p>看了好多教程<br>
+<a href="https://blog.lilydjwg.me/2013/12/29/rsync-btrfs-dm-crypt-full-backup.42219.html" target="_blank">rsync+btrfs</a><br>
+<a href="https://www.cnblogs.com/Gbeniot/p/5482366.html" target="_blank">单纯使用rsync</a><br>
+..发现还是单纯的使用rsync比较省事</p>
+<p>排除的目录</p>
+<pre><code>/media/*
+/sys/*
+/proc/*
+/mnt/*
+/tmp/*
+</code></pre>
+<p>但 @依云仙子 所说 <code>--one-file-system</code> 已经排除了特殊的目录</p>
+<p>目前就先这样备份了</p>
+<pre><code>sudo rsync --archive --one-file-system --hard-links \
+  --acls --xattrs --sparse \
+  --human-readable --numeric-ids --delete --delete-excluded \
+  --itemize-changes --verbose --progress \
+  --exclude-from=backup.exclude \
+  / /run/media/s/5ff9a14c-20ba-41c5-8b7e-f6b095326200/Backup/backup
+</code></pre>
+<p>(讲道理应该可以)<br>
+<img src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1112296731,3767662191&amp;fm=27&amp;gp=0.jpg?imageView2/2/w/1280/format/jpg/interlace/1/q/100" alt=""></p>
+<p>再把代码备份到github上就差不多了(溜了)</p>
+<p></p>
+                    <div>
+                        <hr>
+<img alt="今日诗词" src="https://v2.jinrishici.com/one.svg" style="max-width:100%; display: block; margin: 0 auto;">
+
+标题：备份arch系统<br>
+作者：<a href="https://ellenbboe.github.io" target="_blank">ellenbboe</a><br>
+地址：<a href="https://ellenbboe.github.io/articles/2018/08/11/1561009681690.html" target="_blank">https://ellenbboe.github.io/articles/2018/08/11/1561009681690.html</a><br>
+<!-- 签名档内可使用 HTML、JavaScript -->
+<br>
+                    </div>
+            </section>
+        </div>
+    </div>
+        <div class="post__toc">
+<ul class="article__toc">
+        <li class="toc__h3">
+            <a href="#b3_solo_h3_0">使用rsync进行备份</a>
+        </li>
+</ul>        </div>
+<div class="comment">
+    <div class="comment__wrapper wrapper">
+        <div class="comment__title">
+            评论
+        </div>
+        <textarea rows="3" placeholder="评论内容只能为 2 到 500 个字符！" id="comment"></textarea>
+
+        <ul id="comments">
+        </ul>
+    </div>
+</div>
+    <div class="article__bottom">
+        <div class="wrapper">
+            <div class="fn__flex">
+                <div class="item" id="randomArticles"></div>
+                <div class="item" id="relevantArticles"></div>
+            </div>
+        </div>
+    </div>
+    
+</div>
+<footer class="footer">
+    <div class="wrapper fn__clear">
+        <div class="fn__left">
+            &copy; 2020
+            <a href="https://ellenbboe.github.io">Kosmos</a>
+            <a href="http://www.beian.miit.gov.cn/">浙ICP备18045840号-1</a>--------Let's move on
+本站已安全运行:
+<span id="momk"></span>
+<script language=javascript>
+function show_date_time(){
+window.setTimeout("show_date_time()", 1000);
+BirthDay=new Date("09-10-2018 19:47:57");//建站日期
+today=new Date();
+timeold=(today.getTime()-BirthDay.getTime());
+sectimeold=timeold/1000
+secondsold=Math.floor(sectimeold);
+msPerDay=24*60*60*1000
+e_daysold=timeold/msPerDay
+daysold=Math.floor(e_daysold);
+e_hrsold=(daysold-e_daysold)*-24;
+hrsold=Math.floor(e_hrsold);
+e_minsold=(hrsold-e_hrsold)*-60;
+minsold=Math.floor((hrsold-e_hrsold)*-60);
+seconds=Math.floor((minsold-e_minsold)*-60);
+momk.innerHTML=daysold+"天"+hrsold+"小时"+minsold+"分"+seconds+"秒" ;
+}
+show_date_time();
+</script>
+<style>
+#momk{animation:change 10s infinite;font-weight:800; }
+@keyframes change{0%{color:#5cb85c;}25%{color:#556bd8;}50%{color:#e40707;}75%{color:#66e616;}100% {color:#67bd31;}}
+</style> &nbsp;•&nbsp;
+            Powered by <a href="https://solo.b3log.org" target="_blank">Solo</a>
+            <br>
+            Theme Casper
+            <sup>[<a href="https://github.com/TryGhost/Casper" target="_blank">ref</a>]</sup>
+            by <a href="http://vanessa.b3log.org" target="_blank">Vanessa</a>
+        </div>
+        <div class="fn__right">
+            <a href="https://ellenbboe.github.io/tags.html" rel="section">
+            标签墙
+            </a>
+            &nbsp;•&nbsp;
+            <a href="https://ellenbboe.github.io/archives.html">
+            存档
+            </a>
+            &nbsp;•&nbsp;
+            <a rel="archive" href="https://ellenbboe.github.io/links.html">
+            友情链接
+            </a>
+            <br>
+            115 文章 &nbsp;
+            9 评论 &nbsp;
+            <span data-uvstaturl="https://ellenbboe.github.io">11608</span> 浏览 &nbsp;
+            4 当前访客
+        </div>
+    </div>
+</footer>
+
+<script type="text/javascript" src="https://ellenbboe.github.io/js/lib/compress/pjax.min.js" charset="utf-8"></script>
+<script type="text/javascript" src="https://ellenbboe.github.io/js/common.min.js?1578931371974"
+        charset="utf-8"></script>
+<script type="text/javascript"
+        src="https://ellenbboe.github.io/skins/Casper/js/common.min.js?1578931371974"
+        charset="utf-8"></script>
+<script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.4/dist/index.min.js"></script>
+<script>
+    var Label = {
+        servePath: "https://ellenbboe.github.io",
+        staticServePath: "https://ellenbboe.github.io",
+        luteAvailable: false,
+        hljsStyle: 'colorful',
+        langLabel: "zh_CN",
+        version: "3.7.0",
+    }
+    Util.init()
+</script>
+
+
+<script type="text/javascript">
+    Util.addScript('https://ellenbboe.github.io/js/page.min.js?1578931371974', 'soloPageScript')
+    var page = new Page({
+        "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
+        "oId": "1561009681690",
+        "blogHost": "https://ellenbboe.github.io",
+        "randomArticles1Label": "随机阅读：",
+        "externalRelevantArticles1Label": "站外相关阅读："
+    });
+    $(document).ready(function () {
+        page.load();
+    page.tips.externalRelevantArticlesDisplayCount = "0";
+    Skin.initArticle()
+    });
+</script>
+
+</body>
+</html>
+
+<!-- Generated by Latke (https://github.com/88250/latke) in 30ms, 2020/01/14 12:34:59 -->

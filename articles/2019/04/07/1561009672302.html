@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>操作系统概要 - Kosmos</title><meta name="description" content="本文采用复习拷贝重新阅读大法 本文来自该仓库 基本特征 1. 并发 并发是指宏观上在 一段时间 内能同时 运行多个程序，而并行则指 同一时刻 能 运行多个指令。 并行需要 硬件支持，如多流水线、多核处理器或者分布式计算系统。 操作系统通过引入 进程 和 线程，使得程序能够并发运行。 2. 共享 共享是指系统中的资源可以 被多个并发进程共同使用。 有两种共享方式：互斥共享 和 同时共享。 互斥共享的资源称为 临界资源，例如打印机等，在 同一时间只允许一个进程访问，需要用同步机制来实现对临界资源的访问。 同时共享 就是适合所有程序共同访问资源,但是应该需要访问控制,防止某一进程对资源进行了修改(我的想法) 3. 虚拟 虚拟技术把一个物理实体转换为多个逻辑实体。 主要有两种虚拟技术：时分复用技术 和 空分复用技术。 时间片轮转法 多个进程能在同一个处理器上并发执行使用了时分复用技术，让每个进程轮流占有处理器，每次只执行一小个时间片并快速切换。 虚拟内存使用了空分复用技术，它将物理内存抽象为地址空间，每个进程都有各自的地址空间。地址空间的页被映射到物理内存，地址空间的页并不需要全部在物理内...."/><meta property="og:description" content="本文采用复习拷贝重新阅读大法 本文来自该仓库 基本特征 1. 并发 并发是指宏观上在 一段时间 内能同时 运行多个程序，而并行则指 同一时刻 能 运行多个指令。 并行需要 硬件支持，如多流水线、多核处理器或者分布式计算系统。 操作系统通过引入 进程 和 线程，使得程序能够并发运行。 2. 共享 共享是指系统中的资源可以 被多个并发进程共同使用。 有两种共享方式：互斥共享 和 同时共享。 互斥共享的资源称为 临界资源，例如打印机等，在 同一时间只允许一个进程访问，需要用同步机制来实现对临界资源的访问。 同时共享 就是适合所有程序共同访问资源,但是应该需要访问控制,防止某一进程对资源进行了修改(我的想法) 3. 虚拟 虚拟技术把一个物理实体转换为多个逻辑实体。 主要有两种虚拟技术：时分复用技术 和 空分复用技术。 时间片轮转法 多个进程能在同一个处理器上并发执行使用了时分复用技术，让每个进程轮流占有处理器，每次只执行一小个时间片并快速切换。 虚拟内存使用了空分复用技术，它将物理内存抽象为地址空间，每个进程都有各自的地址空间。地址空间的页被映射到物理内存，地址空间的页并不需要全部在物理内...."/>    <meta name="keywords" content="开源,开发者,笔记,kosmos"/><link rel="dns-prefetch" href="https://ellenbboe.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://ellenbboe.github.io"><link rel="icon" type="image/png" href="https://s2.ax1x.com/2020/01/12/loApPe.png"/><link rel="apple-touch-icon" href="https://s2.ax1x.com/2020/01/12/loApPe.png"><link rel="shortcut icon" type="image/x-icon" href="https://s2.ax1x.com/2020/01/12/loApPe.png"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="操作系统概要 - Kosmos"/><meta property="og:site_name" content="Kosmos"/><meta property="og:url"      content="https://ellenbboe.github.io/articles/2019/04/07/1561009672302.html?"/><meta property="og:image" content="https://s2.ax1x.com/2020/01/12/loApPe.png"/><link rel="search" type="application/opensearchdescription+xml" title="操作系统概要 - Kosmos" href="/opensearch.xml"><link href="https://ellenbboe.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://ellenbboe.github.io/manifest.json">        <link rel="canonical" href="https://ellenbboe.github.io/articles/2019/04/07/1561009672302.html">        <link rel="stylesheet"
+              href="https://ellenbboe.github.io/skins/Casper/css/base.css?1578931371974"/>
+            <link rel="prev" title="剑指offer_Part3" href="https://ellenbboe.github.io/articles/2019/04/07/1561009669774.html">
+            <link rel="next" title="操作系统之进程线程" href="https://ellenbboe.github.io/articles/2019/04/07/1561009683315.html">
+    </head>
+<body class="fn__flex-column">
+<div id="pjax" class="fn__flex-1">
+    
+    <header class="header header--article">
+        <div class="wrapper header__title">
+            <h1 class="header__h1 fn__flex-inline">
+                <img src="https://s2.ax1x.com/2020/01/12/loApPe.png">
+                <a href="https://ellenbboe.github.io" rel="start" class="header__title">Kosmos</a>
+            </h1>
+            <h2 class="header__h2">---就算是痛苦难受，也要去体会那被称为生存的分量---</h2>
+        </div>
+        <nav class="wrapper header__nav fn__clear">
+            <a href="https://ellenbboe.github.io" rel="start">
+                    Kosmos
+            </a>
+
+                <a class="fn__flex-inline" href="/my-github-repos" target="_self" rel="section">
+                    <img src="/images/github-icon.png"> 我的开源
+                </a>
+                <a class="fn__flex-inline" href="/readlist" target="_self" rel="section">
+                     阅读列表
+                </a>
+
+
+            <div class="fn__right">
+    <a href="https://hacpai.com/member/ellenbboe"
+       title="https://hacpai.com/member/ellenbboe"
+       class="user__site"
+       target="_blank" rel="noopener nofollow">
+        <svg viewBox="0 0 32 32" width="100%" height="100%">
+            <path fill="#d23f31" style="fill: var(--color1, #d23f31)" d="M5.787 17.226h17.033l5.954 9.528c0.47 0.752 0.003 1.361-1.042 1.361h-15.141z"></path>
+            <path d="M10.74 3.927h17.033c1.045 0 1.512 0.609 1.042 1.361l-5.954 9.528h-19.872l6.379-10.209c0.235-0.376 0.849-0.681 1.372-0.681z"></path>
+            <path d="M2.953 17.226h2.839l6.804 10.889h-1.892c-0.523 0-1.137-0.305-1.372-0.681z"></path>
+        </svg>
+    </a>
+
+        <a href="https://github.com/ellenbboe"
+           title="https://github.com/ellenbboe"
+           class="user__site"
+           target="_blank" rel="noopener nofollow">
+            <svg viewBox="0 0 32 32" width="100%" height="100%">
+                <path d="M16 0.331c-8.836 0-16 7.163-16 16 0 7.069 4.585 13.067 10.942 15.182 0.8 0.148 1.094-0.347 1.094-0.77 0-0.381-0.015-1.642-0.022-2.979-4.452 0.968-5.391-1.888-5.391-1.888-0.728-1.849-1.776-2.341-1.776-2.341-1.452-0.993 0.11-0.973 0.11-0.973 1.606 0.113 2.452 1.649 2.452 1.649 1.427 2.446 3.743 1.739 4.656 1.33 0.143-1.034 0.558-1.74 1.016-2.14-3.554-0.404-7.29-1.777-7.29-7.907 0-1.747 0.625-3.174 1.649-4.295-0.166-0.403-0.714-2.030 0.155-4.234 0 0 1.344-0.43 4.401 1.64 1.276-0.355 2.645-0.532 4.005-0.539 1.359 0.006 2.729 0.184 4.008 0.539 3.054-2.070 4.395-1.64 4.395-1.64 0.871 2.204 0.323 3.831 0.157 4.234 1.026 1.12 1.647 2.548 1.647 4.295 0 6.145-3.743 7.498-7.306 7.895 0.574 0.497 1.085 1.47 1.085 2.963 0 2.141-0.019 3.864-0.019 4.391 0 0.426 0.288 0.925 1.099 0.768 6.354-2.118 10.933-8.113 10.933-15.18 0-8.837-7.164-16-16-16z"></path>
+            </svg>
+        </a>
+
+                <a rel="alternate" href="https://ellenbboe.github.io/rss.xml">
+                    RSS
+                </a>
+
+            </div>
+        </nav>
+    </header>
+    <div class="article__top">
+        <div class="fn__clear">
+            <div class="toc fn__none" onclick="$('.post__toc').slideToggle()">目录</div>
+            <div class="title fn__pointer" onclick="Util.goTop()">操作系统概要</div>
+<div class="article__share"
+     data-title="操作系统概要"
+     data-blogtitle="Kosmos"
+     data-url="https://ellenbboe.github.io/articles/2019/04/07/1561009672302.html"
+     data-avatar="https://img.hacpai.com/avatar/1560335521987_1576387741689.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100">
+    <span class="item" data-type="qqz">
+        <svg viewBox="0 0 32 32" width="100%" height="100%">
+            <path d="M22.824 13.989l-8.348 6.287s3.351 0.522 8.404 0.461l-0.23-1.040 7.2-6.549c0.132-0.12 0.183-0.312 0.129-0.487s-0.203-0.299-0.377-0.314l-9.492-0.856-3.708-9.213c-0.068-0.169-0.226-0.279-0.401-0.279s-0.333 0.11-0.401 0.279l-3.708 9.213-9.492 0.856c-0.174 0.015-0.323 0.139-0.377 0.314s-0.004 0.366 0.129 0.487l7.2 6.549-2.158 9.742c-0.040 0.178 0.026 0.365 0.168 0.474 0.142 0.107 0.331 0.115 0.481 0.021l8.158-5.165 8.158 5.165c0.070 0.045 0.147 0.066 0.225 0.066 0.090 0 0.18-0.029 0.256-0.086 0.142-0.109 0.208-0.295 0.168-0.474l-1.707-7.704c0.732-0.386 1.538-1.040 1.538-1.040s-3.195 1.638-14.664 0.838l8.312-6.325s-0.327-0.534-10.744-0.914c-0.697-0.026 8.493-1.83 15.281-0.305z"></path>
+        </svg>
+    </span>
+    <span class="item" data-type="wechat">
+        <svg viewBox="0 0 32 32" width="100%" height="100%">
+            <path d="M9.062 9.203c0-0.859-0.562-1.422-1.422-1.422-0.844 0-1.703 0.562-1.703 1.422 0 0.844 0.859 1.406 1.703 1.406 0.859 0 1.422-0.562 1.422-1.406zM20.672 17.125c0-0.562-0.562-1.125-1.422-1.125-0.562 0-1.125 0.562-1.125 1.125 0 0.578 0.562 1.141 1.125 1.141 0.859 0 1.422-0.562 1.422-1.141zM16.984 9.203c0-0.859-0.562-1.422-1.406-1.422-0.859 0-1.703 0.562-1.703 1.422 0 0.844 0.844 1.406 1.703 1.406 0.844 0 1.406-0.562 1.406-1.406zM26.906 17.125c0-0.562-0.578-1.125-1.422-1.125-0.562 0-1.125 0.562-1.125 1.125 0 0.578 0.562 1.141 1.125 1.141 0.844 0 1.422-0.562 1.422-1.141zM22.75 10.922c-0.359-0.047-0.719-0.063-1.094-0.063-5.375 0-9.625 4.016-9.625 8.953 0 0.828 0.125 1.625 0.359 2.375-0.359 0.031-0.703 0.047-1.063 0.047-1.422 0-2.547-0.281-3.969-0.562l-3.953 1.984 1.125-3.406c-2.828-1.984-4.531-4.547-4.531-7.656 0-5.391 5.094-9.625 11.328-9.625 5.563 0 10.453 3.391 11.422 7.953zM32 19.687c0 2.547-1.688 4.813-3.969 6.516l0.859 2.828-3.109-1.703c-1.141 0.281-2.281 0.578-3.406 0.578-5.391 0-9.625-3.688-9.625-8.219s4.234-8.219 9.625-8.219c5.094 0 9.625 3.688 9.625 8.219z"></path>
+        </svg>
+    </span>
+    <span class="item" data-type="weibo">
+        <svg viewBox="0 0 32 32" width="100%" height="100%">
+            <path d="M13.444 27.064c-5.3 0.525-9.875-1.875-10.219-5.35-0.344-3.481 3.675-6.719 8.969-7.244 5.3-0.525 9.875 1.875 10.212 5.35 0.35 3.481-3.669 6.725-8.963 7.244zM24.038 15.521c-0.45-0.137-0.762-0.225-0.525-0.819 0.512-1.287 0.563-2.394 0.006-3.188-1.038-1.481-3.881-1.406-7.137-0.037 0 0-1.025 0.444-0.762-0.363 0.5-1.613 0.425-2.956-0.356-3.737-1.769-1.769-6.469 0.069-10.5 4.1-3.013 3.006-4.763 6.212-4.763 8.981 0 5.287 6.787 8.506 13.425 8.506 8.7 0 14.494-5.056 14.494-9.069 0-2.431-2.044-3.806-3.881-4.375z"></path>
+            <path d="M29.819 5.833c-2.1-2.331-5.2-3.219-8.063-2.612v0c-0.663 0.144-1.081 0.794-0.938 1.45 0.144 0.662 0.788 1.081 1.45 0.938 2.038-0.431 4.238 0.2 5.731 1.856s1.9 3.913 1.256 5.888v0c-0.206 0.644 0.144 1.331 0.788 1.544 0.644 0.206 1.331-0.144 1.544-0.787v-0.006c0.9-2.762 0.331-5.938-1.769-8.269z"></path>
+            <path d="M26.588 8.752c-1.025-1.138-2.538-1.569-3.925-1.269-0.569 0.119-0.931 0.688-0.813 1.256 0.125 0.569 0.688 0.931 1.25 0.806v0c0.681-0.144 1.419 0.069 1.919 0.619 0.5 0.556 0.637 1.313 0.419 1.975v0c-0.175 0.55 0.125 1.15 0.681 1.331 0.556 0.175 1.15-0.125 1.331-0.681 0.438-1.356 0.163-2.906-0.863-4.037z"></path>
+            <path d="M13.738 20.771c-0.188 0.319-0.594 0.469-0.912 0.337-0.319-0.125-0.412-0.488-0.231-0.794 0.188-0.306 0.581-0.456 0.894-0.337 0.313 0.113 0.425 0.469 0.25 0.794zM12.044 22.933c-0.512 0.819-1.613 1.175-2.438 0.8-0.813-0.369-1.056-1.319-0.544-2.119 0.506-0.794 1.569-1.15 2.388-0.806 0.831 0.356 1.1 1.3 0.594 2.125zM13.969 17.146c-2.519-0.656-5.369 0.6-6.463 2.819-1.119 2.262-0.037 4.781 2.506 5.606 2.638 0.85 5.75-0.456 6.831-2.894 1.069-2.394-0.262-4.85-2.875-5.531z"></path>
+        </svg>
+    </span>
+    <span class="item" data-type="twitter">
+        <svg viewBox="0 0 32 32" width="100%" height="100%">
+            <path d="M32.003 6.075c-1.175 0.525-2.444 0.875-3.769 1.031 1.356-0.813 2.394-2.1 2.887-3.631-1.269 0.75-2.675 1.3-4.169 1.594-1.2-1.275-2.906-2.069-4.794-2.069-3.625 0-6.563 2.938-6.563 6.563 0 0.512 0.056 1.012 0.169 1.494-5.456-0.275-10.294-2.888-13.531-6.862-0.563 0.969-0.887 2.1-0.887 3.3 0 2.275 1.156 4.287 2.919 5.463-1.075-0.031-2.087-0.331-2.975-0.819 0 0.025 0 0.056 0 0.081 0 3.181 2.263 5.838 5.269 6.437-0.55 0.15-1.131 0.231-1.731 0.231-0.425 0-0.831-0.044-1.237-0.119 0.838 2.606 3.263 4.506 6.131 4.563-2.25 1.762-5.075 2.813-8.156 2.813-0.531 0-1.050-0.031-1.569-0.094 2.913 1.869 6.362 2.95 10.069 2.95 12.075 0 18.681-10.006 18.681-18.681 0-0.287-0.006-0.569-0.019-0.85 1.281-0.919 2.394-2.075 3.275-3.394z"></path>
+        </svg>
+    </span>
+    <span class="item__qr"></span>
+</div>        </div>
+        <progress class="article__progress"></progress>
+    </div>
+    <div class="article">
+        <div class="ft__center">
+            <div class="item__meta">
+                <time>
+                    2019-04-07
+                </time>
+                /
+                    <a class="tag" rel="tag"
+                       href="https://ellenbboe.github.io/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F">操作系统</a> &nbsp;
+            </div>
+            <h2 class="item__title">
+                操作系统概要
+            </h2>
+        </div>
+        <div class="item__cover" style="background-image: url(https://gitee.com/CyC2018/CS-Notes/raw/master/docs/pics/tGPV0.png)"></div>
+        <div class="wrapper">
+            <section class="item__content item__content--article vditor-reset">
+                <p>本文采用复习拷贝重新阅读大法<br>
+本文来自该<a href="https://github.com/CyC2018/CS-Notes" target="_blank">仓库</a></p>
+<h1 id="b3_solo_h1_0">基本特征</h1>
+<h2 id="b3_solo_h2_1">1. 并发</h2>
+<p>并发是指宏观上在 <strong>一段时间</strong> 内能同时 <strong>运行多个程序</strong>，而并行则指 <strong>同一时刻</strong> 能 <strong>运行多个指令</strong>。</p>
+<p>并行需要 <strong>硬件支持</strong>，如多流水线、多核处理器或者分布式计算系统。</p>
+<p>操作系统通过引入 <strong>进程</strong> 和 <strong>线程</strong>，使得程序能够并发运行。</p>
+<h2 id="b3_solo_h2_2">2. 共享</h2>
+<p>共享是指系统中的资源可以 <strong>被多个并发进程共同使用</strong>。</p>
+<p>有两种共享方式：<strong>互斥共享</strong> 和 <strong>同时共享</strong>。</p>
+<p>互斥共享的资源称为 <strong>临界资源</strong>，例如打印机等，在 <strong>同一时间只允许一个进程访问</strong>，需要用同步机制来实现对临界资源的访问。<br>
+<strong>同时共享</strong> 就是适合所有程序共同访问资源,但是应该需要访问控制,防止某一进程对资源进行了修改(我的想法)</p>
+<h2 id="b3_solo_h2_3">3. 虚拟</h2>
+<p>虚拟技术把一个物理实体转换为多个逻辑实体。</p>
+<p>主要有两种虚拟技术：<strong>时分复用技术</strong> 和 <strong>空分复用技术</strong>。</p>
+<blockquote>
+<p>时间片轮转法</p>
+</blockquote>
+<p>多个进程能在同一个处理器上并发执行使用了时分复用技术，让每个进程轮流占有处理器，每次只执行一小个时间片并快速切换。</p>
+<p>虚拟内存使用了空分复用技术，它将物理内存抽象为地址空间，每个进程都有各自的地址空间。<strong>地址空间的页被映射到物理内存</strong>，地址空间的页并不需要全部在物理内存中，当使用到一个没有在物理内存的页时，执行 <strong>页面置换算法</strong>，将该页置换到内存中。</p>
+<blockquote>
+<p>页面置换(一种移来移去的算法) 十分任性的概括</p>
+</blockquote>
+<h2 id="b3_solo_h2_4">4. 异步</h2>
+<p>异步指进程 <strong>不是一次性执行完毕</strong>，而是走走停停，以不可知的速度向前推进。</p>
+<h1 id="b3_solo_h1_5">基本功能</h1>
+<h2 id="b3_solo_h2_6">1. 进程管理</h2>
+<p>进程控制、进程同步、进程通信、死锁处理、处理机调度等。</p>
+<h2 id="b3_solo_h2_7">2. 内存管理</h2>
+<p>内存分配、地址映射、内存保护与共享、虚拟内存等。</p>
+<h2 id="b3_solo_h2_8">3. 文件管理</h2>
+<p>文件存储空间的管理、目录管理、文件读写管理和保护等。</p>
+<h2 id="b3_solo_h2_9">4. 设备管理</h2>
+<p>完成用户的 I/O 请求，方便用户使用各种设备，并提高设备的利用率。</p>
+<p>主要包括缓冲管理、设备分配、设备处理、虛拟设备等。</p>
+<h1 id="b3_solo_h1_10">系统调用</h1>
+<p>如果一个进程在用户态需要使用内核态的功能，就进行系统调用从而陷入内核，由操作系统代为完成。</p>
+<div align="center"> <img src="https://gitee.com/CyC2018/CS-Notes/raw/master/docs/pics/tGPV0.png?imageView2/2/w/1280/format/jpg/interlace/1/q/100" width="600"> </div><br>
+<p>Linux 的系统调用主要有以下这些：</p>
+<table>
+<thead>
+<tr><th align="center">Task</th><th>Commands</th></tr>
+</thead>
+<tbody>
+<tr><td align="center">进程控制</td><td>fork(); exit(); wait();</td></tr>
+<tr><td align="center">进程通信</td><td>pipe(); shmget(); mmap();</td></tr>
+<tr><td align="center">文件操作</td><td>open(); read(); write();</td></tr>
+<tr><td align="center">设备操作</td><td>ioctl(); read(); write();</td></tr>
+<tr><td align="center">信息维护</td><td>getpid(); alarm(); sleep();</td></tr>
+<tr><td align="center">安全</td><td>chmod(); umask(); chown();</td></tr>
+</tbody>
+</table>
+<h1 id="b3_solo_h1_11">大内核和微内核</h1>
+<h2 id="b3_solo_h2_12">1. 大内核</h2>
+<p>放了一整个操作系统,操作系统变成了一个整体 -.-<br>
+大内核是将操作系统功能作为一个紧密结合的整体放到内核。</p>
+<p>由于各模块共享信息，因此有很高的性能。</p>
+<h2 id="b3_solo_h2_13">2. 微内核</h2>
+<p>就只有一个核心的控制,其他的被分成不同的功能,一般都是这个吧<br>
+由于操作系统不断复杂，因此将一部分操作系统功能移出内核，从而降低内核的复杂性。移出的部分根据分层的原则划分成若干服务，相互独立。</p>
+<p>在微内核结构下，操作系统被划分成小的、定义良好的模块，只有微内核这一个模块运行在内核态，其余模块运行在用户态。</p>
+<p>因为需要频繁地在用户态和核心态之间进行切换，所以会有一定的性能损失。</p>
+<div align="center"> <img src="https://gitee.com/CyC2018/CS-Notes/raw/master/docs/pics/2_14_microkernelArchitecture.jpg?imageView2/2/w/1280/format/jpg/interlace/1/q/100"> </div><br>
+<h1 id="b3_solo_h1_14">中断分类</h1>
+<p>中断分为三类</p>
+<h2 id="b3_solo_h2_15">1. 外中断</h2>
+<p>由 CPU 执行指令以外的事件引起，如 I/O 完成中断，表示设备输入/输出处理已经完成，处理器能够发送下一个输入/输出请求。此外还有时钟中断、控制台中断等。</p>
+<h2 id="b3_solo_h2_16">2. 异常</h2>
+<p>由 CPU 执行指令的内部事件引起，如非法操作码、地址越界、算术溢出等。</p>
+<h2 id="b3_solo_h2_17">3. 陷入(人为的可控)</h2>
+<p>在用户程序中使用系统调用。</p>
+                    <div>
+                        <hr>
+<img alt="今日诗词" src="https://v2.jinrishici.com/one.svg" style="max-width:100%; display: block; margin: 0 auto;">
+
+标题：操作系统概要<br>
+作者：<a href="https://ellenbboe.github.io" target="_blank">ellenbboe</a><br>
+地址：<a href="https://ellenbboe.github.io/articles/2019/04/07/1561009672302.html" target="_blank">https://ellenbboe.github.io/articles/2019/04/07/1561009672302.html</a><br>
+<!-- 签名档内可使用 HTML、JavaScript -->
+<br>
+                    </div>
+            </section>
+        </div>
+    </div>
+        <div class="post__toc">
+<ul class="article__toc">
+        <li class="toc__h1">
+            <a href="#b3_solo_h1_0">基本特征</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#b3_solo_h2_1">1. 并发</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#b3_solo_h2_2">2. 共享</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#b3_solo_h2_3">3. 虚拟</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#b3_solo_h2_4">4. 异步</a>
+        </li>
+        <li class="toc__h1">
+            <a href="#b3_solo_h1_5">基本功能</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#b3_solo_h2_6">1. 进程管理</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#b3_solo_h2_7">2. 内存管理</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#b3_solo_h2_8">3. 文件管理</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#b3_solo_h2_9">4. 设备管理</a>
+        </li>
+        <li class="toc__h1">
+            <a href="#b3_solo_h1_10">系统调用</a>
+        </li>
+        <li class="toc__h1">
+            <a href="#b3_solo_h1_11">大内核和微内核</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#b3_solo_h2_12">1. 大内核</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#b3_solo_h2_13">2. 微内核</a>
+        </li>
+        <li class="toc__h1">
+            <a href="#b3_solo_h1_14">中断分类</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#b3_solo_h2_15">1. 外中断</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#b3_solo_h2_16">2. 异常</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#b3_solo_h2_17">3. 陷入(人为的可控)</a>
+        </li>
+</ul>        </div>
+<div class="comment">
+    <div class="comment__wrapper wrapper">
+        <div class="comment__title">
+            评论
+        </div>
+        <textarea rows="3" placeholder="评论内容只能为 2 到 500 个字符！" id="comment"></textarea>
+
+        <ul id="comments">
+        </ul>
+    </div>
+</div>
+    <div class="article__bottom">
+        <div class="wrapper">
+            <div class="fn__flex">
+                <div class="item" id="randomArticles"></div>
+                <div class="item" id="relevantArticles"></div>
+            </div>
+        </div>
+    </div>
+    
+</div>
+<footer class="footer">
+    <div class="wrapper fn__clear">
+        <div class="fn__left">
+            &copy; 2020
+            <a href="https://ellenbboe.github.io">Kosmos</a>
+            <a href="http://www.beian.miit.gov.cn/">浙ICP备18045840号-1</a>--------Let's move on
+本站已安全运行:
+<span id="momk"></span>
+<script language=javascript>
+function show_date_time(){
+window.setTimeout("show_date_time()", 1000);
+BirthDay=new Date("09-10-2018 19:47:57");//建站日期
+today=new Date();
+timeold=(today.getTime()-BirthDay.getTime());
+sectimeold=timeold/1000
+secondsold=Math.floor(sectimeold);
+msPerDay=24*60*60*1000
+e_daysold=timeold/msPerDay
+daysold=Math.floor(e_daysold);
+e_hrsold=(daysold-e_daysold)*-24;
+hrsold=Math.floor(e_hrsold);
+e_minsold=(hrsold-e_hrsold)*-60;
+minsold=Math.floor((hrsold-e_hrsold)*-60);
+seconds=Math.floor((minsold-e_minsold)*-60);
+momk.innerHTML=daysold+"天"+hrsold+"小时"+minsold+"分"+seconds+"秒" ;
+}
+show_date_time();
+</script>
+<style>
+#momk{animation:change 10s infinite;font-weight:800; }
+@keyframes change{0%{color:#5cb85c;}25%{color:#556bd8;}50%{color:#e40707;}75%{color:#66e616;}100% {color:#67bd31;}}
+</style> &nbsp;•&nbsp;
+            Powered by <a href="https://solo.b3log.org" target="_blank">Solo</a>
+            <br>
+            Theme Casper
+            <sup>[<a href="https://github.com/TryGhost/Casper" target="_blank">ref</a>]</sup>
+            by <a href="http://vanessa.b3log.org" target="_blank">Vanessa</a>
+        </div>
+        <div class="fn__right">
+            <a href="https://ellenbboe.github.io/tags.html" rel="section">
+            标签墙
+            </a>
+            &nbsp;•&nbsp;
+            <a href="https://ellenbboe.github.io/archives.html">
+            存档
+            </a>
+            &nbsp;•&nbsp;
+            <a rel="archive" href="https://ellenbboe.github.io/links.html">
+            友情链接
+            </a>
+            <br>
+            115 文章 &nbsp;
+            9 评论 &nbsp;
+            <span data-uvstaturl="https://ellenbboe.github.io">11608</span> 浏览 &nbsp;
+            4 当前访客
+        </div>
+    </div>
+</footer>
+
+<script type="text/javascript" src="https://ellenbboe.github.io/js/lib/compress/pjax.min.js" charset="utf-8"></script>
+<script type="text/javascript" src="https://ellenbboe.github.io/js/common.min.js?1578931371974"
+        charset="utf-8"></script>
+<script type="text/javascript"
+        src="https://ellenbboe.github.io/skins/Casper/js/common.min.js?1578931371974"
+        charset="utf-8"></script>
+<script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.4/dist/index.min.js"></script>
+<script>
+    var Label = {
+        servePath: "https://ellenbboe.github.io",
+        staticServePath: "https://ellenbboe.github.io",
+        luteAvailable: false,
+        hljsStyle: 'colorful',
+        langLabel: "zh_CN",
+        version: "3.7.0",
+    }
+    Util.init()
+</script>
+
+
+<script type="text/javascript">
+    Util.addScript('https://ellenbboe.github.io/js/page.min.js?1578931371974', 'soloPageScript')
+    var page = new Page({
+        "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
+        "oId": "1561009672302",
+        "blogHost": "https://ellenbboe.github.io",
+        "randomArticles1Label": "随机阅读：",
+        "externalRelevantArticles1Label": "站外相关阅读："
+    });
+    $(document).ready(function () {
+        page.load();
+    page.tips.externalRelevantArticlesDisplayCount = "0";
+    Skin.initArticle()
+    });
+</script>
+
+</body>
+</html>
+
+<!-- Generated by Latke (https://github.com/88250/latke) in 45ms, 2020/01/14 12:34:57 -->

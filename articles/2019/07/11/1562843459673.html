@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>学习笔记|多线程和并发 - Kosmos</title><meta name="description" content="对Java的多线程知识点做一个简单的整理吧 🌜"/><meta property="og:description" content="对Java的多线程知识点做一个简单的整理吧 🌜"/>    <meta name="keywords" content="开源,开发者,笔记,kosmos"/><link rel="dns-prefetch" href="https://ellenbboe.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://ellenbboe.github.io"><link rel="icon" type="image/png" href="https://s2.ax1x.com/2020/01/12/loApPe.png"/><link rel="apple-touch-icon" href="https://s2.ax1x.com/2020/01/12/loApPe.png"><link rel="shortcut icon" type="image/x-icon" href="https://s2.ax1x.com/2020/01/12/loApPe.png"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="学习笔记|多线程和并发 - Kosmos"/><meta property="og:site_name" content="Kosmos"/><meta property="og:url"      content="https://ellenbboe.github.io/articles/2019/07/11/1562843459673.html?"/><meta property="og:image" content="https://s2.ax1x.com/2020/01/12/loApPe.png"/><link rel="search" type="application/opensearchdescription+xml" title="学习笔记|多线程和并发 - Kosmos" href="/opensearch.xml"><link href="https://ellenbboe.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://ellenbboe.github.io/manifest.json">        <link rel="canonical" href="https://ellenbboe.github.io/articles/2019/07/11/1562843459673.html">        <link rel="stylesheet"
+              href="https://ellenbboe.github.io/skins/Casper/css/base.css?1578931371974"/>
+            <link rel="prev" title="学习笔记|理解Java虚拟机" href="https://ellenbboe.github.io/articles/2019/07/08/1562573236143.html">
+            <link rel="next" title="学习笔记|HashMap和ConcurrentHashMap" href="https://ellenbboe.github.io/articles/2019/07/23/1563870255078.html">
+    </head>
+<body class="fn__flex-column">
+<div id="pjax" class="fn__flex-1">
+    
+    <header class="header header--article">
+        <div class="wrapper header__title">
+            <h1 class="header__h1 fn__flex-inline">
+                <img src="https://s2.ax1x.com/2020/01/12/loApPe.png">
+                <a href="https://ellenbboe.github.io" rel="start" class="header__title">Kosmos</a>
+            </h1>
+            <h2 class="header__h2">---就算是痛苦难受，也要去体会那被称为生存的分量---</h2>
+        </div>
+        <nav class="wrapper header__nav fn__clear">
+            <a href="https://ellenbboe.github.io" rel="start">
+                    Kosmos
+            </a>
+
+                <a class="fn__flex-inline" href="/my-github-repos" target="_self" rel="section">
+                    <img src="/images/github-icon.png"> 我的开源
+                </a>
+                <a class="fn__flex-inline" href="/readlist" target="_self" rel="section">
+                     阅读列表
+                </a>
+
+
+            <div class="fn__right">
+    <a href="https://hacpai.com/member/ellenbboe"
+       title="https://hacpai.com/member/ellenbboe"
+       class="user__site"
+       target="_blank" rel="noopener nofollow">
+        <svg viewBox="0 0 32 32" width="100%" height="100%">
+            <path fill="#d23f31" style="fill: var(--color1, #d23f31)" d="M5.787 17.226h17.033l5.954 9.528c0.47 0.752 0.003 1.361-1.042 1.361h-15.141z"></path>
+            <path d="M10.74 3.927h17.033c1.045 0 1.512 0.609 1.042 1.361l-5.954 9.528h-19.872l6.379-10.209c0.235-0.376 0.849-0.681 1.372-0.681z"></path>
+            <path d="M2.953 17.226h2.839l6.804 10.889h-1.892c-0.523 0-1.137-0.305-1.372-0.681z"></path>
+        </svg>
+    </a>
+
+        <a href="https://github.com/ellenbboe"
+           title="https://github.com/ellenbboe"
+           class="user__site"
+           target="_blank" rel="noopener nofollow">
+            <svg viewBox="0 0 32 32" width="100%" height="100%">
+                <path d="M16 0.331c-8.836 0-16 7.163-16 16 0 7.069 4.585 13.067 10.942 15.182 0.8 0.148 1.094-0.347 1.094-0.77 0-0.381-0.015-1.642-0.022-2.979-4.452 0.968-5.391-1.888-5.391-1.888-0.728-1.849-1.776-2.341-1.776-2.341-1.452-0.993 0.11-0.973 0.11-0.973 1.606 0.113 2.452 1.649 2.452 1.649 1.427 2.446 3.743 1.739 4.656 1.33 0.143-1.034 0.558-1.74 1.016-2.14-3.554-0.404-7.29-1.777-7.29-7.907 0-1.747 0.625-3.174 1.649-4.295-0.166-0.403-0.714-2.030 0.155-4.234 0 0 1.344-0.43 4.401 1.64 1.276-0.355 2.645-0.532 4.005-0.539 1.359 0.006 2.729 0.184 4.008 0.539 3.054-2.070 4.395-1.64 4.395-1.64 0.871 2.204 0.323 3.831 0.157 4.234 1.026 1.12 1.647 2.548 1.647 4.295 0 6.145-3.743 7.498-7.306 7.895 0.574 0.497 1.085 1.47 1.085 2.963 0 2.141-0.019 3.864-0.019 4.391 0 0.426 0.288 0.925 1.099 0.768 6.354-2.118 10.933-8.113 10.933-15.18 0-8.837-7.164-16-16-16z"></path>
+            </svg>
+        </a>
+
+                <a rel="alternate" href="https://ellenbboe.github.io/rss.xml">
+                    RSS
+                </a>
+
+            </div>
+        </nav>
+    </header>
+    <div class="article__top">
+        <div class="fn__clear">
+            <div class="toc fn__none" onclick="$('.post__toc').slideToggle()">目录</div>
+            <div class="title fn__pointer" onclick="Util.goTop()">学习笔记|多线程和并发</div>
+<div class="article__share"
+     data-title="学习笔记|多线程和并发"
+     data-blogtitle="Kosmos"
+     data-url="https://ellenbboe.github.io/articles/2019/07/11/1562843459673.html"
+     data-avatar="https://img.hacpai.com/avatar/1560335521987_1576387741689.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100">
+    <span class="item" data-type="qqz">
+        <svg viewBox="0 0 32 32" width="100%" height="100%">
+            <path d="M22.824 13.989l-8.348 6.287s3.351 0.522 8.404 0.461l-0.23-1.040 7.2-6.549c0.132-0.12 0.183-0.312 0.129-0.487s-0.203-0.299-0.377-0.314l-9.492-0.856-3.708-9.213c-0.068-0.169-0.226-0.279-0.401-0.279s-0.333 0.11-0.401 0.279l-3.708 9.213-9.492 0.856c-0.174 0.015-0.323 0.139-0.377 0.314s-0.004 0.366 0.129 0.487l7.2 6.549-2.158 9.742c-0.040 0.178 0.026 0.365 0.168 0.474 0.142 0.107 0.331 0.115 0.481 0.021l8.158-5.165 8.158 5.165c0.070 0.045 0.147 0.066 0.225 0.066 0.090 0 0.18-0.029 0.256-0.086 0.142-0.109 0.208-0.295 0.168-0.474l-1.707-7.704c0.732-0.386 1.538-1.040 1.538-1.040s-3.195 1.638-14.664 0.838l8.312-6.325s-0.327-0.534-10.744-0.914c-0.697-0.026 8.493-1.83 15.281-0.305z"></path>
+        </svg>
+    </span>
+    <span class="item" data-type="wechat">
+        <svg viewBox="0 0 32 32" width="100%" height="100%">
+            <path d="M9.062 9.203c0-0.859-0.562-1.422-1.422-1.422-0.844 0-1.703 0.562-1.703 1.422 0 0.844 0.859 1.406 1.703 1.406 0.859 0 1.422-0.562 1.422-1.406zM20.672 17.125c0-0.562-0.562-1.125-1.422-1.125-0.562 0-1.125 0.562-1.125 1.125 0 0.578 0.562 1.141 1.125 1.141 0.859 0 1.422-0.562 1.422-1.141zM16.984 9.203c0-0.859-0.562-1.422-1.406-1.422-0.859 0-1.703 0.562-1.703 1.422 0 0.844 0.844 1.406 1.703 1.406 0.844 0 1.406-0.562 1.406-1.406zM26.906 17.125c0-0.562-0.578-1.125-1.422-1.125-0.562 0-1.125 0.562-1.125 1.125 0 0.578 0.562 1.141 1.125 1.141 0.844 0 1.422-0.562 1.422-1.141zM22.75 10.922c-0.359-0.047-0.719-0.063-1.094-0.063-5.375 0-9.625 4.016-9.625 8.953 0 0.828 0.125 1.625 0.359 2.375-0.359 0.031-0.703 0.047-1.063 0.047-1.422 0-2.547-0.281-3.969-0.562l-3.953 1.984 1.125-3.406c-2.828-1.984-4.531-4.547-4.531-7.656 0-5.391 5.094-9.625 11.328-9.625 5.563 0 10.453 3.391 11.422 7.953zM32 19.687c0 2.547-1.688 4.813-3.969 6.516l0.859 2.828-3.109-1.703c-1.141 0.281-2.281 0.578-3.406 0.578-5.391 0-9.625-3.688-9.625-8.219s4.234-8.219 9.625-8.219c5.094 0 9.625 3.688 9.625 8.219z"></path>
+        </svg>
+    </span>
+    <span class="item" data-type="weibo">
+        <svg viewBox="0 0 32 32" width="100%" height="100%">
+            <path d="M13.444 27.064c-5.3 0.525-9.875-1.875-10.219-5.35-0.344-3.481 3.675-6.719 8.969-7.244 5.3-0.525 9.875 1.875 10.212 5.35 0.35 3.481-3.669 6.725-8.963 7.244zM24.038 15.521c-0.45-0.137-0.762-0.225-0.525-0.819 0.512-1.287 0.563-2.394 0.006-3.188-1.038-1.481-3.881-1.406-7.137-0.037 0 0-1.025 0.444-0.762-0.363 0.5-1.613 0.425-2.956-0.356-3.737-1.769-1.769-6.469 0.069-10.5 4.1-3.013 3.006-4.763 6.212-4.763 8.981 0 5.287 6.787 8.506 13.425 8.506 8.7 0 14.494-5.056 14.494-9.069 0-2.431-2.044-3.806-3.881-4.375z"></path>
+            <path d="M29.819 5.833c-2.1-2.331-5.2-3.219-8.063-2.612v0c-0.663 0.144-1.081 0.794-0.938 1.45 0.144 0.662 0.788 1.081 1.45 0.938 2.038-0.431 4.238 0.2 5.731 1.856s1.9 3.913 1.256 5.888v0c-0.206 0.644 0.144 1.331 0.788 1.544 0.644 0.206 1.331-0.144 1.544-0.787v-0.006c0.9-2.762 0.331-5.938-1.769-8.269z"></path>
+            <path d="M26.588 8.752c-1.025-1.138-2.538-1.569-3.925-1.269-0.569 0.119-0.931 0.688-0.813 1.256 0.125 0.569 0.688 0.931 1.25 0.806v0c0.681-0.144 1.419 0.069 1.919 0.619 0.5 0.556 0.637 1.313 0.419 1.975v0c-0.175 0.55 0.125 1.15 0.681 1.331 0.556 0.175 1.15-0.125 1.331-0.681 0.438-1.356 0.163-2.906-0.863-4.037z"></path>
+            <path d="M13.738 20.771c-0.188 0.319-0.594 0.469-0.912 0.337-0.319-0.125-0.412-0.488-0.231-0.794 0.188-0.306 0.581-0.456 0.894-0.337 0.313 0.113 0.425 0.469 0.25 0.794zM12.044 22.933c-0.512 0.819-1.613 1.175-2.438 0.8-0.813-0.369-1.056-1.319-0.544-2.119 0.506-0.794 1.569-1.15 2.388-0.806 0.831 0.356 1.1 1.3 0.594 2.125zM13.969 17.146c-2.519-0.656-5.369 0.6-6.463 2.819-1.119 2.262-0.037 4.781 2.506 5.606 2.638 0.85 5.75-0.456 6.831-2.894 1.069-2.394-0.262-4.85-2.875-5.531z"></path>
+        </svg>
+    </span>
+    <span class="item" data-type="twitter">
+        <svg viewBox="0 0 32 32" width="100%" height="100%">
+            <path d="M32.003 6.075c-1.175 0.525-2.444 0.875-3.769 1.031 1.356-0.813 2.394-2.1 2.887-3.631-1.269 0.75-2.675 1.3-4.169 1.594-1.2-1.275-2.906-2.069-4.794-2.069-3.625 0-6.563 2.938-6.563 6.563 0 0.512 0.056 1.012 0.169 1.494-5.456-0.275-10.294-2.888-13.531-6.862-0.563 0.969-0.887 2.1-0.887 3.3 0 2.275 1.156 4.287 2.919 5.463-1.075-0.031-2.087-0.331-2.975-0.819 0 0.025 0 0.056 0 0.081 0 3.181 2.263 5.838 5.269 6.437-0.55 0.15-1.131 0.231-1.731 0.231-0.425 0-0.831-0.044-1.237-0.119 0.838 2.606 3.263 4.506 6.131 4.563-2.25 1.762-5.075 2.813-8.156 2.813-0.531 0-1.050-0.031-1.569-0.094 2.913 1.869 6.362 2.95 10.069 2.95 12.075 0 18.681-10.006 18.681-18.681 0-0.287-0.006-0.569-0.019-0.85 1.281-0.919 2.394-2.075 3.275-3.394z"></path>
+        </svg>
+    </span>
+    <span class="item__qr"></span>
+</div>        </div>
+        <progress class="article__progress"></progress>
+    </div>
+    <div class="article">
+        <div class="ft__center">
+            <div class="item__meta">
+                <time>
+                    2019-07-23
+                </time>
+                /
+                    <a class="tag" rel="tag"
+                       href="https://ellenbboe.github.io/tags/%E7%AC%94%E8%AE%B0">笔记</a> &nbsp;
+                    <a class="tag" rel="tag"
+                       href="https://ellenbboe.github.io/tags/Java">Java</a> &nbsp;
+                    <a class="tag" rel="tag"
+                       href="https://ellenbboe.github.io/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B">多线程</a> &nbsp;
+            </div>
+            <h2 class="item__title">
+                学习笔记|多线程和并发
+            </h2>
+        </div>
+        <div class="item__cover" style="background-image: url(https://img.hacpai.com/bing/20180813.jpg?imageView2/1/w/1280/h/720/interlace/1/q/100)"></div>
+        <div class="wrapper">
+            <section class="item__content item__content--article vditor-reset">
+                <p></p><h4 id="b3_solo_h4_0">并发和并行</h4>
+<p>并发:交替着做事<br>
+并行:一同做事</p>
+<h4 id="b3_solo_h4_1">进程与线程</h4>
+<p>进程:一个程序就是一个进程，进程是独立的<br>
+线程:线程为进程提供服务，多个线程可以共享数据空间,线程也有私有的空间</p>
+<h4 id="b3_solo_h4_2">线程的6种状态</h4>
+<p>new:线程的新建<br>
+runable:分为两种 runable和running runable是没有时间片的<br>
+waiting:无限的等待状态,通过notify()或者notifyall()进行唤醒<br>
+time_waiting:定时的等待状态,时间结束后成为runable<br>
+blocked:线程被堵塞,线程没有得到对象的锁<br>
+terminated:线程终止</p>
+<h4 id="b3_solo_h4_3">线程的start和run</h4>
+<p>调用start方法可以使线程就绪并切换到新的线程中运行(自动调用run方法),而调用run方法还是在当前线程里</p>
+<h4 id="b3_solo_h4_4">sleep和wait的区别</h4>
+<p>sleep方法没有释放锁,而wait方法释放了锁<br>
+sleep可以被自动唤醒,wait不加时间就一直等待<br>
+wiat()的时候调用notify()或者notifyall()会让对象从等待池中转移到锁的竞争池中<br>
+notify会唤醒随机一个等待池的线程,而notifyall会唤醒全部线程</p>
+<h4 id="b3_solo_h4_5">Thread和Runable</h4>
+<p>新建Thread重写run方法就可以新建线程<br>
+通过Runable接口,可以调用Thread的构造函数新建线程</p>
+<h4 id="b3_solo_h4_6">线程的3种创建方法</h4>
+<ol>
+<li>继承Thread类</li>
+<li>实现Runnable接口</li>
+<li>实现Callable接口</li>
+</ol>
+<h4 id="b3_solo_h4_7">死锁</h4>
+<p>多个线程都在争夺同一个资源导致阻塞形成死锁,假如要避免死锁</p>
+<ol>
+<li>当线程请求不到资源的时候将线程之前的资源都释放掉</li>
+<li>让线程对资源进行顺序申请</li>
+<li>一次性申请所有资源</li>
+</ol>
+<h4 id="b3_solo_h4_8">处理线程返回值</h4>
+<ol>
+<li>主线程等待着值的返回(循环查看变量的值并sleep)</li>
+<li>thread的join</li>
+<li>实现Callable接口
+<ol>
+<li>使用Thread运行FutureTake类对象,调用get方法得到返回值</li>
+<li>使用线程池submit实现Callable的类得到Future对象</li>
+</ol>
+</li>
+</ol>
+<h4 id="b3_solo_h4_9">yield与interrupt</h4>
+<p>调用yield方法建议线程放弃调用时间片,但可能会被忽视,不会影响锁的状态<br>
+interrupt会设置线程的中断的状态,假如线程是阻塞的,就会退出阻塞状态并抛出异常,假如是正常运行的状态会设置线程的中断表示然后继续运行<br>
+中断的处理是程序自己处理的</p>
+<h4 id="b3_solo_h4_10">指令重排序</h4>
+<p>JVM会对指令进行重新排序,确保和未排序的运行结果一样<br>
+在不改变程序的执行结果的前提下,尽可能的为编译器和处理器优化</p>
+<blockquote>
+<p>顺序一致性模型:按照代码的执行顺序进行执行</p>
+</blockquote>
+<p>新建对象的一般步骤:</p>
+<ol>
+<li>分配对象的空间</li>
+<li>初始化对象</li>
+<li>给引用赋值</li>
+</ol>
+<p>当重排序出现的时候,可能会将给引用赋值放在初始化对象前面,所以在多线程访问的时候会出现错误</p>
+<h4 id="b3_solo_h4_11">volatile关键字</h4>
+<p>所有对volatile变量的操作都实在内存中进行的,不会产生副本,保证了共享变量的可见性</p>
+<blockquote>
+<p>线程在对数据操作的时候,先将数据同步到自己的本地内存中,执行结束后再同步回去,这里有一个时间差,在这段时间内,线程对副本的操作对于其他线程来说是不可见的<br>
+volatile没有Synchronized的互斥性,所以i++操作并不是原子性操作<br>
+适合一写多读的场景</p>
+</blockquote>
+<h4 id="b3_solo_h4_12">Synchronized关键字</h4>
+<p>前期,Synchronized属于重量级锁,JDK1.6之后进行了优化,减少了开销<br>
+Synchronized可以对类对象(静态方法和代码锁)和实例对象(实例方法)进行加锁,确保只有一个线程对对象进行操作,保证多线程对资源访问的同步</p>
+<ol>
+<li>通过&nbsp;monitorenter 指令和 monitorexit 指令(修饰对象)<br>
+monitorenter:获取对象头里的monitor对象,使对象的锁计数器加1<br>
+monitorexit:将锁的计数器设置为0</li>
+<li>ACC_SYNCHRONIZED:标识此方法是同步方法</li>
+</ol>
+<p>Sychronized在获得锁的时候会将该线程的本地内存置为无效,并从主内存读取.释放时会将本地内存刷新到主内存中</p>
+<h4 id="b3_solo_h4_13">Sychronized和ReentrantLock</h4>
+<p>Sychronized是关键字,ReentrantLock是类,可以将锁对象化<br>
+两者都是可以重入的<br>
+Sychronized是非公平锁,ReentrantLock可以实现公平和非公平两种模式<br>
+Sychronized操作的是对象的markword,ReentrantLock操作的是park方法<br>
+Sychronized依赖JVM,ReentrantLock调用JDK的方法</p>
+<h4 id="b3_solo_h4_14">Java内存模型</h4>
+<p>每个线程有自己的工作内存,保存从主内存中复制的副本,属于私有空间<br>
+主内存存放共享变量</p>
+<h4 id="b3_solo_h4_15">锁的两种实现形式</h4>
+<ol>
+<li>通过JUC包中的类</li>
+<li>使用同步代码块(Sychronized)</li>
+</ol>
+<h4 id="b3_solo_h4_16">锁的分类与状态</h4>
+<p>自旋锁:采用循环的方式获得锁<br>
+适应性自旋锁:根据上一次获得锁的时间调整时间进行循环获得锁<br>
+锁消除:当方法加了同步锁之后只有一个线程在使用,锁会被Java虚拟机自动消除<br>
+锁粗化:假如同一个锁被同一个线程重复申请释放,可以将请求锁的范围扩大<br>
+偏向锁:对象头的markword中存放线程的ID,减少重复申请消耗<br>
+轻量级锁:第二个线程竞争锁的时候偏向锁升级为轻量级锁<br>
+重量级锁:同一时间多个线程竞争资源<br>
+乐观锁:只是简单的检查一下和期望值是否一致,不加锁<br>
+悲观锁:对每次操作都加锁进行操作</p>
+<h4 id="b3_solo_h4_17">Sychronized状态转换</h4>
+<p>得到对象锁的过程:<br>
+线程的私有栈帧中存储对象的markword,对象的markword更新为指向线程栈帧markword的指针,然后线程栈帧中的owner指针指向对象的markword<br>
+无锁:没有加锁<br>
+偏向锁:假如对象头MarkWord中ThreadId字段为空,则将ThreadId设为改线程的Id,表示该线程持有偏向锁,下一次该线程不会重复获得锁,假如出现锁的竞争,则偏向锁会撤销升级为轻量级锁<br>
+轻量级锁:第二个线程得到对象锁时,对象锁会变成轻量级锁,线程竞争使用CAS获得锁<br>
+重量级锁:当线程(多个)访问对象时发现对象的markword不是自己的线程栈帧,锁会膨胀为重量级锁,之后访问的线程会被堵塞,而最开始的线程会用cas自旋获得锁</p>
+<p>可以自动的升级和降级</p>
+<h4 id="b3_solo_h4_18">happens-before的八大规则</h4>
+<ol>
+<li>程序次序规则：一个线程内，按照代码顺序，书写在前面的操作先行发生于书写在后面的操作；</li>
+<li>锁定规则：一个unLock操作先行发生于后面对同一个锁额lock操作；</li>
+<li>volatile变量规则：对一个变量的写操作先行发生于后面对这个变量的读操作；</li>
+<li>传递规则：如果操作A先行发生于操作B，而操作B又先行发生于操作C，则可以得出操作A先行发生于操作C；</li>
+<li>线程启动规则：Thread对象的start()方法先行发生于此线程的每个一个动作；</li>
+<li>线程中断规则：对线程interrupt()方法的调用先行发生于被中断线程的代码检测到中断事件的发生；</li>
+<li>线程终结规则：线程中所有的操作都先行发生于线程的终止检测，我们可以通过Thread.join()方法结束、Thread.isAlive()的返回值手段检测到线程已经终止执行；</li>
+<li>对象终结规则：一个对象的初始化完成先行发生于他的finalize()方法的开始；<br>
+happen-befores并不能保证线程交互的可见性</li>
+</ol>
+<blockquote>
+<p>可见性:线程修改公共变量指令对其他线程来说是可见的</p>
+</blockquote>
+<h4 id="b3_solo_h4_19">线程池</h4>
+<p>核心线程池,线程池队列,线程池<br>
+提交线程步骤:判断核心线程池的线程是否都在工作,如果否,就创建一个线程,否则就判断工作队列是否满,如果是,就存储在队列中,否则判断线程池的线程是否都在工作,如果否,就创建一个线程执行,否则调用饱和策略(对错误的处理,有4种)</p>
+<p>线程池创建线程的时候会将工作线程封装成worker,worker会循环去执行工作队列的任务<br>
+任务的阻塞队列可以选择无限的,有限的,基于数组的,基于链表的(建议使用有界的队列,能增强系统的稳定性和预警性 )<br>
+调用execute执行实现Runnable接口的类,submit提交需要返回值的任务<br>
+线程池的shutdown和shutdownnow都是遍历线程池线程,调用中断方法中断线程,shutdownnow将线程池状态设置为stop,然后尝试停止所有正在执行的和暂停任务的线程,返回等待执行任务的列表;shutdown将线程池状态设置为shutdown,然后中断所有没有执行任务的线程<br>
+线程池的创建:</p>
+<ol>
+<li>通过ThreadPoolExecutor类的构造函数</li>
+<li>使用Executors类中的三种对象池构造函数创建
+<ol>
+<li>FixedThreadPool</li>
+<li>SingleThreadExecutor</li>
+<li>CachedThreadPool</li>
+</ol>
+</li>
+</ol>
+<h4 id="b3_solo_h4_20">CAS</h4>
+<p>获取内存中的值,和期望的值作比较是否一致,假如一致就将新值赋值,不一致就重试<br>
+CAS会出现ABA的问题,无法知道中途的值(解决 AtomicStampedRefence)<br>
+CAS适用于写比较少的情况下（多读场景，冲突一般较少），synchronized适用于写比较多的情况下（多写场景，冲突一般较多）</p>
+<h4 id="b3_solo_h4_21">队列同步器(AQS)</h4>
+<p><a href="https://www.cnblogs.com/waterystone/p/4920797.html" target="_blank">https://www.cnblogs.com/waterystone/p/4920797.html</a></p>
+<p><a href="https://www.cnblogs.com/chengxiao/archive/2017/07/24/7141160.html" target="_blank">https://www.cnblogs.com/chengxiao/archive/2017/07/24/7141160.html</a></p>
+<p><a href="https://javadoop.com/2017/06/16/AbstractQueuedSynchronizer/" target="_blank">https://javadoop.com/2017/06/16/AbstractQueuedSynchronizer/</a></p>
+<p><a href="https://www.javadoop.com/post/AbstractQueuedSynchronizer-2/" target="_blank">https://www.javadoop.com/post/AbstractQueuedSynchronizer-2/</a></p>
+<p><a href="https://www.javadoop.com/post/AbstractQueuedSynchronizer-3" target="_blank">https://www.javadoop.com/post/AbstractQueuedSynchronizer-3</a></p>
+<p>AQS主要是更改state的数值<br>
+有两种资源的共享模式exclusive（Reentrantlock）和share（Countdownlatch/Semaphore)</p>
+<p>tryAcquire(int)：独占方式。尝试获取资源，成功则返回true，失败则返回false。<br>
+tryRelease(int)：独占方式。尝试释放资源，成功则返回true，失败则返回false。<br>
+tryAcquireShared(int)：共享方式。尝试获取资源。负数表示失败；0表示成功，但没有剩余可用资源；正数表示成功，且有剩余资源。<br>
+tryReleaseShared(int)：共享方式。尝试释放资源，如果释放后允许唤醒后续等待结点返回true，否则返回false。</p>
+<h5 id="b3_solo_h5_22">Reentrantlock</h5>
+<p>acquire -&gt; if (!tryAcquire(arg) &amp;&amp;acquireQueued(addWaiter(Node.EXCLUSIVE), arg))<br>
+// tryAcquire(arg)没有成功，这个时候需要把当前线程挂起，放到阻塞队列中。<br>
+tryacquire(arg) (获得锁 1.无人持有直接cas 2.有人拿了，看是否是同一个线程）<br>
+addWaiter(Node.EXCLUSIVE) 先是直接添加到阻塞队列的尾部(尾部不是空)使用cas<br>
+如果尾部为空或者cas出错,就用enq(node)添加(会先创建一个初始化的head(假如空的话),然后添加到他的后面)<br>
+acquireQueued(进入阻塞队列,判断是第一个还是其他位置)如果是第一个,若前驱是head,就使用tryacquire竞争一下锁<br>
+如果是其他位置,将前驱节点的waitstate设置为-1,如果大于0,就向前找小于等于0的waitstate,然后挂起</p>
+<p>release-&gt;获得state,将state-1 如果state等于0就释放(将head的waitstate=0,从后向前找waitestate&lt;=0的点(一直向前找),找到后唤醒(unpark(node)唤醒后的node从park的地方起来),再set一下state<br>
+Reentranlock分为公平锁和非公平锁,非公平锁的当前线程调用lock的时候直接用cas抢锁,抢不到后和公平锁一样请求锁acquire<br>
+在调用tryacquire的时候又会使用cas抢,然后再和之前一样去阻塞队列排队</p>
+<h5 id="b3_solo_h5_23">Condition</h5>
+<p>condition基于reentranlock实现,await和signal都要获得锁</p>
+<p>conditon的await()响应中断-&gt;addcondition()将节点添加到条件队列,插入到尾部(先得到tail的node,清除非condition的状态节点(unlinkcancelledwaiter(普通单链表的操作)),然后在初始化node并添加到条件队列(入队了)<br>
+之后完全释放锁(直接把state=0,返回赋值前的值)-&gt;(isOnSyncQueue(判断条件是否是CONDITION&amp;&amp;node.next!=null&amp;&amp;并在阻塞队列中找是否有这个元素))如果都没有,等待进入阻塞队列(挂起)(其他线程可以来获得锁)<br>
+signal(要获得当前线程的独占锁)将要转移的node(一般是第一个,也有可能第一个取消了(通过cas判断waitstate))与条件队列断绝关系,使用enq加入阻塞队列(state会变成0),如果阻塞队列中node前驱节点放弃了锁或者cas前驱节点的waitstate(cas signal)失败了就唤醒(unpark)节点</p>
+<p>node唤醒的情况</p>
+<ol>
+<li>获得锁</li>
+<li>中断</li>
+<li>前面的情况</li>
+</ol>
+<p>node被唤醒之后,会checkinterruptwhilewaiting 判断是否发生了中断而且如果发生中断是发生在signal前或者signal后(transferAfterCancelledwait 通过cas设置state判断),中断唤醒后如果发现不是被signal的(被signal的node waitestate会变成0,node通过cas检查)会主动加入到阻塞队列中enq<br>
+加入阻塞队列中,准备获得锁,acquirequeue(node,savedstate)并判断是否发生中断,有中断就进行处理(程序处理,例如抛出或者不抛)</p>
+<h5 id="b3_solo_h5_24">Countdownlatch</h5>
+<p>将state设为n,使用countdown() 减少1,state=0的时候就唤醒调用await()的方法<br>
+await()-&gt;tryacquire(判断state是否=0来返回1,-1)<br>
+返回-1  -&gt;doacquiresharedinterruptibly 先入队,将前驱节点waitstate设置为-1,挂起(可以重复多次入队挂起 数量等于n)<br>
+countdown()-&gt;tryreleaseshared(不断减少state)如果=0,就调用doreleaseshared方法(state=0)<br>
+第一个线程被doreleaseshared()里面的unparksuccess唤醒之后,由于state=0,循环在第二轮的时候&gt;tryacquire返回1,线程被调用setheadandProgate(node,r),设置为头结点(state为0)并唤醒下一节点调用doreleaseshared()</p>
+<h5 id="b3_solo_h5_25">cyclicbarrier</h5>
+<p>基于condition实现,只有当每个线程await()了之后,使用generation开始下一次的新生,另外在执行过程中有中断 超时或者要做的action出现异常 栅栏就会break,所有await的线程会notifyall然后抛出异常</p>
+<h5 id="b3_solo_h5_26">semephroe</h5>
+<p>分公平策略和非公平策略,state表示资源的数量,state=0表示需要没有资源了,要等release,其他的和共享的aqs差不多,通过判断资源的数量(cas)来阻塞线程</p>
+<h4 id="b3_solo_h4_27">ThreadLocal</h4>
+<p>假如一个变量被ThreadLocal修饰,那么每一个线程在访问这个变量的时候会保存到本地副本中,并且会存放在线程的ThreadLocalMap中,key为ThreadLocal对象</p>
+<h4 id="b3_solo_h4_28">Atomic原子类</h4>
+<p>用原子的方式更新数据<br>
+有4类原子类:</p>
+<ol>
+<li>基础类:AtomicInteger,AtomicLong,AtomicBoolean</li>
+<li>数组类型:AtomicIntegerArray,AtomicLongArray,AtomicRefenceArray</li>
+<li>引用类型:AtomicReference,AtomicStampedReference,AtomicMarkableReference</li>
+<li>对象的属性修改类型:AtomicIntegerFieldUpdater,AtomicLongFieldUpdater,AtomicStampedReference</li>
+</ol>
+<p>使用CAS和volatile变量和native方法实现原子操作,避免使用Sychronized</p>
+<p></p>
+                    <div>
+                        <hr>
+<img alt="今日诗词" src="https://v2.jinrishici.com/one.svg" style="max-width:100%; display: block; margin: 0 auto;">
+
+标题：学习笔记|多线程和并发<br>
+作者：<a href="https://ellenbboe.github.io" target="_blank">ellenbboe</a><br>
+地址：<a href="https://ellenbboe.github.io/articles/2019/07/11/1562843459673.html" target="_blank">https://ellenbboe.github.io/articles/2019/07/11/1562843459673.html</a><br>
+<!-- 签名档内可使用 HTML、JavaScript -->
+<br>
+                    </div>
+            </section>
+        </div>
+    </div>
+        <div class="post__toc">
+<ul class="article__toc">
+        <li class="toc__h4">
+            <a href="#b3_solo_h4_0">并发和并行</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#b3_solo_h4_1">进程与线程</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#b3_solo_h4_2">线程的6种状态</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#b3_solo_h4_3">线程的start和run</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#b3_solo_h4_4">sleep和wait的区别</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#b3_solo_h4_5">Thread和Runable</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#b3_solo_h4_6">线程的3种创建方法</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#b3_solo_h4_7">死锁</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#b3_solo_h4_8">处理线程返回值</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#b3_solo_h4_9">yield与interrupt</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#b3_solo_h4_10">指令重排序</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#b3_solo_h4_11">volatile关键字</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#b3_solo_h4_12">Synchronized关键字</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#b3_solo_h4_13">Sychronized和ReentrantLock</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#b3_solo_h4_14">Java内存模型</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#b3_solo_h4_15">锁的两种实现形式</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#b3_solo_h4_16">锁的分类与状态</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#b3_solo_h4_17">Sychronized状态转换</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#b3_solo_h4_18">happens-before的八大规则</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#b3_solo_h4_19">线程池</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#b3_solo_h4_20">CAS</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#b3_solo_h4_21">队列同步器(AQS)</a>
+        </li>
+        <li class="toc__h5">
+            <a href="#b3_solo_h5_22">Reentrantlock</a>
+        </li>
+        <li class="toc__h5">
+            <a href="#b3_solo_h5_23">Condition</a>
+        </li>
+        <li class="toc__h5">
+            <a href="#b3_solo_h5_24">Countdownlatch</a>
+        </li>
+        <li class="toc__h5">
+            <a href="#b3_solo_h5_25">cyclicbarrier</a>
+        </li>
+        <li class="toc__h5">
+            <a href="#b3_solo_h5_26">semephroe</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#b3_solo_h4_27">ThreadLocal</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#b3_solo_h4_28">Atomic原子类</a>
+        </li>
+</ul>        </div>
+<div class="comment">
+    <div class="comment__wrapper wrapper">
+        <div class="comment__title">
+            评论
+        </div>
+        <textarea rows="3" placeholder="评论内容只能为 2 到 500 个字符！" id="comment"></textarea>
+
+        <ul id="comments">
+        </ul>
+    </div>
+</div>
+    <div class="article__bottom">
+        <div class="wrapper">
+            <div class="fn__flex">
+                <div class="item" id="randomArticles"></div>
+                <div class="item" id="relevantArticles"></div>
+            </div>
+        </div>
+    </div>
+    
+</div>
+<footer class="footer">
+    <div class="wrapper fn__clear">
+        <div class="fn__left">
+            &copy; 2020
+            <a href="https://ellenbboe.github.io">Kosmos</a>
+            <a href="http://www.beian.miit.gov.cn/">浙ICP备18045840号-1</a>--------Let's move on
+本站已安全运行:
+<span id="momk"></span>
+<script language=javascript>
+function show_date_time(){
+window.setTimeout("show_date_time()", 1000);
+BirthDay=new Date("09-10-2018 19:47:57");//建站日期
+today=new Date();
+timeold=(today.getTime()-BirthDay.getTime());
+sectimeold=timeold/1000
+secondsold=Math.floor(sectimeold);
+msPerDay=24*60*60*1000
+e_daysold=timeold/msPerDay
+daysold=Math.floor(e_daysold);
+e_hrsold=(daysold-e_daysold)*-24;
+hrsold=Math.floor(e_hrsold);
+e_minsold=(hrsold-e_hrsold)*-60;
+minsold=Math.floor((hrsold-e_hrsold)*-60);
+seconds=Math.floor((minsold-e_minsold)*-60);
+momk.innerHTML=daysold+"天"+hrsold+"小时"+minsold+"分"+seconds+"秒" ;
+}
+show_date_time();
+</script>
+<style>
+#momk{animation:change 10s infinite;font-weight:800; }
+@keyframes change{0%{color:#5cb85c;}25%{color:#556bd8;}50%{color:#e40707;}75%{color:#66e616;}100% {color:#67bd31;}}
+</style> &nbsp;•&nbsp;
+            Powered by <a href="https://solo.b3log.org" target="_blank">Solo</a>
+            <br>
+            Theme Casper
+            <sup>[<a href="https://github.com/TryGhost/Casper" target="_blank">ref</a>]</sup>
+            by <a href="http://vanessa.b3log.org" target="_blank">Vanessa</a>
+        </div>
+        <div class="fn__right">
+            <a href="https://ellenbboe.github.io/tags.html" rel="section">
+            标签墙
+            </a>
+            &nbsp;•&nbsp;
+            <a href="https://ellenbboe.github.io/archives.html">
+            存档
+            </a>
+            &nbsp;•&nbsp;
+            <a rel="archive" href="https://ellenbboe.github.io/links.html">
+            友情链接
+            </a>
+            <br>
+            115 文章 &nbsp;
+            9 评论 &nbsp;
+            <span data-uvstaturl="https://ellenbboe.github.io">11608</span> 浏览 &nbsp;
+            4 当前访客
+        </div>
+    </div>
+</footer>
+
+<script type="text/javascript" src="https://ellenbboe.github.io/js/lib/compress/pjax.min.js" charset="utf-8"></script>
+<script type="text/javascript" src="https://ellenbboe.github.io/js/common.min.js?1578931371974"
+        charset="utf-8"></script>
+<script type="text/javascript"
+        src="https://ellenbboe.github.io/skins/Casper/js/common.min.js?1578931371974"
+        charset="utf-8"></script>
+<script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.4/dist/index.min.js"></script>
+<script>
+    var Label = {
+        servePath: "https://ellenbboe.github.io",
+        staticServePath: "https://ellenbboe.github.io",
+        luteAvailable: false,
+        hljsStyle: 'colorful',
+        langLabel: "zh_CN",
+        version: "3.7.0",
+    }
+    Util.init()
+</script>
+
+
+<script type="text/javascript">
+    Util.addScript('https://ellenbboe.github.io/js/page.min.js?1578931371974', 'soloPageScript')
+    var page = new Page({
+        "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
+        "oId": "1562843459673",
+        "blogHost": "https://ellenbboe.github.io",
+        "randomArticles1Label": "随机阅读：",
+        "externalRelevantArticles1Label": "站外相关阅读："
+    });
+    $(document).ready(function () {
+        page.load();
+    page.tips.externalRelevantArticlesDisplayCount = "0";
+    Skin.initArticle()
+    });
+</script>
+
+</body>
+</html>
+
+<!-- Generated by Latke (https://github.com/88250/latke) in 46ms, 2020/01/14 12:34:57 -->

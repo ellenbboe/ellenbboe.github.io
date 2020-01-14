@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>Linux From Scrach Pass 1 - Kosmos</title><meta name="description" content="准备 准备空间大概8g 准备在u盘上构建系统 我准备将u盘对半分成两个盘 一个安装系统,就用ext4 一个当作普通的u盘来用 记得分区的时候格式化 可以使用fdisk 或者 其他工具 另外: 我的arch上没有创建swap分区 挂载U盘/移动硬盘 使用fdisk -l命令 得到 Disk /dev/sdb：29 GiB，31104958464 字节，60751872 个扇区 单元：扇区 / 1 * 512 = 512 字节 扇区大小(逻辑/物理)：512 字节 / 512 字节 I/O 大小(最小/最佳)：512 字节 / 512 字节 磁盘标签类型：dos 磁盘标识符：0xcad4ebea 设备 启动 起点 末尾 扇区 大小 Id 类型 /dev/sdb4 * 63 60751871 60751809 29G c W95 FAT32 (LBA) 创建文件夹 将sdb4挂载到文件夹上 一般u盘会自动挂载,像我的系统就是挂载到run/s/xxx 下面 不过官方建议还是挂载到 /mnt/lfs 下面 mount -v -t ext4 /dev/&lt;xxx&gt; $LFS # 将 /...."/><meta property="og:description" content="准备 准备空间大概8g 准备在u盘上构建系统 我准备将u盘对半分成两个盘 一个安装系统,就用ext4 一个当作普通的u盘来用 记得分区的时候格式化 可以使用fdisk 或者 其他工具 另外: 我的arch上没有创建swap分区 挂载U盘/移动硬盘 使用fdisk -l命令 得到 Disk /dev/sdb：29 GiB，31104958464 字节，60751872 个扇区 单元：扇区 / 1 * 512 = 512 字节 扇区大小(逻辑/物理)：512 字节 / 512 字节 I/O 大小(最小/最佳)：512 字节 / 512 字节 磁盘标签类型：dos 磁盘标识符：0xcad4ebea 设备 启动 起点 末尾 扇区 大小 Id 类型 /dev/sdb4 * 63 60751871 60751809 29G c W95 FAT32 (LBA) 创建文件夹 将sdb4挂载到文件夹上 一般u盘会自动挂载,像我的系统就是挂载到run/s/xxx 下面 不过官方建议还是挂载到 /mnt/lfs 下面 mount -v -t ext4 /dev/&lt;xxx&gt; $LFS # 将 /...."/>    <meta name="keywords" content="开源,开发者,笔记,kosmos"/><link rel="dns-prefetch" href="https://ellenbboe.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://ellenbboe.github.io"><link rel="icon" type="image/png" href="https://s2.ax1x.com/2020/01/12/loApPe.png"/><link rel="apple-touch-icon" href="https://s2.ax1x.com/2020/01/12/loApPe.png"><link rel="shortcut icon" type="image/x-icon" href="https://s2.ax1x.com/2020/01/12/loApPe.png"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="Linux From Scrach Pass 1 - Kosmos"/><meta property="og:site_name" content="Kosmos"/><meta property="og:url"      content="https://ellenbboe.github.io/articles/2018/07/12/1561009681962.html?"/><meta property="og:image" content="https://s2.ax1x.com/2020/01/12/loApPe.png"/><link rel="search" type="application/opensearchdescription+xml" title="Linux From Scrach Pass 1 - Kosmos" href="/opensearch.xml"><link href="https://ellenbboe.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://ellenbboe.github.io/manifest.json">        <link rel="canonical" href="https://ellenbboe.github.io/articles/2018/07/12/1561009681962.html">        <link rel="stylesheet"
+              href="https://ellenbboe.github.io/skins/Casper/css/base.css?1578931371974"/>
+            <link rel="prev" title="git443错误" href="https://ellenbboe.github.io/articles/2018/07/11/1561009685950.html">
+            <link rel="next" title="2018-07-13 lfs编译日志" href="https://ellenbboe.github.io/articles/2018/07/14/1561009679893.html">
+    </head>
+<body class="fn__flex-column">
+<div id="pjax" class="fn__flex-1">
+    
+    <header class="header header--article">
+        <div class="wrapper header__title">
+            <h1 class="header__h1 fn__flex-inline">
+                <img src="https://s2.ax1x.com/2020/01/12/loApPe.png">
+                <a href="https://ellenbboe.github.io" rel="start" class="header__title">Kosmos</a>
+            </h1>
+            <h2 class="header__h2">---就算是痛苦难受，也要去体会那被称为生存的分量---</h2>
+        </div>
+        <nav class="wrapper header__nav fn__clear">
+            <a href="https://ellenbboe.github.io" rel="start">
+                    Kosmos
+            </a>
+
+                <a class="fn__flex-inline" href="/my-github-repos" target="_self" rel="section">
+                    <img src="/images/github-icon.png"> 我的开源
+                </a>
+                <a class="fn__flex-inline" href="/readlist" target="_self" rel="section">
+                     阅读列表
+                </a>
+
+
+            <div class="fn__right">
+    <a href="https://hacpai.com/member/ellenbboe"
+       title="https://hacpai.com/member/ellenbboe"
+       class="user__site"
+       target="_blank" rel="noopener nofollow">
+        <svg viewBox="0 0 32 32" width="100%" height="100%">
+            <path fill="#d23f31" style="fill: var(--color1, #d23f31)" d="M5.787 17.226h17.033l5.954 9.528c0.47 0.752 0.003 1.361-1.042 1.361h-15.141z"></path>
+            <path d="M10.74 3.927h17.033c1.045 0 1.512 0.609 1.042 1.361l-5.954 9.528h-19.872l6.379-10.209c0.235-0.376 0.849-0.681 1.372-0.681z"></path>
+            <path d="M2.953 17.226h2.839l6.804 10.889h-1.892c-0.523 0-1.137-0.305-1.372-0.681z"></path>
+        </svg>
+    </a>
+
+        <a href="https://github.com/ellenbboe"
+           title="https://github.com/ellenbboe"
+           class="user__site"
+           target="_blank" rel="noopener nofollow">
+            <svg viewBox="0 0 32 32" width="100%" height="100%">
+                <path d="M16 0.331c-8.836 0-16 7.163-16 16 0 7.069 4.585 13.067 10.942 15.182 0.8 0.148 1.094-0.347 1.094-0.77 0-0.381-0.015-1.642-0.022-2.979-4.452 0.968-5.391-1.888-5.391-1.888-0.728-1.849-1.776-2.341-1.776-2.341-1.452-0.993 0.11-0.973 0.11-0.973 1.606 0.113 2.452 1.649 2.452 1.649 1.427 2.446 3.743 1.739 4.656 1.33 0.143-1.034 0.558-1.74 1.016-2.14-3.554-0.404-7.29-1.777-7.29-7.907 0-1.747 0.625-3.174 1.649-4.295-0.166-0.403-0.714-2.030 0.155-4.234 0 0 1.344-0.43 4.401 1.64 1.276-0.355 2.645-0.532 4.005-0.539 1.359 0.006 2.729 0.184 4.008 0.539 3.054-2.070 4.395-1.64 4.395-1.64 0.871 2.204 0.323 3.831 0.157 4.234 1.026 1.12 1.647 2.548 1.647 4.295 0 6.145-3.743 7.498-7.306 7.895 0.574 0.497 1.085 1.47 1.085 2.963 0 2.141-0.019 3.864-0.019 4.391 0 0.426 0.288 0.925 1.099 0.768 6.354-2.118 10.933-8.113 10.933-15.18 0-8.837-7.164-16-16-16z"></path>
+            </svg>
+        </a>
+
+                <a rel="alternate" href="https://ellenbboe.github.io/rss.xml">
+                    RSS
+                </a>
+
+            </div>
+        </nav>
+    </header>
+    <div class="article__top">
+        <div class="fn__clear">
+            <div class="toc fn__none" onclick="$('.post__toc').slideToggle()">目录</div>
+            <div class="title fn__pointer" onclick="Util.goTop()">Linux From Scrach Pass 1</div>
+<div class="article__share"
+     data-title="Linux From Scrach Pass 1"
+     data-blogtitle="Kosmos"
+     data-url="https://ellenbboe.github.io/articles/2018/07/12/1561009681962.html"
+     data-avatar="https://img.hacpai.com/avatar/1560335521987_1576387741689.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100">
+    <span class="item" data-type="qqz">
+        <svg viewBox="0 0 32 32" width="100%" height="100%">
+            <path d="M22.824 13.989l-8.348 6.287s3.351 0.522 8.404 0.461l-0.23-1.040 7.2-6.549c0.132-0.12 0.183-0.312 0.129-0.487s-0.203-0.299-0.377-0.314l-9.492-0.856-3.708-9.213c-0.068-0.169-0.226-0.279-0.401-0.279s-0.333 0.11-0.401 0.279l-3.708 9.213-9.492 0.856c-0.174 0.015-0.323 0.139-0.377 0.314s-0.004 0.366 0.129 0.487l7.2 6.549-2.158 9.742c-0.040 0.178 0.026 0.365 0.168 0.474 0.142 0.107 0.331 0.115 0.481 0.021l8.158-5.165 8.158 5.165c0.070 0.045 0.147 0.066 0.225 0.066 0.090 0 0.18-0.029 0.256-0.086 0.142-0.109 0.208-0.295 0.168-0.474l-1.707-7.704c0.732-0.386 1.538-1.040 1.538-1.040s-3.195 1.638-14.664 0.838l8.312-6.325s-0.327-0.534-10.744-0.914c-0.697-0.026 8.493-1.83 15.281-0.305z"></path>
+        </svg>
+    </span>
+    <span class="item" data-type="wechat">
+        <svg viewBox="0 0 32 32" width="100%" height="100%">
+            <path d="M9.062 9.203c0-0.859-0.562-1.422-1.422-1.422-0.844 0-1.703 0.562-1.703 1.422 0 0.844 0.859 1.406 1.703 1.406 0.859 0 1.422-0.562 1.422-1.406zM20.672 17.125c0-0.562-0.562-1.125-1.422-1.125-0.562 0-1.125 0.562-1.125 1.125 0 0.578 0.562 1.141 1.125 1.141 0.859 0 1.422-0.562 1.422-1.141zM16.984 9.203c0-0.859-0.562-1.422-1.406-1.422-0.859 0-1.703 0.562-1.703 1.422 0 0.844 0.844 1.406 1.703 1.406 0.844 0 1.406-0.562 1.406-1.406zM26.906 17.125c0-0.562-0.578-1.125-1.422-1.125-0.562 0-1.125 0.562-1.125 1.125 0 0.578 0.562 1.141 1.125 1.141 0.844 0 1.422-0.562 1.422-1.141zM22.75 10.922c-0.359-0.047-0.719-0.063-1.094-0.063-5.375 0-9.625 4.016-9.625 8.953 0 0.828 0.125 1.625 0.359 2.375-0.359 0.031-0.703 0.047-1.063 0.047-1.422 0-2.547-0.281-3.969-0.562l-3.953 1.984 1.125-3.406c-2.828-1.984-4.531-4.547-4.531-7.656 0-5.391 5.094-9.625 11.328-9.625 5.563 0 10.453 3.391 11.422 7.953zM32 19.687c0 2.547-1.688 4.813-3.969 6.516l0.859 2.828-3.109-1.703c-1.141 0.281-2.281 0.578-3.406 0.578-5.391 0-9.625-3.688-9.625-8.219s4.234-8.219 9.625-8.219c5.094 0 9.625 3.688 9.625 8.219z"></path>
+        </svg>
+    </span>
+    <span class="item" data-type="weibo">
+        <svg viewBox="0 0 32 32" width="100%" height="100%">
+            <path d="M13.444 27.064c-5.3 0.525-9.875-1.875-10.219-5.35-0.344-3.481 3.675-6.719 8.969-7.244 5.3-0.525 9.875 1.875 10.212 5.35 0.35 3.481-3.669 6.725-8.963 7.244zM24.038 15.521c-0.45-0.137-0.762-0.225-0.525-0.819 0.512-1.287 0.563-2.394 0.006-3.188-1.038-1.481-3.881-1.406-7.137-0.037 0 0-1.025 0.444-0.762-0.363 0.5-1.613 0.425-2.956-0.356-3.737-1.769-1.769-6.469 0.069-10.5 4.1-3.013 3.006-4.763 6.212-4.763 8.981 0 5.287 6.787 8.506 13.425 8.506 8.7 0 14.494-5.056 14.494-9.069 0-2.431-2.044-3.806-3.881-4.375z"></path>
+            <path d="M29.819 5.833c-2.1-2.331-5.2-3.219-8.063-2.612v0c-0.663 0.144-1.081 0.794-0.938 1.45 0.144 0.662 0.788 1.081 1.45 0.938 2.038-0.431 4.238 0.2 5.731 1.856s1.9 3.913 1.256 5.888v0c-0.206 0.644 0.144 1.331 0.788 1.544 0.644 0.206 1.331-0.144 1.544-0.787v-0.006c0.9-2.762 0.331-5.938-1.769-8.269z"></path>
+            <path d="M26.588 8.752c-1.025-1.138-2.538-1.569-3.925-1.269-0.569 0.119-0.931 0.688-0.813 1.256 0.125 0.569 0.688 0.931 1.25 0.806v0c0.681-0.144 1.419 0.069 1.919 0.619 0.5 0.556 0.637 1.313 0.419 1.975v0c-0.175 0.55 0.125 1.15 0.681 1.331 0.556 0.175 1.15-0.125 1.331-0.681 0.438-1.356 0.163-2.906-0.863-4.037z"></path>
+            <path d="M13.738 20.771c-0.188 0.319-0.594 0.469-0.912 0.337-0.319-0.125-0.412-0.488-0.231-0.794 0.188-0.306 0.581-0.456 0.894-0.337 0.313 0.113 0.425 0.469 0.25 0.794zM12.044 22.933c-0.512 0.819-1.613 1.175-2.438 0.8-0.813-0.369-1.056-1.319-0.544-2.119 0.506-0.794 1.569-1.15 2.388-0.806 0.831 0.356 1.1 1.3 0.594 2.125zM13.969 17.146c-2.519-0.656-5.369 0.6-6.463 2.819-1.119 2.262-0.037 4.781 2.506 5.606 2.638 0.85 5.75-0.456 6.831-2.894 1.069-2.394-0.262-4.85-2.875-5.531z"></path>
+        </svg>
+    </span>
+    <span class="item" data-type="twitter">
+        <svg viewBox="0 0 32 32" width="100%" height="100%">
+            <path d="M32.003 6.075c-1.175 0.525-2.444 0.875-3.769 1.031 1.356-0.813 2.394-2.1 2.887-3.631-1.269 0.75-2.675 1.3-4.169 1.594-1.2-1.275-2.906-2.069-4.794-2.069-3.625 0-6.563 2.938-6.563 6.563 0 0.512 0.056 1.012 0.169 1.494-5.456-0.275-10.294-2.888-13.531-6.862-0.563 0.969-0.887 2.1-0.887 3.3 0 2.275 1.156 4.287 2.919 5.463-1.075-0.031-2.087-0.331-2.975-0.819 0 0.025 0 0.056 0 0.081 0 3.181 2.263 5.838 5.269 6.437-0.55 0.15-1.131 0.231-1.731 0.231-0.425 0-0.831-0.044-1.237-0.119 0.838 2.606 3.263 4.506 6.131 4.563-2.25 1.762-5.075 2.813-8.156 2.813-0.531 0-1.050-0.031-1.569-0.094 2.913 1.869 6.362 2.95 10.069 2.95 12.075 0 18.681-10.006 18.681-18.681 0-0.287-0.006-0.569-0.019-0.85 1.281-0.919 2.394-2.075 3.275-3.394z"></path>
+        </svg>
+    </span>
+    <span class="item__qr"></span>
+</div>        </div>
+        <progress class="article__progress"></progress>
+    </div>
+    <div class="article">
+        <div class="ft__center">
+            <div class="item__meta">
+                <time>
+                    2018-07-12
+                </time>
+                /
+                    <a class="tag" rel="tag"
+                       href="https://ellenbboe.github.io/tags/linux">linux</a> &nbsp;
+            </div>
+            <h2 class="item__title">
+                Linux From Scrach Pass 1
+            </h2>
+        </div>
+        <div class="item__cover" style="background-image: url(https://img.hacpai.com/bing/20181113.jpg?imageView2/1/w/1280/h/720/interlace/1/q/100)"></div>
+        <div class="wrapper">
+            <section class="item__content item__content--article vditor-reset">
+                <p></p><h3 id="b3_solo_h3_0">准备</h3>
+<p>准备空间大概8g 准备在u盘上构建系统<br>
+我准备将u盘对半分成两个盘<br>
+一个安装系统,就用ext4<br>
+一个当作普通的u盘来用<br>
+记得分区的时候格式化<br>
+可以使用fdisk 或者 其他工具</p>
+<p>另外: 我的arch上没有创建swap分区</p>
+<h3 id="b3_solo_h3_1">挂载U盘/移动硬盘</h3>
+<p>使用fdisk -l命令<br>
+得到</p>
+<pre><code>Disk /dev/sdb：29 GiB，31104958464 字节，60751872 个扇区
+单元：扇区 / 1 * 512 = 512 字节
+扇区大小(逻辑/物理)：512 字节 / 512 字节
+I/O 大小(最小/最佳)：512 字节 / 512 字节
+磁盘标签类型：dos
+磁盘标识符：0xcad4ebea
+
+设备       启动 起点     末尾     扇区 大小 Id 类型
+/dev/sdb4  *      63 60751871 60751809  29G  c W95 FAT32 (LBA)
+</code></pre>
+<p>创建文件夹 将sdb4挂载到文件夹上</p>
+<p>一般u盘会自动挂载,像我的系统就是挂载到run/s/xxx 下面<br>
+不过官方建议还是挂载到 /mnt/lfs 下面</p>
+<p><code>mount -v -t ext4 /dev/&lt;xxx&gt; $LFS</code>	# 将 /dev/<xxx> 挂载到 $LFS</xxx></p>
+<p>如果重启设备，可能进入后发现 /mnt/lfs 目录下没有内容，这是只需要再次挂载 /dev/<xxx> 到 /mnt/lfs。 此处 <xxx> 用实际的设备名称代替</xxx></xxx></p>
+<p>这里我只使用一个 / 分区</p>
+<p>如果 LFS 使用了多个分区，(比如：一个 /，一个 /usr)，用下面的命令挂载它们：</p>
+<pre><code>mkdir -pv $LFS	# 建立 / 分区的挂载点
+mount -v -t ext4 /dev/&lt;xxx&gt; $LFS	# 将 /dev/&lt;xxx&gt; 挂载到 $LFS
+mkdir -v $LFS/usr	# 建立 $LFS/usr 挂载点，用于挂载 /usr
+mount -v -t ext4 /dev/&lt;yyy&gt; $LFS/usr	# 将 /dev/&lt;yyy&gt; 挂载到 $LFS/usr
+</code></pre>
+<p>附:<br>
+如果你正在使用交换分区，用 swapon 命令确保它已经启用。</p>
+<p><code>/sbin/swapon -v /dev/&lt;zzz&gt;</code><br>
+用 swap 分区的名字替换<zzz>。</zzz></p>
+<p>注意:确保你的 echo $LFS 在root与用户帐号上时/mnt/lfs 你可以使用全局变量来设置</p>
+<h3 id="b3_solo_h3_2">软件包和补丁</h3>
+<p><code>mkdir -v $LFS/sources</code><br>
+在$lfs里创建sources文件夹 来存放 下载好的软件包和补丁</p>
+<p>设置目录的写权限和粘滞模式。“粘滞模式”意思是就算有多个用户对某个目录有写权限，仍然只有该文件的主人能删除一个粘滞目录里的文件。下面的命令可以打开写权限和粘滞模式：<br>
+<code>chmod -v a+wt $LFS/sources</code></p>
+<p>下载软件包可以去中科院镜像里面去下载<br>
+里面已经有了md5sums 解压放到source里面就行<br>
+下载完成后使用md5sums检验====&gt;将下载的md5sums 放到sources目录下</p>
+<pre><code>pushd $LFS/sources
+md5sum -c md5sums
+popd
+</code></pre>
+<h3 id="b3_solo_h3_3">最后的准备工作</h3>
+<p>我们还需要为构建临时系统做一些额外的准备工作。我们会在 $LFS 中新建一个文件夹用于临时工具的安装，增加一个非特权用户用于降低风险，并为该用户创建合适的构建环境。我们也会解释用于测量构建 LFS 软件包花费时间的单位，或者称为“标准编译单位（SBU）”，并给出一些关于软件包测试套件的信息</p>
+<p>以 root 用户运行以下的命令来创建需要的文件夹：<br>
+<code>mkdir -v $LFS/tools</code></p>
+<p>下一步是在宿主系统中创建 /tools 的符号链接，将其指向 LFS 分区中新建的文件夹。同样以 root 用户运行下面的命令：</p>
+<p><code>ln -sv $LFS/tools /</code></p>
+<h4 id="b3_solo_h4_4">添加 LFS 用户</h4>
+<p>当以 root 用户登录时，犯一个小错误可能会破坏或摧毁整个系统。因此，我们建议在本章中以非特权用户编译软件包。你可以使用你自己的用户名，但要容易的话，就建立一个干净的工作环境，创建一个名为 lfs 的新用户作为新组（名字也是 lfs ）的成员，并在安装过程中使用这个用户。以 root 用户运行以下命令来添加新用户：</p>
+<pre><code>groupadd lfs
+useradd -s /bin/bash -g lfs -m -k /dev/null lfs
+</code></pre>
+<pre><code>命令行选项的意思：
+
+-s /bin/bash
+把 bash 设置为 lfs 用户的默认 shell。
+
+-g lfs
+这个选项将用户 lfs 添加到组 lfs 中。
+
+-m
+为 lfs 用户创建主目录。
+
+-k /dev/null
+这个参数通过改变输入位置为特殊的空（null）设备，以防止可能从一个模版目录中（默认是 /etc/skel）复制文件。
+</code></pre>
+<p>lfs<br>
+这是创建的组和用户的实际名称。</p>
+<p>要以 lfs 用户身份登录（以 root 身份登录切换到 lfs 用户时不要求 lfs 用户设置了密码），需要给 lfs 用户一个密码：<br>
+<code>passwd lfs</code></p>
+<p>通过更改文件夹所有者为 lfs，为用户 lfs 赋予了访问 $LFS/tools 文件夹的所有权限：</p>
+<p><code>chown -v lfs $LFS/tools</code></p>
+<p>如果正如建议的一样创建了一个单独的工作目录，给 lfs 用户赋予这个文件夹的所有权：<br>
+<code>chown -v lfs $LFS/sources</code></p>
+<p>下一步，以 lfs 用户身份登录。可以能通过一个虚拟控制台、显示控制器，或者下面的切换用户命令完成：<br>
+<code>su - lfs</code></p>
+<h4 id="b3_solo_h4_5">设置环境</h4>
+<pre><code>cat &gt; ~/.bash_profile &lt;&lt; "EOF"
+exec env -i HOME=$HOME TERM=$TERM PS1='\u:\w\$ ' /bin/bash
+EOF
+</code></pre>
+<p>当以 <code>lfs</code> 用户身份登录时，初始 shell 通常是一个可登录的 shell，它先读取宿主机的 <code>/etc/profile</code>文件（很可能包括一些设置和环境变量），然后是 <code>.bash_profile</code> 文件。<code>.bash_profile</code> 文件中的<code>exec env -i.../bin/bash</code> 命令用一个除了 <code>HOME</code>、<code>TERM</code>和 <code>PS1</code> 变量，完全空环境的 shell 代替运行中的 shell。<strong>这可以确保没有不必要的或者有潜在风险的环境变量从宿主机系统中泄露到构建环境</strong>。这里使用的技巧是为了有一个干净环境。</p>
+<p>新的 shell 实例是一个非登录 shell，不会读取 <code>/etc/profile</code> 或者 <code>.bash_profile</code>文件，而是读取 <code>.bashrc</code>文件。 现在创建 <code>.bashrc</code> 文件：</p>
+<pre><code>cat &gt; ~/.bashrc &lt;&lt; "EOF"
+set +h
+umask 022
+LFS=/mnt/lfs
+LC_ALL=POSIX
+LFS_TGT=$(uname -m)-lfs-linux-gnu
+PATH=/tools/bin:/bin:/usr/bin
+export LFS LC_ALL LFS_TGT PATH
+EOF
+</code></pre>
+<p><code>set +h</code>命令关闭了 <code>bash</code>的哈希功能。 哈希通常是一个有用的功能，<code>bash</code> 用一个哈希表来记录可执行文件的完整路径，以避免搜索<code>PATH</code> 的时间和又找到一个相同的可执行文件。然而，新工具要一安装后就使用。通过关闭哈希功能，一个程序准备运行时 <code>shell</code> 总是会搜索<code>PATH</code>变量。如此，<code>shell</code> 能在新编译的工具可用时马上在文件夹 <code>$LFS/tools</code> 中找到，而不是记录相同程序在其它地方的之前版本。</p>
+<p>设置用户文件新建掩码<code>（umask）</code>为 <code>022</code>，确保新建的文件和目录只有它们自己的所有者可写，任何人都可读和可执行(假定<code>open(2)</code> 系统调用使用的默认模式是新文件使用 <code>644</code>模式，文件夹使用<code>755</code>模式)。</p>
+<p><code>LFS</code> 变量应该设置为选定的挂载点。</p>
+<p><code>LC_ALL</code> 变量控制特定程序的本地化，使得它们的消息能遵循特定国家的惯例。设置 <code>LC_ALL</code> 为 <code>“POSIX”</code> 或 <code>“C”</code>（两者是等价的），确保 <code>chroot</code> 环境中一切如期望的那样进行。</p>
+<p>当编译我们的交叉编译器和链接器以及交叉编译我们的临时工具链时，<code>LFS_TGT</code>变量设置了一个非默认，但兼容的机器说明。5.2,“工具链技术说明”包含更多的信息。</p>
+<p>把 <code>/tools/bin</code> 放在标准的 <code>PATH</code> 变量前面， 第五章中安装的软件一安装完成 shell 就可使用。这和关闭哈希功能一起，降低了在第五章环境中新程序可用时宿主机器使用旧程序的风险。</p>
+<p>生效配置文件:<br>
+<code>source ~/.bash_profile</code></p>
+<h4 id="b3_solo_h4_6">关于 SBU</h4>
+<p>SBU 衡量方式如下。我们以第五章编译的第一个软件包 Binutils 所用时间作为一个标准编译单位（SBU），其它软件的生成时间都以其为标准进行比较。</p>
+<p>例如，假如编译一个软件耗时 4.5 SBU，而编译安装初代 Binutils 用时 10 分钟的话，那么编译这个软件包大约耗时 45 分钟。当然啦，对于大多数人来说，编译 Binutils 可用不了 10 分钟那么久。</p>
+<p>在一些情况下，使用多处理器同时编译可能失败，分析错误日志变得异常困难：因为不同处理器之间的执行路线是交错的。如果你在编译的时候遇到问题，那么请回过来使用单处理器编译，以正确地查看错误消息。</p>
+<h3 id="b3_solo_h3_7">构建临时系统</h3>
+<p>目标是生成一个临时的系统，它包含一个已知的较好工具集，该工具集可与宿主系统分离。通过使用 <code>chroot</code>，其余各章中的命令将被包含在此环境中，以保证目标 LFS 系统能够洁净且无故障地生成。该构建过程的设计就是为了使得新读者有最少的风险，同时还能有最好的指导价值。</p>
+<p><strong>最后确认一次是否正确设置了 LFS 环境变量：</strong><br>
+<code>echo $LFS</code><br>
+确认输出显示的是 LFS 分区挂载点的路径，在我们的例子中也就是 /mnt/lfs。</p>
+<p>最后，必须强调两个重要的点：</p>
+<p><strong>[重要] 重要</strong></p>
+<p>编译指南假定你已经正确地设置了宿主系统需求和符号链接：</p>
+<p><code>shell</code>使用的是 <code>bash</code>。</p>
+<p><code>sh</code> 是到 <code>bash</code>的符号链接。</p>
+<p><code>/usr/bin/awk</code> 是到 <code>gawk</code>的符号链接。</p>
+<p><code>/usr/bin/yacc</code> 是到<code>bison</code>的符号链接或者一个执行 <code>bison</code> 的小脚本。</p>
+<p><strong>[重要] 重要</strong></p>
+<p>再次强调构建过程：</p>
+<p>把所有源文件和补丁放到 <code>chroot</code> 环境可访问的目录，例如 <code>/mnt/lfs/sources/</code>。但是千万不能把源文件放在 <code>/mnt/lfs/tools/</code> 中。</p>
+<p>进入到源文件目录。</p>
+<blockquote>
+<p>对于每个软件包:</p>
+</blockquote>
+<ol>
+<li>用 tar 程序解压要编译的软件包。在第五章中，确保解压软件包时你使用的是 lfs 用户。</li>
+<li></li>
+<li>进入到解压后创建的目录中。</li>
+<li></li>
+<li>根据指南说明编译软件包。</li>
+<li></li>
+<li>回退到源文件目录。</li>
+<li></li>
+<li>除非特别说明，删除解压出来的目录和所有编译过程中生成的  &lt;package&gt;-build 目录。</li>
+</ol>
+<p>这里我在使用lfs帐号进入lfs文件夹的时候出现了权限不足,我使用了chmod加了权限</p>
+<p>之后就是漫长的编译过程<br>
+具体按照官方资料上进行编译<br>
+注意在编译过程中必须清楚知道当前步骤 make 与 make install 防止错误</p>
+<p>====&gt;之后的构建过程 之后补充上</p>
+<h4 id="b3_solo_h4_8">资料(建议配合使用)</h4>
+<h5 id="b3_solo_h5_9">中文资料(已过期7.7,但翻译还是可以用)</h5>
+<p><a href="https://linux.cn/lfs/LFS-BOOK-7.7-systemd/index.html" target="_blank">https://linux.cn/lfs/LFS-BOOK-7.7-systemd/index.html</a></p>
+<h5 id="b3_solo_h5_10">英文资料(目前是8.2)</h5>
+<p><a href="http://www.linuxfromscratch.org/lfs/view/stable/index.html" target="_blank">http://www.linuxfromscratch.org/lfs/view/stable/index.html</a></p>
+<p></p>
+                    <div>
+                        <hr>
+<img alt="今日诗词" src="https://v2.jinrishici.com/one.svg" style="max-width:100%; display: block; margin: 0 auto;">
+
+标题：Linux From Scrach Pass 1<br>
+作者：<a href="https://ellenbboe.github.io" target="_blank">ellenbboe</a><br>
+地址：<a href="https://ellenbboe.github.io/articles/2018/07/12/1561009681962.html" target="_blank">https://ellenbboe.github.io/articles/2018/07/12/1561009681962.html</a><br>
+<!-- 签名档内可使用 HTML、JavaScript -->
+<br>
+                    </div>
+            </section>
+        </div>
+    </div>
+        <div class="post__toc">
+<ul class="article__toc">
+        <li class="toc__h3">
+            <a href="#b3_solo_h3_0">准备</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#b3_solo_h3_1">挂载U盘/移动硬盘</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#b3_solo_h3_2">软件包和补丁</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#b3_solo_h3_3">最后的准备工作</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#b3_solo_h4_4">添加 LFS 用户</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#b3_solo_h4_5">设置环境</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#b3_solo_h4_6">关于 SBU</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#b3_solo_h3_7">构建临时系统</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#b3_solo_h4_8">资料(建议配合使用)</a>
+        </li>
+        <li class="toc__h5">
+            <a href="#b3_solo_h5_9">中文资料(已过期7.7,但翻译还是可以用)</a>
+        </li>
+        <li class="toc__h5">
+            <a href="#b3_solo_h5_10">英文资料(目前是8.2)</a>
+        </li>
+</ul>        </div>
+<div class="comment">
+    <div class="comment__wrapper wrapper">
+        <div class="comment__title">
+            评论
+        </div>
+        <textarea rows="3" placeholder="评论内容只能为 2 到 500 个字符！" id="comment"></textarea>
+
+        <ul id="comments">
+        </ul>
+    </div>
+</div>
+    <div class="article__bottom">
+        <div class="wrapper">
+            <div class="fn__flex">
+                <div class="item" id="randomArticles"></div>
+                <div class="item" id="relevantArticles"></div>
+            </div>
+        </div>
+    </div>
+    
+</div>
+<footer class="footer">
+    <div class="wrapper fn__clear">
+        <div class="fn__left">
+            &copy; 2020
+            <a href="https://ellenbboe.github.io">Kosmos</a>
+            <a href="http://www.beian.miit.gov.cn/">浙ICP备18045840号-1</a>--------Let's move on
+本站已安全运行:
+<span id="momk"></span>
+<script language=javascript>
+function show_date_time(){
+window.setTimeout("show_date_time()", 1000);
+BirthDay=new Date("09-10-2018 19:47:57");//建站日期
+today=new Date();
+timeold=(today.getTime()-BirthDay.getTime());
+sectimeold=timeold/1000
+secondsold=Math.floor(sectimeold);
+msPerDay=24*60*60*1000
+e_daysold=timeold/msPerDay
+daysold=Math.floor(e_daysold);
+e_hrsold=(daysold-e_daysold)*-24;
+hrsold=Math.floor(e_hrsold);
+e_minsold=(hrsold-e_hrsold)*-60;
+minsold=Math.floor((hrsold-e_hrsold)*-60);
+seconds=Math.floor((minsold-e_minsold)*-60);
+momk.innerHTML=daysold+"天"+hrsold+"小时"+minsold+"分"+seconds+"秒" ;
+}
+show_date_time();
+</script>
+<style>
+#momk{animation:change 10s infinite;font-weight:800; }
+@keyframes change{0%{color:#5cb85c;}25%{color:#556bd8;}50%{color:#e40707;}75%{color:#66e616;}100% {color:#67bd31;}}
+</style> &nbsp;•&nbsp;
+            Powered by <a href="https://solo.b3log.org" target="_blank">Solo</a>
+            <br>
+            Theme Casper
+            <sup>[<a href="https://github.com/TryGhost/Casper" target="_blank">ref</a>]</sup>
+            by <a href="http://vanessa.b3log.org" target="_blank">Vanessa</a>
+        </div>
+        <div class="fn__right">
+            <a href="https://ellenbboe.github.io/tags.html" rel="section">
+            标签墙
+            </a>
+            &nbsp;•&nbsp;
+            <a href="https://ellenbboe.github.io/archives.html">
+            存档
+            </a>
+            &nbsp;•&nbsp;
+            <a rel="archive" href="https://ellenbboe.github.io/links.html">
+            友情链接
+            </a>
+            <br>
+            115 文章 &nbsp;
+            9 评论 &nbsp;
+            <span data-uvstaturl="https://ellenbboe.github.io">11608</span> 浏览 &nbsp;
+            4 当前访客
+        </div>
+    </div>
+</footer>
+
+<script type="text/javascript" src="https://ellenbboe.github.io/js/lib/compress/pjax.min.js" charset="utf-8"></script>
+<script type="text/javascript" src="https://ellenbboe.github.io/js/common.min.js?1578931371974"
+        charset="utf-8"></script>
+<script type="text/javascript"
+        src="https://ellenbboe.github.io/skins/Casper/js/common.min.js?1578931371974"
+        charset="utf-8"></script>
+<script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.4/dist/index.min.js"></script>
+<script>
+    var Label = {
+        servePath: "https://ellenbboe.github.io",
+        staticServePath: "https://ellenbboe.github.io",
+        luteAvailable: false,
+        hljsStyle: 'colorful',
+        langLabel: "zh_CN",
+        version: "3.7.0",
+    }
+    Util.init()
+</script>
+
+
+<script type="text/javascript">
+    Util.addScript('https://ellenbboe.github.io/js/page.min.js?1578931371974', 'soloPageScript')
+    var page = new Page({
+        "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
+        "oId": "1561009681962",
+        "blogHost": "https://ellenbboe.github.io",
+        "randomArticles1Label": "随机阅读：",
+        "externalRelevantArticles1Label": "站外相关阅读："
+    });
+    $(document).ready(function () {
+        page.load();
+    page.tips.externalRelevantArticlesDisplayCount = "0";
+    Skin.initArticle()
+    });
+</script>
+
+</body>
+</html>
+
+<!-- Generated by Latke (https://github.com/88250/latke) in 42ms, 2020/01/14 12:34:59 -->

@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>Linux For Scratch Pass 4 - Kosmos</title><meta name="description" content="安装基本系统软件过程(重点过程) 部分在中文版中没有,取自英文版 Linux-4.15.3 API Headers Linux API 头文件（在 linux-3.19.tar.xz 里）会将内核 API 导出给 Glibc 使用。 Linux 内核需要提供一个应用编程接口（API）供系统的 C 库（LFS 中的 Glibc）调用。这通过整理 Linux 内核源码包中的多个 C 头文件来完成。 确保在之前的动作里没有留下旧文件和依赖关系： make mrproper 现在要从源代码里解压出用户需要的内核头文件。因为解压过程会删除目标目录下所有文件，所以我们会先输出到一个本地中间目录后再拷贝到需要的地方。而且里面还有一些隐藏文件是给内核开发人员用的，而 LFS 不需要，所以会将它们从中间目录里删除。 make INSTALL_HDR_PATH=dest headers_install find dest/include ( -name .install -o -name ..install.cmd ) -delete cp -rv dest/include/* /usr/includ...."/><meta property="og:description" content="安装基本系统软件过程(重点过程) 部分在中文版中没有,取自英文版 Linux-4.15.3 API Headers Linux API 头文件（在 linux-3.19.tar.xz 里）会将内核 API 导出给 Glibc 使用。 Linux 内核需要提供一个应用编程接口（API）供系统的 C 库（LFS 中的 Glibc）调用。这通过整理 Linux 内核源码包中的多个 C 头文件来完成。 确保在之前的动作里没有留下旧文件和依赖关系： make mrproper 现在要从源代码里解压出用户需要的内核头文件。因为解压过程会删除目标目录下所有文件，所以我们会先输出到一个本地中间目录后再拷贝到需要的地方。而且里面还有一些隐藏文件是给内核开发人员用的，而 LFS 不需要，所以会将它们从中间目录里删除。 make INSTALL_HDR_PATH=dest headers_install find dest/include ( -name .install -o -name ..install.cmd ) -delete cp -rv dest/include/* /usr/includ...."/>    <meta name="keywords" content="开源,开发者,笔记,kosmos"/><link rel="dns-prefetch" href="https://ellenbboe.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://ellenbboe.github.io"><link rel="icon" type="image/png" href="https://s2.ax1x.com/2020/01/12/loApPe.png"/><link rel="apple-touch-icon" href="https://s2.ax1x.com/2020/01/12/loApPe.png"><link rel="shortcut icon" type="image/x-icon" href="https://s2.ax1x.com/2020/01/12/loApPe.png"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="Linux For Scratch Pass 4 - Kosmos"/><meta property="og:site_name" content="Kosmos"/><meta property="og:url"      content="https://ellenbboe.github.io/articles/2018/07/18/1561009689987.html?"/><meta property="og:image" content="https://s2.ax1x.com/2020/01/12/loApPe.png"/><link rel="search" type="application/opensearchdescription+xml" title="Linux For Scratch Pass 4 - Kosmos" href="/opensearch.xml"><link href="https://ellenbboe.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://ellenbboe.github.io/manifest.json">        <link rel="canonical" href="https://ellenbboe.github.io/articles/2018/07/18/1561009689987.html">        <link rel="stylesheet"
+              href="https://ellenbboe.github.io/skins/Casper/css/base.css?1578931371974"/>
+            <link rel="prev" title="迷时" href="https://ellenbboe.github.io/articles/2018/07/17/1561009685768.html">
+            <link rel="next" title="2018-07-18 lfs编译日志" href="https://ellenbboe.github.io/articles/2018/07/18/1561009685311.html">
+    </head>
+<body class="fn__flex-column">
+<div id="pjax" class="fn__flex-1">
+    
+    <header class="header header--article">
+        <div class="wrapper header__title">
+            <h1 class="header__h1 fn__flex-inline">
+                <img src="https://s2.ax1x.com/2020/01/12/loApPe.png">
+                <a href="https://ellenbboe.github.io" rel="start" class="header__title">Kosmos</a>
+            </h1>
+            <h2 class="header__h2">---就算是痛苦难受，也要去体会那被称为生存的分量---</h2>
+        </div>
+        <nav class="wrapper header__nav fn__clear">
+            <a href="https://ellenbboe.github.io" rel="start">
+                    Kosmos
+            </a>
+
+                <a class="fn__flex-inline" href="/my-github-repos" target="_self" rel="section">
+                    <img src="/images/github-icon.png"> 我的开源
+                </a>
+                <a class="fn__flex-inline" href="/readlist" target="_self" rel="section">
+                     阅读列表
+                </a>
+
+
+            <div class="fn__right">
+    <a href="https://hacpai.com/member/ellenbboe"
+       title="https://hacpai.com/member/ellenbboe"
+       class="user__site"
+       target="_blank" rel="noopener nofollow">
+        <svg viewBox="0 0 32 32" width="100%" height="100%">
+            <path fill="#d23f31" style="fill: var(--color1, #d23f31)" d="M5.787 17.226h17.033l5.954 9.528c0.47 0.752 0.003 1.361-1.042 1.361h-15.141z"></path>
+            <path d="M10.74 3.927h17.033c1.045 0 1.512 0.609 1.042 1.361l-5.954 9.528h-19.872l6.379-10.209c0.235-0.376 0.849-0.681 1.372-0.681z"></path>
+            <path d="M2.953 17.226h2.839l6.804 10.889h-1.892c-0.523 0-1.137-0.305-1.372-0.681z"></path>
+        </svg>
+    </a>
+
+        <a href="https://github.com/ellenbboe"
+           title="https://github.com/ellenbboe"
+           class="user__site"
+           target="_blank" rel="noopener nofollow">
+            <svg viewBox="0 0 32 32" width="100%" height="100%">
+                <path d="M16 0.331c-8.836 0-16 7.163-16 16 0 7.069 4.585 13.067 10.942 15.182 0.8 0.148 1.094-0.347 1.094-0.77 0-0.381-0.015-1.642-0.022-2.979-4.452 0.968-5.391-1.888-5.391-1.888-0.728-1.849-1.776-2.341-1.776-2.341-1.452-0.993 0.11-0.973 0.11-0.973 1.606 0.113 2.452 1.649 2.452 1.649 1.427 2.446 3.743 1.739 4.656 1.33 0.143-1.034 0.558-1.74 1.016-2.14-3.554-0.404-7.29-1.777-7.29-7.907 0-1.747 0.625-3.174 1.649-4.295-0.166-0.403-0.714-2.030 0.155-4.234 0 0 1.344-0.43 4.401 1.64 1.276-0.355 2.645-0.532 4.005-0.539 1.359 0.006 2.729 0.184 4.008 0.539 3.054-2.070 4.395-1.64 4.395-1.64 0.871 2.204 0.323 3.831 0.157 4.234 1.026 1.12 1.647 2.548 1.647 4.295 0 6.145-3.743 7.498-7.306 7.895 0.574 0.497 1.085 1.47 1.085 2.963 0 2.141-0.019 3.864-0.019 4.391 0 0.426 0.288 0.925 1.099 0.768 6.354-2.118 10.933-8.113 10.933-15.18 0-8.837-7.164-16-16-16z"></path>
+            </svg>
+        </a>
+
+                <a rel="alternate" href="https://ellenbboe.github.io/rss.xml">
+                    RSS
+                </a>
+
+            </div>
+        </nav>
+    </header>
+    <div class="article__top">
+        <div class="fn__clear">
+            <div class="toc fn__none" onclick="$('.post__toc').slideToggle()">目录</div>
+            <div class="title fn__pointer" onclick="Util.goTop()">Linux For Scratch Pass 4</div>
+<div class="article__share"
+     data-title="Linux For Scratch Pass 4"
+     data-blogtitle="Kosmos"
+     data-url="https://ellenbboe.github.io/articles/2018/07/18/1561009689987.html"
+     data-avatar="https://img.hacpai.com/avatar/1560335521987_1576387741689.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100">
+    <span class="item" data-type="qqz">
+        <svg viewBox="0 0 32 32" width="100%" height="100%">
+            <path d="M22.824 13.989l-8.348 6.287s3.351 0.522 8.404 0.461l-0.23-1.040 7.2-6.549c0.132-0.12 0.183-0.312 0.129-0.487s-0.203-0.299-0.377-0.314l-9.492-0.856-3.708-9.213c-0.068-0.169-0.226-0.279-0.401-0.279s-0.333 0.11-0.401 0.279l-3.708 9.213-9.492 0.856c-0.174 0.015-0.323 0.139-0.377 0.314s-0.004 0.366 0.129 0.487l7.2 6.549-2.158 9.742c-0.040 0.178 0.026 0.365 0.168 0.474 0.142 0.107 0.331 0.115 0.481 0.021l8.158-5.165 8.158 5.165c0.070 0.045 0.147 0.066 0.225 0.066 0.090 0 0.18-0.029 0.256-0.086 0.142-0.109 0.208-0.295 0.168-0.474l-1.707-7.704c0.732-0.386 1.538-1.040 1.538-1.040s-3.195 1.638-14.664 0.838l8.312-6.325s-0.327-0.534-10.744-0.914c-0.697-0.026 8.493-1.83 15.281-0.305z"></path>
+        </svg>
+    </span>
+    <span class="item" data-type="wechat">
+        <svg viewBox="0 0 32 32" width="100%" height="100%">
+            <path d="M9.062 9.203c0-0.859-0.562-1.422-1.422-1.422-0.844 0-1.703 0.562-1.703 1.422 0 0.844 0.859 1.406 1.703 1.406 0.859 0 1.422-0.562 1.422-1.406zM20.672 17.125c0-0.562-0.562-1.125-1.422-1.125-0.562 0-1.125 0.562-1.125 1.125 0 0.578 0.562 1.141 1.125 1.141 0.859 0 1.422-0.562 1.422-1.141zM16.984 9.203c0-0.859-0.562-1.422-1.406-1.422-0.859 0-1.703 0.562-1.703 1.422 0 0.844 0.844 1.406 1.703 1.406 0.844 0 1.406-0.562 1.406-1.406zM26.906 17.125c0-0.562-0.578-1.125-1.422-1.125-0.562 0-1.125 0.562-1.125 1.125 0 0.578 0.562 1.141 1.125 1.141 0.844 0 1.422-0.562 1.422-1.141zM22.75 10.922c-0.359-0.047-0.719-0.063-1.094-0.063-5.375 0-9.625 4.016-9.625 8.953 0 0.828 0.125 1.625 0.359 2.375-0.359 0.031-0.703 0.047-1.063 0.047-1.422 0-2.547-0.281-3.969-0.562l-3.953 1.984 1.125-3.406c-2.828-1.984-4.531-4.547-4.531-7.656 0-5.391 5.094-9.625 11.328-9.625 5.563 0 10.453 3.391 11.422 7.953zM32 19.687c0 2.547-1.688 4.813-3.969 6.516l0.859 2.828-3.109-1.703c-1.141 0.281-2.281 0.578-3.406 0.578-5.391 0-9.625-3.688-9.625-8.219s4.234-8.219 9.625-8.219c5.094 0 9.625 3.688 9.625 8.219z"></path>
+        </svg>
+    </span>
+    <span class="item" data-type="weibo">
+        <svg viewBox="0 0 32 32" width="100%" height="100%">
+            <path d="M13.444 27.064c-5.3 0.525-9.875-1.875-10.219-5.35-0.344-3.481 3.675-6.719 8.969-7.244 5.3-0.525 9.875 1.875 10.212 5.35 0.35 3.481-3.669 6.725-8.963 7.244zM24.038 15.521c-0.45-0.137-0.762-0.225-0.525-0.819 0.512-1.287 0.563-2.394 0.006-3.188-1.038-1.481-3.881-1.406-7.137-0.037 0 0-1.025 0.444-0.762-0.363 0.5-1.613 0.425-2.956-0.356-3.737-1.769-1.769-6.469 0.069-10.5 4.1-3.013 3.006-4.763 6.212-4.763 8.981 0 5.287 6.787 8.506 13.425 8.506 8.7 0 14.494-5.056 14.494-9.069 0-2.431-2.044-3.806-3.881-4.375z"></path>
+            <path d="M29.819 5.833c-2.1-2.331-5.2-3.219-8.063-2.612v0c-0.663 0.144-1.081 0.794-0.938 1.45 0.144 0.662 0.788 1.081 1.45 0.938 2.038-0.431 4.238 0.2 5.731 1.856s1.9 3.913 1.256 5.888v0c-0.206 0.644 0.144 1.331 0.788 1.544 0.644 0.206 1.331-0.144 1.544-0.787v-0.006c0.9-2.762 0.331-5.938-1.769-8.269z"></path>
+            <path d="M26.588 8.752c-1.025-1.138-2.538-1.569-3.925-1.269-0.569 0.119-0.931 0.688-0.813 1.256 0.125 0.569 0.688 0.931 1.25 0.806v0c0.681-0.144 1.419 0.069 1.919 0.619 0.5 0.556 0.637 1.313 0.419 1.975v0c-0.175 0.55 0.125 1.15 0.681 1.331 0.556 0.175 1.15-0.125 1.331-0.681 0.438-1.356 0.163-2.906-0.863-4.037z"></path>
+            <path d="M13.738 20.771c-0.188 0.319-0.594 0.469-0.912 0.337-0.319-0.125-0.412-0.488-0.231-0.794 0.188-0.306 0.581-0.456 0.894-0.337 0.313 0.113 0.425 0.469 0.25 0.794zM12.044 22.933c-0.512 0.819-1.613 1.175-2.438 0.8-0.813-0.369-1.056-1.319-0.544-2.119 0.506-0.794 1.569-1.15 2.388-0.806 0.831 0.356 1.1 1.3 0.594 2.125zM13.969 17.146c-2.519-0.656-5.369 0.6-6.463 2.819-1.119 2.262-0.037 4.781 2.506 5.606 2.638 0.85 5.75-0.456 6.831-2.894 1.069-2.394-0.262-4.85-2.875-5.531z"></path>
+        </svg>
+    </span>
+    <span class="item" data-type="twitter">
+        <svg viewBox="0 0 32 32" width="100%" height="100%">
+            <path d="M32.003 6.075c-1.175 0.525-2.444 0.875-3.769 1.031 1.356-0.813 2.394-2.1 2.887-3.631-1.269 0.75-2.675 1.3-4.169 1.594-1.2-1.275-2.906-2.069-4.794-2.069-3.625 0-6.563 2.938-6.563 6.563 0 0.512 0.056 1.012 0.169 1.494-5.456-0.275-10.294-2.888-13.531-6.862-0.563 0.969-0.887 2.1-0.887 3.3 0 2.275 1.156 4.287 2.919 5.463-1.075-0.031-2.087-0.331-2.975-0.819 0 0.025 0 0.056 0 0.081 0 3.181 2.263 5.838 5.269 6.437-0.55 0.15-1.131 0.231-1.731 0.231-0.425 0-0.831-0.044-1.237-0.119 0.838 2.606 3.263 4.506 6.131 4.563-2.25 1.762-5.075 2.813-8.156 2.813-0.531 0-1.050-0.031-1.569-0.094 2.913 1.869 6.362 2.95 10.069 2.95 12.075 0 18.681-10.006 18.681-18.681 0-0.287-0.006-0.569-0.019-0.85 1.281-0.919 2.394-2.075 3.275-3.394z"></path>
+        </svg>
+    </span>
+    <span class="item__qr"></span>
+</div>        </div>
+        <progress class="article__progress"></progress>
+    </div>
+    <div class="article">
+        <div class="ft__center">
+            <div class="item__meta">
+                <time>
+                    2018-07-18
+                </time>
+                /
+                    <a class="tag" rel="tag"
+                       href="https://ellenbboe.github.io/tags/linux">linux</a> &nbsp;
+            </div>
+            <h2 class="item__title">
+                Linux For Scratch Pass 4
+            </h2>
+        </div>
+        <div class="item__cover" style="background-image: url(https://img.hacpai.com/bing/20190413.jpg?imageView2/1/w/1280/h/720/interlace/1/q/100)"></div>
+        <div class="wrapper">
+            <section class="item__content item__content--article vditor-reset">
+                <p></p><h3 id="b3_solo_h3_0">安装基本系统软件过程(重点过程)</h3>
+<p>部分在中文版中没有,取自英文版</p>
+<h4 id="b3_solo_h4_1">Linux-4.15.3 API Headers</h4>
+<p>Linux API 头文件（在 linux-3.19.tar.xz 里）会将内核 API 导出给 Glibc 使用。</p>
+<p>Linux 内核需要提供一个应用编程接口（API）供系统的 C 库（LFS 中的 Glibc）调用。这通过整理 Linux 内核源码包中的多个 C 头文件来完成。</p>
+<p>确保在之前的动作里没有留下旧文件和依赖关系：<br>
+<code>make mrproper</code><br>
+现在要从源代码里解压出用户需要的内核头文件。因为解压过程会删除目标目录下所有文件，所以我们会先输出到一个本地中间目录后再拷贝到需要的地方。而且里面还有一些隐藏文件是给内核开发人员用的，而 LFS 不需要，所以会将它们从中间目录里删除。</p>
+<pre><code>make INSTALL_HDR_PATH=dest headers_install
+find dest/include \( -name .install -o -name ..install.cmd \) -delete
+cp -rv dest/include/* /usr/include
+</code></pre>
+<h4 id="b3_solo_h4_2">Man-pages-4.15</h4>
+<p>Man-pages 软件包里包含了超过 2,200 份 man 手册页面。</p>
+<p>Install Man-pages by running:<br>
+<code>make install</code></p>
+<h4 id="b3_solo_h4_3">Glibc-2.21</h4>
+<p>Glibc 软件包包含了主要的 C 函数库。这个库提供了分配内存、搜索目录、打开关闭文件、读写文件、操作字符串、模式匹配、基础算法等基本程序。<br>
+<strong>注意</strong><br>
+有些 LFS 之外的软件包会建议安装 <code>GNU libiconv</code> 来转换不同编码的文字。根据项目主页（<a href="http://www.gnu.org/software/libiconv/" target="_blank">http://www.gnu.org/software/libiconv/</a> ）上的说法“这个库会提供函数 <code>iconv()</code> 的实现，应用于那些没有这个函数的系统，或者函数实现中不支持 <code>Unicode</code> 转换的系统。” <code>Glibc</code> 提供了函数 <code>iconv()</code> 的实现而且支持 <code>Unicode</code> 转换，所以对于 LFS 系统来说并不需要 <code>libiconv</code> 库。</p>
+<p>有些 <code>Glibc</code> 程序会用到和 FHS 不兼容的 <code>/var/db</code> 目录来存储它们的运行时数据。打上如下的补丁让这些程序在 FHS 兼容的位置存储它们的运行时数据。</p>
+<p><code>patch -Np1 -i ../glibc-2.21-fhs-1.patch</code></p>
+<p>创建链接:<br>
+<code>ln -sfv /tools/lib/gcc /usr/lib</code></p>
+<p>创建系统链接(<em>create a symlink for LSB compliance</em>):</p>
+<pre><code>case $(uname -m) in
+    i?86)    GCC_INCDIR=/usr/lib/gcc/$(uname -m)-pc-linux-gnu/7.3.0/include
+            ln -sfv ld-linux.so.2 /lib/ld-lsb.so.3
+    ;;
+    x86_64) GCC_INCDIR=/usr/lib/gcc/x86_64-pc-linux-gnu/7.3.0/include
+            ln -sfv ../lib/ld-linux-x86-64.so.2 /lib64
+            ln -sfv ../lib/ld-linux-x86-64.so.2 /lib64/ld-lsb-x86-64.so.3
+    ;;
+esac
+</code></pre>
+<p>删除前面可能遗留的文件:<br>
+<code>rm -f /usr/include/limits.h</code></p>
+<p>编译:</p>
+<pre><code>CC="gcc -isystem $GCC_INCDIR -isystem /usr/include" \
+../configure --prefix=/usr                          \
+             --disable-werror                       \
+             --enable-kernel=3.2                    \
+             --enable-stack-protector=strong        \
+             libc_cv_slibdir=/lib
+unset GCC_INCDIR
+</code></pre>
+<p><code>CC="gcc -isystem $GCC_INCDIR -isystem /usr/include"</code><br>
+Setting the location of both gcc and system include directories avoids introduction of invalid(无效) paths in debugging symbols.</p>
+<p><code>--disable-werror</code><br>
+This option disables the -Werror option passed to GCC. This is necessary for running the test suite.</p>
+<p><code>--enable-stack-protector=strong</code><br>
+This option increases system security by adding extra code to check for buffer overflows(缓冲溢出), such as stack smashing attacks.</p>
+<p><code>libc_cv_slibdir=/lib</code><br>
+This variable sets the correct library for all systems. We do not want lib64 to be used.</p>
+<p>在安装 Glibc 时会抱怨找不到<code>/etc/ld.so.conf</code>文件，这只是无关紧要的输出信息。下面的方式可以避免这个警告：<br>
+<code>touch /etc/ld.so.conf</code></p>
+<p>Fix the generated Makefile to skip an unneeded sanity check that fails in the LFS partial environment:</p>
+<p><code>sed '/test-installation/s@$(PERL)@echo not running@' -i ../Makefile</code></p>
+<p>Install the configuration file and runtime directory for nscd:</p>
+<p><code>cp -v ../nscd/nscd.conf /etc/nscd.conf</code><br>
+<code>mkdir -pv /var/cache/nscd</code></p>
+<h5 id="b3_solo_h5_4">安装语言环境</h5>
+<p>上面的命令并没有安装可以让你的电脑用不同语言响应的语言环境。语言环境并不是必须的，只是如果有些语言环境缺失，后续的测试套件可能会跳过一些重要测试用例。</p>
+<p>单独的语言环境可以用 <code>localedef</code> 程序安装。例如，下面第一个 <code>localedef</code> 命令将 <code>/usr/share/i18n/locales/cs_CZ</code> 字符无关的语言环境定义和 <code>/usr/share/i18n/charmaps/UTF-8.gz</code> 字符表定义组合在一起，并将结果附加到 <code>/usr/lib/locale/locale-archive</code> 文件末尾。下面的命令将安装能完美覆盖测试所需语言环境的最小集合：</p>
+<pre><code>mkdir -pv /usr/lib/locale
+localedef -i cs_CZ -f UTF-8 cs_CZ.UTF-8
+localedef -i de_DE -f ISO-8859-1 de_DE
+localedef -i de_DE@euro -f ISO-8859-15 de_DE@euro
+localedef -i de_DE -f UTF-8 de_DE.UTF-8
+localedef -i en_GB -f UTF-8 en_GB.UTF-8
+localedef -i en_HK -f ISO-8859-1 en_HK
+localedef -i en_PH -f ISO-8859-1 en_PH
+localedef -i en_US -f ISO-8859-1 en_US
+localedef -i en_US -f UTF-8 en_US.UTF-8
+localedef -i es_MX -f ISO-8859-1 es_MX
+localedef -i fa_IR -f UTF-8 fa_IR
+localedef -i fr_FR -f ISO-8859-1 fr_FR
+localedef -i fr_FR@euro -f ISO-8859-15 fr_FR@euro
+localedef -i fr_FR -f UTF-8 fr_FR.UTF-8
+localedef -i it_IT -f ISO-8859-1 it_IT
+localedef -i it_IT -f UTF-8 it_IT.UTF-8
+localedef -i ja_JP -f EUC-JP ja_JP
+localedef -i ru_RU -f KOI8-R ru_RU.KOI8-R
+localedef -i ru_RU -f UTF-8 ru_RU.UTF-8
+localedef -i tr_TR -f UTF-8 tr_TR.UTF-8
+localedef -i zh_CN -f GB18030 zh_CN.GB18030
+</code></pre>
+<p>另外，安装适合你自己国家、语言和字符集的语言环境。</p>
+<p>或者，也可以一次性安装在 <code>glibc-2.21/localedata/SUPPORTED</code> 文件里列出的所有语言环境（包括以上列出的所有语言环境以及其它更多），执行下面这个非常耗时的命令：<br>
+<code>make localedata/install-locales</code><br>
+你需要的语言环境几乎不大可能没列在 <code>glibc-2.21/localedata/SUPPORTED</code> 文件中，但如果真的没有可以使用 <code>localedef</code> 命令创建和安装。</p>
+<h5 id="b3_solo_h5_5">配置 Glibc</h5>
+<p>尽管 <code>Glibc</code> 在文件 <code>/etc/nsswitch.conf</code> 丢失或损坏的情况下会创建一个默认的，但是我们需要手动该创建文件，因为 <code>Glibc</code> 的默认文件在网络环境下工作时有问题。另外，也需要设置一下时区。</p>
+<p>运行下面的命令创建一个新文件 <code>/etc/nsswitch.conf</code>：</p>
+<pre><code>cat &gt; /etc/nsswitch.conf &lt;&lt; "EOF"
+#Begin /etc/nsswitch.conf
+
+passwd: files
+group: files
+shadow: files
+
+hosts: files dns
+networks: files
+
+protocols: files
+services: files
+ethers: files
+rpc: files
+
+#End /etc/nsswitch.conf
+EOF
+</code></pre>
+<p>安装时区数据：</p>
+<pre><code>tar -xf ../../tzdata2018c.tar.gz
+
+ZONEINFO=/usr/share/zoneinfo
+mkdir -pv $ZONEINFO/{posix,right}
+
+for tz in etcetera southamerica northamerica europe africa antarctica  \
+          asia australasia backward pacificnew systemv; do
+    zic -L /dev/null   -d $ZONEINFO       -y "sh yearistype.sh" ${tz}
+    zic -L /dev/null   -d $ZONEINFO/posix -y "sh yearistype.sh" ${tz}
+    zic -L leapseconds -d $ZONEINFO/right -y "sh yearistype.sh" ${tz}
+done
+
+cp -v zone.tab zone1970.tab iso3166.tab $ZONEINFO
+zic -d $ZONEINFO -p America/New_York
+unset ZONEINFO
+</code></pre>
+<p><code>zic -L /dev/null ...</code><br>
+这会创建没有时间补偿的 <code>posix</code> 时区数据。一般将它们同时放在 <code>zoneinfo</code> 和 <code>zoneinfo/posix</code> 目录下。另外需要将 <code>POSIX</code> 时区数据放到 <code>zoneinfo</code> 目录下，否则很多测试套件会报错。在嵌入式平台，如果存储空间紧张而且你也不准备更新时区，也可以不用 <code>posix</code> 目录从而节省 1.9MB，但是一些应用程序或测试套件也许会出错。</p>
+<p><code>zic -L leapseconds ...</code><br>
+这会创建包含时间补偿的 right 时区数据。在嵌入式平台，空间比较紧张而且你也不打算更新时区或者不需要准确时间，你可以忽略 right 目录从而节省 1.9MB。</p>
+<p><code>zic ... -p ...</code><br>
+这会创建 <code>posixrules</code> 文件。我们使用纽约是因为 <code>POSIX</code> 要求夏令时规则与 <code>US</code> 标准一致。</p>
+<p>一种确定本地时区的方式是运行下面的脚本：<br>
+<code>tzselect</code></p>
+<p>然后运行下面的命令创建 <code>/etc/localtime</code> 文件：<br>
+<code>ln -sfv /usr/share/zoneinfo/&lt;xxx&gt; /etc/localtime</code><br>
+将命令中的 <xxx> 替换成你所在实际时区的名字（比如 Canada/Eastern）。<br>
+我的是 <code>Asia/Shanghai</code>.</xxx></p>
+<h5 id="b3_solo_h5_6">配置动态库加载器</h5>
+<p>默认情况下，动态库加载器（<code>/lib/ld-linux.so.2</code>）会搜索目录 <code>/lib</code> 和 <code>/usr/lib</code> 查找程序运行时所需的动态库文件。不过，如果库文件不在 <code>/lib</code> 和 <code>/usr/lib</code> 目录下，需要把它所在目录加到 <code>/etc/ld.so.conf</code> 文件里，保证动态库加载器能找到这些库。通常有两个目录包含额外的动态库，<code>/usr/local/lib</code> 和 <code>/opt/lib</code>，把这两个目录加到动态库加载器的搜索路径中。</p>
+<p>运行下面的命令创建一个新文件<code>/etc/ld.so.conf</code>：</p>
+<pre><code>cat &gt; /etc/ld.so.conf &lt;&lt; "EOF"
+# Begin /etc/ld.so.conf
+/usr/local/lib
+/opt/lib
+
+EOF
+</code></pre>
+<p>如果需要的话，动态库加载器也可以查找目录并包含里面配置文件的内容。通常在这个包含目录下的文件只有一行字指向库目录。运行下面的命令增加这个功能：</p>
+<pre><code>cat &gt;&gt; /etc/ld.so.conf &lt;&lt; "EOF"
+# Add an include directory
+include /etc/ld.so.conf.d/*.conf
+
+EOF
+
+mkdir -pv /etc/ld.so.conf.d
+</code></pre>
+<h4 id="b3_solo_h4_7">调整工具链(测试)</h4>
+<p>现在最后的 C 语言库已经装好了，是时候调整工具链，让新编译的程序链接到这些新的库上。</p>
+<p>首先,备份 /tools 链接器，然后用我们在第五章调整过的链接器代替它。我们还会创建一个链接，链接到 /tools/$(gcc -dumpmachine)/bin 的副本：</p>
+<p>mv -v /tools/bin/{ld,ld-old}<br>
+mv -v /tools/$(gcc -dumpmachine)/bin/{ld,ld-old}<br>
+mv -v /tools/bin/{ld-new,ld}<br>
+ln -sv /tools/bin/ld /tools/$(gcc -dumpmachine)/bin/ld</p>
+<p>接下来，修改 GCC 参数文件，让它指向新的动态连接器。只需删除所有 “/tools” 的实例，这样应该可以留下到达动态链接器的正确路径。还要调整参数文件，这样 GCC 就知道怎样找到正确的头文件和 Glibc 启动文件。一个 sed 命令就能完成这些:</p>
+<pre><code>gcc -dumpspecs | sed -e 's@/tools@@g'                   \
+-e '/\*startfile_prefix_spec:/{n;s@.*@/usr/lib/ @}' \
+-e '/\*cpp:/{n;s@$@ -isystem /usr/include@}' &gt;      \
+`dirname $(gcc --print-libgcc-file-name)`/specs
+</code></pre>
+<p>确保已调整的工具链的基本功能（编译和链接）都能如期进行是非常必要的。 怎样做呢？执行下面这条命令：</p>
+<pre><code>echo 'main(){}' &gt; dummy.c
+cc dummy.c -v -Wl,--verbose &amp;&gt; dummy.log
+readelf -l a.out | grep ': /lib'
+</code></pre>
+<p>如果没有任何错误，上条命令的输出应该是（不同的平台上的动态链接器可能名字不同）：</p>
+<p><code>[Requesting program interpreter: /lib/ld-linux.so.2]</code><br>
+注意 /lib 现在是我们动态链接库的前缀。</p>
+<p>现在确保我们已经设置好了启动文件：<br>
+<code>grep -o '/usr/lib.*/crt[1in].*succeeded' dummy.log</code><br>
+上一条命令的输出应该是：</p>
+<pre><code>/usr/lib/crt1.o succeeded
+/usr/lib/crti.o succeeded
+/usr/lib/crtn.o succeeded
+</code></pre>
+<p>确保链接器能找到正确的头文件：<br>
+<code>grep -B1 '^ /usr/include' dummy.log</code><br>
+这条命令应该返回如下输出：</p>
+<pre><code>#include &lt;...&gt; search starts here:
+ /usr/include
+</code></pre>
+<p>接下来，确认新的链接器已经在使用正确的搜索路径：</p>
+<p><code>grep 'SEARCH.*/usr/lib' dummy.log |sed 's|; |\n|g'</code><br>
+应该忽略指向带有 '-linux-gnu' 的路径，上条命令的输出应该是：</p>
+<pre><code>SEARCH_DIR("/usr/lib")
+SEARCH_DIR("/lib");
+</code></pre>
+<p>然后我们要确定我们使用的是正确的 libc:<br>
+<code>grep "/lib.*/libc.so.6 " dummy.log</code></p>
+<p>上条命令的输出应该是（在 64 位主机上会有 lib64 目录）：<br>
+<code>attempt to open /lib/libc.so.6 succeeded</code></p>
+<p>最后，确保 GCC 使用的是正确的动态链接器：<br>
+<code>grep found dummy.log</code></p>
+<p>上条命令的结果应该是（不同的平台上链接器名字可以不同，64 位主机上是 lib64 目录）：<br>
+<code>found ld-linux.so.2 at /lib/ld-linux.so.2</code></p>
+<p>如果显示的结果不一样或者根本没有显示，那就出了大问题。检查并回溯之前的步骤，找到出错的地方并改正。最有可能的原因是参数文件的调整出了问题。在进行下一步之前所有的问题都要解决。<br>
+一旦所有的事情都正常了，清除测试文件：<br>
+<code>rm -v dummy.c a.out dummy.log</code></p>
+<h4 id="b3_solo_h4_8">Zlib-1.2.11</h4>
+<p>Zlib 软件包包括一些程序所使用的压缩和解压缩例程。</p>
+<p>共享库需要移动到 /lib，因此需要重建 /usr/lib 里面的 .so 文件：</p>
+<pre><code>mv -v /usr/lib/libz.so.* /lib
+ln -sfv ../../lib/$(readlink /usr/lib/libz.so) /usr/lib/libz.so
+</code></pre>
+<h4 id="b3_solo_h4_9">File-5.22</h4>
+<p>File 软件包包括一个判断给定的某个或某些文件文件类型的工具。</p>
+<h4 id="b3_solo_h4_10">Readline-7.0</h4>
+<p>Readline 软件包是一个提供命令行编辑和历史能力的一些库</p>
+<p><code>sed -i '/MV.*old/d' Makefile.in</code><br>
+<code>sed -i '/{OLDSUFF}/c:'support/shlib-install</code></p>
+<p>编译:</p>
+<pre><code>./configure --prefix=/usr    \
+            --disable-static \
+            --docdir=/usr/share/doc/readline-7.0
+</code></pre>
+<pre><code>make SHLIB_LIBS="-L/tools/lib -lncursesw"
+</code></pre>
+<p><code>SHLIB_LIBS="-L/tools/lib -lncursesw"</code><br>
+This option forces Readline to link against the libncursesw library.</p>
+<p>转移动态库到合适位置,修复一些链接符号:</p>
+<pre><code>mv -v /usr/lib/lib{readline,history}.so.* /lib
+ln -sfv ../../lib/$(readlink /usr/lib/libreadline.so) /usr/lib/libreadline.so
+ln -sfv ../../lib/$(readlink /usr/lib/libhistory.so ) /usr/lib/libhistory.so
+</code></pre>
+<p>如果需要的话,安装文档:<br>
+<code>install -v -m644 doc/*.{ps,pdf,html,dvi} /usr/share/doc/readline-7.0</code></p>
+<h4 id="b3_solo_h4_11">M4-1.4.18</h4>
+<p>M4软件包包含一个宏处理器</p>
+<h4 id="b3_solo_h4_12">Bc-1.07.1</h4>
+<p>Bc软件包用于数学处理<br>
+change an internal script to use sed instead of ed:</p>
+<pre><code>cat &gt; bc/fix-libmath_h &lt;&lt; "EOF"
+#! /bin/bash
+sed -e '1   s/^/{"/' \
+    -e     's/$/",/' \
+    -e '2,$ s/^/"/'  \
+    -e   '$ d'       \
+    -i libmath.h
+
+sed -e '$ s/$/0}/' \
+    -i libmath.h
+EOF
+</code></pre>
+<p>Create temporary symbolic links so the package can find the readline library and confirm that its required libncurses library is available. Even though the libraries are in /tools/lib at this point, <em>the system will use /usr/lib at the end of this chapter.</em></p>
+<pre><code>ln -sv /tools/lib/libncursesw.so.6 /usr/lib/libncursesw.so.6
+ln -sfv libncurses.so.6 /usr/lib/libncurses.so
+</code></pre>
+<p>Fix an issue in configure due to missing files in the early stages of LFS:<br>
+<code>sed -i -e '/flex/s/as_fn_error/: ;; # &amp;/' configure</code><br>
+编译:</p>
+<pre><code>./configure --prefix=/usr           \
+            --with-readline         \
+            --mandir=/usr/share/man \
+            --infodir=/usr/share/info
+</code></pre>
+<p><code>--with-readline</code><br>
+This option tells Bc to use the <em>readline library</em> that is already installed on the system rather than <em>using its own readline version.</em></p>
+<p>To test bc, run the commands below. There is quite a bit of output, so you may want to redirect it to a file. There are a very small percentage of tests (10 of 12,144) that will indicate a round off error at the last digit.<br>
+<code>echo "quit" | ./bc/bc -l Test/checklib.b</code></p>
+<h4 id="b3_solo_h4_13">Binutils-2.25</h4>
+<p>Binutils 软件包包含一个链接器、一个汇编器、以及其它处理目标文件的工具。<br>
+验证:<br>
+<code>expect -c "spawn ls</code>"<br>
+正常输出:<br>
+<code>spawn ls</code><br>
+假如输出包括下面的信息，那么表示没有为 PTY 操作设置好环境。在运行 Binutils 和 GCC 的测试套件之前需要解决这个问题：</p>
+<pre><code>The system has no more ptys.
+Ask your system administrator to create more.
+</code></pre>
+<p>编译:</p>
+<pre><code>../configure --prefix=/usr       \
+             --enable-gold       \
+             --enable-ld=default \
+             --enable-plugins    \
+             --enable-shared     \
+             --disable-werror    \
+             --enable-64-bit-bfd \
+             --with-system-zlib
+</code></pre>
+<p><code>--enable-gold</code><br>
+Build the gold linker and install it as ld.gold (along side the default linker).</p>
+<p><code>--enable-ld=default</code><br>
+Build the original bdf linker and install it as both ld (the default linker) and ld.bfd.</p>
+<p><code>--enable-plugins</code><br>
+Enables plugin support for the linker.</p>
+<p><code>--enable-64-bit-bfd</code><br>
+Enables 64-bit support (on hosts with narrower word sizes). May not be needed on 64-bit systems, but <em>does no harm</em>.</p>
+<p><code>--with-system-zlib</code><br>
+Use the installed zlib library rather than building the included version.</p>
+<p>编译:<br>
+<code>make tooldir=/usr</code></p>
+<p><code>tooldir=/usr</code><br>
+一般来说，<code>tooldir</code> (最终存放可执行文件的目录) 设置为 <code>$(exec_prefix)/$(target_alias)</code>。例如,<code>x86_64</code>机器会把它扩展为<code>/usr/x86_64-unknown-linux-gnu</code>。因为这是个自定制的系统，并不需要 <code>/usr</code> 中的特定目标目录。如果系统用于交叉编译（例如，在 Intel 机器上编译能生成在 PowerPC 机器上运行的代码的软件包）会使用 <code>$(exec_prefix)/$(target_alias)</code>。</p>
+<p>测试<br>
+<code>make -k check</code><br>
+安装:<br>
+<code>make tooldir=/usr install</code></p>
+<h4 id="b3_solo_h4_14">GMP-6.1.2</h4>
+<p>GMP 软件包包含一些数学库。这里有对任意精度数值计算很有用的函数。</p>
+<p>如果你是为 32 位的 x86 系统编译，但是你的 CPU 可以运行 64 位代码 而且 环境中你有指定的 <code>CFLAGS</code>，那么配置脚本会尝试配置为 64 位并导致失败。用下面的方式执行配置命令来避免这个问题:<br>
+<code>ABI=32 ./configure ...</code></p>
+<p>The default settings of GMP produce libraries optimized for the host processor. If libraries suitable for processors less capable than the host's CPU are desired,<br>
+(库对于处理器的适合度小于宿主的cpu的能力,然后创建通用的库),generic libraries can be created by running the following:</p>
+<pre><code>cp -v configfsf.guess config.guess
+cp -v configfsf.sub   config.sub
+</code></pre>
+<p><code>--enable-cxx</code><br>
+这个参数启用 C++ 支持</p>
+<p><code>--docdir=/usr/share/doc/gmp-6.1.2</code><br>
+这个变量指定保存文档的正确位置。</p>
+<p>Ensure that all 190 tests in the test suite passed.<br>
+<code>awk '/# PASS:/{total+=$3} ; END{print total}' gmp-check-log</code></p>
+<pre><code>./configure --prefix=/usr    \
+            --enable-cxx     \
+            --disable-static \
+            --docdir=/usr/share/doc/gmp-6.1.2
+</code></pre>
+<h4 id="b3_solo_h4_15">MPFR-4.0.1</h4>
+<p>编译:</p>
+<pre><code>./configure --prefix=/usr        \
+            --disable-static     \
+            --enable-thread-safe \
+            --docdir=/usr/share/doc/mpfr-4.0.1
+</code></pre>
+<h4 id="b3_solo_h4_16">MPC-1.1.0</h4>
+<p>编译:</p>
+<pre><code>./configure --prefix=/usr    \
+            --disable-static \
+            --docdir=/usr/share/doc/mpc-1.1.0
+</code></pre>
+<h4 id="b3_solo_h4_17">GCC-7.3.0</h4>
+<p>If building on x86_64, change the default directory name for 64-bit libraries to “lib”:</p>
+<pre><code>case $(uname -m) in
+  x86_64)
+    sed -e '/m64=/s/lib64/lib/' \
+        -i.orig gcc/config/i386/t-linux64
+  ;;
+esac
+</code></pre>
+<p>Remove the symlink created earlier as the final gcc includes will be installed here:<br>
+<code>rm -f /usr/lib/gcc</code></p>
+<p>编译:</p>
+<pre><code>SED=sed                               \
+../configure --prefix=/usr            \
+             --enable-languages=c,c++ \
+             --disable-multilib       \
+             --disable-bootstrap      \
+             --with-system-zlib
+</code></pre>
+<p><code>SED=sed</code><br>
+Setting this environment variable prevents a hard-coded path to /tools/bin/sed.</p>
+<p><code>--with-system-zlib</code><br>
+This switch tells GCC to link to the system installed copy of the Zlib library, rather than its own internal copy.</p>
+<p>One set of tests in the GCC test suite is known to exhaust the stack, so increase the stack size prior to running the tests:<br>
+(一个测试会用尽tests,需要扩大栈的容量)<br>
+<code>ulimit -s 32768</code><br>
+一些意料之外的错误总是难以避免。GCC 开发者通常意识到了这些问题，但还没有解决。除非测试结果和上面 URL 中的相差很大，不然就可以安全继续。</p>
+<blockquote>
+<p>On some combinations of kernel configuration and AMD processors there may be more than 1100 failures in the gcc.target/i386/mpx tests (which are designed to test the MPX option on recent Intel processors). These can safely be ignored on AMD processors.<br>
+我表示震惊....</p>
+</blockquote>
+<p>一些软件包希望 GCC 安装在 /lib 目录。为了支持那些软件包，可以建立一个符号链接：</p>
+<p><code>ln -sv ../usr/bin/cpp /lib</code><br>
+译者注：如果还在 gcc-build 目录，这里应该是 <code>ln -sv ../../usr/bin/cpp /lib</code> 。<br>
+很多软件包用命令 cc 调用 C 编译器。为了满足这些软件包，创建一个符号链接：<br>
+<code>ln -sv gcc /usr/bin/cc</code></p>
+<p>增加一个兼容符号链接启用编译程序时进行链接时间优化（Link Time Optimization，LTO）：</p>
+<pre><code>install -v -dm755 /usr/lib/bfd-plugins
+ln -sfv ../../libexec/gcc/$(gcc -dumpmachine)/7.3.0/liblto_plugin.so \
+        /usr/lib/bfd-plugins/
+</code></pre>
+<p>然后进行检验(步骤省略)<br>
+最后，移动位置放错的文件：</p>
+<pre><code>mkdir -pv /usr/share/gdb/auto-load/usr/lib
+mv -v /usr/lib/*gdb.py /usr/share/gdb/auto-load/usr/lib
+</code></pre>
+<h4 id="b3_solo_h4_18">Bzip2-1.0.6</h4>
+<p><code>Bzip2</code> 软件包包含压缩和解压缩的程序。用 <code>bzip2</code> 压缩文本文件能获得比传统的 <code>gzip</code> 更好的压缩比。<br>
+使用能为这个软件包安装帮助文档的补丁：<br>
+<code>patch -Np1 -i ../bzip2-1.0.6-install_docs-1.patch</code></p>
+<p>下面的命令确保安装的符号链接是相对链接：<br>
+<code>sed -i 's@\(ln -s -f \)$(PREFIX)/bin/@\1@' Makefile</code></p>
+<p>确认 man 页面安装到了正确的位置：<br>
+<code>sed -i "s@(PREFIX)/man@(PREFIX)/share/man@g" Makefile</code></p>
+<p>编译:</p>
+<pre><code>make -f Makefile-libbz2_so
+make clean
+</code></pre>
+<p><code>-f Makefile-libbz2_so</code><br>
+这会使用不同的 Makefile 文件编译 <code>Bzip2</code>，在这里是 <code>Makefile-libbz2_so</code>，它会创建动态 <code>libbz2.so</code> 库，并把它链接到 <code>Bzip2</code> 工具。</p>
+<p>安装使用动态链接库的 <code>bzip2</code> 二进制文件到 <code>/bin</code> 目录， 创建一些必须的符号链接并清理：</p>
+<pre><code>cp -v bzip2-shared /bin/bzip2
+cp -av libbz2.so* /lib
+ln -sv ../../lib/libbz2.so.1.0 /usr/lib/libbz2.so
+rm -v /usr/bin/{bunzip2,bzcat,bzip2}
+ln -sv bzip2 /bin/bunzip2
+ln -sv bzip2 /bin/bzcat
+</code></pre>
+<h4 id="b3_solo_h4_19">Pkg-config-0.29.2</h4>
+<p>pkg-config 软件包包含一个在配置和 make 文件运行时把 include 路径和库路径传递给编译工具的工具。</p>
+<pre><code>./configure --prefix=/usr              \
+            --with-internal-glib       \
+            --disable-host-tool        \
+            --docdir=/usr/share/doc/pkg-config-0.29.2
+</code></pre>
+<p><code>--with-internal-glib</code><br>
+这会让 pkg-config 使用它自己内部版本的 Glib，因为在 LFS 中没有可用的外部版本。</p>
+<p><code>--disable-host-tool</code><br>
+这个选项取消创建到 pkg-config 程序的不必要的硬链接。</p>
+<h4 id="b3_solo_h4_20">Ncurses-6.1</h4>
+<p>Ncurses 软件包包含用于不依赖于特定终端的字符屏幕处理的库。<br>
+Don't install a static library that is not handled by configure:<br>
+<code>sed -i '/LIBTOOL_INSTALL/d' c++/Makefile.in</code></p>
+<p>编译:</p>
+<pre><code>./configure --prefix=/usr           \
+            --mandir=/usr/share/man \
+            --with-shared           \
+            --without-debug         \
+            --without-normal        \
+            --enable-pc-files       \
+            --enable-widec
+</code></pre>
+<p><code>--enable-widec</code><br>
+这个选项会编译宽字符库（例如 libncursesw.so.5.9）而不是常规的）例如 libncurses.so.5.9）。宽字符库可用于多字节和传统的 8 位本地字符， 而常规的库只能用于 8 位本地字符。宽字符库和常规的库是源文件兼容的，而不是二进制文件兼容的。</p>
+<p><code>--enable-pc-files</code><br>
+该选项为 pkg-config 生成和安装 .pc 文件。</p>
+<p><code>--without-normal</code><br>
+该选项取消生成与安装静态库</p>
+<p>Move the shared libraries to the /lib directory, where they are expected to reside(转移库文件):<br>
+<code>mv -v /usr/lib/libncursesw.so.6* /lib</code></p>
+<p>Because the libraries have been moved, one symlink points to a non-existent file. Recreate it(重新链接库文件):<br>
+<code>ln -sfv ../../lib/$(readlink /usr/lib/libncursesw.so) /usr/lib/libncursesw.so</code></p>
+<p>很多应用程序仍然希望编辑器能找到非宽字符的 Ncurses 库。通过符号链接和链接器脚本欺骗这样的应用链接到宽字符库：</p>
+<pre><code>for lib in ncurses form panel menu ; do
+    rm -vf                    /usr/lib/lib${lib}.so
+    echo "INPUT(-l${lib}w)" &gt; /usr/lib/lib${lib}.so
+    ln -sfv ${lib}w.pc        /usr/lib/pkgconfig/${lib}.pc
+done
+</code></pre>
+<p>最后，确保在编译时会查找 -lcurses 的旧应用程序仍然可以编译：</p>
+<pre><code>rm -vf                     /usr/lib/libcursesw.so
+echo "INPUT(-lncursesw)" &gt; /usr/lib/libcursesw.so
+ln -sfv libncurses.so      /usr/lib/libcurses.so
+</code></pre>
+<p><strong>注意</strong><br>
+上面的指令并<strong>不会创建</strong>非宽字符 <code>Ncurses</code> 库，因为_没有从源文件中编译安装的软件包会在运行时链接它们_。如果你由于一些仅有二进制的应用程序或要和 <code>LSB</code> 兼容而必须要有这样的库，用下面的命令重新编译软件包：</p>
+<pre><code>make distclean
+./configure --prefix=/usr    \
+            --with-shared    \
+            --without-normal \
+            --without-debug  \
+            --without-cxx-binding \
+            --with-abi-version=5
+make sources libs
+cp -av lib/lib*.so.5* /usr/lib
+</code></pre>
+<h4 id="b3_solo_h4_21">Attr-2.4.47</h4>
+<p>attr 软件包包含管理文件系统对象的扩展属性的工具。<br>
+Modify the documentation directory so that it is a versioned directory:<br>
+<code>sed -i -e 's|/@pkg_name@|&amp;-@pkg_version@|' include/builddefs.in</code></p>
+<p>Prevent installation of manual pages that were already installed by the man pages package:<br>
+<code>sed -i -e "/SUBDIRS/s|man[25]||g" man/Makefile</code></p>
+<p>Fix a problem in the test procedures caused by changes in perl-5.26:<br>
+(修复问题)<br>
+<code>sed -i 's:{(:\\{(:' test/run</code></p>
+<pre><code>./configure --prefix=/usr \
+            --bindir=/bin \
+            --disable-static
+</code></pre>
+<p>The shared library needs to be moved to /lib, and as a result the .so file in /usr/lib will need to be recreated:<br>
+<code>mv -v /usr/lib/libattr.so.* /lib</code><br>
+<code>ln -sfv ../../lib/$(readlink /usr/lib/libattr.so) /usr/lib/libattr.so</code></p>
+<h4 id="b3_solo_h4_22">Acl-2.2.52</h4>
+<p>Modify the documentation directory so that it is a versioned directory:</p>
+<p><code>sed -i -e 's|/@pkg_name@|&amp;-@pkg_version@|' include/builddefs.in</code><br>
+Fix some broken tests:</p>
+<p><code>sed -i "s:| sed.*::g" test/{sbits-restore,cp,misc}.test</code><br>
+Fix a problem in the test procedures caused by changes in perl-5.26:</p>
+<p><code>sed -i 's/{(/\\{(/' test/run</code><br>
+Additionally, fix a bug that causes getfacl -e to segfault on overly long group name:</p>
+<pre><code>sed -i -e "/TABS-1;/a if (x &gt; (TABS-1)) x = (TABS-1);" \
+    libacl/__acl_to_any_text.c
+    ```
+Prepare Acl for compilation:
+</code></pre>
+<p>./configure --prefix=/usr    <br>
+--bindir=/bin    <br>
+--disable-static <br>
+--libexecdir=/usr/lib</p>
+<pre><code>#### Libcap-2.25
+Libcap 软件包实现了可用在 Linux 内核上的对 POSIX 1003.1e 功能的用户空间接口。 这些功能将所有强大 root 权限划分为不同的权限组合。
+Install the package:
+</code></pre>
+<p>make RAISE_SETFCAP=no lib=lib prefix=/usr install<br>
+chmod -v 755 /usr/lib/libcap.so</p>
+<pre><code>The meaning of the make option:
+`RAISE_SETFCAP=no`
+This parameter skips trying to use setcap on itself. This avoids an installation error if the kernel or file system does not support extended capabilities.
+
+`lib=lib`
+This parameter installs the library in `$prefix/lib` rather than `$prefix/lib64` on `x86_64`. It has no effect on`x86`.
+
+#### Sed-4.4
+The Sed package contains a stream editor.
+First fix an issue in the LFS environment and remove a failing test:
+`sed -i 's/usr/tools/'                 build-aux/help2man`
+`sed -i 's/testsuite.panic-tests.sh//' Makefile.in`
+
+Prepare Sed for compilation:
+`./configure --prefix=/usr --bindir=/bin`
+
+#### Shadow-4.5
+Shadow 软件包包含以安全方式处理密码的程序。
+**注意**
+如果你喜欢强制使用更强的密码，在编译 Shadow 之前可以根据 http://www.linuxfromscratch.org/blfs/view/systemd/postlfs/cracklib.html 安装 `CrackLib`。然后在下面的 configure 命令中增加 `--with-libcrack`。
+
+取消安装 `groups` 程序以及它的 `man` 文档，因为 Coreutils 提供了一个更好的版本：
+</code></pre>
+<p>sed -i 's/groups$(EXEEXT) //' src/Makefile.in<br>
+find man -name Makefile.in -exec sed -i 's/groups.1 / /'   {} ;<br>
+find man -name Makefile.in -exec sed -i 's/getspnam.3 / /' {} ;<br>
+find man -name Makefile.in -exec sed -i 's/passwd.5 / /'   {} ;</p>
+<pre><code>
+比起默认的 crypt 方法，用更安全的 SHA-512 方法加密密码，它允许密码长度超过 8 个字符。也需要把 Shadow 默认使用的用户邮箱由陈旧的 /var/spool/mail 位置改为正在使用的 /var/mail 位置
+</code></pre>
+<p>sed -i -e 's@#ENCRYPT_METHOD DES@ENCRYPT_METHOD SHA512@' <br>
+-e 's@/var/spool/mail@/var/mail@' etc/login.defs</p>
+<pre><code>**Note**
+如果你选择编译支持 Cracklib 的 Shadow，运行下面的命令：
+`sed -i 's@DICTPATH.*@DICTPATH\t/lib/cracklib/pw_dict@' etc/login.defs`
+
+做个小的改动使 useradd 的默认设置和 LFS 的组文件一致：
+`sed -i 's/1000/999/' etc/useradd`
+
+Prepare Shadow for compilation:
+`./configure --sysconfdir=/etc --with-group-name-max-length=32`
+
+The meaning of the configure option:
+`--with-group-name-max-length=32`
+最长用户名为 32 个字符，使组名称也是如此
+
+##### Configuring Shadow
+该软件包包含增加、更改、以及删除用户和组的工具；设置和修改密码；执行其它特权级任务。软件包解压后的 `doc/HOWTO` 文件有关于 `password` `shadowing` 的完整解释。如果使用 `Shadow` 支持，记住需要验证密码（显示管理器、FTP 程序、pop3 守护进程等）的程序必须和 `Shadow` 兼容。 也就是说，它们要能使用 Shadow 加密的密码。
+
+运行下面的命令启用 shadow 密码；
+`pwconv`
+
+运行下面的命令启用 shadow 组密码：
+`grpconv`
+
+用于 useradd 工具的 Shadow 配置有一些需要解释的注意事项。首先，useradd 工具的默认操作是创建用户以及和用户名相同的组。默认情况下，用户 ID(UID) 和组 ID(GID) 的数字从 1000 开始。这意味着如果你不传递参数给 useradd，系统中的每个用户都会属于一个不同的组。如果不需要这样的结果，你需要传递参数 -g 到 useradd。默认参数保存在 /etc/default/useradd 文件中。你需要修改该文件中的两个参数来实现你的特定需求。
+
+`/etc/default/useradd` 参数解释
+
+`GROUP=1000`
+该参数设定 /etc/group 文件中使用的起始组序号。你可以把它更改为任何你需要的数字。注意 useradd 永远不会重用 UID 或 GID。如果该参数指定的数字已经被使用了，将会使用它之后的下一个可用数字。另外注意如果你系统中没有序号为 1000 的组，第一次使用useradd 而没有参数 -g 的话，你会在终端中看到一个提示信息： useradd: unknown GID 1000。你可以忽视这个信息，它会使用组号 1000。
+
+`CREATE_MAIL_SPOOL=yes`
+这个参数会为 useradd 新添加的用户创建邮箱文件。useradd 会使组 mail 拥有该文件的所有权，并赋予组 0660 的权限。如果你希望 useradd 不创建这些邮箱文件，你可以运行下面的命令：
+`sed -i 's/yes/no/' /etc/default/useradd`
+
+##### 设置 root 密码
+运行下面的命令为用户 root 设置密码：
+`passwd root`
+
+#### (由于构建文档太长,此篇到此结束,还有50多个工具的编译过程没有记录,主要还是要看构建文档)</code></pre>
+<p></p>
+                    <div>
+                        <hr>
+<img alt="今日诗词" src="https://v2.jinrishici.com/one.svg" style="max-width:100%; display: block; margin: 0 auto;">
+
+标题：Linux For Scratch Pass 4<br>
+作者：<a href="https://ellenbboe.github.io" target="_blank">ellenbboe</a><br>
+地址：<a href="https://ellenbboe.github.io/articles/2018/07/18/1561009689987.html" target="_blank">https://ellenbboe.github.io/articles/2018/07/18/1561009689987.html</a><br>
+<!-- 签名档内可使用 HTML、JavaScript -->
+<br>
+                    </div>
+            </section>
+        </div>
+    </div>
+        <div class="post__toc">
+<ul class="article__toc">
+        <li class="toc__h3">
+            <a href="#b3_solo_h3_0">安装基本系统软件过程(重点过程)</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#b3_solo_h4_1">Linux-4.15.3 API Headers</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#b3_solo_h4_2">Man-pages-4.15</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#b3_solo_h4_3">Glibc-2.21</a>
+        </li>
+        <li class="toc__h5">
+            <a href="#b3_solo_h5_4">安装语言环境</a>
+        </li>
+        <li class="toc__h5">
+            <a href="#b3_solo_h5_5">配置 Glibc</a>
+        </li>
+        <li class="toc__h5">
+            <a href="#b3_solo_h5_6">配置动态库加载器</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#b3_solo_h4_7">调整工具链(测试)</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#b3_solo_h4_8">Zlib-1.2.11</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#b3_solo_h4_9">File-5.22</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#b3_solo_h4_10">Readline-7.0</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#b3_solo_h4_11">M4-1.4.18</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#b3_solo_h4_12">Bc-1.07.1</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#b3_solo_h4_13">Binutils-2.25</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#b3_solo_h4_14">GMP-6.1.2</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#b3_solo_h4_15">MPFR-4.0.1</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#b3_solo_h4_16">MPC-1.1.0</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#b3_solo_h4_17">GCC-7.3.0</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#b3_solo_h4_18">Bzip2-1.0.6</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#b3_solo_h4_19">Pkg-config-0.29.2</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#b3_solo_h4_20">Ncurses-6.1</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#b3_solo_h4_21">Attr-2.4.47</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#b3_solo_h4_22">Acl-2.2.52</a>
+        </li>
+</ul>        </div>
+<div class="comment">
+    <div class="comment__wrapper wrapper">
+        <div class="comment__title">
+            评论
+        </div>
+        <textarea rows="3" placeholder="评论内容只能为 2 到 500 个字符！" id="comment"></textarea>
+
+        <ul id="comments">
+        </ul>
+    </div>
+</div>
+    <div class="article__bottom">
+        <div class="wrapper">
+            <div class="fn__flex">
+                <div class="item" id="randomArticles"></div>
+                <div class="item" id="relevantArticles"></div>
+            </div>
+        </div>
+    </div>
+    
+</div>
+<footer class="footer">
+    <div class="wrapper fn__clear">
+        <div class="fn__left">
+            &copy; 2020
+            <a href="https://ellenbboe.github.io">Kosmos</a>
+            <a href="http://www.beian.miit.gov.cn/">浙ICP备18045840号-1</a>--------Let's move on
+本站已安全运行:
+<span id="momk"></span>
+<script language=javascript>
+function show_date_time(){
+window.setTimeout("show_date_time()", 1000);
+BirthDay=new Date("09-10-2018 19:47:57");//建站日期
+today=new Date();
+timeold=(today.getTime()-BirthDay.getTime());
+sectimeold=timeold/1000
+secondsold=Math.floor(sectimeold);
+msPerDay=24*60*60*1000
+e_daysold=timeold/msPerDay
+daysold=Math.floor(e_daysold);
+e_hrsold=(daysold-e_daysold)*-24;
+hrsold=Math.floor(e_hrsold);
+e_minsold=(hrsold-e_hrsold)*-60;
+minsold=Math.floor((hrsold-e_hrsold)*-60);
+seconds=Math.floor((minsold-e_minsold)*-60);
+momk.innerHTML=daysold+"天"+hrsold+"小时"+minsold+"分"+seconds+"秒" ;
+}
+show_date_time();
+</script>
+<style>
+#momk{animation:change 10s infinite;font-weight:800; }
+@keyframes change{0%{color:#5cb85c;}25%{color:#556bd8;}50%{color:#e40707;}75%{color:#66e616;}100% {color:#67bd31;}}
+</style> &nbsp;•&nbsp;
+            Powered by <a href="https://solo.b3log.org" target="_blank">Solo</a>
+            <br>
+            Theme Casper
+            <sup>[<a href="https://github.com/TryGhost/Casper" target="_blank">ref</a>]</sup>
+            by <a href="http://vanessa.b3log.org" target="_blank">Vanessa</a>
+        </div>
+        <div class="fn__right">
+            <a href="https://ellenbboe.github.io/tags.html" rel="section">
+            标签墙
+            </a>
+            &nbsp;•&nbsp;
+            <a href="https://ellenbboe.github.io/archives.html">
+            存档
+            </a>
+            &nbsp;•&nbsp;
+            <a rel="archive" href="https://ellenbboe.github.io/links.html">
+            友情链接
+            </a>
+            <br>
+            115 文章 &nbsp;
+            9 评论 &nbsp;
+            <span data-uvstaturl="https://ellenbboe.github.io">11608</span> 浏览 &nbsp;
+            4 当前访客
+        </div>
+    </div>
+</footer>
+
+<script type="text/javascript" src="https://ellenbboe.github.io/js/lib/compress/pjax.min.js" charset="utf-8"></script>
+<script type="text/javascript" src="https://ellenbboe.github.io/js/common.min.js?1578931371974"
+        charset="utf-8"></script>
+<script type="text/javascript"
+        src="https://ellenbboe.github.io/skins/Casper/js/common.min.js?1578931371974"
+        charset="utf-8"></script>
+<script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.4/dist/index.min.js"></script>
+<script>
+    var Label = {
+        servePath: "https://ellenbboe.github.io",
+        staticServePath: "https://ellenbboe.github.io",
+        luteAvailable: false,
+        hljsStyle: 'colorful',
+        langLabel: "zh_CN",
+        version: "3.7.0",
+    }
+    Util.init()
+</script>
+
+
+<script type="text/javascript">
+    Util.addScript('https://ellenbboe.github.io/js/page.min.js?1578931371974', 'soloPageScript')
+    var page = new Page({
+        "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
+        "oId": "1561009689987",
+        "blogHost": "https://ellenbboe.github.io",
+        "randomArticles1Label": "随机阅读：",
+        "externalRelevantArticles1Label": "站外相关阅读："
+    });
+    $(document).ready(function () {
+        page.load();
+    page.tips.externalRelevantArticlesDisplayCount = "0";
+    Skin.initArticle()
+    });
+</script>
+
+</body>
+</html>
+
+<!-- Generated by Latke (https://github.com/88250/latke) in 44ms, 2020/01/14 12:34:59 -->
