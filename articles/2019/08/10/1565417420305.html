@@ -2,31 +2,104 @@
 <html>
 <head>
 <meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>学习笔记|泛型 - Kosmos</title><meta name="description" content="泛型就像一个接口,适配某一些类,可以通过extends,super加限制 🌴"/><meta property="og:description" content="泛型就像一个接口,适配某一些类,可以通过extends,super加限制 🌴"/>    <meta name="keywords" content="开源,开发者,笔记,kosmos"/><link rel="dns-prefetch" href="https://ellenbboe.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://ellenbboe.github.io"><link rel="icon" type="image/png" href="https://s2.ax1x.com/2020/01/12/loApPe.png"/><link rel="apple-touch-icon" href="https://s2.ax1x.com/2020/01/12/loApPe.png"><link rel="shortcut icon" type="image/x-icon" href="https://s2.ax1x.com/2020/01/12/loApPe.png"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="学习笔记|泛型 - Kosmos"/><meta property="og:site_name" content="Kosmos"/><meta property="og:url"      content="https://ellenbboe.github.io/articles/2019/08/10/1565417420305.html?"/><meta property="og:image" content="https://s2.ax1x.com/2020/01/12/loApPe.png"/><link rel="search" type="application/opensearchdescription+xml" title="学习笔记|泛型 - Kosmos" href="/opensearch.xml"><link href="https://ellenbboe.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://ellenbboe.github.io/manifest.json">        <link rel="canonical" href="https://ellenbboe.github.io/articles/2019/08/10/1565417420305.html">        <link rel="stylesheet"
-              href="https://ellenbboe.github.io/skins/Casper/css/base.css?1578931371974"/>
+              href="https://ellenbboe.github.io/skins/Casper/css/base.css?1591150301084"/>
             <link rel="prev" title="学习笔记|List,Set和Map" href="https://ellenbboe.github.io/articles/2019/08/09/1565336255411.html">
             <link rel="next" title="算法|随便刷刷LeetCode" href="https://ellenbboe.github.io/articles/2019/08/18/1566125443482.html">
-    </head>
+    <script>
+onload = function() {
+    var click_cnt = 0;
+    var $html = document.getElementsByTagName("html")[0];
+    var $body = document.getElementsByTagName("body")[0];
+    $html.onclick = function(e) {
+        var $elem = document.createElement("b");
+        $elem.style.color = "#E94F06";
+        $elem.style.zIndex = 9999;
+        $elem.style.position = "absolute";
+        $elem.style.select = "none";
+        var x = e.pageX;
+        var y = e.pageY;
+        $elem.style.left = (x - 10) + "px";
+        $elem.style.top = (y - 20) + "px";
+        clearInterval(anim);
+        switch (++click_cnt) {
+            case 10:
+                $elem.innerText = "OωO";
+                break;
+            case 20:
+                $elem.innerText = "(๑•́ ∀ •̀๑)";
+                break;
+            case 30:
+                $elem.innerText = "(๑•́ ₃ •̀๑)";
+                break;
+            case 40:
+                $elem.innerText = "(๑•̀_•́๑)";
+                break;
+            case 50:
+                $elem.innerText = "（￣へ￣）";
+                break;
+            case 60:
+                $elem.innerText = "(╯°口°)╯(┴—┴";
+                break;
+            case 70:
+                $elem.innerText = "૮( ᵒ̌皿ᵒ̌ )ა";
+                break;
+            case 80:
+                $elem.innerText = "╮(｡>口<｡)╭";
+                break;
+            case 90:
+                $elem.innerText = "( ง ᵒ̌皿ᵒ̌)ง⁼³₌₃";
+                break;
+            case 100:
+            case 101:
+            case 102:
+            case 103:
+            case 104:
+            case 105:
+                $elem.innerText = "(ꐦ°᷄д°᷅)";
+                break;
+            default:
+                $elem.innerText = "❤";
+                break;
+        }
+        $elem.style.fontSize = Math.random() * 10 + 8 + "px";
+        var increase = 0;
+        var anim;
+        setTimeout(function() {
+            anim = setInterval(function() {
+                if (++increase == 150) {
+                    clearInterval(anim);
+                    $body.removeChild($elem);
+                }
+                $elem.style.top = y - 20 - increase + "px";
+                $elem.style.opacity = (150 - increase) / 120;
+            }, 8);
+        }, 70);
+        $body.appendChild($elem);
+    };
+};
+</script>
+</head>
 <body class="fn__flex-column">
 <div id="pjax" class="fn__flex-1">
     
     <header class="header header--article">
         <div class="wrapper header__title">
             <h1 class="header__h1 fn__flex-inline">
-                <img src="https://s2.ax1x.com/2020/01/12/loApPe.png">
+                <img src="https://s2.ax1x.com/2020/01/12/loApPe.png" alt="Kosmos">
                 <a href="https://ellenbboe.github.io" rel="start" class="header__title">Kosmos</a>
             </h1>
-            <h2 class="header__h2">---就算是痛苦难受，也要去体会那被称为生存的分量---</h2>
+            <h2 class="header__h2">---我们总得选择一条路去前行---</h2>
         </div>
         <nav class="wrapper header__nav fn__clear">
             <a href="https://ellenbboe.github.io" rel="start">
                     Kosmos
             </a>
 
-                <a class="fn__flex-inline" href="/my-github-repos" target="_self" rel="section">
-                    <img src="/images/github-icon.png"> 我的开源
+                <a class="fn__flex-inline" href="https://github.com/ellenbboe" target="_self" rel="section">
+                    <img src="https://s2.ax1x.com/2020/01/16/ljWMPP.png" alt="我的GIT"> 我的GIT
                 </a>
                 <a class="fn__flex-inline" href="/readlist" target="_self" rel="section">
-                     阅读列表
+                    <img src="https://s2.ax1x.com/2020/01/16/ljWPC6.png" alt="阅读列表"> 阅读列表
                 </a>
 
 
@@ -111,14 +184,14 @@
         <div class="item__cover" style="background-image: url(https://img.hacpai.com/bing/20180128.jpg?imageView2/1/w/1280/h/720/interlace/1/q/100)"></div>
         <div class="wrapper">
             <section class="item__content item__content--article vditor-reset">
-                <p></p><h2 id="b3_solo_h2_0">泛型</h2>
+                <h2 id="toc_h2_0">泛型</h2>
 <p>泛型适用的是<strong>类</strong>类型,而不能是<strong>简单类型</strong><br>
 泛型类型在逻辑上看以看成是多个不同的类型，实际上都是<strong>相同</strong>的基本类型。<br>
 <code>List&lt;Integer&gt;</code>与<code>List&lt;Boolean&gt;</code>的Class是一样的,所以说类型相同<br>
 泛型标识<code>&lt;泛型标识&gt;</code>可以声明在类和方法<br>
 <code>?</code>代表的某一种类型,而不是多种,是实际的参数,而不是像<code>T</code>的形式参数</p>
-<h2 id="b3_solo_h2_1">泛型的使用</h2>
-<h3 id="b3_solo_h3_2">泛型类</h3>
+<h2 id="toc_h2_1">泛型的使用</h2>
+<h3 id="toc_h3_2">泛型类</h3>
 <pre><code>public class GenericsClass&lt;T&gt; {
     private T key;
     public GenericsClass(T key)
@@ -131,17 +204,17 @@
 }
 </code></pre>
 <p>表明T是泛型类型</p>
-<h4 id="b3_solo_h4_3">使用</h4>
+<h4 id="toc_h4_3">使用</h4>
 <pre><code>GenericsClass&lt;Integer&gt; a = new GenericsClass&lt;Integer&gt;(123); //显示声明
 GenericsClass a = new GenericsClass(123);
 </code></pre>
 <p>GenericsClass&lt;?&gt;可以匹配任何类型,但是只能使用Object的方法</p>
-<h3 id="b3_solo_h3_4">泛型接口</h3>
+<h3 id="toc_h3_4">泛型接口</h3>
 <pre><code>public interface GenericsInterface&lt;T&gt; {   
     public T hello();   
 }  
 </code></pre>
-<h4 id="b3_solo_h4_5">实现接口</h4>
+<h4 id="toc_h4_5">实现接口</h4>
 <p>可以还是返回泛型</p>
 <pre><code>public class GenericsImpl&lt;Anything&gt; implements GenericsInterface {
 
@@ -168,7 +241,7 @@ GenericsClass a = new GenericsClass(123);
 
 }
 </code></pre>
-<h3 id="b3_solo_h3_6">泛型方法</h3>
+<h3 id="toc_h3_6">泛型方法</h3>
 <pre><code>public class GenericsMethod&lt;T&gt; {
 private T key;
 
@@ -191,14 +264,14 @@ private T key;
 <p>无论何时，如果你能做到，你就该尽量使用泛型方法。也就是说，如果使用泛型方法将整个类泛型化，</p>
 <p>那么就应该使用泛型方法。另外对于一个static的方法而已，无法访问泛型类型的参数。</p>
 <p>所以如果static方法要使用泛型能力，就必须使其成为泛型方法。</p>
-<h4 id="b3_solo_h4_7">泛型的上下边界</h4>
+<h4 id="toc_h4_7">泛型的上下边界</h4>
 <pre><code>GenericsClass&lt;T extends Number&gt;
 </code></pre>
 <p>表示GenericsClass可以声明为GenericsClass&lt;Number及其子类&gt;</p>
 <pre><code>GenericsClass&lt;T super Number&gt;
 </code></pre>
 <p>表示GenericsClass可以声明为GenericsClass&lt;Number及其父类&gt;</p>
-<h3 id="b3_solo_h3_8">集合与泛型</h3>
+<h3 id="toc_h3_8">集合与泛型</h3>
 <p><strong>List</strong><br>
 普通的集合定义,可以存放任何数据</p>
 <p><strong>List&lt;Object&gt;</strong><br>
@@ -212,7 +285,7 @@ private T key;
 <strong>List&lt;? super T&gt;</strong><br>
 泛型通配符,可以删除,赋值T以及T的父类List,添加T以及T的子类,Get可以返回Object对象<br>
 因为<code>?</code>一定是T或者T的父类,所以我们只要添加T或者T的子类的对象,这些对象都能向上转型为T或者T的父类,返回的就是T或者T的父类</p>
-<h3 id="b3_solo_h3_9">我的疑问与解答</h3>
+<h3>我的疑问与解答</h3>
 <p>有个 List&lt;Object&gt; 里有个 String 类型,List 可以赋值给 List&lt;? super Number&gt;</p>
 <p>因为 Object 是 Number 的父类, 而 String 类型 被看成了 Object 对象</p>
 <pre><code>List&lt;Object&gt; a1 = new ArrayList();
@@ -227,7 +300,7 @@ System.out.println(c.get(0).getClass());`
 </code></pre>
 <p>还是得到了 class java.lang.String -.-</p>
 <p>但是实际上String类型即使被当做Object类型,它还是String类型,只是不能转换为Number类型而已,所以getclass出来的还是java.lang.string 🐙</p>
-<p></p></object></integer></p>
+</object></integer></p>
                     <div>
                         <hr>
 <img alt="今日诗词" src="https://v2.jinrishici.com/one.svg" style="max-width:100%; display: block; margin: 0 auto;">
@@ -237,6 +310,7 @@ System.out.println(c.get(0).getClass());`
 地址：<a href="https://ellenbboe.github.io/articles/2019/08/10/1565417420305.html" target="_blank">https://ellenbboe.github.io/articles/2019/08/10/1565417420305.html</a><br>
 <!-- 签名档内可使用 HTML、JavaScript -->
 <br>
+
                     </div>
             </section>
         </div>
@@ -244,47 +318,35 @@ System.out.println(c.get(0).getClass());`
         <div class="post__toc">
 <ul class="article__toc">
         <li class="toc__h2">
-            <a href="#b3_solo_h2_0">泛型</a>
+            <a href="#toc_h2_0">泛型</a>
         </li>
         <li class="toc__h2">
-            <a href="#b3_solo_h2_1">泛型的使用</a>
+            <a href="#toc_h2_1">泛型的使用</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_2">泛型类</a>
+            <a href="#toc_h3_2">泛型类</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_3">使用</a>
+            <a href="#toc_h4_3">使用</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_4">泛型接口</a>
+            <a href="#toc_h3_4">泛型接口</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_5">实现接口</a>
+            <a href="#toc_h4_5">实现接口</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_6">泛型方法</a>
+            <a href="#toc_h3_6">泛型方法</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_7">泛型的上下边界</a>
+            <a href="#toc_h4_7">泛型的上下边界</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_8">集合与泛型</a>
-        </li>
-        <li class="toc__h3">
-            <a href="#b3_solo_h3_9">我的疑问与解答</a>
+            <a href="#toc_h3_8">集合与泛型</a>
         </li>
 </ul>        </div>
-<div class="comment">
-    <div class="comment__wrapper wrapper">
-        <div class="comment__title">
-            评论
-        </div>
-        <textarea rows="3" placeholder="评论内容只能为 2 到 500 个字符！" id="comment"></textarea>
-
-        <ul id="comments">
-        </ul>
-    </div>
-</div>
+        <div id="b3logsolocomments"></div>
+        <div id="vcomment" class="comment__wrapper wrapper" style="margin: 40px auto" data-name="ellenbboe" data-postId="1565417420305"></div>
     <div class="article__bottom">
         <div class="wrapper">
             <div class="fn__flex">
@@ -298,6 +360,7 @@ System.out.println(c.get(0).getClass());`
 <footer class="footer">
     <div class="wrapper fn__clear">
         <div class="fn__left">
+            <br>
             &copy; 2020
             <a href="https://ellenbboe.github.io">Kosmos</a>
             <a href="http://www.beian.miit.gov.cn/">浙ICP备18045840号-1</a>--------Let's move on
@@ -326,12 +389,23 @@ show_date_time();
 <style>
 #momk{animation:change 10s infinite;font-weight:800; }
 @keyframes change{0%{color:#5cb85c;}25%{color:#556bd8;}50%{color:#e40707;}75%{color:#66e616;}100% {color:#67bd31;}}
-</style> &nbsp;•&nbsp;
-            Powered by <a href="https://solo.b3log.org" target="_blank">Solo</a>
-            <br>
-            Theme Casper
-            <sup>[<a href="https://github.com/TryGhost/Casper" target="_blank">ref</a>]</sup>
-            by <a href="http://vanessa.b3log.org" target="_blank">Vanessa</a>
+</style>
+<script type="text/javascript">
+    /*自动刷新页面，避免无法访问*/
+    var OriginTitile = document.title;
+    var titleTime;
+    document.addEventListener('visibilitychange', function () {
+        if (document.hidden) {
+            document.title = '(〃´-ω･)  休息一下';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '起来嗨٩(๑❛ᴗ❛๑)۶';
+            titleTime = setTimeout(function () {
+                document.title = OriginTitile;
+            }, 3000);
+        }
+    });
+</script>
         </div>
         <div class="fn__right">
             <a href="https://ellenbboe.github.io/tags.html" rel="section">
@@ -346,36 +420,32 @@ show_date_time();
             友情链接
             </a>
             <br>
-            115 文章 &nbsp;
-            9 评论 &nbsp;
+            121 文章 &nbsp;
             <span data-uvstaturl="https://ellenbboe.github.io">11608</span> 浏览 &nbsp;
-            3 当前访客
+            
         </div>
     </div>
 </footer>
 
-<script type="text/javascript" src="https://ellenbboe.github.io/js/lib/compress/pjax.min.js" charset="utf-8"></script>
-<script type="text/javascript" src="https://ellenbboe.github.io/js/common.min.js?1578931371974"
-        charset="utf-8"></script>
-<script type="text/javascript"
-        src="https://ellenbboe.github.io/skins/Casper/js/common.min.js?1578931371974"
-        charset="utf-8"></script>
-<script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.4/dist/index.min.js"></script>
 <script>
-    var Label = {
-        servePath: "https://ellenbboe.github.io",
-        staticServePath: "https://ellenbboe.github.io",
-        luteAvailable: false,
-        hljsStyle: 'colorful',
-        langLabel: "zh_CN",
-        version: "3.7.0",
-    }
-    Util.init()
+  var Label = {
+    servePath: "https://ellenbboe.github.io",
+    staticServePath: "https://ellenbboe.github.io",
+    luteAvailable: false,
+    hljsStyle: 'colorful',
+    langLabel: "zh_CN",
+    version: "4.1.0",
+    staticSite: true,
+    showCodeBlockLn: false,
+  }
 </script>
+<script type="text/javascript"
+        src="https://ellenbboe.github.io/skins/Casper/js/common.min.js?1591150301084"
+        charset="utf-8"></script>
 
 
 <script type="text/javascript">
-    Util.addScript('https://ellenbboe.github.io/js/page.min.js?1578931371974', 'soloPageScript')
+    Util.addScript('https://ellenbboe.github.io/js/page.min.js?1591150301084', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1565417420305",
@@ -393,4 +463,4 @@ show_date_time();
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 39ms, 2020/01/14 13:32:39 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 56ms, 2020/06/03 12:32:27 -->

@@ -2,31 +2,104 @@
 <html>
 <head>
 <meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>Linux From Scrach Pass 1 - Kosmos</title><meta name="description" content="准备 准备空间大概8g 准备在u盘上构建系统 我准备将u盘对半分成两个盘 一个安装系统,就用ext4 一个当作普通的u盘来用 记得分区的时候格式化 可以使用fdisk 或者 其他工具 另外: 我的arch上没有创建swap分区 挂载U盘/移动硬盘 使用fdisk -l命令 得到 Disk /dev/sdb：29 GiB，31104958464 字节，60751872 个扇区 单元：扇区 / 1 * 512 = 512 字节 扇区大小(逻辑/物理)：512 字节 / 512 字节 I/O 大小(最小/最佳)：512 字节 / 512 字节 磁盘标签类型：dos 磁盘标识符：0xcad4ebea 设备 启动 起点 末尾 扇区 大小 Id 类型 /dev/sdb4 * 63 60751871 60751809 29G c W95 FAT32 (LBA) 创建文件夹 将sdb4挂载到文件夹上 一般u盘会自动挂载,像我的系统就是挂载到run/s/xxx 下面 不过官方建议还是挂载到 /mnt/lfs 下面 mount -v -t ext4 /dev/&lt;xxx&gt; $LFS # 将 /...."/><meta property="og:description" content="准备 准备空间大概8g 准备在u盘上构建系统 我准备将u盘对半分成两个盘 一个安装系统,就用ext4 一个当作普通的u盘来用 记得分区的时候格式化 可以使用fdisk 或者 其他工具 另外: 我的arch上没有创建swap分区 挂载U盘/移动硬盘 使用fdisk -l命令 得到 Disk /dev/sdb：29 GiB，31104958464 字节，60751872 个扇区 单元：扇区 / 1 * 512 = 512 字节 扇区大小(逻辑/物理)：512 字节 / 512 字节 I/O 大小(最小/最佳)：512 字节 / 512 字节 磁盘标签类型：dos 磁盘标识符：0xcad4ebea 设备 启动 起点 末尾 扇区 大小 Id 类型 /dev/sdb4 * 63 60751871 60751809 29G c W95 FAT32 (LBA) 创建文件夹 将sdb4挂载到文件夹上 一般u盘会自动挂载,像我的系统就是挂载到run/s/xxx 下面 不过官方建议还是挂载到 /mnt/lfs 下面 mount -v -t ext4 /dev/&lt;xxx&gt; $LFS # 将 /...."/>    <meta name="keywords" content="开源,开发者,笔记,kosmos"/><link rel="dns-prefetch" href="https://ellenbboe.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://ellenbboe.github.io"><link rel="icon" type="image/png" href="https://s2.ax1x.com/2020/01/12/loApPe.png"/><link rel="apple-touch-icon" href="https://s2.ax1x.com/2020/01/12/loApPe.png"><link rel="shortcut icon" type="image/x-icon" href="https://s2.ax1x.com/2020/01/12/loApPe.png"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="Linux From Scrach Pass 1 - Kosmos"/><meta property="og:site_name" content="Kosmos"/><meta property="og:url"      content="https://ellenbboe.github.io/articles/2018/07/12/1561009681962.html?"/><meta property="og:image" content="https://s2.ax1x.com/2020/01/12/loApPe.png"/><link rel="search" type="application/opensearchdescription+xml" title="Linux From Scrach Pass 1 - Kosmos" href="/opensearch.xml"><link href="https://ellenbboe.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://ellenbboe.github.io/manifest.json">        <link rel="canonical" href="https://ellenbboe.github.io/articles/2018/07/12/1561009681962.html">        <link rel="stylesheet"
-              href="https://ellenbboe.github.io/skins/Casper/css/base.css?1578931371974"/>
+              href="https://ellenbboe.github.io/skins/Casper/css/base.css?1591150301084"/>
             <link rel="prev" title="git443错误" href="https://ellenbboe.github.io/articles/2018/07/11/1561009685950.html">
             <link rel="next" title="2018-07-13 lfs编译日志" href="https://ellenbboe.github.io/articles/2018/07/14/1561009679893.html">
-    </head>
+    <script>
+onload = function() {
+    var click_cnt = 0;
+    var $html = document.getElementsByTagName("html")[0];
+    var $body = document.getElementsByTagName("body")[0];
+    $html.onclick = function(e) {
+        var $elem = document.createElement("b");
+        $elem.style.color = "#E94F06";
+        $elem.style.zIndex = 9999;
+        $elem.style.position = "absolute";
+        $elem.style.select = "none";
+        var x = e.pageX;
+        var y = e.pageY;
+        $elem.style.left = (x - 10) + "px";
+        $elem.style.top = (y - 20) + "px";
+        clearInterval(anim);
+        switch (++click_cnt) {
+            case 10:
+                $elem.innerText = "OωO";
+                break;
+            case 20:
+                $elem.innerText = "(๑•́ ∀ •̀๑)";
+                break;
+            case 30:
+                $elem.innerText = "(๑•́ ₃ •̀๑)";
+                break;
+            case 40:
+                $elem.innerText = "(๑•̀_•́๑)";
+                break;
+            case 50:
+                $elem.innerText = "（￣へ￣）";
+                break;
+            case 60:
+                $elem.innerText = "(╯°口°)╯(┴—┴";
+                break;
+            case 70:
+                $elem.innerText = "૮( ᵒ̌皿ᵒ̌ )ა";
+                break;
+            case 80:
+                $elem.innerText = "╮(｡>口<｡)╭";
+                break;
+            case 90:
+                $elem.innerText = "( ง ᵒ̌皿ᵒ̌)ง⁼³₌₃";
+                break;
+            case 100:
+            case 101:
+            case 102:
+            case 103:
+            case 104:
+            case 105:
+                $elem.innerText = "(ꐦ°᷄д°᷅)";
+                break;
+            default:
+                $elem.innerText = "❤";
+                break;
+        }
+        $elem.style.fontSize = Math.random() * 10 + 8 + "px";
+        var increase = 0;
+        var anim;
+        setTimeout(function() {
+            anim = setInterval(function() {
+                if (++increase == 150) {
+                    clearInterval(anim);
+                    $body.removeChild($elem);
+                }
+                $elem.style.top = y - 20 - increase + "px";
+                $elem.style.opacity = (150 - increase) / 120;
+            }, 8);
+        }, 70);
+        $body.appendChild($elem);
+    };
+};
+</script>
+</head>
 <body class="fn__flex-column">
 <div id="pjax" class="fn__flex-1">
     
     <header class="header header--article">
         <div class="wrapper header__title">
             <h1 class="header__h1 fn__flex-inline">
-                <img src="https://s2.ax1x.com/2020/01/12/loApPe.png">
+                <img src="https://s2.ax1x.com/2020/01/12/loApPe.png" alt="Kosmos">
                 <a href="https://ellenbboe.github.io" rel="start" class="header__title">Kosmos</a>
             </h1>
-            <h2 class="header__h2">---就算是痛苦难受，也要去体会那被称为生存的分量---</h2>
+            <h2 class="header__h2">---我们总得选择一条路去前行---</h2>
         </div>
         <nav class="wrapper header__nav fn__clear">
             <a href="https://ellenbboe.github.io" rel="start">
                     Kosmos
             </a>
 
-                <a class="fn__flex-inline" href="/my-github-repos" target="_self" rel="section">
-                    <img src="/images/github-icon.png"> 我的开源
+                <a class="fn__flex-inline" href="https://github.com/ellenbboe" target="_self" rel="section">
+                    <img src="https://s2.ax1x.com/2020/01/16/ljWMPP.png" alt="我的GIT"> 我的GIT
                 </a>
                 <a class="fn__flex-inline" href="/readlist" target="_self" rel="section">
-                     阅读列表
+                    <img src="https://s2.ax1x.com/2020/01/16/ljWPC6.png" alt="阅读列表"> 阅读列表
                 </a>
 
 
@@ -111,7 +184,7 @@
         <div class="item__cover" style="background-image: url(https://img.hacpai.com/bing/20181113.jpg?imageView2/1/w/1280/h/720/interlace/1/q/100)"></div>
         <div class="wrapper">
             <section class="item__content item__content--article vditor-reset">
-                <p></p><h3 id="b3_solo_h3_0">准备</h3>
+                <h3 id="toc_h3_0">准备</h3>
 <p>准备空间大概8g 准备在u盘上构建系统<br>
 我准备将u盘对半分成两个盘<br>
 一个安装系统,就用ext4<br>
@@ -119,7 +192,7 @@
 记得分区的时候格式化<br>
 可以使用fdisk 或者 其他工具</p>
 <p>另外: 我的arch上没有创建swap分区</p>
-<h3 id="b3_solo_h3_1">挂载U盘/移动硬盘</h3>
+<h3 id="toc_h3_1">挂载U盘/移动硬盘</h3>
 <p>使用fdisk -l命令<br>
 得到</p>
 <pre><code>Disk /dev/sdb：29 GiB，31104958464 字节，60751872 个扇区
@@ -149,7 +222,7 @@ mount -v -t ext4 /dev/&lt;yyy&gt; $LFS/usr	# 将 /dev/&lt;yyy&gt; 挂载到 $LFS
 <p><code>/sbin/swapon -v /dev/&lt;zzz&gt;</code><br>
 用 swap 分区的名字替换<zzz>。</zzz></p>
 <p>注意:确保你的 echo $LFS 在root与用户帐号上时/mnt/lfs 你可以使用全局变量来设置</p>
-<h3 id="b3_solo_h3_2">软件包和补丁</h3>
+<h3 id="toc_h3_2">软件包和补丁</h3>
 <p><code>mkdir -v $LFS/sources</code><br>
 在$lfs里创建sources文件夹 来存放 下载好的软件包和补丁</p>
 <p>设置目录的写权限和粘滞模式。“粘滞模式”意思是就算有多个用户对某个目录有写权限，仍然只有该文件的主人能删除一个粘滞目录里的文件。下面的命令可以打开写权限和粘滞模式：<br>
@@ -161,13 +234,13 @@ mount -v -t ext4 /dev/&lt;yyy&gt; $LFS/usr	# 将 /dev/&lt;yyy&gt; 挂载到 $LFS
 md5sum -c md5sums
 popd
 </code></pre>
-<h3 id="b3_solo_h3_3">最后的准备工作</h3>
+<h3 id="toc_h3_3">最后的准备工作</h3>
 <p>我们还需要为构建临时系统做一些额外的准备工作。我们会在 $LFS 中新建一个文件夹用于临时工具的安装，增加一个非特权用户用于降低风险，并为该用户创建合适的构建环境。我们也会解释用于测量构建 LFS 软件包花费时间的单位，或者称为“标准编译单位（SBU）”，并给出一些关于软件包测试套件的信息</p>
 <p>以 root 用户运行以下的命令来创建需要的文件夹：<br>
 <code>mkdir -v $LFS/tools</code></p>
 <p>下一步是在宿主系统中创建 /tools 的符号链接，将其指向 LFS 分区中新建的文件夹。同样以 root 用户运行下面的命令：</p>
 <p><code>ln -sv $LFS/tools /</code></p>
-<h4 id="b3_solo_h4_4">添加 LFS 用户</h4>
+<h4 id="toc_h4_4">添加 LFS 用户</h4>
 <p>当以 root 用户登录时，犯一个小错误可能会破坏或摧毁整个系统。因此，我们建议在本章中以非特权用户编译软件包。你可以使用你自己的用户名，但要容易的话，就建立一个干净的工作环境，创建一个名为 lfs 的新用户作为新组（名字也是 lfs ）的成员，并在安装过程中使用这个用户。以 root 用户运行以下命令来添加新用户：</p>
 <pre><code>groupadd lfs
 useradd -s /bin/bash -g lfs -m -k /dev/null lfs
@@ -196,7 +269,7 @@ useradd -s /bin/bash -g lfs -m -k /dev/null lfs
 <code>chown -v lfs $LFS/sources</code></p>
 <p>下一步，以 lfs 用户身份登录。可以能通过一个虚拟控制台、显示控制器，或者下面的切换用户命令完成：<br>
 <code>su - lfs</code></p>
-<h4 id="b3_solo_h4_5">设置环境</h4>
+<h4 id="toc_h4_5">设置环境</h4>
 <pre><code>cat &gt; ~/.bash_profile &lt;&lt; "EOF"
 exec env -i HOME=$HOME TERM=$TERM PS1='\u:\w\$ ' /bin/bash
 EOF
@@ -221,11 +294,11 @@ EOF
 <p>把 <code>/tools/bin</code> 放在标准的 <code>PATH</code> 变量前面， 第五章中安装的软件一安装完成 shell 就可使用。这和关闭哈希功能一起，降低了在第五章环境中新程序可用时宿主机器使用旧程序的风险。</p>
 <p>生效配置文件:<br>
 <code>source ~/.bash_profile</code></p>
-<h4 id="b3_solo_h4_6">关于 SBU</h4>
+<h4 id="toc_h4_6">关于 SBU</h4>
 <p>SBU 衡量方式如下。我们以第五章编译的第一个软件包 Binutils 所用时间作为一个标准编译单位（SBU），其它软件的生成时间都以其为标准进行比较。</p>
 <p>例如，假如编译一个软件耗时 4.5 SBU，而编译安装初代 Binutils 用时 10 分钟的话，那么编译这个软件包大约耗时 45 分钟。当然啦，对于大多数人来说，编译 Binutils 可用不了 10 分钟那么久。</p>
 <p>在一些情况下，使用多处理器同时编译可能失败，分析错误日志变得异常困难：因为不同处理器之间的执行路线是交错的。如果你在编译的时候遇到问题，那么请回过来使用单处理器编译，以正确地查看错误消息。</p>
-<h3 id="b3_solo_h3_7">构建临时系统</h3>
+<h3 id="toc_h3_7">构建临时系统</h3>
 <p>目标是生成一个临时的系统，它包含一个已知的较好工具集，该工具集可与宿主系统分离。通过使用 <code>chroot</code>，其余各章中的命令将被包含在此环境中，以保证目标 LFS 系统能够洁净且无故障地生成。该构建过程的设计就是为了使得新读者有最少的风险，同时还能有最好的指导价值。</p>
 <p><strong>最后确认一次是否正确设置了 LFS 环境变量：</strong><br>
 <code>echo $LFS</code><br>
@@ -260,12 +333,11 @@ EOF
 具体按照官方资料上进行编译<br>
 注意在编译过程中必须清楚知道当前步骤 make 与 make install 防止错误</p>
 <p>====&gt;之后的构建过程 之后补充上</p>
-<h4 id="b3_solo_h4_8">资料(建议配合使用)</h4>
-<h5 id="b3_solo_h5_9">中文资料(已过期7.7,但翻译还是可以用)</h5>
+<h4 id="toc_h4_8">资料(建议配合使用)</h4>
+<h5 id="toc_h5_9">中文资料(已过期7.7,但翻译还是可以用)</h5>
 <p><a href="https://linux.cn/lfs/LFS-BOOK-7.7-systemd/index.html" target="_blank">https://linux.cn/lfs/LFS-BOOK-7.7-systemd/index.html</a></p>
-<h5 id="b3_solo_h5_10">英文资料(目前是8.2)</h5>
+<h5 id="toc_h5_10">英文资料(目前是8.2)</h5>
 <p><a href="http://www.linuxfromscratch.org/lfs/view/stable/index.html" target="_blank">http://www.linuxfromscratch.org/lfs/view/stable/index.html</a></p>
-<p></p>
                     <div>
                         <hr>
 <img alt="今日诗词" src="https://v2.jinrishici.com/one.svg" style="max-width:100%; display: block; margin: 0 auto;">
@@ -275,6 +347,7 @@ EOF
 地址：<a href="https://ellenbboe.github.io/articles/2018/07/12/1561009681962.html" target="_blank">https://ellenbboe.github.io/articles/2018/07/12/1561009681962.html</a><br>
 <!-- 签名档内可使用 HTML、JavaScript -->
 <br>
+
                     </div>
             </section>
         </div>
@@ -282,50 +355,41 @@ EOF
         <div class="post__toc">
 <ul class="article__toc">
         <li class="toc__h3">
-            <a href="#b3_solo_h3_0">准备</a>
+            <a href="#toc_h3_0">准备</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_1">挂载U盘/移动硬盘</a>
+            <a href="#toc_h3_1">挂载U盘/移动硬盘</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_2">软件包和补丁</a>
+            <a href="#toc_h3_2">软件包和补丁</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_3">最后的准备工作</a>
+            <a href="#toc_h3_3">最后的准备工作</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_4">添加 LFS 用户</a>
+            <a href="#toc_h4_4">添加 LFS 用户</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_5">设置环境</a>
+            <a href="#toc_h4_5">设置环境</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_6">关于 SBU</a>
+            <a href="#toc_h4_6">关于 SBU</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_7">构建临时系统</a>
+            <a href="#toc_h3_7">构建临时系统</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_8">资料(建议配合使用)</a>
+            <a href="#toc_h4_8">资料(建议配合使用)</a>
         </li>
         <li class="toc__h5">
-            <a href="#b3_solo_h5_9">中文资料(已过期7.7,但翻译还是可以用)</a>
+            <a href="#toc_h5_9">中文资料(已过期7.7,但翻译还是可以用)</a>
         </li>
         <li class="toc__h5">
-            <a href="#b3_solo_h5_10">英文资料(目前是8.2)</a>
+            <a href="#toc_h5_10">英文资料(目前是8.2)</a>
         </li>
 </ul>        </div>
-<div class="comment">
-    <div class="comment__wrapper wrapper">
-        <div class="comment__title">
-            评论
-        </div>
-        <textarea rows="3" placeholder="评论内容只能为 2 到 500 个字符！" id="comment"></textarea>
-
-        <ul id="comments">
-        </ul>
-    </div>
-</div>
+        <div id="b3logsolocomments"></div>
+        <div id="vcomment" class="comment__wrapper wrapper" style="margin: 40px auto" data-name="ellenbboe" data-postId="1561009681962"></div>
     <div class="article__bottom">
         <div class="wrapper">
             <div class="fn__flex">
@@ -339,6 +403,7 @@ EOF
 <footer class="footer">
     <div class="wrapper fn__clear">
         <div class="fn__left">
+            <br>
             &copy; 2020
             <a href="https://ellenbboe.github.io">Kosmos</a>
             <a href="http://www.beian.miit.gov.cn/">浙ICP备18045840号-1</a>--------Let's move on
@@ -367,12 +432,23 @@ show_date_time();
 <style>
 #momk{animation:change 10s infinite;font-weight:800; }
 @keyframes change{0%{color:#5cb85c;}25%{color:#556bd8;}50%{color:#e40707;}75%{color:#66e616;}100% {color:#67bd31;}}
-</style> &nbsp;•&nbsp;
-            Powered by <a href="https://solo.b3log.org" target="_blank">Solo</a>
-            <br>
-            Theme Casper
-            <sup>[<a href="https://github.com/TryGhost/Casper" target="_blank">ref</a>]</sup>
-            by <a href="http://vanessa.b3log.org" target="_blank">Vanessa</a>
+</style>
+<script type="text/javascript">
+    /*自动刷新页面，避免无法访问*/
+    var OriginTitile = document.title;
+    var titleTime;
+    document.addEventListener('visibilitychange', function () {
+        if (document.hidden) {
+            document.title = '(〃´-ω･)  休息一下';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '起来嗨٩(๑❛ᴗ❛๑)۶';
+            titleTime = setTimeout(function () {
+                document.title = OriginTitile;
+            }, 3000);
+        }
+    });
+</script>
         </div>
         <div class="fn__right">
             <a href="https://ellenbboe.github.io/tags.html" rel="section">
@@ -387,36 +463,32 @@ show_date_time();
             友情链接
             </a>
             <br>
-            115 文章 &nbsp;
-            9 评论 &nbsp;
+            121 文章 &nbsp;
             <span data-uvstaturl="https://ellenbboe.github.io">11608</span> 浏览 &nbsp;
-            3 当前访客
+            
         </div>
     </div>
 </footer>
 
-<script type="text/javascript" src="https://ellenbboe.github.io/js/lib/compress/pjax.min.js" charset="utf-8"></script>
-<script type="text/javascript" src="https://ellenbboe.github.io/js/common.min.js?1578931371974"
-        charset="utf-8"></script>
-<script type="text/javascript"
-        src="https://ellenbboe.github.io/skins/Casper/js/common.min.js?1578931371974"
-        charset="utf-8"></script>
-<script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.4/dist/index.min.js"></script>
 <script>
-    var Label = {
-        servePath: "https://ellenbboe.github.io",
-        staticServePath: "https://ellenbboe.github.io",
-        luteAvailable: false,
-        hljsStyle: 'colorful',
-        langLabel: "zh_CN",
-        version: "3.7.0",
-    }
-    Util.init()
+  var Label = {
+    servePath: "https://ellenbboe.github.io",
+    staticServePath: "https://ellenbboe.github.io",
+    luteAvailable: false,
+    hljsStyle: 'colorful',
+    langLabel: "zh_CN",
+    version: "4.1.0",
+    staticSite: true,
+    showCodeBlockLn: false,
+  }
 </script>
+<script type="text/javascript"
+        src="https://ellenbboe.github.io/skins/Casper/js/common.min.js?1591150301084"
+        charset="utf-8"></script>
 
 
 <script type="text/javascript">
-    Util.addScript('https://ellenbboe.github.io/js/page.min.js?1578931371974', 'soloPageScript')
+    Util.addScript('https://ellenbboe.github.io/js/page.min.js?1591150301084', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1561009681962",
@@ -434,4 +506,4 @@ show_date_time();
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 34ms, 2020/01/14 13:32:41 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 45ms, 2020/06/03 12:32:32 -->

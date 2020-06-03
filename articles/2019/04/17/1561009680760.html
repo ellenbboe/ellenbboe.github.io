@@ -2,31 +2,104 @@
 <html>
 <head>
 <meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>Leetcode之贪心思想 - Kosmos</title><meta name="description" content="友情提示: 代码在这里 本文参照该仓库学习,大家可以star 贪心思想 保证每次操作都是局部最优的，并且最后得到的结果是全局最优的。 455 分配饼干 题目描述：每个孩子都有一个满足度，每个饼干都有一个大小，只有饼干的大小大于等于一个孩子的满足度，该孩子才会获得满足。求解最多可以获得满足的孩子数量。 给一个孩子的饼干应当尽量小又能满足该孩子，这样大饼干就能拿来给满足度比较大的孩子。因为最小的孩子最容易得到满足，所以先满足最小的孩子。 证明：假设在某次选择中，贪心策略选择给当前满足度最小的孩子分配第 m 个饼干，第 m 个饼干为可以满足该孩子的最小饼干。假设存在一种最优策略，给该孩子分配第 n 个饼干，并且 m &lt; n。我们可以发现，经过这一轮分配，贪心策略分配后剩下的饼干一定有一个比最优策略来得大。因此在后续的分配中，贪心策略一定能满足更多的孩子。也就是说不存在比贪心策略更优的策略，即贪心策略就是最优策略。 435 不重叠的区间个数 题目描述：计算让一组区间不重叠所需要移除的区间个数。 先计算最多能组成的不重叠区间个数，然后用区间总个数减去不重叠区间的个数。 在每次选择中，区间的...."/><meta property="og:description" content="友情提示: 代码在这里 本文参照该仓库学习,大家可以star 贪心思想 保证每次操作都是局部最优的，并且最后得到的结果是全局最优的。 455 分配饼干 题目描述：每个孩子都有一个满足度，每个饼干都有一个大小，只有饼干的大小大于等于一个孩子的满足度，该孩子才会获得满足。求解最多可以获得满足的孩子数量。 给一个孩子的饼干应当尽量小又能满足该孩子，这样大饼干就能拿来给满足度比较大的孩子。因为最小的孩子最容易得到满足，所以先满足最小的孩子。 证明：假设在某次选择中，贪心策略选择给当前满足度最小的孩子分配第 m 个饼干，第 m 个饼干为可以满足该孩子的最小饼干。假设存在一种最优策略，给该孩子分配第 n 个饼干，并且 m &lt; n。我们可以发现，经过这一轮分配，贪心策略分配后剩下的饼干一定有一个比最优策略来得大。因此在后续的分配中，贪心策略一定能满足更多的孩子。也就是说不存在比贪心策略更优的策略，即贪心策略就是最优策略。 435 不重叠的区间个数 题目描述：计算让一组区间不重叠所需要移除的区间个数。 先计算最多能组成的不重叠区间个数，然后用区间总个数减去不重叠区间的个数。 在每次选择中，区间的...."/>    <meta name="keywords" content="开源,开发者,笔记,kosmos"/><link rel="dns-prefetch" href="https://ellenbboe.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://ellenbboe.github.io"><link rel="icon" type="image/png" href="https://s2.ax1x.com/2020/01/12/loApPe.png"/><link rel="apple-touch-icon" href="https://s2.ax1x.com/2020/01/12/loApPe.png"><link rel="shortcut icon" type="image/x-icon" href="https://s2.ax1x.com/2020/01/12/loApPe.png"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="Leetcode之贪心思想 - Kosmos"/><meta property="og:site_name" content="Kosmos"/><meta property="og:url"      content="https://ellenbboe.github.io/articles/2019/04/17/1561009680760.html?"/><meta property="og:image" content="https://s2.ax1x.com/2020/01/12/loApPe.png"/><link rel="search" type="application/opensearchdescription+xml" title="Leetcode之贪心思想 - Kosmos" href="/opensearch.xml"><link href="https://ellenbboe.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://ellenbboe.github.io/manifest.json">        <link rel="canonical" href="https://ellenbboe.github.io/articles/2019/04/17/1561009680760.html">        <link rel="stylesheet"
-              href="https://ellenbboe.github.io/skins/Casper/css/base.css?1578931371974"/>
+              href="https://ellenbboe.github.io/skins/Casper/css/base.css?1591150301084"/>
             <link rel="prev" title="Leetcode之排序(部分)" href="https://ellenbboe.github.io/articles/2019/04/15/1561009690183.html">
             <link rel="next" title="Leetcode之二分思想" href="https://ellenbboe.github.io/articles/2019/04/18/1561009688641.html">
-    </head>
+    <script>
+onload = function() {
+    var click_cnt = 0;
+    var $html = document.getElementsByTagName("html")[0];
+    var $body = document.getElementsByTagName("body")[0];
+    $html.onclick = function(e) {
+        var $elem = document.createElement("b");
+        $elem.style.color = "#E94F06";
+        $elem.style.zIndex = 9999;
+        $elem.style.position = "absolute";
+        $elem.style.select = "none";
+        var x = e.pageX;
+        var y = e.pageY;
+        $elem.style.left = (x - 10) + "px";
+        $elem.style.top = (y - 20) + "px";
+        clearInterval(anim);
+        switch (++click_cnt) {
+            case 10:
+                $elem.innerText = "OωO";
+                break;
+            case 20:
+                $elem.innerText = "(๑•́ ∀ •̀๑)";
+                break;
+            case 30:
+                $elem.innerText = "(๑•́ ₃ •̀๑)";
+                break;
+            case 40:
+                $elem.innerText = "(๑•̀_•́๑)";
+                break;
+            case 50:
+                $elem.innerText = "（￣へ￣）";
+                break;
+            case 60:
+                $elem.innerText = "(╯°口°)╯(┴—┴";
+                break;
+            case 70:
+                $elem.innerText = "૮( ᵒ̌皿ᵒ̌ )ა";
+                break;
+            case 80:
+                $elem.innerText = "╮(｡>口<｡)╭";
+                break;
+            case 90:
+                $elem.innerText = "( ง ᵒ̌皿ᵒ̌)ง⁼³₌₃";
+                break;
+            case 100:
+            case 101:
+            case 102:
+            case 103:
+            case 104:
+            case 105:
+                $elem.innerText = "(ꐦ°᷄д°᷅)";
+                break;
+            default:
+                $elem.innerText = "❤";
+                break;
+        }
+        $elem.style.fontSize = Math.random() * 10 + 8 + "px";
+        var increase = 0;
+        var anim;
+        setTimeout(function() {
+            anim = setInterval(function() {
+                if (++increase == 150) {
+                    clearInterval(anim);
+                    $body.removeChild($elem);
+                }
+                $elem.style.top = y - 20 - increase + "px";
+                $elem.style.opacity = (150 - increase) / 120;
+            }, 8);
+        }, 70);
+        $body.appendChild($elem);
+    };
+};
+</script>
+</head>
 <body class="fn__flex-column">
 <div id="pjax" class="fn__flex-1">
     
     <header class="header header--article">
         <div class="wrapper header__title">
             <h1 class="header__h1 fn__flex-inline">
-                <img src="https://s2.ax1x.com/2020/01/12/loApPe.png">
+                <img src="https://s2.ax1x.com/2020/01/12/loApPe.png" alt="Kosmos">
                 <a href="https://ellenbboe.github.io" rel="start" class="header__title">Kosmos</a>
             </h1>
-            <h2 class="header__h2">---就算是痛苦难受，也要去体会那被称为生存的分量---</h2>
+            <h2 class="header__h2">---我们总得选择一条路去前行---</h2>
         </div>
         <nav class="wrapper header__nav fn__clear">
             <a href="https://ellenbboe.github.io" rel="start">
                     Kosmos
             </a>
 
-                <a class="fn__flex-inline" href="/my-github-repos" target="_self" rel="section">
-                    <img src="/images/github-icon.png"> 我的开源
+                <a class="fn__flex-inline" href="https://github.com/ellenbboe" target="_self" rel="section">
+                    <img src="https://s2.ax1x.com/2020/01/16/ljWMPP.png" alt="我的GIT"> 我的GIT
                 </a>
                 <a class="fn__flex-inline" href="/readlist" target="_self" rel="section">
-                     阅读列表
+                    <img src="https://s2.ax1x.com/2020/01/16/ljWPC6.png" alt="阅读列表"> 阅读列表
                 </a>
 
 
@@ -113,41 +186,41 @@
             <section class="item__content item__content--article vditor-reset">
                 <p>友情提示: 代码在<a href="https://github.com/apersonlikesc/sosoalgorithm" target="_blank">这里</a><br>
 本文参照该<a href="https://github.com/CyC2018/CS-Notes" target="_blank">仓库</a>学习,大家可以star</p>
-<h1 id="b3_solo_h1_0">贪心思想</h1>
+<h1 id="toc_h1_0">贪心思想</h1>
 <p>保证每次操作都是局部最优的，并且最后得到的结果是全局最优的。</p>
-<h2 id="b3_solo_h2_1">455 分配饼干</h2>
+<h2 id="toc_h2_1">455 分配饼干</h2>
 <p>题目描述：每个孩子都有一个满足度，每个饼干都有一个大小，只有饼干的大小大于等于一个孩子的满足度，该孩子才会获得满足。求解最多可以获得满足的孩子数量。</p>
 <p>给一个孩子的饼干应当尽量小又能满足该孩子，这样大饼干就能拿来给满足度比较大的孩子。因为最小的孩子最容易得到满足，所以先满足最小的孩子。</p>
 <p>证明：假设在某次选择中，贪心策略选择给当前满足度最小的孩子分配第 m 个饼干，第 m 个饼干为可以满足该孩子的最小饼干。假设存在一种最优策略，给该孩子分配第 n 个饼干，并且 m &lt; n。我们可以发现，经过这一轮分配，贪心策略分配后剩下的饼干一定有一个比最优策略来得大。因此在后续的分配中，贪心策略一定能满足更多的孩子。也就是说不存在比贪心策略更优的策略，即贪心策略就是最优策略。</p>
-<h2 id="b3_solo_h2_2">435 不重叠的区间个数</h2>
+<h2 id="toc_h2_2">435 不重叠的区间个数</h2>
 <p>题目描述：计算让一组区间不重叠所需要移除的区间个数。</p>
 <p>先计算最多能组成的不重叠区间个数，然后用区间总个数减去不重叠区间的个数。</p>
 <p>在每次选择中，区间的结尾最为重要，选择的区间结尾越小，留给后面的区间的空间越大，那么后面能够选择的区间个数也就越大。</p>
 <p>按区间的结尾进行排序，每次选择结尾最小，并且和前一个区间不重叠的区间。</p>
-<h2 id="b3_solo_h2_3">452 用最少数量的箭引爆气球</h2>
+<h2 id="toc_h2_3">452 用最少数量的箭引爆气球</h2>
 <p>题目描述：气球在一个水平数轴上摆放，可以重叠，飞镖垂直投向坐标轴，使得路径上的气球都会刺破。求解最小的投飞镖次数使所有气球都被刺破。</p>
 <p>也是计算不重叠的区间个数，不过和 Non-overlapping Intervals 的区别在于，[1, 2] 和 [2, 3] 在本题中算是重叠区间。</p>
-<h2 id="b3_solo_h2_4">406 根据身高和序号重组队列</h2>
+<h2 id="toc_h2_4">406 根据身高和序号重组队列</h2>
 <p>题目描述：一个学生用两个分量 (h, k) 描述，h 表示身高，k 表示排在前面的有 k 个学生的身高比他高或者和他一样高。</p>
 <p>为了使插入操作不影响后续的操作，身高较高的学生应该先做插入操作，否则身高较小的学生原先正确插入的第 k 个位置可能会变成第 k+1 个位置。</p>
 <p>身高降序、k 值升序，然后按排好序的顺序插入队列的第 k 个位置中。<br>
 由于后面插上来的不会改变前面的k值,因为身高都是比前面的小的...所以必满足条件 先考虑身高高的,再考虑身高低的</p>
-<h2 id="b3_solo_h2_5">763 分隔字符串使同种字符出现在一起</h2>
+<h2 id="toc_h2_5">763 分隔字符串使同种字符出现在一起</h2>
 <p>字符串 S 由小写字母组成。我们要把这个字符串划分为尽可能多的片段，同一个字母只会出现在其中的一个片段。返回一个表示每个字符串片段的长度的列表<br>
 思路:<br>
 假如在第一个和最后一个中 里面每一个字母最后出现的位置都在里面 这个就是结果</p>
-<h2 id="b3_solo_h2_6">605 种植花朵</h2>
+<h2 id="toc_h2_6">605 种植花朵</h2>
 <p>假设你有一个很长的花坛，一部分地块种植了花，另一部分却没有。可是，花卉不能种植在相邻的地块上，它们会争夺水源，两者都会死去。</p>
 <p>给定一个花坛（表示为一个数组包含0和1，其中0表示没种植花，1表示种植了花），和一个数 n 。能否在不打破种植规则的情况下种入 n 朵花？能则返回True，不能则返回False。</p>
-<h2 id="b3_solo_h2_7">392 判断是否为子序列</h2>
+<h2 id="toc_h2_7">392 判断是否为子序列</h2>
 <p>给定字符串 s 和 t ，判断 s 是否为 t 的子序列。</p>
 <p>你可以认为 s 和 t 中仅包含英文小写字母。字符串 t 可能会很长（长度 ~= 500,000），而 s 是个短字符串（长度 &lt;=100）。</p>
 <p>字符串的一个子序列是原始字符串删除一些（也可以不删除）字符而不改变剩余字符相对位置形成的新字符串。（例如，"ace"是"abcde"的一个子序列，而"aec"不是）。</p>
-<h2 id="b3_solo_h2_8">665 修改一个数成为非递减数组</h2>
+<h2 id="toc_h2_8">665 修改一个数成为非递减数组</h2>
 <p>给定一个长度为 n 的整数数组，你的任务是判断在最多改变 1 个元素的情况下，该数组能否变成一个非递减数列。</p>
 <p>我们是这样定义一个非递减数列的： 对于数组中所有的 i (1 &lt;= i &lt; n)，满足 array[i] &lt;= array[i + 1]。</p>
 <p>在出现 nums[i] &lt; nums[i - 1] 时，需要考虑的是应该修改数组的哪个数，使得本次修改能使 i 之前的数组成为非递减数组，并且 不影响后续的操作 。优先考虑令 nums[i - 1] = nums[i]，因为如果修改 nums[i] = nums[i - 1] 的话，那么 nums[i] 这个数会变大，就有可能比 nums[i + 1] 大，从而影响了后续操作。还有一个比较特别的情况就是 nums[i] &lt; nums[i - 2]，只修改 nums[i - 1] = nums[i] 不能使数组成为非递减数组，只能修改 nums[i] = nums[i - 1]。</p>
-<h2 id="b3_solo_h2_9">122 股票的最大收益</h2>
+<h2 id="toc_h2_9">122 股票的最大收益</h2>
 <p>给定一个数组，它的第 i 个元素是一支给定股票第 i 天的价格。</p>
 <p>设计一个算法来计算你所能获取的最大利润。你可以尽可能地完成更多的交易（多次买卖一支股票）。</p>
 <p>注意：你不能同时参与多笔交易（你必须在再次购买前出售掉之前的股票）。</p>
@@ -156,20 +229,20 @@
 解释: 在第 2 天（股票价格 = 1）的时候买入，在第 3 天（股票价格 = 5）的时候卖出, 这笔交易所能获得利润 = 5-1 = 4 。<br>
 随后，在第 4 天（股票价格 = 3）的时候买入，在第 5 天（股票价格 = 6）的时候卖出, 这笔交易所能获得利润 = 6-3 = 3 。</p>
 <p>对于 [a, b, c, d]，如果有 a &lt;= b &lt;= c &lt;= d ，那么最大收益为 d - a。而 d - a = (d - c) + (c - b) + (b - a) ，因此当访问到一个 prices[i] 且 prices[i] - prices[i-1] &gt; 0，那么就把 prices[i] - prices[i-1] 添加到收益中，从而在局部最优的情况下也保证全局最优。</p>
-<h2 id="b3_solo_h2_10">53 子数组最大的和</h2>
+<h2 id="toc_h2_10">53 子数组最大的和</h2>
 <p>给定一个整数数组 nums ，找到一个具有最大和的连续子数组（子数组最少包含一个元素），返回其最大和。</p>
-<h2 id="b3_solo_h2_11">121 买入和售出股票最大的收益</h2>
+<h2 id="toc_h2_11">121 买入和售出股票最大的收益</h2>
 <p>给定一个数组，它的第 i 个元素是一支给定股票第 i 天的价格。</p>
 <p>如果你最多只允许完成一笔交易（即买入和卖出一支股票），设计一个算法来计算你所能获取的最大利润。</p>
-<h2 id="b3_solo_h2_12">注意你不能在买入股票前卖出股票。<br>
+<h2 id="toc_h2_12">注意你不能在买入股票前卖出股票。<br>
 思路:<br>
 找到最小的 找到相差最大的</h2>
 <p>与标题无关 自己随便找的 记录一下</p>
-<h2 id="b3_solo_h2_13">575 分糖果</h2>
+<h2 id="toc_h2_13">575 分糖果</h2>
 <p>给定一个偶数长度的数组，其中不同的数字代表着不同种类的糖果，每一个数字代表一个糖果。你需要把这些糖果平均分给一个弟弟和一个妹妹。返回妹妹可以获得的最大糖果的种类数。</p>
 <p>思路:<br>
 种类与数量一半比较  如果比一半大就返回数量的一半 如果比一半小就返回种类</p>
-<h2 id="b3_solo_h2_14">423 从英文中重建数字</h2>
+<h2 id="toc_h2_14">423 从英文中重建数字</h2>
 <p>给定一个非空字符串，其中包含字母顺序打乱的英文单词表示的数字0-9。按升序输出原始的数字。<br>
 思路:<br>
 先将有特征值的数字统计出来 然后在依次统计出拥有独特字母的数字</p>
@@ -182,6 +255,7 @@
 地址：<a href="https://ellenbboe.github.io/articles/2019/04/17/1561009680760.html" target="_blank">https://ellenbboe.github.io/articles/2019/04/17/1561009680760.html</a><br>
 <!-- 签名档内可使用 HTML、JavaScript -->
 <br>
+
                     </div>
             </section>
         </div>
@@ -189,62 +263,53 @@
         <div class="post__toc">
 <ul class="article__toc">
         <li class="toc__h1">
-            <a href="#b3_solo_h1_0">贪心思想</a>
+            <a href="#toc_h1_0">贪心思想</a>
         </li>
         <li class="toc__h2">
-            <a href="#b3_solo_h2_1">455 分配饼干</a>
+            <a href="#toc_h2_1">455 分配饼干</a>
         </li>
         <li class="toc__h2">
-            <a href="#b3_solo_h2_2">435 不重叠的区间个数</a>
+            <a href="#toc_h2_2">435 不重叠的区间个数</a>
         </li>
         <li class="toc__h2">
-            <a href="#b3_solo_h2_3">452 用最少数量的箭引爆气球</a>
+            <a href="#toc_h2_3">452 用最少数量的箭引爆气球</a>
         </li>
         <li class="toc__h2">
-            <a href="#b3_solo_h2_4">406 根据身高和序号重组队列</a>
+            <a href="#toc_h2_4">406 根据身高和序号重组队列</a>
         </li>
         <li class="toc__h2">
-            <a href="#b3_solo_h2_5">763 分隔字符串使同种字符出现在一起</a>
+            <a href="#toc_h2_5">763 分隔字符串使同种字符出现在一起</a>
         </li>
         <li class="toc__h2">
-            <a href="#b3_solo_h2_6">605 种植花朵</a>
+            <a href="#toc_h2_6">605 种植花朵</a>
         </li>
         <li class="toc__h2">
-            <a href="#b3_solo_h2_7">392 判断是否为子序列</a>
+            <a href="#toc_h2_7">392 判断是否为子序列</a>
         </li>
         <li class="toc__h2">
-            <a href="#b3_solo_h2_8">665 修改一个数成为非递减数组</a>
+            <a href="#toc_h2_8">665 修改一个数成为非递减数组</a>
         </li>
         <li class="toc__h2">
-            <a href="#b3_solo_h2_9">122 股票的最大收益</a>
+            <a href="#toc_h2_9">122 股票的最大收益</a>
         </li>
         <li class="toc__h2">
-            <a href="#b3_solo_h2_10">53 子数组最大的和</a>
+            <a href="#toc_h2_10">53 子数组最大的和</a>
         </li>
         <li class="toc__h2">
-            <a href="#b3_solo_h2_11">121 买入和售出股票最大的收益</a>
+            <a href="#toc_h2_11">121 买入和售出股票最大的收益</a>
         </li>
         <li class="toc__h2">
-            <a href="#b3_solo_h2_12">注意你不能在买入股票前卖出股票。 思路: 找到最小的 找到相差最大的</a>
+            <a href="#toc_h2_12">注意你不能在买入股票前卖出股票。 思路: 找到最小的 找到相差最大的</a>
         </li>
         <li class="toc__h2">
-            <a href="#b3_solo_h2_13">575 分糖果</a>
+            <a href="#toc_h2_13">575 分糖果</a>
         </li>
         <li class="toc__h2">
-            <a href="#b3_solo_h2_14">423 从英文中重建数字</a>
+            <a href="#toc_h2_14">423 从英文中重建数字</a>
         </li>
 </ul>        </div>
-<div class="comment">
-    <div class="comment__wrapper wrapper">
-        <div class="comment__title">
-            评论
-        </div>
-        <textarea rows="3" placeholder="评论内容只能为 2 到 500 个字符！" id="comment"></textarea>
-
-        <ul id="comments">
-        </ul>
-    </div>
-</div>
+        <div id="b3logsolocomments"></div>
+        <div id="vcomment" class="comment__wrapper wrapper" style="margin: 40px auto" data-name="ellenbboe" data-postId="1561009680760"></div>
     <div class="article__bottom">
         <div class="wrapper">
             <div class="fn__flex">
@@ -258,6 +323,7 @@
 <footer class="footer">
     <div class="wrapper fn__clear">
         <div class="fn__left">
+            <br>
             &copy; 2020
             <a href="https://ellenbboe.github.io">Kosmos</a>
             <a href="http://www.beian.miit.gov.cn/">浙ICP备18045840号-1</a>--------Let's move on
@@ -286,12 +352,23 @@ show_date_time();
 <style>
 #momk{animation:change 10s infinite;font-weight:800; }
 @keyframes change{0%{color:#5cb85c;}25%{color:#556bd8;}50%{color:#e40707;}75%{color:#66e616;}100% {color:#67bd31;}}
-</style> &nbsp;•&nbsp;
-            Powered by <a href="https://solo.b3log.org" target="_blank">Solo</a>
-            <br>
-            Theme Casper
-            <sup>[<a href="https://github.com/TryGhost/Casper" target="_blank">ref</a>]</sup>
-            by <a href="http://vanessa.b3log.org" target="_blank">Vanessa</a>
+</style>
+<script type="text/javascript">
+    /*自动刷新页面，避免无法访问*/
+    var OriginTitile = document.title;
+    var titleTime;
+    document.addEventListener('visibilitychange', function () {
+        if (document.hidden) {
+            document.title = '(〃´-ω･)  休息一下';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '起来嗨٩(๑❛ᴗ❛๑)۶';
+            titleTime = setTimeout(function () {
+                document.title = OriginTitile;
+            }, 3000);
+        }
+    });
+</script>
         </div>
         <div class="fn__right">
             <a href="https://ellenbboe.github.io/tags.html" rel="section">
@@ -306,36 +383,32 @@ show_date_time();
             友情链接
             </a>
             <br>
-            115 文章 &nbsp;
-            9 评论 &nbsp;
+            121 文章 &nbsp;
             <span data-uvstaturl="https://ellenbboe.github.io">11608</span> 浏览 &nbsp;
-            3 当前访客
+            
         </div>
     </div>
 </footer>
 
-<script type="text/javascript" src="https://ellenbboe.github.io/js/lib/compress/pjax.min.js" charset="utf-8"></script>
-<script type="text/javascript" src="https://ellenbboe.github.io/js/common.min.js?1578931371974"
-        charset="utf-8"></script>
-<script type="text/javascript"
-        src="https://ellenbboe.github.io/skins/Casper/js/common.min.js?1578931371974"
-        charset="utf-8"></script>
-<script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.4/dist/index.min.js"></script>
 <script>
-    var Label = {
-        servePath: "https://ellenbboe.github.io",
-        staticServePath: "https://ellenbboe.github.io",
-        luteAvailable: false,
-        hljsStyle: 'colorful',
-        langLabel: "zh_CN",
-        version: "3.7.0",
-    }
-    Util.init()
+  var Label = {
+    servePath: "https://ellenbboe.github.io",
+    staticServePath: "https://ellenbboe.github.io",
+    luteAvailable: false,
+    hljsStyle: 'colorful',
+    langLabel: "zh_CN",
+    version: "4.1.0",
+    staticSite: true,
+    showCodeBlockLn: false,
+  }
 </script>
+<script type="text/javascript"
+        src="https://ellenbboe.github.io/skins/Casper/js/common.min.js?1591150301084"
+        charset="utf-8"></script>
 
 
 <script type="text/javascript">
-    Util.addScript('https://ellenbboe.github.io/js/page.min.js?1578931371974', 'soloPageScript')
+    Util.addScript('https://ellenbboe.github.io/js/page.min.js?1591150301084', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1561009680760",
@@ -353,4 +426,4 @@ show_date_time();
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 39ms, 2020/01/14 13:32:39 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 59ms, 2020/06/03 12:32:28 -->

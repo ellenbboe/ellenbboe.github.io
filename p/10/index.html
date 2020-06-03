@@ -1,29 +1,102 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>Kosmos</title><meta name="description" content="开源,开发者,笔记,kosmos"/><meta property="og:description" content="开源,开发者,笔记,kosmos"/>    <meta name="keywords" content="开源,开发者,笔记,kosmos"/><link rel="dns-prefetch" href="https://ellenbboe.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://ellenbboe.github.io"><link rel="icon" type="image/png" href="https://s2.ax1x.com/2020/01/12/loApPe.png"/><link rel="apple-touch-icon" href="https://s2.ax1x.com/2020/01/12/loApPe.png"><link rel="shortcut icon" type="image/x-icon" href="https://s2.ax1x.com/2020/01/12/loApPe.png"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="Kosmos"/><meta property="og:site_name" content="Kosmos"/><meta property="og:url"      content="https://ellenbboe.github.io?p=10"/><meta property="og:image" content="https://s2.ax1x.com/2020/01/12/loApPe.png"/><link rel="search" type="application/opensearchdescription+xml" title="Kosmos" href="/opensearch.xml"><link href="https://ellenbboe.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://ellenbboe.github.io/manifest.json">            <link rel="canonical" href="https://ellenbboe.github.io?p=10">    <link rel="stylesheet" href="https://ellenbboe.github.io/skins/Casper/css/base.css?1578931371974"/>
-    </head>
+<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>Kosmos</title><meta name="description" content="开源,开发者,笔记,kosmos"/><meta property="og:description" content="开源,开发者,笔记,kosmos"/>    <meta name="keywords" content="开源,开发者,笔记,kosmos"/><link rel="dns-prefetch" href="https://ellenbboe.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://ellenbboe.github.io"><link rel="icon" type="image/png" href="https://s2.ax1x.com/2020/01/12/loApPe.png"/><link rel="apple-touch-icon" href="https://s2.ax1x.com/2020/01/12/loApPe.png"><link rel="shortcut icon" type="image/x-icon" href="https://s2.ax1x.com/2020/01/12/loApPe.png"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="Kosmos"/><meta property="og:site_name" content="Kosmos"/><meta property="og:url"      content="https://ellenbboe.github.io?p=10"/><meta property="og:image" content="https://s2.ax1x.com/2020/01/12/loApPe.png"/><link rel="search" type="application/opensearchdescription+xml" title="Kosmos" href="/opensearch.xml"><link href="https://ellenbboe.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://ellenbboe.github.io/manifest.json">            <link rel="canonical" href="https://ellenbboe.github.io?p=10">    <link rel="stylesheet" href="https://ellenbboe.github.io/skins/Casper/css/base.css?1591150301084"/>
+    <script>
+onload = function() {
+    var click_cnt = 0;
+    var $html = document.getElementsByTagName("html")[0];
+    var $body = document.getElementsByTagName("body")[0];
+    $html.onclick = function(e) {
+        var $elem = document.createElement("b");
+        $elem.style.color = "#E94F06";
+        $elem.style.zIndex = 9999;
+        $elem.style.position = "absolute";
+        $elem.style.select = "none";
+        var x = e.pageX;
+        var y = e.pageY;
+        $elem.style.left = (x - 10) + "px";
+        $elem.style.top = (y - 20) + "px";
+        clearInterval(anim);
+        switch (++click_cnt) {
+            case 10:
+                $elem.innerText = "OωO";
+                break;
+            case 20:
+                $elem.innerText = "(๑•́ ∀ •̀๑)";
+                break;
+            case 30:
+                $elem.innerText = "(๑•́ ₃ •̀๑)";
+                break;
+            case 40:
+                $elem.innerText = "(๑•̀_•́๑)";
+                break;
+            case 50:
+                $elem.innerText = "（￣へ￣）";
+                break;
+            case 60:
+                $elem.innerText = "(╯°口°)╯(┴—┴";
+                break;
+            case 70:
+                $elem.innerText = "૮( ᵒ̌皿ᵒ̌ )ა";
+                break;
+            case 80:
+                $elem.innerText = "╮(｡>口<｡)╭";
+                break;
+            case 90:
+                $elem.innerText = "( ง ᵒ̌皿ᵒ̌)ง⁼³₌₃";
+                break;
+            case 100:
+            case 101:
+            case 102:
+            case 103:
+            case 104:
+            case 105:
+                $elem.innerText = "(ꐦ°᷄д°᷅)";
+                break;
+            default:
+                $elem.innerText = "❤";
+                break;
+        }
+        $elem.style.fontSize = Math.random() * 10 + 8 + "px";
+        var increase = 0;
+        var anim;
+        setTimeout(function() {
+            anim = setInterval(function() {
+                if (++increase == 150) {
+                    clearInterval(anim);
+                    $body.removeChild($elem);
+                }
+                $elem.style.top = y - 20 - increase + "px";
+                $elem.style.opacity = (150 - increase) / 120;
+            }, 8);
+        }, 70);
+        $body.appendChild($elem);
+    };
+};
+</script>
+</head>
 <body class="fn__flex-column">
 <div id="pjax" class="fn__flex-1">
     
     <header class="header header--index">
         <div class="wrapper header__title">
             <h1 class="header__h1 fn__flex-inline">
-                <img src="https://s2.ax1x.com/2020/01/12/loApPe.png">
+                <img src="https://s2.ax1x.com/2020/01/12/loApPe.png" alt="Kosmos">
                 <a href="https://ellenbboe.github.io" rel="start" class="header__title">Kosmos</a>
             </h1>
-            <h2 class="header__h2">---就算是痛苦难受，也要去体会那被称为生存的分量---</h2>
+            <h2 class="header__h2">---我们总得选择一条路去前行---</h2>
         </div>
         <nav class="wrapper header__nav fn__clear">
             <a href="https://ellenbboe.github.io" rel="start">
                     首页
             </a>
 
-                <a class="fn__flex-inline" href="/my-github-repos" target="_self" rel="section">
-                    <img src="/images/github-icon.png"> 我的开源
+                <a class="fn__flex-inline" href="https://github.com/ellenbboe" target="_self" rel="section">
+                    <img src="https://s2.ax1x.com/2020/01/16/ljWMPP.png" alt="我的GIT"> 我的GIT
                 </a>
                 <a class="fn__flex-inline" href="/readlist" target="_self" rel="section">
-                     阅读列表
+                    <img src="https://s2.ax1x.com/2020/01/16/ljWPC6.png" alt="阅读列表"> 阅读列表
                 </a>
 
 
@@ -58,8 +131,206 @@
     <div class="wrapper">
 <div class="articles">
     <article class="item item--large">
+        <a href="https://ellenbboe.github.io/articles/2018/07/14/1561009684338.html" class="item__cover"
+           style="background-image: url(https://img.hacpai.com/bing/20190120.jpg?imageView2/1/w/1280/h/720/interlace/1/q/100)"> tar基础
+        </a>
+        <div class="item__main">
+                    <a rel="tag" class="item__tag" href="https://ellenbboe.github.io/tags/linux">
+                        linux
+                    </a>
+            <h2 class="item__title">
+                <a rel="bookmark" href="https://ellenbboe.github.io/articles/2018/07/14/1561009684338.html">
+                    tar基础
+                </a>
+            </h2>
+            <a class="item__abstract" pjax-title="tar基础"
+               href="https://ellenbboe.github.io/articles/2018/07/14/1561009684338.html">
+                    记录: 来自网上 1、.tar 用 tar -xvf 解压 2、.gz 用 gzip -d或者gunzip 解压 3、.tar.gz和.tgz 用 tar -xz
+
+            </a>
+            <div class="fn__clear">
+                <a href="https://ellenbboe.github.io/authors/1560999734029"
+                   aria-label="ellenbboe"
+                   class="vditor-tooltipped vditor-tooltipped__n item__avatar">
+                    <img src="https://img.hacpai.com/avatar/1560335521987_1576387741689.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100" alt="1560999734029"/>
+                </a>
+                <a class="item__meta fn__none" href="https://ellenbboe.github.io/articles/2018/07/14/1561009684338.html#b3logsolocomments">
+                    <span data-uvstatcmt="1561009684338">0</span> 评论
+                </a>
+                <a class="item__meta" href="https://ellenbboe.github.io/articles/2018/07/14/1561009684338.html">
+                    <span data-uvstaturl="https://ellenbboe.github.io/articles/2018/07/14/1561009684338.html">41</span> 浏览
+                </a>
+            </div>
+        </div>
+    </article>
+    <article class="item">
+        <a href="https://ellenbboe.github.io/articles/2018/07/14/1561009688844.html" class="item__cover"
+           style="background-image: url(https://img.hacpai.com/bing/20180308.jpg?imageView2/1/w/1280/h/720/interlace/1/q/100)"> Linux From Scrach Pass 2
+        </a>
+        <div class="item__main">
+                    <a rel="tag" class="item__tag" href="https://ellenbboe.github.io/tags/linux">
+                        linux
+                    </a>
+            <h2 class="item__title">
+                <a rel="bookmark" href="https://ellenbboe.github.io/articles/2018/07/14/1561009688844.html">
+                    Linux From Scrach Pass 2
+                </a>
+            </h2>
+            <a class="item__abstract" pjax-title="Linux From Scrach Pass 2"
+               href="https://ellenbboe.github.io/articles/2018/07/14/1561009688844.html">
+                    编译临时工具软件包过程 说明:主要列出重要信息(来自官方),切忌不要按照本文编译 我只是把它们列出来加深理解,还有一些配置我没有列出 包括make与make in
+
+            </a>
+            <div class="fn__clear">
+                <a href="https://ellenbboe.github.io/authors/1560999734029"
+                   aria-label="ellenbboe"
+                   class="vditor-tooltipped vditor-tooltipped__n item__avatar">
+                    <img src="https://img.hacpai.com/avatar/1560335521987_1576387741689.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100" alt="1560999734029"/>
+                </a>
+                <a class="item__meta fn__none" href="https://ellenbboe.github.io/articles/2018/07/14/1561009688844.html#b3logsolocomments">
+                    <span data-uvstatcmt="1561009688844">0</span> 评论
+                </a>
+                <a class="item__meta" href="https://ellenbboe.github.io/articles/2018/07/14/1561009688844.html">
+                    <span data-uvstaturl="https://ellenbboe.github.io/articles/2018/07/14/1561009688844.html">39</span> 浏览
+                </a>
+            </div>
+        </div>
+    </article>
+    <article class="item">
+        <a href="https://ellenbboe.github.io/articles/2018/07/14/1561009679893.html" class="item__cover"
+           style="background-image: url(https://img.hacpai.com/bing/20190420.jpg?imageView2/1/w/1280/h/720/interlace/1/q/100)"> 2018-07-13 lfs编译日志
+        </a>
+        <div class="item__main">
+                    <a rel="tag" class="item__tag" href="https://ellenbboe.github.io/tags/%E6%97%A5%E5%BF%97">
+                        日志
+                    </a>
+            <h2 class="item__title">
+                <a rel="bookmark" href="https://ellenbboe.github.io/articles/2018/07/14/1561009679893.html">
+                    2018-07-13 lfs编译日志
+                </a>
+            </h2>
+            <a class="item__abstract" pjax-title="2018-07-13 lfs编译日志"
+               href="https://ellenbboe.github.io/articles/2018/07/14/1561009679893.html">
+                    lfs准备工作已经全部完成 已经把编译的工作做完了 现在准备在写md文档总结一下(时间估计两天时间) 说实话,编译的工作是真的费时间
+
+            </a>
+            <div class="fn__clear">
+                <a href="https://ellenbboe.github.io/authors/1560999734029"
+                   aria-label="ellenbboe"
+                   class="vditor-tooltipped vditor-tooltipped__n item__avatar">
+                    <img src="https://img.hacpai.com/avatar/1560335521987_1576387741689.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100" alt="1560999734029"/>
+                </a>
+                <a class="item__meta fn__none" href="https://ellenbboe.github.io/articles/2018/07/14/1561009679893.html#b3logsolocomments">
+                    <span data-uvstatcmt="1561009679893">0</span> 评论
+                </a>
+                <a class="item__meta" href="https://ellenbboe.github.io/articles/2018/07/14/1561009679893.html">
+                    <span data-uvstaturl="https://ellenbboe.github.io/articles/2018/07/14/1561009679893.html">31</span> 浏览
+                </a>
+            </div>
+        </div>
+    </article>
+    <article class="item">
+        <a href="https://ellenbboe.github.io/articles/2018/07/12/1561009681962.html" class="item__cover"
+           style="background-image: url(https://img.hacpai.com/bing/20181113.jpg?imageView2/1/w/1280/h/720/interlace/1/q/100)"> Linux From Scrach Pass 1
+        </a>
+        <div class="item__main">
+                    <a rel="tag" class="item__tag" href="https://ellenbboe.github.io/tags/linux">
+                        linux
+                    </a>
+            <h2 class="item__title">
+                <a rel="bookmark" href="https://ellenbboe.github.io/articles/2018/07/12/1561009681962.html">
+                    Linux From Scrach Pass 1
+                </a>
+            </h2>
+            <a class="item__abstract" pjax-title="Linux From Scrach Pass 1"
+               href="https://ellenbboe.github.io/articles/2018/07/12/1561009681962.html">
+                    准备 准备空间大概8g 准备在u盘上构建系统 我准备将u盘对半分成两个盘 一个安装系统,就用ext4 一个当作普通的u盘来用 记得分区的时候格式化 可以使用fdi
+
+            </a>
+            <div class="fn__clear">
+                <a href="https://ellenbboe.github.io/authors/1560999734029"
+                   aria-label="ellenbboe"
+                   class="vditor-tooltipped vditor-tooltipped__n item__avatar">
+                    <img src="https://img.hacpai.com/avatar/1560335521987_1576387741689.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100" alt="1560999734029"/>
+                </a>
+                <a class="item__meta fn__none" href="https://ellenbboe.github.io/articles/2018/07/12/1561009681962.html#b3logsolocomments">
+                    <span data-uvstatcmt="1561009681962">0</span> 评论
+                </a>
+                <a class="item__meta" href="https://ellenbboe.github.io/articles/2018/07/12/1561009681962.html">
+                    <span data-uvstaturl="https://ellenbboe.github.io/articles/2018/07/12/1561009681962.html">38</span> 浏览
+                </a>
+            </div>
+        </div>
+    </article>
+    <article class="item">
+        <a href="https://ellenbboe.github.io/articles/2018/07/11/1561009685950.html" class="item__cover"
+           style="background-image: url(https://img.hacpai.com/bing/20180502.jpg?imageView2/1/w/1280/h/720/interlace/1/q/100)"> git443错误
+        </a>
+        <div class="item__main">
+                    <a rel="tag" class="item__tag" href="https://ellenbboe.github.io/tags/git">
+                        git
+                    </a>
+            <h2 class="item__title">
+                <a rel="bookmark" href="https://ellenbboe.github.io/articles/2018/07/11/1561009685950.html">
+                    git443错误
+                </a>
+            </h2>
+            <a class="item__abstract" pjax-title="git443错误"
+               href="https://ellenbboe.github.io/articles/2018/07/11/1561009685950.html">
+                    在git push的时候出现OpenSSL SSL_connect: SSL_ERROR_SYSCALL in connection to github.com:
+
+            </a>
+            <div class="fn__clear">
+                <a href="https://ellenbboe.github.io/authors/1560999734029"
+                   aria-label="ellenbboe"
+                   class="vditor-tooltipped vditor-tooltipped__n item__avatar">
+                    <img src="https://img.hacpai.com/avatar/1560335521987_1576387741689.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100" alt="1560999734029"/>
+                </a>
+                <a class="item__meta fn__none" href="https://ellenbboe.github.io/articles/2018/07/11/1561009685950.html#b3logsolocomments">
+                    <span data-uvstatcmt="1561009685950">0</span> 评论
+                </a>
+                <a class="item__meta" href="https://ellenbboe.github.io/articles/2018/07/11/1561009685950.html">
+                    <span data-uvstaturl="https://ellenbboe.github.io/articles/2018/07/11/1561009685950.html">49</span> 浏览
+                </a>
+            </div>
+        </div>
+    </article>
+    <article class="item">
+        <a href="https://ellenbboe.github.io/articles/2018/07/11/1561009673468.html" class="item__cover"
+           style="background-image: url(https://img.hacpai.com/bing/20190318.jpg?imageView2/1/w/1280/h/720/interlace/1/q/100)"> git上传脚本
+        </a>
+        <div class="item__main">
+                    <a rel="tag" class="item__tag" href="https://ellenbboe.github.io/tags/git">
+                        git
+                    </a>
+            <h2 class="item__title">
+                <a rel="bookmark" href="https://ellenbboe.github.io/articles/2018/07/11/1561009673468.html">
+                    git上传脚本
+                </a>
+            </h2>
+            <a class="item__abstract" pjax-title="git上传脚本"
+               href="https://ellenbboe.github.io/articles/2018/07/11/1561009673468.html">
+                    由于上传命令太多了,所以写了脚本 命名为comgit #!/bin/bash git add –all;git commit -m “$1”;git pull;g
+
+            </a>
+            <div class="fn__clear">
+                <a href="https://ellenbboe.github.io/authors/1560999734029"
+                   aria-label="ellenbboe"
+                   class="vditor-tooltipped vditor-tooltipped__n item__avatar">
+                    <img src="https://img.hacpai.com/avatar/1560335521987_1576387741689.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100" alt="1560999734029"/>
+                </a>
+                <a class="item__meta fn__none" href="https://ellenbboe.github.io/articles/2018/07/11/1561009673468.html#b3logsolocomments">
+                    <span data-uvstatcmt="1561009673468">0</span> 评论
+                </a>
+                <a class="item__meta" href="https://ellenbboe.github.io/articles/2018/07/11/1561009673468.html">
+                    <span data-uvstaturl="https://ellenbboe.github.io/articles/2018/07/11/1561009673468.html">32</span> 浏览
+                </a>
+            </div>
+        </div>
+    </article>
+    <article class="item item--large">
         <a href="https://ellenbboe.github.io/articles/2018/07/11/1561009675020.html" class="item__cover"
-           style="background-image: url(https://img.hacpai.com/bing/20180821.jpg?imageView2/1/w/1280/h/720/interlace/1/q/100)">
+           style="background-image: url(https://img.hacpai.com/bing/20180821.jpg?imageView2/1/w/1280/h/720/interlace/1/q/100)"> python脚本基础
         </a>
         <div class="item__main">
                     <a rel="tag" class="item__tag" href="https://ellenbboe.github.io/tags/%E5%9F%BA%E7%A1%80">
@@ -79,17 +350,20 @@
                 <a href="https://ellenbboe.github.io/authors/1560999734029"
                    aria-label="ellenbboe"
                    class="vditor-tooltipped vditor-tooltipped__n item__avatar">
-                    <img src="https://img.hacpai.com/avatar/1560335521987_1576387741689.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100" />
+                    <img src="https://img.hacpai.com/avatar/1560335521987_1576387741689.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100" alt="1560999734029"/>
                 </a>
-                    <a class="item__meta" href="https://ellenbboe.github.io/articles/2018/07/11/1561009675020.html">
-                        <span data-uvstaturl="https://ellenbboe.github.io/articles/2018/07/11/1561009675020.html">32</span> 浏览
-                    </a>
+                <a class="item__meta fn__none" href="https://ellenbboe.github.io/articles/2018/07/11/1561009675020.html#b3logsolocomments">
+                    <span data-uvstatcmt="1561009675020">0</span> 评论
+                </a>
+                <a class="item__meta" href="https://ellenbboe.github.io/articles/2018/07/11/1561009675020.html">
+                    <span data-uvstaturl="https://ellenbboe.github.io/articles/2018/07/11/1561009675020.html">32</span> 浏览
+                </a>
             </div>
         </div>
     </article>
     <article class="item">
         <a href="https://ellenbboe.github.io/articles/2018/07/11/1561009680301.html" class="item__cover"
-           style="background-image: url(https://img.hacpai.com/bing/20180626.jpg?imageView2/1/w/1280/h/720/interlace/1/q/100)">
+           style="background-image: url(https://img.hacpai.com/bing/20180626.jpg?imageView2/1/w/1280/h/720/interlace/1/q/100)"> shell基础
         </a>
         <div class="item__main">
                     <a rel="tag" class="item__tag" href="https://ellenbboe.github.io/tags/linux">
@@ -109,17 +383,20 @@
                 <a href="https://ellenbboe.github.io/authors/1560999734029"
                    aria-label="ellenbboe"
                    class="vditor-tooltipped vditor-tooltipped__n item__avatar">
-                    <img src="https://img.hacpai.com/avatar/1560335521987_1576387741689.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100" />
+                    <img src="https://img.hacpai.com/avatar/1560335521987_1576387741689.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100" alt="1560999734029"/>
                 </a>
-                    <a class="item__meta" href="https://ellenbboe.github.io/articles/2018/07/11/1561009680301.html">
-                        <span data-uvstaturl="https://ellenbboe.github.io/articles/2018/07/11/1561009680301.html">40</span> 浏览
-                    </a>
+                <a class="item__meta fn__none" href="https://ellenbboe.github.io/articles/2018/07/11/1561009680301.html#b3logsolocomments">
+                    <span data-uvstatcmt="1561009680301">0</span> 评论
+                </a>
+                <a class="item__meta" href="https://ellenbboe.github.io/articles/2018/07/11/1561009680301.html">
+                    <span data-uvstaturl="https://ellenbboe.github.io/articles/2018/07/11/1561009680301.html">40</span> 浏览
+                </a>
             </div>
         </div>
     </article>
     <article class="item">
         <a href="https://ellenbboe.github.io/articles/2018/07/11/1561009670406.html" class="item__cover"
-           style="background-image: url(https://img.hacpai.com/bing/20180503.jpg?imageView2/1/w/1280/h/720/interlace/1/q/100)">
+           style="background-image: url(https://img.hacpai.com/bing/20180503.jpg?imageView2/1/w/1280/h/720/interlace/1/q/100)"> vim基础
         </a>
         <div class="item__main">
                     <a rel="tag" class="item__tag" href="https://ellenbboe.github.io/tags/linux">
@@ -139,17 +416,20 @@
                 <a href="https://ellenbboe.github.io/authors/1560999734029"
                    aria-label="ellenbboe"
                    class="vditor-tooltipped vditor-tooltipped__n item__avatar">
-                    <img src="https://img.hacpai.com/avatar/1560335521987_1576387741689.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100" />
+                    <img src="https://img.hacpai.com/avatar/1560335521987_1576387741689.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100" alt="1560999734029"/>
                 </a>
-                    <a class="item__meta" href="https://ellenbboe.github.io/articles/2018/07/11/1561009670406.html">
-                        <span data-uvstaturl="https://ellenbboe.github.io/articles/2018/07/11/1561009670406.html">38</span> 浏览
-                    </a>
+                <a class="item__meta fn__none" href="https://ellenbboe.github.io/articles/2018/07/11/1561009670406.html#b3logsolocomments">
+                    <span data-uvstatcmt="1561009670406">0</span> 评论
+                </a>
+                <a class="item__meta" href="https://ellenbboe.github.io/articles/2018/07/11/1561009670406.html">
+                    <span data-uvstaturl="https://ellenbboe.github.io/articles/2018/07/11/1561009670406.html">38</span> 浏览
+                </a>
             </div>
         </div>
     </article>
     <article class="item">
         <a href="https://ellenbboe.github.io/articles/2018/07/11/1561009686913.html" class="item__cover"
-           style="background-image: url(https://img.hacpai.com/bing/20171224.jpg?imageView2/1/w/1280/h/720/interlace/1/q/100)">
+           style="background-image: url(https://img.hacpai.com/bing/20171224.jpg?imageView2/1/w/1280/h/720/interlace/1/q/100)"> sql基本知识
         </a>
         <div class="item__main">
                     <a rel="tag" class="item__tag" href="https://ellenbboe.github.io/tags/%E5%9F%BA%E7%A1%80">
@@ -169,17 +449,20 @@
                 <a href="https://ellenbboe.github.io/authors/1560999734029"
                    aria-label="ellenbboe"
                    class="vditor-tooltipped vditor-tooltipped__n item__avatar">
-                    <img src="https://img.hacpai.com/avatar/1560335521987_1576387741689.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100" />
+                    <img src="https://img.hacpai.com/avatar/1560335521987_1576387741689.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100" alt="1560999734029"/>
                 </a>
-                    <a class="item__meta" href="https://ellenbboe.github.io/articles/2018/07/11/1561009686913.html">
-                        <span data-uvstaturl="https://ellenbboe.github.io/articles/2018/07/11/1561009686913.html">38</span> 浏览
-                    </a>
+                <a class="item__meta fn__none" href="https://ellenbboe.github.io/articles/2018/07/11/1561009686913.html#b3logsolocomments">
+                    <span data-uvstatcmt="1561009686913">0</span> 评论
+                </a>
+                <a class="item__meta" href="https://ellenbboe.github.io/articles/2018/07/11/1561009686913.html">
+                    <span data-uvstaturl="https://ellenbboe.github.io/articles/2018/07/11/1561009686913.html">38</span> 浏览
+                </a>
             </div>
         </div>
     </article>
     <article class="item">
         <a href="https://ellenbboe.github.io/articles/2018/07/10/1561009675261.html" class="item__cover"
-           style="background-image: url(https://img.hacpai.com/bing/20190614.jpg?imageView2/1/w/1280/h/720/interlace/1/q/100)">
+           style="background-image: url(https://img.hacpai.com/bing/20190614.jpg?imageView2/1/w/1280/h/720/interlace/1/q/100)"> git基本操作
         </a>
         <div class="item__main">
                     <a rel="tag" class="item__tag" href="https://ellenbboe.github.io/tags/git">
@@ -199,17 +482,20 @@
                 <a href="https://ellenbboe.github.io/authors/1560999734029"
                    aria-label="ellenbboe"
                    class="vditor-tooltipped vditor-tooltipped__n item__avatar">
-                    <img src="https://img.hacpai.com/avatar/1560335521987_1576387741689.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100" />
+                    <img src="https://img.hacpai.com/avatar/1560335521987_1576387741689.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100" alt="1560999734029"/>
                 </a>
-                    <a class="item__meta" href="https://ellenbboe.github.io/articles/2018/07/10/1561009675261.html">
-                        <span data-uvstaturl="https://ellenbboe.github.io/articles/2018/07/10/1561009675261.html">37</span> 浏览
-                    </a>
+                <a class="item__meta fn__none" href="https://ellenbboe.github.io/articles/2018/07/10/1561009675261.html#b3logsolocomments">
+                    <span data-uvstatcmt="1561009675261">0</span> 评论
+                </a>
+                <a class="item__meta" href="https://ellenbboe.github.io/articles/2018/07/10/1561009675261.html">
+                    <span data-uvstaturl="https://ellenbboe.github.io/articles/2018/07/10/1561009675261.html">37</span> 浏览
+                </a>
             </div>
         </div>
     </article>
     <article class="item">
         <a href="https://ellenbboe.github.io/articles/2018/07/10/1561009674502.html" class="item__cover"
-           style="background-image: url(https://img.hacpai.com/bing/20190214.jpg?imageView2/1/w/1280/h/720/interlace/1/q/100)">
+           style="background-image: url(https://img.hacpai.com/bing/20190214.jpg?imageView2/1/w/1280/h/720/interlace/1/q/100)"> css渐变动画
         </a>
         <div class="item__main">
                     <a rel="tag" class="item__tag" href="https://ellenbboe.github.io/tags/css">
@@ -229,41 +515,14 @@
                 <a href="https://ellenbboe.github.io/authors/1560999734029"
                    aria-label="ellenbboe"
                    class="vditor-tooltipped vditor-tooltipped__n item__avatar">
-                    <img src="https://img.hacpai.com/avatar/1560335521987_1576387741689.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100" />
+                    <img src="https://img.hacpai.com/avatar/1560335521987_1576387741689.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100" alt="1560999734029"/>
                 </a>
-                    <a class="item__meta" href="https://ellenbboe.github.io/articles/2018/07/10/1561009674502.html">
-                        <span data-uvstaturl="https://ellenbboe.github.io/articles/2018/07/10/1561009674502.html">35</span> 浏览
-                    </a>
-            </div>
-        </div>
-    </article>
-    <article class="item item--large">
-        <a href="https://ellenbboe.github.io/articles/2018/07/10/1561009670077.html" class="item__cover"
-           style="background-image: url(https://img.hacpai.com/bing/20190612.jpg?imageView2/1/w/1280/h/720/interlace/1/q/100)">
-        </a>
-        <div class="item__main">
-                    <a rel="tag" class="item__tag" href="https://ellenbboe.github.io/tags/linux">
-                        linux
-                    </a>
-            <h2 class="item__title">
-                <a rel="bookmark" href="https://ellenbboe.github.io/articles/2018/07/10/1561009670077.html">
-                    关于pacman
+                <a class="item__meta fn__none" href="https://ellenbboe.github.io/articles/2018/07/10/1561009674502.html#b3logsolocomments">
+                    <span data-uvstatcmt="1561009674502">0</span> 评论
                 </a>
-            </h2>
-            <a class="item__abstract" pjax-title="关于pacman"
-               href="https://ellenbboe.github.io/articles/2018/07/10/1561009670077.html">
-                    pacman -D –asexplicite xxx 设置为单独安装的包 pacman -Qtd 出来的包可以删 但有些删除可能会有影响,大多没用 pacman 
-
-            </a>
-            <div class="fn__clear">
-                <a href="https://ellenbboe.github.io/authors/1560999734029"
-                   aria-label="ellenbboe"
-                   class="vditor-tooltipped vditor-tooltipped__n item__avatar">
-                    <img src="https://img.hacpai.com/avatar/1560335521987_1576387741689.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100" />
+                <a class="item__meta" href="https://ellenbboe.github.io/articles/2018/07/10/1561009674502.html">
+                    <span data-uvstaturl="https://ellenbboe.github.io/articles/2018/07/10/1561009674502.html">35</span> 浏览
                 </a>
-                    <a class="item__meta" href="https://ellenbboe.github.io/articles/2018/07/10/1561009670077.html">
-                        <span data-uvstaturl="https://ellenbboe.github.io/articles/2018/07/10/1561009670077.html">122</span> 浏览
-                    </a>
             </div>
         </div>
     </article>
@@ -280,6 +539,7 @@
             <a pjax-title="Kosmos" class="pagination__item" href="https://ellenbboe.github.io/p/8">8</a>
             <a pjax-title="Kosmos" class="pagination__item" href="https://ellenbboe.github.io/p/9">9</a>
             <span class="pagination__item pagination__item--active">10</span>
+            <a pjax-title="Kosmos" class="pagination__item" href="https://ellenbboe.github.io/p/11">11</a>
 </nav>
     </div>
     
@@ -287,6 +547,7 @@
 <footer class="footer">
     <div class="wrapper fn__clear">
         <div class="fn__left">
+            <br>
             &copy; 2020
             <a href="https://ellenbboe.github.io">Kosmos</a>
             <a href="http://www.beian.miit.gov.cn/">浙ICP备18045840号-1</a>--------Let's move on
@@ -315,12 +576,23 @@ show_date_time();
 <style>
 #momk{animation:change 10s infinite;font-weight:800; }
 @keyframes change{0%{color:#5cb85c;}25%{color:#556bd8;}50%{color:#e40707;}75%{color:#66e616;}100% {color:#67bd31;}}
-</style> &nbsp;•&nbsp;
-            Powered by <a href="https://solo.b3log.org" target="_blank">Solo</a>
-            <br>
-            Theme Casper
-            <sup>[<a href="https://github.com/TryGhost/Casper" target="_blank">ref</a>]</sup>
-            by <a href="http://vanessa.b3log.org" target="_blank">Vanessa</a>
+</style>
+<script type="text/javascript">
+    /*自动刷新页面，避免无法访问*/
+    var OriginTitile = document.title;
+    var titleTime;
+    document.addEventListener('visibilitychange', function () {
+        if (document.hidden) {
+            document.title = '(〃´-ω･)  休息一下';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '起来嗨٩(๑❛ᴗ❛๑)۶';
+            titleTime = setTimeout(function () {
+                document.title = OriginTitile;
+            }, 3000);
+        }
+    });
+</script>
         </div>
         <div class="fn__right">
             <a href="https://ellenbboe.github.io/tags.html" rel="section">
@@ -335,33 +607,29 @@ show_date_time();
             友情链接
             </a>
             <br>
-            115 文章 &nbsp;
-            9 评论 &nbsp;
+            121 文章 &nbsp;
             <span data-uvstaturl="https://ellenbboe.github.io">11608</span> 浏览 &nbsp;
-            3 当前访客
+            
         </div>
     </div>
 </footer>
 
-<script type="text/javascript" src="https://ellenbboe.github.io/js/lib/compress/pjax.min.js" charset="utf-8"></script>
-<script type="text/javascript" src="https://ellenbboe.github.io/js/common.min.js?1578931371974"
-        charset="utf-8"></script>
-<script type="text/javascript"
-        src="https://ellenbboe.github.io/skins/Casper/js/common.min.js?1578931371974"
-        charset="utf-8"></script>
-<script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.4/dist/index.min.js"></script>
 <script>
-    var Label = {
-        servePath: "https://ellenbboe.github.io",
-        staticServePath: "https://ellenbboe.github.io",
-        luteAvailable: false,
-        hljsStyle: 'colorful',
-        langLabel: "zh_CN",
-        version: "3.7.0",
-    }
-    Util.init()
+  var Label = {
+    servePath: "https://ellenbboe.github.io",
+    staticServePath: "https://ellenbboe.github.io",
+    luteAvailable: false,
+    hljsStyle: 'colorful',
+    langLabel: "zh_CN",
+    version: "4.1.0",
+    staticSite: true,
+    showCodeBlockLn: false,
+  }
 </script>
+<script type="text/javascript"
+        src="https://ellenbboe.github.io/skins/Casper/js/common.min.js?1591150301084"
+        charset="utf-8"></script>
 
 </body>
 </html>
-<!-- Generated by Latke (https://github.com/88250/latke) in 26ms, 2020/01/14 13:32:41 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 161ms, 2020/06/03 12:32:32 -->

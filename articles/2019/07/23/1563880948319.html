@@ -2,31 +2,104 @@
 <html>
 <head>
 <meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>学习笔记|红黑树的故事 - Kosmos</title><meta name="description" content="从前有一颗能自己平衡不会倒下的树,带着红和黑颜色 🎋"/><meta property="og:description" content="从前有一颗能自己平衡不会倒下的树,带着红和黑颜色 🎋"/>    <meta name="keywords" content="开源,开发者,笔记,kosmos"/><link rel="dns-prefetch" href="https://ellenbboe.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://ellenbboe.github.io"><link rel="icon" type="image/png" href="https://s2.ax1x.com/2020/01/12/loApPe.png"/><link rel="apple-touch-icon" href="https://s2.ax1x.com/2020/01/12/loApPe.png"><link rel="shortcut icon" type="image/x-icon" href="https://s2.ax1x.com/2020/01/12/loApPe.png"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="学习笔记|红黑树的故事 - Kosmos"/><meta property="og:site_name" content="Kosmos"/><meta property="og:url"      content="https://ellenbboe.github.io/articles/2019/07/23/1563880948319.html?"/><meta property="og:image" content="https://s2.ax1x.com/2020/01/12/loApPe.png"/><link rel="search" type="application/opensearchdescription+xml" title="学习笔记|红黑树的故事 - Kosmos" href="/opensearch.xml"><link href="https://ellenbboe.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://ellenbboe.github.io/manifest.json">        <link rel="canonical" href="https://ellenbboe.github.io/articles/2019/07/23/1563880948319.html">        <link rel="stylesheet"
-              href="https://ellenbboe.github.io/skins/Casper/css/base.css?1578931371974"/>
+              href="https://ellenbboe.github.io/skins/Casper/css/base.css?1591150301084"/>
             <link rel="prev" title="学习笔记|HashMap和ConcurrentHashMap" href="https://ellenbboe.github.io/articles/2019/07/23/1563870255078.html">
             <link rel="next" title="学习笔记|异常体系" href="https://ellenbboe.github.io/articles/2019/07/24/1563974945220.html">
-    </head>
+    <script>
+onload = function() {
+    var click_cnt = 0;
+    var $html = document.getElementsByTagName("html")[0];
+    var $body = document.getElementsByTagName("body")[0];
+    $html.onclick = function(e) {
+        var $elem = document.createElement("b");
+        $elem.style.color = "#E94F06";
+        $elem.style.zIndex = 9999;
+        $elem.style.position = "absolute";
+        $elem.style.select = "none";
+        var x = e.pageX;
+        var y = e.pageY;
+        $elem.style.left = (x - 10) + "px";
+        $elem.style.top = (y - 20) + "px";
+        clearInterval(anim);
+        switch (++click_cnt) {
+            case 10:
+                $elem.innerText = "OωO";
+                break;
+            case 20:
+                $elem.innerText = "(๑•́ ∀ •̀๑)";
+                break;
+            case 30:
+                $elem.innerText = "(๑•́ ₃ •̀๑)";
+                break;
+            case 40:
+                $elem.innerText = "(๑•̀_•́๑)";
+                break;
+            case 50:
+                $elem.innerText = "（￣へ￣）";
+                break;
+            case 60:
+                $elem.innerText = "(╯°口°)╯(┴—┴";
+                break;
+            case 70:
+                $elem.innerText = "૮( ᵒ̌皿ᵒ̌ )ა";
+                break;
+            case 80:
+                $elem.innerText = "╮(｡>口<｡)╭";
+                break;
+            case 90:
+                $elem.innerText = "( ง ᵒ̌皿ᵒ̌)ง⁼³₌₃";
+                break;
+            case 100:
+            case 101:
+            case 102:
+            case 103:
+            case 104:
+            case 105:
+                $elem.innerText = "(ꐦ°᷄д°᷅)";
+                break;
+            default:
+                $elem.innerText = "❤";
+                break;
+        }
+        $elem.style.fontSize = Math.random() * 10 + 8 + "px";
+        var increase = 0;
+        var anim;
+        setTimeout(function() {
+            anim = setInterval(function() {
+                if (++increase == 150) {
+                    clearInterval(anim);
+                    $body.removeChild($elem);
+                }
+                $elem.style.top = y - 20 - increase + "px";
+                $elem.style.opacity = (150 - increase) / 120;
+            }, 8);
+        }, 70);
+        $body.appendChild($elem);
+    };
+};
+</script>
+</head>
 <body class="fn__flex-column">
 <div id="pjax" class="fn__flex-1">
     
     <header class="header header--article">
         <div class="wrapper header__title">
             <h1 class="header__h1 fn__flex-inline">
-                <img src="https://s2.ax1x.com/2020/01/12/loApPe.png">
+                <img src="https://s2.ax1x.com/2020/01/12/loApPe.png" alt="Kosmos">
                 <a href="https://ellenbboe.github.io" rel="start" class="header__title">Kosmos</a>
             </h1>
-            <h2 class="header__h2">---就算是痛苦难受，也要去体会那被称为生存的分量---</h2>
+            <h2 class="header__h2">---我们总得选择一条路去前行---</h2>
         </div>
         <nav class="wrapper header__nav fn__clear">
             <a href="https://ellenbboe.github.io" rel="start">
                     Kosmos
             </a>
 
-                <a class="fn__flex-inline" href="/my-github-repos" target="_self" rel="section">
-                    <img src="/images/github-icon.png"> 我的开源
+                <a class="fn__flex-inline" href="https://github.com/ellenbboe" target="_self" rel="section">
+                    <img src="https://s2.ax1x.com/2020/01/16/ljWMPP.png" alt="我的GIT"> 我的GIT
                 </a>
                 <a class="fn__flex-inline" href="/readlist" target="_self" rel="section">
-                     阅读列表
+                    <img src="https://s2.ax1x.com/2020/01/16/ljWPC6.png" alt="阅读列表"> 阅读列表
                 </a>
 
 
@@ -113,12 +186,12 @@
         <div class="item__cover" style="background-image: url(https://img.hacpai.com/file/2019/07/021036114848527-5b944fce.png?imageView2/2/w/1280/format/jpg/interlace/1/q/100)"></div>
         <div class="wrapper">
             <section class="item__content item__content--article vditor-reset">
-                <p></p><blockquote>
+                <blockquote>
 <p>红黑树是一个平衡二叉树,他的左右子树的高度不能相差超过1</p>
 </blockquote>
-<h3 id="b3_solo_h3_0">节点结构</h3>
+<h3 id="toc_h3_0">节点结构</h3>
 <p>颜色(color),左子树指针(left),右子树指针(right),父节点指针(parent),数值(value)</p>
-<h3 id="b3_solo_h3_1">规则</h3>
+<h3 id="toc_h3_1">规则</h3>
 <ol>
 <li>每一个节点都是有颜色的,红色或者黑色</li>
 <li>根的颜色是黑色的</li>
@@ -126,36 +199,36 @@
 <li>两个红色节点不能相连(两个黑色节点可以)</li>
 <li>从任意一个节点出发到叶子结点,路过的黑色节点数量相等</li>
 </ol>
-<h3 id="b3_solo_h3_2">旋转</h3>
-<h4 id="b3_solo_h4_3">左旋</h4>
+<h3 id="toc_h3_2">旋转</h3>
+<h4 id="toc_h4_3">左旋</h4>
 <p><img src="https://img.hacpai.com/file/2019/07/021036114848527-5b944fce.png?imageView2/2/w/1280/format/jpg/interlace/1/q/100" alt="021036114848527.png"></p>
-<h4 id="b3_solo_h4_4">右旋</h4>
+<h4 id="toc_h4_4">右旋</h4>
 <p><img src="https://img.hacpai.com/file/2019/07/021036282345144-3cfc052a.png?imageView2/2/w/1280/format/jpg/interlace/1/q/100" alt="021036282345144.png"></p>
-<h3 id="b3_solo_h3_5">新节点的插入</h3>
-<h4 id="b3_solo_h4_6">插入规则</h4>
+<h3 id="toc_h3_5">新节点的插入</h3>
+<h4 id="toc_h4_6">插入规则</h4>
 <ol>
 <li>插入的节点默认是红色的</li>
 <li>假如插入节点的父节点是黑色的,则不会变形</li>
 <li>假如插入节点的父节点是红色的,要通过重新着色或者是旋转来保持平衡</li>
 </ol>
-<h4 id="b3_solo_h4_7">插入情况</h4>
-<h5 id="b3_solo_h5_8">根节点</h5>
+<h4 id="toc_h4_7">插入情况</h4>
+<h5 id="toc_h5_8">根节点</h5>
 <p>直接插入并且设置为黑色</p>
-<h5 id="b3_solo_h5_9">父节点是黑色节点</h5>
+<h5 id="toc_h5_9">父节点是黑色节点</h5>
 <p>直接插入,颜色为红色</p>
-<h5 id="b3_solo_h5_10">父节点是红色节点,叔叔节点也是红色节点</h5>
+<h5 id="toc_h5_10">父节点是红色节点,叔叔节点也是红色节点</h5>
 <p>将父和叔节点设为黑色,爷爷节点(父节点的父节点)设为红色,同时将爷爷节点作为新节点向上检查颜色(递归处理)</p>
-<h5 id="b3_solo_h5_11">父节点是红色节点,叔叔节点是黑色或者不存在,新节点是父节点的右节点</h5>
+<h5 id="toc_h5_11">父节点是红色节点,叔叔节点是黑色或者不存在,新节点是父节点的右节点</h5>
 <p>情况一:左旋+变色<br>
 <img src="https://img.hacpai.com/file/2019/07/1312454268b6930e4589487989eecad1e4825285-e7bc5ee1.jpg?imageView2/2/w/1280/format/jpg/interlace/1/q/100" alt="1312454268b6930e4589487989eecad1e4825285.jpg"><br>
 情况二:左旋+右旋+变色<br>
 <img src="https://img.hacpai.com/file/2019/07/1312455487c6459c6a9b44069022a8e8956e9e71-e0f5eb94.jpg?imageView2/2/w/1280/format/jpg/interlace/1/q/100" alt="1312455487c6459c6a9b44069022a8e8956e9e71.jpg"></p>
-<h5 id="b3_solo_h5_12">父节点是红色节点,叔叔节点是黑色或者不存在,新节点是父节点的左节点</h5>
+<h5 id="toc_h5_12">父节点是红色节点,叔叔节点是黑色或者不存在,新节点是父节点的左节点</h5>
 <p>情况一:右旋+变色<br>
 <img src="https://img.hacpai.com/file/2019/07/13124530c257dc3cc2244676be93b8d0e1c54171-747f8ca3.jpg?imageView2/2/w/1280/format/jpg/interlace/1/q/100" alt="13124530c257dc3cc2244676be93b8d0e1c54171.jpg"><br>
 情况二:右旋+左旋+变色<br>
 <img src="https://img.hacpai.com/file/2019/07/13124607968c7d8de6b744a3857dcbf2ea86775a-6e4d9d54.jpg?imageView2/2/w/1280/format/jpg/interlace/1/q/100" alt="13124607968c7d8de6b744a3857dcbf2ea86775a.jpg"></p>
-<h3 id="b3_solo_h3_13">节点的删除</h3>
+<h3 id="toc_h3_13">节点的删除</h3>
 <p>节点的删除并不是真正的删除,而是用其后继节点来代替它(值拷贝),然后删除原来的后继节点就好了</p>
 <ol start="0">
 <li>假如删除的是红色节点,由于黑色节点的个数不会变,所以红黑树的性质不会改变,<strong>假如是黑色节点,要判断是否改变颜色</strong>(❤️注意这句话)</li>
@@ -174,7 +247,6 @@
 </ol>
 </li>
 </ol>
-<p></p>
                     <div>
                         <hr>
 标题：学习笔记|红黑树的故事<br>
@@ -190,59 +262,50 @@
         <div class="post__toc">
 <ul class="article__toc">
         <li class="toc__h3">
-            <a href="#b3_solo_h3_0">节点结构</a>
+            <a href="#toc_h3_0">节点结构</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_1">规则</a>
+            <a href="#toc_h3_1">规则</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_2">旋转</a>
+            <a href="#toc_h3_2">旋转</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_3">左旋</a>
+            <a href="#toc_h4_3">左旋</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_4">右旋</a>
+            <a href="#toc_h4_4">右旋</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_5">新节点的插入</a>
+            <a href="#toc_h3_5">新节点的插入</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_6">插入规则</a>
+            <a href="#toc_h4_6">插入规则</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_7">插入情况</a>
+            <a href="#toc_h4_7">插入情况</a>
         </li>
         <li class="toc__h5">
-            <a href="#b3_solo_h5_8">根节点</a>
+            <a href="#toc_h5_8">根节点</a>
         </li>
         <li class="toc__h5">
-            <a href="#b3_solo_h5_9">父节点是黑色节点</a>
+            <a href="#toc_h5_9">父节点是黑色节点</a>
         </li>
         <li class="toc__h5">
-            <a href="#b3_solo_h5_10">父节点是红色节点,叔叔节点也是红色节点</a>
+            <a href="#toc_h5_10">父节点是红色节点,叔叔节点也是红色节点</a>
         </li>
         <li class="toc__h5">
-            <a href="#b3_solo_h5_11">父节点是红色节点,叔叔节点是黑色或者不存在,新节点是父节点的右节点</a>
+            <a href="#toc_h5_11">父节点是红色节点,叔叔节点是黑色或者不存在,新节点是父节点的右节点</a>
         </li>
         <li class="toc__h5">
-            <a href="#b3_solo_h5_12">父节点是红色节点,叔叔节点是黑色或者不存在,新节点是父节点的左节点</a>
+            <a href="#toc_h5_12">父节点是红色节点,叔叔节点是黑色或者不存在,新节点是父节点的左节点</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_13">节点的删除</a>
+            <a href="#toc_h3_13">节点的删除</a>
         </li>
 </ul>        </div>
-<div class="comment">
-    <div class="comment__wrapper wrapper">
-        <div class="comment__title">
-            评论
-        </div>
-        <textarea rows="3" placeholder="评论内容只能为 2 到 500 个字符！" id="comment"></textarea>
-
-        <ul id="comments">
-        </ul>
-    </div>
-</div>
+        <div id="b3logsolocomments"></div>
+        <div id="vcomment" class="comment__wrapper wrapper" style="margin: 40px auto" data-name="ellenbboe" data-postId="1563880948319"></div>
     <div class="article__bottom">
         <div class="wrapper">
             <div class="fn__flex">
@@ -256,6 +319,7 @@
 <footer class="footer">
     <div class="wrapper fn__clear">
         <div class="fn__left">
+            <br>
             &copy; 2020
             <a href="https://ellenbboe.github.io">Kosmos</a>
             <a href="http://www.beian.miit.gov.cn/">浙ICP备18045840号-1</a>--------Let's move on
@@ -284,12 +348,23 @@ show_date_time();
 <style>
 #momk{animation:change 10s infinite;font-weight:800; }
 @keyframes change{0%{color:#5cb85c;}25%{color:#556bd8;}50%{color:#e40707;}75%{color:#66e616;}100% {color:#67bd31;}}
-</style> &nbsp;•&nbsp;
-            Powered by <a href="https://solo.b3log.org" target="_blank">Solo</a>
-            <br>
-            Theme Casper
-            <sup>[<a href="https://github.com/TryGhost/Casper" target="_blank">ref</a>]</sup>
-            by <a href="http://vanessa.b3log.org" target="_blank">Vanessa</a>
+</style>
+<script type="text/javascript">
+    /*自动刷新页面，避免无法访问*/
+    var OriginTitile = document.title;
+    var titleTime;
+    document.addEventListener('visibilitychange', function () {
+        if (document.hidden) {
+            document.title = '(〃´-ω･)  休息一下';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '起来嗨٩(๑❛ᴗ❛๑)۶';
+            titleTime = setTimeout(function () {
+                document.title = OriginTitile;
+            }, 3000);
+        }
+    });
+</script>
         </div>
         <div class="fn__right">
             <a href="https://ellenbboe.github.io/tags.html" rel="section">
@@ -304,36 +379,32 @@ show_date_time();
             友情链接
             </a>
             <br>
-            115 文章 &nbsp;
-            9 评论 &nbsp;
+            121 文章 &nbsp;
             <span data-uvstaturl="https://ellenbboe.github.io">11608</span> 浏览 &nbsp;
-            3 当前访客
+            
         </div>
     </div>
 </footer>
 
-<script type="text/javascript" src="https://ellenbboe.github.io/js/lib/compress/pjax.min.js" charset="utf-8"></script>
-<script type="text/javascript" src="https://ellenbboe.github.io/js/common.min.js?1578931371974"
-        charset="utf-8"></script>
-<script type="text/javascript"
-        src="https://ellenbboe.github.io/skins/Casper/js/common.min.js?1578931371974"
-        charset="utf-8"></script>
-<script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.4/dist/index.min.js"></script>
 <script>
-    var Label = {
-        servePath: "https://ellenbboe.github.io",
-        staticServePath: "https://ellenbboe.github.io",
-        luteAvailable: false,
-        hljsStyle: 'colorful',
-        langLabel: "zh_CN",
-        version: "3.7.0",
-    }
-    Util.init()
+  var Label = {
+    servePath: "https://ellenbboe.github.io",
+    staticServePath: "https://ellenbboe.github.io",
+    luteAvailable: false,
+    hljsStyle: 'colorful',
+    langLabel: "zh_CN",
+    version: "4.1.0",
+    staticSite: true,
+    showCodeBlockLn: false,
+  }
 </script>
+<script type="text/javascript"
+        src="https://ellenbboe.github.io/skins/Casper/js/common.min.js?1591150301084"
+        charset="utf-8"></script>
 
 
 <script type="text/javascript">
-    Util.addScript('https://ellenbboe.github.io/js/page.min.js?1578931371974', 'soloPageScript')
+    Util.addScript('https://ellenbboe.github.io/js/page.min.js?1591150301084', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1563880948319",
@@ -351,4 +422,4 @@ show_date_time();
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 34ms, 2020/01/14 13:32:39 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 73ms, 2020/06/03 12:32:28 -->

@@ -2,34 +2,24 @@
  * Solo - A small and beautiful blogging system written in Java.
  * Copyright (c) 2010-present, b3log.org
  *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ * Solo is licensed under Mulan PSL v2.
+ * You can use this software according to the terms and conditions of the Mulan PSL v2.
+ * You may obtain a copy of Mulan PSL v2 at:
+ *         http://license.coscl.org.cn/MulanPSL2
+ * THIS SOFTWARE IS PROVIDED ON AN "AS IS" BASIS, WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO NON-INFRINGEMENT, MERCHANTABILITY OR FIT FOR A PARTICULAR PURPOSE.
+ * See the Mulan PSL v2 for more details.
  */
 @charset "utf-8";
 /*
  * skin metro-hot style
  *
  * @author <a href="http://vanessa.b3log.org">Liyuan Li</a>
- * @version 2.3.0.0, Jul 17, 2019
+ * @version 2.3.1.0, Mar 19, 2020
  */
 @import "../../../scss/toc";
 @import "../../../scss/usite";
 @import "../../../scss/function";
-@import "vditor/src/assets/scss/classic";
-
-.vditor-reset pre > code {
-  background-color: rgba(255, 255, 255, 0.04);
-}
+@import "vditor/src/assets/scss/index";
 
 .user__site {
   svg {
@@ -65,7 +55,7 @@ html {
 }
 
 body {
-  font-family: Verdana, arial, '\5fae\8f6f\96c5\9ed1';
+  font-family: "Helvetica Neue", "Luxi Sans", "DejaVu Sans", "Hiragino Sans GB", "Microsoft Yahei", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", "Segoe UI Symbol", "Android Emoji", "EmojiSymbols";
   font-size: 12px;
   background-color: #292929;
   margin: 0;
@@ -271,10 +261,6 @@ textarea {
 
 .top-info a:hover {
   color: #CA1B1E;
-}
-
-#showTop {
-  display: none;
 }
 
 .sub-nav {
@@ -538,7 +524,6 @@ textarea {
 .online-count,
 .user,
 .notice-board,
-.share,
 .article-relative {
   width: 188px;
 }
@@ -584,34 +569,46 @@ textarea {
   width: 60px;
 }
 
-.online-count,
-.share {
+.online-count {
   background-color: #20608E;
 }
 
-.share div.text {
-  color: #BDBEBD;
-  font-size: 16px;
-  font-weight: normal;
-  left: 128px;
-  line-height: 54px;
-  top: 5px;
-  width: 105px;
+.article__share {
+  display: inline-block;
+  position: relative;
+  z-index: 10;
 
-  .icon-wechat {
-    position: relative;
+  .item {
+    cursor: pointer;
+    display: inline-block;
+    float: left;
+    text-align: center;
+    padding: 5px;
+    box-sizing: border-box;
+    transition: all .3s ease;
+    opacity: .86;
+    color: #323232;
 
-    canvas {
+    svg {
+      fill: currentColor;
+      height: 20px;
+      width: 20px;
+      float: left;
+    }
+
+    &:hover {
+      transform: rotate(360deg);
+      color: #9EABB3;
+    }
+
+    &__qr {
       position: absolute;
-      right: 43px;
-      top: -17px;
+      top: 30px;
+      left: 33px;
+      height: 99px;
+      width: 99px;
     }
   }
-}
-
-.share .text span:hover {
-  cursor: pointer;
-  color: #FFF;
 }
 
 .online-count .text,
@@ -741,7 +738,6 @@ textarea {
 }
 
 .vditor-reset {
-  background-color: #323232;
   margin-bottom: 30px;
   overflow: hidden;
   padding: 10px;
@@ -749,6 +745,21 @@ textarea {
   word-break: break-all;
   font-size: 14px;
   word-wrap: break-word;
+  --border-color: #141414;
+  --second-color: hsla(0, 0%, 72.5%, 0.36);
+  --panel-background-color: #24292e;
+  --toolbar-background-color: #1d2125;
+  --toolbar-icon-color: #b9b9b9;
+  --toolbar-icon-hover-color: #fff;
+  --textarea-background-color: #2f363d;
+  --textarea-text-color: #d1d5da;
+  --resize-icon-color: var(--border-color);
+  --resize-background-color: var(--second-color);
+  --resize-hover-icon-color: var(--toolbar-icon-hover-color);
+  --resize-hover-background-color: hsla(0, 0%, 72.5%, 0.86);
+  --code-background-color: rgba(66, 133, 244, 0.36);
+  --heading-border-color: var(--textarea-text-color);
+  --blockquote-color: var(--toolbar-icon-color);
 
   &::-webkit-scrollbar {
     display: none;
@@ -767,6 +778,34 @@ pre.prettyprint {
 /* end article */
 
 /* start comment */
+#vcomment {
+  margin-bottom: 20px;
+
+  .vcomment {
+
+    &__item {
+      border-bottom: 0;
+    }
+
+    .vditor-reset {
+      margin-bottom: 0;
+    }
+
+    &__meta {
+      color: #BDBEBD;
+    }
+
+    &__pointer,
+    &__text {
+      color: #BDBEBD;
+
+      &:hover {
+        color: #fff;
+      }
+    }
+  }
+}
+
 #comments {
   position: relative;
 }
@@ -881,14 +920,13 @@ pre.prettyprint {
   transition: all 0.3s ease-out 0s;
 }
 
-.most-comment,
-.most-view,
 .links-tile,
 .tags-tile {
   position: static;
   background-color: #F09609;
-  width: 535px;
-  margin-top: 20px;
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 20px;
 }
 
 .most-view {
@@ -897,7 +935,6 @@ pre.prettyprint {
 }
 
 .tags-tile {
-  margin-left: 20px;
   background-color: #339933;
 }
 
@@ -907,14 +944,12 @@ pre.prettyprint {
 
 .tags-tile span,
 .links-tile span,
-.most-comment span,
 .most-view span {
   font-size: 60px;
 }
 
 .tags-tile .text,
 .links-tile .text,
-.most-comment .text,
 .most-view .text {
   position: static;
   width: 430px;
@@ -939,18 +974,15 @@ pre.prettyprint {
   color: #EA4040;
 }
 
-.most-comment .text,
 .most-view .text {
   margin-right: 20px;
   line-height: 24px;
 }
 
-.most-comment .text a:hover,
 .most-view .text a:hover {
   text-decoration: underline;
 }
 
-.most-comment .text span,
 .most-view .text span {
   color: #D1D2D1;
   font-size: 13px;
@@ -994,7 +1026,6 @@ pre.prettyprint {
   .tags-tile,
   .links-tile,
   .archives-tile,
-  .most-comment,
   .most-view {
     width: 670px;
   }
@@ -1002,14 +1033,12 @@ pre.prettyprint {
   .tags-tile .text,
   .links-tile .text,
   .archives-tile .text,
-  .most-comment .text,
   .most-view .text {
     width: 580px;
   }
 
   .links-tile,
-  .tags-tile,
-  .most-view {
+  .tags-tile {
     margin-left: 0;
   }
 }
@@ -1049,7 +1078,6 @@ pre.prettyprint {
   .online-count,
   .user,
   .notice-board,
-  .share,
   .article-relative {
     width: 249px;
   }
@@ -1065,10 +1093,6 @@ pre.prettyprint {
   #comments .vditor-reset {
     position: static !important;
     width: auto !important;
-  }
-
-  .share div.text {
-    left: 173px;
   }
 
   .form {
@@ -1110,27 +1134,11 @@ pre.prettyprint {
   }
 
   .tags-tile .title,
-  .links-tile .title,
-  .most-comment .title,
-  .most-view .title {
+  .links-tile .title {
     float: right;
     font-size: 15px;
     font-weight: bold;
     margin: 20px 0 0 40px;
-  }
-
-  .most-comment,
-  .most-view {
-    width: 249px;
-    margin-left: 0;
-  }
-
-  .most-comment .text,
-  .most-view .text {
-    margin-right: 0;
-    width: 274px;
-    font-size: 12px;
-    font-weight: normal;
   }
 
   .tags-tile,

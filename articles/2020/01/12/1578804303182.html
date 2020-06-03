@@ -2,31 +2,104 @@
 <html>
 <head>
 <meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>千磨万击还坚劲,任尔东南西北风 For 2019 - Kosmos</title><meta name="description" content="总结过去，面向未来，冲冲冲 😿"/><meta property="og:description" content="总结过去，面向未来，冲冲冲 😿"/>    <meta name="keywords" content="开源,开发者,笔记,kosmos"/><link rel="dns-prefetch" href="https://ellenbboe.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://ellenbboe.github.io"><link rel="icon" type="image/png" href="https://s2.ax1x.com/2020/01/12/loApPe.png"/><link rel="apple-touch-icon" href="https://s2.ax1x.com/2020/01/12/loApPe.png"><link rel="shortcut icon" type="image/x-icon" href="https://s2.ax1x.com/2020/01/12/loApPe.png"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="千磨万击还坚劲,任尔东南西北风 For 2019 - Kosmos"/><meta property="og:site_name" content="Kosmos"/><meta property="og:url"      content="https://ellenbboe.github.io/articles/2020/01/12/1578804303182.html?"/><meta property="og:image" content="https://s2.ax1x.com/2020/01/12/loApPe.png"/><link rel="search" type="application/opensearchdescription+xml" title="千磨万击还坚劲,任尔东南西北风 For 2019 - Kosmos" href="/opensearch.xml"><link href="https://ellenbboe.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://ellenbboe.github.io/manifest.json">        <link rel="canonical" href="https://ellenbboe.github.io/articles/2020/01/12/1578804303182.html">        <link rel="stylesheet"
-              href="https://ellenbboe.github.io/skins/Casper/css/base.css?1578931371974"/>
+              href="https://ellenbboe.github.io/skins/Casper/css/base.css?1591150301084"/>
             <link rel="prev" title="Idea中添加缩写" href="https://ellenbboe.github.io/articles/2020/01/10/1578664639048.html">
-            <link rel="next" title="ReadList" href="https://ellenbboe.github.io/readlist">
-    </head>
+            <link rel="next" title="『君の名は。』剪辑尝试" href="https://ellenbboe.github.io/articles/2020/03/18/1584499865232.html">
+    <script>
+onload = function() {
+    var click_cnt = 0;
+    var $html = document.getElementsByTagName("html")[0];
+    var $body = document.getElementsByTagName("body")[0];
+    $html.onclick = function(e) {
+        var $elem = document.createElement("b");
+        $elem.style.color = "#E94F06";
+        $elem.style.zIndex = 9999;
+        $elem.style.position = "absolute";
+        $elem.style.select = "none";
+        var x = e.pageX;
+        var y = e.pageY;
+        $elem.style.left = (x - 10) + "px";
+        $elem.style.top = (y - 20) + "px";
+        clearInterval(anim);
+        switch (++click_cnt) {
+            case 10:
+                $elem.innerText = "OωO";
+                break;
+            case 20:
+                $elem.innerText = "(๑•́ ∀ •̀๑)";
+                break;
+            case 30:
+                $elem.innerText = "(๑•́ ₃ •̀๑)";
+                break;
+            case 40:
+                $elem.innerText = "(๑•̀_•́๑)";
+                break;
+            case 50:
+                $elem.innerText = "（￣へ￣）";
+                break;
+            case 60:
+                $elem.innerText = "(╯°口°)╯(┴—┴";
+                break;
+            case 70:
+                $elem.innerText = "૮( ᵒ̌皿ᵒ̌ )ა";
+                break;
+            case 80:
+                $elem.innerText = "╮(｡>口<｡)╭";
+                break;
+            case 90:
+                $elem.innerText = "( ง ᵒ̌皿ᵒ̌)ง⁼³₌₃";
+                break;
+            case 100:
+            case 101:
+            case 102:
+            case 103:
+            case 104:
+            case 105:
+                $elem.innerText = "(ꐦ°᷄д°᷅)";
+                break;
+            default:
+                $elem.innerText = "❤";
+                break;
+        }
+        $elem.style.fontSize = Math.random() * 10 + 8 + "px";
+        var increase = 0;
+        var anim;
+        setTimeout(function() {
+            anim = setInterval(function() {
+                if (++increase == 150) {
+                    clearInterval(anim);
+                    $body.removeChild($elem);
+                }
+                $elem.style.top = y - 20 - increase + "px";
+                $elem.style.opacity = (150 - increase) / 120;
+            }, 8);
+        }, 70);
+        $body.appendChild($elem);
+    };
+};
+</script>
+</head>
 <body class="fn__flex-column">
 <div id="pjax" class="fn__flex-1">
     
     <header class="header header--article">
         <div class="wrapper header__title">
             <h1 class="header__h1 fn__flex-inline">
-                <img src="https://s2.ax1x.com/2020/01/12/loApPe.png">
+                <img src="https://s2.ax1x.com/2020/01/12/loApPe.png" alt="Kosmos">
                 <a href="https://ellenbboe.github.io" rel="start" class="header__title">Kosmos</a>
             </h1>
-            <h2 class="header__h2">---就算是痛苦难受，也要去体会那被称为生存的分量---</h2>
+            <h2 class="header__h2">---我们总得选择一条路去前行---</h2>
         </div>
         <nav class="wrapper header__nav fn__clear">
             <a href="https://ellenbboe.github.io" rel="start">
                     Kosmos
             </a>
 
-                <a class="fn__flex-inline" href="/my-github-repos" target="_self" rel="section">
-                    <img src="/images/github-icon.png"> 我的开源
+                <a class="fn__flex-inline" href="https://github.com/ellenbboe" target="_self" rel="section">
+                    <img src="https://s2.ax1x.com/2020/01/16/ljWMPP.png" alt="我的GIT"> 我的GIT
                 </a>
                 <a class="fn__flex-inline" href="/readlist" target="_self" rel="section">
-                     阅读列表
+                    <img src="https://s2.ax1x.com/2020/01/16/ljWPC6.png" alt="阅读列表"> 阅读列表
                 </a>
 
 
@@ -113,33 +186,33 @@
             <section class="item__content item__content--article vditor-reset">
                 <p><img src="https://img.hacpai.com/bing/20180927.jpg?imageView2/1/w/960/h/540/interlace/1/q/100" alt=""></p>
 <p>今年过的跌跌跌跌荡荡荡荡起伏，但还是要说上一句<br>
-<img src="https://i04piccdn.sogoucdn.com/dd69ecd57c15c4a9?imageView2/2/w/1280/format/jpg/interlace/1/q/100" alt=""><br>
+<img src="https://i04piccdn.sogoucdn.com/dd69ecd57c15c4a9" alt=""><br>
 这是我的半个大四外加两个假期的悲惨经历，观众入座<br>
-<img src="https://i04piccdn.sogoucdn.com/e7d9ccbc9fd47679?imageView2/2/w/1280/format/jpg/interlace/1/q/100" alt=""></p>
-<h4 id="b3_solo_h4_0">2019 Master</h4>
+<img src="https://i04piccdn.sogoucdn.com/e7d9ccbc9fd47679" alt=""></p>
+<h4 id="toc_h4_0">2019 Master</h4>
 <p>一月：学校放假回家，开始放纵，LOL 真好玩，魔兽 RPG 真好玩 -.-<br>
-<img src="https://i04piccdn.sogoucdn.com/28dc33d995760921?imageView2/2/w/1280/format/jpg/interlace/1/q/100" alt=""></p>
+<img src="https://i04piccdn.sogoucdn.com/28dc33d995760921" alt=""></p>
 <p>二月：大概放到 20 几号，回学校</p>
 <p>三月：室友开始寻找实习，笨比的我没准备好，这里批评自己不去了解形势，身边的朋友在寒假已经默默开始准备了</p>
 <p>四月：在考研和找工作之间纠结了好久，之后开始面试准备，其实也是一头雾水，不知道该看什么<br>
-<img src="https://img01.sogoucdn.com/app/a/100520093/e18d20c94006dfe0-7524faeb6c8ff751-5241e488516efe80a3556b12255411c3.jpg?imageView2/2/w/1280/format/jpg/interlace/1/q/100" alt=""><br>
+<img src="https://img01.sogoucdn.com/app/a/100520093/e18d20c94006dfe0-7524faeb6c8ff751-5241e488516efe80a3556b12255411c3.jpg" alt=""><br>
 五月：投了几家，收到了一家的实习通知，但是是驻地外包，工作地点经常会变，出于想图个安稳，所以没去，之后继续找</p>
 <p>六月：学校要交课程设计，就暂停了找工作计划，把课程设计做完，想着去 bat 大厂的就继续复习，看了一些源码，但总感觉知识离自己很远，迷茫<br>
-<img src="https://i04piccdn.sogoucdn.com/81fb8af4920f37ff?imageView2/2/w/1280/format/jpg/interlace/1/q/100" alt=""><br>
+<img src="https://i04piccdn.sogoucdn.com/81fb8af4920f37ff" alt=""><br>
 七月：放暑假了，回到了家，和前辈讨论工作，修改了简历，复习</p>
 <p>八月：大概中旬的样子回到了学校，开始投简历</p>
 <p>九月：去学校招聘会面试，有了工作机会，但是出现了意想不到的情况，hr 说我被调到了其他部门，由于面试官不同，需重新面试，但最后面试没通过，很无奈，尤其是不通过不通知你的那段等待时间<br>
-<img src="https://i02piccdn.sogoucdn.com/4be3ee0d3de7220a?imageView2/2/w/1280/format/jpg/interlace/1/q/100" alt=""><br>
+<img src="https://i02piccdn.sogoucdn.com/4be3ee0d3de7220a" alt=""><br>
 十月：开始继续投简历，参加了不少招聘会，期间室友 ftx 出国交流学习去了</p>
 <p>十一月：找到了一份工作，说是要驻地，这边学校快要实习答辩了，我觉得不管怎么样还得去试试</p>
 <p>十二月：处入社会，深入感受了资本主义，工作了半个月，没有入职的培训，倒是到处贴膏药，果然我还是不适合到处跑，实习答辩完再去找其他机会吧<br>
-<img src="https://i01piccdn.sogoucdn.com/831a0649005dc2c4?imageView2/2/w/1280/format/jpg/interlace/1/q/100" alt=""></p>
-<h4 id="b3_solo_h4_1">2019 分支</h4>
+<img src="https://i01piccdn.sogoucdn.com/831a0649005dc2c4" alt=""></p>
+<h4 id="toc_h4_1">2019 分支</h4>
 <p>买了一个 kindle,发现可以盖泡面 <img alt="huaji" class="emoji" src="https://cdn.jsdelivr.net/npm/vditor/dist/images/emoji/huaji.gif" title="huaji"> 看了一些书，在 GitHub 上创了一个 <a href="https://github.com/ellenbboe/ReadList" target="_blank">ReadList</a> 的仓库用来记录;</p>
 <p>在 steam 冬促的时候买了几款游戏后，又手痒买了个手柄，然后被游戏虐，还是和室友 LOL 开黑坑他们好玩;</p>
 <p>毕业设计在开题答辩后定下了题目，笨比 zzw 开题撞题，上去打开 ppt 就下来了，哈哈哈哈;</p>
 <p>喜欢上了看日剧，半泽直树，Doctor X(如何有效装逼);</p>
-<p><img src="https://i03piccdn.sogoucdn.com/91cfdaa63aad81c8?imageView2/2/w/1280/format/jpg/interlace/1/q/100" alt=""></p>
+<p><img src="https://i03piccdn.sogoucdn.com/91cfdaa63aad81c8" alt=""></p>
 <p>为了预防颈椎病，买一个电疗按摩器，feel normol;</p>
 <p>给自己的电脑装上了 ssd,把原先的 ArchLinux 删掉了;</p>
 <p>换了小米新手机，巨省电;</p>
@@ -147,11 +220,11 @@
 <p>笨比 zl 体验了一次考研(没准备全就上场)，打算明年再战;</p>
 <p>隔壁 yc 延迟毕业了，等 ftx 出国回来估计还能见到他;</p>
 <p>转发了好多抽奖动态没中过奖;</p>
-<p><img src="https://i01piccdn.sogoucdn.com/1a30900a2557fbc5?imageView2/2/w/1280/format/jpg/interlace/1/q/100" alt=""></p>
+<p><img src="https://i01piccdn.sogoucdn.com/1a30900a2557fbc5" alt=""></p>
 <p>复习还是有限度的，到头来会什么还是会什么，不会的还是不会，理论知识即使背的再怎么全，讲出来都是虚的，HashMap 的源码，MySQL 的隔离级别这些讲出来我自己都不怎么自信，尽管工作没怎么成功，但是还是积累了不少面试的经验，见过了大大小小的面试官，有的注重基础，问的很细，有的注重理论;</p>
-<h4 id="b3_solo_h4_2">总的来说</h4>
+<h4 id="toc_h4_2">总的来说</h4>
 <p>今年希望自己多多实践，在写代码中学习，找到一份满意的工作;生活上，自己自制能力不行，自己的表达能力也需要加强，胆量也要锻炼，要好好锻炼自己的龙体，调整到良好作息规律。</p>
-<p><img src="https://img01.sogoucdn.com/app/a/100520093/e18d20c94006dfe0-9eef65073f0f6be0-45280a0806a85016b08031983fb6e786.jpg?imageView2/2/w/1280/format/jpg/interlace/1/q/100" alt=""></p>
+<p><img src="https://img01.sogoucdn.com/app/a/100520093/e18d20c94006dfe0-9eef65073f0f6be0-45280a0806a85016b08031983fb6e786.jpg" alt=""></p>
                     <div>
                         <hr>
 <img alt="今日诗词" src="https://v2.jinrishici.com/one.svg" style="max-width:100%; display: block; margin: 0 auto;">
@@ -161,6 +234,7 @@
 地址：<a href="https://ellenbboe.github.io/articles/2020/01/12/1578804303182.html" target="_blank">https://ellenbboe.github.io/articles/2020/01/12/1578804303182.html</a><br>
 <!-- 签名档内可使用 HTML、JavaScript -->
 <br>
+
                     </div>
             </section>
         </div>
@@ -168,84 +242,17 @@
         <div class="post__toc">
 <ul class="article__toc">
         <li class="toc__h4">
-            <a href="#b3_solo_h4_0">2019 Master</a>
+            <a href="#toc_h4_0">2019 Master</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_1">2019 分支</a>
+            <a href="#toc_h4_1">2019 分支</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_2">总的来说</a>
+            <a href="#toc_h4_2">总的来说</a>
         </li>
 </ul>        </div>
-<div class="comment">
-    <div class="comment__wrapper wrapper">
-        <div class="comment__title">
-            评论
-        </div>
-        <textarea rows="3" placeholder="评论内容只能为 2 到 500 个字符！" id="comment"></textarea>
-
-        <ul id="comments">
-<li id="1578878239529" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1573283683656_1578470236022.jpeg?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/wanming001" target="_blank">wanming001</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>如此真实👍</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        一月 13, 2020
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1578878239529', 'wanming001')">Reply</a>
-    </div>
-</li><li id="1578826174338" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1560335521987_1576387741689.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="http://47.100.176.113" target="_blank">ellenbboe</a>
-
-            @ <a href="https://ellenbboe.github.io/articles/2020/01/12/1578804303182.html#1578812372914"
-                 onmouseover="page.showComment(this, '1578812372914', 20);"
-                 onmouseout="page.hideComment('1578812372914')"
-            >AdlerED</a>
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>向你学习 😏</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        一月 12, 2020
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1578826174338', 'ellenbboe')">Reply</a>
-    </div>
-</li><li id="1578812372914" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1552202503861_1562141298909.jpeg?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/AdlerED" target="_blank">AdlerED</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>amazing</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        一月 12, 2020
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1578812372914', 'AdlerED')">Reply</a>
-    </div>
-</li>        </ul>
-    </div>
-</div>
+        <div id="b3logsolocomments"></div>
+        <div id="vcomment" class="comment__wrapper wrapper" style="margin: 40px auto" data-name="ellenbboe" data-postId="1578804303182"></div>
     <div class="article__bottom">
         <div class="wrapper">
             <div class="fn__flex">
@@ -259,6 +266,7 @@
 <footer class="footer">
     <div class="wrapper fn__clear">
         <div class="fn__left">
+            <br>
             &copy; 2020
             <a href="https://ellenbboe.github.io">Kosmos</a>
             <a href="http://www.beian.miit.gov.cn/">浙ICP备18045840号-1</a>--------Let's move on
@@ -287,12 +295,23 @@ show_date_time();
 <style>
 #momk{animation:change 10s infinite;font-weight:800; }
 @keyframes change{0%{color:#5cb85c;}25%{color:#556bd8;}50%{color:#e40707;}75%{color:#66e616;}100% {color:#67bd31;}}
-</style> &nbsp;•&nbsp;
-            Powered by <a href="https://solo.b3log.org" target="_blank">Solo</a>
-            <br>
-            Theme Casper
-            <sup>[<a href="https://github.com/TryGhost/Casper" target="_blank">ref</a>]</sup>
-            by <a href="http://vanessa.b3log.org" target="_blank">Vanessa</a>
+</style>
+<script type="text/javascript">
+    /*自动刷新页面，避免无法访问*/
+    var OriginTitile = document.title;
+    var titleTime;
+    document.addEventListener('visibilitychange', function () {
+        if (document.hidden) {
+            document.title = '(〃´-ω･)  休息一下';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '起来嗨٩(๑❛ᴗ❛๑)۶';
+            titleTime = setTimeout(function () {
+                document.title = OriginTitile;
+            }, 3000);
+        }
+    });
+</script>
         </div>
         <div class="fn__right">
             <a href="https://ellenbboe.github.io/tags.html" rel="section">
@@ -307,36 +326,32 @@ show_date_time();
             友情链接
             </a>
             <br>
-            115 文章 &nbsp;
-            9 评论 &nbsp;
+            121 文章 &nbsp;
             <span data-uvstaturl="https://ellenbboe.github.io">11608</span> 浏览 &nbsp;
-            3 当前访客
+            
         </div>
     </div>
 </footer>
 
-<script type="text/javascript" src="https://ellenbboe.github.io/js/lib/compress/pjax.min.js" charset="utf-8"></script>
-<script type="text/javascript" src="https://ellenbboe.github.io/js/common.min.js?1578931371974"
-        charset="utf-8"></script>
-<script type="text/javascript"
-        src="https://ellenbboe.github.io/skins/Casper/js/common.min.js?1578931371974"
-        charset="utf-8"></script>
-<script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.4/dist/index.min.js"></script>
 <script>
-    var Label = {
-        servePath: "https://ellenbboe.github.io",
-        staticServePath: "https://ellenbboe.github.io",
-        luteAvailable: false,
-        hljsStyle: 'colorful',
-        langLabel: "zh_CN",
-        version: "3.7.0",
-    }
-    Util.init()
+  var Label = {
+    servePath: "https://ellenbboe.github.io",
+    staticServePath: "https://ellenbboe.github.io",
+    luteAvailable: false,
+    hljsStyle: 'colorful',
+    langLabel: "zh_CN",
+    version: "4.1.0",
+    staticSite: true,
+    showCodeBlockLn: false,
+  }
 </script>
+<script type="text/javascript"
+        src="https://ellenbboe.github.io/skins/Casper/js/common.min.js?1591150301084"
+        charset="utf-8"></script>
 
 
 <script type="text/javascript">
-    Util.addScript('https://ellenbboe.github.io/js/page.min.js?1578931371974', 'soloPageScript')
+    Util.addScript('https://ellenbboe.github.io/js/page.min.js?1591150301084', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1578804303182",
@@ -354,4 +369,4 @@ show_date_time();
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 46ms, 2020/01/14 13:32:39 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 85ms, 2020/06/03 12:32:27 -->

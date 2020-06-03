@@ -2,31 +2,104 @@
 <html>
 <head>
 <meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>Spring Pass 4 - Kosmos</title><meta name="description" content="Spring Beans 自动装配 你已经学会如何使用&lt;bean&gt;元素来声明 bean 和通过使用 XML 配置文件中的和元素来注入 。 Spring 容器可以在不使用和 元素的情况下自动装配相互协作的 bean 之间的关系，这有助于减少编写一个大的基于 Spring 的应用程序的 XML 配置的数量。 自动装配模式 下列自动装配模式，它们可用于指示 Spring 容器为来使用自动装配进行依赖注入。你可以使用元素的 autowire 属性为一个 bean 定义指定自动装配模式。 模式| 描述 –|– no| 这是默认的设置，它意味着没有自动装配，你应该使用显式的bean引用来连线。你不用为了连线做特殊的事。在依赖注入章节你已经看到这个了。 byName| 由属性名自动装配。Spring 容器看到在 XML 配置文件中 bean 的自动装配的属性设置为 byName。然后尝试匹配，并且将它的属性与在配置文件中被定义为相同名称的 beans 的属性进行连接。 byType| 由属性数据类型自动装配。Spring 容器看到在 XML 配置文件中 bean 的自动装配的属性设置为 ...."/><meta property="og:description" content="Spring Beans 自动装配 你已经学会如何使用&lt;bean&gt;元素来声明 bean 和通过使用 XML 配置文件中的和元素来注入 。 Spring 容器可以在不使用和 元素的情况下自动装配相互协作的 bean 之间的关系，这有助于减少编写一个大的基于 Spring 的应用程序的 XML 配置的数量。 自动装配模式 下列自动装配模式，它们可用于指示 Spring 容器为来使用自动装配进行依赖注入。你可以使用元素的 autowire 属性为一个 bean 定义指定自动装配模式。 模式| 描述 –|– no| 这是默认的设置，它意味着没有自动装配，你应该使用显式的bean引用来连线。你不用为了连线做特殊的事。在依赖注入章节你已经看到这个了。 byName| 由属性名自动装配。Spring 容器看到在 XML 配置文件中 bean 的自动装配的属性设置为 byName。然后尝试匹配，并且将它的属性与在配置文件中被定义为相同名称的 beans 的属性进行连接。 byType| 由属性数据类型自动装配。Spring 容器看到在 XML 配置文件中 bean 的自动装配的属性设置为 ...."/>    <meta name="keywords" content="开源,开发者,笔记,kosmos"/><link rel="dns-prefetch" href="https://ellenbboe.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://ellenbboe.github.io"><link rel="icon" type="image/png" href="https://s2.ax1x.com/2020/01/12/loApPe.png"/><link rel="apple-touch-icon" href="https://s2.ax1x.com/2020/01/12/loApPe.png"><link rel="shortcut icon" type="image/x-icon" href="https://s2.ax1x.com/2020/01/12/loApPe.png"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="Spring Pass 4 - Kosmos"/><meta property="og:site_name" content="Kosmos"/><meta property="og:url"      content="https://ellenbboe.github.io/articles/2018/09/12/1561009684949.html?"/><meta property="og:image" content="https://s2.ax1x.com/2020/01/12/loApPe.png"/><link rel="search" type="application/opensearchdescription+xml" title="Spring Pass 4 - Kosmos" href="/opensearch.xml"><link href="https://ellenbboe.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://ellenbboe.github.io/manifest.json">        <link rel="canonical" href="https://ellenbboe.github.io/articles/2018/09/12/1561009684949.html">        <link rel="stylesheet"
-              href="https://ellenbboe.github.io/skins/Casper/css/base.css?1578931371974"/>
+              href="https://ellenbboe.github.io/skins/Casper/css/base.css?1591150301084"/>
             <link rel="prev" title="Spring Pass 3" href="https://ellenbboe.github.io/articles/2018/09/11/1561009677493.html">
             <link rel="next" title="在android安装linux 失败" href="https://ellenbboe.github.io/articles/2018/09/15/1561009671768.html">
-    </head>
+    <script>
+onload = function() {
+    var click_cnt = 0;
+    var $html = document.getElementsByTagName("html")[0];
+    var $body = document.getElementsByTagName("body")[0];
+    $html.onclick = function(e) {
+        var $elem = document.createElement("b");
+        $elem.style.color = "#E94F06";
+        $elem.style.zIndex = 9999;
+        $elem.style.position = "absolute";
+        $elem.style.select = "none";
+        var x = e.pageX;
+        var y = e.pageY;
+        $elem.style.left = (x - 10) + "px";
+        $elem.style.top = (y - 20) + "px";
+        clearInterval(anim);
+        switch (++click_cnt) {
+            case 10:
+                $elem.innerText = "OωO";
+                break;
+            case 20:
+                $elem.innerText = "(๑•́ ∀ •̀๑)";
+                break;
+            case 30:
+                $elem.innerText = "(๑•́ ₃ •̀๑)";
+                break;
+            case 40:
+                $elem.innerText = "(๑•̀_•́๑)";
+                break;
+            case 50:
+                $elem.innerText = "（￣へ￣）";
+                break;
+            case 60:
+                $elem.innerText = "(╯°口°)╯(┴—┴";
+                break;
+            case 70:
+                $elem.innerText = "૮( ᵒ̌皿ᵒ̌ )ა";
+                break;
+            case 80:
+                $elem.innerText = "╮(｡>口<｡)╭";
+                break;
+            case 90:
+                $elem.innerText = "( ง ᵒ̌皿ᵒ̌)ง⁼³₌₃";
+                break;
+            case 100:
+            case 101:
+            case 102:
+            case 103:
+            case 104:
+            case 105:
+                $elem.innerText = "(ꐦ°᷄д°᷅)";
+                break;
+            default:
+                $elem.innerText = "❤";
+                break;
+        }
+        $elem.style.fontSize = Math.random() * 10 + 8 + "px";
+        var increase = 0;
+        var anim;
+        setTimeout(function() {
+            anim = setInterval(function() {
+                if (++increase == 150) {
+                    clearInterval(anim);
+                    $body.removeChild($elem);
+                }
+                $elem.style.top = y - 20 - increase + "px";
+                $elem.style.opacity = (150 - increase) / 120;
+            }, 8);
+        }, 70);
+        $body.appendChild($elem);
+    };
+};
+</script>
+</head>
 <body class="fn__flex-column">
 <div id="pjax" class="fn__flex-1">
     
     <header class="header header--article">
         <div class="wrapper header__title">
             <h1 class="header__h1 fn__flex-inline">
-                <img src="https://s2.ax1x.com/2020/01/12/loApPe.png">
+                <img src="https://s2.ax1x.com/2020/01/12/loApPe.png" alt="Kosmos">
                 <a href="https://ellenbboe.github.io" rel="start" class="header__title">Kosmos</a>
             </h1>
-            <h2 class="header__h2">---就算是痛苦难受，也要去体会那被称为生存的分量---</h2>
+            <h2 class="header__h2">---我们总得选择一条路去前行---</h2>
         </div>
         <nav class="wrapper header__nav fn__clear">
             <a href="https://ellenbboe.github.io" rel="start">
                     Kosmos
             </a>
 
-                <a class="fn__flex-inline" href="/my-github-repos" target="_self" rel="section">
-                    <img src="/images/github-icon.png"> 我的开源
+                <a class="fn__flex-inline" href="https://github.com/ellenbboe" target="_self" rel="section">
+                    <img src="https://s2.ax1x.com/2020/01/16/ljWMPP.png" alt="我的GIT"> 我的GIT
                 </a>
                 <a class="fn__flex-inline" href="/readlist" target="_self" rel="section">
-                     阅读列表
+                    <img src="https://s2.ax1x.com/2020/01/16/ljWPC6.png" alt="阅读列表"> 阅读列表
                 </a>
 
 
@@ -111,10 +184,10 @@
         <div class="item__cover" style="background-image: url(https://img.hacpai.com/bing/20180619.jpg?imageView2/1/w/1280/h/720/interlace/1/q/100)"></div>
         <div class="wrapper">
             <section class="item__content item__content--article vditor-reset">
-                <p></p><h3 id="b3_solo_h3_0">Spring Beans 自动装配</h3>
+                <h3 id="toc_h3_0">Spring Beans 自动装配</h3>
 <p>你已经学会如何使用<code>&lt;bean&gt;</code>元素来声明 bean 和通过使用 XML 配置文件中的<constructor-arg>和<property>元素来注入 。</property></constructor-arg></p>
 <p>Spring 容器可以在不使用<constructor-arg>和<property> 元素的情况下自动装配相互协作的 bean 之间的关系，这有助于减少编写一个大的基于 Spring 的应用程序的 XML 配置的数量。</property></constructor-arg></p>
-<h4 id="b3_solo_h4_1">自动装配模式</h4>
+<h4 id="toc_h4_1">自动装配模式</h4>
 <p>下列自动装配模式，它们可用于指示 Spring 容器为来使用自动装配进行依赖注入。你可以使用<bean>元素的 autowire 属性为一个 bean 定义指定自动装配模式。</bean></p>
 <p>模式|	描述<br>
 --|--<br>
@@ -123,14 +196,14 @@ byName|	由属性名自动装配。Spring 容器看到在 XML 配置文件中 be
 byType|	由属性数据类型自动装配。Spring 容器看到在 XML 配置文件中 bean 的自动装配的属性设置为 byType。然后如果它的类型匹配配置文件中的一个确切的 bean 名称，它将尝试匹配和连接属性的类型。如果存在不止一个这样的 bean，则一个致命的异常将会被抛出。<br>
 constructor	|类似于 byType，但该类型适用于构造函数参数类型。如果在容器中没有一个构造函数参数类型的 bean，则一个致命错误将会发生。<br>
 autodetect	|Spring首先尝试通过 constructor 使用自动装配来连接，如果它不执行，Spring 尝试通过 byType 来自动装配。</p>
-<h4 id="b3_solo_h4_2">自动装配的局限性</h4>
+<h4 id="toc_h4_2">自动装配的局限性</h4>
 <p>当自动装配始终在同一个项目中使用时，它的效果最好。如果通常不使用自动装配，它可能会使开发人员混淆的使用它来连接只有一个或两个 bean 定义。不过，自动装配可以显著减少需要指定的属性或构造器参数，但你应该在使用它们之前考虑到自动装配的局限性和缺点。</p>
 <p>限制	|描述<br>
 --|--<br>
 重写的可能性|	你可以使用总是重写自动装配的 <constructor-arg>和 <property> 设置来指定依赖关系。<br>
 原始数据类型	|你不能自动装配所谓的简单类型包括基本类型，字符串和类。<br>
 混乱的本质	|自动装配不如显式装配精确，所以如果可能的话尽可能使用显式装配。</property></constructor-arg></p>
-<h4 id="b3_solo_h4_3">Spring 自动装配 ‘byName’(关心id)</h4>
+<h4 id="toc_h4_3">Spring 自动装配 ‘byName’(关心id)</h4>
 <p>这种模式由属性名称指定自动装配。Spring 容器看作 beans，在 XML 配置文件中 beans 的 auto-wire 属性设置为 byName。然后，它尝试将它的属性与配置文件中定义为相同名称的 beans 进行匹配和连接。如果找到匹配项，它将注入这些 beans，否则，它将抛出异常。</p>
 <p>例如，在配置文件中，如果一个 bean 定义设置为自动装配 byName，并且它包含 spellChecker 属性（即，它有一个 setSpellChecker(...) 方法），那么 Spring 就会查找定义名为 spellChecker 的 bean，并且用它来设置这个属性。你仍然可以使用 <property> 标签连接其余的属性。下面的例子将说明这个概念。</property></p>
 <p>这里是 TextEditor.java 文件的内容：</p>
@@ -223,7 +296,7 @@ public class MainApp {
 <pre><code>Inside SpellChecker constructor.
 Inside checkSpelling.
 </code></pre>
-<h4 id="b3_solo_h4_4">Spring 自动装配 <code>byType</code>(不关心id)</h4>
+<h4 id="toc_h4_4">Spring 自动装配 <code>byType</code>(不关心id)</h4>
 <p>这种模式由属性类型指定自动装配。Spring 容器看作 beans，在 XML 配置文件中 beans 的 autowire 属性设置为 byType。然后，如果它的 type 恰好与配置文件中 beans 名称中的一个相匹配，它将尝试匹配和连接它的属性。如果找到匹配项，它将注入这些 beans，否则，它将抛出异常。</p>
 <p>例如，在配置文件中，如果一个 bean 定义设置为自动装配 byType，并且它包含 SpellChecker 类型的 spellChecker 属性，那么 Spring 就会查找定义名为 SpellChecker 的 bean，并且用它来设置这个属性。你仍然可以使用<code>&lt;property&gt;</code>标签连接其余属性。下面的例子将说明这个概念，你会发现和上面的例子没有什么区别，除了 XML 配置文件已经被改变。</p>
 <pre><code>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
@@ -245,7 +318,7 @@ Inside checkSpelling.
 
 &lt;/beans&gt;
 </code></pre>
-<h4 id="b3_solo_h4_5">Spring 由构造函数自动装配</h4>
+<h4 id="toc_h4_5">Spring 由构造函数自动装配</h4>
 <p>这种模式与 byType 非常相似，但它应用于构造器参数。Spring 容器看作 beans，在 XML 配置文件中 beans 的 autowire 属性设置为 constructor。然后，它尝试把它的构造函数的参数与配置文件中 beans 名称中的一个进行匹配和连线。如果找到匹配项，它会注入这些 bean，否则，它会抛出异常。</p>
 <p>例如，在配置文件中，如果一个 bean 定义设置为通过构造函数自动装配，而且它有一个带有 SpellChecker 类型的参数之一的构造函数，那么 Spring 就会查找定义名为 SpellChecker 的 bean，并用它来设置构造函数的参数。你仍然可以使用 <constructor-arg> 标签连接其余属性。下面的例子将说明这个概念。</constructor-arg></p>
 <p>这里是 TextEditor.java 文件的内容：</p>
@@ -343,7 +416,6 @@ Inside checkSpelling.
 byType 依靠的是类别(似乎是系统自己找的)<br>
 使用constructor-arg时,要明确构造函数存在参数可以注入<br>
 constructor 和constructor-arg一样,只是不用写已经在xml中的变量了</p>
-<p></p>
                     <div>
                         <hr>
 <img alt="今日诗词" src="https://v2.jinrishici.com/one.svg" style="max-width:100%; display: block; margin: 0 auto;">
@@ -353,6 +425,7 @@ constructor 和constructor-arg一样,只是不用写已经在xml中的变量了<
 地址：<a href="https://ellenbboe.github.io/articles/2018/09/12/1561009684949.html" target="_blank">https://ellenbboe.github.io/articles/2018/09/12/1561009684949.html</a><br>
 <!-- 签名档内可使用 HTML、JavaScript -->
 <br>
+
                     </div>
             </section>
         </div>
@@ -360,35 +433,26 @@ constructor 和constructor-arg一样,只是不用写已经在xml中的变量了<
         <div class="post__toc">
 <ul class="article__toc">
         <li class="toc__h3">
-            <a href="#b3_solo_h3_0">Spring Beans 自动装配</a>
+            <a href="#toc_h3_0">Spring Beans 自动装配</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_1">自动装配模式</a>
+            <a href="#toc_h4_1">自动装配模式</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_2">自动装配的局限性</a>
+            <a href="#toc_h4_2">自动装配的局限性</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_3">Spring 自动装配 ‘byName’(关心id)</a>
+            <a href="#toc_h4_3">Spring 自动装配 ‘byName’(关心id)</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_4">Spring 自动装配 byType(不关心id)</a>
+            <a href="#toc_h4_4">Spring 自动装配 byType(不关心id)</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_5">Spring 由构造函数自动装配</a>
+            <a href="#toc_h4_5">Spring 由构造函数自动装配</a>
         </li>
 </ul>        </div>
-<div class="comment">
-    <div class="comment__wrapper wrapper">
-        <div class="comment__title">
-            评论
-        </div>
-        <textarea rows="3" placeholder="评论内容只能为 2 到 500 个字符！" id="comment"></textarea>
-
-        <ul id="comments">
-        </ul>
-    </div>
-</div>
+        <div id="b3logsolocomments"></div>
+        <div id="vcomment" class="comment__wrapper wrapper" style="margin: 40px auto" data-name="ellenbboe" data-postId="1561009684949"></div>
     <div class="article__bottom">
         <div class="wrapper">
             <div class="fn__flex">
@@ -402,6 +466,7 @@ constructor 和constructor-arg一样,只是不用写已经在xml中的变量了<
 <footer class="footer">
     <div class="wrapper fn__clear">
         <div class="fn__left">
+            <br>
             &copy; 2020
             <a href="https://ellenbboe.github.io">Kosmos</a>
             <a href="http://www.beian.miit.gov.cn/">浙ICP备18045840号-1</a>--------Let's move on
@@ -430,12 +495,23 @@ show_date_time();
 <style>
 #momk{animation:change 10s infinite;font-weight:800; }
 @keyframes change{0%{color:#5cb85c;}25%{color:#556bd8;}50%{color:#e40707;}75%{color:#66e616;}100% {color:#67bd31;}}
-</style> &nbsp;•&nbsp;
-            Powered by <a href="https://solo.b3log.org" target="_blank">Solo</a>
-            <br>
-            Theme Casper
-            <sup>[<a href="https://github.com/TryGhost/Casper" target="_blank">ref</a>]</sup>
-            by <a href="http://vanessa.b3log.org" target="_blank">Vanessa</a>
+</style>
+<script type="text/javascript">
+    /*自动刷新页面，避免无法访问*/
+    var OriginTitile = document.title;
+    var titleTime;
+    document.addEventListener('visibilitychange', function () {
+        if (document.hidden) {
+            document.title = '(〃´-ω･)  休息一下';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '起来嗨٩(๑❛ᴗ❛๑)۶';
+            titleTime = setTimeout(function () {
+                document.title = OriginTitile;
+            }, 3000);
+        }
+    });
+</script>
         </div>
         <div class="fn__right">
             <a href="https://ellenbboe.github.io/tags.html" rel="section">
@@ -450,36 +526,32 @@ show_date_time();
             友情链接
             </a>
             <br>
-            115 文章 &nbsp;
-            9 评论 &nbsp;
+            121 文章 &nbsp;
             <span data-uvstaturl="https://ellenbboe.github.io">11608</span> 浏览 &nbsp;
-            3 当前访客
+            
         </div>
     </div>
 </footer>
 
-<script type="text/javascript" src="https://ellenbboe.github.io/js/lib/compress/pjax.min.js" charset="utf-8"></script>
-<script type="text/javascript" src="https://ellenbboe.github.io/js/common.min.js?1578931371974"
-        charset="utf-8"></script>
-<script type="text/javascript"
-        src="https://ellenbboe.github.io/skins/Casper/js/common.min.js?1578931371974"
-        charset="utf-8"></script>
-<script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.4/dist/index.min.js"></script>
 <script>
-    var Label = {
-        servePath: "https://ellenbboe.github.io",
-        staticServePath: "https://ellenbboe.github.io",
-        luteAvailable: false,
-        hljsStyle: 'colorful',
-        langLabel: "zh_CN",
-        version: "3.7.0",
-    }
-    Util.init()
+  var Label = {
+    servePath: "https://ellenbboe.github.io",
+    staticServePath: "https://ellenbboe.github.io",
+    luteAvailable: false,
+    hljsStyle: 'colorful',
+    langLabel: "zh_CN",
+    version: "4.1.0",
+    staticSite: true,
+    showCodeBlockLn: false,
+  }
 </script>
+<script type="text/javascript"
+        src="https://ellenbboe.github.io/skins/Casper/js/common.min.js?1591150301084"
+        charset="utf-8"></script>
 
 
 <script type="text/javascript">
-    Util.addScript('https://ellenbboe.github.io/js/page.min.js?1578931371974', 'soloPageScript')
+    Util.addScript('https://ellenbboe.github.io/js/page.min.js?1591150301084', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1561009684949",
@@ -497,4 +569,4 @@ show_date_time();
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 35ms, 2020/01/14 13:32:40 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 51ms, 2020/06/03 12:32:30 -->

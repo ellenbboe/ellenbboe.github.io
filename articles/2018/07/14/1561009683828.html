@@ -2,31 +2,104 @@
 <html>
 <head>
 <meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>Linux From Scratch Pass 3 - Kosmos</title><meta name="description" content="安装基本的系统软件 注意使用root用户 准备虚拟内核文件系统 内核会挂载几个文件系统用于自己和用户空间程序交换信息。这些文件系统是虚拟的，并不占用实际磁盘空间，它们的内容会放在内存里。 开始先创建将用来挂载文件系统的目录： mkdir -pv $LFS/{dev,proc,sys,run} 创建初始设备节点 在内核引导系统的时候，它依赖于几个设备节点，特别是 console 和 null 两个设备。这些设备节点需要创建在硬盘上，这样在 udevd 启动之前它们也仍然有效，特别是在 Linux 使用init=/bin/bash 参数启动的时候。运行下面的命令创建这几个设备节点： mknod -m 600 $LFS/dev/console c 5 1 mknod -m 666 $LFS/dev/null c 1 3 注: mknod创建设备文件 -m设置权限 挂载和激活 /dev 通常激活 /dev 目录下设备的方式是在 /dev目录挂载一个虚拟文件系统（比如 tmpfs），然后允许在检测到设备或打开设备时在这个虚拟文件系统里动态创建设备节点。这个通常是在启动过程中由 Udev 完成。由...."/><meta property="og:description" content="安装基本的系统软件 注意使用root用户 准备虚拟内核文件系统 内核会挂载几个文件系统用于自己和用户空间程序交换信息。这些文件系统是虚拟的，并不占用实际磁盘空间，它们的内容会放在内存里。 开始先创建将用来挂载文件系统的目录： mkdir -pv $LFS/{dev,proc,sys,run} 创建初始设备节点 在内核引导系统的时候，它依赖于几个设备节点，特别是 console 和 null 两个设备。这些设备节点需要创建在硬盘上，这样在 udevd 启动之前它们也仍然有效，特别是在 Linux 使用init=/bin/bash 参数启动的时候。运行下面的命令创建这几个设备节点： mknod -m 600 $LFS/dev/console c 5 1 mknod -m 666 $LFS/dev/null c 1 3 注: mknod创建设备文件 -m设置权限 挂载和激活 /dev 通常激活 /dev 目录下设备的方式是在 /dev目录挂载一个虚拟文件系统（比如 tmpfs），然后允许在检测到设备或打开设备时在这个虚拟文件系统里动态创建设备节点。这个通常是在启动过程中由 Udev 完成。由...."/>    <meta name="keywords" content="开源,开发者,笔记,kosmos"/><link rel="dns-prefetch" href="https://ellenbboe.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://ellenbboe.github.io"><link rel="icon" type="image/png" href="https://s2.ax1x.com/2020/01/12/loApPe.png"/><link rel="apple-touch-icon" href="https://s2.ax1x.com/2020/01/12/loApPe.png"><link rel="shortcut icon" type="image/x-icon" href="https://s2.ax1x.com/2020/01/12/loApPe.png"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="Linux From Scratch Pass 3 - Kosmos"/><meta property="og:site_name" content="Kosmos"/><meta property="og:url"      content="https://ellenbboe.github.io/articles/2018/07/14/1561009683828.html?"/><meta property="og:image" content="https://s2.ax1x.com/2020/01/12/loApPe.png"/><link rel="search" type="application/opensearchdescription+xml" title="Linux From Scratch Pass 3 - Kosmos" href="/opensearch.xml"><link href="https://ellenbboe.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://ellenbboe.github.io/manifest.json">        <link rel="canonical" href="https://ellenbboe.github.io/articles/2018/07/14/1561009683828.html">        <link rel="stylesheet"
-              href="https://ellenbboe.github.io/skins/Casper/css/base.css?1578931371974"/>
+              href="https://ellenbboe.github.io/skins/Casper/css/base.css?1591150301084"/>
             <link rel="prev" title="2018-07-14 lfs编译日志" href="https://ellenbboe.github.io/articles/2018/07/14/1561009684527.html">
             <link rel="next" title="keyboard_shortcuts" href="https://ellenbboe.github.io/articles/2018/07/14/1561009682582.html">
-    </head>
+    <script>
+onload = function() {
+    var click_cnt = 0;
+    var $html = document.getElementsByTagName("html")[0];
+    var $body = document.getElementsByTagName("body")[0];
+    $html.onclick = function(e) {
+        var $elem = document.createElement("b");
+        $elem.style.color = "#E94F06";
+        $elem.style.zIndex = 9999;
+        $elem.style.position = "absolute";
+        $elem.style.select = "none";
+        var x = e.pageX;
+        var y = e.pageY;
+        $elem.style.left = (x - 10) + "px";
+        $elem.style.top = (y - 20) + "px";
+        clearInterval(anim);
+        switch (++click_cnt) {
+            case 10:
+                $elem.innerText = "OωO";
+                break;
+            case 20:
+                $elem.innerText = "(๑•́ ∀ •̀๑)";
+                break;
+            case 30:
+                $elem.innerText = "(๑•́ ₃ •̀๑)";
+                break;
+            case 40:
+                $elem.innerText = "(๑•̀_•́๑)";
+                break;
+            case 50:
+                $elem.innerText = "（￣へ￣）";
+                break;
+            case 60:
+                $elem.innerText = "(╯°口°)╯(┴—┴";
+                break;
+            case 70:
+                $elem.innerText = "૮( ᵒ̌皿ᵒ̌ )ა";
+                break;
+            case 80:
+                $elem.innerText = "╮(｡>口<｡)╭";
+                break;
+            case 90:
+                $elem.innerText = "( ง ᵒ̌皿ᵒ̌)ง⁼³₌₃";
+                break;
+            case 100:
+            case 101:
+            case 102:
+            case 103:
+            case 104:
+            case 105:
+                $elem.innerText = "(ꐦ°᷄д°᷅)";
+                break;
+            default:
+                $elem.innerText = "❤";
+                break;
+        }
+        $elem.style.fontSize = Math.random() * 10 + 8 + "px";
+        var increase = 0;
+        var anim;
+        setTimeout(function() {
+            anim = setInterval(function() {
+                if (++increase == 150) {
+                    clearInterval(anim);
+                    $body.removeChild($elem);
+                }
+                $elem.style.top = y - 20 - increase + "px";
+                $elem.style.opacity = (150 - increase) / 120;
+            }, 8);
+        }, 70);
+        $body.appendChild($elem);
+    };
+};
+</script>
+</head>
 <body class="fn__flex-column">
 <div id="pjax" class="fn__flex-1">
     
     <header class="header header--article">
         <div class="wrapper header__title">
             <h1 class="header__h1 fn__flex-inline">
-                <img src="https://s2.ax1x.com/2020/01/12/loApPe.png">
+                <img src="https://s2.ax1x.com/2020/01/12/loApPe.png" alt="Kosmos">
                 <a href="https://ellenbboe.github.io" rel="start" class="header__title">Kosmos</a>
             </h1>
-            <h2 class="header__h2">---就算是痛苦难受，也要去体会那被称为生存的分量---</h2>
+            <h2 class="header__h2">---我们总得选择一条路去前行---</h2>
         </div>
         <nav class="wrapper header__nav fn__clear">
             <a href="https://ellenbboe.github.io" rel="start">
                     Kosmos
             </a>
 
-                <a class="fn__flex-inline" href="/my-github-repos" target="_self" rel="section">
-                    <img src="/images/github-icon.png"> 我的开源
+                <a class="fn__flex-inline" href="https://github.com/ellenbboe" target="_self" rel="section">
+                    <img src="https://s2.ax1x.com/2020/01/16/ljWMPP.png" alt="我的GIT"> 我的GIT
                 </a>
                 <a class="fn__flex-inline" href="/readlist" target="_self" rel="section">
-                     阅读列表
+                    <img src="https://s2.ax1x.com/2020/01/16/ljWPC6.png" alt="阅读列表"> 阅读列表
                 </a>
 
 
@@ -111,21 +184,21 @@
         <div class="item__cover" style="background-image: url(https://img.hacpai.com/bing/20190324.jpg?imageView2/1/w/1280/h/720/interlace/1/q/100)"></div>
         <div class="wrapper">
             <section class="item__content item__content--article vditor-reset">
-                <p></p><h3 id="b3_solo_h3_0">安装基本的系统软件</h3>
+                <h3 id="toc_h3_0">安装基本的系统软件</h3>
 <p>注意使用root用户</p>
-<h4 id="b3_solo_h4_1">准备虚拟内核文件系统</h4>
+<h4 id="toc_h4_1">准备虚拟内核文件系统</h4>
 <p>内核会挂载几个文件系统用于自己和用户空间程序交换信息。这些文件系统是虚拟的，并不占用实际磁盘空间，它们的内容会放在内存里。</p>
 <p>开始先创建将用来挂载文件系统的目录：</p>
 <p><code>mkdir -pv $LFS/{dev,proc,sys,run}</code></p>
-<h4 id="b3_solo_h4_2">创建初始设备节点</h4>
+<h4 id="toc_h4_2">创建初始设备节点</h4>
 <p>在内核引导系统的时候，它依赖于几个设备节点，特别是 <code>console</code> 和 <code>null</code> 两个设备。这些设备节点需要创建在硬盘上，这样在 <code>udevd</code> 启动之前它们也仍然有效，特别是在 Linux 使用<code>init=/bin/bash</code> 参数启动的时候。运行下面的命令创建这几个设备节点：</p>
 <p><code>mknod -m 600 $LFS/dev/console c 5 1</code><br>
 <code>mknod -m 666 $LFS/dev/null c 1 3</code><br>
 <strong>注</strong>: mknod创建设备文件 -m设置权限</p>
-<h4 id="b3_solo_h4_3">挂载和激活 /dev</h4>
+<h4 id="toc_h4_3">挂载和激活 /dev</h4>
 <p>通常激活 <code>/dev</code> 目录下设备的方式是在 <code>/dev</code>目录挂载一个虚拟文件系统（比如 <code>tmpfs</code>），然后允许在检测到设备或打开设备时在这个虚拟文件系统里<strong>动态</strong>创建设备节点。这个通常是在启动过程中由 <code>Udev</code> 完成。由于我们的新系统还没有 <code>Udev</code> 而且也_没有被引导启动_，<em>有必要手动挂载和激活</em> <code>/dev</code> 目录。这可以通过绑定挂载宿主机系统的 <code>/dev</code> 目录实现。绑定挂载是一种特殊的挂载模式，它允许在另外的位置创建某个目录或挂载点的镜像。运行下面的命令来实现：</p>
 <p><code>mount -v --bind /dev $LFS/dev</code></p>
-<h4 id="b3_solo_h4_4">挂载虚拟文件系统</h4>
+<h4 id="toc_h4_4">挂载虚拟文件系统</h4>
 <p>现在挂载剩下的虚拟内核文件系统：</p>
 <pre><code>mount -vt devpts devpts $LFS/dev/pts -o gid=5,mode=620
 mount -vt proc proc $LFS/proc
@@ -142,21 +215,21 @@ mount -vt tmpfs tmpfs $LFS/run
   mkdir -pv $LFS/$(readlink $LFS/dev/shm)
 fi
 </code></pre>
-<h4 id="b3_solo_h4_5">升级问题</h4>
+<h4 id="toc_h4_5">升级问题</h4>
 <p>软件包管理器可以在软件新版本发布后轻松升级。一般来说 LFS 和 BLFS 手册里的指令可以用来升级到新版本。下面是一些在你准备升级软件包时需要注意的事情，特别是在一个运行中的系统。</p>
 <p>1.如果需要升级 Glibc 到新版本（比如，从 glibc-2.19 升级到 glibc-2.20），重新构建整个 LFS 会比较安全。虽然你也许能够按依赖关系重新编译所有的软件包，不过我们不建议这样做。</p>
 <p>2.如果某个包含的动态库的软件包升级了，而且库名字有改变，那么所有动态链接到这个库的软件包都需要重新链接新的库。（请注意软件包版本和库名字并不存在相关性。）举个例子，某个软件包 foo-1.2.3 安装了一个名叫 libfoo.so.1 的动态库。然后假设你把这个软件包升级到了新版本 foo-1.2.4，而新版本会安装名叫 libfoo.so.2的动态库。在这种情况下，所有动态链接到 libfoo.so.1 的软件包都需要重新编译链接到 libfoo.so.2。注意在所有依赖软件包重新编译完成之前，请不要删除旧版的库文件。</p>
-<h5 id="b3_solo_h5_6">创建软件包存档</h5>
+<h5 id="toc_h5_6">创建软件包存档</h5>
 <p>在这种方式里，像之前的软链接软件包管理方式里所描述的那样，软件包被伪装安装到一个独立的目录树里。在安装完成后，会将已安装文件打包成一个软件包存档。然后这个存档会用来在本地机器或其他机器上安装软件包。</p>
 <p>这种方式为商业发行版中的大多数包管理器所采用。一些例子是 RPM（它顺便也是 Linux 标准规范 里所要求的）、pkg-utils、Debian 的 apt、以及 Gentoo 的 Portage 系统。该页面描述了如何在 LFS 系统里采用这种包管理方式： <a href="http://www.linuxfromscratch.org/hints/downloads/files/fakeroot.txt。" target="_blank">http://www.linuxfromscratch.org/hints/downloads/files/fakeroot.txt。</a></p>
 <p>创建带有依赖关系的软件包存档非常复杂，已经超出 LFS 手册范围了。</p>
-<h5 id="b3_solo_h5_7">基于用户的软件包管理</h5>
+<h5 id="toc_h5_7">基于用户的软件包管理</h5>
 <p>在这种方式，是 LFS 特有的，由 Matthias Benkmann 所设计，可以在 Hints Project 里能找到。在这种方式里，每个软件包都由一个单独的用户安装到标准的位置。属于某个软件包的文件可以通过检查<strong>用户 ID</strong> 轻松识别出来。关于这种方式的特性和短处非常复杂，在本节里说不清楚。详细的信息请参看 <a href="http://www.linuxfromscratch.org/hints/downloads/files/more_control_and_pkg_man.txt。" target="_blank">http://www.linuxfromscratch.org/hints/downloads/files/more_control_and_pkg_man.txt。</a></p>
-<h5 id="b3_solo_h5_8">在多个系统上布置 LFS</h5>
+<h5 id="toc_h5_8">在多个系统上布置 LFS</h5>
 <p>LFS 系统的一个优点是没有会依赖磁盘系统里文件位置的文件。克隆一份 LFS 到和宿主机器相似配置的机器上，简单到只要对包含根目录的 LFS 分区（对于一个基本的 LFS 构建不压缩的话大概有 250MB）使用 tar命令打包，然后通过网络传输或光盘拷贝到新机器上展开即可。在这之后，还需要调整一些配置文件，包括：/etc/hosts、/etc/fstab、/etc/passwd、/etc/group、/etc/shadow 和 /etc/ld.so.conf。</p>
 <p>根据系统硬件和原始内核配置文件的差异，可能还需要重新编译一下内核。</p>
 <p>最后，需要使用 8.4 “用 GRUB 设置引导过程”里所介绍的方法让新系统可引导</p>
-<h4 id="b3_solo_h4_9">进入 Chroot 环境</h4>
+<h4 id="toc_h4_9">进入 Chroot 环境</h4>
 <pre><code>chroot "$LFS" /tools/bin/env -i \
     HOME=/root                  \
     TERM="$TERM"                \
@@ -279,7 +352,6 @@ The /var/log/btmp file records the bad login attempts.
 文件 /run/utmp 会记录当前已登录的用户。这个文件会在启动脚本中动态创建。
 
 接下来还是漫长的构建的过程,尤其是`glibc`和`gcc` (吐血)</code></pre>
-<p></p>
                     <div>
                         <hr>
 <img alt="今日诗词" src="https://v2.jinrishici.com/one.svg" style="max-width:100%; display: block; margin: 0 auto;">
@@ -289,6 +361,7 @@ The /var/log/btmp file records the bad login attempts.
 地址：<a href="https://ellenbboe.github.io/articles/2018/07/14/1561009683828.html" target="_blank">https://ellenbboe.github.io/articles/2018/07/14/1561009683828.html</a><br>
 <!-- 签名档内可使用 HTML、JavaScript -->
 <br>
+
                     </div>
             </section>
         </div>
@@ -296,47 +369,38 @@ The /var/log/btmp file records the bad login attempts.
         <div class="post__toc">
 <ul class="article__toc">
         <li class="toc__h3">
-            <a href="#b3_solo_h3_0">安装基本的系统软件</a>
+            <a href="#toc_h3_0">安装基本的系统软件</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_1">准备虚拟内核文件系统</a>
+            <a href="#toc_h4_1">准备虚拟内核文件系统</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_2">创建初始设备节点</a>
+            <a href="#toc_h4_2">创建初始设备节点</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_3">挂载和激活 /dev</a>
+            <a href="#toc_h4_3">挂载和激活 /dev</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_4">挂载虚拟文件系统</a>
+            <a href="#toc_h4_4">挂载虚拟文件系统</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_5">升级问题</a>
+            <a href="#toc_h4_5">升级问题</a>
         </li>
         <li class="toc__h5">
-            <a href="#b3_solo_h5_6">创建软件包存档</a>
+            <a href="#toc_h5_6">创建软件包存档</a>
         </li>
         <li class="toc__h5">
-            <a href="#b3_solo_h5_7">基于用户的软件包管理</a>
+            <a href="#toc_h5_7">基于用户的软件包管理</a>
         </li>
         <li class="toc__h5">
-            <a href="#b3_solo_h5_8">在多个系统上布置 LFS</a>
+            <a href="#toc_h5_8">在多个系统上布置 LFS</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_9">进入 Chroot 环境</a>
+            <a href="#toc_h4_9">进入 Chroot 环境</a>
         </li>
 </ul>        </div>
-<div class="comment">
-    <div class="comment__wrapper wrapper">
-        <div class="comment__title">
-            评论
-        </div>
-        <textarea rows="3" placeholder="评论内容只能为 2 到 500 个字符！" id="comment"></textarea>
-
-        <ul id="comments">
-        </ul>
-    </div>
-</div>
+        <div id="b3logsolocomments"></div>
+        <div id="vcomment" class="comment__wrapper wrapper" style="margin: 40px auto" data-name="ellenbboe" data-postId="1561009683828"></div>
     <div class="article__bottom">
         <div class="wrapper">
             <div class="fn__flex">
@@ -350,6 +414,7 @@ The /var/log/btmp file records the bad login attempts.
 <footer class="footer">
     <div class="wrapper fn__clear">
         <div class="fn__left">
+            <br>
             &copy; 2020
             <a href="https://ellenbboe.github.io">Kosmos</a>
             <a href="http://www.beian.miit.gov.cn/">浙ICP备18045840号-1</a>--------Let's move on
@@ -378,12 +443,23 @@ show_date_time();
 <style>
 #momk{animation:change 10s infinite;font-weight:800; }
 @keyframes change{0%{color:#5cb85c;}25%{color:#556bd8;}50%{color:#e40707;}75%{color:#66e616;}100% {color:#67bd31;}}
-</style> &nbsp;•&nbsp;
-            Powered by <a href="https://solo.b3log.org" target="_blank">Solo</a>
-            <br>
-            Theme Casper
-            <sup>[<a href="https://github.com/TryGhost/Casper" target="_blank">ref</a>]</sup>
-            by <a href="http://vanessa.b3log.org" target="_blank">Vanessa</a>
+</style>
+<script type="text/javascript">
+    /*自动刷新页面，避免无法访问*/
+    var OriginTitile = document.title;
+    var titleTime;
+    document.addEventListener('visibilitychange', function () {
+        if (document.hidden) {
+            document.title = '(〃´-ω･)  休息一下';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '起来嗨٩(๑❛ᴗ❛๑)۶';
+            titleTime = setTimeout(function () {
+                document.title = OriginTitile;
+            }, 3000);
+        }
+    });
+</script>
         </div>
         <div class="fn__right">
             <a href="https://ellenbboe.github.io/tags.html" rel="section">
@@ -398,36 +474,32 @@ show_date_time();
             友情链接
             </a>
             <br>
-            115 文章 &nbsp;
-            9 评论 &nbsp;
+            121 文章 &nbsp;
             <span data-uvstaturl="https://ellenbboe.github.io">11608</span> 浏览 &nbsp;
-            3 当前访客
+            
         </div>
     </div>
 </footer>
 
-<script type="text/javascript" src="https://ellenbboe.github.io/js/lib/compress/pjax.min.js" charset="utf-8"></script>
-<script type="text/javascript" src="https://ellenbboe.github.io/js/common.min.js?1578931371974"
-        charset="utf-8"></script>
-<script type="text/javascript"
-        src="https://ellenbboe.github.io/skins/Casper/js/common.min.js?1578931371974"
-        charset="utf-8"></script>
-<script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.4/dist/index.min.js"></script>
 <script>
-    var Label = {
-        servePath: "https://ellenbboe.github.io",
-        staticServePath: "https://ellenbboe.github.io",
-        luteAvailable: false,
-        hljsStyle: 'colorful',
-        langLabel: "zh_CN",
-        version: "3.7.0",
-    }
-    Util.init()
+  var Label = {
+    servePath: "https://ellenbboe.github.io",
+    staticServePath: "https://ellenbboe.github.io",
+    luteAvailable: false,
+    hljsStyle: 'colorful',
+    langLabel: "zh_CN",
+    version: "4.1.0",
+    staticSite: true,
+    showCodeBlockLn: false,
+  }
 </script>
+<script type="text/javascript"
+        src="https://ellenbboe.github.io/skins/Casper/js/common.min.js?1591150301084"
+        charset="utf-8"></script>
 
 
 <script type="text/javascript">
-    Util.addScript('https://ellenbboe.github.io/js/page.min.js?1578931371974', 'soloPageScript')
+    Util.addScript('https://ellenbboe.github.io/js/page.min.js?1591150301084', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1561009683828",
@@ -445,4 +517,4 @@ show_date_time();
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 44ms, 2020/01/14 13:32:41 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 46ms, 2020/06/03 12:32:32 -->

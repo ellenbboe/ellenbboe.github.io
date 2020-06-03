@@ -2,31 +2,104 @@
 <html>
 <head>
 <meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>Spring Pass 1 - Kosmos</title><meta name="description" content="教材:https://www.w3cschool.cn/wkspring/ Spring 概述 spring 是最受欢迎的企业级 Java 应用程序开发框架，数以百万的来自世界各地的开发人员使用 Spring 框架来创建性能好、易于测试、可重用的代码。 Spring 框架是一个开源的 Java 平台，它最初是由 Rod Johnson 编写的，并且于 2003 年 6 月首次在 Apache 2.0 许可下发布。 Spring 是轻量级的框架，其基础版本只有 2 MB 左右的大小。 Spring 框架的核心特性是可以用于开发任何 Java 应用程序，但是在 Java EE 平台上构建 web 应用程序是需要扩展的。 Spring 框架的目标是使 J2EE 开发变得更容易使用，通过启用基于 POJO 编程模型 来促进良好的编程实践。 pojo 实际意义就是普通的JavaBeans（简单的实体类），特点就是支持业务逻辑的协助类。 POJO类的作用是方便程序员使用数据库中的数据表，对于程序员来说，可以很方便的将POJO类当作对象来进行使用，也可以方便的调用其get，set方法。 但不允许有...."/><meta property="og:description" content="教材:https://www.w3cschool.cn/wkspring/ Spring 概述 spring 是最受欢迎的企业级 Java 应用程序开发框架，数以百万的来自世界各地的开发人员使用 Spring 框架来创建性能好、易于测试、可重用的代码。 Spring 框架是一个开源的 Java 平台，它最初是由 Rod Johnson 编写的，并且于 2003 年 6 月首次在 Apache 2.0 许可下发布。 Spring 是轻量级的框架，其基础版本只有 2 MB 左右的大小。 Spring 框架的核心特性是可以用于开发任何 Java 应用程序，但是在 Java EE 平台上构建 web 应用程序是需要扩展的。 Spring 框架的目标是使 J2EE 开发变得更容易使用，通过启用基于 POJO 编程模型 来促进良好的编程实践。 pojo 实际意义就是普通的JavaBeans（简单的实体类），特点就是支持业务逻辑的协助类。 POJO类的作用是方便程序员使用数据库中的数据表，对于程序员来说，可以很方便的将POJO类当作对象来进行使用，也可以方便的调用其get，set方法。 但不允许有...."/>    <meta name="keywords" content="开源,开发者,笔记,kosmos"/><link rel="dns-prefetch" href="https://ellenbboe.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://ellenbboe.github.io"><link rel="icon" type="image/png" href="https://s2.ax1x.com/2020/01/12/loApPe.png"/><link rel="apple-touch-icon" href="https://s2.ax1x.com/2020/01/12/loApPe.png"><link rel="shortcut icon" type="image/x-icon" href="https://s2.ax1x.com/2020/01/12/loApPe.png"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="Spring Pass 1 - Kosmos"/><meta property="og:site_name" content="Kosmos"/><meta property="og:url"      content="https://ellenbboe.github.io/articles/2018/09/11/1561009677915.html?"/><meta property="og:image" content="https://s2.ax1x.com/2020/01/12/loApPe.png"/><link rel="search" type="application/opensearchdescription+xml" title="Spring Pass 1 - Kosmos" href="/opensearch.xml"><link href="https://ellenbboe.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://ellenbboe.github.io/manifest.json">        <link rel="canonical" href="https://ellenbboe.github.io/articles/2018/09/11/1561009677915.html">        <link rel="stylesheet"
-              href="https://ellenbboe.github.io/skins/Casper/css/base.css?1578931371974"/>
+              href="https://ellenbboe.github.io/skins/Casper/css/base.css?1591150301084"/>
             <link rel="prev" title="vigenere_cipher(维西尼亚)密码" href="https://ellenbboe.github.io/articles/2018/09/07/1561009674305.html">
             <link rel="next" title="Spring Pass 2" href="https://ellenbboe.github.io/articles/2018/09/11/1561009681011.html">
-    </head>
+    <script>
+onload = function() {
+    var click_cnt = 0;
+    var $html = document.getElementsByTagName("html")[0];
+    var $body = document.getElementsByTagName("body")[0];
+    $html.onclick = function(e) {
+        var $elem = document.createElement("b");
+        $elem.style.color = "#E94F06";
+        $elem.style.zIndex = 9999;
+        $elem.style.position = "absolute";
+        $elem.style.select = "none";
+        var x = e.pageX;
+        var y = e.pageY;
+        $elem.style.left = (x - 10) + "px";
+        $elem.style.top = (y - 20) + "px";
+        clearInterval(anim);
+        switch (++click_cnt) {
+            case 10:
+                $elem.innerText = "OωO";
+                break;
+            case 20:
+                $elem.innerText = "(๑•́ ∀ •̀๑)";
+                break;
+            case 30:
+                $elem.innerText = "(๑•́ ₃ •̀๑)";
+                break;
+            case 40:
+                $elem.innerText = "(๑•̀_•́๑)";
+                break;
+            case 50:
+                $elem.innerText = "（￣へ￣）";
+                break;
+            case 60:
+                $elem.innerText = "(╯°口°)╯(┴—┴";
+                break;
+            case 70:
+                $elem.innerText = "૮( ᵒ̌皿ᵒ̌ )ა";
+                break;
+            case 80:
+                $elem.innerText = "╮(｡>口<｡)╭";
+                break;
+            case 90:
+                $elem.innerText = "( ง ᵒ̌皿ᵒ̌)ง⁼³₌₃";
+                break;
+            case 100:
+            case 101:
+            case 102:
+            case 103:
+            case 104:
+            case 105:
+                $elem.innerText = "(ꐦ°᷄д°᷅)";
+                break;
+            default:
+                $elem.innerText = "❤";
+                break;
+        }
+        $elem.style.fontSize = Math.random() * 10 + 8 + "px";
+        var increase = 0;
+        var anim;
+        setTimeout(function() {
+            anim = setInterval(function() {
+                if (++increase == 150) {
+                    clearInterval(anim);
+                    $body.removeChild($elem);
+                }
+                $elem.style.top = y - 20 - increase + "px";
+                $elem.style.opacity = (150 - increase) / 120;
+            }, 8);
+        }, 70);
+        $body.appendChild($elem);
+    };
+};
+</script>
+</head>
 <body class="fn__flex-column">
 <div id="pjax" class="fn__flex-1">
     
     <header class="header header--article">
         <div class="wrapper header__title">
             <h1 class="header__h1 fn__flex-inline">
-                <img src="https://s2.ax1x.com/2020/01/12/loApPe.png">
+                <img src="https://s2.ax1x.com/2020/01/12/loApPe.png" alt="Kosmos">
                 <a href="https://ellenbboe.github.io" rel="start" class="header__title">Kosmos</a>
             </h1>
-            <h2 class="header__h2">---就算是痛苦难受，也要去体会那被称为生存的分量---</h2>
+            <h2 class="header__h2">---我们总得选择一条路去前行---</h2>
         </div>
         <nav class="wrapper header__nav fn__clear">
             <a href="https://ellenbboe.github.io" rel="start">
                     Kosmos
             </a>
 
-                <a class="fn__flex-inline" href="/my-github-repos" target="_self" rel="section">
-                    <img src="/images/github-icon.png"> 我的开源
+                <a class="fn__flex-inline" href="https://github.com/ellenbboe" target="_self" rel="section">
+                    <img src="https://s2.ax1x.com/2020/01/16/ljWMPP.png" alt="我的GIT"> 我的GIT
                 </a>
                 <a class="fn__flex-inline" href="/readlist" target="_self" rel="section">
-                     阅读列表
+                    <img src="https://s2.ax1x.com/2020/01/16/ljWPC6.png" alt="阅读列表"> 阅读列表
                 </a>
 
 
@@ -112,7 +185,7 @@
         <div class="wrapper">
             <section class="item__content item__content--article vditor-reset">
                 <p>教材:<a href="https://www.w3cschool.cn/wkspring/" target="_blank">https://www.w3cschool.cn/wkspring/</a></p>
-<h3 id="b3_solo_h3_0">Spring 概述</h3>
+<h3 id="toc_h3_0">Spring 概述</h3>
 <p>spring 是最受欢迎的企业级 Java 应用程序开发框架，数以百万的来自世界各地的开发人员使用 Spring 框架来创建性能好、易于测试、可重用的代码。</p>
 <p>Spring 框架是一个开源的 Java 平台，它最初是由 Rod Johnson 编写的，并且于 2003 年 6 月首次在 Apache 2.0 许可下发布。</p>
 <p>Spring 是轻量级的框架，其基础版本只有 2 MB 左右的大小。</p>
@@ -150,19 +223,19 @@ POJO类的作用是方便程序员使用数据库中的数据表，对于程序�
 <p>Spring提供了一致的事务管理接口，可向下扩展到（使用一个单一的数据库，例如）本地事务并扩展到全局事务（例如，使用 JTA）。</p>
 </li>
 </ul>
-<h4 id="b3_solo_h4_1">依赖注入（DI）</h4>
+<h4 id="toc_h4_1">依赖注入（DI）</h4>
 <p>Spring 最认同的技术是 <strong>控制反转的依赖注入（DI）模式</strong>。<strong>控制反转（IoC）</strong> 是一个通用的概念，它可以用许多不同的方式去表达，依赖注入仅仅是控制反转的一个具体的例子。</p>
 <p>当编写一个复杂的 Java 应用程序时，应用程序类应该尽可能的 <strong>独立于</strong> 其他的 Java 类来增加这些类可重用可能性，当进行单元测试时，可以使它们独立于其他类进行测试。依赖注入（或者有时被称为配线）有助于将这些类粘合在一起，并且在同一时间让它们<strong>保持独立</strong>。</p>
 <p>到底什么是依赖注入？让我们将这两个词分开来看一看。这里将依赖关系部分转化为两个类之间的关联。例如，类 A 依赖于类 B。现在，让我们看一看第二部分，注入。所有这一切都意味着<strong>类 B</strong> 将通过 <strong>IoC</strong> 被注入到<strong>类 A</strong> 中。</p>
 <p>依赖注入可以以向构造函数传递参数的方式发生，或者通过使用 setter 方法 post-construction。由于依赖注入是 Spring 框架的核心部分，所以我将在一个单独的章节中利用很好的例子去解释这一概念。(依赖注入可以使用多种方式实现)</p>
-<h4 id="b3_solo_h4_2">面向方面的程序设计（AOP）</h4>
+<h4 id="toc_h4_2">面向方面的程序设计（AOP）</h4>
 <p>Spring 框架的一个关键组件是<strong>面向方面的程序设计（AOP）框架</strong>。一个程序中跨越多个点的功能被称为横切关注点，这些横切关注点在<strong>概念上独立</strong>于应用程序的业务逻辑。有各种各样常见的很好的关于方面的例子，比如日志记录、声明性事务、安全性，和缓存等等。</p>
 <p>在 OOP (面向对象)中模块化的关键单元是类，而在 AOP(面向方面) 中模块化的关键单元是方面。AOP 帮助你将<strong>横切关注点从它们所影响的对象中分</strong>离出来，然而依赖注入帮助你将你的应用程序对象从<strong>彼此</strong>中分离出来。</p>
 <p>Spring 框架的 AOP 模块提供了面向方面的程序设计实现，可以定义诸如方法拦截器和切入点等，从而使实现功能的代码彻底的解耦出来。使用源码级的元数据，可以用类似于.Net属性的方式合并行为信息到代码中。我将在一个独立的章节中讨论更多关于 Spring AOP 的概念。</p>
-<h4 id="b3_solo_h4_3">体系结构</h4>
+<h4 id="toc_h4_3">体系结构</h4>
 <p>Spring 有可能成为所有企业应用程序的一站式服务点，然而，Spring 是<strong>模块化</strong>的，允许你挑选和选择适用于你的模块，不必要把剩余部分也引入。下面的部分对在 Spring 框架中所有可用的模块给出了详细的介绍。</p>
 <p>Spring 框架提供约 20 个模块，可以根据应用程序的要求来使用。</p>
-<h4 id="b3_solo_h4_4">核心容器</h4>
+<h4 id="toc_h4_4">核心容器</h4>
 <p>核心容器由<code>spring-core</code>，<code>spring-beans</code>，<code>spring-context</code>，<code>spring-context-support</code>和<code>spring-expression（SpEL，Spring表达式语言，Spring Expression Language）</code>等模块组成，它们的细节如下：</p>
 <ul>
 <li>
@@ -178,7 +251,7 @@ POJO类的作用是方便程序员使用数据库中的数据表，对于程序�
 <p><code>spring-expression</code>模块提供了强大的表达式语言，用于在运行时查询和操作对象图。它是JSP2.1规范中定义的统一表达式语言的扩展，支持set和get属性值、属性赋值、方法调用、访问数组集合及索引的内容、逻辑算术运算、命名变量、通过名字从Spring IoC容器检索对象，还支持列表的投影、选择以及聚合等。。</p>
 </li>
 </ul>
-<h4 id="b3_solo_h4_5">数据访问/集成</h4>
+<h4 id="toc_h4_5">数据访问/集成</h4>
 <p>数据访问/集成层包括 JDBC，ORM，OXM，JMS 和事务处理模块，它们的细节如下：</p>
 <p>（注：JDBC=Java Data Base Connectivity，ORM=Object Relational Mapping，OXM=Object XML Mapping，JMS=Java Message Service）</p>
 <ul>
@@ -198,7 +271,7 @@ POJO类的作用是方便程序员使用数据库中的数据表，对于程序�
 <p>事务模块为实现特殊接口类及所有的 POJO 支持编程式和声明式事务管理。（注：编程式事务需要自己写beginTransaction()、commit()、rollback()等事务管理方法，声明式事务是通过注解或配置由spring自动处理，编程式事务粒度更细）</p>
 </li>
 </ul>
-<h4 id="b3_solo_h4_6">Web</h4>
+<h4 id="toc_h4_6">Web</h4>
 <p>Web 层由 Web，Web-MVC，Web-Socket 和 Web-Portlet 组成，它们的细节如下：</p>
 <ul>
 <li>
@@ -214,7 +287,7 @@ POJO类的作用是方便程序员使用数据库中的数据表，对于程序�
 <p>Web-Portlet 模块提供了用于Portlet环境的MVC实现，并反映了spring-webmvc模块的功能。</p>
 </li>
 </ul>
-<h4 id="b3_solo_h4_7">其他</h4>
+<h4 id="toc_h4_7">其他</h4>
 <p>还有其他一些重要的模块，像 AOP，Aspects，Instrumentation，Web 和测试模块，它们的细节如下：</p>
 <ul>
 <li>
@@ -233,8 +306,8 @@ POJO类的作用是方便程序员使用数据库中的数据表，对于程序�
 <p>测试模块支持对具有 JUnit 或 TestNG 框架的 Spring 组件的测试。</p>
 </li>
 </ul>
-<h3 id="b3_solo_h3_8">Spring IoC 容器</h3>
-<h4 id="b3_solo_h4_9">IoC 容器</h4>
+<h3 id="toc_h3_8">Spring IoC 容器</h3>
+<h4 id="toc_h4_9">IoC 容器</h4>
 <p><strong>Spring 容器</strong> 是 Spring 框架的核心。<strong>容器将创建对象，把它们连接在一起，配置它们，并管理他们的整个生命周期从创建到销毁。</strong> Spring 容器使用 <strong>依赖注入（DI）</strong> 来管理组成一个应用程序的组件。这些对象被称为 Spring Beans，我们将在下一章中进行讨论。</p>
 <p>通过阅读配置<strong>元数据</strong>(通过xml的配置)提供的指令，容器知道对哪些对象进行实例化，配置和组装。配置元数据可以通过 XML，Java 注释或 Java 代码来表示。下图是 Spring 如何工作的高级视图。 Spring IoC 容器利用 Java 的 POJO 类和配置元数据来生成完全配置和可执行的系统或应用程序。</p>
 <p>Spring 提供了以下两种不同类型的容器。</p>
@@ -243,7 +316,7 @@ POJO类的作用是方便程序员使用数据库中的数据表，对于程序�
 1	  |  <code>Spring BeanFactory 容器</code> 它是最简单的容器，给 DI 提供了基本的支持，它用 <code>org.springframework.beans.factory.BeanFactory</code> 接口来定义。BeanFactory 或者相关的接口，如 BeanFactoryAware，InitializingBean，DisposableBean，在 Spring 中仍然存在具有大量的与 Spring 整合的第三方框架的反向兼容性的目的。<br>
 2	|<code>Spring ApplicationContext 容器</code> 该容器添加了更多的企业特定的功能，例如从一个属性文件中解析文本信息的能力，发布应用程序事件给感兴趣的事件监听器的能力。该容器是由 <code>org.springframework.context.ApplicationContext</code> 接口定义。</p>
 <p><code>ApplicationContext 容器</code>包括 <code>BeanFactory 容器</code>的所有功能，所以通常建议超过 BeanFactory。BeanFactory 仍然可以用于轻量级的应用程序，如移动设备或基于 applet 的应用程序，其中它的数据量和速度是显著</p>
-<h3 id="b3_solo_h3_10">Spring BeanFactory 容器</h3>
+<h3 id="toc_h3_10">Spring BeanFactory 容器</h3>
 <p>这是一个最简单的容器，它主要的功能是为 <strong>依赖注入 （DI）</strong> 提供支持，这个容器接口在 <code>org.springframework.beans.factory.BeanFactor</code> 中被定义。 BeanFactory 和相关的接口，比如BeanFactoryAware、 DisposableBean、InitializingBean，仍旧保留在 Spring 中，主要目的是向后兼容已经存在的和那些 Spring 整合在一起的第三方框架。</p>
 <p>在 Spring 中，有大量对 BeanFactory 接口的实现。其中，最常被使用的是 <code>XmlBeanFactory</code> 类。这个容器从一个 XML 文件中读取配置元数据，由这些元数据来生成一个被配置化的系统或者应用。</p>
 <p>在资源宝贵的移动设备或者基于 applet 的应用当中， <code>BeanFactory</code> 会被优先选择。否则，一般使用的是<code>ApplicationContext</code>，除非你有更好的理由选择 BeanFactory。</p>
@@ -256,7 +329,7 @@ POJO类的作用是方便程序员使用数据库中的数据表，对于程序�
 3	|在 com.tutorialspoint 文件夹下创建 HelloWorld.java 和 MainApp.java 两个类文件。<br>
 4	|在 src 文件夹下创建 Bean 的配置文件 Beans.xml<br>
 5	|最后的步骤是创建所有 Java 文件和 Bean 的配置文件的内容，按照如下所示步骤运行应用程序。</p>
-<h3 id="b3_solo_h3_11">Spring ApplicationContext 容器</h3>
+<h3 id="toc_h3_11">Spring ApplicationContext 容器</h3>
 <p><code>Application Context</code> 是 spring 中较高级的容器。和 <code>BeanFactory</code> 类似，<strong>它可以加载配置文件中定义的 bean</strong>，将所有的 bean <strong>集中在一起</strong>，当有请求的时候分配 bean。 另外，它增加了企业所需要的功能，比如，从属性文件中解析文本信息和将事件传递给所指定的监听器。这个容器在 <code>org.springframework.context.ApplicationContext interface</code> 接口中定义。</p>
 <p><code>ApplicationContext</code> 包含 BeanFactory 所有的功能，一般情况下，相对于 BeanFactory，ApplicationContext 会<strong>更加优秀</strong>。当然，BeanFactory 仍可以在轻量级应用中使用，比如移动设备或者基于 applet 的应用程序。(一般都用appplictoncontext)</p>
 <p>最常被使用的 ApplicationContext 接口实现：</p>
@@ -281,7 +354,7 @@ POJO类的作用是方便程序员使用数据库中的数据表，对于程序�
 3	|在 com.tutorialspoint 文件夹下创建 HelloWorld.java 和 MainApp.java 两个类文件。<br>
 4	|文件夹下创建 Bean 的配置文件 Beans.xml。<br>
 5|	最后的步骤是编辑所有 JAVA 文件的内容和 Bean 的配置文件,按照以前我们讲的那样去运行应用程序。</p>
-<h3 id="b3_solo_h3_12">Spring Bean 定义</h3>
+<h3 id="toc_h3_12">Spring Bean 定义</h3>
 <p>被称作 bean 的对象是构成应用程序的支柱也是由 <strong>Spring IoC 容器</strong> 管理的。bean 是一个被实例化，组装，并通过 <strong>Spring IoC 容器所管理的对象</strong>。这些 bean 是<strong>由用容器提供的配置元数据创建</strong>的，例如，已经在先前章节看到的，在 XML 的表单中的 定义。</p>
 <p>bean 定义包含称为配置元数据的信息，下述容器也需要知道配置元数据：</p>
 <ul>
@@ -307,7 +380,7 @@ autowiring mode	|它是用来注入依赖关系的，并会在接下来的章节
 lazy-initialization mode|	延迟初始化的 bean 告诉 IoC 容器在它第一次被请求时，而不是在启动时去创建一个 bean 实例。<br>
 initialization 方法	|在 bean 的所有必需的属性被容器设置之后，调用回调方法。它将会在 bean 的生命周期章节中进行讨论。<br>
 destruction 方法|	当包含该 bean 的容器被销毁时，使用回调方法。它将会在 bean 的生命周期章节中进行讨论。</p>
-<h4 id="b3_solo_h4_13">Spring 配置元数据</h4>
+<h4 id="toc_h4_13">Spring 配置元数据</h4>
 <p>Spring IoC 容器完全由实际编写的配置元数据的格式解耦。有下面三个重要的方法把配置元数据提供给 Spring 容器：</p>
 <ul>
 <li>
@@ -367,6 +440,7 @@ destruction 方法|	当包含该 bean 的容器被销毁时，使用回调方法
 地址：<a href="https://ellenbboe.github.io/articles/2018/09/11/1561009677915.html" target="_blank">https://ellenbboe.github.io/articles/2018/09/11/1561009677915.html</a><br>
 <!-- 签名档内可使用 HTML、JavaScript -->
 <br>
+
                     </div>
             </section>
         </div>
@@ -374,59 +448,50 @@ destruction 方法|	当包含该 bean 的容器被销毁时，使用回调方法
         <div class="post__toc">
 <ul class="article__toc">
         <li class="toc__h3">
-            <a href="#b3_solo_h3_0">Spring 概述</a>
+            <a href="#toc_h3_0">Spring 概述</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_1">依赖注入（DI）</a>
+            <a href="#toc_h4_1">依赖注入（DI）</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_2">面向方面的程序设计（AOP）</a>
+            <a href="#toc_h4_2">面向方面的程序设计（AOP）</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_3">体系结构</a>
+            <a href="#toc_h4_3">体系结构</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_4">核心容器</a>
+            <a href="#toc_h4_4">核心容器</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_5">数据访问/集成</a>
+            <a href="#toc_h4_5">数据访问/集成</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_6">Web</a>
+            <a href="#toc_h4_6">Web</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_7">其他</a>
+            <a href="#toc_h4_7">其他</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_8">Spring IoC 容器</a>
+            <a href="#toc_h3_8">Spring IoC 容器</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_9">IoC 容器</a>
+            <a href="#toc_h4_9">IoC 容器</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_10">Spring BeanFactory 容器</a>
+            <a href="#toc_h3_10">Spring BeanFactory 容器</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_11">Spring ApplicationContext 容器</a>
+            <a href="#toc_h3_11">Spring ApplicationContext 容器</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_12">Spring Bean 定义</a>
+            <a href="#toc_h3_12">Spring Bean 定义</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_13">Spring 配置元数据</a>
+            <a href="#toc_h4_13">Spring 配置元数据</a>
         </li>
 </ul>        </div>
-<div class="comment">
-    <div class="comment__wrapper wrapper">
-        <div class="comment__title">
-            评论
-        </div>
-        <textarea rows="3" placeholder="评论内容只能为 2 到 500 个字符！" id="comment"></textarea>
-
-        <ul id="comments">
-        </ul>
-    </div>
-</div>
+        <div id="b3logsolocomments"></div>
+        <div id="vcomment" class="comment__wrapper wrapper" style="margin: 40px auto" data-name="ellenbboe" data-postId="1561009677915"></div>
     <div class="article__bottom">
         <div class="wrapper">
             <div class="fn__flex">
@@ -440,6 +505,7 @@ destruction 方法|	当包含该 bean 的容器被销毁时，使用回调方法
 <footer class="footer">
     <div class="wrapper fn__clear">
         <div class="fn__left">
+            <br>
             &copy; 2020
             <a href="https://ellenbboe.github.io">Kosmos</a>
             <a href="http://www.beian.miit.gov.cn/">浙ICP备18045840号-1</a>--------Let's move on
@@ -468,12 +534,23 @@ show_date_time();
 <style>
 #momk{animation:change 10s infinite;font-weight:800; }
 @keyframes change{0%{color:#5cb85c;}25%{color:#556bd8;}50%{color:#e40707;}75%{color:#66e616;}100% {color:#67bd31;}}
-</style> &nbsp;•&nbsp;
-            Powered by <a href="https://solo.b3log.org" target="_blank">Solo</a>
-            <br>
-            Theme Casper
-            <sup>[<a href="https://github.com/TryGhost/Casper" target="_blank">ref</a>]</sup>
-            by <a href="http://vanessa.b3log.org" target="_blank">Vanessa</a>
+</style>
+<script type="text/javascript">
+    /*自动刷新页面，避免无法访问*/
+    var OriginTitile = document.title;
+    var titleTime;
+    document.addEventListener('visibilitychange', function () {
+        if (document.hidden) {
+            document.title = '(〃´-ω･)  休息一下';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '起来嗨٩(๑❛ᴗ❛๑)۶';
+            titleTime = setTimeout(function () {
+                document.title = OriginTitile;
+            }, 3000);
+        }
+    });
+</script>
         </div>
         <div class="fn__right">
             <a href="https://ellenbboe.github.io/tags.html" rel="section">
@@ -488,36 +565,32 @@ show_date_time();
             友情链接
             </a>
             <br>
-            115 文章 &nbsp;
-            9 评论 &nbsp;
+            121 文章 &nbsp;
             <span data-uvstaturl="https://ellenbboe.github.io">11608</span> 浏览 &nbsp;
-            3 当前访客
+            
         </div>
     </div>
 </footer>
 
-<script type="text/javascript" src="https://ellenbboe.github.io/js/lib/compress/pjax.min.js" charset="utf-8"></script>
-<script type="text/javascript" src="https://ellenbboe.github.io/js/common.min.js?1578931371974"
-        charset="utf-8"></script>
-<script type="text/javascript"
-        src="https://ellenbboe.github.io/skins/Casper/js/common.min.js?1578931371974"
-        charset="utf-8"></script>
-<script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.4/dist/index.min.js"></script>
 <script>
-    var Label = {
-        servePath: "https://ellenbboe.github.io",
-        staticServePath: "https://ellenbboe.github.io",
-        luteAvailable: false,
-        hljsStyle: 'colorful',
-        langLabel: "zh_CN",
-        version: "3.7.0",
-    }
-    Util.init()
+  var Label = {
+    servePath: "https://ellenbboe.github.io",
+    staticServePath: "https://ellenbboe.github.io",
+    luteAvailable: false,
+    hljsStyle: 'colorful',
+    langLabel: "zh_CN",
+    version: "4.1.0",
+    staticSite: true,
+    showCodeBlockLn: false,
+  }
 </script>
+<script type="text/javascript"
+        src="https://ellenbboe.github.io/skins/Casper/js/common.min.js?1591150301084"
+        charset="utf-8"></script>
 
 
 <script type="text/javascript">
-    Util.addScript('https://ellenbboe.github.io/js/page.min.js?1578931371974', 'soloPageScript')
+    Util.addScript('https://ellenbboe.github.io/js/page.min.js?1591150301084', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1561009677915",
@@ -535,4 +608,4 @@ show_date_time();
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 40ms, 2020/01/14 13:32:40 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 50ms, 2020/06/03 12:32:30 -->

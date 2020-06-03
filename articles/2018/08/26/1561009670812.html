@@ -2,31 +2,104 @@
 <html>
 <head>
 <meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>git学习 - Kosmos</title><meta name="description" content="git 教程 Introduction Git is currently the most widely used version control system in the world, mostly thanks to GitHub.(感谢github) By that measure, I’d argue that it’s also the most misunderstood version control system in the world. This statement probably doesn’t ring true straight away because on the surface, Git is pretty simple. It’s really easy to pick up if you’ve come from another VCS like Subversion or Mercurial. It’s even relatively easy to pick up if you’ve never used a VCS before. Ever...."/><meta property="og:description" content="git 教程 Introduction Git is currently the most widely used version control system in the world, mostly thanks to GitHub.(感谢github) By that measure, I’d argue that it’s also the most misunderstood version control system in the world. This statement probably doesn’t ring true straight away because on the surface, Git is pretty simple. It’s really easy to pick up if you’ve come from another VCS like Subversion or Mercurial. It’s even relatively easy to pick up if you’ve never used a VCS before. Ever...."/>    <meta name="keywords" content="开源,开发者,笔记,kosmos"/><link rel="dns-prefetch" href="https://ellenbboe.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://ellenbboe.github.io"><link rel="icon" type="image/png" href="https://s2.ax1x.com/2020/01/12/loApPe.png"/><link rel="apple-touch-icon" href="https://s2.ax1x.com/2020/01/12/loApPe.png"><link rel="shortcut icon" type="image/x-icon" href="https://s2.ax1x.com/2020/01/12/loApPe.png"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="git学习 - Kosmos"/><meta property="og:site_name" content="Kosmos"/><meta property="og:url"      content="https://ellenbboe.github.io/articles/2018/08/26/1561009670812.html?"/><meta property="og:image" content="https://s2.ax1x.com/2020/01/12/loApPe.png"/><link rel="search" type="application/opensearchdescription+xml" title="git学习 - Kosmos" href="/opensearch.xml"><link href="https://ellenbboe.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://ellenbboe.github.io/manifest.json">        <link rel="canonical" href="https://ellenbboe.github.io/articles/2018/08/26/1561009670812.html">        <link rel="stylesheet"
-              href="https://ellenbboe.github.io/skins/Casper/css/base.css?1578931371974"/>
+              href="https://ellenbboe.github.io/skins/Casper/css/base.css?1591150301084"/>
             <link rel="prev" title="2018-08-24" href="https://ellenbboe.github.io/articles/2018/08/25/1561009677702.html">
             <link rel="next" title="2018-08-28" href="https://ellenbboe.github.io/articles/2018/08/28/1561009675471.html">
-    </head>
+    <script>
+onload = function() {
+    var click_cnt = 0;
+    var $html = document.getElementsByTagName("html")[0];
+    var $body = document.getElementsByTagName("body")[0];
+    $html.onclick = function(e) {
+        var $elem = document.createElement("b");
+        $elem.style.color = "#E94F06";
+        $elem.style.zIndex = 9999;
+        $elem.style.position = "absolute";
+        $elem.style.select = "none";
+        var x = e.pageX;
+        var y = e.pageY;
+        $elem.style.left = (x - 10) + "px";
+        $elem.style.top = (y - 20) + "px";
+        clearInterval(anim);
+        switch (++click_cnt) {
+            case 10:
+                $elem.innerText = "OωO";
+                break;
+            case 20:
+                $elem.innerText = "(๑•́ ∀ •̀๑)";
+                break;
+            case 30:
+                $elem.innerText = "(๑•́ ₃ •̀๑)";
+                break;
+            case 40:
+                $elem.innerText = "(๑•̀_•́๑)";
+                break;
+            case 50:
+                $elem.innerText = "（￣へ￣）";
+                break;
+            case 60:
+                $elem.innerText = "(╯°口°)╯(┴—┴";
+                break;
+            case 70:
+                $elem.innerText = "૮( ᵒ̌皿ᵒ̌ )ა";
+                break;
+            case 80:
+                $elem.innerText = "╮(｡>口<｡)╭";
+                break;
+            case 90:
+                $elem.innerText = "( ง ᵒ̌皿ᵒ̌)ง⁼³₌₃";
+                break;
+            case 100:
+            case 101:
+            case 102:
+            case 103:
+            case 104:
+            case 105:
+                $elem.innerText = "(ꐦ°᷄д°᷅)";
+                break;
+            default:
+                $elem.innerText = "❤";
+                break;
+        }
+        $elem.style.fontSize = Math.random() * 10 + 8 + "px";
+        var increase = 0;
+        var anim;
+        setTimeout(function() {
+            anim = setInterval(function() {
+                if (++increase == 150) {
+                    clearInterval(anim);
+                    $body.removeChild($elem);
+                }
+                $elem.style.top = y - 20 - increase + "px";
+                $elem.style.opacity = (150 - increase) / 120;
+            }, 8);
+        }, 70);
+        $body.appendChild($elem);
+    };
+};
+</script>
+</head>
 <body class="fn__flex-column">
 <div id="pjax" class="fn__flex-1">
     
     <header class="header header--article">
         <div class="wrapper header__title">
             <h1 class="header__h1 fn__flex-inline">
-                <img src="https://s2.ax1x.com/2020/01/12/loApPe.png">
+                <img src="https://s2.ax1x.com/2020/01/12/loApPe.png" alt="Kosmos">
                 <a href="https://ellenbboe.github.io" rel="start" class="header__title">Kosmos</a>
             </h1>
-            <h2 class="header__h2">---就算是痛苦难受，也要去体会那被称为生存的分量---</h2>
+            <h2 class="header__h2">---我们总得选择一条路去前行---</h2>
         </div>
         <nav class="wrapper header__nav fn__clear">
             <a href="https://ellenbboe.github.io" rel="start">
                     Kosmos
             </a>
 
-                <a class="fn__flex-inline" href="/my-github-repos" target="_self" rel="section">
-                    <img src="/images/github-icon.png"> 我的开源
+                <a class="fn__flex-inline" href="https://github.com/ellenbboe" target="_self" rel="section">
+                    <img src="https://s2.ax1x.com/2020/01/16/ljWMPP.png" alt="我的GIT"> 我的GIT
                 </a>
                 <a class="fn__flex-inline" href="/readlist" target="_self" rel="section">
-                     阅读列表
+                    <img src="https://s2.ax1x.com/2020/01/16/ljWPC6.png" alt="阅读列表"> 阅读列表
                 </a>
 
 
@@ -111,8 +184,8 @@
         <div class="item__cover" style="background-image: url(https://img.hacpai.com/bing/20181212.jpg?imageView2/1/w/1280/h/720/interlace/1/q/100)"></div>
         <div class="wrapper">
             <section class="item__content item__content--article vditor-reset">
-                <p></p><h2 id="b3_solo_h2_0">git 教程</h2>
-<h3 id="b3_solo_h3_1">Introduction</h3>
+                <h2 id="toc_h2_0">git 教程</h2>
+<h3 id="toc_h3_1">Introduction</h3>
 <p>Git is currently the most widely used version control system in the world, mostly thanks to GitHub.(感谢github) By that measure, I’d argue that it’s also the most misunderstood version control system in the world.</p>
 <p>This statement probably doesn’t ring true straight away because on the surface, Git is pretty simple. It’s really easy to pick up if you’ve come from another VCS like Subversion or Mercurial. It’s even relatively easy to pick up if you’ve never used a VCS before. Everybody understands adding, committing, pushing and pulling; but this is about as far as Git’s simplicity goes. Past this point, Git is shrouded by fear, uncertainty and doubt.</p>
 <p>Once you start talking about branching, merging, rebasing, multiple remotes, remote-tracking branches, detached HEAD states… Git becomes less of an easily-understood tool and more of a feared deity. Anybody who talks about no-fast-forward merges is regarded with quiet superstition, and even veteran hackers would rather stay away from rebasing “just to be safe”.</p>
@@ -121,7 +194,7 @@
 <p>That’s why trying to understand Git in this way is wrong. Git doesn’t work like Subversion at all. Which can be pretty confusing. You can add and remove files. You can commit your changes. You can generate diffs and patches which look just like the ones that Subversion generates. So how can something which appears so similar really be so different?</p>
 <p>Complex systems like Git become much easier to understand once you figure out how they really work. The goal of this guide is to shed some light on how Git works under the hood. We’re going to take a look at some of Git’s core concepts including its basic object storage, how commits work, how branches and tags work, and we’ll look at the different kinds of merging in Git including the much-feared rebase. Hopefully at the end of it all, you’ll have a solid understanding of these concepts and will be able to use some of Git’s more advanced features with confidence.</p>
 <p>It’s worth noting at this point that this guide is not intended to be a beginner’s introduction to Git. This guide was written for people who already use Git, but would like to better understand it by taking a peek under the hood, and learn a few neat tricks along the way. With that said, let’s begin.</p>
-<h3 id="b3_solo_h3_2">Repositories</h3>
+<h3 id="toc_h3_2">Repositories</h3>
 <p>At the core of Git, like other VCS, is the repository. A Git repository is really just a simple key-value data store. This is where Git stores, among other things:<br>
 <strong>Blobs</strong>, which are the most basic data type in Git. Essentially, a blob is just a bunch of bytes; usually a binary representation of a file.<br>
 <strong>Tree objects</strong>, which are a bit like directories. Tree objects can contain pointers to blobs and other tree objects.<br>
@@ -146,7 +219,7 @@ drwxrwxr-x 4 demo demo 4096 May 24 20:10 refs
 </code></pre>
 <p>The important directories are .git/objects, where Git stores all of its objects; and .git/refs, where Git stores all of its references(标记).</p>
 <p>We’ll see how all of this fits together as we learn about the rest of Git. For now, let’s learn a little bit more about tree objects.</p>
-<h3 id="b3_solo_h3_3">Tree Objects</h3>
+<h3 id="toc_h3_3">Tree Objects</h3>
 <p>A tree object in Git can be thought of as a directory. It contains a list of blobs (<strong>files</strong>) and other tree objects (<strong>sub-directories</strong>).</p>
 <p>Imagine we had a simple repository, with a README file and a src/ directory containing a hello.c file.</p>
 <pre><code>README
@@ -162,7 +235,7 @@ blob|	1febef..|	hello.c</p>
 <p>Notice how given the root tree object, we can recurse through every tree object to figure out the state of the entire working tree. The root tree object, therefore, is essentially a snapshot of your repository at a given time. Usually when Git refers to “the tree”, it is referring to the root tree object.</p>
 <p>Now let’s learn how you can track the history of your repository with commit objects.<br>
 (Tree 是文件夹 ,blob 是文件)</p>
-<h3 id="b3_solo_h3_4">Commits</h3>
+<h3 id="toc_h3_4">Commits</h3>
 <p>A commit object is essentially(本质上) a pointer that contains a few pieces of important metadata. The commit itself has a hash, which is built from a combination of the metadata that it contains:<br>
 (每一次提交会有一个hash,这个hash是由所包含的内容决定的,包含以下内容)</p>
 <ol>
@@ -208,7 +281,7 @@ $ git show d409
 $ git show d40
 fatal: ambiguous argument 'd40': unknown revision or path not in the working tree.
 </code></pre>
-<h3 id="b3_solo_h3_5">References</h3>
+<h3 id="toc_h3_5">References</h3>
 <p>In previous sections, we saw how objects in Git are identified by a hash. Since we want to manipulate objects quite often in Git, it’s important to know their hashes. You could run all your Git commands referencing each object’s hash, like git show d409ca7, but that would require you to remember the hash of every object you want to manipulate.</p>
 <p>To save you from having to memorize these hashes, Git has references, or “refs”. A reference is simply a file stored somewhere in .git/refs, containing the hash of a commit object.</p>
 <p>To carry on the example from Commits, let’s figure out the hash of “First commit” using references only.</p>
@@ -237,7 +310,7 @@ d409ca76bc919d9ca797f39ae724b7c65700fd27
 ref: refs/heads/master
 </code></pre>
 <p>It is actually possible for <code>HEAD</code> to point directly to a commit object. When this happens, Git will tell you that you are in a “detached HEAD state”. We’ll talk a bit more about this later, but really all this means is that you’re not currently on a branch.(你不是在branch上)</p>
-<h3 id="b3_solo_h3_6">Branches</h3>
+<h3 id="toc_h3_6">Branches</h3>
 <p>Git’s branches are often touted as being one of its strongest features. This is because branches in Git are very lightweight, compared to other VCS where a branch is usually a clone of the entire repository.</p>
 <p>The reason branches are so lightweight in Git is because they’re just references. We saw in References that the master branch was simply a file inside .git/refs/heads. Let’s create another branch to see what happens under the hood.</p>
 <pre><code>$ git branch test-branch
@@ -267,7 +340,7 @@ $ cat .git/refs/heads/test-branch
 <pre><code>$ git checkout master
 Switched to branch 'master'
 </code></pre>
-<h3 id="b3_solo_h3_7">Tags</h3>
+<h3 id="toc_h3_7">Tags</h3>
 <p>There are two types of tags in Git – lightweight tags and annotated tags.</p>
 <p>On the surface, these two types of tags look very similar. Both of them are references stored in .git/refs/tags. However, that’s about as far as the similarities go. Let’s create a lightweight tag to see how they work.</p>
 <pre><code>$ git tag 1.0-lightweight
@@ -307,7 +380,7 @@ Tagged 1.0
 <p>Aside from being GPG-signable, there are a few reasons why annotated tags are preferred over lightweight tags.</p>
 <p>Probably the most important reason is that annotated tags have their own author information. This can be helpful when you want to know who created the tag, rather than who created the commit that the tag is referring to.</p>
 <p>Annotated tags are also timestamped. Since new versions are usually tagged right before they are released, an annotated tag can tell you when a version was released rather than just when the final commit was made.(annotated tags 比light-weight tags更优先是由于他信息更详细,使项目更容易控制)</p>
-<h3 id="b3_solo_h3_8">Merging</h3>
+<h3 id="toc_h3_8">Merging</h3>
 <p>Merging in Git is the process of joining two histories (usually branches) together. Let’s start with a simple example. Say you’ve created a new feature branch from master, and done some work on it.</p>
 <pre><code>$ git checkout -b feature-branch
 Switched to a new branch 'feature-branch'
@@ -364,10 +437,10 @@ committer Joseph Wynn &lt;joseph@wildlyinaccurate.com&gt; 1401134489 +0100
 </code></pre>
 <p>This means that our history graph now looks something like this (commit E is the new merge commit).</p>
 <p>Some people believe that this sort of history graph is undesirable. In the Rebasing (Continued) section, we’ll learn how to prevent non-fast-forward merges by rebasing feature branches before merging them with master.</p>
-<h3 id="b3_solo_h3_9">Rebasing</h3>
+<h3 id="toc_h3_9">Rebasing</h3>
 <p>Rebasing is without a doubt one of Git’s most misunderstood features. For most people, git rebase is a command that should be avoided at all costs. This is probably due to the extraordinary amount of scaremongering around rebasing. “Rebase Considered Harmful”, and “Please, stay away from rebase” are just two of the many anti-rebase articles you will find in the vast archives of the Internet.</p>
 <p>But rebase isn’t scary, or dangerous, so long as you understand what it does. But before we get into rebasing, I’m going to take a quick digression, because it’s actually much easier to explain rebasing in the context of cherry-picking.(呦)</p>
-<h3 id="b3_solo_h3_10">Cherry-Picking</h3>
+<h3 id="toc_h3_10">Cherry-Picking</h3>
 <p>What git cherry-pick does is take one or more commits, and replay them on top of the current commit. Imagine a repository with the following history graph.</p>
 <p>If you are on commit D and you run git cherry-pick F, Git will take the changes that were introduced in commit F and replay them as a new commit (shown as F’) on top of commit D.</p>
 <p>The reason you end up with a copy of commit F rather than commit F itself is due to the way commits are constructed. Recall that the parent commit is part of a commit’s hash. So despite containing the exact same changes, author information and timestamp; F’ will have a different parent to F, giving it a different hash.</p>
@@ -386,7 +459,7 @@ $ git reset --hard foo-tmp
 $ git branch -D foo-tmp
 </code></pre>
 <p>This gives the desired result of foo’s commits being upstream of master. Note that the original C and D commits are no longer reachable because no branch points to them.</p>
-<h3 id="b3_solo_h3_11">Rebasing (Continued)</h3>
+<h3 id="toc_h3_11">Rebasing (Continued)</h3>
 <p>While the example in Cherry-Picking worked, it’s not practical. In Git, rebasing allows us to replace our verbose cherry-pick workflow…</p>
 <pre><code>$ git checkout master
 $ git checkout -b foo-tmp
@@ -414,7 +487,7 @@ Fast-forward
  feature.html | 1 +
  1 file changed, 1 insertion(+)
 </code></pre>
-<h3 id="b3_solo_h3_12">Remotes</h3>
+<h3 id="toc_h3_12">Remotes</h3>
 <p>In order to collaborate(合作) on any Git project, you need to utilise(利用) at least one remote(远程) repository. Unlike centralised(集中) VCS which require a dedicated server daemon, a Git remote is simply another Git repository. In order to demonstrate this, we first need to understand the concept(观点) of a bare repository.</p>
 <p>Recall that Git stores the entire repository inside the .git directory. Inside this directory are blobs and tree objects which can be traversed to build a snapshot of the entire project. This means that Git doesn’t actually need a working tree – it only uses the working tree to figure out what changes have been made since the last commit. This is easily demonstrated if you delete a file from a repository, and then run <code>git checkout &lt;file&gt;</code>. Despite being removed from the file system, Git can still restore the file because it has previously stored it in the repository. You can do the same thing with entire directories and Git will still be able to restore everything by traversing its tree objects.</p>
 <p><strong>It is therefore possible to have a repository which can store your project’s history without actually having a working tree. This is called a bare repository.</strong> <strong>Bare repositories are most commonly used as a “central” repository where collaborators can share changes. The mechanism for sharing these changes will be explained in detail in the Pushing and Pulling sections.</strong> For now, let’s look at creating a bare repository.</p>
@@ -462,7 +535,7 @@ $ git add README
 fatal: This operation must be run in a work tree
 </code></pre>
 <p>The intended use of this repository is for other collaborators to clone and pull changes from, as well as push their own changes to.</p>
-<h3 id="b3_solo_h3_13">Cloning</h3>
+<h3 id="toc_h3_13">Cloning</h3>
 <p>Now that we’ve set up a bare repository, let’s look at the concept of cloning a repository.</p>
 <p>The git clone command is really just a shortcut which does a few things for you. With its default configuration, it will:</p>
 <ol>
@@ -514,7 +587,7 @@ $ cat .git/config
 <p>This is quite literally a clone of <code>bare-repo</code>. The only difference is that this repository contains a few extra lines in <code>.git/config</code>.</p>
 <p>First, it contains a <code>remote</code> listing for “origin”, which is the default name given to a repository’s main remote. This tells Git the URL of the repository, and which references it should retrieve when performing a <code>git fetch</code>.</p>
 <p>Below that is a <code>branch</code> listing. This is the configuration for a remote-tracking branch. But before we get into that, let’s store some data in the remote repository.</p>
-<h3 id="b3_solo_h3_14">Pushing</h3>
+<h3 id="toc_h3_14">Pushing</h3>
 <p>We've just cloned a completely empty repository, and we want to start working on it.</p>
 <pre><code>$ echo 'Project v1.0' &gt; README
 $ git add README
@@ -558,7 +631,7 @@ index 0000000..5cecdfb
 </code></pre>
 <p>As we expected, the remote repository now contains a master branch which points to the commit that we just created.</p>
 <p>Essentially what happened when we ran git push, is Git updated the remote’s references, and sent it any objects required to build those references. In this case, git push updated the remote’s master to point at 5d591d5, and sent it the 5d591d5 commit object as well as any tree and blob objects related to that commit.</p>
-<h3 id="b3_solo_h3_15">Remote-Tracking Branches</h3>
+<h3 id="toc_h3_15">Remote-Tracking Branches</h3>
 <p>As we saw in Cloning, a remote-tracking branch is essentially just a few lines in <code>.git/config</code>. Let’s take a look at those lines again.</p>
 <pre><code>[branch "master"]
     remote = origin
@@ -567,7 +640,7 @@ index 0000000..5cecdfb
 <p>The line <code>[branch "master"]</code> denotes that the following configuration applies to the local master branch.</p>
 <p>The rest of the configuration specifies that when this remote-tracking branch is fetched, Git should fetch the master branch from the origin remote.</p>
 <p>Besides storing this configuration, Git also stores a local copy of the remote branch. This is simply stored as a reference in .git/refs/remotes/<remote>/<branch>. We’ll see more about how this works in Fetching.</branch></remote></p>
-<h3 id="b3_solo_h3_16">Fetching</h3>
+<h3 id="toc_h3_16">Fetching</h3>
 <p>The git fetch command is fairly simple. It takes the name of a remote (unless used with the --all flag, which fetches all remotes), and retrieves any new references and all objects necessary to complete them.</p>
 <p>Recall what a remote’s configuration looks like.</p>
 <pre><code>[remote "origin"]
@@ -628,7 +701,7 @@ $ cat .git/refs/heads/feature-branch
     remote = origin
     merge = refs/heads/feature-branch
 </code></pre>
-<h3 id="b3_solo_h3_17">Pulling</h3>
+<h3 id="toc_h3_17">Pulling</h3>
 <p>The git pull command is, like git clone, a nice shortcut which essentially just runs a few lower-level commands. In short, with the format git pull <remote> <branch>, the git pull command does the following:</branch></remote></p>
 <ol>
 <li>Runs git fetch <remote>.</remote></li>
@@ -676,9 +749,9 @@ Fast-forward
  1 file changed, 1 insertion(+)
 
 </code></pre>
-<h3 id="b3_solo_h3_18">Toolkit</h3>
+<h3 id="toc_h3_18">Toolkit</h3>
 <p>With a solid understanding of Git’s inner workings, some of the more advanced Git tools start to make more sense.</p>
-<h4 id="b3_solo_h4_19">git-reflog</h4>
+<h4 id="toc_h4_19">git-reflog</h4>
 <p>Whenever you <strong>make a change</strong> in Git that affects the tip of a branch, Git <strong>records information about that change</strong> in what’s called the reflog. Usually you shouldn’t need to look at these logs, but sometimes they can come in very handy.</p>
 <p>Let’s say you have a repository with a few commits.</p>
 <pre><code>$ git log --oneline
@@ -708,7 +781,7 @@ d6f2a84 HEAD@{1}: commit: Add empty LICENSE file
 <p>How you want to recover commits depends on the situation. In this particular example, we can simply do a <code>git reset --hard d6f2a84</code> to restore HEAD to its original position. However if we have introduced new commits since the destructive change, we may need to do something like cherry-pick all the commits that were lost.</p>
 <p>Note that Git’s reflog is only a record of changes for your local repository. If your local repository becomes corrupt or is deleted, the reflog won’t be of any use (if the repository is deleted the reflog won’t exist at all!)</p>
 <p>Depending on the situation, you may find git fsck more suitable for recovering lost commits.</p>
-<h3 id="b3_solo_h3_20">git-fsck</h3>
+<h3 id="toc_h3_20">git-fsck</h3>
 <p>In a way, Git’s object storage works like a primitive file system – objects are like files on a hard drive, and their hashes are the objects’ physical address on the disk. The Git index is exactly like the index of a file system, in that it contains references which point at an object’s physical location.</p>
 <p>By this analogy, git fsck is aptly named after fsck (“file system check”). This tool is able to check Git’s database and verify the validity and reachability of every object that it finds.</p>
 <p>When a reference (like a branch) is deleted from Git’s index, the object(s) they refer to usually aren’t deleted, even if they are no longer reachable by any other references. Using a simple example, we can see this in practice. Here we have a branch, feature-branch, which points at f71bb43. If we delete feature-branch, the commit will no longer be reachable.</p>
@@ -726,7 +799,7 @@ Checking object directories: 100% (256/256), done.
 dangling commit f71bb43907bffe0bce2967504341a0ece7a8cb68
 </code></pre>
 <p>For simple cases, git reflog may be preferred. Where git fsck excels over git reflog, though, is when you need to find objects which you <strong>never referenced</strong> in your local repository (and therefore would not be in your reflog). An example of this is when you delete a remote branch through an interface like GitHub. Assuming the objects haven’t been garbage-collected, you can clone the remote repository and use git fsck to recover the deleted branch.</p>
-<h3 id="b3_solo_h3_21">git-stash</h3>
+<h3 id="toc_h3_21">git-stash</h3>
 <p>git stash takes all changes to your working tree and index, and “stashes” them away, giving you a clean working tree. You can then retrieve those changes from your stash and re-apply them to the working tree at any time with git stash apply. A common use for the stash command is to save some half-finished changes in order to checkout another branch.</p>
 <p>This seems fairly simple at first, but the mechanism behind the stash command is actually quite complex. Let’s build a simple repository to see how it works.</p>
 <pre><code>$ git init
@@ -782,7 +855,7 @@ Checking object directories: 100% (256/256), done.
 f949b46a417a4f1595a9d12773c89cce4454a958 refs/stash
 </code></pre>
 <p>So why does Git create a merge commit for a stash? The answer is relatively simple: as well as recording the state of the working tree, git stash also records the state of the index (also known as the “staging area”). Since it’s possible for the index and the working tree to contain changes to the same file, Git needs to store the states separately.</p>
-<h3 id="b3_solo_h3_22">git-describe</h3>
+<h3 id="toc_h3_22">git-describe</h3>
 <p>Git’s describe command is summed up pretty neatly in the documentation:</p>
 <blockquote>
 <p>git-describe - Show the most recent tag that is reachable from a commit</p>
@@ -798,14 +871,14 @@ v1.2.15-80-g2db66f5
 <pre><code>$ git describe --abbrev=0 2db66f
 v1.2.15
 </code></pre>
-<h3 id="b3_solo_h3_23">git-rev-parse</h3>
+<h3 id="toc_h3_23">git-rev-parse</h3>
 <p>git rev-parse is an ancillary plumbing command which takes a wide range of inputs and returns one or more commit hashes. The most common use case is figuring out which commit a tag or branch points to.</p>
 <pre><code>$ git rev-parse v1.2.15
 2a46f5e2fbe83ccb47a1cd42b81f815f2f36ee9d
 $ git rev-parse --short v1.2.15
 2a46f5e
 </code></pre>
-<h3 id="b3_solo_h3_24">git-bisect</h3>
+<h3 id="toc_h3_24">git-bisect</h3>
 <p>git bisect is an indispensable tool when you need to figure out which commit introduced a breaking change. The bisect command does a binary search through your commit history to help you find the breaking change as quickly as possible. To get started, simply run git bisect start, and tell Git that the commit you’re currently on is broken with <code>git bisect bad</code>. Then, you can give Git a commit that you know is working with git bisect good <commit>.</commit></p>
 <pre><code>$ git bisect start
 $ git bisect bad
@@ -818,31 +891,31 @@ Bisecting: 41 revisions left to test after this (roughly 5 steps)
 e145a8df72f309d5fb80eaa6469a6148b532c821 is the first bad commit
 </code></pre>
 <p>Once the bisect is finished (or when you want to abort it), be sure to run <code>git bisect reset</code> to reset HEAD to where it was before the bisect.</p>
-<h3 id="b3_solo_h3_25">Useful commands</h3>
-<h4 id="b3_solo_h4_26">Find which commit a reference points at</h4>
+<h3 id="toc_h3_25">Useful commands</h3>
+<h4 id="toc_h4_26">Find which commit a reference points at</h4>
 <pre><code>$ git rev-parse HEAD
 0f64e9e759c904553309858070f444e5e64847c4
 
 $ git rev-parse --short HEAD
 0f64e9e
 </code></pre>
-<h4 id="b3_solo_h4_27">Find which branches a commit is in</h4>
+<h4 id="toc_h4_27">Find which branches a commit is in</h4>
 <pre><code>$ git branch --contains HEAD
   master
 * other-branch
 </code></pre>
-<h4 id="b3_solo_h4_28">Find commits that are in one branch but not another</h4>
+<h4 id="toc_h4_28">Find commits that are in one branch but not another</h4>
 <pre><code>$ git log --oneline --right-only master...hotfix-1
 
 0f64e9e Apply hotfix patch from #2914 to hotfix-1
 bc3bff5 [Cherry-pick] Fix issue #2926
 </code></pre>
-<h4 id="b3_solo_h4_29">Exclude commits that were cherry-picked</h4>
+<h4 id="toc_h4_29">Exclude commits that were cherry-picked</h4>
 <pre><code>$ git log --oneline --cherry-pick --right-only master...hotfix-1
 
 0f64e9e Apply hotfix patch from #2914 to hotfix-1
 </code></pre>
-<h4 id="b3_solo_h4_30">View details of an object</h4>
+<h4 id="toc_h4_30">View details of an object</h4>
 <pre><code>$ git cat-file -p HEAD
 tree af22d0482b89640c95986f3b4663026bcb7f764b
 parent bc3bff555f573ac76f0d3e71f0e54d63f50b8434
@@ -851,15 +924,15 @@ committer Foo Bar &lt;foo@bar.com&gt; 1436294582 +0100
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit
 </code></pre>
-<h4 id="b3_solo_h4_31">Show an object’s type</h4>
+<h4 id="toc_h4_31">Show an object’s type</h4>
 <pre><code>$ git cat-file -t HEAD
 commit
 </code></pre>
-<h4 id="b3_solo_h4_32">Show an object’s size</h4>
+<h4 id="toc_h4_32">Show an object’s size</h4>
 <pre><code>$ git cat-file -s HEAD
 253
 </code></pre>
-<h4 id="b3_solo_h4_33">Print the tree of a given reference</h4>
+<h4 id="toc_h4_33">Print the tree of a given reference</h4>
 <pre><code>$ git ls-tree -t -r HEAD
 100644 blob 59e004af21a725c9b378001a1b231967f955b992    .gitignore
 100644 blob 9f5d366d261317d8ff881ee2945ef2c7960fa2ea    .travis.yml
@@ -882,11 +955,10 @@ commit
 100644 blob 22fbec9189d2641c590836c4bb19431d3c6d3df3    test/primitives.sh
 100644 blob c455f01b3d88b5d510ff4ebb50e93c5d7f8f0b26    test/types.sh
 </code></pre>
-<h4 id="b3_solo_h4_34">Find the first tag that contains a reference</h4>
+<h4 id="toc_h4_34">Find the first tag that contains a reference</h4>
 <pre><code>$ git describe HEAD
 v1.6.1
 </code></pre>
-<p></p>
                     <div>
                         <hr>
 <img alt="今日诗词" src="https://v2.jinrishici.com/one.svg" style="max-width:100%; display: block; margin: 0 auto;">
@@ -896,6 +968,7 @@ v1.6.1
 地址：<a href="https://ellenbboe.github.io/articles/2018/08/26/1561009670812.html" target="_blank">https://ellenbboe.github.io/articles/2018/08/26/1561009670812.html</a><br>
 <!-- 签名档内可使用 HTML、JavaScript -->
 <br>
+
                     </div>
             </section>
         </div>
@@ -903,122 +976,113 @@ v1.6.1
         <div class="post__toc">
 <ul class="article__toc">
         <li class="toc__h2">
-            <a href="#b3_solo_h2_0">git 教程</a>
+            <a href="#toc_h2_0">git 教程</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_1">Introduction</a>
+            <a href="#toc_h3_1">Introduction</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_2">Repositories</a>
+            <a href="#toc_h3_2">Repositories</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_3">Tree Objects</a>
+            <a href="#toc_h3_3">Tree Objects</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_4">Commits</a>
+            <a href="#toc_h3_4">Commits</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_5">References</a>
+            <a href="#toc_h3_5">References</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_6">Branches</a>
+            <a href="#toc_h3_6">Branches</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_7">Tags</a>
+            <a href="#toc_h3_7">Tags</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_8">Merging</a>
+            <a href="#toc_h3_8">Merging</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_9">Rebasing</a>
+            <a href="#toc_h3_9">Rebasing</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_10">Cherry-Picking</a>
+            <a href="#toc_h3_10">Cherry-Picking</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_11">Rebasing (Continued)</a>
+            <a href="#toc_h3_11">Rebasing (Continued)</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_12">Remotes</a>
+            <a href="#toc_h3_12">Remotes</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_13">Cloning</a>
+            <a href="#toc_h3_13">Cloning</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_14">Pushing</a>
+            <a href="#toc_h3_14">Pushing</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_15">Remote-Tracking Branches</a>
+            <a href="#toc_h3_15">Remote-Tracking Branches</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_16">Fetching</a>
+            <a href="#toc_h3_16">Fetching</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_17">Pulling</a>
+            <a href="#toc_h3_17">Pulling</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_18">Toolkit</a>
+            <a href="#toc_h3_18">Toolkit</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_19">git-reflog</a>
+            <a href="#toc_h4_19">git-reflog</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_20">git-fsck</a>
+            <a href="#toc_h3_20">git-fsck</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_21">git-stash</a>
+            <a href="#toc_h3_21">git-stash</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_22">git-describe</a>
+            <a href="#toc_h3_22">git-describe</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_23">git-rev-parse</a>
+            <a href="#toc_h3_23">git-rev-parse</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_24">git-bisect</a>
+            <a href="#toc_h3_24">git-bisect</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_25">Useful commands</a>
+            <a href="#toc_h3_25">Useful commands</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_26">Find which commit a reference points at</a>
+            <a href="#toc_h4_26">Find which commit a reference points at</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_27">Find which branches a commit is in</a>
+            <a href="#toc_h4_27">Find which branches a commit is in</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_28">Find commits that are in one branch but not another</a>
+            <a href="#toc_h4_28">Find commits that are in one branch but not another</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_29">Exclude commits that were cherry-picked</a>
+            <a href="#toc_h4_29">Exclude commits that were cherry-picked</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_30">View details of an object</a>
+            <a href="#toc_h4_30">View details of an object</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_31">Show an object’s type</a>
+            <a href="#toc_h4_31">Show an object’s type</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_32">Show an object’s size</a>
+            <a href="#toc_h4_32">Show an object’s size</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_33">Print the tree of a given reference</a>
+            <a href="#toc_h4_33">Print the tree of a given reference</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_34">Find the first tag that contains a reference</a>
+            <a href="#toc_h4_34">Find the first tag that contains a reference</a>
         </li>
 </ul>        </div>
-<div class="comment">
-    <div class="comment__wrapper wrapper">
-        <div class="comment__title">
-            评论
-        </div>
-        <textarea rows="3" placeholder="评论内容只能为 2 到 500 个字符！" id="comment"></textarea>
-
-        <ul id="comments">
-        </ul>
-    </div>
-</div>
+        <div id="b3logsolocomments"></div>
+        <div id="vcomment" class="comment__wrapper wrapper" style="margin: 40px auto" data-name="ellenbboe" data-postId="1561009670812"></div>
     <div class="article__bottom">
         <div class="wrapper">
             <div class="fn__flex">
@@ -1032,6 +1096,7 @@ v1.6.1
 <footer class="footer">
     <div class="wrapper fn__clear">
         <div class="fn__left">
+            <br>
             &copy; 2020
             <a href="https://ellenbboe.github.io">Kosmos</a>
             <a href="http://www.beian.miit.gov.cn/">浙ICP备18045840号-1</a>--------Let's move on
@@ -1060,12 +1125,23 @@ show_date_time();
 <style>
 #momk{animation:change 10s infinite;font-weight:800; }
 @keyframes change{0%{color:#5cb85c;}25%{color:#556bd8;}50%{color:#e40707;}75%{color:#66e616;}100% {color:#67bd31;}}
-</style> &nbsp;•&nbsp;
-            Powered by <a href="https://solo.b3log.org" target="_blank">Solo</a>
-            <br>
-            Theme Casper
-            <sup>[<a href="https://github.com/TryGhost/Casper" target="_blank">ref</a>]</sup>
-            by <a href="http://vanessa.b3log.org" target="_blank">Vanessa</a>
+</style>
+<script type="text/javascript">
+    /*自动刷新页面，避免无法访问*/
+    var OriginTitile = document.title;
+    var titleTime;
+    document.addEventListener('visibilitychange', function () {
+        if (document.hidden) {
+            document.title = '(〃´-ω･)  休息一下';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '起来嗨٩(๑❛ᴗ❛๑)۶';
+            titleTime = setTimeout(function () {
+                document.title = OriginTitile;
+            }, 3000);
+        }
+    });
+</script>
         </div>
         <div class="fn__right">
             <a href="https://ellenbboe.github.io/tags.html" rel="section">
@@ -1080,36 +1156,32 @@ show_date_time();
             友情链接
             </a>
             <br>
-            115 文章 &nbsp;
-            9 评论 &nbsp;
+            121 文章 &nbsp;
             <span data-uvstaturl="https://ellenbboe.github.io">11608</span> 浏览 &nbsp;
-            3 当前访客
+            
         </div>
     </div>
 </footer>
 
-<script type="text/javascript" src="https://ellenbboe.github.io/js/lib/compress/pjax.min.js" charset="utf-8"></script>
-<script type="text/javascript" src="https://ellenbboe.github.io/js/common.min.js?1578931371974"
-        charset="utf-8"></script>
-<script type="text/javascript"
-        src="https://ellenbboe.github.io/skins/Casper/js/common.min.js?1578931371974"
-        charset="utf-8"></script>
-<script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.4/dist/index.min.js"></script>
 <script>
-    var Label = {
-        servePath: "https://ellenbboe.github.io",
-        staticServePath: "https://ellenbboe.github.io",
-        luteAvailable: false,
-        hljsStyle: 'colorful',
-        langLabel: "zh_CN",
-        version: "3.7.0",
-    }
-    Util.init()
+  var Label = {
+    servePath: "https://ellenbboe.github.io",
+    staticServePath: "https://ellenbboe.github.io",
+    luteAvailable: false,
+    hljsStyle: 'colorful',
+    langLabel: "zh_CN",
+    version: "4.1.0",
+    staticSite: true,
+    showCodeBlockLn: false,
+  }
 </script>
+<script type="text/javascript"
+        src="https://ellenbboe.github.io/skins/Casper/js/common.min.js?1591150301084"
+        charset="utf-8"></script>
 
 
 <script type="text/javascript">
-    Util.addScript('https://ellenbboe.github.io/js/page.min.js?1578931371974', 'soloPageScript')
+    Util.addScript('https://ellenbboe.github.io/js/page.min.js?1591150301084', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1561009670812",
@@ -1127,4 +1199,4 @@ show_date_time();
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 42ms, 2020/01/14 13:32:40 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 56ms, 2020/06/03 12:32:31 -->

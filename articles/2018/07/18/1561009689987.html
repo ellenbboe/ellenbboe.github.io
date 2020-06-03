@@ -2,31 +2,104 @@
 <html>
 <head>
 <meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>Linux For Scratch Pass 4 - Kosmos</title><meta name="description" content="安装基本系统软件过程(重点过程) 部分在中文版中没有,取自英文版 Linux-4.15.3 API Headers Linux API 头文件（在 linux-3.19.tar.xz 里）会将内核 API 导出给 Glibc 使用。 Linux 内核需要提供一个应用编程接口（API）供系统的 C 库（LFS 中的 Glibc）调用。这通过整理 Linux 内核源码包中的多个 C 头文件来完成。 确保在之前的动作里没有留下旧文件和依赖关系： make mrproper 现在要从源代码里解压出用户需要的内核头文件。因为解压过程会删除目标目录下所有文件，所以我们会先输出到一个本地中间目录后再拷贝到需要的地方。而且里面还有一些隐藏文件是给内核开发人员用的，而 LFS 不需要，所以会将它们从中间目录里删除。 make INSTALL_HDR_PATH=dest headers_install find dest/include ( -name .install -o -name ..install.cmd ) -delete cp -rv dest/include/* /usr/includ...."/><meta property="og:description" content="安装基本系统软件过程(重点过程) 部分在中文版中没有,取自英文版 Linux-4.15.3 API Headers Linux API 头文件（在 linux-3.19.tar.xz 里）会将内核 API 导出给 Glibc 使用。 Linux 内核需要提供一个应用编程接口（API）供系统的 C 库（LFS 中的 Glibc）调用。这通过整理 Linux 内核源码包中的多个 C 头文件来完成。 确保在之前的动作里没有留下旧文件和依赖关系： make mrproper 现在要从源代码里解压出用户需要的内核头文件。因为解压过程会删除目标目录下所有文件，所以我们会先输出到一个本地中间目录后再拷贝到需要的地方。而且里面还有一些隐藏文件是给内核开发人员用的，而 LFS 不需要，所以会将它们从中间目录里删除。 make INSTALL_HDR_PATH=dest headers_install find dest/include ( -name .install -o -name ..install.cmd ) -delete cp -rv dest/include/* /usr/includ...."/>    <meta name="keywords" content="开源,开发者,笔记,kosmos"/><link rel="dns-prefetch" href="https://ellenbboe.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://ellenbboe.github.io"><link rel="icon" type="image/png" href="https://s2.ax1x.com/2020/01/12/loApPe.png"/><link rel="apple-touch-icon" href="https://s2.ax1x.com/2020/01/12/loApPe.png"><link rel="shortcut icon" type="image/x-icon" href="https://s2.ax1x.com/2020/01/12/loApPe.png"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="Linux For Scratch Pass 4 - Kosmos"/><meta property="og:site_name" content="Kosmos"/><meta property="og:url"      content="https://ellenbboe.github.io/articles/2018/07/18/1561009689987.html?"/><meta property="og:image" content="https://s2.ax1x.com/2020/01/12/loApPe.png"/><link rel="search" type="application/opensearchdescription+xml" title="Linux For Scratch Pass 4 - Kosmos" href="/opensearch.xml"><link href="https://ellenbboe.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://ellenbboe.github.io/manifest.json">        <link rel="canonical" href="https://ellenbboe.github.io/articles/2018/07/18/1561009689987.html">        <link rel="stylesheet"
-              href="https://ellenbboe.github.io/skins/Casper/css/base.css?1578931371974"/>
+              href="https://ellenbboe.github.io/skins/Casper/css/base.css?1591150301084"/>
             <link rel="prev" title="迷时" href="https://ellenbboe.github.io/articles/2018/07/17/1561009685768.html">
             <link rel="next" title="2018-07-18 lfs编译日志" href="https://ellenbboe.github.io/articles/2018/07/18/1561009685311.html">
-    </head>
+    <script>
+onload = function() {
+    var click_cnt = 0;
+    var $html = document.getElementsByTagName("html")[0];
+    var $body = document.getElementsByTagName("body")[0];
+    $html.onclick = function(e) {
+        var $elem = document.createElement("b");
+        $elem.style.color = "#E94F06";
+        $elem.style.zIndex = 9999;
+        $elem.style.position = "absolute";
+        $elem.style.select = "none";
+        var x = e.pageX;
+        var y = e.pageY;
+        $elem.style.left = (x - 10) + "px";
+        $elem.style.top = (y - 20) + "px";
+        clearInterval(anim);
+        switch (++click_cnt) {
+            case 10:
+                $elem.innerText = "OωO";
+                break;
+            case 20:
+                $elem.innerText = "(๑•́ ∀ •̀๑)";
+                break;
+            case 30:
+                $elem.innerText = "(๑•́ ₃ •̀๑)";
+                break;
+            case 40:
+                $elem.innerText = "(๑•̀_•́๑)";
+                break;
+            case 50:
+                $elem.innerText = "（￣へ￣）";
+                break;
+            case 60:
+                $elem.innerText = "(╯°口°)╯(┴—┴";
+                break;
+            case 70:
+                $elem.innerText = "૮( ᵒ̌皿ᵒ̌ )ა";
+                break;
+            case 80:
+                $elem.innerText = "╮(｡>口<｡)╭";
+                break;
+            case 90:
+                $elem.innerText = "( ง ᵒ̌皿ᵒ̌)ง⁼³₌₃";
+                break;
+            case 100:
+            case 101:
+            case 102:
+            case 103:
+            case 104:
+            case 105:
+                $elem.innerText = "(ꐦ°᷄д°᷅)";
+                break;
+            default:
+                $elem.innerText = "❤";
+                break;
+        }
+        $elem.style.fontSize = Math.random() * 10 + 8 + "px";
+        var increase = 0;
+        var anim;
+        setTimeout(function() {
+            anim = setInterval(function() {
+                if (++increase == 150) {
+                    clearInterval(anim);
+                    $body.removeChild($elem);
+                }
+                $elem.style.top = y - 20 - increase + "px";
+                $elem.style.opacity = (150 - increase) / 120;
+            }, 8);
+        }, 70);
+        $body.appendChild($elem);
+    };
+};
+</script>
+</head>
 <body class="fn__flex-column">
 <div id="pjax" class="fn__flex-1">
     
     <header class="header header--article">
         <div class="wrapper header__title">
             <h1 class="header__h1 fn__flex-inline">
-                <img src="https://s2.ax1x.com/2020/01/12/loApPe.png">
+                <img src="https://s2.ax1x.com/2020/01/12/loApPe.png" alt="Kosmos">
                 <a href="https://ellenbboe.github.io" rel="start" class="header__title">Kosmos</a>
             </h1>
-            <h2 class="header__h2">---就算是痛苦难受，也要去体会那被称为生存的分量---</h2>
+            <h2 class="header__h2">---我们总得选择一条路去前行---</h2>
         </div>
         <nav class="wrapper header__nav fn__clear">
             <a href="https://ellenbboe.github.io" rel="start">
                     Kosmos
             </a>
 
-                <a class="fn__flex-inline" href="/my-github-repos" target="_self" rel="section">
-                    <img src="/images/github-icon.png"> 我的开源
+                <a class="fn__flex-inline" href="https://github.com/ellenbboe" target="_self" rel="section">
+                    <img src="https://s2.ax1x.com/2020/01/16/ljWMPP.png" alt="我的GIT"> 我的GIT
                 </a>
                 <a class="fn__flex-inline" href="/readlist" target="_self" rel="section">
-                     阅读列表
+                    <img src="https://s2.ax1x.com/2020/01/16/ljWPC6.png" alt="阅读列表"> 阅读列表
                 </a>
 
 
@@ -111,9 +184,9 @@
         <div class="item__cover" style="background-image: url(https://img.hacpai.com/bing/20190413.jpg?imageView2/1/w/1280/h/720/interlace/1/q/100)"></div>
         <div class="wrapper">
             <section class="item__content item__content--article vditor-reset">
-                <p></p><h3 id="b3_solo_h3_0">安装基本系统软件过程(重点过程)</h3>
+                <h3 id="toc_h3_0">安装基本系统软件过程(重点过程)</h3>
 <p>部分在中文版中没有,取自英文版</p>
-<h4 id="b3_solo_h4_1">Linux-4.15.3 API Headers</h4>
+<h4 id="toc_h4_1">Linux-4.15.3 API Headers</h4>
 <p>Linux API 头文件（在 linux-3.19.tar.xz 里）会将内核 API 导出给 Glibc 使用。</p>
 <p>Linux 内核需要提供一个应用编程接口（API）供系统的 C 库（LFS 中的 Glibc）调用。这通过整理 Linux 内核源码包中的多个 C 头文件来完成。</p>
 <p>确保在之前的动作里没有留下旧文件和依赖关系：<br>
@@ -123,11 +196,11 @@
 find dest/include \( -name .install -o -name ..install.cmd \) -delete
 cp -rv dest/include/* /usr/include
 </code></pre>
-<h4 id="b3_solo_h4_2">Man-pages-4.15</h4>
+<h4 id="toc_h4_2">Man-pages-4.15</h4>
 <p>Man-pages 软件包里包含了超过 2,200 份 man 手册页面。</p>
 <p>Install Man-pages by running:<br>
 <code>make install</code></p>
-<h4 id="b3_solo_h4_3">Glibc-2.21</h4>
+<h4 id="toc_h4_3">Glibc-2.21</h4>
 <p>Glibc 软件包包含了主要的 C 函数库。这个库提供了分配内存、搜索目录、打开关闭文件、读写文件、操作字符串、模式匹配、基础算法等基本程序。<br>
 <strong>注意</strong><br>
 有些 LFS 之外的软件包会建议安装 <code>GNU libiconv</code> 来转换不同编码的文字。根据项目主页（<a href="http://www.gnu.org/software/libiconv/" target="_blank">http://www.gnu.org/software/libiconv/</a> ）上的说法“这个库会提供函数 <code>iconv()</code> 的实现，应用于那些没有这个函数的系统，或者函数实现中不支持 <code>Unicode</code> 转换的系统。” <code>Glibc</code> 提供了函数 <code>iconv()</code> 的实现而且支持 <code>Unicode</code> 转换，所以对于 LFS 系统来说并不需要 <code>libiconv</code> 库。</p>
@@ -172,7 +245,7 @@ This variable sets the correct library for all systems. We do not want lib64 to 
 <p>Install the configuration file and runtime directory for nscd:</p>
 <p><code>cp -v ../nscd/nscd.conf /etc/nscd.conf</code><br>
 <code>mkdir -pv /var/cache/nscd</code></p>
-<h5 id="b3_solo_h5_4">安装语言环境</h5>
+<h5 id="toc_h5_4">安装语言环境</h5>
 <p>上面的命令并没有安装可以让你的电脑用不同语言响应的语言环境。语言环境并不是必须的，只是如果有些语言环境缺失，后续的测试套件可能会跳过一些重要测试用例。</p>
 <p>单独的语言环境可以用 <code>localedef</code> 程序安装。例如，下面第一个 <code>localedef</code> 命令将 <code>/usr/share/i18n/locales/cs_CZ</code> 字符无关的语言环境定义和 <code>/usr/share/i18n/charmaps/UTF-8.gz</code> 字符表定义组合在一起，并将结果附加到 <code>/usr/lib/locale/locale-archive</code> 文件末尾。下面的命令将安装能完美覆盖测试所需语言环境的最小集合：</p>
 <pre><code>mkdir -pv /usr/lib/locale
@@ -202,7 +275,7 @@ localedef -i zh_CN -f GB18030 zh_CN.GB18030
 <p>或者，也可以一次性安装在 <code>glibc-2.21/localedata/SUPPORTED</code> 文件里列出的所有语言环境（包括以上列出的所有语言环境以及其它更多），执行下面这个非常耗时的命令：<br>
 <code>make localedata/install-locales</code><br>
 你需要的语言环境几乎不大可能没列在 <code>glibc-2.21/localedata/SUPPORTED</code> 文件中，但如果真的没有可以使用 <code>localedef</code> 命令创建和安装。</p>
-<h5 id="b3_solo_h5_5">配置 Glibc</h5>
+<h5 id="toc_h5_5">配置 Glibc</h5>
 <p>尽管 <code>Glibc</code> 在文件 <code>/etc/nsswitch.conf</code> 丢失或损坏的情况下会创建一个默认的，但是我们需要手动该创建文件，因为 <code>Glibc</code> 的默认文件在网络环境下工作时有问题。另外，也需要设置一下时区。</p>
 <p>运行下面的命令创建一个新文件 <code>/etc/nsswitch.conf</code>：</p>
 <pre><code>cat &gt; /etc/nsswitch.conf &lt;&lt; "EOF"
@@ -252,7 +325,7 @@ unset ZONEINFO
 <code>ln -sfv /usr/share/zoneinfo/&lt;xxx&gt; /etc/localtime</code><br>
 将命令中的 <xxx> 替换成你所在实际时区的名字（比如 Canada/Eastern）。<br>
 我的是 <code>Asia/Shanghai</code>.</xxx></p>
-<h5 id="b3_solo_h5_6">配置动态库加载器</h5>
+<h5 id="toc_h5_6">配置动态库加载器</h5>
 <p>默认情况下，动态库加载器（<code>/lib/ld-linux.so.2</code>）会搜索目录 <code>/lib</code> 和 <code>/usr/lib</code> 查找程序运行时所需的动态库文件。不过，如果库文件不在 <code>/lib</code> 和 <code>/usr/lib</code> 目录下，需要把它所在目录加到 <code>/etc/ld.so.conf</code> 文件里，保证动态库加载器能找到这些库。通常有两个目录包含额外的动态库，<code>/usr/local/lib</code> 和 <code>/opt/lib</code>，把这两个目录加到动态库加载器的搜索路径中。</p>
 <p>运行下面的命令创建一个新文件<code>/etc/ld.so.conf</code>：</p>
 <pre><code>cat &gt; /etc/ld.so.conf &lt;&lt; "EOF"
@@ -271,7 +344,7 @@ EOF
 
 mkdir -pv /etc/ld.so.conf.d
 </code></pre>
-<h4 id="b3_solo_h4_7">调整工具链(测试)</h4>
+<h4 id="toc_h4_7">调整工具链(测试)</h4>
 <p>现在最后的 C 语言库已经装好了，是时候调整工具链，让新编译的程序链接到这些新的库上。</p>
 <p>首先,备份 /tools 链接器，然后用我们在第五章调整过的链接器代替它。我们还会创建一个链接，链接到 /tools/$(gcc -dumpmachine)/bin 的副本：</p>
 <p>mv -v /tools/bin/{ld,ld-old}<br>
@@ -322,15 +395,15 @@ SEARCH_DIR("/lib");
 <p>如果显示的结果不一样或者根本没有显示，那就出了大问题。检查并回溯之前的步骤，找到出错的地方并改正。最有可能的原因是参数文件的调整出了问题。在进行下一步之前所有的问题都要解决。<br>
 一旦所有的事情都正常了，清除测试文件：<br>
 <code>rm -v dummy.c a.out dummy.log</code></p>
-<h4 id="b3_solo_h4_8">Zlib-1.2.11</h4>
+<h4 id="toc_h4_8">Zlib-1.2.11</h4>
 <p>Zlib 软件包包括一些程序所使用的压缩和解压缩例程。</p>
 <p>共享库需要移动到 /lib，因此需要重建 /usr/lib 里面的 .so 文件：</p>
 <pre><code>mv -v /usr/lib/libz.so.* /lib
 ln -sfv ../../lib/$(readlink /usr/lib/libz.so) /usr/lib/libz.so
 </code></pre>
-<h4 id="b3_solo_h4_9">File-5.22</h4>
+<h4 id="toc_h4_9">File-5.22</h4>
 <p>File 软件包包括一个判断给定的某个或某些文件文件类型的工具。</p>
-<h4 id="b3_solo_h4_10">Readline-7.0</h4>
+<h4 id="toc_h4_10">Readline-7.0</h4>
 <p>Readline 软件包是一个提供命令行编辑和历史能力的一些库</p>
 <p><code>sed -i '/MV.*old/d' Makefile.in</code><br>
 <code>sed -i '/{OLDSUFF}/c:'support/shlib-install</code></p>
@@ -350,9 +423,9 @@ ln -sfv ../../lib/$(readlink /usr/lib/libhistory.so ) /usr/lib/libhistory.so
 </code></pre>
 <p>如果需要的话,安装文档:<br>
 <code>install -v -m644 doc/*.{ps,pdf,html,dvi} /usr/share/doc/readline-7.0</code></p>
-<h4 id="b3_solo_h4_11">M4-1.4.18</h4>
+<h4 id="toc_h4_11">M4-1.4.18</h4>
 <p>M4软件包包含一个宏处理器</p>
-<h4 id="b3_solo_h4_12">Bc-1.07.1</h4>
+<h4 id="toc_h4_12">Bc-1.07.1</h4>
 <p>Bc软件包用于数学处理<br>
 change an internal script to use sed instead of ed:</p>
 <pre><code>cat &gt; bc/fix-libmath_h &lt;&lt; "EOF"
@@ -383,7 +456,7 @@ ln -sfv libncurses.so.6 /usr/lib/libncurses.so
 This option tells Bc to use the <em>readline library</em> that is already installed on the system rather than <em>using its own readline version.</em></p>
 <p>To test bc, run the commands below. There is quite a bit of output, so you may want to redirect it to a file. There are a very small percentage of tests (10 of 12,144) that will indicate a round off error at the last digit.<br>
 <code>echo "quit" | ./bc/bc -l Test/checklib.b</code></p>
-<h4 id="b3_solo_h4_13">Binutils-2.25</h4>
+<h4 id="toc_h4_13">Binutils-2.25</h4>
 <p>Binutils 软件包包含一个链接器、一个汇编器、以及其它处理目标文件的工具。<br>
 验证:<br>
 <code>expect -c "spawn ls</code>"<br>
@@ -421,7 +494,7 @@ Use the installed zlib library rather than building the included version.</p>
 <code>make -k check</code><br>
 安装:<br>
 <code>make tooldir=/usr install</code></p>
-<h4 id="b3_solo_h4_14">GMP-6.1.2</h4>
+<h4 id="toc_h4_14">GMP-6.1.2</h4>
 <p>GMP 软件包包含一些数学库。这里有对任意精度数值计算很有用的函数。</p>
 <p>如果你是为 32 位的 x86 系统编译，但是你的 CPU 可以运行 64 位代码 而且 环境中你有指定的 <code>CFLAGS</code>，那么配置脚本会尝试配置为 64 位并导致失败。用下面的方式执行配置命令来避免这个问题:<br>
 <code>ABI=32 ./configure ...</code></p>
@@ -441,20 +514,20 @@ cp -v configfsf.sub   config.sub
             --disable-static \
             --docdir=/usr/share/doc/gmp-6.1.2
 </code></pre>
-<h4 id="b3_solo_h4_15">MPFR-4.0.1</h4>
+<h4 id="toc_h4_15">MPFR-4.0.1</h4>
 <p>编译:</p>
 <pre><code>./configure --prefix=/usr        \
             --disable-static     \
             --enable-thread-safe \
             --docdir=/usr/share/doc/mpfr-4.0.1
 </code></pre>
-<h4 id="b3_solo_h4_16">MPC-1.1.0</h4>
+<h4 id="toc_h4_16">MPC-1.1.0</h4>
 <p>编译:</p>
 <pre><code>./configure --prefix=/usr    \
             --disable-static \
             --docdir=/usr/share/doc/mpc-1.1.0
 </code></pre>
-<h4 id="b3_solo_h4_17">GCC-7.3.0</h4>
+<h4 id="toc_h4_17">GCC-7.3.0</h4>
 <p>If building on x86_64, change the default directory name for 64-bit libraries to “lib”:</p>
 <pre><code>case $(uname -m) in
   x86_64)
@@ -500,7 +573,7 @@ ln -sfv ../../libexec/gcc/$(gcc -dumpmachine)/7.3.0/liblto_plugin.so \
 <pre><code>mkdir -pv /usr/share/gdb/auto-load/usr/lib
 mv -v /usr/lib/*gdb.py /usr/share/gdb/auto-load/usr/lib
 </code></pre>
-<h4 id="b3_solo_h4_18">Bzip2-1.0.6</h4>
+<h4 id="toc_h4_18">Bzip2-1.0.6</h4>
 <p><code>Bzip2</code> 软件包包含压缩和解压缩的程序。用 <code>bzip2</code> 压缩文本文件能获得比传统的 <code>gzip</code> 更好的压缩比。<br>
 使用能为这个软件包安装帮助文档的补丁：<br>
 <code>patch -Np1 -i ../bzip2-1.0.6-install_docs-1.patch</code></p>
@@ -522,7 +595,7 @@ rm -v /usr/bin/{bunzip2,bzcat,bzip2}
 ln -sv bzip2 /bin/bunzip2
 ln -sv bzip2 /bin/bzcat
 </code></pre>
-<h4 id="b3_solo_h4_19">Pkg-config-0.29.2</h4>
+<h4 id="toc_h4_19">Pkg-config-0.29.2</h4>
 <p>pkg-config 软件包包含一个在配置和 make 文件运行时把 include 路径和库路径传递给编译工具的工具。</p>
 <pre><code>./configure --prefix=/usr              \
             --with-internal-glib       \
@@ -533,7 +606,7 @@ ln -sv bzip2 /bin/bzcat
 这会让 pkg-config 使用它自己内部版本的 Glib，因为在 LFS 中没有可用的外部版本。</p>
 <p><code>--disable-host-tool</code><br>
 这个选项取消创建到 pkg-config 程序的不必要的硬链接。</p>
-<h4 id="b3_solo_h4_20">Ncurses-6.1</h4>
+<h4 id="toc_h4_20">Ncurses-6.1</h4>
 <p>Ncurses 软件包包含用于不依赖于特定终端的字符屏幕处理的库。<br>
 Don't install a static library that is not handled by configure:<br>
 <code>sed -i '/LIBTOOL_INSTALL/d' c++/Makefile.in</code></p>
@@ -580,7 +653,7 @@ ln -sfv libncurses.so      /usr/lib/libcurses.so
 make sources libs
 cp -av lib/lib*.so.5* /usr/lib
 </code></pre>
-<h4 id="b3_solo_h4_21">Attr-2.4.47</h4>
+<h4 id="toc_h4_21">Attr-2.4.47</h4>
 <p>attr 软件包包含管理文件系统对象的扩展属性的工具。<br>
 Modify the documentation directory so that it is a versioned directory:<br>
 <code>sed -i -e 's|/@pkg_name@|&amp;-@pkg_version@|' include/builddefs.in</code></p>
@@ -596,7 +669,7 @@ Modify the documentation directory so that it is a versioned directory:<br>
 <p>The shared library needs to be moved to /lib, and as a result the .so file in /usr/lib will need to be recreated:<br>
 <code>mv -v /usr/lib/libattr.so.* /lib</code><br>
 <code>ln -sfv ../../lib/$(readlink /usr/lib/libattr.so) /usr/lib/libattr.so</code></p>
-<h4 id="b3_solo_h4_22">Acl-2.2.52</h4>
+<h4 id="toc_h4_22">Acl-2.2.52</h4>
 <p>Modify the documentation directory so that it is a versioned directory:</p>
 <p><code>sed -i -e 's|/@pkg_name@|&amp;-@pkg_version@|' include/builddefs.in</code><br>
 Fix some broken tests:</p>
@@ -690,7 +763,6 @@ The meaning of the configure option:
 `passwd root`
 
 #### (由于构建文档太长,此篇到此结束,还有50多个工具的编译过程没有记录,主要还是要看构建文档)</code></pre>
-<p></p>
                     <div>
                         <hr>
 <img alt="今日诗词" src="https://v2.jinrishici.com/one.svg" style="max-width:100%; display: block; margin: 0 auto;">
@@ -700,6 +772,7 @@ The meaning of the configure option:
 地址：<a href="https://ellenbboe.github.io/articles/2018/07/18/1561009689987.html" target="_blank">https://ellenbboe.github.io/articles/2018/07/18/1561009689987.html</a><br>
 <!-- 签名档内可使用 HTML、JavaScript -->
 <br>
+
                     </div>
             </section>
         </div>
@@ -707,86 +780,77 @@ The meaning of the configure option:
         <div class="post__toc">
 <ul class="article__toc">
         <li class="toc__h3">
-            <a href="#b3_solo_h3_0">安装基本系统软件过程(重点过程)</a>
+            <a href="#toc_h3_0">安装基本系统软件过程(重点过程)</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_1">Linux-4.15.3 API Headers</a>
+            <a href="#toc_h4_1">Linux-4.15.3 API Headers</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_2">Man-pages-4.15</a>
+            <a href="#toc_h4_2">Man-pages-4.15</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_3">Glibc-2.21</a>
+            <a href="#toc_h4_3">Glibc-2.21</a>
         </li>
         <li class="toc__h5">
-            <a href="#b3_solo_h5_4">安装语言环境</a>
+            <a href="#toc_h5_4">安装语言环境</a>
         </li>
         <li class="toc__h5">
-            <a href="#b3_solo_h5_5">配置 Glibc</a>
+            <a href="#toc_h5_5">配置 Glibc</a>
         </li>
         <li class="toc__h5">
-            <a href="#b3_solo_h5_6">配置动态库加载器</a>
+            <a href="#toc_h5_6">配置动态库加载器</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_7">调整工具链(测试)</a>
+            <a href="#toc_h4_7">调整工具链(测试)</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_8">Zlib-1.2.11</a>
+            <a href="#toc_h4_8">Zlib-1.2.11</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_9">File-5.22</a>
+            <a href="#toc_h4_9">File-5.22</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_10">Readline-7.0</a>
+            <a href="#toc_h4_10">Readline-7.0</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_11">M4-1.4.18</a>
+            <a href="#toc_h4_11">M4-1.4.18</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_12">Bc-1.07.1</a>
+            <a href="#toc_h4_12">Bc-1.07.1</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_13">Binutils-2.25</a>
+            <a href="#toc_h4_13">Binutils-2.25</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_14">GMP-6.1.2</a>
+            <a href="#toc_h4_14">GMP-6.1.2</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_15">MPFR-4.0.1</a>
+            <a href="#toc_h4_15">MPFR-4.0.1</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_16">MPC-1.1.0</a>
+            <a href="#toc_h4_16">MPC-1.1.0</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_17">GCC-7.3.0</a>
+            <a href="#toc_h4_17">GCC-7.3.0</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_18">Bzip2-1.0.6</a>
+            <a href="#toc_h4_18">Bzip2-1.0.6</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_19">Pkg-config-0.29.2</a>
+            <a href="#toc_h4_19">Pkg-config-0.29.2</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_20">Ncurses-6.1</a>
+            <a href="#toc_h4_20">Ncurses-6.1</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_21">Attr-2.4.47</a>
+            <a href="#toc_h4_21">Attr-2.4.47</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_22">Acl-2.2.52</a>
+            <a href="#toc_h4_22">Acl-2.2.52</a>
         </li>
 </ul>        </div>
-<div class="comment">
-    <div class="comment__wrapper wrapper">
-        <div class="comment__title">
-            评论
-        </div>
-        <textarea rows="3" placeholder="评论内容只能为 2 到 500 个字符！" id="comment"></textarea>
-
-        <ul id="comments">
-        </ul>
-    </div>
-</div>
+        <div id="b3logsolocomments"></div>
+        <div id="vcomment" class="comment__wrapper wrapper" style="margin: 40px auto" data-name="ellenbboe" data-postId="1561009689987"></div>
     <div class="article__bottom">
         <div class="wrapper">
             <div class="fn__flex">
@@ -800,6 +864,7 @@ The meaning of the configure option:
 <footer class="footer">
     <div class="wrapper fn__clear">
         <div class="fn__left">
+            <br>
             &copy; 2020
             <a href="https://ellenbboe.github.io">Kosmos</a>
             <a href="http://www.beian.miit.gov.cn/">浙ICP备18045840号-1</a>--------Let's move on
@@ -828,12 +893,23 @@ show_date_time();
 <style>
 #momk{animation:change 10s infinite;font-weight:800; }
 @keyframes change{0%{color:#5cb85c;}25%{color:#556bd8;}50%{color:#e40707;}75%{color:#66e616;}100% {color:#67bd31;}}
-</style> &nbsp;•&nbsp;
-            Powered by <a href="https://solo.b3log.org" target="_blank">Solo</a>
-            <br>
-            Theme Casper
-            <sup>[<a href="https://github.com/TryGhost/Casper" target="_blank">ref</a>]</sup>
-            by <a href="http://vanessa.b3log.org" target="_blank">Vanessa</a>
+</style>
+<script type="text/javascript">
+    /*自动刷新页面，避免无法访问*/
+    var OriginTitile = document.title;
+    var titleTime;
+    document.addEventListener('visibilitychange', function () {
+        if (document.hidden) {
+            document.title = '(〃´-ω･)  休息一下';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '起来嗨٩(๑❛ᴗ❛๑)۶';
+            titleTime = setTimeout(function () {
+                document.title = OriginTitile;
+            }, 3000);
+        }
+    });
+</script>
         </div>
         <div class="fn__right">
             <a href="https://ellenbboe.github.io/tags.html" rel="section">
@@ -848,36 +924,32 @@ show_date_time();
             友情链接
             </a>
             <br>
-            115 文章 &nbsp;
-            9 评论 &nbsp;
+            121 文章 &nbsp;
             <span data-uvstaturl="https://ellenbboe.github.io">11608</span> 浏览 &nbsp;
-            3 当前访客
+            
         </div>
     </div>
 </footer>
 
-<script type="text/javascript" src="https://ellenbboe.github.io/js/lib/compress/pjax.min.js" charset="utf-8"></script>
-<script type="text/javascript" src="https://ellenbboe.github.io/js/common.min.js?1578931371974"
-        charset="utf-8"></script>
-<script type="text/javascript"
-        src="https://ellenbboe.github.io/skins/Casper/js/common.min.js?1578931371974"
-        charset="utf-8"></script>
-<script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.4/dist/index.min.js"></script>
 <script>
-    var Label = {
-        servePath: "https://ellenbboe.github.io",
-        staticServePath: "https://ellenbboe.github.io",
-        luteAvailable: false,
-        hljsStyle: 'colorful',
-        langLabel: "zh_CN",
-        version: "3.7.0",
-    }
-    Util.init()
+  var Label = {
+    servePath: "https://ellenbboe.github.io",
+    staticServePath: "https://ellenbboe.github.io",
+    luteAvailable: false,
+    hljsStyle: 'colorful',
+    langLabel: "zh_CN",
+    version: "4.1.0",
+    staticSite: true,
+    showCodeBlockLn: false,
+  }
 </script>
+<script type="text/javascript"
+        src="https://ellenbboe.github.io/skins/Casper/js/common.min.js?1591150301084"
+        charset="utf-8"></script>
 
 
 <script type="text/javascript">
-    Util.addScript('https://ellenbboe.github.io/js/page.min.js?1578931371974', 'soloPageScript')
+    Util.addScript('https://ellenbboe.github.io/js/page.min.js?1591150301084', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1561009689987",
@@ -895,4 +967,4 @@ show_date_time();
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 47ms, 2020/01/14 13:32:41 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 52ms, 2020/06/03 12:32:32 -->

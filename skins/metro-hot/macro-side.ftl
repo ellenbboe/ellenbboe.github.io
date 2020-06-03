@@ -3,18 +3,12 @@
     Solo - A small and beautiful blogging system written in Java.
     Copyright (c) 2010-present, b3log.org
 
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU Affero General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU Affero General Public License for more details.
-
-    You should have received a copy of the GNU Affero General Public License
-    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+    Solo is licensed under Mulan PSL v2.
+    You can use this software according to the terms and conditions of the Mulan PSL v2.
+    You may obtain a copy of Mulan PSL v2 at:
+            http://license.coscl.org.cn/MulanPSL2
+    THIS SOFTWARE IS PROVIDED ON AN "AS IS" BASIS, WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO NON-INFRINGEMENT, MERCHANTABILITY OR FIT FOR A PARTICULAR PURPOSE.
+    See the Mulan PSL v2 for more details.
 
 -->
 <#macro side isArticle>
@@ -44,9 +38,8 @@
                         <span data-uvstaturl="${servePath}">${statistic.statisticBlogViewCount}</span><br/>
                         ${articleCount1Label}
                         ${statistic.statisticPublishedBlogArticleCount}<br/>
-                        <#if commentable>
-                            ${commentCount1Label}
-                            ${statistic.statisticPublishedBlogCommentCount}<br/>
+                        <#if !staticSite>
+                        ${onlineVisitor1Label}${onlineVisitorCnt}
                         </#if>
                     </div>
                 </div>
@@ -73,31 +66,8 @@
             </a>
 
             <#if isArticle>
-                <div class="share side-tile">
-                    <span data-ico="&#xe1fe;"></span>
-                    <div class="title">
-                        ${shareLabel}
-                    </div>
-                    <div class="text">
-                        <#if article??>
-                            <span class="icon-wechat"
-                                  data-type="wechat"
-                                  data-title="${article.articleTitle}"
-                                  data-blogtitle="${blogTitle}"
-                                  data-url="${servePath}${article.articlePermalink}"
-                                  data-avatar="${article.authorThumbnailURL}">微信</span>
-                        <#else>
-                            <span class="icon-wechat"
-                                  data-type="wechat"
-                                  data-title="${page.pageTitle}"
-                                  data-blogtitle="${blogTitle}"
-                                  data-url="${servePath}${page.pagePermalink}"
-                                  data-avatar="${adminUser.userAvatar}">微信</span>
-                        </#if>
-                        <span data-type="weibo">微博</span>
-                        <span data-type="twitter">Twitter</span>
-                        <span data-type="qqz">QQ</span>
-                    </div>
+                <div class="side-tile article-relative">
+                    <#include "../../common-template/share.ftl">
                 </div>
 
                 <#if relevantArticlesDisplayCount??>
@@ -172,7 +142,7 @@
 
             <div class="user side-tile">
             <span>
-                <img src="${faviconURL}"/>
+                <img src="${faviconURL}" alt="${blogTitle}"/>
             </span>
                 <div class="text fn-clear">
                     <#include "../../common-template/macro-user_site.ftl"/>

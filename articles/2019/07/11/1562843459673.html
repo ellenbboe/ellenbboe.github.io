@@ -2,31 +2,104 @@
 <html>
 <head>
 <meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>学习笔记|多线程和并发 - Kosmos</title><meta name="description" content="对Java的多线程知识点做一个简单的整理吧 🌜"/><meta property="og:description" content="对Java的多线程知识点做一个简单的整理吧 🌜"/>    <meta name="keywords" content="开源,开发者,笔记,kosmos"/><link rel="dns-prefetch" href="https://ellenbboe.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://ellenbboe.github.io"><link rel="icon" type="image/png" href="https://s2.ax1x.com/2020/01/12/loApPe.png"/><link rel="apple-touch-icon" href="https://s2.ax1x.com/2020/01/12/loApPe.png"><link rel="shortcut icon" type="image/x-icon" href="https://s2.ax1x.com/2020/01/12/loApPe.png"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="学习笔记|多线程和并发 - Kosmos"/><meta property="og:site_name" content="Kosmos"/><meta property="og:url"      content="https://ellenbboe.github.io/articles/2019/07/11/1562843459673.html?"/><meta property="og:image" content="https://s2.ax1x.com/2020/01/12/loApPe.png"/><link rel="search" type="application/opensearchdescription+xml" title="学习笔记|多线程和并发 - Kosmos" href="/opensearch.xml"><link href="https://ellenbboe.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://ellenbboe.github.io/manifest.json">        <link rel="canonical" href="https://ellenbboe.github.io/articles/2019/07/11/1562843459673.html">        <link rel="stylesheet"
-              href="https://ellenbboe.github.io/skins/Casper/css/base.css?1578931371974"/>
+              href="https://ellenbboe.github.io/skins/Casper/css/base.css?1591150301084"/>
             <link rel="prev" title="学习笔记|理解Java虚拟机" href="https://ellenbboe.github.io/articles/2019/07/08/1562573236143.html">
             <link rel="next" title="学习笔记|HashMap和ConcurrentHashMap" href="https://ellenbboe.github.io/articles/2019/07/23/1563870255078.html">
-    </head>
+    <script>
+onload = function() {
+    var click_cnt = 0;
+    var $html = document.getElementsByTagName("html")[0];
+    var $body = document.getElementsByTagName("body")[0];
+    $html.onclick = function(e) {
+        var $elem = document.createElement("b");
+        $elem.style.color = "#E94F06";
+        $elem.style.zIndex = 9999;
+        $elem.style.position = "absolute";
+        $elem.style.select = "none";
+        var x = e.pageX;
+        var y = e.pageY;
+        $elem.style.left = (x - 10) + "px";
+        $elem.style.top = (y - 20) + "px";
+        clearInterval(anim);
+        switch (++click_cnt) {
+            case 10:
+                $elem.innerText = "OωO";
+                break;
+            case 20:
+                $elem.innerText = "(๑•́ ∀ •̀๑)";
+                break;
+            case 30:
+                $elem.innerText = "(๑•́ ₃ •̀๑)";
+                break;
+            case 40:
+                $elem.innerText = "(๑•̀_•́๑)";
+                break;
+            case 50:
+                $elem.innerText = "（￣へ￣）";
+                break;
+            case 60:
+                $elem.innerText = "(╯°口°)╯(┴—┴";
+                break;
+            case 70:
+                $elem.innerText = "૮( ᵒ̌皿ᵒ̌ )ა";
+                break;
+            case 80:
+                $elem.innerText = "╮(｡>口<｡)╭";
+                break;
+            case 90:
+                $elem.innerText = "( ง ᵒ̌皿ᵒ̌)ง⁼³₌₃";
+                break;
+            case 100:
+            case 101:
+            case 102:
+            case 103:
+            case 104:
+            case 105:
+                $elem.innerText = "(ꐦ°᷄д°᷅)";
+                break;
+            default:
+                $elem.innerText = "❤";
+                break;
+        }
+        $elem.style.fontSize = Math.random() * 10 + 8 + "px";
+        var increase = 0;
+        var anim;
+        setTimeout(function() {
+            anim = setInterval(function() {
+                if (++increase == 150) {
+                    clearInterval(anim);
+                    $body.removeChild($elem);
+                }
+                $elem.style.top = y - 20 - increase + "px";
+                $elem.style.opacity = (150 - increase) / 120;
+            }, 8);
+        }, 70);
+        $body.appendChild($elem);
+    };
+};
+</script>
+</head>
 <body class="fn__flex-column">
 <div id="pjax" class="fn__flex-1">
     
     <header class="header header--article">
         <div class="wrapper header__title">
             <h1 class="header__h1 fn__flex-inline">
-                <img src="https://s2.ax1x.com/2020/01/12/loApPe.png">
+                <img src="https://s2.ax1x.com/2020/01/12/loApPe.png" alt="Kosmos">
                 <a href="https://ellenbboe.github.io" rel="start" class="header__title">Kosmos</a>
             </h1>
-            <h2 class="header__h2">---就算是痛苦难受，也要去体会那被称为生存的分量---</h2>
+            <h2 class="header__h2">---我们总得选择一条路去前行---</h2>
         </div>
         <nav class="wrapper header__nav fn__clear">
             <a href="https://ellenbboe.github.io" rel="start">
                     Kosmos
             </a>
 
-                <a class="fn__flex-inline" href="/my-github-repos" target="_self" rel="section">
-                    <img src="/images/github-icon.png"> 我的开源
+                <a class="fn__flex-inline" href="https://github.com/ellenbboe" target="_self" rel="section">
+                    <img src="https://s2.ax1x.com/2020/01/16/ljWMPP.png" alt="我的GIT"> 我的GIT
                 </a>
                 <a class="fn__flex-inline" href="/readlist" target="_self" rel="section">
-                     阅读列表
+                    <img src="https://s2.ax1x.com/2020/01/16/ljWPC6.png" alt="阅读列表"> 阅读列表
                 </a>
 
 
@@ -115,43 +188,43 @@
         <div class="item__cover" style="background-image: url(https://img.hacpai.com/bing/20180813.jpg?imageView2/1/w/1280/h/720/interlace/1/q/100)"></div>
         <div class="wrapper">
             <section class="item__content item__content--article vditor-reset">
-                <p></p><h4 id="b3_solo_h4_0">并发和并行</h4>
+                <h4 id="toc_h4_0">并发和并行</h4>
 <p>并发:交替着做事<br>
 并行:一同做事</p>
-<h4 id="b3_solo_h4_1">进程与线程</h4>
+<h4 id="toc_h4_1">进程与线程</h4>
 <p>进程:一个程序就是一个进程，进程是独立的<br>
 线程:线程为进程提供服务，多个线程可以共享数据空间,线程也有私有的空间</p>
-<h4 id="b3_solo_h4_2">线程的6种状态</h4>
+<h4 id="toc_h4_2">线程的6种状态</h4>
 <p>new:线程的新建<br>
 runable:分为两种 runable和running runable是没有时间片的<br>
 waiting:无限的等待状态,通过notify()或者notifyall()进行唤醒<br>
 time_waiting:定时的等待状态,时间结束后成为runable<br>
 blocked:线程被堵塞,线程没有得到对象的锁<br>
 terminated:线程终止</p>
-<h4 id="b3_solo_h4_3">线程的start和run</h4>
+<h4 id="toc_h4_3">线程的start和run</h4>
 <p>调用start方法可以使线程就绪并切换到新的线程中运行(自动调用run方法),而调用run方法还是在当前线程里</p>
-<h4 id="b3_solo_h4_4">sleep和wait的区别</h4>
+<h4 id="toc_h4_4">sleep和wait的区别</h4>
 <p>sleep方法没有释放锁,而wait方法释放了锁<br>
 sleep可以被自动唤醒,wait不加时间就一直等待<br>
 wiat()的时候调用notify()或者notifyall()会让对象从等待池中转移到锁的竞争池中<br>
 notify会唤醒随机一个等待池的线程,而notifyall会唤醒全部线程</p>
-<h4 id="b3_solo_h4_5">Thread和Runable</h4>
+<h4 id="toc_h4_5">Thread和Runable</h4>
 <p>新建Thread重写run方法就可以新建线程<br>
 通过Runable接口,可以调用Thread的构造函数新建线程</p>
-<h4 id="b3_solo_h4_6">线程的3种创建方法</h4>
+<h4 id="toc_h4_6">线程的3种创建方法</h4>
 <ol>
 <li>继承Thread类</li>
 <li>实现Runnable接口</li>
 <li>实现Callable接口</li>
 </ol>
-<h4 id="b3_solo_h4_7">死锁</h4>
+<h4 id="toc_h4_7">死锁</h4>
 <p>多个线程都在争夺同一个资源导致阻塞形成死锁,假如要避免死锁</p>
 <ol>
 <li>当线程请求不到资源的时候将线程之前的资源都释放掉</li>
 <li>让线程对资源进行顺序申请</li>
 <li>一次性申请所有资源</li>
 </ol>
-<h4 id="b3_solo_h4_8">处理线程返回值</h4>
+<h4 id="toc_h4_8">处理线程返回值</h4>
 <ol>
 <li>主线程等待着值的返回(循环查看变量的值并sleep)</li>
 <li>thread的join</li>
@@ -162,11 +235,11 @@ notify会唤醒随机一个等待池的线程,而notifyall会唤醒全部线程<
 </ol>
 </li>
 </ol>
-<h4 id="b3_solo_h4_9">yield与interrupt</h4>
+<h4 id="toc_h4_9">yield与interrupt</h4>
 <p>调用yield方法建议线程放弃调用时间片,但可能会被忽视,不会影响锁的状态<br>
 interrupt会设置线程的中断的状态,假如线程是阻塞的,就会退出阻塞状态并抛出异常,假如是正常运行的状态会设置线程的中断表示然后继续运行<br>
 中断的处理是程序自己处理的</p>
-<h4 id="b3_solo_h4_10">指令重排序</h4>
+<h4 id="toc_h4_10">指令重排序</h4>
 <p>JVM会对指令进行重新排序,确保和未排序的运行结果一样<br>
 在不改变程序的执行结果的前提下,尽可能的为编译器和处理器优化</p>
 <blockquote>
@@ -179,14 +252,14 @@ interrupt会设置线程的中断的状态,假如线程是阻塞的,就会退出
 <li>给引用赋值</li>
 </ol>
 <p>当重排序出现的时候,可能会将给引用赋值放在初始化对象前面,所以在多线程访问的时候会出现错误</p>
-<h4 id="b3_solo_h4_11">volatile关键字</h4>
+<h4 id="toc_h4_11">volatile关键字</h4>
 <p>所有对volatile变量的操作都实在内存中进行的,不会产生副本,保证了共享变量的可见性</p>
 <blockquote>
 <p>线程在对数据操作的时候,先将数据同步到自己的本地内存中,执行结束后再同步回去,这里有一个时间差,在这段时间内,线程对副本的操作对于其他线程来说是不可见的<br>
 volatile没有Synchronized的互斥性,所以i++操作并不是原子性操作<br>
 适合一写多读的场景</p>
 </blockquote>
-<h4 id="b3_solo_h4_12">Synchronized关键字</h4>
+<h4 id="toc_h4_12">Synchronized关键字</h4>
 <p>前期,Synchronized属于重量级锁,JDK1.6之后进行了优化,减少了开销<br>
 Synchronized可以对类对象(静态方法和代码锁)和实例对象(实例方法)进行加锁,确保只有一个线程对对象进行操作,保证多线程对资源访问的同步</p>
 <ol>
@@ -196,21 +269,21 @@ monitorexit:将锁的计数器设置为0</li>
 <li>ACC_SYNCHRONIZED:标识此方法是同步方法</li>
 </ol>
 <p>Sychronized在获得锁的时候会将该线程的本地内存置为无效,并从主内存读取.释放时会将本地内存刷新到主内存中</p>
-<h4 id="b3_solo_h4_13">Sychronized和ReentrantLock</h4>
+<h4 id="toc_h4_13">Sychronized和ReentrantLock</h4>
 <p>Sychronized是关键字,ReentrantLock是类,可以将锁对象化<br>
 两者都是可以重入的<br>
 Sychronized是非公平锁,ReentrantLock可以实现公平和非公平两种模式<br>
 Sychronized操作的是对象的markword,ReentrantLock操作的是park方法<br>
 Sychronized依赖JVM,ReentrantLock调用JDK的方法</p>
-<h4 id="b3_solo_h4_14">Java内存模型</h4>
+<h4 id="toc_h4_14">Java内存模型</h4>
 <p>每个线程有自己的工作内存,保存从主内存中复制的副本,属于私有空间<br>
 主内存存放共享变量</p>
-<h4 id="b3_solo_h4_15">锁的两种实现形式</h4>
+<h4 id="toc_h4_15">锁的两种实现形式</h4>
 <ol>
 <li>通过JUC包中的类</li>
 <li>使用同步代码块(Sychronized)</li>
 </ol>
-<h4 id="b3_solo_h4_16">锁的分类与状态</h4>
+<h4 id="toc_h4_16">锁的分类与状态</h4>
 <p>自旋锁:采用循环的方式获得锁<br>
 适应性自旋锁:根据上一次获得锁的时间调整时间进行循环获得锁<br>
 锁消除:当方法加了同步锁之后只有一个线程在使用,锁会被Java虚拟机自动消除<br>
@@ -220,7 +293,7 @@ Sychronized依赖JVM,ReentrantLock调用JDK的方法</p>
 重量级锁:同一时间多个线程竞争资源<br>
 乐观锁:只是简单的检查一下和期望值是否一致,不加锁<br>
 悲观锁:对每次操作都加锁进行操作</p>
-<h4 id="b3_solo_h4_17">Sychronized状态转换</h4>
+<h4 id="toc_h4_17">Sychronized状态转换</h4>
 <p>得到对象锁的过程:<br>
 线程的私有栈帧中存储对象的markword,对象的markword更新为指向线程栈帧markword的指针,然后线程栈帧中的owner指针指向对象的markword<br>
 无锁:没有加锁<br>
@@ -228,7 +301,7 @@ Sychronized依赖JVM,ReentrantLock调用JDK的方法</p>
 轻量级锁:第二个线程得到对象锁时,对象锁会变成轻量级锁,线程竞争使用CAS获得锁<br>
 重量级锁:当线程(多个)访问对象时发现对象的markword不是自己的线程栈帧,锁会膨胀为重量级锁,之后访问的线程会被堵塞,而最开始的线程会用cas自旋获得锁</p>
 <p>可以自动的升级和降级</p>
-<h4 id="b3_solo_h4_18">happens-before的八大规则</h4>
+<h4 id="toc_h4_18">happens-before的八大规则</h4>
 <ol>
 <li>程序次序规则：一个线程内，按照代码顺序，书写在前面的操作先行发生于书写在后面的操作；</li>
 <li>锁定规则：一个unLock操作先行发生于后面对同一个锁额lock操作；</li>
@@ -243,7 +316,7 @@ happen-befores并不能保证线程交互的可见性</li>
 <blockquote>
 <p>可见性:线程修改公共变量指令对其他线程来说是可见的</p>
 </blockquote>
-<h4 id="b3_solo_h4_19">线程池</h4>
+<h4 id="toc_h4_19">线程池</h4>
 <p>核心线程池,线程池队列,线程池<br>
 提交线程步骤:判断核心线程池的线程是否都在工作,如果否,就创建一个线程,否则就判断工作队列是否满,如果是,就存储在队列中,否则判断线程池的线程是否都在工作,如果否,就创建一个线程执行,否则调用饱和策略(对错误的处理,有4种)</p>
 <p>线程池创建线程的时候会将工作线程封装成worker,worker会循环去执行工作队列的任务<br>
@@ -261,11 +334,11 @@ happen-befores并不能保证线程交互的可见性</li>
 </ol>
 </li>
 </ol>
-<h4 id="b3_solo_h4_20">CAS</h4>
+<h4 id="toc_h4_20">CAS</h4>
 <p>获取内存中的值,和期望的值作比较是否一致,假如一致就将新值赋值,不一致就重试<br>
 CAS会出现ABA的问题,无法知道中途的值(解决 AtomicStampedRefence)<br>
 CAS适用于写比较少的情况下（多读场景，冲突一般较少），synchronized适用于写比较多的情况下（多写场景，冲突一般较多）</p>
-<h4 id="b3_solo_h4_21">队列同步器(AQS)</h4>
+<h4 id="toc_h4_21">队列同步器(AQS)</h4>
 <p><a href="https://www.cnblogs.com/waterystone/p/4920797.html" target="_blank">https://www.cnblogs.com/waterystone/p/4920797.html</a></p>
 <p><a href="https://www.cnblogs.com/chengxiao/archive/2017/07/24/7141160.html" target="_blank">https://www.cnblogs.com/chengxiao/archive/2017/07/24/7141160.html</a></p>
 <p><a href="https://javadoop.com/2017/06/16/AbstractQueuedSynchronizer/" target="_blank">https://javadoop.com/2017/06/16/AbstractQueuedSynchronizer/</a></p>
@@ -277,7 +350,7 @@ CAS适用于写比较少的情况下（多读场景，冲突一般较少），sy
 tryRelease(int)：独占方式。尝试释放资源，成功则返回true，失败则返回false。<br>
 tryAcquireShared(int)：共享方式。尝试获取资源。负数表示失败；0表示成功，但没有剩余可用资源；正数表示成功，且有剩余资源。<br>
 tryReleaseShared(int)：共享方式。尝试释放资源，如果释放后允许唤醒后续等待结点返回true，否则返回false。</p>
-<h5 id="b3_solo_h5_22">Reentrantlock</h5>
+<h5 id="toc_h5_22">Reentrantlock</h5>
 <p>acquire -&gt; if (!tryAcquire(arg) &amp;&amp;acquireQueued(addWaiter(Node.EXCLUSIVE), arg))<br>
 // tryAcquire(arg)没有成功，这个时候需要把当前线程挂起，放到阻塞队列中。<br>
 tryacquire(arg) (获得锁 1.无人持有直接cas 2.有人拿了，看是否是同一个线程）<br>
@@ -288,7 +361,7 @@ acquireQueued(进入阻塞队列,判断是第一个还是其他位置)如果是�
 <p>release-&gt;获得state,将state-1 如果state等于0就释放(将head的waitstate=0,从后向前找waitestate&lt;=0的点(一直向前找),找到后唤醒(unpark(node)唤醒后的node从park的地方起来),再set一下state<br>
 Reentranlock分为公平锁和非公平锁,非公平锁的当前线程调用lock的时候直接用cas抢锁,抢不到后和公平锁一样请求锁acquire<br>
 在调用tryacquire的时候又会使用cas抢,然后再和之前一样去阻塞队列排队</p>
-<h5 id="b3_solo_h5_23">Condition</h5>
+<h5 id="toc_h5_23">Condition</h5>
 <p>condition基于reentranlock实现,await和signal都要获得锁</p>
 <p>conditon的await()响应中断-&gt;addcondition()将节点添加到条件队列,插入到尾部(先得到tail的node,清除非condition的状态节点(unlinkcancelledwaiter(普通单链表的操作)),然后在初始化node并添加到条件队列(入队了)<br>
 之后完全释放锁(直接把state=0,返回赋值前的值)-&gt;(isOnSyncQueue(判断条件是否是CONDITION&amp;&amp;node.next!=null&amp;&amp;并在阻塞队列中找是否有这个元素))如果都没有,等待进入阻塞队列(挂起)(其他线程可以来获得锁)<br>
@@ -301,19 +374,19 @@ signal(要获得当前线程的独占锁)将要转移的node(一般是第一个,
 </ol>
 <p>node被唤醒之后,会checkinterruptwhilewaiting 判断是否发生了中断而且如果发生中断是发生在signal前或者signal后(transferAfterCancelledwait 通过cas设置state判断),中断唤醒后如果发现不是被signal的(被signal的node waitestate会变成0,node通过cas检查)会主动加入到阻塞队列中enq<br>
 加入阻塞队列中,准备获得锁,acquirequeue(node,savedstate)并判断是否发生中断,有中断就进行处理(程序处理,例如抛出或者不抛)</p>
-<h5 id="b3_solo_h5_24">Countdownlatch</h5>
+<h5 id="toc_h5_24">Countdownlatch</h5>
 <p>将state设为n,使用countdown() 减少1,state=0的时候就唤醒调用await()的方法<br>
 await()-&gt;tryacquire(判断state是否=0来返回1,-1)<br>
 返回-1  -&gt;doacquiresharedinterruptibly 先入队,将前驱节点waitstate设置为-1,挂起(可以重复多次入队挂起 数量等于n)<br>
 countdown()-&gt;tryreleaseshared(不断减少state)如果=0,就调用doreleaseshared方法(state=0)<br>
 第一个线程被doreleaseshared()里面的unparksuccess唤醒之后,由于state=0,循环在第二轮的时候&gt;tryacquire返回1,线程被调用setheadandProgate(node,r),设置为头结点(state为0)并唤醒下一节点调用doreleaseshared()</p>
-<h5 id="b3_solo_h5_25">cyclicbarrier</h5>
+<h5 id="toc_h5_25">cyclicbarrier</h5>
 <p>基于condition实现,只有当每个线程await()了之后,使用generation开始下一次的新生,另外在执行过程中有中断 超时或者要做的action出现异常 栅栏就会break,所有await的线程会notifyall然后抛出异常</p>
-<h5 id="b3_solo_h5_26">semephroe</h5>
+<h5 id="toc_h5_26">semephroe</h5>
 <p>分公平策略和非公平策略,state表示资源的数量,state=0表示需要没有资源了,要等release,其他的和共享的aqs差不多,通过判断资源的数量(cas)来阻塞线程</p>
-<h4 id="b3_solo_h4_27">ThreadLocal</h4>
+<h4 id="toc_h4_27">ThreadLocal</h4>
 <p>假如一个变量被ThreadLocal修饰,那么每一个线程在访问这个变量的时候会保存到本地副本中,并且会存放在线程的ThreadLocalMap中,key为ThreadLocal对象</p>
-<h4 id="b3_solo_h4_28">Atomic原子类</h4>
+<h4 id="toc_h4_28">Atomic原子类</h4>
 <p>用原子的方式更新数据<br>
 有4类原子类:</p>
 <ol>
@@ -323,7 +396,6 @@ countdown()-&gt;tryreleaseshared(不断减少state)如果=0,就调用doreleasesh
 <li>对象的属性修改类型:AtomicIntegerFieldUpdater,AtomicLongFieldUpdater,AtomicStampedReference</li>
 </ol>
 <p>使用CAS和volatile变量和native方法实现原子操作,避免使用Sychronized</p>
-<p></p>
                     <div>
                         <hr>
 <img alt="今日诗词" src="https://v2.jinrishici.com/one.svg" style="max-width:100%; display: block; margin: 0 auto;">
@@ -333,6 +405,7 @@ countdown()-&gt;tryreleaseshared(不断减少state)如果=0,就调用doreleasesh
 地址：<a href="https://ellenbboe.github.io/articles/2019/07/11/1562843459673.html" target="_blank">https://ellenbboe.github.io/articles/2019/07/11/1562843459673.html</a><br>
 <!-- 签名档内可使用 HTML、JavaScript -->
 <br>
+
                     </div>
             </section>
         </div>
@@ -340,104 +413,95 @@ countdown()-&gt;tryreleaseshared(不断减少state)如果=0,就调用doreleasesh
         <div class="post__toc">
 <ul class="article__toc">
         <li class="toc__h4">
-            <a href="#b3_solo_h4_0">并发和并行</a>
+            <a href="#toc_h4_0">并发和并行</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_1">进程与线程</a>
+            <a href="#toc_h4_1">进程与线程</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_2">线程的6种状态</a>
+            <a href="#toc_h4_2">线程的6种状态</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_3">线程的start和run</a>
+            <a href="#toc_h4_3">线程的start和run</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_4">sleep和wait的区别</a>
+            <a href="#toc_h4_4">sleep和wait的区别</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_5">Thread和Runable</a>
+            <a href="#toc_h4_5">Thread和Runable</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_6">线程的3种创建方法</a>
+            <a href="#toc_h4_6">线程的3种创建方法</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_7">死锁</a>
+            <a href="#toc_h4_7">死锁</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_8">处理线程返回值</a>
+            <a href="#toc_h4_8">处理线程返回值</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_9">yield与interrupt</a>
+            <a href="#toc_h4_9">yield与interrupt</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_10">指令重排序</a>
+            <a href="#toc_h4_10">指令重排序</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_11">volatile关键字</a>
+            <a href="#toc_h4_11">volatile关键字</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_12">Synchronized关键字</a>
+            <a href="#toc_h4_12">Synchronized关键字</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_13">Sychronized和ReentrantLock</a>
+            <a href="#toc_h4_13">Sychronized和ReentrantLock</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_14">Java内存模型</a>
+            <a href="#toc_h4_14">Java内存模型</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_15">锁的两种实现形式</a>
+            <a href="#toc_h4_15">锁的两种实现形式</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_16">锁的分类与状态</a>
+            <a href="#toc_h4_16">锁的分类与状态</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_17">Sychronized状态转换</a>
+            <a href="#toc_h4_17">Sychronized状态转换</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_18">happens-before的八大规则</a>
+            <a href="#toc_h4_18">happens-before的八大规则</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_19">线程池</a>
+            <a href="#toc_h4_19">线程池</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_20">CAS</a>
+            <a href="#toc_h4_20">CAS</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_21">队列同步器(AQS)</a>
+            <a href="#toc_h4_21">队列同步器(AQS)</a>
         </li>
         <li class="toc__h5">
-            <a href="#b3_solo_h5_22">Reentrantlock</a>
+            <a href="#toc_h5_22">Reentrantlock</a>
         </li>
         <li class="toc__h5">
-            <a href="#b3_solo_h5_23">Condition</a>
+            <a href="#toc_h5_23">Condition</a>
         </li>
         <li class="toc__h5">
-            <a href="#b3_solo_h5_24">Countdownlatch</a>
+            <a href="#toc_h5_24">Countdownlatch</a>
         </li>
         <li class="toc__h5">
-            <a href="#b3_solo_h5_25">cyclicbarrier</a>
+            <a href="#toc_h5_25">cyclicbarrier</a>
         </li>
         <li class="toc__h5">
-            <a href="#b3_solo_h5_26">semephroe</a>
+            <a href="#toc_h5_26">semephroe</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_27">ThreadLocal</a>
+            <a href="#toc_h4_27">ThreadLocal</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_28">Atomic原子类</a>
+            <a href="#toc_h4_28">Atomic原子类</a>
         </li>
 </ul>        </div>
-<div class="comment">
-    <div class="comment__wrapper wrapper">
-        <div class="comment__title">
-            评论
-        </div>
-        <textarea rows="3" placeholder="评论内容只能为 2 到 500 个字符！" id="comment"></textarea>
-
-        <ul id="comments">
-        </ul>
-    </div>
-</div>
+        <div id="b3logsolocomments"></div>
+        <div id="vcomment" class="comment__wrapper wrapper" style="margin: 40px auto" data-name="ellenbboe" data-postId="1562843459673"></div>
     <div class="article__bottom">
         <div class="wrapper">
             <div class="fn__flex">
@@ -451,6 +515,7 @@ countdown()-&gt;tryreleaseshared(不断减少state)如果=0,就调用doreleasesh
 <footer class="footer">
     <div class="wrapper fn__clear">
         <div class="fn__left">
+            <br>
             &copy; 2020
             <a href="https://ellenbboe.github.io">Kosmos</a>
             <a href="http://www.beian.miit.gov.cn/">浙ICP备18045840号-1</a>--------Let's move on
@@ -479,12 +544,23 @@ show_date_time();
 <style>
 #momk{animation:change 10s infinite;font-weight:800; }
 @keyframes change{0%{color:#5cb85c;}25%{color:#556bd8;}50%{color:#e40707;}75%{color:#66e616;}100% {color:#67bd31;}}
-</style> &nbsp;•&nbsp;
-            Powered by <a href="https://solo.b3log.org" target="_blank">Solo</a>
-            <br>
-            Theme Casper
-            <sup>[<a href="https://github.com/TryGhost/Casper" target="_blank">ref</a>]</sup>
-            by <a href="http://vanessa.b3log.org" target="_blank">Vanessa</a>
+</style>
+<script type="text/javascript">
+    /*自动刷新页面，避免无法访问*/
+    var OriginTitile = document.title;
+    var titleTime;
+    document.addEventListener('visibilitychange', function () {
+        if (document.hidden) {
+            document.title = '(〃´-ω･)  休息一下';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '起来嗨٩(๑❛ᴗ❛๑)۶';
+            titleTime = setTimeout(function () {
+                document.title = OriginTitile;
+            }, 3000);
+        }
+    });
+</script>
         </div>
         <div class="fn__right">
             <a href="https://ellenbboe.github.io/tags.html" rel="section">
@@ -499,36 +575,32 @@ show_date_time();
             友情链接
             </a>
             <br>
-            115 文章 &nbsp;
-            9 评论 &nbsp;
+            121 文章 &nbsp;
             <span data-uvstaturl="https://ellenbboe.github.io">11608</span> 浏览 &nbsp;
-            3 当前访客
+            
         </div>
     </div>
 </footer>
 
-<script type="text/javascript" src="https://ellenbboe.github.io/js/lib/compress/pjax.min.js" charset="utf-8"></script>
-<script type="text/javascript" src="https://ellenbboe.github.io/js/common.min.js?1578931371974"
-        charset="utf-8"></script>
-<script type="text/javascript"
-        src="https://ellenbboe.github.io/skins/Casper/js/common.min.js?1578931371974"
-        charset="utf-8"></script>
-<script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.4/dist/index.min.js"></script>
 <script>
-    var Label = {
-        servePath: "https://ellenbboe.github.io",
-        staticServePath: "https://ellenbboe.github.io",
-        luteAvailable: false,
-        hljsStyle: 'colorful',
-        langLabel: "zh_CN",
-        version: "3.7.0",
-    }
-    Util.init()
+  var Label = {
+    servePath: "https://ellenbboe.github.io",
+    staticServePath: "https://ellenbboe.github.io",
+    luteAvailable: false,
+    hljsStyle: 'colorful',
+    langLabel: "zh_CN",
+    version: "4.1.0",
+    staticSite: true,
+    showCodeBlockLn: false,
+  }
 </script>
+<script type="text/javascript"
+        src="https://ellenbboe.github.io/skins/Casper/js/common.min.js?1591150301084"
+        charset="utf-8"></script>
 
 
 <script type="text/javascript">
-    Util.addScript('https://ellenbboe.github.io/js/page.min.js?1578931371974', 'soloPageScript')
+    Util.addScript('https://ellenbboe.github.io/js/page.min.js?1591150301084', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1562843459673",
@@ -546,4 +618,4 @@ show_date_time();
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 38ms, 2020/01/14 13:32:39 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 63ms, 2020/06/03 12:32:28 -->

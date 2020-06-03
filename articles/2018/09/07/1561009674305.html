@@ -2,31 +2,104 @@
 <html>
 <head>
 <meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>vigenere_cipher(维西尼亚)密码 - Kosmos</title><meta name="description" content="Vigenere Cipher 凯撒密码 凯撒密码是一种简单的加密方法，即将文本中的每一个字符都位移相同的位置。 如选定位移3位： 原文：a b c 密文：d e f 由于出现了字母频度分析，凯撒密码变得很容易破解。 “如果我们知道一条加密信息所使用的语言，那么破译这条加密信息的方法就是找出同样的语言写的一篇其他文章，大约一页纸长，然后我们计算其中每个字母的出现频率。我们将 频率最高的字母标为1号，频率排第2的标为2号，第三标为3号，依次类推，直到数完样品文章中所有字母。然后我们观察需要破译的密文，同样分类出所有的字母，找出频率最高的字母，并全部用样本文章中最高频率的字母替换。第二高频的字母用样本中2号代替，第三则用3号替换，直到密文中所有字母均已被样本中的字母替换。” (0.0 厉害啊) 维吉尼亚密码分解后实则就是多个凯撒密码，只要知道密钥的长度，我们就可以将其分解。 如密文为：ABCDEFGHIJKLMN 如果我们知道密钥长度为3，就可将其分解为三组： 组1：A D G J N 组2：B E H K 组3：C F I M 分解后每组就是一个凯撒密码，即组内的位移量是一致的，对...."/><meta property="og:description" content="Vigenere Cipher 凯撒密码 凯撒密码是一种简单的加密方法，即将文本中的每一个字符都位移相同的位置。 如选定位移3位： 原文：a b c 密文：d e f 由于出现了字母频度分析，凯撒密码变得很容易破解。 “如果我们知道一条加密信息所使用的语言，那么破译这条加密信息的方法就是找出同样的语言写的一篇其他文章，大约一页纸长，然后我们计算其中每个字母的出现频率。我们将 频率最高的字母标为1号，频率排第2的标为2号，第三标为3号，依次类推，直到数完样品文章中所有字母。然后我们观察需要破译的密文，同样分类出所有的字母，找出频率最高的字母，并全部用样本文章中最高频率的字母替换。第二高频的字母用样本中2号代替，第三则用3号替换，直到密文中所有字母均已被样本中的字母替换。” (0.0 厉害啊) 维吉尼亚密码分解后实则就是多个凯撒密码，只要知道密钥的长度，我们就可以将其分解。 如密文为：ABCDEFGHIJKLMN 如果我们知道密钥长度为3，就可将其分解为三组： 组1：A D G J N 组2：B E H K 组3：C F I M 分解后每组就是一个凯撒密码，即组内的位移量是一致的，对...."/>    <meta name="keywords" content="开源,开发者,笔记,kosmos"/><link rel="dns-prefetch" href="https://ellenbboe.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://ellenbboe.github.io"><link rel="icon" type="image/png" href="https://s2.ax1x.com/2020/01/12/loApPe.png"/><link rel="apple-touch-icon" href="https://s2.ax1x.com/2020/01/12/loApPe.png"><link rel="shortcut icon" type="image/x-icon" href="https://s2.ax1x.com/2020/01/12/loApPe.png"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="vigenere_cipher(维西尼亚)密码 - Kosmos"/><meta property="og:site_name" content="Kosmos"/><meta property="og:url"      content="https://ellenbboe.github.io/articles/2018/09/07/1561009674305.html?"/><meta property="og:image" content="https://s2.ax1x.com/2020/01/12/loApPe.png"/><link rel="search" type="application/opensearchdescription+xml" title="vigenere_cipher(维西尼亚)密码 - Kosmos" href="/opensearch.xml"><link href="https://ellenbboe.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://ellenbboe.github.io/manifest.json">        <link rel="canonical" href="https://ellenbboe.github.io/articles/2018/09/07/1561009674305.html">        <link rel="stylesheet"
-              href="https://ellenbboe.github.io/skins/Casper/css/base.css?1578931371974"/>
+              href="https://ellenbboe.github.io/skins/Casper/css/base.css?1591150301084"/>
             <link rel="prev" title="frequency_analysis(频率分析)" href="https://ellenbboe.github.io/articles/2018/09/06/1561009682841.html">
             <link rel="next" title="Spring Pass 1" href="https://ellenbboe.github.io/articles/2018/09/11/1561009677915.html">
-    </head>
+    <script>
+onload = function() {
+    var click_cnt = 0;
+    var $html = document.getElementsByTagName("html")[0];
+    var $body = document.getElementsByTagName("body")[0];
+    $html.onclick = function(e) {
+        var $elem = document.createElement("b");
+        $elem.style.color = "#E94F06";
+        $elem.style.zIndex = 9999;
+        $elem.style.position = "absolute";
+        $elem.style.select = "none";
+        var x = e.pageX;
+        var y = e.pageY;
+        $elem.style.left = (x - 10) + "px";
+        $elem.style.top = (y - 20) + "px";
+        clearInterval(anim);
+        switch (++click_cnt) {
+            case 10:
+                $elem.innerText = "OωO";
+                break;
+            case 20:
+                $elem.innerText = "(๑•́ ∀ •̀๑)";
+                break;
+            case 30:
+                $elem.innerText = "(๑•́ ₃ •̀๑)";
+                break;
+            case 40:
+                $elem.innerText = "(๑•̀_•́๑)";
+                break;
+            case 50:
+                $elem.innerText = "（￣へ￣）";
+                break;
+            case 60:
+                $elem.innerText = "(╯°口°)╯(┴—┴";
+                break;
+            case 70:
+                $elem.innerText = "૮( ᵒ̌皿ᵒ̌ )ა";
+                break;
+            case 80:
+                $elem.innerText = "╮(｡>口<｡)╭";
+                break;
+            case 90:
+                $elem.innerText = "( ง ᵒ̌皿ᵒ̌)ง⁼³₌₃";
+                break;
+            case 100:
+            case 101:
+            case 102:
+            case 103:
+            case 104:
+            case 105:
+                $elem.innerText = "(ꐦ°᷄д°᷅)";
+                break;
+            default:
+                $elem.innerText = "❤";
+                break;
+        }
+        $elem.style.fontSize = Math.random() * 10 + 8 + "px";
+        var increase = 0;
+        var anim;
+        setTimeout(function() {
+            anim = setInterval(function() {
+                if (++increase == 150) {
+                    clearInterval(anim);
+                    $body.removeChild($elem);
+                }
+                $elem.style.top = y - 20 - increase + "px";
+                $elem.style.opacity = (150 - increase) / 120;
+            }, 8);
+        }, 70);
+        $body.appendChild($elem);
+    };
+};
+</script>
+</head>
 <body class="fn__flex-column">
 <div id="pjax" class="fn__flex-1">
     
     <header class="header header--article">
         <div class="wrapper header__title">
             <h1 class="header__h1 fn__flex-inline">
-                <img src="https://s2.ax1x.com/2020/01/12/loApPe.png">
+                <img src="https://s2.ax1x.com/2020/01/12/loApPe.png" alt="Kosmos">
                 <a href="https://ellenbboe.github.io" rel="start" class="header__title">Kosmos</a>
             </h1>
-            <h2 class="header__h2">---就算是痛苦难受，也要去体会那被称为生存的分量---</h2>
+            <h2 class="header__h2">---我们总得选择一条路去前行---</h2>
         </div>
         <nav class="wrapper header__nav fn__clear">
             <a href="https://ellenbboe.github.io" rel="start">
                     Kosmos
             </a>
 
-                <a class="fn__flex-inline" href="/my-github-repos" target="_self" rel="section">
-                    <img src="/images/github-icon.png"> 我的开源
+                <a class="fn__flex-inline" href="https://github.com/ellenbboe" target="_self" rel="section">
+                    <img src="https://s2.ax1x.com/2020/01/16/ljWMPP.png" alt="我的GIT"> 我的GIT
                 </a>
                 <a class="fn__flex-inline" href="/readlist" target="_self" rel="section">
-                     阅读列表
+                    <img src="https://s2.ax1x.com/2020/01/16/ljWPC6.png" alt="阅读列表"> 阅读列表
                 </a>
 
 
@@ -111,7 +184,7 @@
         <div class="item__cover" style="background-image: url(/images/forpost/vigenere_cipher.png)"></div>
         <div class="wrapper">
             <section class="item__content item__content--article vditor-reset">
-                <p></p><h3 id="b3_solo_h3_0">Vigenere Cipher</h3>
+                <h3 id="toc_h3_0">Vigenere Cipher</h3>
 <p>凯撒密码<br>
 凯撒密码是一种简单的加密方法，即将文本中的每一个字符都位移相同的位置。</p>
 <p>如选定位移3位：</p>
@@ -121,7 +194,7 @@
 <p>由于出现了字母频度分析，凯撒密码变得很容易破解。<br>
 “如果我们知道一条加密信息所使用的语言，那么破译这条加密信息的方法就是找出同样的语言写的一篇其他文章，大约一页纸长，然后我们计算其中每个字母的出现频率。我们将 <strong>频率最高的字母标为1号</strong>，<strong>频率排第2的标为2号</strong>，<strong>第三标为3号</strong>，依次类推，直到数完样品文章中所有字母。然后我们观察<strong>需要破译的密文</strong>，同样分类出所有的字母，<strong>找出频率最高的字母</strong>，并<strong>全部用样本文章中最高频率的字母替换</strong>。第二高频的字母用样本中2号代替，第三则用3号替换，<strong>直到密文中所有字母均已被样本中的字母替换</strong>。”  <strong>(0.0 厉害啊)</strong></p>
 <p>维吉尼亚密码分解后实则就是多个凯撒密码，只要知道密钥的长度，我们就可以将其分解。<br>
-<img src="/images/forpost/vigenere_cipher.png?imageView2/2/w/1280/format/jpg/interlace/1/q/100" alt=""><br>
+<img src="/images/forpost/vigenere_cipher.png" alt=""><br>
 如密文为：<code>ABCDEFGHIJKLMN</code><br>
 如果我们知道密钥长度为3，就可将其分解为三组：</p>
 <pre><code>组1：A D G J N
@@ -134,11 +207,11 @@
 一种是<strong>Kasiski测试法</strong>:确定两个相同字符串之间长度(至少为3)的公因数(目前用这个)<br>
 一种是<strong>重合指数法</strong><br>
 定义公式：<br>
-<img src="/images/forpost/vigenere1.png?imageView2/2/w/1280/format/jpg/interlace/1/q/100" alt=""></p>
+<img src="/images/forpost/vigenere1.png" alt=""></p>
 <p>pi(字母的出现频率--已知)<br>
-<img src="/images/forpost/vigenere3.png?imageView2/2/w/1280/format/jpg/interlace/1/q/100" alt=""></p>
+<img src="/images/forpost/vigenere3.png" alt=""></p>
 <p>常用公式：xi为字母的频数，L为密文的长度<br>
-<img src="/images/forpost/vigenere2.png?imageView2/2/w/1280/format/jpg/interlace/1/q/100" alt=""></p>
+<img src="/images/forpost/vigenere2.png" alt=""></p>
 <p>英语文本的重合指数为<code>P(A)^2 + P(B)^2+……+P(Z)^2 = 0.065</code><br>
 利用重合指数推测密钥长度的原理在于，对于一个由凯撒密码加密的序列，由于所有字母的位移程度相同，所以密文的重合指数应等于原文语言的重合指数<br>
 假设使用维吉尼亚密码加密的密文串为y=y1y2...yn。将串y分割成m个长度相等的子串(m组)，分别为y1，y2，...，ym，这样就可以以列的形式写出密文，组成一个m×(n/m)矩阵。矩阵的每一行对应于子串yi,(每一行对应一组) 1≤i≤m</p>
@@ -146,14 +219,13 @@
 <p>另外，如果m<strong>不是</strong>密钥字的长度，那么子串yi看起来<strong>更为随机</strong>，因为它们是通过<strong>不同密钥以移位加密方式获得的</strong>。对于一个随机串，其重合指数为<strong>0.038</strong> (通过猜测密钥的长度,看是否接近0.065)</p>
 <p>在知道了密钥长度n以后，就可将密文分解为n组，每一组都是一个凯撒密码，然后对每一组用字母频度分析进行解密，和在一起就能成功解密凯撒密码</p>
 <p>首先对子密文段重各个字母的频率进行统计（记为<code>fi</code>, i∈<code>a – z</code>），查看字母频率分布统计概率表(记<code>pi</code>)，计算子密文段长度为<code>n</code>，使用公式<br>
-<img src="/images/forpost/vigenere4.png?imageView2/2/w/1280/format/jpg/interlace/1/q/100" alt=""></p>
+<img src="/images/forpost/vigenere4.png" alt=""></p>
 <p>计算出M0，然后对子密文段移位25次，同样按照上述方法求出M1 — M25的值</p>
 <p>根据重合指数的定义知：一个有意义的英文文本，M ≈0.065，所以找出M值接近0.065的移位数，就是秘钥中的对应字母</p>
 <p>推荐网站 <a href="http://www.richkni.co.uk/php/crypta/vignere.php" target="_blank">http://www.richkni.co.uk/php/crypta/vignere.php</a><br>
 解密很有用(0.0)</p>
 <p>ps:<br>
 这篇文章虽然被分类到python中,但还没有用python实现 orz</p>
-<p></p>
                     <div>
                         <hr>
 <img alt="今日诗词" src="https://v2.jinrishici.com/one.svg" style="max-width:100%; display: block; margin: 0 auto;">
@@ -163,6 +235,7 @@
 地址：<a href="https://ellenbboe.github.io/articles/2018/09/07/1561009674305.html" target="_blank">https://ellenbboe.github.io/articles/2018/09/07/1561009674305.html</a><br>
 <!-- 签名档内可使用 HTML、JavaScript -->
 <br>
+
                     </div>
             </section>
         </div>
@@ -170,20 +243,11 @@
         <div class="post__toc">
 <ul class="article__toc">
         <li class="toc__h3">
-            <a href="#b3_solo_h3_0">Vigenere Cipher</a>
+            <a href="#toc_h3_0">Vigenere Cipher</a>
         </li>
 </ul>        </div>
-<div class="comment">
-    <div class="comment__wrapper wrapper">
-        <div class="comment__title">
-            评论
-        </div>
-        <textarea rows="3" placeholder="评论内容只能为 2 到 500 个字符！" id="comment"></textarea>
-
-        <ul id="comments">
-        </ul>
-    </div>
-</div>
+        <div id="b3logsolocomments"></div>
+        <div id="vcomment" class="comment__wrapper wrapper" style="margin: 40px auto" data-name="ellenbboe" data-postId="1561009674305"></div>
     <div class="article__bottom">
         <div class="wrapper">
             <div class="fn__flex">
@@ -197,6 +261,7 @@
 <footer class="footer">
     <div class="wrapper fn__clear">
         <div class="fn__left">
+            <br>
             &copy; 2020
             <a href="https://ellenbboe.github.io">Kosmos</a>
             <a href="http://www.beian.miit.gov.cn/">浙ICP备18045840号-1</a>--------Let's move on
@@ -225,12 +290,23 @@ show_date_time();
 <style>
 #momk{animation:change 10s infinite;font-weight:800; }
 @keyframes change{0%{color:#5cb85c;}25%{color:#556bd8;}50%{color:#e40707;}75%{color:#66e616;}100% {color:#67bd31;}}
-</style> &nbsp;•&nbsp;
-            Powered by <a href="https://solo.b3log.org" target="_blank">Solo</a>
-            <br>
-            Theme Casper
-            <sup>[<a href="https://github.com/TryGhost/Casper" target="_blank">ref</a>]</sup>
-            by <a href="http://vanessa.b3log.org" target="_blank">Vanessa</a>
+</style>
+<script type="text/javascript">
+    /*自动刷新页面，避免无法访问*/
+    var OriginTitile = document.title;
+    var titleTime;
+    document.addEventListener('visibilitychange', function () {
+        if (document.hidden) {
+            document.title = '(〃´-ω･)  休息一下';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '起来嗨٩(๑❛ᴗ❛๑)۶';
+            titleTime = setTimeout(function () {
+                document.title = OriginTitile;
+            }, 3000);
+        }
+    });
+</script>
         </div>
         <div class="fn__right">
             <a href="https://ellenbboe.github.io/tags.html" rel="section">
@@ -245,36 +321,32 @@ show_date_time();
             友情链接
             </a>
             <br>
-            115 文章 &nbsp;
-            9 评论 &nbsp;
+            121 文章 &nbsp;
             <span data-uvstaturl="https://ellenbboe.github.io">11608</span> 浏览 &nbsp;
-            3 当前访客
+            
         </div>
     </div>
 </footer>
 
-<script type="text/javascript" src="https://ellenbboe.github.io/js/lib/compress/pjax.min.js" charset="utf-8"></script>
-<script type="text/javascript" src="https://ellenbboe.github.io/js/common.min.js?1578931371974"
-        charset="utf-8"></script>
-<script type="text/javascript"
-        src="https://ellenbboe.github.io/skins/Casper/js/common.min.js?1578931371974"
-        charset="utf-8"></script>
-<script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.4/dist/index.min.js"></script>
 <script>
-    var Label = {
-        servePath: "https://ellenbboe.github.io",
-        staticServePath: "https://ellenbboe.github.io",
-        luteAvailable: false,
-        hljsStyle: 'colorful',
-        langLabel: "zh_CN",
-        version: "3.7.0",
-    }
-    Util.init()
+  var Label = {
+    servePath: "https://ellenbboe.github.io",
+    staticServePath: "https://ellenbboe.github.io",
+    luteAvailable: false,
+    hljsStyle: 'colorful',
+    langLabel: "zh_CN",
+    version: "4.1.0",
+    staticSite: true,
+    showCodeBlockLn: false,
+  }
 </script>
+<script type="text/javascript"
+        src="https://ellenbboe.github.io/skins/Casper/js/common.min.js?1591150301084"
+        charset="utf-8"></script>
 
 
 <script type="text/javascript">
-    Util.addScript('https://ellenbboe.github.io/js/page.min.js?1578931371974', 'soloPageScript')
+    Util.addScript('https://ellenbboe.github.io/js/page.min.js?1591150301084', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1561009674305",
@@ -292,4 +364,4 @@ show_date_time();
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 44ms, 2020/01/14 13:32:40 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 57ms, 2020/06/03 12:32:30 -->

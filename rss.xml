@@ -4,29 +4,106 @@
     <title>Kosmos</title>
     <link>https://ellenbboe.github.io</link>
     <atom:link href="https://ellenbboe.github.io/rss.xml" rel="self" type="application/rss+xml"/>
-    <description>---就算是痛苦难受，也要去体会那被称为生存的分量---</description>
-    <generator>Solo, v3.7.0, https://solo.b3log.org</generator>
-    <lastBuildDate>Tue, 14 Jan 2020 13:32:38 +0800</lastBuildDate>
+    <description>---我们总得选择一条路去前行---</description>
+    <generator>Solo, v4.1.0, https://solo.b3log.org</generator>
+    <lastBuildDate>Wed, 03 Jun 2020 12:32:26 +0800</lastBuildDate>
     <language>zh-cn</language>
     <item>
-      <title>ReadList</title>
-      <link>https://ellenbboe.github.io/readlist</link>
-      <description><![CDATA[<p>万象，皆入我眼！</p>]]></description>
+      <title>游戏记忆-鬼泣5</title>
+      <link>https://ellenbboe.github.io/articles/2020/05/17/1589701554726.html</link>
+      <description><![CDATA[<p>游戏截图</p>]]></description>
       <author>ellenbboe</author>
-      <guid>https://ellenbboe.github.io/readlist</guid>
-      <category>总结</category>
-      <pubDate>Tue, 14 Jan 2020 13:30:23 +0800</pubDate>
+      <guid>https://ellenbboe.github.io/articles/2020/05/17/1589701554726.html</guid>
+      <category>游戏</category>
+      <category>美图</category>
+      <category>日常</category>
+      <pubDate>Sun, 17 May 2020 15:54:14 +0800</pubDate>
     </item>
     <item>
-      <title>开发错误记录手册</title>
+      <title>游戏记忆-瘟疫</title>
+      <link>https://ellenbboe.github.io/articles/2020/05/17/1589701375714.html</link>
+      <description><![CDATA[<p>游戏截图</p>]]></description>
+      <author>ellenbboe</author>
+      <guid>https://ellenbboe.github.io/articles/2020/05/17/1589701375714.html</guid>
+      <category>美图</category>
+      <category>游戏</category>
+      <category>日常</category>
+      <pubDate>Sun, 17 May 2020 15:42:55 +0800</pubDate>
+    </item>
+    <item>
+      <title>游戏记忆-生化危机2重置版</title>
+      <link>https://ellenbboe.github.io/articles/2020/05/17/1589701293565.html</link>
+      <description><![CDATA[<p>游戏截图</p>]]></description>
+      <author>ellenbboe</author>
+      <guid>https://ellenbboe.github.io/articles/2020/05/17/1589701293565.html</guid>
+      <category>游戏</category>
+      <category>美图</category>
+      <category>日常</category>
+      <pubDate>Sun, 17 May 2020 15:41:33 +0800</pubDate>
+    </item>
+    <item>
+      <title>游戏记忆-怪物猎人</title>
+      <link>https://ellenbboe.github.io/articles/2020/05/17/1589700629891.html</link>
+      <description><![CDATA[<p>游戏截图</p>]]></description>
+      <author>ellenbboe</author>
+      <guid>https://ellenbboe.github.io/articles/2020/05/17/1589700629891.html</guid>
+      <category>日常</category>
+      <category>游戏</category>
+      <category>美图</category>
+      <pubDate>Sun, 17 May 2020 15:36:55 +0800</pubDate>
+    </item>
+    <item>
+      <title>游戏记忆-古剑奇谭</title>
+      <link>https://ellenbboe.github.io/articles/2020/05/17/1589700910835.html</link>
+      <description><![CDATA[<p>游戏截图</p>]]></description>
+      <author>ellenbboe</author>
+      <guid>https://ellenbboe.github.io/articles/2020/05/17/1589700910835.html</guid>
+      <category>游戏</category>
+      <category>日常</category>
+      <category>美图</category>
+      <pubDate>Sun, 17 May 2020 15:36:25 +0800</pubDate>
+    </item>
+    <item>
+      <title>五只龙之话</title>
+      <link>https://ellenbboe.github.io/articles/2020/05/17/1589700330530.html</link>
+      <description><![CDATA[<p>很久以前，人们与五只龙一同生活在银白色的世界中。</p>]]></description>
+      <author>ellenbboe</author>
+      <guid>https://ellenbboe.github.io/articles/2020/05/17/1589700330530.html</guid>
+      <category>游戏</category>
+      <category>日常</category>
+      <pubDate>Sun, 17 May 2020 15:25:30 +0800</pubDate>
+    </item>
+    <item>
+      <title>『君の名は。』剪辑尝试</title>
+      <link>https://ellenbboe.github.io/articles/2020/03/18/1584499865232.html</link>
+      <description><![CDATA[<p>]]>🎉🎉🎉<![CDATA[</p>]]></description>
+      <author>ellenbboe</author>
+      <guid>https://ellenbboe.github.io/articles/2020/03/18/1584499865232.html</guid>
+      <category>日常</category>
+      <pubDate>Mon, 23 Mar 2020 16:08:09 +0800</pubDate>
+    </item>
+    <item>
+      <title>MyBatis和MyBatis-Plus 代码生成</title>
+      <link>https://ellenbboe.github.io/articles/2019/12/15/1576386330771.html</link>
+      <description><![CDATA[<p>]]>👶<![CDATA[ MyBatis 与 MyBatisPlus 生成代码</p>]]></description>
+      <author>ellenbboe</author>
+      <guid>https://ellenbboe.github.io/articles/2019/12/15/1576386330771.html</guid>
+      <category>Mybatis</category>
+      <category>Mysql</category>
+      <pubDate>Sat, 25 Jan 2020 14:56:35 +0800</pubDate>
+    </item>
+    <item>
+      <title>SeckillFramework项目开发错误记录</title>
       <link>https://ellenbboe.github.io/articles/2019/12/09/1575889655832.html</link>
-      <description><![CDATA[<p>开发中遇到的错误记录 ]]>😰<![CDATA[<br>
-2019/12/08 始</p>]]></description>
+      <description><![CDATA[<p>SeckillFramework 项目开发中遇到的错误记录 ]]>😰<![CDATA[<br>
+2019/12/08 始 2020/1/20 止</p>]]></description>
       <author>ellenbboe</author>
       <guid>https://ellenbboe.github.io/articles/2019/12/09/1575889655832.html</guid>
-      <category>日志</category>
       <category>笔记</category>
-      <pubDate>Sun, 12 Jan 2020 22:33:25 +0800</pubDate>
+      <category>异常</category>
+      <category>总结</category>
+      <category>日志</category>
+      <pubDate>Mon, 20 Jan 2020 12:37:51 +0800</pubDate>
     </item>
     <item>
       <title>千磨万击还坚劲,任尔东南西北风 For 2019</title>
@@ -36,70 +113,6 @@
       <guid>https://ellenbboe.github.io/articles/2020/01/12/1578804303182.html</guid>
       <category>总结</category>
       <pubDate>Sun, 12 Jan 2020 14:04:39 +0800</pubDate>
-    </item>
-    <item>
-      <title>SpringBoot框架下shiro与jwt的结合的用户登录</title>
-      <link>https://ellenbboe.github.io/articles/2020/01/10/1578589632211.html</link>
-      <description><![CDATA[<p>瓜皮技术总结：shiro+jwt 将会擦除怎么的火花？ ]]>🤒<![CDATA[</p>]]></description>
-      <author>ellenbboe</author>
-      <guid>https://ellenbboe.github.io/articles/2020/01/10/1578589632211.html</guid>
-      <category>shiro</category>
-      <category>jwt</category>
-      <pubDate>Sat, 11 Jan 2020 15:20:06 +0800</pubDate>
-    </item>
-    <item>
-      <title>Idea中添加缩写</title>
-      <link>https://ellenbboe.github.io/articles/2020/01/10/1578664639048.html</link>
-      <description><![CDATA[<p>变着法偷懒 ]]>👍<![CDATA[</p>]]></description>
-      <author>ellenbboe</author>
-      <guid>https://ellenbboe.github.io/articles/2020/01/10/1578664639048.html</guid>
-      <category>idea</category>
-      <pubDate>Sat, 11 Jan 2020 15:19:56 +0800</pubDate>
-    </item>
-    <item>
-      <title>安装Rabbitmq</title>
-      <link>https://ellenbboe.github.io/articles/2020/01/08/1578464371766.html</link>
-      <description><![CDATA[<p>安装记录 rabbitmq</p>]]></description>
-      <author>ellenbboe</author>
-      <guid>https://ellenbboe.github.io/articles/2020/01/08/1578464371766.html</guid>
-      <category>rabbitmq</category>
-      <pubDate>Wed, 08 Jan 2020 14:20:41 +0800</pubDate>
-    </item>
-    <item>
-      <title>mysql删库勒索?</title>
-      <link>https://ellenbboe.github.io/articles/2019/12/21/1576940518877.html</link>
-      <description><![CDATA[<p>看到有人中招了,提前打打预防针]]>😰<![CDATA[</p>]]></description>
-      <author>ellenbboe</author>
-      <guid>https://ellenbboe.github.io/articles/2019/12/21/1576940518877.html</guid>
-      <category>Mysql</category>
-      <pubDate>Sat, 21 Dec 2019 23:02:53 +0800</pubDate>
-    </item>
-    <item>
-      <title>使用Mybatis-Generator来生成mapper,xml和实体对象</title>
-      <link>https://ellenbboe.github.io/articles/2019/12/15/1576386330771.html</link>
-      <description><![CDATA[<p>]]>👶<![CDATA[ 第一次使用Mybatis-generator记录</p>]]></description>
-      <author>ellenbboe</author>
-      <guid>https://ellenbboe.github.io/articles/2019/12/15/1576386330771.html</guid>
-      <category>Mybatis</category>
-      <pubDate>Sun, 15 Dec 2019 13:06:00 +0800</pubDate>
-    </item>
-    <item>
-      <title>使用validation自定义注解</title>
-      <link>https://ellenbboe.github.io/articles/2019/12/09/1575889323934.html</link>
-      <description/>
-      <author>ellenbboe</author>
-      <guid>https://ellenbboe.github.io/articles/2019/12/09/1575889323934.html</guid>
-      <category>Spring</category>
-      <pubDate>Mon, 09 Dec 2019 19:02:03 +0800</pubDate>
-    </item>
-    <item>
-      <title>算法|随便刷刷LeetCode</title>
-      <link>https://ellenbboe.github.io/articles/2019/08/18/1566125443482.html</link>
-      <description><![CDATA[<p>随便刷一刷算法题还是不错的,编程能力还需提高 ]]>🐼<![CDATA[</p>]]></description>
-      <author>ellenbboe</author>
-      <guid>https://ellenbboe.github.io/articles/2019/08/18/1566125443482.html</guid>
-      <category>算法</category>
-      <pubDate>Sun, 18 Aug 2019 19:54:14 +0800</pubDate>
     </item>
   </channel>
 </rss>

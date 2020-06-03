@@ -3,18 +3,12 @@
     Solo - A small and beautiful blogging system written in Java.
     Copyright (c) 2010-present, b3log.org
 
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU Affero General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU Affero General Public License for more details.
-
-    You should have received a copy of the GNU Affero General Public License
-    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+    Solo is licensed under Mulan PSL v2.
+    You can use this software according to the terms and conditions of the Mulan PSL v2.
+    You may obtain a copy of Mulan PSL v2 at:
+            http://license.coscl.org.cn/MulanPSL2
+    THIS SOFTWARE IS PROVIDED ON AN "AS IS" BASIS, WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO NON-INFRINGEMENT, MERCHANTABILITY OR FIT FOR A PARTICULAR PURPOSE.
+    See the Mulan PSL v2 for more details.
 
 -->
 <#include "../../common-template/macro-user_site.ftl">
@@ -65,59 +59,63 @@
                 </h2>
             </header>
             <main class="fn__clear">
-                <img src="${adminUser.userAvatar}" aria-label="${adminUser.userName}"/>
+                <img src="${adminUser.userAvatar}" alt="${adminUser.userName}" aria-label="${adminUser.userName}"/>
                 <div class="fn-right">
                     <a href="${servePath}/archives.html">
                         ${statistic.statisticPublishedBlogArticleCount}
                         <span class="ft-gray">${articleLabel}</span></a><br/>
-                    <#if commentable>
-                    <a href="${servePath}/dynamic.html">
-                        ${statistic.statisticPublishedBlogCommentCount}
-                        <span class="ft-gray">${commentLabel}</span></a><br/>
-                    </#if>
-                    <span data-uvstaturl="${servePath}">${statistic.statisticBlogViewCount}</span> <span class="ft-gray">${viewLabel}</span><br/>
-                    ${onlineVisitorCnt} <span class="ft-gray">${onlineVisitorLabel}</span>
+                    <span data-uvstaturl="${servePath}">${statistic.statisticBlogViewCount}</span> <span class="ft-gray">${viewLabel}</span>
+                    <#if !staticSite><br/>${onlineVisitorCnt} <span class="ft-gray">${onlineVisitorLabel}</span></#if>
                 </div>
             </main>
         </div>
 
-        <#if 0 != mostCommentArticles?size>
-        <div class="module">
-            <header><h2>${mostCommentArticlesLabel}</h2></header>
-            <main class="list">
-                <ul>
-                    <#list mostCommentArticles as article>
-                        <li>
-                            <a rel="nofollow" aria-label="${article.articleCommentCount} ${commentLabel}"
-                               class="vditor-tooltipped vditor-tooltipped__e"
-                               href="${servePath}${article.articlePermalink}">
-                                ${article.articleTitle}
-                            </a>
-                        </li>
+        <#if 0 != links?size>
+            <div class="module">
+                <header><h2>${linkLabel}</h2></header>
+                <main>
+                    <#list links as link>
+                        <a rel="friend"
+                           target="_blank"
+                           href="${link.linkAddress}"
+                           class="tag vditor-tooltipped vditor-tooltipped__n"
+                           aria-label="${link.linkDescription}">
+                            ${link.linkTitle}</a>
                     </#list>
-                </ul>
-            </main>
-        </div>
+                </main>
+            </div>
         </#if>
 
-        <#if 0 != mostViewCountArticles?size>
-        <div class="module">
-            <header><h2>${mostViewCountArticlesLabel}</h2></header>
-            <main class="list">
-                <ul>
-                    <#list mostViewCountArticles as article>
-                        <li>
-                            <a rel="nofollow" aria-label="${article.articleCommentCount} ${commentLabel}"
-                               class="vditor-tooltipped vditor-tooltipped__e"
-                               href="${servePath}${article.articlePermalink}">
-                                ${article.articleTitle}
-                            </a>
-                        </li>
-                    </#list>
-                </ul>
-            </main>
-        </div>
+        <#if 0 != archiveDates?size>
+            <div class="module">
+                <header><h2>${archiveLabel}</h2></header>
+                <main class="list">
+                    <ul>
+                        <#list archiveDates as archiveDate>
+                            <#if archiveDate_index < 10>
+                                <li>
+                                    <#if "en" == localeString?substring(0, 2)>
+                                        <a href="${servePath}/archives/${archiveDate.archiveDateYear}/${archiveDate.archiveDateMonth}"
+                                           title="${archiveDate.monthName} ${archiveDate.archiveDateYear}(${archiveDate.archiveDatePublishedArticleCount})">
+                                            ${archiveDate.monthName} ${archiveDate.archiveDateYear}(${archiveDate.archiveDatePublishedArticleCount})</a>
+                                    <#else>
+                                        <a href="${servePath}/archives/${archiveDate.archiveDateYear}/${archiveDate.archiveDateMonth}"
+                                           title="${archiveDate.archiveDateYear} ${yearLabel} ${archiveDate.archiveDateMonth} ${monthLabel}(${archiveDate.archiveDatePublishedArticleCount})">
+                                            ${archiveDate.archiveDateYear} ${yearLabel} ${archiveDate.archiveDateMonth} ${monthLabel}(${archiveDate.archiveDatePublishedArticleCount})</a>
+                                    </#if>
+                                </li>
+                            </#if>
+                        </#list>
+                        <#if archiveDates?size &gt; 10>
+                            <li>
+                                <a href="${servePath}/archives.html">...</a>
+                            </li>
+                        </#if>
+                    </ul>
+                </main>
+            </div>
         </#if>
+
     </section>
     </#if>
 </aside>

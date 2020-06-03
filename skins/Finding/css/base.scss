@@ -2,18 +2,12 @@
  * Solo - A small and beautiful blogging system written in Java.
  * Copyright (c) 2010-present, b3log.org
  *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ * Solo is licensed under Mulan PSL v2.
+ * You can use this software according to the terms and conditions of the Mulan PSL v2.
+ * You may obtain a copy of Mulan PSL v2 at:
+ *         http://license.coscl.org.cn/MulanPSL2
+ * THIS SOFTWARE IS PROVIDED ON AN "AS IS" BASIS, WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO NON-INFRINGEMENT, MERCHANTABILITY OR FIT FOR A PARTICULAR PURPOSE.
+ * See the Mulan PSL v2 for more details.
  */
 @charset "utf-8";
 /*
@@ -21,11 +15,11 @@
  *
  * @author <a href="http://vanessa.b3log.org">Liyuan Li</a>
  * @author <a href="http://88250.b3log.org">Liang Ding</a>
- * @version 2.5.0.0, Aug 2, 2019
+ * @version 2.5.0.1, Feb 9, 2020
  */
 @import "../../../scss/toc";
 @import "../../../scss/usite";
-@import "vditor/src/assets/scss/classic";
+@import "vditor/src/assets/scss/index";
 
 .user__site {
   float: left;
@@ -372,10 +366,6 @@ pre code, pre tt {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-qqz:before {
-  content: "\e902";
-}
-
 .icon-register:before {
   content: "\e600";
 }
@@ -698,7 +688,7 @@ pre code, pre tt {
 }
 
 .nav li a {
-  display: block;
+  display: flex;
   padding: 0.6rem 4%;
   overflow: hidden;
   white-space: nowrap;
@@ -751,16 +741,6 @@ article.post {
   border-bottom: #EBF2F6 1px solid;
   word-wrap: break-word;
   width: 80%;
-
-  .share {
-    position: relative;
-
-    canvas {
-      position: absolute;
-      left: 0;
-      top: 36px;
-    }
-  }
 }
 
 .post-content--article {
@@ -864,31 +844,6 @@ article.post:after {
   height: 68px;
   display: block;
   border-radius: 35px;
-}
-
-.share .icon {
-  cursor: pointer;
-  transition: all 0.2s ease-out 0s;
-  display: inline-block;
-  font-size: 16px;
-  margin-top: 15px;
-}
-
-.share .icon:hover {
-  transform: rotate(360deg);
-  color: #9EABB3;
-}
-
-.icon-weibo:before {
-  content: "\e605";
-}
-
-.icon-twitter:before {
-  content: "\e60b";
-}
-
-.icon-tencent:before {
-  content: "\e60d";
 }
 
 .icon-google:before {
@@ -1090,6 +1045,58 @@ ul.comments {
   margin: 0;
 }
 
+
+.article__share {
+  margin-top: 10px;
+  display: inline-block;
+  position: relative;
+  float: right;
+
+  .item {
+    cursor: pointer;
+    display: inline-block;
+    float: left;
+    text-align: center;
+    padding: 5px;
+    box-sizing: border-box;
+    color: #fdc200;
+    transition: all .3s ease;
+    opacity: .86;
+
+    svg {
+      fill: currentColor;
+      height: 16px;
+      width: 16px;
+      float: left;
+    }
+
+    &[data-type="wechat"] {
+      color: #3caf36;
+    }
+
+    &[data-type="twitter"] {
+      color: #18a3fa;
+    }
+
+    &[data-type="weibo"] {
+      color: #f93;
+    }
+
+    &:hover {
+      transform: rotate(360deg);
+      color: #9EABB3;
+    }
+
+    &__qr {
+      position: absolute;
+      top: 30px;
+      left: 33px;
+      height: 99px;
+      width: 99px;
+    }
+  }
+}
+
 /* end article */
 
 /* start tags */
@@ -1118,26 +1125,6 @@ ul.comments {
 }
 
 /* end tags */
-
-/* start dynamic */
-.dynamic .read-next-story > div {
-  position: relative;
-  width: 60%;
-  margin: 50px auto;
-  text-align: left;
-}
-
-.dynamic a {
-  text-decoration: none;
-  margin: 0;
-  color: rgba(255, 255, 255, 0.8);
-}
-
-.dynamic a:hover {
-  color: rgba(255, 255, 255, 0.5);
-}
-
-/* end dynamic */
 
 /* start footer */
 .site-footer {

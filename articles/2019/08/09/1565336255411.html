@@ -2,31 +2,104 @@
 <html>
 <head>
 <meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>学习笔记|List,Set和Map - Kosmos</title><meta name="description" content="一些List,Set和Map的特点🌊 List:Arraylist,LinkedList,Vector Set依赖Map存在 Map:Hashtable,HashMap,LinkedHashMap,ConcurrentHashMap"/><meta property="og:description" content="一些List,Set和Map的特点🌊 List:Arraylist,LinkedList,Vector Set依赖Map存在 Map:Hashtable,HashMap,LinkedHashMap,ConcurrentHashMap"/>    <meta name="keywords" content="开源,开发者,笔记,kosmos"/><link rel="dns-prefetch" href="https://ellenbboe.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://ellenbboe.github.io"><link rel="icon" type="image/png" href="https://s2.ax1x.com/2020/01/12/loApPe.png"/><link rel="apple-touch-icon" href="https://s2.ax1x.com/2020/01/12/loApPe.png"><link rel="shortcut icon" type="image/x-icon" href="https://s2.ax1x.com/2020/01/12/loApPe.png"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="学习笔记|List,Set和Map - Kosmos"/><meta property="og:site_name" content="Kosmos"/><meta property="og:url"      content="https://ellenbboe.github.io/articles/2019/08/09/1565336255411.html?"/><meta property="og:image" content="https://s2.ax1x.com/2020/01/12/loApPe.png"/><link rel="search" type="application/opensearchdescription+xml" title="学习笔记|List,Set和Map - Kosmos" href="/opensearch.xml"><link href="https://ellenbboe.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://ellenbboe.github.io/manifest.json">        <link rel="canonical" href="https://ellenbboe.github.io/articles/2019/08/09/1565336255411.html">        <link rel="stylesheet"
-              href="https://ellenbboe.github.io/skins/Casper/css/base.css?1578931371974"/>
+              href="https://ellenbboe.github.io/skins/Casper/css/base.css?1591150301084"/>
             <link rel="prev" title="剑指Offer算法题 (1)" href="https://ellenbboe.github.io/articles/2019/08/08/1565226284855.html">
             <link rel="next" title="学习笔记|泛型" href="https://ellenbboe.github.io/articles/2019/08/10/1565417420305.html">
-    </head>
+    <script>
+onload = function() {
+    var click_cnt = 0;
+    var $html = document.getElementsByTagName("html")[0];
+    var $body = document.getElementsByTagName("body")[0];
+    $html.onclick = function(e) {
+        var $elem = document.createElement("b");
+        $elem.style.color = "#E94F06";
+        $elem.style.zIndex = 9999;
+        $elem.style.position = "absolute";
+        $elem.style.select = "none";
+        var x = e.pageX;
+        var y = e.pageY;
+        $elem.style.left = (x - 10) + "px";
+        $elem.style.top = (y - 20) + "px";
+        clearInterval(anim);
+        switch (++click_cnt) {
+            case 10:
+                $elem.innerText = "OωO";
+                break;
+            case 20:
+                $elem.innerText = "(๑•́ ∀ •̀๑)";
+                break;
+            case 30:
+                $elem.innerText = "(๑•́ ₃ •̀๑)";
+                break;
+            case 40:
+                $elem.innerText = "(๑•̀_•́๑)";
+                break;
+            case 50:
+                $elem.innerText = "（￣へ￣）";
+                break;
+            case 60:
+                $elem.innerText = "(╯°口°)╯(┴—┴";
+                break;
+            case 70:
+                $elem.innerText = "૮( ᵒ̌皿ᵒ̌ )ა";
+                break;
+            case 80:
+                $elem.innerText = "╮(｡>口<｡)╭";
+                break;
+            case 90:
+                $elem.innerText = "( ง ᵒ̌皿ᵒ̌)ง⁼³₌₃";
+                break;
+            case 100:
+            case 101:
+            case 102:
+            case 103:
+            case 104:
+            case 105:
+                $elem.innerText = "(ꐦ°᷄д°᷅)";
+                break;
+            default:
+                $elem.innerText = "❤";
+                break;
+        }
+        $elem.style.fontSize = Math.random() * 10 + 8 + "px";
+        var increase = 0;
+        var anim;
+        setTimeout(function() {
+            anim = setInterval(function() {
+                if (++increase == 150) {
+                    clearInterval(anim);
+                    $body.removeChild($elem);
+                }
+                $elem.style.top = y - 20 - increase + "px";
+                $elem.style.opacity = (150 - increase) / 120;
+            }, 8);
+        }, 70);
+        $body.appendChild($elem);
+    };
+};
+</script>
+</head>
 <body class="fn__flex-column">
 <div id="pjax" class="fn__flex-1">
     
     <header class="header header--article">
         <div class="wrapper header__title">
             <h1 class="header__h1 fn__flex-inline">
-                <img src="https://s2.ax1x.com/2020/01/12/loApPe.png">
+                <img src="https://s2.ax1x.com/2020/01/12/loApPe.png" alt="Kosmos">
                 <a href="https://ellenbboe.github.io" rel="start" class="header__title">Kosmos</a>
             </h1>
-            <h2 class="header__h2">---就算是痛苦难受，也要去体会那被称为生存的分量---</h2>
+            <h2 class="header__h2">---我们总得选择一条路去前行---</h2>
         </div>
         <nav class="wrapper header__nav fn__clear">
             <a href="https://ellenbboe.github.io" rel="start">
                     Kosmos
             </a>
 
-                <a class="fn__flex-inline" href="/my-github-repos" target="_self" rel="section">
-                    <img src="/images/github-icon.png"> 我的开源
+                <a class="fn__flex-inline" href="https://github.com/ellenbboe" target="_self" rel="section">
+                    <img src="https://s2.ax1x.com/2020/01/16/ljWMPP.png" alt="我的GIT"> 我的GIT
                 </a>
                 <a class="fn__flex-inline" href="/readlist" target="_self" rel="section">
-                     阅读列表
+                    <img src="https://s2.ax1x.com/2020/01/16/ljWPC6.png" alt="阅读列表"> 阅读列表
                 </a>
 
 
@@ -113,24 +186,24 @@
         <div class="item__cover" style="background-image: url(https://img.hacpai.com/file/2019/08/42707615755acdf3e0845f8articlex-7e5748da.png?imageView2/2/w/1280/format/jpg/interlace/1/q/100)"></div>
         <div class="wrapper">
             <section class="item__content item__content--article vditor-reset">
-                <p></p><h3 id="b3_solo_h3_0">List</h3>
+                <h3 id="toc_h3_0">List</h3>
 <ul>
 <li>存取的顺序和取出的顺序是一致的,可重复添加</li>
 </ul>
-<h4 id="b3_solo_h4_1">LinkedList</h4>
+<h4 id="toc_h4_1">LinkedList</h4>
 <ul>
 <li>双向链表</li>
 <li>实现了Deque的接口,可以用操作栈和队列的方式操作LinkedList</li>
 <li>由于是链表,支持高效的插入和删除</li>
 <li>增加删除和链表操作是差不多的,get和set的时候判断下表和长度的一半的关系来确定从头部还是尾部进行遍历</li>
 </ul>
-<h4 id="b3_solo_h4_2">ArrayList</h4>
+<h4 id="toc_h4_2">ArrayList</h4>
 <p>非线程安全</p>
 <ul>
 <li>底层是Object数组,因为有扩容机制,所以可以实现动态增长</li>
 <li>初始化是根据输入的参数进行的,默认返回空的Object数组</li>
 </ul>
-<h5 id="b3_solo_h5_3">扩容</h5>
+<h5 id="toc_h5_3">扩容</h5>
 <ul>
 <li>初始容量为10,第一次扩容假如需要的容量小于默认容量时容量保持在10<br>
 扩容发生在add的时候</li>
@@ -139,14 +212,14 @@
 <li>扩容完成后将原来数组的数组复制到新的数组中,增加和删除的时候是用c/c++的方法来对数组进行复制</li>
 </ul>
 <p>如果想要arraylist实现同步,可以使用synchronizedList方法</p>
-<h4 id="b3_solo_h4_4">Vector</h4>
+<h4 id="toc_h4_4">Vector</h4>
 <ul>
 <li>底层与arraylist一样,也是数组</li>
 <li>通过synchronized对方法进行同步,来使线程安全,存在性能损失</li>
 <li>vector底层数组不够用的时候是扩容一倍</li>
 </ul>
 <p><strong>查询多用ArrayList，增删多用LinkedList</strong></p>
-<h3 id="b3_solo_h3_5">fast-fail机制</h3>
+<h3 id="toc_h3_5">fast-fail机制</h3>
 <p>在遍历集合的时候对集合进行删除或者添加,会报错<br>
 比如根据集合size长度遍历,在这个过程中删除集合某一元素后size会变<br>
 利用<strong>Copy-On-Write</strong>实行读写分离,避免上述情况</p>
@@ -159,22 +232,22 @@
 <li>一切修改完成后将新集合赋值给引用变量</li>
 </ul>
 <p>缺点是由于在新数组里更改,新的数组需要时间返回,只能保证最终一致性</p>
-<h3 id="b3_solo_h3_6">Set</h3>
+<h3 id="toc_h3_6">Set</h3>
 <p>元素不重复</p>
 <ul>
 <li>HashSet:底层是HashMap,无序,非线性同步</li>
 <li>TreeSet:底层TreeMap,有序</li>
 <li>LinkedSet:底层是LinkedHashMap</li>
 </ul>
-<h3 id="b3_solo_h3_7">Map</h3>
+<h3 id="toc_h3_7">Map</h3>
 <p>存储键值对</p>
-<h4 id="b3_solo_h4_8">Hashtable</h4>
+<h4 id="toc_h4_8">Hashtable</h4>
 <ul>
 <li>方法有synchronize关键字修饰,所以线程安全,其他和HashMap1.6版本似乎一样,也是数组加上链表</li>
 </ul>
-<h4 id="b3_solo_h4_9">HashMap和ConcurrentHashMap</h4>
+<h4 id="toc_h4_9">HashMap和ConcurrentHashMap</h4>
 <p><a href="https://zdone.top/articles/2019/07/23/1563870255078.html">Link</a></p>
-<h4 id="b3_solo_h4_10">TreeMap</h4>
+<h4 id="toc_h4_10">TreeMap</h4>
 <p>底层是红黑树</p>
 <ul>
 <li>由于实现了nevigableMap接口而nevigable接口继承了sortedmap接口,使得treemap中的数据是有序的,使用comparator和comprable来排序key,主要是用comparator,假如comparator为空,就使用自然排序,key不能为null</li>
@@ -183,12 +256,12 @@
 <li>查找还是根据Comparator进行比较,寻找合适位置的节点,假如没有就返回null</li>
 <li>删除还是根据Comparator进行比较,寻找合适位置的节点,删掉节点然后调整红黑树</li>
 </ul>
-<h5 id="b3_solo_h5_11">Comparable和Comparator</h5>
+<h5 id="toc_h5_11">Comparable和Comparator</h5>
 <ul>
 <li>实现Comparator接口的类是一种比较工具,一种规则,需Overwrite Compare方法,比较两个对象</li>
 <li>实现Comparable接口的类就是一种普通的类,需OverWrite CompareTo方法,与另一对象进行比较</li>
 </ul>
-<h4 id="b3_solo_h4_12">LinkedHashMap</h4>
+<h4 id="toc_h4_12">LinkedHashMap</h4>
 <p><img src="https://img.hacpai.com/file/2019/08/42707615755acdf3e0845f8articlex-7e5748da.png?imageView2/2/w/1280/format/jpg/interlace/1/q/100" alt="42707615755acdf3e0845f8articlex.png"></p>
 <ul>
 <li>怀有List和Map的特点</li>
@@ -198,7 +271,6 @@
 <li>基本上是在HashMap的基础上维护一个双向链表</li>
 <li>遍历有插入顺序和访问顺序两种方式,LinkedHashMap遍历的是内部维护的双向链表,插入顺序就是普通的顺序,访问顺序会将最近访问的结点转移到链表的末尾,然后在遍历链表</li>
 </ul>
-<p></p>
                     <div>
                         <hr>
 <img alt="今日诗词" src="https://v2.jinrishici.com/one.svg" style="max-width:100%; display: block; margin: 0 auto;">
@@ -208,6 +280,7 @@
 地址：<a href="https://ellenbboe.github.io/articles/2019/08/09/1565336255411.html" target="_blank">https://ellenbboe.github.io/articles/2019/08/09/1565336255411.html</a><br>
 <!-- 签名档内可使用 HTML、JavaScript -->
 <br>
+
                     </div>
             </section>
         </div>
@@ -215,56 +288,47 @@
         <div class="post__toc">
 <ul class="article__toc">
         <li class="toc__h3">
-            <a href="#b3_solo_h3_0">List</a>
+            <a href="#toc_h3_0">List</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_1">LinkedList</a>
+            <a href="#toc_h4_1">LinkedList</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_2">ArrayList</a>
+            <a href="#toc_h4_2">ArrayList</a>
         </li>
         <li class="toc__h5">
-            <a href="#b3_solo_h5_3">扩容</a>
+            <a href="#toc_h5_3">扩容</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_4">Vector</a>
+            <a href="#toc_h4_4">Vector</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_5">fast-fail机制</a>
+            <a href="#toc_h3_5">fast-fail机制</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_6">Set</a>
+            <a href="#toc_h3_6">Set</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_7">Map</a>
+            <a href="#toc_h3_7">Map</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_8">Hashtable</a>
+            <a href="#toc_h4_8">Hashtable</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_9">HashMap和ConcurrentHashMap</a>
+            <a href="#toc_h4_9">HashMap和ConcurrentHashMap</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_10">TreeMap</a>
+            <a href="#toc_h4_10">TreeMap</a>
         </li>
         <li class="toc__h5">
-            <a href="#b3_solo_h5_11">Comparable和Comparator</a>
+            <a href="#toc_h5_11">Comparable和Comparator</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_12">LinkedHashMap</a>
+            <a href="#toc_h4_12">LinkedHashMap</a>
         </li>
 </ul>        </div>
-<div class="comment">
-    <div class="comment__wrapper wrapper">
-        <div class="comment__title">
-            评论
-        </div>
-        <textarea rows="3" placeholder="评论内容只能为 2 到 500 个字符！" id="comment"></textarea>
-
-        <ul id="comments">
-        </ul>
-    </div>
-</div>
+        <div id="b3logsolocomments"></div>
+        <div id="vcomment" class="comment__wrapper wrapper" style="margin: 40px auto" data-name="ellenbboe" data-postId="1565336255411"></div>
     <div class="article__bottom">
         <div class="wrapper">
             <div class="fn__flex">
@@ -278,6 +342,7 @@
 <footer class="footer">
     <div class="wrapper fn__clear">
         <div class="fn__left">
+            <br>
             &copy; 2020
             <a href="https://ellenbboe.github.io">Kosmos</a>
             <a href="http://www.beian.miit.gov.cn/">浙ICP备18045840号-1</a>--------Let's move on
@@ -306,12 +371,23 @@ show_date_time();
 <style>
 #momk{animation:change 10s infinite;font-weight:800; }
 @keyframes change{0%{color:#5cb85c;}25%{color:#556bd8;}50%{color:#e40707;}75%{color:#66e616;}100% {color:#67bd31;}}
-</style> &nbsp;•&nbsp;
-            Powered by <a href="https://solo.b3log.org" target="_blank">Solo</a>
-            <br>
-            Theme Casper
-            <sup>[<a href="https://github.com/TryGhost/Casper" target="_blank">ref</a>]</sup>
-            by <a href="http://vanessa.b3log.org" target="_blank">Vanessa</a>
+</style>
+<script type="text/javascript">
+    /*自动刷新页面，避免无法访问*/
+    var OriginTitile = document.title;
+    var titleTime;
+    document.addEventListener('visibilitychange', function () {
+        if (document.hidden) {
+            document.title = '(〃´-ω･)  休息一下';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '起来嗨٩(๑❛ᴗ❛๑)۶';
+            titleTime = setTimeout(function () {
+                document.title = OriginTitile;
+            }, 3000);
+        }
+    });
+</script>
         </div>
         <div class="fn__right">
             <a href="https://ellenbboe.github.io/tags.html" rel="section">
@@ -326,36 +402,32 @@ show_date_time();
             友情链接
             </a>
             <br>
-            115 文章 &nbsp;
-            9 评论 &nbsp;
+            121 文章 &nbsp;
             <span data-uvstaturl="https://ellenbboe.github.io">11608</span> 浏览 &nbsp;
-            3 当前访客
+            
         </div>
     </div>
 </footer>
 
-<script type="text/javascript" src="https://ellenbboe.github.io/js/lib/compress/pjax.min.js" charset="utf-8"></script>
-<script type="text/javascript" src="https://ellenbboe.github.io/js/common.min.js?1578931371974"
-        charset="utf-8"></script>
-<script type="text/javascript"
-        src="https://ellenbboe.github.io/skins/Casper/js/common.min.js?1578931371974"
-        charset="utf-8"></script>
-<script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.4/dist/index.min.js"></script>
 <script>
-    var Label = {
-        servePath: "https://ellenbboe.github.io",
-        staticServePath: "https://ellenbboe.github.io",
-        luteAvailable: false,
-        hljsStyle: 'colorful',
-        langLabel: "zh_CN",
-        version: "3.7.0",
-    }
-    Util.init()
+  var Label = {
+    servePath: "https://ellenbboe.github.io",
+    staticServePath: "https://ellenbboe.github.io",
+    luteAvailable: false,
+    hljsStyle: 'colorful',
+    langLabel: "zh_CN",
+    version: "4.1.0",
+    staticSite: true,
+    showCodeBlockLn: false,
+  }
 </script>
+<script type="text/javascript"
+        src="https://ellenbboe.github.io/skins/Casper/js/common.min.js?1591150301084"
+        charset="utf-8"></script>
 
 
 <script type="text/javascript">
-    Util.addScript('https://ellenbboe.github.io/js/page.min.js?1578931371974', 'soloPageScript')
+    Util.addScript('https://ellenbboe.github.io/js/page.min.js?1591150301084', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1565336255411",
@@ -373,4 +445,4 @@ show_date_time();
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 45ms, 2020/01/14 13:32:39 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 61ms, 2020/06/03 12:32:27 -->

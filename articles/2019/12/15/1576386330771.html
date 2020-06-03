@@ -1,32 +1,105 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>使用Mybatis-Generator来生成mapper,xml和实体对象 - Kosmos</title><meta name="description" content="👶 第一次使用Mybatis-generator记录"/><meta property="og:description" content="👶 第一次使用Mybatis-generator记录"/>    <meta name="keywords" content="开源,开发者,笔记,kosmos"/><link rel="dns-prefetch" href="https://ellenbboe.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://ellenbboe.github.io"><link rel="icon" type="image/png" href="https://s2.ax1x.com/2020/01/12/loApPe.png"/><link rel="apple-touch-icon" href="https://s2.ax1x.com/2020/01/12/loApPe.png"><link rel="shortcut icon" type="image/x-icon" href="https://s2.ax1x.com/2020/01/12/loApPe.png"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="使用Mybatis-Generator来生成mapper,xml和实体对象 - Kosmos"/><meta property="og:site_name" content="Kosmos"/><meta property="og:url"      content="https://ellenbboe.github.io/articles/2019/12/15/1576386330771.html?"/><meta property="og:image" content="https://s2.ax1x.com/2020/01/12/loApPe.png"/><link rel="search" type="application/opensearchdescription+xml" title="使用Mybatis-Generator来生成mapper,xml和实体对象 - Kosmos" href="/opensearch.xml"><link href="https://ellenbboe.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://ellenbboe.github.io/manifest.json">        <link rel="canonical" href="https://ellenbboe.github.io/articles/2019/12/15/1576386330771.html">        <link rel="stylesheet"
-              href="https://ellenbboe.github.io/skins/Casper/css/base.css?1578931371974"/>
-            <link rel="prev" title="开发错误记录手册" href="https://ellenbboe.github.io/articles/2019/12/09/1575889655832.html">
+<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>MyBatis和MyBatis-Plus 代码生成 - Kosmos</title><meta name="description" content="👶 MyBatis 与 MyBatisPlus 生成代码"/><meta property="og:description" content="👶 MyBatis 与 MyBatisPlus 生成代码"/>    <meta name="keywords" content="开源,开发者,笔记,kosmos"/><link rel="dns-prefetch" href="https://ellenbboe.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://ellenbboe.github.io"><link rel="icon" type="image/png" href="https://s2.ax1x.com/2020/01/12/loApPe.png"/><link rel="apple-touch-icon" href="https://s2.ax1x.com/2020/01/12/loApPe.png"><link rel="shortcut icon" type="image/x-icon" href="https://s2.ax1x.com/2020/01/12/loApPe.png"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="MyBatis和MyBatis-Plus 代码生成 - Kosmos"/><meta property="og:site_name" content="Kosmos"/><meta property="og:url"      content="https://ellenbboe.github.io/articles/2019/12/15/1576386330771.html?"/><meta property="og:image" content="https://s2.ax1x.com/2020/01/12/loApPe.png"/><link rel="search" type="application/opensearchdescription+xml" title="MyBatis和MyBatis-Plus 代码生成 - Kosmos" href="/opensearch.xml"><link href="https://ellenbboe.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://ellenbboe.github.io/manifest.json">        <link rel="canonical" href="https://ellenbboe.github.io/articles/2019/12/15/1576386330771.html">        <link rel="stylesheet"
+              href="https://ellenbboe.github.io/skins/Casper/css/base.css?1591150301084"/>
+            <link rel="prev" title="SeckillFramework项目开发错误记录" href="https://ellenbboe.github.io/articles/2019/12/09/1575889655832.html">
             <link rel="next" title="mysql删库勒索?" href="https://ellenbboe.github.io/articles/2019/12/21/1576940518877.html">
-    </head>
+    <script>
+onload = function() {
+    var click_cnt = 0;
+    var $html = document.getElementsByTagName("html")[0];
+    var $body = document.getElementsByTagName("body")[0];
+    $html.onclick = function(e) {
+        var $elem = document.createElement("b");
+        $elem.style.color = "#E94F06";
+        $elem.style.zIndex = 9999;
+        $elem.style.position = "absolute";
+        $elem.style.select = "none";
+        var x = e.pageX;
+        var y = e.pageY;
+        $elem.style.left = (x - 10) + "px";
+        $elem.style.top = (y - 20) + "px";
+        clearInterval(anim);
+        switch (++click_cnt) {
+            case 10:
+                $elem.innerText = "OωO";
+                break;
+            case 20:
+                $elem.innerText = "(๑•́ ∀ •̀๑)";
+                break;
+            case 30:
+                $elem.innerText = "(๑•́ ₃ •̀๑)";
+                break;
+            case 40:
+                $elem.innerText = "(๑•̀_•́๑)";
+                break;
+            case 50:
+                $elem.innerText = "（￣へ￣）";
+                break;
+            case 60:
+                $elem.innerText = "(╯°口°)╯(┴—┴";
+                break;
+            case 70:
+                $elem.innerText = "૮( ᵒ̌皿ᵒ̌ )ა";
+                break;
+            case 80:
+                $elem.innerText = "╮(｡>口<｡)╭";
+                break;
+            case 90:
+                $elem.innerText = "( ง ᵒ̌皿ᵒ̌)ง⁼³₌₃";
+                break;
+            case 100:
+            case 101:
+            case 102:
+            case 103:
+            case 104:
+            case 105:
+                $elem.innerText = "(ꐦ°᷄д°᷅)";
+                break;
+            default:
+                $elem.innerText = "❤";
+                break;
+        }
+        $elem.style.fontSize = Math.random() * 10 + 8 + "px";
+        var increase = 0;
+        var anim;
+        setTimeout(function() {
+            anim = setInterval(function() {
+                if (++increase == 150) {
+                    clearInterval(anim);
+                    $body.removeChild($elem);
+                }
+                $elem.style.top = y - 20 - increase + "px";
+                $elem.style.opacity = (150 - increase) / 120;
+            }, 8);
+        }, 70);
+        $body.appendChild($elem);
+    };
+};
+</script>
+</head>
 <body class="fn__flex-column">
 <div id="pjax" class="fn__flex-1">
     
     <header class="header header--article">
         <div class="wrapper header__title">
             <h1 class="header__h1 fn__flex-inline">
-                <img src="https://s2.ax1x.com/2020/01/12/loApPe.png">
+                <img src="https://s2.ax1x.com/2020/01/12/loApPe.png" alt="Kosmos">
                 <a href="https://ellenbboe.github.io" rel="start" class="header__title">Kosmos</a>
             </h1>
-            <h2 class="header__h2">---就算是痛苦难受，也要去体会那被称为生存的分量---</h2>
+            <h2 class="header__h2">---我们总得选择一条路去前行---</h2>
         </div>
         <nav class="wrapper header__nav fn__clear">
             <a href="https://ellenbboe.github.io" rel="start">
                     Kosmos
             </a>
 
-                <a class="fn__flex-inline" href="/my-github-repos" target="_self" rel="section">
-                    <img src="/images/github-icon.png"> 我的开源
+                <a class="fn__flex-inline" href="https://github.com/ellenbboe" target="_self" rel="section">
+                    <img src="https://s2.ax1x.com/2020/01/16/ljWMPP.png" alt="我的GIT"> 我的GIT
                 </a>
                 <a class="fn__flex-inline" href="/readlist" target="_self" rel="section">
-                     阅读列表
+                    <img src="https://s2.ax1x.com/2020/01/16/ljWPC6.png" alt="阅读列表"> 阅读列表
                 </a>
 
 
@@ -61,9 +134,9 @@
     <div class="article__top">
         <div class="fn__clear">
             <div class="toc fn__none" onclick="$('.post__toc').slideToggle()">目录</div>
-            <div class="title fn__pointer" onclick="Util.goTop()">使用Mybatis-Generator来生成mapper,xml和实体对象</div>
+            <div class="title fn__pointer" onclick="Util.goTop()">MyBatis和MyBatis-Plus 代码生成</div>
 <div class="article__share"
-     data-title="使用Mybatis-Generator来生成mapper,xml和实体对象"
+     data-title="MyBatis和MyBatis-Plus 代码生成"
      data-blogtitle="Kosmos"
      data-url="https://ellenbboe.github.io/articles/2019/12/15/1576386330771.html"
      data-avatar="https://img.hacpai.com/avatar/1560335521987_1576387741689.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100">
@@ -98,20 +171,24 @@
         <div class="ft__center">
             <div class="item__meta">
                 <time>
-                    2019-12-15
+                    2020-01-25
                 </time>
                 /
                     <a class="tag" rel="tag"
                        href="https://ellenbboe.github.io/tags/Mybatis">Mybatis</a> &nbsp;
+                    <a class="tag" rel="tag"
+                       href="https://ellenbboe.github.io/tags/Mysql">Mysql</a> &nbsp;
             </div>
             <h2 class="item__title">
-                使用Mybatis-Generator来生成mapper,xml和实体对象
+                MyBatis和MyBatis-Plus 代码生成
             </h2>
         </div>
-        <div class="item__cover" style="background-image: url(https://img.hacpai.com/bing/20190616.jpg?imageView2/1/w/1280/h/720/interlace/1/q/100)"></div>
+        <div class="item__cover" style="background-image: url(https://img.hacpai.com/file/2020/01/wallhavendgv8qo-c9fb15a9.png?imageView2/2/w/1280/format/jpg/interlace/1/q/100)"></div>
         <div class="wrapper">
             <section class="item__content item__content--article vditor-reset">
-                <p></p><h3 id="b3_solo_h3_0">在pom中添加依赖</h3>
+                <p><img src="https://img.hacpai.com/file/2020/01/wallhavendgv8qo-c9fb15a9.png?imageView2/2/w/1280/format/jpg/interlace/1/q/100" alt="" title="wallhavendgv8qo.png"></p>
+<h2 id="toc_h2_0">MyBatis 代码生成</h2>
+<h3 id="toc_h3_1">1. 在 pom 中添加依赖</h3>
 <pre><code class="language-xml"> &lt;plugin&gt;
           &lt;groupId&gt;org.mybatis.generator&lt;/groupId&gt;
           &lt;artifactId&gt;mybatis-generator-maven-plugin&lt;/artifactId&gt;
@@ -138,7 +215,7 @@
           &lt;/dependencies&gt;
         &lt;/plugin&gt;
 </code></pre>
-<h3 id="b3_solo_h3_1">在resource中创建generatorConfig.xml文件</h3>
+<h3 id="toc_h3_2">2. 在 resource 中创建 generatorConfig.xml 文件</h3>
 <pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;!DOCTYPE generatorConfiguration
         PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
@@ -194,93 +271,241 @@
 &lt;/generatorConfiguration&gt;
 </code></pre>
 <p>根据自己的配置来修改里面的数据</p>
-<h3 id="b3_solo_h3_2">启动</h3>
-<p>假如直接在maven插件中显示了mybatis-generator可以直接启动它,而我没有显示所以使用了另一种方法</p>
+<h3 id="toc_h3_3">3. 启动</h3>
+<p>假如直接在 maven 插件中显示了 mybatis-generator 可以直接启动它，而我没有显示所以使用了另一种方法</p>
 <p>在 Run Configurations 中添加 Maven</p>
-<p>其中的command line 填写 <code>mybatis-generator:generate -e</code><br>
+<p>其中的 command line 填写 <code>mybatis-generator:generate -e</code><br>
 只有启动它就能在指定文件夹中生成配置文件了</p>
-<h3 id="b3_solo_h3_3">后记</h3>
-<p>mybatis-generator会生成xxExample文件,这个是用来添加条件的</p>
+<h3 id="toc_h3_4">后记</h3>
+<p>mybatis-generator 会生成 xxExample 文件，这个是用来添加条件的</p>
 <pre><code>xxxExample example = new xxxExample();
 Criteria criteria = new Example().createCriteria();//通过criteria来添加条件
 </code></pre>
-<p>之后通过xxMapper来操作数据库</p>
-<p></p>
+<p>之后通过 xxMapper 来操作数据库</p>
+<h2 id="toc_h2_5">MyBatis plus 代码生成器</h2>
+<h3 id="toc_h3_6">1. 添加依赖</h3>
+<pre><code>&lt;dependency&gt;
+			&lt;groupId&gt;com.baomidou&lt;/groupId&gt;
+			&lt;artifactId&gt;mybatis-plus-generator&lt;/artifactId&gt;
+			&lt;version&gt;3.3.1&lt;/version&gt;
+		&lt;/dependency&gt;
+</code></pre>
+<h3 id="toc_h3_7">2. 下载模板并添加对应模板依赖</h3>
+<pre><code>模板在 mybatisplus 的 GitHub 库中，下载下来放入 resources/templates 文件夹中
+</code></pre>
+<pre><code>&lt;dependency&gt;
+			&lt;groupId&gt;org.freemarker&lt;/groupId&gt;
+			&lt;artifactId&gt;freemarker&lt;/artifactId&gt;
+			&lt;version&gt;2.3.29&lt;/version&gt;
+		&lt;/dependency&gt;
+</code></pre>
+<h3 id="toc_h3_8">3. 运行函数</h3>
+<pre><code>package springdemo.demo.mybatis;
+
+import com.baomidou.mybatisplus.core.exceptions.MybatisPlusException;
+import com.baomidou.mybatisplus.core.toolkit.StringPool;
+import com.baomidou.mybatisplus.core.toolkit.StringUtils;
+import com.baomidou.mybatisplus.generator.AutoGenerator;
+import com.baomidou.mybatisplus.generator.InjectionConfig;
+import com.baomidou.mybatisplus.generator.config.*;
+import com.baomidou.mybatisplus.generator.config.po.TableInfo;
+import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
+import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+// 演示例子，执行 main 方法控制台输入模块表名回车自动生成对应项目目录中
+public class CodeGenerator {
+
+    private static final String USERNAME = "xxx";
+    private static final String PASSWORD = "xxx";
+    private static final String PROJECT_PARENT_PATH = "xxx";
+    private static final String AUTHOR = "xxx";
+    private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
+    private static final String URL = "xxx?useUnicode=true&amp;useSSL=false&amp;characterEncoding=utf8&amp;serverTimezone=Asia/Shanghai";
+    /**
+     * &lt;p&gt;
+     * 读取控制台内容
+     * &lt;/p&gt;
+     */
+    public static String scanner(String tip) {
+        Scanner scanner = new Scanner(System.in);
+        StringBuilder help = new StringBuilder();
+        help.append("请输入" + tip + "：");
+        System.out.println(help.toString());
+        if (scanner.hasNext()) {
+            String ipt = scanner.next();
+            if (StringUtils.isNotEmpty(ipt)) {
+                return ipt;
+            }
+        }
+        throw new MybatisPlusException("请输入正确的" + tip + "！");
+    }
+
+    public static void main(String[] args) {
+        // 代码生成器
+        AutoGenerator mpg = new AutoGenerator();
+
+        // 全局配置
+        GlobalConfig gc = new GlobalConfig();
+        String projectPath = System.getProperty("user.dir");
+        // 生成代码的路径，
+        gc.setOutputDir(projectPath + "/src/main/java");
+        // 作者信息
+        gc.setAuthor(AUTHOR);
+        gc.setOpen(false);
+        mpg.setGlobalConfig(gc);
+
+        // 数据源配置
+        DataSourceConfig dsc = new DataSourceConfig();
+        dsc.setUrl(URL);
+        // dsc.setSchemaName("public");
+        dsc.setDriverName(DRIVER);
+        dsc.setUsername(USERNAME);
+        dsc.setPassword(PASSWORD);
+        mpg.setDataSource(dsc);
+
+        // 包配置
+        PackageConfig pc = new PackageConfig();
+        pc.setModuleName(scanner("模块名"));
+        pc.setParent(PROJECT_PARENT_PATH);
+        // 这里是设置Mapper的包名：
+        // 默认生成的mapper包名 package com.background.rbac.mapper
+        // 但是本人将使用dao文件夹保存mapper，其包名是package com.background.rbac.dao
+        // 如果想使用默认mapper配置，这里可以去掉，同时去掉focList.add（）中自定义文件路径的配置
+//        pc.setMapper("dao");
+        mpg.setPackageInfo(pc);
+
+        // 自定义配置
+        InjectionConfig cfg = new InjectionConfig() {
+            @Override
+            public void initMap() {
+                // to do nothing
+            }
+        };
+
+        // 如果模板引擎是 freemarker
+//        String templatePath = "/templates/mapper.xml.ftl";
+//        String entityPath = "/templates/entity.java.ftl";
+//        String mapperPath = "/templates/mapper.java.ftl";
+//        // 自定义输出配置
+//        List&lt;FileOutConfig&gt; focList = new ArrayList&lt;&gt;();
+//        // 自定义配置会被优先输出
+//        focList.add(new FileOutConfig(templatePath) {
+//            @Override
+//            public String outputFile(TableInfo tableInfo) {
+//                // 自定义输出文件名 ， 如果你 Entity 设置了前后缀、此处注意 xml 的名称会跟着发生变化！！
+//                //+ pc.getModuleName()
+//                return projectPath + "/src/main/resources/templates/mybatis/mapper"
+//                        + "/" + tableInfo.getEntityName() + "Mapper" + StringPool.DOT_XML;
+//            }
+//        });
+//        //dao数据访问对象
+//        focList.add(new FileOutConfig(mapperPath) {
+//            @Override
+//            public String outputFile(TableInfo tableInfo) {
+//                // 自定义输出文件名 ，将entity文件实体类放到model中
+//                return projectPath + "/src/main/java/springdemo/demo/mybatis/mapper"
+//                        + "/" + tableInfo.getEntityName() + "Mapper" + StringPool.DOT_JAVA;
+//            }
+//        });
+//        focList.add(new FileOutConfig(entityPath) {
+//            @Override
+//            public String outputFile(TableInfo tableInfo) {
+//                return projectPath + "/src/main/java/springdemo/demo/mybatis/entity"
+//                        + "/" + tableInfo.getEntityName() + "Entity" + StringPool.DOT_JAVA;
+//            }
+//        });
+//        cfg.setFileOutConfigList(focList);
+//        mpg.setCfg(cfg);
+
+        // 配置模板
+        TemplateConfig templateConfig = new TemplateConfig();
+//
+//        // 配置自定义输出模板
+//        //指定自定义模板路径，注意不要带上.ftl/.vm, 会根据使用的模板引擎自动识别
+//        templateConfig.setEntity("templates/entity.java");
+//        templateConfig.setMapper("templates/mapper.java");
+//        templateConfig.setXml("templates/mapper.xml");
+//
+        templateConfig.setXml(null);
+        mpg.setTemplate(templateConfig);
+
+        // 策略配置
+        StrategyConfig strategy = new StrategyConfig();
+        // 表名生成策略(下划线转驼峰命名)
+        strategy.setNaming(NamingStrategy.underline_to_camel);
+        // 列名生成策略(下划线转驼峰命名)
+        strategy.setColumnNaming(NamingStrategy.underline_to_camel);
+        // 自定义实体父类
+        //strategy.setSuperEntityClass("com.baomidou.ant.common.BaseEntity");
+        // 是否启动Lombok配置
+        strategy.setEntityLombokModel(true);
+        // 是否启动REST风格配置
+        strategy.setRestControllerStyle(true);
+        // 自定义controller父类
+        //strategy.setSuperControllerClass("com.baomidou.ant.common.BaseController");
+        // 写于父类中的公共字段
+        strategy.setSuperEntityColumns("id");
+        strategy.setInclude(scanner("表名，多个英文逗号分割").split(","));
+        strategy.setControllerMappingHyphenStyle(true);
+        strategy.setTablePrefix(pc.getModuleName() + "_");
+        mpg.setStrategy(strategy);
+        mpg.setTemplateEngine(new FreemarkerTemplateEngine());
+        mpg.execute();
+    }
+
+}
+</code></pre>
+<p>输入模块后会自动生成，创建一个文件夹，在里面会出现模板文件</p>
                     <div>
                         <hr>
 <img alt="今日诗词" src="https://v2.jinrishici.com/one.svg" style="max-width:100%; display: block; margin: 0 auto;">
 
-标题：使用Mybatis-Generator来生成mapper,xml和实体对象<br>
+标题：MyBatis和MyBatis-Plus 代码生成<br>
 作者：<a href="https://ellenbboe.github.io" target="_blank">ellenbboe</a><br>
 地址：<a href="https://ellenbboe.github.io/articles/2019/12/15/1576386330771.html" target="_blank">https://ellenbboe.github.io/articles/2019/12/15/1576386330771.html</a><br>
 <!-- 签名档内可使用 HTML、JavaScript -->
 <br>
+
                     </div>
             </section>
         </div>
     </div>
         <div class="post__toc">
 <ul class="article__toc">
-        <li class="toc__h3">
-            <a href="#b3_solo_h3_0">在pom中添加依赖</a>
+        <li class="toc__h2">
+            <a href="#toc_h2_0">MyBatis 代码生成</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_1">在resource中创建generatorConfig.xml文件</a>
+            <a href="#toc_h3_1">1. 在 pom 中添加依赖</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_2">启动</a>
+            <a href="#toc_h3_2">2. 在 resource 中创建 generatorConfig.xml 文件</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_3">后记</a>
+            <a href="#toc_h3_3">3. 启动</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_4">后记</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_5">MyBatis plus 代码生成器</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_6">1. 添加依赖</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_7">2. 下载模板并添加对应模板依赖</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_8">3. 运行函数</a>
         </li>
 </ul>        </div>
-<div class="comment">
-    <div class="comment__wrapper wrapper">
-        <div class="comment__title">
-            评论
-        </div>
-        <textarea rows="3" placeholder="评论内容只能为 2 到 500 个字符！" id="comment"></textarea>
-
-        <ul id="comments">
-<li id="1576391777714" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1560335521987_1576387741689.jpeg?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/ellenbboe" target="_blank">ellenbboe</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>mark</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        十二月 15, 2019
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1576391777714', 'ellenbboe')">Reply</a>
-    </div>
-</li><li id="1576389071847" class="item">
-    <div class="fn__clear">
-        <div class="item__avatar" style="background-image: url(https://img.hacpai.com/avatar/1525954222365_1570758095941.png?imageView2/1/w/48/h/48/interlace/0/q/100)"></div>
-        <div class="item__name">
-            <a class="ft__link" href="https://hacpai.com/member/kangaroo1122" target="_blank">kangaroo1122</a>
-
-        </div>
-    </div>
-    <div class="vditor-reset">
-    <p>mybatis-plus更爽</p>
-    </div>
-    <div class="item__meta fn__clear">
-        <time>
-        十二月 15, 2019
-        </time>
-            <a class="fn__right fn__none item__reply"
-               href="javascript:page.toggleEditor('1576389071847', 'kangaroo1122')">Reply</a>
-    </div>
-</li>        </ul>
-    </div>
-</div>
+        <div id="b3logsolocomments"></div>
+        <div id="vcomment" class="comment__wrapper wrapper" style="margin: 40px auto" data-name="ellenbboe" data-postId="1576386330771"></div>
     <div class="article__bottom">
         <div class="wrapper">
             <div class="fn__flex">
@@ -294,6 +519,7 @@ Criteria criteria = new Example().createCriteria();//通过criteria来添加条�
 <footer class="footer">
     <div class="wrapper fn__clear">
         <div class="fn__left">
+            <br>
             &copy; 2020
             <a href="https://ellenbboe.github.io">Kosmos</a>
             <a href="http://www.beian.miit.gov.cn/">浙ICP备18045840号-1</a>--------Let's move on
@@ -322,12 +548,23 @@ show_date_time();
 <style>
 #momk{animation:change 10s infinite;font-weight:800; }
 @keyframes change{0%{color:#5cb85c;}25%{color:#556bd8;}50%{color:#e40707;}75%{color:#66e616;}100% {color:#67bd31;}}
-</style> &nbsp;•&nbsp;
-            Powered by <a href="https://solo.b3log.org" target="_blank">Solo</a>
-            <br>
-            Theme Casper
-            <sup>[<a href="https://github.com/TryGhost/Casper" target="_blank">ref</a>]</sup>
-            by <a href="http://vanessa.b3log.org" target="_blank">Vanessa</a>
+</style>
+<script type="text/javascript">
+    /*自动刷新页面，避免无法访问*/
+    var OriginTitile = document.title;
+    var titleTime;
+    document.addEventListener('visibilitychange', function () {
+        if (document.hidden) {
+            document.title = '(〃´-ω･)  休息一下';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '起来嗨٩(๑❛ᴗ❛๑)۶';
+            titleTime = setTimeout(function () {
+                document.title = OriginTitile;
+            }, 3000);
+        }
+    });
+</script>
         </div>
         <div class="fn__right">
             <a href="https://ellenbboe.github.io/tags.html" rel="section">
@@ -342,36 +579,32 @@ show_date_time();
             友情链接
             </a>
             <br>
-            115 文章 &nbsp;
-            9 评论 &nbsp;
+            121 文章 &nbsp;
             <span data-uvstaturl="https://ellenbboe.github.io">11608</span> 浏览 &nbsp;
-            3 当前访客
+            
         </div>
     </div>
 </footer>
 
-<script type="text/javascript" src="https://ellenbboe.github.io/js/lib/compress/pjax.min.js" charset="utf-8"></script>
-<script type="text/javascript" src="https://ellenbboe.github.io/js/common.min.js?1578931371974"
-        charset="utf-8"></script>
-<script type="text/javascript"
-        src="https://ellenbboe.github.io/skins/Casper/js/common.min.js?1578931371974"
-        charset="utf-8"></script>
-<script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.4/dist/index.min.js"></script>
 <script>
-    var Label = {
-        servePath: "https://ellenbboe.github.io",
-        staticServePath: "https://ellenbboe.github.io",
-        luteAvailable: false,
-        hljsStyle: 'colorful',
-        langLabel: "zh_CN",
-        version: "3.7.0",
-    }
-    Util.init()
+  var Label = {
+    servePath: "https://ellenbboe.github.io",
+    staticServePath: "https://ellenbboe.github.io",
+    luteAvailable: false,
+    hljsStyle: 'colorful',
+    langLabel: "zh_CN",
+    version: "4.1.0",
+    staticSite: true,
+    showCodeBlockLn: false,
+  }
 </script>
+<script type="text/javascript"
+        src="https://ellenbboe.github.io/skins/Casper/js/common.min.js?1591150301084"
+        charset="utf-8"></script>
 
 
 <script type="text/javascript">
-    Util.addScript('https://ellenbboe.github.io/js/page.min.js?1578931371974', 'soloPageScript')
+    Util.addScript('https://ellenbboe.github.io/js/page.min.js?1591150301084', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1576386330771",
@@ -389,4 +622,4 @@ show_date_time();
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 47ms, 2020/01/14 13:32:38 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 72ms, 2020/06/03 12:32:27 -->

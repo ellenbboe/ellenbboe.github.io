@@ -3,18 +3,12 @@
     Solo - A small and beautiful blogging system written in Java.
     Copyright (c) 2010-present, b3log.org
 
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU Affero General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU Affero General Public License for more details.
-
-    You should have received a copy of the GNU Affero General Public License
-    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+    Solo is licensed under Mulan PSL v2.
+    You can use this software according to the terms and conditions of the Mulan PSL v2.
+    You may obtain a copy of Mulan PSL v2 at:
+            http://license.coscl.org.cn/MulanPSL2
+    THIS SOFTWARE IS PROVIDED ON AN "AS IS" BASIS, WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO NON-INFRINGEMENT, MERCHANTABILITY OR FIT FOR A PARTICULAR PURPOSE.
+    See the Mulan PSL v2 for more details.
 
 -->
 <div class="footer">
@@ -25,10 +19,6 @@
         </div>
         <div class="left">
             <span>&copy; ${year}</span> <a href="${servePath}">${blogTitle}</a> ${footerContent}
-            Powered by <a href="https://solo.b3log.org" target="_blank">Solo</a>&nbsp;&nbsp;
-            Theme ${skinDirName}
-            <sup>[<a href="http://themify.me/demo/themes/postline/" target="_blank">ref</a>]</sup>
-            by <a rel="friend" href="http://vanessa.b3log.org" target="_blank">Vanessa</a>.
         </div>
         <div class="right fn-clear">
             <span class="left">
@@ -42,22 +32,14 @@
                     ${statistic.statisticPublishedBlogArticleCount}
                     &nbsp;&nbsp;
                 </span>
-                <#if commentable>
-                <span>
-                    ${commentCount1Label}
-                    ${statistic.statisticPublishedBlogCommentCount}
-                </span>
-                </#if>
             </span>
             <span class="ico-translate" onclick="timeline.translate()"></span>
         </div>
     </div>
 </div>
 <div class="ico-top none" onclick="Util.goTop()" title="TOP"></div>
-<script type="text/javascript" src="${staticServePath}/js/lib/jquery/jquery.min.js" charset="utf-8"></script>
-<script type="text/javascript" src="${staticServePath}/js/common${miniPostfix}.js?${staticResourceVersion}" charset="utf-8"></script>
-<script type="text/javascript" src="${staticServePath}/skins/${skinDirName}/js/${skinDirName}${miniPostfix}.js?${staticResourceVersion}" charset="utf-8"></script>
 <#include "../../common-template/label.ftl">
+<script src="${staticServePath}/skins/${skinDirName}/js/common.min.js?${staticResourceVersion}"></script>
 <script type="text/javascript">
     Label.localeString = "${localeString}"
     Label.yearLabel = "${yearLabel}"

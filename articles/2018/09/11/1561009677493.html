@@ -2,31 +2,104 @@
 <html>
 <head>
 <meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>Spring Pass 3 - Kosmos</title><meta name="description" content="Spring 依赖注入 每个基于应用程序的 java 都有几个对象，这些对象一起工作来呈现出终端用户所看到的工作的应用程序。当编写一个复杂的 Java 应用程序时，应用程序类应该尽可能独立于其他 Java 类来 增加这些类重用的可能性，并且在做单元测试时，测试独立于其他类的独立性。依赖注入（或有时称为布线）有助于把这些类粘合在一起，同时保持他们独立。 假设你有一个包含文本编辑器组件的应用程序，并且你想要提供拼写检查。标准代码看起来是这样的： public class TextEditor { private SpellChecker spellChecker; public TextEditor() { spellChecker = new SpellChecker(); } } 在这里我们所做的就是创建一个 TextEditor 和 SpellChecker 之间的依赖关系。在控制反转的场景中，我们反而会做这样的事情： public class TextEditor { private SpellChecker spellChecker; public TextEditor(Spe...."/><meta property="og:description" content="Spring 依赖注入 每个基于应用程序的 java 都有几个对象，这些对象一起工作来呈现出终端用户所看到的工作的应用程序。当编写一个复杂的 Java 应用程序时，应用程序类应该尽可能独立于其他 Java 类来 增加这些类重用的可能性，并且在做单元测试时，测试独立于其他类的独立性。依赖注入（或有时称为布线）有助于把这些类粘合在一起，同时保持他们独立。 假设你有一个包含文本编辑器组件的应用程序，并且你想要提供拼写检查。标准代码看起来是这样的： public class TextEditor { private SpellChecker spellChecker; public TextEditor() { spellChecker = new SpellChecker(); } } 在这里我们所做的就是创建一个 TextEditor 和 SpellChecker 之间的依赖关系。在控制反转的场景中，我们反而会做这样的事情： public class TextEditor { private SpellChecker spellChecker; public TextEditor(Spe...."/>    <meta name="keywords" content="开源,开发者,笔记,kosmos"/><link rel="dns-prefetch" href="https://ellenbboe.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://ellenbboe.github.io"><link rel="icon" type="image/png" href="https://s2.ax1x.com/2020/01/12/loApPe.png"/><link rel="apple-touch-icon" href="https://s2.ax1x.com/2020/01/12/loApPe.png"><link rel="shortcut icon" type="image/x-icon" href="https://s2.ax1x.com/2020/01/12/loApPe.png"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="Spring Pass 3 - Kosmos"/><meta property="og:site_name" content="Kosmos"/><meta property="og:url"      content="https://ellenbboe.github.io/articles/2018/09/11/1561009677493.html?"/><meta property="og:image" content="https://s2.ax1x.com/2020/01/12/loApPe.png"/><link rel="search" type="application/opensearchdescription+xml" title="Spring Pass 3 - Kosmos" href="/opensearch.xml"><link href="https://ellenbboe.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://ellenbboe.github.io/manifest.json">        <link rel="canonical" href="https://ellenbboe.github.io/articles/2018/09/11/1561009677493.html">        <link rel="stylesheet"
-              href="https://ellenbboe.github.io/skins/Casper/css/base.css?1578931371974"/>
+              href="https://ellenbboe.github.io/skins/Casper/css/base.css?1591150301084"/>
             <link rel="prev" title="Spring Pass 2" href="https://ellenbboe.github.io/articles/2018/09/11/1561009681011.html">
             <link rel="next" title="Spring Pass 4" href="https://ellenbboe.github.io/articles/2018/09/12/1561009684949.html">
-    </head>
+    <script>
+onload = function() {
+    var click_cnt = 0;
+    var $html = document.getElementsByTagName("html")[0];
+    var $body = document.getElementsByTagName("body")[0];
+    $html.onclick = function(e) {
+        var $elem = document.createElement("b");
+        $elem.style.color = "#E94F06";
+        $elem.style.zIndex = 9999;
+        $elem.style.position = "absolute";
+        $elem.style.select = "none";
+        var x = e.pageX;
+        var y = e.pageY;
+        $elem.style.left = (x - 10) + "px";
+        $elem.style.top = (y - 20) + "px";
+        clearInterval(anim);
+        switch (++click_cnt) {
+            case 10:
+                $elem.innerText = "OωO";
+                break;
+            case 20:
+                $elem.innerText = "(๑•́ ∀ •̀๑)";
+                break;
+            case 30:
+                $elem.innerText = "(๑•́ ₃ •̀๑)";
+                break;
+            case 40:
+                $elem.innerText = "(๑•̀_•́๑)";
+                break;
+            case 50:
+                $elem.innerText = "（￣へ￣）";
+                break;
+            case 60:
+                $elem.innerText = "(╯°口°)╯(┴—┴";
+                break;
+            case 70:
+                $elem.innerText = "૮( ᵒ̌皿ᵒ̌ )ა";
+                break;
+            case 80:
+                $elem.innerText = "╮(｡>口<｡)╭";
+                break;
+            case 90:
+                $elem.innerText = "( ง ᵒ̌皿ᵒ̌)ง⁼³₌₃";
+                break;
+            case 100:
+            case 101:
+            case 102:
+            case 103:
+            case 104:
+            case 105:
+                $elem.innerText = "(ꐦ°᷄д°᷅)";
+                break;
+            default:
+                $elem.innerText = "❤";
+                break;
+        }
+        $elem.style.fontSize = Math.random() * 10 + 8 + "px";
+        var increase = 0;
+        var anim;
+        setTimeout(function() {
+            anim = setInterval(function() {
+                if (++increase == 150) {
+                    clearInterval(anim);
+                    $body.removeChild($elem);
+                }
+                $elem.style.top = y - 20 - increase + "px";
+                $elem.style.opacity = (150 - increase) / 120;
+            }, 8);
+        }, 70);
+        $body.appendChild($elem);
+    };
+};
+</script>
+</head>
 <body class="fn__flex-column">
 <div id="pjax" class="fn__flex-1">
     
     <header class="header header--article">
         <div class="wrapper header__title">
             <h1 class="header__h1 fn__flex-inline">
-                <img src="https://s2.ax1x.com/2020/01/12/loApPe.png">
+                <img src="https://s2.ax1x.com/2020/01/12/loApPe.png" alt="Kosmos">
                 <a href="https://ellenbboe.github.io" rel="start" class="header__title">Kosmos</a>
             </h1>
-            <h2 class="header__h2">---就算是痛苦难受，也要去体会那被称为生存的分量---</h2>
+            <h2 class="header__h2">---我们总得选择一条路去前行---</h2>
         </div>
         <nav class="wrapper header__nav fn__clear">
             <a href="https://ellenbboe.github.io" rel="start">
                     Kosmos
             </a>
 
-                <a class="fn__flex-inline" href="/my-github-repos" target="_self" rel="section">
-                    <img src="/images/github-icon.png"> 我的开源
+                <a class="fn__flex-inline" href="https://github.com/ellenbboe" target="_self" rel="section">
+                    <img src="https://s2.ax1x.com/2020/01/16/ljWMPP.png" alt="我的GIT"> 我的GIT
                 </a>
                 <a class="fn__flex-inline" href="/readlist" target="_self" rel="section">
-                     阅读列表
+                    <img src="https://s2.ax1x.com/2020/01/16/ljWPC6.png" alt="阅读列表"> 阅读列表
                 </a>
 
 
@@ -111,7 +184,7 @@
         <div class="item__cover" style="background-image: url(https://img.hacpai.com/bing/20180214.jpg?imageView2/1/w/1280/h/720/interlace/1/q/100)"></div>
         <div class="wrapper">
             <section class="item__content item__content--article vditor-reset">
-                <p></p><h3 id="b3_solo_h3_0">Spring 依赖注入</h3>
+                <h3 id="toc_h3_0">Spring 依赖注入</h3>
 <p>每个基于应用程序的 java 都有几个对象，这些对象一起工作来呈现出终端用户所看到的工作的应用程序。当编写一个复杂的 Java 应用程序时，应用程序类应该尽可能<strong>独立</strong>于其他 Java 类来 <strong>增加这些类重用的可能性</strong>，并且在做单元测试时，测试独立于其他类的独立性。<strong>依赖注入</strong>（或有时称为布线）有助于把这些类<strong>粘合在一起</strong>，同时<strong>保持他们独立</strong>。</p>
 <p>假设你有一个包含文本编辑器组件的应用程序，并且你想要提供拼写检查。标准代码看起来是这样的：</p>
 <pre><code>public class TextEditor {
@@ -139,7 +212,7 @@
 2	|Setter-based dependency injection 基于 setter 方法的 DI 是通过在调用无参数的构造函数或无参数的静态工厂方法实例化 bean 之后容器调用 beans 的 setter 方法来实现的。</p>
 <p>你可以混合这两种方法，基于构造函数和基于 setter 方法的 DI，然而使用有强制性依存关系的构造函数和有可选依赖关系的 setter是一个好的做法。</p>
 <p>代码是 DI 原理的清洗机，当对象与它们的依赖关系被提供时，解耦效果更明显。对象不查找它的依赖关系，也不知道依赖关系的位置或类，而这一切都由 Spring 框架控制的。</p>
-<h4 id="b3_solo_h4_1">Spring 基于构造函数的依赖注入</h4>
+<h4 id="toc_h4_1">Spring 基于构造函数的依赖注入</h4>
 <p>当容器调用带有一组参数的类构造函数时，基于构造函数的 DI 就完成了，其中每个参数代表一个对其他类的依赖。</p>
 <p>示例：<br>
 下面的例子显示了一个类 TextEditor，只能用构造函数注入来实现依赖注入。</p>
@@ -262,7 +335,7 @@ public class Foo {
 </code></pre>
 <p>最后，如果你想要向一个对象传递一个引用，你需要使用 标签的 <code>ref</code> 属性，如果你想要直接传递值，那么你应该使用如上所示的 <code>value</code> 属性。</p>
 <p>(对构造函数传入参数!!!!!!!可怕)</p>
-<h4 id="b3_solo_h4_2">Spring 基于设值函数的依赖注入</h4>
+<h4 id="toc_h4_2">Spring 基于设值函数的依赖注入</h4>
 <p>当容器调用一个无参的构造函数或一个无参的静态 factory 方法来初始化你的 bean 后，通过容器在你的 bean 上调用设值函数，基于设值函数的 DI 就完成了。</p>
 <p>示例：<br>
 下述例子显示了一个类 TextEditor，它只能使用纯粹的基于设值函数的注入来实现依赖注入。</p>
@@ -343,7 +416,7 @@ public class MainApp {
 Inside setSpellChecker.
 Inside checkSpelling.
 </code></pre>
-<h4 id="b3_solo_h4_3">使用 p-namespace 实现 XML 配置：</h4>
+<h4 id="toc_h4_3">使用 p-namespace 实现 XML 配置：</h4>
 <p>如果你有许多的设值函数方法，那么在 XML 配置文件中使用 p-namespace 是非常方便的。让我们查看一下区别：</p>
 <p>以带有 标签的标准 XML 配置文件为例：</p>
 <pre><code>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
@@ -385,7 +458,7 @@ Inside checkSpelling.
 &lt;/beans&gt;
 </code></pre>
 <p>在这里，你不应该区别指定原始值和带有 <strong>p-namespace</strong>(p后面更上bean的变量名称)的对象引用。<strong>-ref</strong> 部分表明这不是一个直接的值，而是对另一个 <strong>bean</strong> 的引用。</p>
-<h4 id="b3_solo_h4_4">Spring 注入内部 Beans</h4>
+<h4 id="toc_h4_4">Spring 注入内部 Beans</h4>
 <p>正如你所知道的 Java 内部类是在其他类的范围内被定义的，同理，inner beans 是在其他 bean 的范围内定义的 bean。因此在 或 元素内 元素被称为内部bean，如下所示。</p>
 <pre><code>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 
@@ -466,7 +539,7 @@ public class MainApp {
 Inside setSpellChecker.
 Inside checkSpelling.
 </code></pre>
-<h4 id="b3_solo_h4_5">Spring 注入集合</h4>
+<h4 id="toc_h4_5">Spring 注入集合</h4>
 <p>你已经看到了如何使用 <code>value</code> 属性来配置基本数据类型和在你的 bean 配置文件中使用<code>&lt;property&gt;</code>标签的 <code>ref</code>属性来配置对象引用。这两种情况下处理将值传递给一个 bean。</p>
 <p>现在如果你想传递多个值，如 Java Collection 类型 List、Set、Map 和 Properties，应该怎么做呢。为了处理这种情况，Spring 提供了四种类型的集合的配置元素，如下所示：</p>
 <p>元素	|描述<br>
@@ -600,7 +673,7 @@ Set Elements :[INDIA, Pakistan, USA]
 Map Elements :{1=INDIA, 2=Pakistan, 3=USA, 4=USA}
 Property Elements :{two=Pakistan, one=INDIA, three=USA, four=USA}
 </code></pre>
-<h4 id="b3_solo_h4_6">注入 Bean 引用</h4>
+<h4 id="toc_h4_6">注入 Bean 引用</h4>
 <p>下面的 Bean 定义将帮助你理解如何注入 bean 的引用作为集合的元素。<strong>甚至你可以将引用和值混合在一起</strong>，如下所示：</p>
 <pre><code>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 
@@ -644,7 +717,7 @@ Property Elements :{two=Pakistan, one=INDIA, three=USA, four=USA}
 &lt;/beans&gt;
 </code></pre>
 <p><strong>为了使用上面的 bean 定义，你需要定义 setter 方法</strong>，它们应该也能够是用这种方式来处理引用。</p>
-<h4 id="b3_solo_h4_7">注入 null 和空字符串的值</h4>
+<h4 id="toc_h4_7">注入 null 和空字符串的值</h4>
 <p>如果你需要传递一个空字符串作为值，那么你可以传递它，如下所示：</p>
 <pre><code>&lt;bean id="..." class="exampleBean"&gt;
    &lt;property name="email" value=""/&gt;
@@ -657,7 +730,6 @@ Property Elements :{two=Pakistan, one=INDIA, three=USA, four=USA}
 &lt;/bean&gt;
 </code></pre>
 <p>前面的例子相当于 Java 代码：exampleBean.setEmail(null)。</p>
-<p></p>
                     <div>
                         <hr>
 <img alt="今日诗词" src="https://v2.jinrishici.com/one.svg" style="max-width:100%; display: block; margin: 0 auto;">
@@ -667,6 +739,7 @@ Property Elements :{two=Pakistan, one=INDIA, three=USA, four=USA}
 地址：<a href="https://ellenbboe.github.io/articles/2018/09/11/1561009677493.html" target="_blank">https://ellenbboe.github.io/articles/2018/09/11/1561009677493.html</a><br>
 <!-- 签名档内可使用 HTML、JavaScript -->
 <br>
+
                     </div>
             </section>
         </div>
@@ -674,41 +747,32 @@ Property Elements :{two=Pakistan, one=INDIA, three=USA, four=USA}
         <div class="post__toc">
 <ul class="article__toc">
         <li class="toc__h3">
-            <a href="#b3_solo_h3_0">Spring 依赖注入</a>
+            <a href="#toc_h3_0">Spring 依赖注入</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_1">Spring 基于构造函数的依赖注入</a>
+            <a href="#toc_h4_1">Spring 基于构造函数的依赖注入</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_2">Spring 基于设值函数的依赖注入</a>
+            <a href="#toc_h4_2">Spring 基于设值函数的依赖注入</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_3">使用 p-namespace 实现 XML 配置：</a>
+            <a href="#toc_h4_3">使用 p-namespace 实现 XML 配置：</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_4">Spring 注入内部 Beans</a>
+            <a href="#toc_h4_4">Spring 注入内部 Beans</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_5">Spring 注入集合</a>
+            <a href="#toc_h4_5">Spring 注入集合</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_6">注入 Bean 引用</a>
+            <a href="#toc_h4_6">注入 Bean 引用</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_7">注入 null 和空字符串的值</a>
+            <a href="#toc_h4_7">注入 null 和空字符串的值</a>
         </li>
 </ul>        </div>
-<div class="comment">
-    <div class="comment__wrapper wrapper">
-        <div class="comment__title">
-            评论
-        </div>
-        <textarea rows="3" placeholder="评论内容只能为 2 到 500 个字符！" id="comment"></textarea>
-
-        <ul id="comments">
-        </ul>
-    </div>
-</div>
+        <div id="b3logsolocomments"></div>
+        <div id="vcomment" class="comment__wrapper wrapper" style="margin: 40px auto" data-name="ellenbboe" data-postId="1561009677493"></div>
     <div class="article__bottom">
         <div class="wrapper">
             <div class="fn__flex">
@@ -722,6 +786,7 @@ Property Elements :{two=Pakistan, one=INDIA, three=USA, four=USA}
 <footer class="footer">
     <div class="wrapper fn__clear">
         <div class="fn__left">
+            <br>
             &copy; 2020
             <a href="https://ellenbboe.github.io">Kosmos</a>
             <a href="http://www.beian.miit.gov.cn/">浙ICP备18045840号-1</a>--------Let's move on
@@ -750,12 +815,23 @@ show_date_time();
 <style>
 #momk{animation:change 10s infinite;font-weight:800; }
 @keyframes change{0%{color:#5cb85c;}25%{color:#556bd8;}50%{color:#e40707;}75%{color:#66e616;}100% {color:#67bd31;}}
-</style> &nbsp;•&nbsp;
-            Powered by <a href="https://solo.b3log.org" target="_blank">Solo</a>
-            <br>
-            Theme Casper
-            <sup>[<a href="https://github.com/TryGhost/Casper" target="_blank">ref</a>]</sup>
-            by <a href="http://vanessa.b3log.org" target="_blank">Vanessa</a>
+</style>
+<script type="text/javascript">
+    /*自动刷新页面，避免无法访问*/
+    var OriginTitile = document.title;
+    var titleTime;
+    document.addEventListener('visibilitychange', function () {
+        if (document.hidden) {
+            document.title = '(〃´-ω･)  休息一下';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '起来嗨٩(๑❛ᴗ❛๑)۶';
+            titleTime = setTimeout(function () {
+                document.title = OriginTitile;
+            }, 3000);
+        }
+    });
+</script>
         </div>
         <div class="fn__right">
             <a href="https://ellenbboe.github.io/tags.html" rel="section">
@@ -770,36 +846,32 @@ show_date_time();
             友情链接
             </a>
             <br>
-            115 文章 &nbsp;
-            9 评论 &nbsp;
+            121 文章 &nbsp;
             <span data-uvstaturl="https://ellenbboe.github.io">11608</span> 浏览 &nbsp;
-            3 当前访客
+            
         </div>
     </div>
 </footer>
 
-<script type="text/javascript" src="https://ellenbboe.github.io/js/lib/compress/pjax.min.js" charset="utf-8"></script>
-<script type="text/javascript" src="https://ellenbboe.github.io/js/common.min.js?1578931371974"
-        charset="utf-8"></script>
-<script type="text/javascript"
-        src="https://ellenbboe.github.io/skins/Casper/js/common.min.js?1578931371974"
-        charset="utf-8"></script>
-<script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.4/dist/index.min.js"></script>
 <script>
-    var Label = {
-        servePath: "https://ellenbboe.github.io",
-        staticServePath: "https://ellenbboe.github.io",
-        luteAvailable: false,
-        hljsStyle: 'colorful',
-        langLabel: "zh_CN",
-        version: "3.7.0",
-    }
-    Util.init()
+  var Label = {
+    servePath: "https://ellenbboe.github.io",
+    staticServePath: "https://ellenbboe.github.io",
+    luteAvailable: false,
+    hljsStyle: 'colorful',
+    langLabel: "zh_CN",
+    version: "4.1.0",
+    staticSite: true,
+    showCodeBlockLn: false,
+  }
 </script>
+<script type="text/javascript"
+        src="https://ellenbboe.github.io/skins/Casper/js/common.min.js?1591150301084"
+        charset="utf-8"></script>
 
 
 <script type="text/javascript">
-    Util.addScript('https://ellenbboe.github.io/js/page.min.js?1578931371974', 'soloPageScript')
+    Util.addScript('https://ellenbboe.github.io/js/page.min.js?1591150301084', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1561009677493",
@@ -817,4 +889,4 @@ show_date_time();
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 36ms, 2020/01/14 13:32:40 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 56ms, 2020/06/03 12:32:30 -->

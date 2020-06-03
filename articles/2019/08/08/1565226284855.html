@@ -2,31 +2,104 @@
 <html>
 <head>
 <meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>剑指Offer算法题 (1) - Kosmos</title><meta name="description" content="剑指Offer的一些算法题目"/><meta property="og:description" content="剑指Offer的一些算法题目"/>    <meta name="keywords" content="开源,开发者,笔记,kosmos"/><link rel="dns-prefetch" href="https://ellenbboe.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://ellenbboe.github.io"><link rel="icon" type="image/png" href="https://s2.ax1x.com/2020/01/12/loApPe.png"/><link rel="apple-touch-icon" href="https://s2.ax1x.com/2020/01/12/loApPe.png"><link rel="shortcut icon" type="image/x-icon" href="https://s2.ax1x.com/2020/01/12/loApPe.png"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="剑指Offer算法题 (1) - Kosmos"/><meta property="og:site_name" content="Kosmos"/><meta property="og:url"      content="https://ellenbboe.github.io/articles/2019/08/08/1565226284855.html?"/><meta property="og:image" content="https://s2.ax1x.com/2020/01/12/loApPe.png"/><link rel="search" type="application/opensearchdescription+xml" title="剑指Offer算法题 (1) - Kosmos" href="/opensearch.xml"><link href="https://ellenbboe.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://ellenbboe.github.io/manifest.json">        <link rel="canonical" href="https://ellenbboe.github.io/articles/2019/08/08/1565226284855.html">        <link rel="stylesheet"
-              href="https://ellenbboe.github.io/skins/Casper/css/base.css?1578931371974"/>
+              href="https://ellenbboe.github.io/skins/Casper/css/base.css?1591150301084"/>
             <link rel="prev" title="学习笔记|单例模式" href="https://ellenbboe.github.io/articles/2019/08/07/1565149531588.html">
             <link rel="next" title="学习笔记|List,Set和Map" href="https://ellenbboe.github.io/articles/2019/08/09/1565336255411.html">
-    </head>
+    <script>
+onload = function() {
+    var click_cnt = 0;
+    var $html = document.getElementsByTagName("html")[0];
+    var $body = document.getElementsByTagName("body")[0];
+    $html.onclick = function(e) {
+        var $elem = document.createElement("b");
+        $elem.style.color = "#E94F06";
+        $elem.style.zIndex = 9999;
+        $elem.style.position = "absolute";
+        $elem.style.select = "none";
+        var x = e.pageX;
+        var y = e.pageY;
+        $elem.style.left = (x - 10) + "px";
+        $elem.style.top = (y - 20) + "px";
+        clearInterval(anim);
+        switch (++click_cnt) {
+            case 10:
+                $elem.innerText = "OωO";
+                break;
+            case 20:
+                $elem.innerText = "(๑•́ ∀ •̀๑)";
+                break;
+            case 30:
+                $elem.innerText = "(๑•́ ₃ •̀๑)";
+                break;
+            case 40:
+                $elem.innerText = "(๑•̀_•́๑)";
+                break;
+            case 50:
+                $elem.innerText = "（￣へ￣）";
+                break;
+            case 60:
+                $elem.innerText = "(╯°口°)╯(┴—┴";
+                break;
+            case 70:
+                $elem.innerText = "૮( ᵒ̌皿ᵒ̌ )ა";
+                break;
+            case 80:
+                $elem.innerText = "╮(｡>口<｡)╭";
+                break;
+            case 90:
+                $elem.innerText = "( ง ᵒ̌皿ᵒ̌)ง⁼³₌₃";
+                break;
+            case 100:
+            case 101:
+            case 102:
+            case 103:
+            case 104:
+            case 105:
+                $elem.innerText = "(ꐦ°᷄д°᷅)";
+                break;
+            default:
+                $elem.innerText = "❤";
+                break;
+        }
+        $elem.style.fontSize = Math.random() * 10 + 8 + "px";
+        var increase = 0;
+        var anim;
+        setTimeout(function() {
+            anim = setInterval(function() {
+                if (++increase == 150) {
+                    clearInterval(anim);
+                    $body.removeChild($elem);
+                }
+                $elem.style.top = y - 20 - increase + "px";
+                $elem.style.opacity = (150 - increase) / 120;
+            }, 8);
+        }, 70);
+        $body.appendChild($elem);
+    };
+};
+</script>
+</head>
 <body class="fn__flex-column">
 <div id="pjax" class="fn__flex-1">
     
     <header class="header header--article">
         <div class="wrapper header__title">
             <h1 class="header__h1 fn__flex-inline">
-                <img src="https://s2.ax1x.com/2020/01/12/loApPe.png">
+                <img src="https://s2.ax1x.com/2020/01/12/loApPe.png" alt="Kosmos">
                 <a href="https://ellenbboe.github.io" rel="start" class="header__title">Kosmos</a>
             </h1>
-            <h2 class="header__h2">---就算是痛苦难受，也要去体会那被称为生存的分量---</h2>
+            <h2 class="header__h2">---我们总得选择一条路去前行---</h2>
         </div>
         <nav class="wrapper header__nav fn__clear">
             <a href="https://ellenbboe.github.io" rel="start">
                     Kosmos
             </a>
 
-                <a class="fn__flex-inline" href="/my-github-repos" target="_self" rel="section">
-                    <img src="/images/github-icon.png"> 我的开源
+                <a class="fn__flex-inline" href="https://github.com/ellenbboe" target="_self" rel="section">
+                    <img src="https://s2.ax1x.com/2020/01/16/ljWMPP.png" alt="我的GIT"> 我的GIT
                 </a>
                 <a class="fn__flex-inline" href="/readlist" target="_self" rel="section">
-                     阅读列表
+                    <img src="https://s2.ax1x.com/2020/01/16/ljWPC6.png" alt="阅读列表"> 阅读列表
                 </a>
 
 
@@ -111,7 +184,7 @@
         <div class="item__cover" style="background-image: url(https://img.hacpai.com/bing/20180722.jpg?imageView2/1/w/1280/h/720/interlace/1/q/100)"></div>
         <div class="wrapper">
             <section class="item__content item__content--article vditor-reset">
-                <p></p><h2 id="b3_solo_h2_0">数组中重复的数字</h2>
+                <h2 id="toc_h2_0">数组中重复的数字</h2>
 <p>在一个长度为 n 的数组里的所有数字都在 0 到 n-1 的范围内。数组中某些数字是重复的，但不知道有几个数字是重复的，也不知道每个数字重复几次。请找出数组中任意一个重复的数字。</p>
 <p>要求是时间复杂度 O(N)，空间复杂度 O(1)。因此不能使用排序的方法，也不能使用额外的标记数组。<br>
 对于这种数组元素在 [0, n-1] 范围内的问题，可以将值为 i 的元素调整到第 i 个位置上进行求解。<br>
@@ -137,7 +210,7 @@
         return false;
     }
 </code></pre>
-<h2 id="b3_solo_h2_1">二维数组中的查找</h2>
+<h2 id="toc_h2_1">二维数组中的查找</h2>
 <p>给定一个二维数组，其每一行从左到右递增排序，从上到下也是递增排序。给定一个数，判断这个数是否在该二维数组中。</p>
 <p>该二维数组中的一个数，它左边的数都比它小，下边的数都比它大。因此，从右上角开始查找，就可以根据 target 和当前元素的大小关系来缩小查找区间，当前元素的查找区间为左下角的所有元素。</p>
 <pre><code> public boolean Find(int target, int [][] array) {
@@ -164,7 +237,7 @@
         return false;
     }
 </code></pre>
-<h2 id="b3_solo_h2_2">替换空格</h2>
+<h2 id="toc_h2_2">替换空格</h2>
 <p>将一个字符串中的空格替换成 "%20"。</p>
 <p>在字符串尾部填充任意字符，使得字符串的长度等于替换之后的长度。因为一个空格要替换成三个字符（%20），因此当遍历到一个空格时，需要在尾部填充两个任意字符。</p>
 <p>令 P1 指向字符串原来的末尾位置，P2 指向字符串现在的末尾位置。P1 和 P2 从后向前遍历，当 P1 遍历到一个空格时，就需要令 P2 指向的位置依次填充 02%（注意是逆序的），否则就填充上 P1 指向字符的值。</p>
@@ -197,9 +270,9 @@
         return str.toString();
     }
 </code></pre>
-<h2 id="b3_solo_h2_3">从尾到头打印链表</h2>
+<h2 id="toc_h2_3">从尾到头打印链表</h2>
 <p>从尾到头反过来打印出每个结点的值。</p>
-<h3 id="b3_solo_h3_4">使用递归</h3>
+<h3 id="toc_h3_4">使用递归</h3>
 <pre><code>public ArrayList&lt;Integer&gt; printListFromTailToHead(ListNode listNode) {
 
         ArrayList&lt;Integer&gt; ret = new ArrayList&lt;&gt;();
@@ -218,7 +291,7 @@
     }
 
 </code></pre>
-<h3 id="b3_solo_h3_5">使用头插法</h3>
+<h3 id="toc_h3_5">使用头插法</h3>
 <pre><code>public class solution6_2 {
     //链接新的节点的时候还是通过new来构建一个新的节点吧
     //像这样ListNode node = new ListNode(listNode.val); 直接赋值list的话会晕-.-
@@ -247,7 +320,7 @@
     }
 }
 </code></pre>
-<h3 id="b3_solo_h3_6">使用栈(最简单)</h3>
+<h3 id="toc_h3_6">使用栈(最简单)</h3>
 <pre><code>public class solution6_3 {
     //倒叙可以优先考虑栈
     public ArrayList&lt;Integer&gt; printListFromTailToHead(ListNode listNode) {
@@ -266,7 +339,7 @@
     }
 }
 </code></pre>
-<h2 id="b3_solo_h2_7">重建二叉树</h2>
+<h2 id="toc_h2_7">重建二叉树</h2>
 <p>根据二叉树的前序遍历和中序遍历的结果，重建出该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的数字。</p>
 <p>前序遍历的第一个值为根节点的值，使用这个值将中序遍历结果分成两部分，左部分为树的左子树中序遍历结果，右部分为树的右子树中序遍历的结果。</p>
 <pre><code>HashMap&lt;Integer,Integer&gt; hashMap = new HashMap&lt;&gt;();//存放中序节点的下标
@@ -290,7 +363,7 @@
         return root;
     }
 </code></pre>
-<h2 id="b3_solo_h2_8">二叉树的下一个结点</h2>
+<h2 id="toc_h2_8">二叉树的下一个结点</h2>
 <p>给定一个二叉树和其中的一个结点，请找出中序遍历顺序的下一个结点并且返回。注意，树中的结点不仅包含左右子结点，同时包含指向父结点的指针。</p>
 <p>如果一个节点的右子树不为空，那么该节点的下一个节点是右子树的最左节点</p>
 <p>否则，向上找第一个左链接指向的树包含该节点的祖先节点。</p>
@@ -316,7 +389,7 @@
         }
     }
 </code></pre>
-<h2 id="b3_solo_h2_9">用两个栈实现队列</h2>
+<h2 id="toc_h2_9">用两个栈实现队列</h2>
 <p>用两个栈来实现一个队列，完成队列的 Push 和 Pop 操作。</p>
 <p>in 栈用来处理入栈（push）操作，out 栈用来处理出栈（pop）操作。一个元素进入 in 栈之后，出栈的顺序被反转。当元素要出栈时，需要先进入 out 栈，此时元素出栈顺序再一次被反转，因此出栈顺序就和最开始入栈顺序是相同的，先进入的元素先退出，这就是队列的顺序。</p>
 <pre><code>package nowcoder.retry;
@@ -344,7 +417,7 @@ public class solution9 {
 }
 
 </code></pre>
-<h2 id="b3_solo_h2_10">斐波那契数列</h2>
+<h2 id="toc_h2_10">斐波那契数列</h2>
 <p>求斐波那契数列的第 n 项，n &lt;= 39。<br>
 如果使用递归求解，会重复计算一些子问题。例如，计算 f(10) 需要计算 f(9) 和 f(8)，计算 f(9) 需要计算 f(8) 和 f(7)，可以看到 f(8) 被重复计算了。<br>
 递归是将一个问题划分成多个子问题求解，动态规划也是如此，但是动态规划会把子问题的解缓存起来，从而避免重复求解子问题。<br>
@@ -366,7 +439,7 @@ public class solution9 {
         return pre[1];
     }
 </code></pre>
-<h2 id="b3_solo_h2_11">矩形覆盖</h2>
+<h2 id="toc_h2_11">矩形覆盖</h2>
 <p>我们可以用 2<em>1 的小矩形横着或者竖着去覆盖更大的矩形。请问用 n 个 2</em>1 的小矩形无重叠地覆盖一个 2*n 的大矩形，总共有多少种方法？找规律 f(n) = f(n-1)+f(n-2)</p>
 <pre><code>package nowcoder.retry;
 
@@ -390,7 +463,7 @@ public class solution10_1 {
 }
 
 </code></pre>
-<h2 id="b3_solo_h2_12">跳台阶</h2>
+<h2 id="toc_h2_12">跳台阶</h2>
 <p>一只青蛙一次可以跳上 1 级台阶，也可以跳上 2 级。求该青蛙跳上一个 n 级的台阶总共有多少种跳法。<br>
 找规律 f(n) = f(n-1)+f(n-2)</p>
 <pre><code>package nowcoder.retry;
@@ -415,9 +488,9 @@ public class solution10_2 {
 }
 
 </code></pre>
-<h2 id="b3_solo_h2_13">变态跳台阶</h2>
+<h2 id="toc_h2_13">变态跳台阶</h2>
 <p>一只青蛙一次可以跳上 1 级台阶，也可以跳上 2 级... 它也可以跳上 n 级。求该青蛙跳上一个 n 级的台阶总共有多少种跳法。</p>
-<h3 id="b3_solo_h3_14">动态规划</h3>
+<h3 id="toc_h3_14">动态规划</h3>
 <pre><code>package nowcoder.retry;
 
 import java.util.Arrays;
@@ -438,7 +511,7 @@ public class solution10_3 {
 }
 
 </code></pre>
-<h3 id="b3_solo_h3_15">数学推导</h3>
+<h3 id="toc_h3_15">数学推导</h3>
 <pre><code>package nowcoder.retry;
 
 public class solution10_3_1 {
@@ -448,7 +521,7 @@ public class solution10_3_1 {
 }
 
 </code></pre>
-<h2 id="b3_solo_h2_16">旋转数组的最小数字</h2>
+<h2 id="toc_h2_16">旋转数组的最小数字</h2>
 <p>把一个数组最开始的若干个元素搬到数组的末尾，我们称之为数组的旋转。输入一个非递减排序的数组的一个旋转，输出旋转数组的最小元素。</p>
 <p>例如数组 {3, 4, 5, 1, 2} 为 {1, 2, 3, 4, 5} 的一个旋转，该数组的最小值为 1。</p>
 <p>在一个有序数组中查找一个元素可以用二分查找，二分查找也称为折半查找，每次都能将查找区间减半，这种折半特性的算法时间复杂度都为 O(logN)。</p>
@@ -480,7 +553,6 @@ public class solution11 {
 
 </code></pre>
 <p>本文参照该<a href="https://github.com/CyC2018/CS-Notes" target="_blank">CyC的CS-Notes</a>学习.代码在我的<a href="https://github.com/ellenbboe/sosoalgorithm" target="_blank">Github仓库</a>中 ❤️</p>
-<p></p>
                     <div>
                         <hr>
 <img alt="今日诗词" src="https://v2.jinrishici.com/one.svg" style="max-width:100%; display: block; margin: 0 auto;">
@@ -490,6 +562,7 @@ public class solution11 {
 地址：<a href="https://ellenbboe.github.io/articles/2019/08/08/1565226284855.html" target="_blank">https://ellenbboe.github.io/articles/2019/08/08/1565226284855.html</a><br>
 <!-- 签名档内可使用 HTML、JavaScript -->
 <br>
+
                     </div>
             </section>
         </div>
@@ -497,68 +570,59 @@ public class solution11 {
         <div class="post__toc">
 <ul class="article__toc">
         <li class="toc__h2">
-            <a href="#b3_solo_h2_0">数组中重复的数字</a>
+            <a href="#toc_h2_0">数组中重复的数字</a>
         </li>
         <li class="toc__h2">
-            <a href="#b3_solo_h2_1">二维数组中的查找</a>
+            <a href="#toc_h2_1">二维数组中的查找</a>
         </li>
         <li class="toc__h2">
-            <a href="#b3_solo_h2_2">替换空格</a>
+            <a href="#toc_h2_2">替换空格</a>
         </li>
         <li class="toc__h2">
-            <a href="#b3_solo_h2_3">从尾到头打印链表</a>
+            <a href="#toc_h2_3">从尾到头打印链表</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_4">使用递归</a>
+            <a href="#toc_h3_4">使用递归</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_5">使用头插法</a>
+            <a href="#toc_h3_5">使用头插法</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_6">使用栈(最简单)</a>
+            <a href="#toc_h3_6">使用栈(最简单)</a>
         </li>
         <li class="toc__h2">
-            <a href="#b3_solo_h2_7">重建二叉树</a>
+            <a href="#toc_h2_7">重建二叉树</a>
         </li>
         <li class="toc__h2">
-            <a href="#b3_solo_h2_8">二叉树的下一个结点</a>
+            <a href="#toc_h2_8">二叉树的下一个结点</a>
         </li>
         <li class="toc__h2">
-            <a href="#b3_solo_h2_9">用两个栈实现队列</a>
+            <a href="#toc_h2_9">用两个栈实现队列</a>
         </li>
         <li class="toc__h2">
-            <a href="#b3_solo_h2_10">斐波那契数列</a>
+            <a href="#toc_h2_10">斐波那契数列</a>
         </li>
         <li class="toc__h2">
-            <a href="#b3_solo_h2_11">矩形覆盖</a>
+            <a href="#toc_h2_11">矩形覆盖</a>
         </li>
         <li class="toc__h2">
-            <a href="#b3_solo_h2_12">跳台阶</a>
+            <a href="#toc_h2_12">跳台阶</a>
         </li>
         <li class="toc__h2">
-            <a href="#b3_solo_h2_13">变态跳台阶</a>
+            <a href="#toc_h2_13">变态跳台阶</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_14">动态规划</a>
+            <a href="#toc_h3_14">动态规划</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_15">数学推导</a>
+            <a href="#toc_h3_15">数学推导</a>
         </li>
         <li class="toc__h2">
-            <a href="#b3_solo_h2_16">旋转数组的最小数字</a>
+            <a href="#toc_h2_16">旋转数组的最小数字</a>
         </li>
 </ul>        </div>
-<div class="comment">
-    <div class="comment__wrapper wrapper">
-        <div class="comment__title">
-            评论
-        </div>
-        <textarea rows="3" placeholder="评论内容只能为 2 到 500 个字符！" id="comment"></textarea>
-
-        <ul id="comments">
-        </ul>
-    </div>
-</div>
+        <div id="b3logsolocomments"></div>
+        <div id="vcomment" class="comment__wrapper wrapper" style="margin: 40px auto" data-name="ellenbboe" data-postId="1565226284855"></div>
     <div class="article__bottom">
         <div class="wrapper">
             <div class="fn__flex">
@@ -572,6 +636,7 @@ public class solution11 {
 <footer class="footer">
     <div class="wrapper fn__clear">
         <div class="fn__left">
+            <br>
             &copy; 2020
             <a href="https://ellenbboe.github.io">Kosmos</a>
             <a href="http://www.beian.miit.gov.cn/">浙ICP备18045840号-1</a>--------Let's move on
@@ -600,12 +665,23 @@ show_date_time();
 <style>
 #momk{animation:change 10s infinite;font-weight:800; }
 @keyframes change{0%{color:#5cb85c;}25%{color:#556bd8;}50%{color:#e40707;}75%{color:#66e616;}100% {color:#67bd31;}}
-</style> &nbsp;•&nbsp;
-            Powered by <a href="https://solo.b3log.org" target="_blank">Solo</a>
-            <br>
-            Theme Casper
-            <sup>[<a href="https://github.com/TryGhost/Casper" target="_blank">ref</a>]</sup>
-            by <a href="http://vanessa.b3log.org" target="_blank">Vanessa</a>
+</style>
+<script type="text/javascript">
+    /*自动刷新页面，避免无法访问*/
+    var OriginTitile = document.title;
+    var titleTime;
+    document.addEventListener('visibilitychange', function () {
+        if (document.hidden) {
+            document.title = '(〃´-ω･)  休息一下';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '起来嗨٩(๑❛ᴗ❛๑)۶';
+            titleTime = setTimeout(function () {
+                document.title = OriginTitile;
+            }, 3000);
+        }
+    });
+</script>
         </div>
         <div class="fn__right">
             <a href="https://ellenbboe.github.io/tags.html" rel="section">
@@ -620,36 +696,32 @@ show_date_time();
             友情链接
             </a>
             <br>
-            115 文章 &nbsp;
-            9 评论 &nbsp;
+            121 文章 &nbsp;
             <span data-uvstaturl="https://ellenbboe.github.io">11608</span> 浏览 &nbsp;
-            3 当前访客
+            
         </div>
     </div>
 </footer>
 
-<script type="text/javascript" src="https://ellenbboe.github.io/js/lib/compress/pjax.min.js" charset="utf-8"></script>
-<script type="text/javascript" src="https://ellenbboe.github.io/js/common.min.js?1578931371974"
-        charset="utf-8"></script>
-<script type="text/javascript"
-        src="https://ellenbboe.github.io/skins/Casper/js/common.min.js?1578931371974"
-        charset="utf-8"></script>
-<script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.4/dist/index.min.js"></script>
 <script>
-    var Label = {
-        servePath: "https://ellenbboe.github.io",
-        staticServePath: "https://ellenbboe.github.io",
-        luteAvailable: false,
-        hljsStyle: 'colorful',
-        langLabel: "zh_CN",
-        version: "3.7.0",
-    }
-    Util.init()
+  var Label = {
+    servePath: "https://ellenbboe.github.io",
+    staticServePath: "https://ellenbboe.github.io",
+    luteAvailable: false,
+    hljsStyle: 'colorful',
+    langLabel: "zh_CN",
+    version: "4.1.0",
+    staticSite: true,
+    showCodeBlockLn: false,
+  }
 </script>
+<script type="text/javascript"
+        src="https://ellenbboe.github.io/skins/Casper/js/common.min.js?1591150301084"
+        charset="utf-8"></script>
 
 
 <script type="text/javascript">
-    Util.addScript('https://ellenbboe.github.io/js/page.min.js?1578931371974', 'soloPageScript')
+    Util.addScript('https://ellenbboe.github.io/js/page.min.js?1591150301084', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1565226284855",
@@ -667,4 +739,4 @@ show_date_time();
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 39ms, 2020/01/14 13:32:39 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 64ms, 2020/06/03 12:32:27 -->

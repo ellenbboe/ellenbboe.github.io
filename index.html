@@ -1,29 +1,102 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>Kosmos</title><meta name="description" content="开源,开发者,笔记,kosmos"/><meta property="og:description" content="开源,开发者,笔记,kosmos"/>    <meta name="keywords" content="开源,开发者,笔记,kosmos"/><link rel="dns-prefetch" href="https://ellenbboe.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://ellenbboe.github.io"><link rel="icon" type="image/png" href="https://s2.ax1x.com/2020/01/12/loApPe.png"/><link rel="apple-touch-icon" href="https://s2.ax1x.com/2020/01/12/loApPe.png"><link rel="shortcut icon" type="image/x-icon" href="https://s2.ax1x.com/2020/01/12/loApPe.png"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="Kosmos"/><meta property="og:site_name" content="Kosmos"/><meta property="og:url"      content="https://ellenbboe.github.io/index.html?"/><meta property="og:image" content="https://s2.ax1x.com/2020/01/12/loApPe.png"/><link rel="search" type="application/opensearchdescription+xml" title="Kosmos" href="/opensearch.xml"><link href="https://ellenbboe.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://ellenbboe.github.io/manifest.json">            <link rel="canonical" href="https://ellenbboe.github.io/index.html">    <link rel="stylesheet" href="https://ellenbboe.github.io/skins/Casper/css/base.css?1578931371974"/>
-    </head>
+<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>Kosmos</title><meta name="description" content="开源,开发者,笔记,kosmos"/><meta property="og:description" content="开源,开发者,笔记,kosmos"/>    <meta name="keywords" content="开源,开发者,笔记,kosmos"/><link rel="dns-prefetch" href="https://ellenbboe.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://ellenbboe.github.io"><link rel="icon" type="image/png" href="https://s2.ax1x.com/2020/01/12/loApPe.png"/><link rel="apple-touch-icon" href="https://s2.ax1x.com/2020/01/12/loApPe.png"><link rel="shortcut icon" type="image/x-icon" href="https://s2.ax1x.com/2020/01/12/loApPe.png"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="Kosmos"/><meta property="og:site_name" content="Kosmos"/><meta property="og:url"      content="https://ellenbboe.github.io/index.html?"/><meta property="og:image" content="https://s2.ax1x.com/2020/01/12/loApPe.png"/><link rel="search" type="application/opensearchdescription+xml" title="Kosmos" href="/opensearch.xml"><link href="https://ellenbboe.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://ellenbboe.github.io/manifest.json">            <link rel="canonical" href="https://ellenbboe.github.io/index.html">    <link rel="stylesheet" href="https://ellenbboe.github.io/skins/Casper/css/base.css?1591150301084"/>
+    <script>
+onload = function() {
+    var click_cnt = 0;
+    var $html = document.getElementsByTagName("html")[0];
+    var $body = document.getElementsByTagName("body")[0];
+    $html.onclick = function(e) {
+        var $elem = document.createElement("b");
+        $elem.style.color = "#E94F06";
+        $elem.style.zIndex = 9999;
+        $elem.style.position = "absolute";
+        $elem.style.select = "none";
+        var x = e.pageX;
+        var y = e.pageY;
+        $elem.style.left = (x - 10) + "px";
+        $elem.style.top = (y - 20) + "px";
+        clearInterval(anim);
+        switch (++click_cnt) {
+            case 10:
+                $elem.innerText = "OωO";
+                break;
+            case 20:
+                $elem.innerText = "(๑•́ ∀ •̀๑)";
+                break;
+            case 30:
+                $elem.innerText = "(๑•́ ₃ •̀๑)";
+                break;
+            case 40:
+                $elem.innerText = "(๑•̀_•́๑)";
+                break;
+            case 50:
+                $elem.innerText = "（￣へ￣）";
+                break;
+            case 60:
+                $elem.innerText = "(╯°口°)╯(┴—┴";
+                break;
+            case 70:
+                $elem.innerText = "૮( ᵒ̌皿ᵒ̌ )ა";
+                break;
+            case 80:
+                $elem.innerText = "╮(｡>口<｡)╭";
+                break;
+            case 90:
+                $elem.innerText = "( ง ᵒ̌皿ᵒ̌)ง⁼³₌₃";
+                break;
+            case 100:
+            case 101:
+            case 102:
+            case 103:
+            case 104:
+            case 105:
+                $elem.innerText = "(ꐦ°᷄д°᷅)";
+                break;
+            default:
+                $elem.innerText = "❤";
+                break;
+        }
+        $elem.style.fontSize = Math.random() * 10 + 8 + "px";
+        var increase = 0;
+        var anim;
+        setTimeout(function() {
+            anim = setInterval(function() {
+                if (++increase == 150) {
+                    clearInterval(anim);
+                    $body.removeChild($elem);
+                }
+                $elem.style.top = y - 20 - increase + "px";
+                $elem.style.opacity = (150 - increase) / 120;
+            }, 8);
+        }, 70);
+        $body.appendChild($elem);
+    };
+};
+</script>
+</head>
 <body class="fn__flex-column">
 <div id="pjax" class="fn__flex-1">
     
     <header class="header header--index">
         <div class="wrapper header__title">
             <h1 class="header__h1 fn__flex-inline">
-                <img src="https://s2.ax1x.com/2020/01/12/loApPe.png">
+                <img src="https://s2.ax1x.com/2020/01/12/loApPe.png" alt="Kosmos">
                 <a href="https://ellenbboe.github.io" rel="start" class="header__title">Kosmos</a>
             </h1>
-            <h2 class="header__h2">---就算是痛苦难受，也要去体会那被称为生存的分量---</h2>
+            <h2 class="header__h2">---我们总得选择一条路去前行---</h2>
         </div>
         <nav class="wrapper header__nav fn__clear">
             <a href="https://ellenbboe.github.io" rel="start">
                     首页
             </a>
 
-                <a class="fn__flex-inline" href="/my-github-repos" target="_self" rel="section">
-                    <img src="/images/github-icon.png"> 我的开源
+                <a class="fn__flex-inline" href="https://github.com/ellenbboe" target="_self" rel="section">
+                    <img src="https://s2.ax1x.com/2020/01/16/ljWMPP.png" alt="我的GIT"> 我的GIT
                 </a>
                 <a class="fn__flex-inline" href="/readlist" target="_self" rel="section">
-                     阅读列表
+                    <img src="https://s2.ax1x.com/2020/01/16/ljWPC6.png" alt="阅读列表"> 阅读列表
                 </a>
 
 
@@ -58,8 +131,297 @@
     <div class="wrapper">
 <div class="articles">
     <article class="item item--large">
+        <a href="https://ellenbboe.github.io/articles/2020/05/17/1589701554726.html" class="item__cover"
+           style="background-image: url(https://b3logfile.com/file/2020/05/202003072323181-e443036a.jpg?imageView2/2/w/1280/format/jpg/interlace/1/q/100)"> 游戏记忆-鬼泣5
+        </a>
+        <div class="item__main">
+                    <a rel="tag" class="item__tag" href="https://ellenbboe.github.io/tags/%E6%B8%B8%E6%88%8F">
+                        游戏
+                    </a>
+            <h2 class="item__title">
+                <a rel="bookmark" href="https://ellenbboe.github.io/articles/2020/05/17/1589701554726.html">
+                    游戏记忆-鬼泣5
+                </a>
+                    <sup>
+                        <a href="https://ellenbboe.github.io/articles/2020/05/17/1589701554726.html">
+                            有更新！
+                        </a>
+                    </sup>
+            </h2>
+            <a class="item__abstract" pjax-title="游戏记忆-鬼泣5"
+               href="https://ellenbboe.github.io/articles/2020/05/17/1589701554726.html">
+                    游戏截图
+
+            </a>
+            <div class="fn__clear">
+                <a href="https://ellenbboe.github.io/authors/1560999734029"
+                   aria-label="ellenbboe"
+                   class="vditor-tooltipped vditor-tooltipped__n item__avatar">
+                    <img src="https://img.hacpai.com/avatar/1560335521987_1576387741689.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100" alt="1560999734029"/>
+                </a>
+                <a class="item__meta fn__none" href="https://ellenbboe.github.io/articles/2020/05/17/1589701554726.html#b3logsolocomments">
+                    <span data-uvstatcmt="1589701554726">0</span> 评论
+                </a>
+                <a class="item__meta" href="https://ellenbboe.github.io/articles/2020/05/17/1589701554726.html">
+                    <span data-uvstaturl="https://ellenbboe.github.io/articles/2020/05/17/1589701554726.html">0</span> 浏览
+                </a>
+            </div>
+        </div>
+    </article>
+    <article class="item">
+        <a href="https://ellenbboe.github.io/articles/2020/05/17/1589701375714.html" class="item__cover"
+           style="background-image: url(https://b3logfile.com/file/2020/05/202002081634281-27dc1f1d.jpg?imageView2/2/w/1280/format/jpg/interlace/1/q/100)"> 游戏记忆-瘟疫
+        </a>
+        <div class="item__main">
+                    <a rel="tag" class="item__tag" href="https://ellenbboe.github.io/tags/%E6%B8%B8%E6%88%8F">
+                        游戏
+                    </a>
+            <h2 class="item__title">
+                <a rel="bookmark" href="https://ellenbboe.github.io/articles/2020/05/17/1589701375714.html">
+                    游戏记忆-瘟疫
+                </a>
+            </h2>
+            <a class="item__abstract" pjax-title="游戏记忆-瘟疫"
+               href="https://ellenbboe.github.io/articles/2020/05/17/1589701375714.html">
+                    游戏截图
+
+            </a>
+            <div class="fn__clear">
+                <a href="https://ellenbboe.github.io/authors/1560999734029"
+                   aria-label="ellenbboe"
+                   class="vditor-tooltipped vditor-tooltipped__n item__avatar">
+                    <img src="https://img.hacpai.com/avatar/1560335521987_1576387741689.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100" alt="1560999734029"/>
+                </a>
+                <a class="item__meta fn__none" href="https://ellenbboe.github.io/articles/2020/05/17/1589701375714.html#b3logsolocomments">
+                    <span data-uvstatcmt="1589701375714">0</span> 评论
+                </a>
+                <a class="item__meta" href="https://ellenbboe.github.io/articles/2020/05/17/1589701375714.html">
+                    <span data-uvstaturl="https://ellenbboe.github.io/articles/2020/05/17/1589701375714.html">0</span> 浏览
+                </a>
+            </div>
+        </div>
+    </article>
+    <article class="item">
+        <a href="https://ellenbboe.github.io/articles/2020/05/17/1589701293565.html" class="item__cover"
+           style="background-image: url(https://b3logfile.com/file/2020/05/202003101619111-99e7418e.jpg?imageView2/2/w/1280/format/jpg/interlace/1/q/100)"> 游戏记忆-生化危机2重置版
+        </a>
+        <div class="item__main">
+                    <a rel="tag" class="item__tag" href="https://ellenbboe.github.io/tags/%E6%B8%B8%E6%88%8F">
+                        游戏
+                    </a>
+            <h2 class="item__title">
+                <a rel="bookmark" href="https://ellenbboe.github.io/articles/2020/05/17/1589701293565.html">
+                    游戏记忆-生化危机2重置版
+                </a>
+            </h2>
+            <a class="item__abstract" pjax-title="游戏记忆-生化危机2重置版"
+               href="https://ellenbboe.github.io/articles/2020/05/17/1589701293565.html">
+                    游戏截图
+
+            </a>
+            <div class="fn__clear">
+                <a href="https://ellenbboe.github.io/authors/1560999734029"
+                   aria-label="ellenbboe"
+                   class="vditor-tooltipped vditor-tooltipped__n item__avatar">
+                    <img src="https://img.hacpai.com/avatar/1560335521987_1576387741689.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100" alt="1560999734029"/>
+                </a>
+                <a class="item__meta fn__none" href="https://ellenbboe.github.io/articles/2020/05/17/1589701293565.html#b3logsolocomments">
+                    <span data-uvstatcmt="1589701293565">0</span> 评论
+                </a>
+                <a class="item__meta" href="https://ellenbboe.github.io/articles/2020/05/17/1589701293565.html">
+                    <span data-uvstaturl="https://ellenbboe.github.io/articles/2020/05/17/1589701293565.html">0</span> 浏览
+                </a>
+            </div>
+        </div>
+    </article>
+    <article class="item">
+        <a href="https://ellenbboe.github.io/articles/2020/05/17/1589700629891.html" class="item__cover"
+           style="background-image: url(https://b3logfile.com/file/2020/05/202004041504591-1e7d0bc6.jpg?imageView2/2/w/1280/format/jpg/interlace/1/q/100)"> 游戏记忆-怪物猎人
+        </a>
+        <div class="item__main">
+                    <a rel="tag" class="item__tag" href="https://ellenbboe.github.io/tags/%E6%B8%B8%E6%88%8F">
+                        游戏
+                    </a>
+            <h2 class="item__title">
+                <a rel="bookmark" href="https://ellenbboe.github.io/articles/2020/05/17/1589700629891.html">
+                    游戏记忆-怪物猎人
+                </a>
+                    <sup>
+                        <a href="https://ellenbboe.github.io/articles/2020/05/17/1589700629891.html">
+                            有更新！
+                        </a>
+                    </sup>
+            </h2>
+            <a class="item__abstract" pjax-title="游戏记忆-怪物猎人"
+               href="https://ellenbboe.github.io/articles/2020/05/17/1589700629891.html">
+                    游戏截图
+
+            </a>
+            <div class="fn__clear">
+                <a href="https://ellenbboe.github.io/authors/1560999734029"
+                   aria-label="ellenbboe"
+                   class="vditor-tooltipped vditor-tooltipped__n item__avatar">
+                    <img src="https://img.hacpai.com/avatar/1560335521987_1576387741689.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100" alt="1560999734029"/>
+                </a>
+                <a class="item__meta fn__none" href="https://ellenbboe.github.io/articles/2020/05/17/1589700629891.html#b3logsolocomments">
+                    <span data-uvstatcmt="1589700629891">0</span> 评论
+                </a>
+                <a class="item__meta" href="https://ellenbboe.github.io/articles/2020/05/17/1589700629891.html">
+                    <span data-uvstaturl="https://ellenbboe.github.io/articles/2020/05/17/1589700629891.html">0</span> 浏览
+                </a>
+            </div>
+        </div>
+    </article>
+    <article class="item">
+        <a href="https://ellenbboe.github.io/articles/2020/05/17/1589700910835.html" class="item__cover"
+           style="background-image: url(https://b3logfile.com/file/2020/05/202002072045121-f0bb376f.jpg?imageView2/2/w/1280/format/jpg/interlace/1/q/100)"> 游戏记忆-古剑奇谭
+        </a>
+        <div class="item__main">
+                    <a rel="tag" class="item__tag" href="https://ellenbboe.github.io/tags/%E6%B8%B8%E6%88%8F">
+                        游戏
+                    </a>
+            <h2 class="item__title">
+                <a rel="bookmark" href="https://ellenbboe.github.io/articles/2020/05/17/1589700910835.html">
+                    游戏记忆-古剑奇谭
+                </a>
+                    <sup>
+                        <a href="https://ellenbboe.github.io/articles/2020/05/17/1589700910835.html">
+                            有更新！
+                        </a>
+                    </sup>
+            </h2>
+            <a class="item__abstract" pjax-title="游戏记忆-古剑奇谭"
+               href="https://ellenbboe.github.io/articles/2020/05/17/1589700910835.html">
+                    游戏截图
+
+            </a>
+            <div class="fn__clear">
+                <a href="https://ellenbboe.github.io/authors/1560999734029"
+                   aria-label="ellenbboe"
+                   class="vditor-tooltipped vditor-tooltipped__n item__avatar">
+                    <img src="https://img.hacpai.com/avatar/1560335521987_1576387741689.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100" alt="1560999734029"/>
+                </a>
+                <a class="item__meta fn__none" href="https://ellenbboe.github.io/articles/2020/05/17/1589700910835.html#b3logsolocomments">
+                    <span data-uvstatcmt="1589700910835">0</span> 评论
+                </a>
+                <a class="item__meta" href="https://ellenbboe.github.io/articles/2020/05/17/1589700910835.html">
+                    <span data-uvstaturl="https://ellenbboe.github.io/articles/2020/05/17/1589700910835.html">0</span> 浏览
+                </a>
+            </div>
+        </div>
+    </article>
+    <article class="item">
+        <a href="https://ellenbboe.github.io/articles/2020/05/17/1589700330530.html" class="item__cover"
+           style="background-image: url(https://b3logfile.com/file/2020/05/201711021755245306-56d33e5d.jpg?imageView2/2/w/1280/format/jpg/interlace/1/q/100)"> 五只龙之话
+        </a>
+        <div class="item__main">
+                    <a rel="tag" class="item__tag" href="https://ellenbboe.github.io/tags/%E6%97%A5%E5%B8%B8">
+                        日常
+                    </a>
+            <h2 class="item__title">
+                <a rel="bookmark" href="https://ellenbboe.github.io/articles/2020/05/17/1589700330530.html">
+                    五只龙之话
+                </a>
+            </h2>
+            <a class="item__abstract" pjax-title="五只龙之话"
+               href="https://ellenbboe.github.io/articles/2020/05/17/1589700330530.html">
+                    很久以前，人们与五只龙一同生活在银白色的世界中。
+
+            </a>
+            <div class="fn__clear">
+                <a href="https://ellenbboe.github.io/authors/1560999734029"
+                   aria-label="ellenbboe"
+                   class="vditor-tooltipped vditor-tooltipped__n item__avatar">
+                    <img src="https://img.hacpai.com/avatar/1560335521987_1576387741689.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100" alt="1560999734029"/>
+                </a>
+                <a class="item__meta fn__none" href="https://ellenbboe.github.io/articles/2020/05/17/1589700330530.html#b3logsolocomments">
+                    <span data-uvstatcmt="1589700330530">0</span> 评论
+                </a>
+                <a class="item__meta" href="https://ellenbboe.github.io/articles/2020/05/17/1589700330530.html">
+                    <span data-uvstaturl="https://ellenbboe.github.io/articles/2020/05/17/1589700330530.html">0</span> 浏览
+                </a>
+            </div>
+        </div>
+    </article>
+    <article class="item item--large">
+        <a href="https://ellenbboe.github.io/articles/2020/03/18/1584499865232.html" class="item__cover"
+           style="background-image: url(https://img.hacpai.com/file/2020/03/002-19a76c49.jpg?imageView2/2/w/1280/format/jpg/interlace/1/q/100)"> 『君の名は。』剪辑尝试
+        </a>
+        <div class="item__main">
+                    <a rel="tag" class="item__tag" href="https://ellenbboe.github.io/tags/%E6%97%A5%E5%B8%B8">
+                        日常
+                    </a>
+            <h2 class="item__title">
+                <a rel="bookmark" href="https://ellenbboe.github.io/articles/2020/03/18/1584499865232.html">
+                    『君の名は。』剪辑尝试
+                </a>
+                    <sup>
+                        <a href="https://ellenbboe.github.io/articles/2020/03/18/1584499865232.html">
+                            有更新！
+                        </a>
+                    </sup>
+            </h2>
+            <a class="item__abstract" pjax-title="『君の名は。』剪辑尝试"
+               href="https://ellenbboe.github.io/articles/2020/03/18/1584499865232.html">
+                    🎉🎉🎉
+
+            </a>
+            <div class="fn__clear">
+                <a href="https://ellenbboe.github.io/authors/1560999734029"
+                   aria-label="ellenbboe"
+                   class="vditor-tooltipped vditor-tooltipped__n item__avatar">
+                    <img src="https://img.hacpai.com/avatar/1560335521987_1576387741689.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100" alt="1560999734029"/>
+                </a>
+                <a class="item__meta fn__none" href="https://ellenbboe.github.io/articles/2020/03/18/1584499865232.html#b3logsolocomments">
+                    <span data-uvstatcmt="1584499865232">5</span> 评论
+                </a>
+                <a class="item__meta" href="https://ellenbboe.github.io/articles/2020/03/18/1584499865232.html">
+                    <span data-uvstaturl="https://ellenbboe.github.io/articles/2020/03/18/1584499865232.html">0</span> 浏览
+                </a>
+            </div>
+        </div>
+    </article>
+    <article class="item">
+        <a href="https://ellenbboe.github.io/articles/2019/12/15/1576386330771.html" class="item__cover"
+           style="background-image: url(https://img.hacpai.com/file/2020/01/wallhavendgv8qo-c9fb15a9.png?imageView2/2/w/1280/format/jpg/interlace/1/q/100)"> MyBatis和MyBatis-Plus 代码生成
+        </a>
+        <div class="item__main">
+                    <a rel="tag" class="item__tag" href="https://ellenbboe.github.io/tags/Mybatis">
+                        Mybatis
+                    </a>
+            <h2 class="item__title">
+                <a rel="bookmark" href="https://ellenbboe.github.io/articles/2019/12/15/1576386330771.html">
+                    MyBatis和MyBatis-Plus 代码生成
+                </a>
+                    <sup>
+                        <a href="https://ellenbboe.github.io/articles/2019/12/15/1576386330771.html">
+                            有更新！
+                        </a>
+                    </sup>
+            </h2>
+            <a class="item__abstract" pjax-title="MyBatis和MyBatis-Plus 代码生成"
+               href="https://ellenbboe.github.io/articles/2019/12/15/1576386330771.html">
+                    👶 MyBatis 与 MyBatisPlus 生成代码
+
+            </a>
+            <div class="fn__clear">
+                <a href="https://ellenbboe.github.io/authors/1560999734029"
+                   aria-label="ellenbboe"
+                   class="vditor-tooltipped vditor-tooltipped__n item__avatar">
+                    <img src="https://img.hacpai.com/avatar/1560335521987_1576387741689.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100" alt="1560999734029"/>
+                </a>
+                <a class="item__meta fn__none" href="https://ellenbboe.github.io/articles/2019/12/15/1576386330771.html#b3logsolocomments">
+                    <span data-uvstatcmt="1576386330771">2</span> 评论
+                </a>
+                <a class="item__meta" href="https://ellenbboe.github.io/articles/2019/12/15/1576386330771.html">
+                    <span data-uvstaturl="https://ellenbboe.github.io/articles/2019/12/15/1576386330771.html">196</span> 浏览
+                </a>
+            </div>
+        </div>
+    </article>
+    <article class="item">
         <a href="https://ellenbboe.github.io/articles/2019/12/09/1575889655832.html" class="item__cover"
-           style="background-image: url(https://img.hacpai.com/bing/20190916.jpg?imageView2/1/w/1280/h/720/interlace/1/q/100)">
+           style="background-image: url(https://img.hacpai.com/file/2020/01/thumb1920590466-2eb4fae0.png?imageView2/2/w/1280/format/jpg/interlace/1/q/100)"> SeckillFramework项目开发错误记录
         </a>
         <div class="item__main">
                     <a rel="tag" class="item__tag" href="https://ellenbboe.github.io/tags/%E6%97%A5%E5%BF%97">
@@ -67,72 +429,37 @@
                     </a>
             <h2 class="item__title">
                 <a rel="bookmark" href="https://ellenbboe.github.io/articles/2019/12/09/1575889655832.html">
-                    开发错误记录手册
+                    SeckillFramework项目开发错误记录
                 </a>
-                    <sup>
-                        置顶！
-                    </sup>
                     <sup>
                         <a href="https://ellenbboe.github.io/articles/2019/12/09/1575889655832.html">
                             有更新！
                         </a>
                     </sup>
             </h2>
-            <a class="item__abstract" pjax-title="开发错误记录手册"
+            <a class="item__abstract" pjax-title="SeckillFramework项目开发错误记录"
                href="https://ellenbboe.github.io/articles/2019/12/09/1575889655832.html">
-                    开发中遇到的错误记录 😰 2019/12/08 始
+                    SeckillFramework 项目开发中遇到的错误记录 😰 2019/12/08 始 2020/1/20 止
 
             </a>
             <div class="fn__clear">
                 <a href="https://ellenbboe.github.io/authors/1560999734029"
                    aria-label="ellenbboe"
                    class="vditor-tooltipped vditor-tooltipped__n item__avatar">
-                    <img src="https://img.hacpai.com/avatar/1560335521987_1576387741689.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100" />
+                    <img src="https://img.hacpai.com/avatar/1560335521987_1576387741689.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100" alt="1560999734029"/>
                 </a>
-                    <a class="item__meta" href="https://ellenbboe.github.io/articles/2019/12/09/1575889655832.html">
-                        <span data-uvstaturl="https://ellenbboe.github.io/articles/2019/12/09/1575889655832.html">38</span> 浏览
-                    </a>
-            </div>
-        </div>
-    </article>
-    <article class="item">
-        <a href="https://ellenbboe.github.io/readlist" class="item__cover"
-           style="background-image: url(https://img.hacpai.com/bing/20190508.jpg?imageView2/1/w/1280/h/720/interlace/1/q/100)">
-        </a>
-        <div class="item__main">
-                    <a rel="tag" class="item__tag" href="https://ellenbboe.github.io/tags/%E6%80%BB%E7%BB%93">
-                        总结
-                    </a>
-            <h2 class="item__title">
-                <a rel="bookmark" href="https://ellenbboe.github.io/readlist">
-                    ReadList
+                <a class="item__meta fn__none" href="https://ellenbboe.github.io/articles/2019/12/09/1575889655832.html#b3logsolocomments">
+                    <span data-uvstatcmt="1575889655832">0</span> 评论
                 </a>
-                    <sup>
-                        <a href="https://ellenbboe.github.io/readlist">
-                            有更新！
-                        </a>
-                    </sup>
-            </h2>
-            <a class="item__abstract" pjax-title="ReadList"
-               href="https://ellenbboe.github.io/readlist">
-                    万象，皆入我眼！
-
-            </a>
-            <div class="fn__clear">
-                <a href="https://ellenbboe.github.io/authors/1560999734029"
-                   aria-label="ellenbboe"
-                   class="vditor-tooltipped vditor-tooltipped__n item__avatar">
-                    <img src="https://img.hacpai.com/avatar/1560335521987_1576387741689.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100" />
+                <a class="item__meta" href="https://ellenbboe.github.io/articles/2019/12/09/1575889655832.html">
+                    <span data-uvstaturl="https://ellenbboe.github.io/articles/2019/12/09/1575889655832.html">38</span> 浏览
                 </a>
-                    <a class="item__meta" href="https://ellenbboe.github.io/readlist">
-                        <span data-uvstaturl="https://ellenbboe.github.io/readlist">0</span> 浏览
-                    </a>
             </div>
         </div>
     </article>
     <article class="item">
         <a href="https://ellenbboe.github.io/articles/2020/01/12/1578804303182.html" class="item__cover"
-           style="background-image: url(https://img.hacpai.com/bing/20180927.jpg?imageView2/1/w/960/h/540/interlace/1/q/100)">
+           style="background-image: url(https://img.hacpai.com/bing/20180927.jpg?imageView2/1/w/960/h/540/interlace/1/q/100)"> 千磨万击还坚劲,任尔东南西北风 For 2019
         </a>
         <div class="item__main">
                     <a rel="tag" class="item__tag" href="https://ellenbboe.github.io/tags/%E6%80%BB%E7%BB%93">
@@ -157,17 +484,20 @@
                 <a href="https://ellenbboe.github.io/authors/1560999734029"
                    aria-label="ellenbboe"
                    class="vditor-tooltipped vditor-tooltipped__n item__avatar">
-                    <img src="https://img.hacpai.com/avatar/1560335521987_1576387741689.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100" />
+                    <img src="https://img.hacpai.com/avatar/1560335521987_1576387741689.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100" alt="1560999734029"/>
                 </a>
-                <a class="item__meta" href="https://ellenbboe.github.io/articles/2020/01/12/1578804303182.html#comments">
-                    3 评论
+                <a class="item__meta fn__none" href="https://ellenbboe.github.io/articles/2020/01/12/1578804303182.html#b3logsolocomments">
+                    <span data-uvstatcmt="1578804303182">3</span> 评论
+                </a>
+                <a class="item__meta" href="https://ellenbboe.github.io/articles/2020/01/12/1578804303182.html">
+                    <span data-uvstaturl="https://ellenbboe.github.io/articles/2020/01/12/1578804303182.html">0</span> 浏览
                 </a>
             </div>
         </div>
     </article>
     <article class="item">
         <a href="https://ellenbboe.github.io/articles/2020/01/10/1578589632211.html" class="item__cover"
-           style="background-image: url(https://img.hacpai.com/bing/20171111.jpg?imageView2/1/w/960/h/540/interlace/1/q/100)">
+           style="background-image: url(https://img.hacpai.com/bing/20171111.jpg?imageView2/1/w/960/h/540/interlace/1/q/100)"> SpringBoot框架下shiro与jwt的结合的用户登录
         </a>
         <div class="item__main">
                     <a rel="tag" class="item__tag" href="https://ellenbboe.github.io/tags/shiro">
@@ -192,17 +522,20 @@
                 <a href="https://ellenbboe.github.io/authors/1560999734029"
                    aria-label="ellenbboe"
                    class="vditor-tooltipped vditor-tooltipped__n item__avatar">
-                    <img src="https://img.hacpai.com/avatar/1560335521987_1576387741689.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100" />
+                    <img src="https://img.hacpai.com/avatar/1560335521987_1576387741689.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100" alt="1560999734029"/>
                 </a>
-                    <a class="item__meta" href="https://ellenbboe.github.io/articles/2020/01/10/1578589632211.html">
-                        <span data-uvstaturl="https://ellenbboe.github.io/articles/2020/01/10/1578589632211.html">0</span> 浏览
-                    </a>
+                <a class="item__meta fn__none" href="https://ellenbboe.github.io/articles/2020/01/10/1578589632211.html#b3logsolocomments">
+                    <span data-uvstatcmt="1578589632211">0</span> 评论
+                </a>
+                <a class="item__meta" href="https://ellenbboe.github.io/articles/2020/01/10/1578589632211.html">
+                    <span data-uvstaturl="https://ellenbboe.github.io/articles/2020/01/10/1578589632211.html">0</span> 浏览
+                </a>
             </div>
         </div>
     </article>
     <article class="item">
         <a href="https://ellenbboe.github.io/articles/2020/01/10/1578664639048.html" class="item__cover"
-           style="background-image: url(https://img.hacpai.com/bing/20180223.jpg?imageView2/1/w/960/h/540/interlace/1/q/100)">
+           style="background-image: url(https://img.hacpai.com/bing/20180223.jpg?imageView2/1/w/960/h/540/interlace/1/q/100)"> Idea中添加缩写
         </a>
         <div class="item__main">
                     <a rel="tag" class="item__tag" href="https://ellenbboe.github.io/tags/idea">
@@ -227,251 +560,14 @@
                 <a href="https://ellenbboe.github.io/authors/1560999734029"
                    aria-label="ellenbboe"
                    class="vditor-tooltipped vditor-tooltipped__n item__avatar">
-                    <img src="https://img.hacpai.com/avatar/1560335521987_1576387741689.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100" />
+                    <img src="https://img.hacpai.com/avatar/1560335521987_1576387741689.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100" alt="1560999734029"/>
                 </a>
-                <a class="item__meta" href="https://ellenbboe.github.io/articles/2020/01/10/1578664639048.html#comments">
-                    2 评论
+                <a class="item__meta fn__none" href="https://ellenbboe.github.io/articles/2020/01/10/1578664639048.html#b3logsolocomments">
+                    <span data-uvstatcmt="1578664639048">2</span> 评论
                 </a>
-            </div>
-        </div>
-    </article>
-    <article class="item">
-        <a href="https://ellenbboe.github.io/articles/2020/01/08/1578464371766.html" class="item__cover"
-           style="background-image: url(https://img.hacpai.com/bing/20180226.jpg?imageView2/1/w/1280/h/720/interlace/1/q/100)">
-        </a>
-        <div class="item__main">
-                    <a rel="tag" class="item__tag" href="https://ellenbboe.github.io/tags/rabbitmq">
-                        rabbitmq
-                    </a>
-            <h2 class="item__title">
-                <a rel="bookmark" href="https://ellenbboe.github.io/articles/2020/01/08/1578464371766.html">
-                    安装Rabbitmq
+                <a class="item__meta" href="https://ellenbboe.github.io/articles/2020/01/10/1578664639048.html">
+                    <span data-uvstaturl="https://ellenbboe.github.io/articles/2020/01/10/1578664639048.html">0</span> 浏览
                 </a>
-                    <sup>
-                        <a href="https://ellenbboe.github.io/articles/2020/01/08/1578464371766.html">
-                            有更新！
-                        </a>
-                    </sup>
-            </h2>
-            <a class="item__abstract" pjax-title="安装Rabbitmq"
-               href="https://ellenbboe.github.io/articles/2020/01/08/1578464371766.html">
-                    安装记录 rabbitmq
-
-            </a>
-            <div class="fn__clear">
-                <a href="https://ellenbboe.github.io/authors/1560999734029"
-                   aria-label="ellenbboe"
-                   class="vditor-tooltipped vditor-tooltipped__n item__avatar">
-                    <img src="https://img.hacpai.com/avatar/1560335521987_1576387741689.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100" />
-                </a>
-                    <a class="item__meta" href="https://ellenbboe.github.io/articles/2020/01/08/1578464371766.html">
-                        <span data-uvstaturl="https://ellenbboe.github.io/articles/2020/01/08/1578464371766.html">3</span> 浏览
-                    </a>
-            </div>
-        </div>
-    </article>
-    <article class="item item--large">
-        <a href="https://ellenbboe.github.io/articles/2019/12/21/1576940518877.html" class="item__cover"
-           style="background-image: url(https://img.hacpai.com/bing/20190813.jpg?imageView2/1/w/1280/h/720/interlace/1/q/100)">
-        </a>
-        <div class="item__main">
-                    <a rel="tag" class="item__tag" href="https://ellenbboe.github.io/tags/Mysql">
-                        Mysql
-                    </a>
-            <h2 class="item__title">
-                <a rel="bookmark" href="https://ellenbboe.github.io/articles/2019/12/21/1576940518877.html">
-                    mysql删库勒索?
-                </a>
-                    <sup>
-                        <a href="https://ellenbboe.github.io/articles/2019/12/21/1576940518877.html">
-                            有更新！
-                        </a>
-                    </sup>
-            </h2>
-            <a class="item__abstract" pjax-title="mysql删库勒索?"
-               href="https://ellenbboe.github.io/articles/2019/12/21/1576940518877.html">
-                    看到有人中招了,提前打打预防针😰
-
-            </a>
-            <div class="fn__clear">
-                <a href="https://ellenbboe.github.io/authors/1560999734029"
-                   aria-label="ellenbboe"
-                   class="vditor-tooltipped vditor-tooltipped__n item__avatar">
-                    <img src="https://img.hacpai.com/avatar/1560335521987_1576387741689.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100" />
-                </a>
-                    <a class="item__meta" href="https://ellenbboe.github.io/articles/2019/12/21/1576940518877.html">
-                        <span data-uvstaturl="https://ellenbboe.github.io/articles/2019/12/21/1576940518877.html">10</span> 浏览
-                    </a>
-            </div>
-        </div>
-    </article>
-    <article class="item">
-        <a href="https://ellenbboe.github.io/articles/2019/12/15/1576386330771.html" class="item__cover"
-           style="background-image: url(https://img.hacpai.com/bing/20190616.jpg?imageView2/1/w/1280/h/720/interlace/1/q/100)">
-        </a>
-        <div class="item__main">
-                    <a rel="tag" class="item__tag" href="https://ellenbboe.github.io/tags/Mybatis">
-                        Mybatis
-                    </a>
-            <h2 class="item__title">
-                <a rel="bookmark" href="https://ellenbboe.github.io/articles/2019/12/15/1576386330771.html">
-                    使用Mybatis-Generator来生成mapper,xml和实体对象
-                </a>
-                    <sup>
-                        <a href="https://ellenbboe.github.io/articles/2019/12/15/1576386330771.html">
-                            有更新！
-                        </a>
-                    </sup>
-            </h2>
-            <a class="item__abstract" pjax-title="使用Mybatis-Generator来生成mapper,xml和实体对象"
-               href="https://ellenbboe.github.io/articles/2019/12/15/1576386330771.html">
-                    👶 第一次使用Mybatis-generator记录
-
-            </a>
-            <div class="fn__clear">
-                <a href="https://ellenbboe.github.io/authors/1560999734029"
-                   aria-label="ellenbboe"
-                   class="vditor-tooltipped vditor-tooltipped__n item__avatar">
-                    <img src="https://img.hacpai.com/avatar/1560335521987_1576387741689.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100" />
-                </a>
-                <a class="item__meta" href="https://ellenbboe.github.io/articles/2019/12/15/1576386330771.html#comments">
-                    2 评论
-                </a>
-            </div>
-        </div>
-    </article>
-    <article class="item">
-        <a href="https://ellenbboe.github.io/articles/2019/12/09/1575889323934.html" class="item__cover"
-           style="background-image: url(https://img.hacpai.com/bing/20181204.jpg?imageView2/1/w/1280/h/720/interlace/1/q/100)">
-        </a>
-        <div class="item__main">
-                    <a rel="tag" class="item__tag" href="https://ellenbboe.github.io/tags/Spring">
-                        Spring
-                    </a>
-            <h2 class="item__title">
-                <a rel="bookmark" href="https://ellenbboe.github.io/articles/2019/12/09/1575889323934.html">
-                    使用validation自定义注解
-                </a>
-            </h2>
-            <a class="item__abstract" pjax-title="使用validation自定义注解"
-               href="https://ellenbboe.github.io/articles/2019/12/09/1575889323934.html">
-                    第一步 在pom中引入  &lt;dependency&gt; &lt;groupId&gt;org.springframework.boot&lt;/group
-
-            </a>
-            <div class="fn__clear">
-                <a href="https://ellenbboe.github.io/authors/1560999734029"
-                   aria-label="ellenbboe"
-                   class="vditor-tooltipped vditor-tooltipped__n item__avatar">
-                    <img src="https://img.hacpai.com/avatar/1560335521987_1576387741689.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100" />
-                </a>
-                    <a class="item__meta" href="https://ellenbboe.github.io/articles/2019/12/09/1575889323934.html">
-                        <span data-uvstaturl="https://ellenbboe.github.io/articles/2019/12/09/1575889323934.html">160</span> 浏览
-                    </a>
-            </div>
-        </div>
-    </article>
-    <article class="item">
-        <a href="https://ellenbboe.github.io/articles/2019/08/18/1566125443482.html" class="item__cover"
-           style="background-image: url(https://img.hacpai.com/bing/20190503.jpg?imageView2/1/w/1280/h/720/interlace/1/q/100)">
-        </a>
-        <div class="item__main">
-                    <a rel="tag" class="item__tag" href="https://ellenbboe.github.io/tags/%E7%AE%97%E6%B3%95">
-                        算法
-                    </a>
-            <h2 class="item__title">
-                <a rel="bookmark" href="https://ellenbboe.github.io/articles/2019/08/18/1566125443482.html">
-                    算法|随便刷刷LeetCode
-                </a>
-                    <sup>
-                        <a href="https://ellenbboe.github.io/articles/2019/08/18/1566125443482.html">
-                            有更新！
-                        </a>
-                    </sup>
-            </h2>
-            <a class="item__abstract" pjax-title="算法|随便刷刷LeetCode"
-               href="https://ellenbboe.github.io/articles/2019/08/18/1566125443482.html">
-                    随便刷一刷算法题还是不错的,编程能力还需提高 🐼
-
-            </a>
-            <div class="fn__clear">
-                <a href="https://ellenbboe.github.io/authors/1560999734029"
-                   aria-label="ellenbboe"
-                   class="vditor-tooltipped vditor-tooltipped__n item__avatar">
-                    <img src="https://img.hacpai.com/avatar/1560335521987_1576387741689.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100" />
-                </a>
-                    <a class="item__meta" href="https://ellenbboe.github.io/articles/2019/08/18/1566125443482.html">
-                        <span data-uvstaturl="https://ellenbboe.github.io/articles/2019/08/18/1566125443482.html">428</span> 浏览
-                    </a>
-            </div>
-        </div>
-    </article>
-    <article class="item">
-        <a href="https://ellenbboe.github.io/articles/2019/08/10/1565417420305.html" class="item__cover"
-           style="background-image: url(https://img.hacpai.com/bing/20180128.jpg?imageView2/1/w/1280/h/720/interlace/1/q/100)">
-        </a>
-        <div class="item__main">
-                    <a rel="tag" class="item__tag" href="https://ellenbboe.github.io/tags/%E7%AC%94%E8%AE%B0">
-                        笔记
-                    </a>
-            <h2 class="item__title">
-                <a rel="bookmark" href="https://ellenbboe.github.io/articles/2019/08/10/1565417420305.html">
-                    学习笔记|泛型
-                </a>
-                    <sup>
-                        <a href="https://ellenbboe.github.io/articles/2019/08/10/1565417420305.html">
-                            有更新！
-                        </a>
-                    </sup>
-            </h2>
-            <a class="item__abstract" pjax-title="学习笔记|泛型"
-               href="https://ellenbboe.github.io/articles/2019/08/10/1565417420305.html">
-                    泛型就像一个接口,适配某一些类,可以通过extends,super加限制 🌴
-
-            </a>
-            <div class="fn__clear">
-                <a href="https://ellenbboe.github.io/authors/1560999734029"
-                   aria-label="ellenbboe"
-                   class="vditor-tooltipped vditor-tooltipped__n item__avatar">
-                    <img src="https://img.hacpai.com/avatar/1560335521987_1576387741689.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100" />
-                </a>
-                    <a class="item__meta" href="https://ellenbboe.github.io/articles/2019/08/10/1565417420305.html">
-                        <span data-uvstaturl="https://ellenbboe.github.io/articles/2019/08/10/1565417420305.html">254</span> 浏览
-                    </a>
-            </div>
-        </div>
-    </article>
-    <article class="item">
-        <a href="https://ellenbboe.github.io/articles/2019/08/09/1565336255411.html" class="item__cover"
-           style="background-image: url(https://img.hacpai.com/file/2019/08/42707615755acdf3e0845f8articlex-7e5748da.png?imageView2/2/w/1280/format/jpg/interlace/1/q/100)">
-        </a>
-        <div class="item__main">
-                    <a rel="tag" class="item__tag" href="https://ellenbboe.github.io/tags/%E7%AC%94%E8%AE%B0">
-                        笔记
-                    </a>
-            <h2 class="item__title">
-                <a rel="bookmark" href="https://ellenbboe.github.io/articles/2019/08/09/1565336255411.html">
-                    学习笔记|List,Set和Map
-                </a>
-                    <sup>
-                        <a href="https://ellenbboe.github.io/articles/2019/08/09/1565336255411.html">
-                            有更新！
-                        </a>
-                    </sup>
-            </h2>
-            <a class="item__abstract" pjax-title="学习笔记|List,Set和Map"
-               href="https://ellenbboe.github.io/articles/2019/08/09/1565336255411.html">
-                    一些List,Set和Map的特点🌊  List:Arraylist,LinkedList,Vector Set依赖Map存在 Map:Hashtable,Ha
-
-            </a>
-            <div class="fn__clear">
-                <a href="https://ellenbboe.github.io/authors/1560999734029"
-                   aria-label="ellenbboe"
-                   class="vditor-tooltipped vditor-tooltipped__n item__avatar">
-                    <img src="https://img.hacpai.com/avatar/1560335521987_1576387741689.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100" />
-                </a>
-                    <a class="item__meta" href="https://ellenbboe.github.io/articles/2019/08/09/1565336255411.html">
-                        <span data-uvstaturl="https://ellenbboe.github.io/articles/2019/08/09/1565336255411.html">392</span> 浏览
-                    </a>
             </div>
         </div>
     </article>
@@ -488,6 +584,7 @@
             <a pjax-title="Kosmos" class="pagination__item" href="https://ellenbboe.github.io/p/8">8</a>
             <a pjax-title="Kosmos" class="pagination__item" href="https://ellenbboe.github.io/p/9">9</a>
             <a pjax-title="Kosmos" class="pagination__item" href="https://ellenbboe.github.io/p/10">10</a>
+            <a pjax-title="Kosmos" class="pagination__item" href="https://ellenbboe.github.io/p/11">11</a>
 </nav>
     </div>
     
@@ -495,6 +592,7 @@
 <footer class="footer">
     <div class="wrapper fn__clear">
         <div class="fn__left">
+            <br>
             &copy; 2020
             <a href="https://ellenbboe.github.io">Kosmos</a>
             <a href="http://www.beian.miit.gov.cn/">浙ICP备18045840号-1</a>--------Let's move on
@@ -523,12 +621,23 @@ show_date_time();
 <style>
 #momk{animation:change 10s infinite;font-weight:800; }
 @keyframes change{0%{color:#5cb85c;}25%{color:#556bd8;}50%{color:#e40707;}75%{color:#66e616;}100% {color:#67bd31;}}
-</style> &nbsp;•&nbsp;
-            Powered by <a href="https://solo.b3log.org" target="_blank">Solo</a>
-            <br>
-            Theme Casper
-            <sup>[<a href="https://github.com/TryGhost/Casper" target="_blank">ref</a>]</sup>
-            by <a href="http://vanessa.b3log.org" target="_blank">Vanessa</a>
+</style>
+<script type="text/javascript">
+    /*自动刷新页面，避免无法访问*/
+    var OriginTitile = document.title;
+    var titleTime;
+    document.addEventListener('visibilitychange', function () {
+        if (document.hidden) {
+            document.title = '(〃´-ω･)  休息一下';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '起来嗨٩(๑❛ᴗ❛๑)۶';
+            titleTime = setTimeout(function () {
+                document.title = OriginTitile;
+            }, 3000);
+        }
+    });
+</script>
         </div>
         <div class="fn__right">
             <a href="https://ellenbboe.github.io/tags.html" rel="section">
@@ -543,33 +652,29 @@ show_date_time();
             友情链接
             </a>
             <br>
-            115 文章 &nbsp;
-            9 评论 &nbsp;
+            121 文章 &nbsp;
             <span data-uvstaturl="https://ellenbboe.github.io">11608</span> 浏览 &nbsp;
-            3 当前访客
+            
         </div>
     </div>
 </footer>
 
-<script type="text/javascript" src="https://ellenbboe.github.io/js/lib/compress/pjax.min.js" charset="utf-8"></script>
-<script type="text/javascript" src="https://ellenbboe.github.io/js/common.min.js?1578931371974"
-        charset="utf-8"></script>
-<script type="text/javascript"
-        src="https://ellenbboe.github.io/skins/Casper/js/common.min.js?1578931371974"
-        charset="utf-8"></script>
-<script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.4/dist/index.min.js"></script>
 <script>
-    var Label = {
-        servePath: "https://ellenbboe.github.io",
-        staticServePath: "https://ellenbboe.github.io",
-        luteAvailable: false,
-        hljsStyle: 'colorful',
-        langLabel: "zh_CN",
-        version: "3.7.0",
-    }
-    Util.init()
+  var Label = {
+    servePath: "https://ellenbboe.github.io",
+    staticServePath: "https://ellenbboe.github.io",
+    luteAvailable: false,
+    hljsStyle: 'colorful',
+    langLabel: "zh_CN",
+    version: "4.1.0",
+    staticSite: true,
+    showCodeBlockLn: false,
+  }
 </script>
+<script type="text/javascript"
+        src="https://ellenbboe.github.io/skins/Casper/js/common.min.js?1591150301084"
+        charset="utf-8"></script>
 
 </body>
 </html>
-<!-- Generated by Latke (https://github.com/88250/latke) in 31ms, 2020/01/14 13:32:38 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 69ms, 2020/06/03 12:32:26 -->

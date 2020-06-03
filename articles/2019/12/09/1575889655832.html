@@ -1,32 +1,105 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>开发错误记录手册 - Kosmos</title><meta name="description" content="开发中遇到的错误记录 😰 2019/12/08 始"/><meta property="og:description" content="开发中遇到的错误记录 😰 2019/12/08 始"/>    <meta name="keywords" content="开源,开发者,笔记,kosmos"/><link rel="dns-prefetch" href="https://ellenbboe.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://ellenbboe.github.io"><link rel="icon" type="image/png" href="https://s2.ax1x.com/2020/01/12/loApPe.png"/><link rel="apple-touch-icon" href="https://s2.ax1x.com/2020/01/12/loApPe.png"><link rel="shortcut icon" type="image/x-icon" href="https://s2.ax1x.com/2020/01/12/loApPe.png"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="开发错误记录手册 - Kosmos"/><meta property="og:site_name" content="Kosmos"/><meta property="og:url"      content="https://ellenbboe.github.io/articles/2019/12/09/1575889655832.html?"/><meta property="og:image" content="https://s2.ax1x.com/2020/01/12/loApPe.png"/><link rel="search" type="application/opensearchdescription+xml" title="开发错误记录手册 - Kosmos" href="/opensearch.xml"><link href="https://ellenbboe.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://ellenbboe.github.io/manifest.json">        <link rel="canonical" href="https://ellenbboe.github.io/articles/2019/12/09/1575889655832.html">        <link rel="stylesheet"
-              href="https://ellenbboe.github.io/skins/Casper/css/base.css?1578931371974"/>
+<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>SeckillFramework项目开发错误记录 - Kosmos</title><meta name="description" content="SeckillFramework 项目开发中遇到的错误记录 😰 2019/12/08 始 2020/1/20 止"/><meta property="og:description" content="SeckillFramework 项目开发中遇到的错误记录 😰 2019/12/08 始 2020/1/20 止"/>    <meta name="keywords" content="开源,开发者,笔记,kosmos"/><link rel="dns-prefetch" href="https://ellenbboe.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://ellenbboe.github.io"><link rel="icon" type="image/png" href="https://s2.ax1x.com/2020/01/12/loApPe.png"/><link rel="apple-touch-icon" href="https://s2.ax1x.com/2020/01/12/loApPe.png"><link rel="shortcut icon" type="image/x-icon" href="https://s2.ax1x.com/2020/01/12/loApPe.png"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="SeckillFramework项目开发错误记录 - Kosmos"/><meta property="og:site_name" content="Kosmos"/><meta property="og:url"      content="https://ellenbboe.github.io/articles/2019/12/09/1575889655832.html?"/><meta property="og:image" content="https://s2.ax1x.com/2020/01/12/loApPe.png"/><link rel="search" type="application/opensearchdescription+xml" title="SeckillFramework项目开发错误记录 - Kosmos" href="/opensearch.xml"><link href="https://ellenbboe.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://ellenbboe.github.io/manifest.json">        <link rel="canonical" href="https://ellenbboe.github.io/articles/2019/12/09/1575889655832.html">        <link rel="stylesheet"
+              href="https://ellenbboe.github.io/skins/Casper/css/base.css?1591150301084"/>
             <link rel="prev" title="使用validation自定义注解" href="https://ellenbboe.github.io/articles/2019/12/09/1575889323934.html">
-            <link rel="next" title="使用Mybatis-Generator来生成mapper,xml和实体对象" href="https://ellenbboe.github.io/articles/2019/12/15/1576386330771.html">
-    </head>
+            <link rel="next" title="MyBatis和MyBatis-Plus 代码生成" href="https://ellenbboe.github.io/articles/2019/12/15/1576386330771.html">
+    <script>
+onload = function() {
+    var click_cnt = 0;
+    var $html = document.getElementsByTagName("html")[0];
+    var $body = document.getElementsByTagName("body")[0];
+    $html.onclick = function(e) {
+        var $elem = document.createElement("b");
+        $elem.style.color = "#E94F06";
+        $elem.style.zIndex = 9999;
+        $elem.style.position = "absolute";
+        $elem.style.select = "none";
+        var x = e.pageX;
+        var y = e.pageY;
+        $elem.style.left = (x - 10) + "px";
+        $elem.style.top = (y - 20) + "px";
+        clearInterval(anim);
+        switch (++click_cnt) {
+            case 10:
+                $elem.innerText = "OωO";
+                break;
+            case 20:
+                $elem.innerText = "(๑•́ ∀ •̀๑)";
+                break;
+            case 30:
+                $elem.innerText = "(๑•́ ₃ •̀๑)";
+                break;
+            case 40:
+                $elem.innerText = "(๑•̀_•́๑)";
+                break;
+            case 50:
+                $elem.innerText = "（￣へ￣）";
+                break;
+            case 60:
+                $elem.innerText = "(╯°口°)╯(┴—┴";
+                break;
+            case 70:
+                $elem.innerText = "૮( ᵒ̌皿ᵒ̌ )ა";
+                break;
+            case 80:
+                $elem.innerText = "╮(｡>口<｡)╭";
+                break;
+            case 90:
+                $elem.innerText = "( ง ᵒ̌皿ᵒ̌)ง⁼³₌₃";
+                break;
+            case 100:
+            case 101:
+            case 102:
+            case 103:
+            case 104:
+            case 105:
+                $elem.innerText = "(ꐦ°᷄д°᷅)";
+                break;
+            default:
+                $elem.innerText = "❤";
+                break;
+        }
+        $elem.style.fontSize = Math.random() * 10 + 8 + "px";
+        var increase = 0;
+        var anim;
+        setTimeout(function() {
+            anim = setInterval(function() {
+                if (++increase == 150) {
+                    clearInterval(anim);
+                    $body.removeChild($elem);
+                }
+                $elem.style.top = y - 20 - increase + "px";
+                $elem.style.opacity = (150 - increase) / 120;
+            }, 8);
+        }, 70);
+        $body.appendChild($elem);
+    };
+};
+</script>
+</head>
 <body class="fn__flex-column">
 <div id="pjax" class="fn__flex-1">
     
     <header class="header header--article">
         <div class="wrapper header__title">
             <h1 class="header__h1 fn__flex-inline">
-                <img src="https://s2.ax1x.com/2020/01/12/loApPe.png">
+                <img src="https://s2.ax1x.com/2020/01/12/loApPe.png" alt="Kosmos">
                 <a href="https://ellenbboe.github.io" rel="start" class="header__title">Kosmos</a>
             </h1>
-            <h2 class="header__h2">---就算是痛苦难受，也要去体会那被称为生存的分量---</h2>
+            <h2 class="header__h2">---我们总得选择一条路去前行---</h2>
         </div>
         <nav class="wrapper header__nav fn__clear">
             <a href="https://ellenbboe.github.io" rel="start">
                     Kosmos
             </a>
 
-                <a class="fn__flex-inline" href="/my-github-repos" target="_self" rel="section">
-                    <img src="/images/github-icon.png"> 我的开源
+                <a class="fn__flex-inline" href="https://github.com/ellenbboe" target="_self" rel="section">
+                    <img src="https://s2.ax1x.com/2020/01/16/ljWMPP.png" alt="我的GIT"> 我的GIT
                 </a>
                 <a class="fn__flex-inline" href="/readlist" target="_self" rel="section">
-                     阅读列表
+                    <img src="https://s2.ax1x.com/2020/01/16/ljWPC6.png" alt="阅读列表"> 阅读列表
                 </a>
 
 
@@ -61,9 +134,9 @@
     <div class="article__top">
         <div class="fn__clear">
             <div class="toc fn__none" onclick="$('.post__toc').slideToggle()">目录</div>
-            <div class="title fn__pointer" onclick="Util.goTop()">开发错误记录手册</div>
+            <div class="title fn__pointer" onclick="Util.goTop()">SeckillFramework项目开发错误记录</div>
 <div class="article__share"
-     data-title="开发错误记录手册"
+     data-title="SeckillFramework项目开发错误记录"
      data-blogtitle="Kosmos"
      data-url="https://ellenbboe.github.io/articles/2019/12/09/1575889655832.html"
      data-avatar="https://img.hacpai.com/avatar/1560335521987_1576387741689.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100">
@@ -98,25 +171,27 @@
         <div class="ft__center">
             <div class="item__meta">
                 <time>
-                    2020-01-12
+                    2020-01-20
                 </time>
                 /
                     <a class="tag" rel="tag"
                        href="https://ellenbboe.github.io/tags/%E6%97%A5%E5%BF%97">日志</a> &nbsp;
                     <a class="tag" rel="tag"
                        href="https://ellenbboe.github.io/tags/%E7%AC%94%E8%AE%B0">笔记</a> &nbsp;
+                    <a class="tag" rel="tag"
+                       href="https://ellenbboe.github.io/tags/%E5%BC%82%E5%B8%B8">异常</a> &nbsp;
+                    <a class="tag" rel="tag"
+                       href="https://ellenbboe.github.io/tags/%E6%80%BB%E7%BB%93">总结</a> &nbsp;
             </div>
             <h2 class="item__title">
-                开发错误记录手册
-                    <sup>
-                        置顶！
-                    </sup>
+                SeckillFramework项目开发错误记录
             </h2>
         </div>
-        <div class="item__cover" style="background-image: url(https://img.hacpai.com/bing/20190916.jpg?imageView2/1/w/1280/h/720/interlace/1/q/100)"></div>
+        <div class="item__cover" style="background-image: url(https://img.hacpai.com/file/2020/01/thumb1920590466-2eb4fae0.png?imageView2/2/w/1280/format/jpg/interlace/1/q/100)"></div>
         <div class="wrapper">
             <section class="item__content item__content--article vditor-reset">
-                <p>An error happened during template parsing (template: "class path resource [templates/login.html]" - line 34, col 18)</p>
+                <p><img src="https://img.hacpai.com/file/2020/01/thumb1920590466-2eb4fae0.png?imageView2/2/w/1280/format/jpg/interlace/1/q/100" alt="" title="thumb1920590466.png"></p>
+<p>An error happened during template parsing (template: "class path resource [templates/login.html]" - line 34, col 18)</p>
 <p>原因：由于添加了 type="tel",删除恢复</p>
 <hr>
 <p>@mapping 出错</p>
@@ -153,30 +228,54 @@
 <hr>
 <p>nested exception is org.apache.ibatis.executor.ExecutorException: No constru</p>
 <p>在实体类中添加不加参数的构造函数即可</p>
+<hr>
+<p>[org.springframework.data.redis.serializer.SerializationException: Could not read JSON: Cannot construct instance of <code>sf.model.UserModel</code> (no Creators, like default construct, exist):</p>
+<p>在 model 中假如构造函数</p>
+<hr>
+<p>java.lang.IllegalArgumentException: SimpleMessageConverter only supports String, byte[] and Serializable payloads, received: sf.mq.OrdMessage</p>
+<p>将对象转换成 JSON 字符串进行传输</p>
+<hr>
+<p>浏览器 返回上一页之后强行刷新一次</p>
+<script type="text/javascript">
+    if(window.name != "a"){
+         location.reload();
+         window.name = "a";
+     }else{
+         window.name = "";
+      }
+</script>
+<p>maven 项目依赖 reimport 无法导入，镜像也已经是国内的了</p>
+<p>到 maven repo 中删除前面的顶级包在重新导入</p>
+<hr>
+<p>aop 切面不起作用</p>
+<p>在声明的时候后缀是 aj(当初声明的时候用了切面的类),改为 Java 后缀 正常运行</p>
+<hr>
+<p>java.lang.ClassCastException</p>
+<p>类型转换出错 比如 string 无法转换成 list</p>
+<hr>
+<p>WRONGTYPE Operation against a key holding the wrong kind of value</p>
+<p>Redis 中使用了错误的操作模式，或者说是保存了错误的类型</p>
+<hr>
+<p>ERR value is not an integer or out of range</p>
+<p>Redis 中对 string 进行了 decr -.-(保存的时候把 int 保存成了 string</p>
+<hr>
+<p>SpringBoot 项目无法使用 127.0.0.1 进行访问，用 localhost</p>
                     <div>
                         <hr>
 <img alt="今日诗词" src="https://v2.jinrishici.com/one.svg" style="max-width:100%; display: block; margin: 0 auto;">
 
-标题：开发错误记录手册<br>
+标题：SeckillFramework项目开发错误记录<br>
 作者：<a href="https://ellenbboe.github.io" target="_blank">ellenbboe</a><br>
 地址：<a href="https://ellenbboe.github.io/articles/2019/12/09/1575889655832.html" target="_blank">https://ellenbboe.github.io/articles/2019/12/09/1575889655832.html</a><br>
 <!-- 签名档内可使用 HTML、JavaScript -->
 <br>
+
                     </div>
             </section>
         </div>
     </div>
-<div class="comment">
-    <div class="comment__wrapper wrapper">
-        <div class="comment__title">
-            评论
-        </div>
-        <textarea rows="3" placeholder="评论内容只能为 2 到 500 个字符！" id="comment"></textarea>
-
-        <ul id="comments">
-        </ul>
-    </div>
-</div>
+        <div id="b3logsolocomments"></div>
+        <div id="vcomment" class="comment__wrapper wrapper" style="margin: 40px auto" data-name="ellenbboe" data-postId="1575889655832"></div>
     <div class="article__bottom">
         <div class="wrapper">
             <div class="fn__flex">
@@ -190,6 +289,7 @@
 <footer class="footer">
     <div class="wrapper fn__clear">
         <div class="fn__left">
+            <br>
             &copy; 2020
             <a href="https://ellenbboe.github.io">Kosmos</a>
             <a href="http://www.beian.miit.gov.cn/">浙ICP备18045840号-1</a>--------Let's move on
@@ -218,12 +318,23 @@ show_date_time();
 <style>
 #momk{animation:change 10s infinite;font-weight:800; }
 @keyframes change{0%{color:#5cb85c;}25%{color:#556bd8;}50%{color:#e40707;}75%{color:#66e616;}100% {color:#67bd31;}}
-</style> &nbsp;•&nbsp;
-            Powered by <a href="https://solo.b3log.org" target="_blank">Solo</a>
-            <br>
-            Theme Casper
-            <sup>[<a href="https://github.com/TryGhost/Casper" target="_blank">ref</a>]</sup>
-            by <a href="http://vanessa.b3log.org" target="_blank">Vanessa</a>
+</style>
+<script type="text/javascript">
+    /*自动刷新页面，避免无法访问*/
+    var OriginTitile = document.title;
+    var titleTime;
+    document.addEventListener('visibilitychange', function () {
+        if (document.hidden) {
+            document.title = '(〃´-ω･)  休息一下';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '起来嗨٩(๑❛ᴗ❛๑)۶';
+            titleTime = setTimeout(function () {
+                document.title = OriginTitile;
+            }, 3000);
+        }
+    });
+</script>
         </div>
         <div class="fn__right">
             <a href="https://ellenbboe.github.io/tags.html" rel="section">
@@ -238,36 +349,32 @@ show_date_time();
             友情链接
             </a>
             <br>
-            115 文章 &nbsp;
-            9 评论 &nbsp;
+            121 文章 &nbsp;
             <span data-uvstaturl="https://ellenbboe.github.io">11608</span> 浏览 &nbsp;
-            3 当前访客
+            
         </div>
     </div>
 </footer>
 
-<script type="text/javascript" src="https://ellenbboe.github.io/js/lib/compress/pjax.min.js" charset="utf-8"></script>
-<script type="text/javascript" src="https://ellenbboe.github.io/js/common.min.js?1578931371974"
-        charset="utf-8"></script>
-<script type="text/javascript"
-        src="https://ellenbboe.github.io/skins/Casper/js/common.min.js?1578931371974"
-        charset="utf-8"></script>
-<script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.4/dist/index.min.js"></script>
 <script>
-    var Label = {
-        servePath: "https://ellenbboe.github.io",
-        staticServePath: "https://ellenbboe.github.io",
-        luteAvailable: false,
-        hljsStyle: 'colorful',
-        langLabel: "zh_CN",
-        version: "3.7.0",
-    }
-    Util.init()
+  var Label = {
+    servePath: "https://ellenbboe.github.io",
+    staticServePath: "https://ellenbboe.github.io",
+    luteAvailable: false,
+    hljsStyle: 'colorful',
+    langLabel: "zh_CN",
+    version: "4.1.0",
+    staticSite: true,
+    showCodeBlockLn: false,
+  }
 </script>
+<script type="text/javascript"
+        src="https://ellenbboe.github.io/skins/Casper/js/common.min.js?1591150301084"
+        charset="utf-8"></script>
 
 
 <script type="text/javascript">
-    Util.addScript('https://ellenbboe.github.io/js/page.min.js?1578931371974', 'soloPageScript')
+    Util.addScript('https://ellenbboe.github.io/js/page.min.js?1591150301084', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1575889655832",
@@ -285,4 +392,4 @@ show_date_time();
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 45ms, 2020/01/14 13:32:39 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 56ms, 2020/06/03 12:32:28 -->

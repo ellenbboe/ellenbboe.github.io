@@ -2,32 +2,56 @@
  * Solo - A small and beautiful blogging system written in Java.
  * Copyright (c) 2010-present, b3log.org
  *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ * Solo is licensed under Mulan PSL v2.
+ * You can use this software according to the terms and conditions of the Mulan PSL v2.
+ * You may obtain a copy of Mulan PSL v2 at:
+ *         http://license.coscl.org.cn/MulanPSL2
+ * THIS SOFTWARE IS PROVIDED ON AN "AS IS" BASIS, WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO NON-INFRINGEMENT, MERCHANTABILITY OR FIT FOR A PARTICULAR PURPOSE.
+ * See the Mulan PSL v2 for more details.
  */
 /**
- * @fileoverview Page util, load heighlight and process comment.
+ * @fileoverview Page util, load highlight and process comment.
  *
  * @author <a href="http://vanessa.b3log.org">Liyuan Li</a>
  * @author <a href="http://88250.b3log.org">Liang Ding</a>
- * @version 2.4.0.2, Dec 29, 2019
+ * @version 2.8.0.1, Apr 30, 2020
  */
-var Page = function (tips) {
+window.Page = function (tips) {
   this.currentCommentId = ''
   this.tips = tips
 }
 
 $.extend(Page.prototype, {
+  /**
+   * 第三方评论
+   */
+  vcomment: function () {
+    const $vcomment = $('#vcomment')
+    if ($vcomment.length === 0) {
+      return
+    }
+    const vcomment = new Vcomment({
+      id: 'vcomment',
+      postId: $vcomment.data('postid'),
+      url: 'https://hacpai.com',
+      userName: $vcomment.data('name'),
+      currentPage: 1,
+      vditor: {
+        lineNumber: Label.showCodeBlockLn,
+        hljsEnable: !Label.luteAvailable,
+        hljsStyle: Label.hljsStyle,
+      },
+      error () {
+        $vcomment.remove()
+        $('#soloComments').show()
+      },
+    })
+
+    vcomment.render()
+  },
+  /**
+   * 分享
+   */
   share: function () {
     var $this = $('.article__share')
     if ($this.length === 0) {
@@ -59,14 +83,20 @@ $.extend(Page.prototype, {
       }
 
       if (key === 'wechat') {
-        if ($qrCode.find('canvas').length === 0) {
-          Util.addScript(Label.staticServePath +
-            '/js/lib/jquery.qrcode.min.js', 'qrcodeScript')
-          $qrCode.qrcode({
-            width: 128,
-            height: 128,
-            text: shareURL,
+        if (typeof QRious === 'undefined') {
+          Util.addScript(Label.staticServePath + '/js/lib/qrious.min.js',
+            'qriousScript')
+        }
+
+        if ($qrCode.css('background-image') === 'none') {
+          const qr = new QRious({
+            padding: 0,
+            element: $qrCode[0],
+            value: shareURL,
+            size: 99,
           })
+          $qrCode.css('background-image', `url(${qr.toDataURL('image/jpeg')})`).
+            show()
         } else {
           $qrCode.slideToggle()
         }
@@ -92,6 +122,7 @@ $.extend(Page.prototype, {
     $('#soloEditorAdd').click(function () {
       that.submitComment()
     })
+    that.vcomment()
   },
   toggleEditor: function (commentId, name) {
     var $editor = $('#soloEditor')
@@ -102,9 +133,7 @@ $.extend(Page.prototype, {
 
     if (!$('#soloEditorComment').hasClass('vditor')) {
       var that = this
-      Util.addScript(
-        'https://cdn.jsdelivr.net/npm/vditor@2.0.15/dist/index.min.js',
-        'vditorScript')
+      var resizeEnable = true
       var toolbar = [
         'emoji',
         'headings',
@@ -116,38 +145,52 @@ $.extend(Page.prototype, {
         'list',
         'ordered-list',
         'check',
+        'outdent',
+        'indent',
         '|',
         'quote',
         'line',
         'code',
         'inline-code',
         'table',
-        '|',
+        'insert-before',
+        'insert-after',
         'undo',
         'redo',
         '|',
-        'wysiwyg',
-        'both',
-        'preview',
-        'format',
-        '|',
         'fullscreen',
-        'devtools',
-        'info',
-        'help',
-      ], resizeEnable = true
+        'edit-mode',
+        {
+          name: 'more',
+          toolbar: [
+            'both',
+            'code-theme',
+            'content-theme',
+            'export',
+            'outline',
+            'preview',
+            'format',
+            'devtools',
+            'info',
+            'help',
+          ],
+        }]
       if ($(window).width() < 768) {
         toolbar = [
           'emoji',
-          'bold',
-          'italic',
           'link',
-          'list',
-          'check',
-          'wysiwyg',
-          'preview',
-          'fullscreen',
-          'help',
+          'edit-mode',
+          {
+            name: 'more',
+            toolbar: [
+              'insert-after',
+              'fullscreen',
+              'preview',
+              'format',
+              'info',
+              'help',
+            ],
+          },
         ]
         resizeEnable = false
       }
@@ -174,19 +217,22 @@ $.extend(Page.prototype, {
             if (element.style.display === 'none') {
               return
             }
-            Util.parseLanguage()
+            Util.parseMarkdown()
           },
         },
-        counter: 500,
+        counter: {
+          enable: true,
+          max: 500,
+        },
         resize: {
           enable: resizeEnable,
           position: 'top',
         },
         lang: Label.langLabel,
-        toolbar: toolbar,
+        toolbar,
         after: () => {
           vditor.focus()
-        }
+        },
       })
     }
 
@@ -366,15 +412,6 @@ $.extend(Page.prototype, {
     }
   },
   /*
-   * @description 添加回复评论表单
-   * @param {String} id 被回复的评论 id
-   */
-  addReplyForm: function (id, name) {
-    var that = this
-    that.currentCommentId = id
-    this.toggleEditor(id, name)
-  },
-  /*
    * @description 隐藏回复评论的浮出层
    * @parma {String} id 被回复的评论 id
    */
@@ -415,7 +452,6 @@ $.extend(Page.prototype, {
       $('#comments').html(commentHTML)
     }
     Util.parseMarkdown()
-    Util.parseLanguage()
     window.location.hash = '#comments'
   },
 })

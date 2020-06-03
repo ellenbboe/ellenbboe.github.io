@@ -2,40 +2,44 @@
  * Solo - A small and beautiful blogging system written in Java.
  * Copyright (c) 2010-present, b3log.org
  *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ * Solo is licensed under Mulan PSL v2.
+ * You can use this software according to the terms and conditions of the Mulan PSL v2.
+ * You may obtain a copy of Mulan PSL v2 at:
+ *         http://license.coscl.org.cn/MulanPSL2
+ * THIS SOFTWARE IS PROVIDED ON AN "AS IS" BASIS, WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO NON-INFRINGEMENT, MERCHANTABILITY OR FIT FOR A PARTICULAR PURPOSE.
+ * See the Mulan PSL v2 for more details.
  */
+import $ from 'jquery'
+import NProgress from 'nprogress'
+import Uvstat from 'uvstat'
+import pjax from './pjax'
+import Vcomment from 'vcmt'
+
+window.$ = $
+window.Vcomment = Vcomment
+
 /**
  * @fileoverview util and every page should be used.
  *
  * @author <a href="http://vanessa.b3log.org">Liyuan Li</a>
  * @author <a href="http://88250.b3log.org">Liang Ding</a>
- * @version 2.0.1.0, Jan 12, 2020
+ * @version 2.3.1.0, May 15, 2020
  */
 
 /**
  * @description Util
  * @static
  */
-var Util = {
+window.Util = {
   uvstat: undefined,
   /**
    * 初始化浏览数
    */
-  initViewCnt: function () {
+  initViewCnt: function (cb) {
     Util.uvstat = new Uvstat()
     Util.uvstat.addStat()
     Util.uvstat.renderStat()
+    Util.uvstat.renderCmtStat(cb)
   },
   /**
    * 是否为文章页面
@@ -76,7 +80,7 @@ var Util = {
    */
   initPjax: function (cb) {
     if ($('#pjax').length === 1) {
-      $.pjax({
+      pjax({
         selector: 'a',
         container: '#pjax',
         show: '',
@@ -106,9 +110,17 @@ var Util = {
         },
         callback: function () {
           Util.parseMarkdown()
-          Util.parseLanguage()
+          if (typeof Util.uvstat === 'undefined') {
+            Util.uvstat = new Uvstat()
+          }
           Util.uvstat.addStat()
           Util.uvstat.renderStat()
+          Util.uvstat.renderCmtStat(
+            window.utilOptions && window.utilOptions.cmtCountCB)
+          // 看板娘背景
+          if (typeof soloKanbanniang !== 'undefined') {
+            soloKanbanniang.bgChange && soloKanbanniang.bgChange()
+          }
           cb && cb()
         },
       })
@@ -134,21 +146,6 @@ var Util = {
     })
   },
   /**
-   * 异步添加 css
-   * @param url css 文件访问地址
-   * @param id css 文件标示
-   */
-  addStyle: function (url, id) {
-    if (!document.getElementById(id)) {
-      var styleElement = document.createElement('link')
-      styleElement.id = id
-      styleElement.setAttribute('rel', 'stylesheet')
-      styleElement.setAttribute('type', 'text/css')
-      styleElement.setAttribute('href', url)
-      document.getElementsByTagName('head')[0].appendChild(styleElement)
-    }
-  },
-  /**
    * 异步添加 js
    * @param url js 文件访问地址
    * @param id js 文件标示
@@ -167,40 +164,16 @@ var Util = {
       document.getElementsByTagName('head')[0].appendChild(scriptElement)
     }
   },
-  /*
-  * @description 解析语法高亮
-  */
-  parseLanguage: function () {
-    Vditor.highlightRender({
-      style: Label.hljsStyle,
-      enable: !Label.luteAvailable,
-    }, document)
-  },
   /**
    * 按需加载数学公式、流程图、代码复制、五线谱、多媒体、图表
    * @returns {undefined}
    */
   parseMarkdown: function () {
-
-    if (typeof Vditor === 'undefined') {
-      Util.addScript(
-        'https://cdn.jsdelivr.net/npm/vditor@2.0.15/dist/method.min.js',
-        'vditorPreviewScript')
-    }
-
-    Vditor.codeRender(document.body, Label.langLabel)
-    if (Label.luteAvailable) {
-      Vditor.mathRenderByLute(document.body)
-    } else {
-      Vditor.mathRender(document.body)
-    }
-
-    Vditor.abcRender()
-    Vditor.chartRender()
-    Vditor.mediaRender(document.body)
-    Vditor.mermaidRender(document.body)
-    document.querySelectorAll('.vditor-reset').forEach((e) => {
-      Vditor.speechRender(e, Label.langLabel)
+    Vcomment.parseMarkdown({
+      lang: Label.langLabel,
+      lineNumber: Label.showCodeBlockLn,
+      hljsEnable: !Label.luteAvailable,
+      hljsStyle: Label.hljsStyle,
     })
   },
   /**
@@ -212,14 +185,16 @@ var Util = {
         var left = ($(window).width() - 781) / 2,
           top1 = ($(window).height() - 680) / 2
         var killIEHTML = '<div class="killIEIframe" style=\'display: block; height: 100%; width: 100%; position: fixed; background-color: rgb(0, 0, 0); opacity: 0.6;filter: alpha(opacity=60); top: 0px;z-index:110\'></div>'
-          + '<iframe class="killIEIframe" style=\'left:' + left + 'px;z-index:120;top: ' + top1 +
+          + '<iframe class="killIEIframe" style=\'left:' + left +
+          'px;z-index:120;top: ' + top1 +
           'px; position: fixed; border: 0px none; width: 781px; height: 680px;\' src=\'' +
           Label.servePath + '/kill-browser\'></iframe>'
         $('body').append(killIEHTML)
       } catch (e) {
         var left = 10, top1 = 0
         var killIEHTML = '<div class="killIEIframe" style=\'display: block; height: 100%; width: 100%; position: fixed; background-color: rgb(0, 0, 0); opacity: 0.6;filter: alpha(opacity=60); top: 0px;z-index:110\'></div>'
-          + '<iframe class="killIEIframe" style=\'left:' + left + 'px;z-index:120;top: ' + top1 +
+          + '<iframe class="killIEIframe" style=\'left:' + left +
+          'px;z-index:120;top: ' + top1 +
           'px; position: fixed; border: 0px none; width: 781px; height: 680px;\' src=\'' +
           Label.servePath + '/kill-browser\'></iframe>'
         document.body.innerHTML = document.body.innerHTML + killIEHTML
@@ -273,14 +248,13 @@ var Util = {
   /**
    * @description 页面初始化执行的函数
    */
-  init: function () {
+  init: function (options) {
     Util.killIE()
     Util.parseMarkdown()
-    Util.parseLanguage()
     Util.initSW()
     Util.previewImg()
     Util.initDebugInfo()
-    Util.initViewCnt()
+    Util.initViewCnt(options && options.cmtCountCB)
   },
   /**
    * 调试区域文案
@@ -329,4 +303,50 @@ var Util = {
       return valA.localeCompare(valB)
     }))
   },
-}
+  loadVditor: function (cb) {
+    $.ajax({
+      method: 'GET',
+      url: 'https://cdn.jsdelivr.net/npm/vditor@3.2.10/dist/index.min.js',
+      dataType: 'script',
+      cache: true,
+      success: () => {
+        Util.init(window.utilOptions)
+        if (cb) {
+          cb()
+        }
+      },
+    })
+  },
+  skinPreview: () => {
+    if (location.pathname === '/admin-index.do') {
+      return
+    }
+    const skinParam = location.search.split('skin=')
+    let skin = ''
+    let urlHasSkin = false
+    if (skinParam.length === 2) {
+      skin = skinParam[1].split('=')[0]
+      urlHasSkin = true
+    }
+    if (skin) {
+      sessionStorage.setItem('skin', skin)
+    } else {
+      skin = sessionStorage.getItem('skin')
+    }
+    if (!skin) {
+      return
+    }
+    if (!urlHasSkin) {
+      location.search = location.search
+        ? location.search + '&skin=' + skin
+        : '?skin=' + skin
+    }
+  },
+};
+
+(() => {
+  Util.skinPreview()
+  if (typeof Vditor === 'undefined') {
+    Util.loadVditor()
+  }
+})()

@@ -2,30 +2,24 @@
  * Solo - A small and beautiful blogging system written in Java.
  * Copyright (c) 2010-present, b3log.org
  *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ * Solo is licensed under Mulan PSL v2.
+ * You can use this software according to the terms and conditions of the Mulan PSL v2.
+ * You may obtain a copy of Mulan PSL v2 at:
+ *         http://license.coscl.org.cn/MulanPSL2
+ * THIS SOFTWARE IS PROVIDED ON AN "AS IS" BASIS, WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO NON-INFRINGEMENT, MERCHANTABILITY OR FIT FOR A PARTICULAR PURPOSE.
+ * See the Mulan PSL v2 for more details.
  */
 @charset "utf-8";
 /*
  * skin i-nove style
  *
  * @author <a href="http://vanessa.b3log.org">Liyuan Li</a>
- * @version 2.3.0.0, JAug 2, 2019
+ * @version 2.3.0.1, Feb 9, 2020
  */
 @import "../../../scss/toc";
 @import "../../../scss/reset";
 @import "../../../scss/usite";
-@import "vditor/src/assets/scss/classic";
+@import "vditor/src/assets/scss/index";
 
 #tags li {
   list-style: none;
@@ -494,53 +488,12 @@ h5 {
   color: #555;
 }
 
-.side-navi .navi-comments li > img {
-  border: 1px solid #999999;
-  height: 32px;
-  margin-right: 7px;
-  padding: 1px;
-  width: 32px;
-}
-
-.side-navi .navi-comments a {
-  font-weight: bold;
-}
-
-.side-navi .navi-comments .side-comment {
-  color: #555555;
-  font-weight: normal;
-  height: 18px;
-}
-
-.side-navi .navi-comments div.left > div > div {
-  display: none;
-}
-
-.side-navi .navi-comments .side-comment img {
-  border: 0px;
-  height: 16px;
-  margin-right: 0px;
-  padding: 0px;
-  width: 16px;
-}
-
-.side-navi .navi-comments li {
-  padding: 2px 0;
-}
-
-.side-navi .navi-comments li div {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  -o-text-overflow: ellipsis;
-  width: 227px;
-}
-
 .side-navi a.selected {
   color: #555555;
   text-decoration: none;
 }
 
-.side-navi ul.navi-tags li, .side-navi .navi-comments li {
+.side-navi ul.navi-tags li {
   background-image: none;
   padding-left: 0px;
 }

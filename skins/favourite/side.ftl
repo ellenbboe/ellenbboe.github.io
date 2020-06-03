@@ -3,18 +3,12 @@
     Solo - A small and beautiful blogging system written in Java.
     Copyright (c) 2010-present, b3log.org
 
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU Affero General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU Affero General Public License for more details.
-
-    You should have received a copy of the GNU Affero General Public License
-    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+    Solo is licensed under Mulan PSL v2.
+    You can use this software according to the terms and conditions of the Mulan PSL v2.
+    You may obtain a copy of Mulan PSL v2 at:
+            http://license.coscl.org.cn/MulanPSL2
+    THIS SOFTWARE IS PROVIDED ON AN "AS IS" BASIS, WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO NON-INFRINGEMENT, MERCHANTABILITY OR FIT FOR A PARTICULAR PURPOSE.
+    See the Mulan PSL v2 for more details.
 
 -->
 <div id="sideNavi" class="side-navi">
@@ -44,77 +38,12 @@
             <#include "../../common-template/toc.ftl"/>
         </div>
     <#else>
-        <#if 0 != recentComments?size>
-        <div class="item navi-comments">
-            <div class="ads">
-                <h4 id="recentComments">${recentCommentsLabel}</h4>
-            </div>
-            <ul>
-                <#list recentComments as comment>
-                <li>
-                    <img class='left' title='${comment.commentName}'
-                         alt='${comment.commentName}'
-                         src='${comment.commentThumbnailURL}'/>
-                    <div class='left'>
-                        <div>
-                            <a href="${comment.commentURL}">
-                                ${comment.commentName}
-                            </a>
-                        </div>
-                        <div class="comm">
-                            <a rel="nofollow" class='side-comment' href="${servePath}${comment.commentSharpURL}">
-                                ${comment.commentContent}
-                            </a>
-                        </div>
-                    </div>
-                    <div class='clear'></div>
-                </li>
-                </#list>
-            </ul>
-        </div>
-        <div class="line"></div>
-        </#if>
-        <#if 0 != mostCommentArticles?size>
-        <div class="item">
-            <div class="esclamativo">
-                <h4>${mostCommentArticlesLabel}</h4>
-            </div>
-            <ul id="mostCommentArticles">
-                <#list mostCommentArticles as article>
-                <li>
-                    <a rel="nofollow" title="${article.articleTitle}" href="${servePath}${article.articlePermalink}">
-                        ${article.articleTitle}
-                    </a>(${article.articleCommentCount})
-                </li>
-                </#list>
-            </ul>
-        </div>
-        <div class="line"></div>
-        </#if>
-        <#if 0 != mostViewCountArticles?size>
-        <div class="item">
-            <div class="cuore">
-                <h4>${mostViewCountArticlesLabel}</h4>
-            </div>
-            <ul id="mostViewCountArticles">
-                <#list mostViewCountArticles as article>
-                <li>
-                    <a rel="nofollow" title="${article.articleTitle}" href="${servePath}${article.articlePermalink}">
-                        ${article.articleTitle}
-                    </a>(<span data-uvstaturl="${servePath}${article.articlePermalink}">${article.articleViewCount}</span>)
-                </li>
-                </#list>
-            </ul>
-        </div>
-        <div class="line"></div>
-        </#if>
-
         <#if 0 != mostUsedCategories?size>
             <div class="item">
                 <div class="categorie">
                     <h4>${categoryLabel}</h4>
                 </div>
-                <ul id="mostViewCountArticles">
+                <ul>
                     <#list mostUsedCategories as category>
                         <li>
                             <a href="${servePath}/category/${category.categoryURI}"
@@ -132,7 +61,7 @@
             <div class="tags">
                 <h4>${tagsLabel}</h4>
             </div>
-            <ul class="mostViewCountArticles">
+            <ul>
                 <#list mostUsedTags as tag>
                 <li>
                     <a rel="alternate" href="${servePath}/tags/${tag.tagTitle?url('UTF-8')}" class="no-underline">

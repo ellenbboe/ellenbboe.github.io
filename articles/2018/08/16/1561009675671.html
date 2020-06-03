@@ -2,31 +2,104 @@
 <html>
 <head>
 <meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>Scrapy Pass 2 - Kosmos</title><meta name="description" content="Learn Scrapy pass 2 安装(虚拟环境) Python packages can be installed either globally (a.k.a system wide), or in user-space. We do not recommend installing scrapy system wide. (并不推荐把python package安装成系统的一部分) Instead, we recommend that you install scrapy within a so-called “virtual environment” (virtualenv). Virtualenvs allow you to not conflict with already-installed Python system packages (which could break some of your system tools and scripts), and still install packages normally with pip (without sud...."/><meta property="og:description" content="Learn Scrapy pass 2 安装(虚拟环境) Python packages can be installed either globally (a.k.a system wide), or in user-space. We do not recommend installing scrapy system wide. (并不推荐把python package安装成系统的一部分) Instead, we recommend that you install scrapy within a so-called “virtual environment” (virtualenv). Virtualenvs allow you to not conflict with already-installed Python system packages (which could break some of your system tools and scripts), and still install packages normally with pip (without sud...."/>    <meta name="keywords" content="开源,开发者,笔记,kosmos"/><link rel="dns-prefetch" href="https://ellenbboe.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://ellenbboe.github.io"><link rel="icon" type="image/png" href="https://s2.ax1x.com/2020/01/12/loApPe.png"/><link rel="apple-touch-icon" href="https://s2.ax1x.com/2020/01/12/loApPe.png"><link rel="shortcut icon" type="image/x-icon" href="https://s2.ax1x.com/2020/01/12/loApPe.png"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="Scrapy Pass 2 - Kosmos"/><meta property="og:site_name" content="Kosmos"/><meta property="og:url"      content="https://ellenbboe.github.io/articles/2018/08/16/1561009675671.html?"/><meta property="og:image" content="https://s2.ax1x.com/2020/01/12/loApPe.png"/><link rel="search" type="application/opensearchdescription+xml" title="Scrapy Pass 2 - Kosmos" href="/opensearch.xml"><link href="https://ellenbboe.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://ellenbboe.github.io/manifest.json">        <link rel="canonical" href="https://ellenbboe.github.io/articles/2018/08/16/1561009675671.html">        <link rel="stylesheet"
-              href="https://ellenbboe.github.io/skins/Casper/css/base.css?1578931371974"/>
+              href="https://ellenbboe.github.io/skins/Casper/css/base.css?1591150301084"/>
             <link rel="prev" title="Scrapy Pass 1" href="https://ellenbboe.github.io/articles/2018/08/16/1561009689409.html">
             <link rel="next" title="Scrapy Pass 3" href="https://ellenbboe.github.io/articles/2018/08/17/1561009680520.html">
-    </head>
+    <script>
+onload = function() {
+    var click_cnt = 0;
+    var $html = document.getElementsByTagName("html")[0];
+    var $body = document.getElementsByTagName("body")[0];
+    $html.onclick = function(e) {
+        var $elem = document.createElement("b");
+        $elem.style.color = "#E94F06";
+        $elem.style.zIndex = 9999;
+        $elem.style.position = "absolute";
+        $elem.style.select = "none";
+        var x = e.pageX;
+        var y = e.pageY;
+        $elem.style.left = (x - 10) + "px";
+        $elem.style.top = (y - 20) + "px";
+        clearInterval(anim);
+        switch (++click_cnt) {
+            case 10:
+                $elem.innerText = "OωO";
+                break;
+            case 20:
+                $elem.innerText = "(๑•́ ∀ •̀๑)";
+                break;
+            case 30:
+                $elem.innerText = "(๑•́ ₃ •̀๑)";
+                break;
+            case 40:
+                $elem.innerText = "(๑•̀_•́๑)";
+                break;
+            case 50:
+                $elem.innerText = "（￣へ￣）";
+                break;
+            case 60:
+                $elem.innerText = "(╯°口°)╯(┴—┴";
+                break;
+            case 70:
+                $elem.innerText = "૮( ᵒ̌皿ᵒ̌ )ა";
+                break;
+            case 80:
+                $elem.innerText = "╮(｡>口<｡)╭";
+                break;
+            case 90:
+                $elem.innerText = "( ง ᵒ̌皿ᵒ̌)ง⁼³₌₃";
+                break;
+            case 100:
+            case 101:
+            case 102:
+            case 103:
+            case 104:
+            case 105:
+                $elem.innerText = "(ꐦ°᷄д°᷅)";
+                break;
+            default:
+                $elem.innerText = "❤";
+                break;
+        }
+        $elem.style.fontSize = Math.random() * 10 + 8 + "px";
+        var increase = 0;
+        var anim;
+        setTimeout(function() {
+            anim = setInterval(function() {
+                if (++increase == 150) {
+                    clearInterval(anim);
+                    $body.removeChild($elem);
+                }
+                $elem.style.top = y - 20 - increase + "px";
+                $elem.style.opacity = (150 - increase) / 120;
+            }, 8);
+        }, 70);
+        $body.appendChild($elem);
+    };
+};
+</script>
+</head>
 <body class="fn__flex-column">
 <div id="pjax" class="fn__flex-1">
     
     <header class="header header--article">
         <div class="wrapper header__title">
             <h1 class="header__h1 fn__flex-inline">
-                <img src="https://s2.ax1x.com/2020/01/12/loApPe.png">
+                <img src="https://s2.ax1x.com/2020/01/12/loApPe.png" alt="Kosmos">
                 <a href="https://ellenbboe.github.io" rel="start" class="header__title">Kosmos</a>
             </h1>
-            <h2 class="header__h2">---就算是痛苦难受，也要去体会那被称为生存的分量---</h2>
+            <h2 class="header__h2">---我们总得选择一条路去前行---</h2>
         </div>
         <nav class="wrapper header__nav fn__clear">
             <a href="https://ellenbboe.github.io" rel="start">
                     Kosmos
             </a>
 
-                <a class="fn__flex-inline" href="/my-github-repos" target="_self" rel="section">
-                    <img src="/images/github-icon.png"> 我的开源
+                <a class="fn__flex-inline" href="https://github.com/ellenbboe" target="_self" rel="section">
+                    <img src="https://s2.ax1x.com/2020/01/16/ljWMPP.png" alt="我的GIT"> 我的GIT
                 </a>
                 <a class="fn__flex-inline" href="/readlist" target="_self" rel="section">
-                     阅读列表
+                    <img src="https://s2.ax1x.com/2020/01/16/ljWPC6.png" alt="阅读列表"> 阅读列表
                 </a>
 
 
@@ -111,8 +184,8 @@
         <div class="item__cover" style="background-image: url(https://img.hacpai.com/bing/20190211.jpg?imageView2/1/w/1280/h/720/interlace/1/q/100)"></div>
         <div class="wrapper">
             <section class="item__content item__content--article vditor-reset">
-                <p></p><h2 id="b3_solo_h2_0">Learn Scrapy pass 2</h2>
-<h3 id="b3_solo_h3_1">安装(虚拟环境)</h3>
+                <h2 id="toc_h2_0">Learn Scrapy pass 2</h2>
+<h3 id="toc_h3_1">安装(虚拟环境)</h3>
 <p>Python packages can be installed either globally (a.k.a system wide), or in user-space. We do not recommend installing scrapy system wide.<br>
 <strong>(并不推荐把python package安装成系统的一部分)</strong></p>
 <p>Instead, we recommend that you install scrapy within a so-called “<code>virtual environment</code>” (<code>virtualenv</code>). Virtualenvs allow you to not conflict with already-installed Python system packages (which could break some of your system tools and scripts), and still install packages normally with <code>pip</code> (without <code>sudo</code> and the likes).<strong>(不会对系统现有的包产生冲突,可以使用普通用户的形式进行安装)</strong></p>
@@ -123,7 +196,7 @@
 If you want to install scrapy with Python 3, install scrapy within a Python 3 virtualenv.<br>
 And if you want to install scrapy with Python 2, install scrapy within a Python 2 virtualenv.</p>
 </blockquote>
-<h3 id="b3_solo_h3_2">Scrapy 使用示例</h3>
+<h3 id="toc_h3_2">Scrapy 使用示例</h3>
 <p>We are going to scrape <code>quotes.toscrape.com</code>, a website that lists quotes from famous authors.</p>
 <p>This tutorial will walk you through these tasks:</p>
 <ol>
@@ -133,7 +206,7 @@ And if you want to install scrapy with Python 2, install scrapy within a Python 
 <li>Changing spider to recursively follow links</li>
 <li>Using spider arguments</li>
 </ol>
-<h4 id="b3_solo_h4_3">Creating a project</h4>
+<h4 id="toc_h4_3">Creating a project</h4>
 <p><strong>Before</strong> you start scraping, you will have to set up a new <strong>Scrapy project</strong>. Enter a directory where you’d like to store your code and run:<code>scrapy startproject tutorial</code><br>
 This will create a tutorial directory with the following contents:</p>
 <pre><code>得到默认的初始化目录
@@ -154,7 +227,7 @@ tutorial/
         spiders/          # a directory where you'll later put your spiders
             __init__.py
 </code></pre>
-<h4 id="b3_solo_h4_4">Our first Spider</h4>
+<h4 id="toc_h4_4">Our first Spider</h4>
 <p>Spiders are classes that you define and that Scrapy uses to scrape information from a website (or a group of websites). They must subclass scrapy.Spider and define the initial requests to make, optionally how to follow links in the pages, and how to parse the downloaded page content to extract data.<br>
 <strong>(Spiders目录是自己定义的,通过爬虫来爬取website)</strong><br>
 This is the code for our first Spider. Save it in a file named <code>quotes_spider.py</code> under the <strong>(注意位置)</strong> <code>tutorial/spiders</code>directory in your project:</p>
@@ -200,7 +273,7 @@ As you can see, our Spider subclasses scrapy.Spider and defines some attributes 
 <blockquote>
 <p>The parse() method usually parses the response, extracting the scraped data as dicts and also finding new URLs to follow and creating new requests (Request) from them.<strong>(提取信息并得到下一步url)</strong></p>
 </blockquote>
-<h4 id="b3_solo_h4_5">How to run our spider</h4>
+<h4 id="toc_h4_5">How to run our spider</h4>
 <p>To put our spider to work, go to the project’s top level directory and run:<code>scrapy crawl quotes</code>(quotes就是之前定义的name)<br>
 This command runs the spider with name quotes that we’ve just added, that will send some requests for the <code>quotes.toscrape.com</code> domain. You will get an output similar to this:</p>
 <pre><code>... (omitted for brevity)
@@ -215,10 +288,10 @@ This command runs the spider with name quotes that we’ve just added, that will
 2016-12-16 21:24:05 [scrapy.core.engine] INFO: Closing spider (finished)
 </code></pre>
 <p>Now, check the files in the current directory. You should notice that two new files have been created: <code>quotes-1.html</code> and <code>quotes-2.html</code>, with the content for the respective URLs, as our <code>parse</code> method instructs.</p>
-<h4 id="b3_solo_h4_6">What just happened under the hood?</h4>
+<h4 id="toc_h4_6">What just happened under the hood?</h4>
 <p>Scrapy schedules the scrapy.Request objects returned by the start_requests method of the Spider. Upon receiving a response for each one, it instantiates Response objects and calls the callback method associated with the request (in this case, the parse method) passing the response as argument.<br>
 <strong>(通过the start_requests method of the Spider将request的请求发出去,得到response,然后对于每个response调用callback)</strong></p>
-<h3 id="b3_solo_h3_7">A shortcut to the start_requests method</h3>
+<h3 id="toc_h3_7">A shortcut to the start_requests method</h3>
 <p>Instead of implementing(执行) a <code>start_requests()</code> method that generates <code>scrapy.Request</code> objects from URLs, you can just define a <code>start_urls</code> class attribute with a list of URLs. <strong>This list will then be used by the default implementation of <code>start_requests()</code> to create the initial requests for your spider:</strong><br>
 <strong>(这个start_urls会自动调用默认的方法去生成初始的requests)</strong></p>
 <pre><code>import scrapy
@@ -239,7 +312,7 @@ class QuotesSpider(scrapy.Spider):
 
 </code></pre>
 <p>The <code>parse()</code> method will be called to handle each of the requests for those URLs, even though we haven’t explicitly told Scrapy to do so. This happens because parse() is <strong>Scrapy’s default callback method</strong>, which is called for requests without an explicitly assigned callback.<strong>(默认会处理response,无需明显调用)</strong></p>
-<h4 id="b3_solo_h4_8">Extracting data</h4>
+<h4 id="toc_h4_8">Extracting data</h4>
 <p>The best way to learn how to extract data with Scrapy is trying selectors using the shell (Scrapy shell). Run:<br>
 `scrapy shell '<a href="http://quotes.toscrape.com/page/1/'``" target="_blank">http://quotes.toscrape.com/page/1/'``</a><br>
 You will see something like:</p>
@@ -306,7 +379,6 @@ one is that we’ve added <code>::text</code> to the CSS query, to mean we want 
 <blockquote>
 <p>we encourage you to learn XPath even if you already know how to construct CSS selectors, it will make scraping much easier.</p>
 </blockquote>
-<p></p>
                     <div>
                         <hr>
 <img alt="今日诗词" src="https://v2.jinrishici.com/one.svg" style="max-width:100%; display: block; margin: 0 auto;">
@@ -316,6 +388,7 @@ one is that we’ve added <code>::text</code> to the CSS query, to mean we want 
 地址：<a href="https://ellenbboe.github.io/articles/2018/08/16/1561009675671.html" target="_blank">https://ellenbboe.github.io/articles/2018/08/16/1561009675671.html</a><br>
 <!-- 签名档内可使用 HTML、JavaScript -->
 <br>
+
                     </div>
             </section>
         </div>
@@ -323,44 +396,35 @@ one is that we’ve added <code>::text</code> to the CSS query, to mean we want 
         <div class="post__toc">
 <ul class="article__toc">
         <li class="toc__h2">
-            <a href="#b3_solo_h2_0">Learn Scrapy pass 2</a>
+            <a href="#toc_h2_0">Learn Scrapy pass 2</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_1">安装(虚拟环境)</a>
+            <a href="#toc_h3_1">安装(虚拟环境)</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_2">Scrapy 使用示例</a>
+            <a href="#toc_h3_2">Scrapy 使用示例</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_3">Creating a project</a>
+            <a href="#toc_h4_3">Creating a project</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_4">Our first Spider</a>
+            <a href="#toc_h4_4">Our first Spider</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_5">How to run our spider</a>
+            <a href="#toc_h4_5">How to run our spider</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_6">What just happened under the hood?</a>
+            <a href="#toc_h4_6">What just happened under the hood?</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_7">A shortcut to the start_requests method</a>
+            <a href="#toc_h3_7">A shortcut to the start_requests method</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_8">Extracting data</a>
+            <a href="#toc_h4_8">Extracting data</a>
         </li>
 </ul>        </div>
-<div class="comment">
-    <div class="comment__wrapper wrapper">
-        <div class="comment__title">
-            评论
-        </div>
-        <textarea rows="3" placeholder="评论内容只能为 2 到 500 个字符！" id="comment"></textarea>
-
-        <ul id="comments">
-        </ul>
-    </div>
-</div>
+        <div id="b3logsolocomments"></div>
+        <div id="vcomment" class="comment__wrapper wrapper" style="margin: 40px auto" data-name="ellenbboe" data-postId="1561009675671"></div>
     <div class="article__bottom">
         <div class="wrapper">
             <div class="fn__flex">
@@ -374,6 +438,7 @@ one is that we’ve added <code>::text</code> to the CSS query, to mean we want 
 <footer class="footer">
     <div class="wrapper fn__clear">
         <div class="fn__left">
+            <br>
             &copy; 2020
             <a href="https://ellenbboe.github.io">Kosmos</a>
             <a href="http://www.beian.miit.gov.cn/">浙ICP备18045840号-1</a>--------Let's move on
@@ -402,12 +467,23 @@ show_date_time();
 <style>
 #momk{animation:change 10s infinite;font-weight:800; }
 @keyframes change{0%{color:#5cb85c;}25%{color:#556bd8;}50%{color:#e40707;}75%{color:#66e616;}100% {color:#67bd31;}}
-</style> &nbsp;•&nbsp;
-            Powered by <a href="https://solo.b3log.org" target="_blank">Solo</a>
-            <br>
-            Theme Casper
-            <sup>[<a href="https://github.com/TryGhost/Casper" target="_blank">ref</a>]</sup>
-            by <a href="http://vanessa.b3log.org" target="_blank">Vanessa</a>
+</style>
+<script type="text/javascript">
+    /*自动刷新页面，避免无法访问*/
+    var OriginTitile = document.title;
+    var titleTime;
+    document.addEventListener('visibilitychange', function () {
+        if (document.hidden) {
+            document.title = '(〃´-ω･)  休息一下';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '起来嗨٩(๑❛ᴗ❛๑)۶';
+            titleTime = setTimeout(function () {
+                document.title = OriginTitile;
+            }, 3000);
+        }
+    });
+</script>
         </div>
         <div class="fn__right">
             <a href="https://ellenbboe.github.io/tags.html" rel="section">
@@ -422,36 +498,32 @@ show_date_time();
             友情链接
             </a>
             <br>
-            115 文章 &nbsp;
-            9 评论 &nbsp;
+            121 文章 &nbsp;
             <span data-uvstaturl="https://ellenbboe.github.io">11608</span> 浏览 &nbsp;
-            3 当前访客
+            
         </div>
     </div>
 </footer>
 
-<script type="text/javascript" src="https://ellenbboe.github.io/js/lib/compress/pjax.min.js" charset="utf-8"></script>
-<script type="text/javascript" src="https://ellenbboe.github.io/js/common.min.js?1578931371974"
-        charset="utf-8"></script>
-<script type="text/javascript"
-        src="https://ellenbboe.github.io/skins/Casper/js/common.min.js?1578931371974"
-        charset="utf-8"></script>
-<script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.4/dist/index.min.js"></script>
 <script>
-    var Label = {
-        servePath: "https://ellenbboe.github.io",
-        staticServePath: "https://ellenbboe.github.io",
-        luteAvailable: false,
-        hljsStyle: 'colorful',
-        langLabel: "zh_CN",
-        version: "3.7.0",
-    }
-    Util.init()
+  var Label = {
+    servePath: "https://ellenbboe.github.io",
+    staticServePath: "https://ellenbboe.github.io",
+    luteAvailable: false,
+    hljsStyle: 'colorful',
+    langLabel: "zh_CN",
+    version: "4.1.0",
+    staticSite: true,
+    showCodeBlockLn: false,
+  }
 </script>
+<script type="text/javascript"
+        src="https://ellenbboe.github.io/skins/Casper/js/common.min.js?1591150301084"
+        charset="utf-8"></script>
 
 
 <script type="text/javascript">
-    Util.addScript('https://ellenbboe.github.io/js/page.min.js?1578931371974', 'soloPageScript')
+    Util.addScript('https://ellenbboe.github.io/js/page.min.js?1591150301084', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1561009675671",
@@ -469,4 +541,4 @@ show_date_time();
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 33ms, 2020/01/14 13:32:40 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 50ms, 2020/06/03 12:32:31 -->

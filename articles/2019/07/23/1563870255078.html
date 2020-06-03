@@ -2,31 +2,104 @@
 <html>
 <head>
 <meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>学习笔记|HashMap和ConcurrentHashMap - Kosmos</title><meta name="description" content="HashMap和ConcurrentHashMap两兄弟 🚶"/><meta property="og:description" content="HashMap和ConcurrentHashMap两兄弟 🚶"/>    <meta name="keywords" content="开源,开发者,笔记,kosmos"/><link rel="dns-prefetch" href="https://ellenbboe.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://ellenbboe.github.io"><link rel="icon" type="image/png" href="https://s2.ax1x.com/2020/01/12/loApPe.png"/><link rel="apple-touch-icon" href="https://s2.ax1x.com/2020/01/12/loApPe.png"><link rel="shortcut icon" type="image/x-icon" href="https://s2.ax1x.com/2020/01/12/loApPe.png"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="学习笔记|HashMap和ConcurrentHashMap - Kosmos"/><meta property="og:site_name" content="Kosmos"/><meta property="og:url"      content="https://ellenbboe.github.io/articles/2019/07/23/1563870255078.html?"/><meta property="og:image" content="https://s2.ax1x.com/2020/01/12/loApPe.png"/><link rel="search" type="application/opensearchdescription+xml" title="学习笔记|HashMap和ConcurrentHashMap - Kosmos" href="/opensearch.xml"><link href="https://ellenbboe.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://ellenbboe.github.io/manifest.json">        <link rel="canonical" href="https://ellenbboe.github.io/articles/2019/07/23/1563870255078.html">        <link rel="stylesheet"
-              href="https://ellenbboe.github.io/skins/Casper/css/base.css?1578931371974"/>
+              href="https://ellenbboe.github.io/skins/Casper/css/base.css?1591150301084"/>
             <link rel="prev" title="学习笔记|多线程和并发" href="https://ellenbboe.github.io/articles/2019/07/11/1562843459673.html">
             <link rel="next" title="学习笔记|红黑树的故事" href="https://ellenbboe.github.io/articles/2019/07/23/1563880948319.html">
-    </head>
+    <script>
+onload = function() {
+    var click_cnt = 0;
+    var $html = document.getElementsByTagName("html")[0];
+    var $body = document.getElementsByTagName("body")[0];
+    $html.onclick = function(e) {
+        var $elem = document.createElement("b");
+        $elem.style.color = "#E94F06";
+        $elem.style.zIndex = 9999;
+        $elem.style.position = "absolute";
+        $elem.style.select = "none";
+        var x = e.pageX;
+        var y = e.pageY;
+        $elem.style.left = (x - 10) + "px";
+        $elem.style.top = (y - 20) + "px";
+        clearInterval(anim);
+        switch (++click_cnt) {
+            case 10:
+                $elem.innerText = "OωO";
+                break;
+            case 20:
+                $elem.innerText = "(๑•́ ∀ •̀๑)";
+                break;
+            case 30:
+                $elem.innerText = "(๑•́ ₃ •̀๑)";
+                break;
+            case 40:
+                $elem.innerText = "(๑•̀_•́๑)";
+                break;
+            case 50:
+                $elem.innerText = "（￣へ￣）";
+                break;
+            case 60:
+                $elem.innerText = "(╯°口°)╯(┴—┴";
+                break;
+            case 70:
+                $elem.innerText = "૮( ᵒ̌皿ᵒ̌ )ა";
+                break;
+            case 80:
+                $elem.innerText = "╮(｡>口<｡)╭";
+                break;
+            case 90:
+                $elem.innerText = "( ง ᵒ̌皿ᵒ̌)ง⁼³₌₃";
+                break;
+            case 100:
+            case 101:
+            case 102:
+            case 103:
+            case 104:
+            case 105:
+                $elem.innerText = "(ꐦ°᷄д°᷅)";
+                break;
+            default:
+                $elem.innerText = "❤";
+                break;
+        }
+        $elem.style.fontSize = Math.random() * 10 + 8 + "px";
+        var increase = 0;
+        var anim;
+        setTimeout(function() {
+            anim = setInterval(function() {
+                if (++increase == 150) {
+                    clearInterval(anim);
+                    $body.removeChild($elem);
+                }
+                $elem.style.top = y - 20 - increase + "px";
+                $elem.style.opacity = (150 - increase) / 120;
+            }, 8);
+        }, 70);
+        $body.appendChild($elem);
+    };
+};
+</script>
+</head>
 <body class="fn__flex-column">
 <div id="pjax" class="fn__flex-1">
     
     <header class="header header--article">
         <div class="wrapper header__title">
             <h1 class="header__h1 fn__flex-inline">
-                <img src="https://s2.ax1x.com/2020/01/12/loApPe.png">
+                <img src="https://s2.ax1x.com/2020/01/12/loApPe.png" alt="Kosmos">
                 <a href="https://ellenbboe.github.io" rel="start" class="header__title">Kosmos</a>
             </h1>
-            <h2 class="header__h2">---就算是痛苦难受，也要去体会那被称为生存的分量---</h2>
+            <h2 class="header__h2">---我们总得选择一条路去前行---</h2>
         </div>
         <nav class="wrapper header__nav fn__clear">
             <a href="https://ellenbboe.github.io" rel="start">
                     Kosmos
             </a>
 
-                <a class="fn__flex-inline" href="/my-github-repos" target="_self" rel="section">
-                    <img src="/images/github-icon.png"> 我的开源
+                <a class="fn__flex-inline" href="https://github.com/ellenbboe" target="_self" rel="section">
+                    <img src="https://s2.ax1x.com/2020/01/16/ljWMPP.png" alt="我的GIT"> 我的GIT
                 </a>
                 <a class="fn__flex-inline" href="/readlist" target="_self" rel="section">
-                     阅读列表
+                    <img src="https://s2.ax1x.com/2020/01/16/ljWPC6.png" alt="阅读列表"> 阅读列表
                 </a>
 
 
@@ -115,18 +188,18 @@
         <div class="item__cover" style="background-image: url(https://img.hacpai.com/bing/20190419.jpg?imageView2/1/w/1280/h/720/interlace/1/q/100)"></div>
         <div class="wrapper">
             <section class="item__content item__content--article vditor-reset">
-                <p></p><h2 id="b3_solo_h2_0">HashMap</h2>
+                <h2 id="toc_h2_0">HashMap</h2>
 <p>不支持并发操作<br>
 HashMap里面是数组,数组中的每一个元素都是单向链表</p>
-<h3 id="b3_solo_h3_1">特征值</h3>
+<h3 id="toc_h3_1">特征值</h3>
 <p><strong>capacity</strong>:当前数组容量,始终保持 2^n,可以扩容,扩容后数组大小为当前的2倍<br>
 <strong>loadFactor</strong>:负载因子，默认为 0.75,负载因子越接近1,数组就越密,查找效率低,越小就越疏,数组的利用率就低<br>
 <strong>threshold</strong>:扩容的阈值,等于capacity*loadFactor<br>
 在计算key的哈希值的之后让key的hash值与高16位进行异或运算,减少了hash冲突<br>
 <strong>扩容</strong>:当前的 size 已经达到了阈值，并且要插入的数组位置上已经有元素,将容量扩大为原来的两倍,并将原来的数组迁移到现有数组中,迁移过程中，会将原来 table[i] 中的链表的所有节点，分拆到新的数组的 newTable[i] 和 newTable[i + oldLength] 位置上。如原来数组长度是 16，那么扩容后，原来 table[0] 处的链表中的所有元素会被分配到新数组中 newTable[0] 和 newTable[16] 这两个位置<br>
 <strong>默认容量</strong>:16</p>
-<h3 id="b3_solo_h3_2">Java7中的HashMap</h3>
-<h4 id="b3_solo_h4_3">Put方法</h4>
+<h3 id="toc_h3_2">Java7中的HashMap</h3>
+<h4 id="toc_h4_3">Put方法</h4>
 <ol>
 <li>放入第一个元素时初始化数组大小</li>
 <li>根据key存放value
@@ -136,25 +209,25 @@ HashMap里面是数组,数组中的每一个元素都是单向链表</p>
 </ol>
 </li>
 </ol>
-<h4 id="b3_solo_h4_4">初始化数据</h4>
+<h4 id="toc_h4_4">初始化数据</h4>
 <p>大小为大于输入数字的最小2的n次方,不输的话默认是16<br>
 阈值等于capacity*loadFactor</p>
-<h4 id="b3_solo_h4_5">计算对应的数组下标</h4>
+<h4 id="toc_h4_5">计算对应的数组下标</h4>
 <p>取key的hash值的低n位(n根据数组大小确定),假如数组大小为32.那么取hash的低5位</p>
-<h4 id="b3_solo_h4_6">添加节点到链表</h4>
+<h4 id="toc_h4_6">添加节点到链表</h4>
 <p>将新值放入到链表的表头(注意是表头)<br>
 假如当前的容量大于阈值并且要存放的数组位置有值了,那么就要扩容,扩容后重新计算存放的位置</p>
-<h4 id="b3_solo_h4_7">Get方法</h4>
+<h4 id="toc_h4_7">Get方法</h4>
 <ol>
 <li>计算hash值:得到key的hash值</li>
 <li>获取数组的下标:hash的低n位</li>
 <li>遍历下标对应的链表</li>
 </ol>
-<h3 id="b3_solo_h3_8">Java8中的HashMap</h3>
+<h3 id="toc_h3_8">Java8中的HashMap</h3>
 <p>采用数组+链表+红黑树<br>
 链表中元素有8个并且散列表容量大于64时会自动转化为红黑树<br>
 根据第一个元素是Node或者是TreeNode来确定是链表还是红黑树</p>
-<h4 id="b3_solo_h4_9">Put方法</h4>
+<h4 id="toc_h4_9">Put方法</h4>
 <ol>
 <li>放入第一个元素时初始化数组大小(初始化大小到默认的16或者自定义大小)</li>
 <li>通过Hash找到数组的位置
@@ -167,26 +240,26 @@ HashMap里面是数组,数组中的每一个元素都是单向链表</p>
 </li>
 </ol>
 <p>扩容的时候假如是链表,会被拆分两条链表</p>
-<h4 id="b3_solo_h4_10">Get方法</h4>
+<h4 id="toc_h4_10">Get方法</h4>
 <ol>
 <li>计算key的Hash值,根据hash值找到数组的下标</li>
 <li>假如是链表,遍历链表,假如是红黑树就遍历红黑树</li>
 </ol>
-<h2 id="b3_solo_h2_11">ConcurrentHashMap</h2>
+<h2 id="toc_h2_11">ConcurrentHashMap</h2>
 <p>并发安全</p>
-<h3 id="b3_solo_h3_12">特征值</h3>
+<h3 id="toc_h3_12">特征值</h3>
 <p><strong>concurrencyLevel</strong>:并发数,Segement默认是16,表示最多可以同时支持 16 个线程并发写<br>
 <strong>initialCapacity</strong>:整个ConcurrentHashMap的容量,Segment 数组不可以扩容<br>
 <strong>loadFactor</strong>:为每个Segement内部使用<br>
 <strong>segementshift</strong>:2的sshift次方等于ssize，segmentShift=32-<strong>sshift</strong>;segementMask=ssize-1(确保低位都是1来使得获得的hashcode均匀分布<br>
 不允许key和value是null</p>
-<h3 id="b3_solo_h3_13">Java7中的ConcurrentHashMap</h3>
+<h3 id="toc_h3_13">Java7中的ConcurrentHashMap</h3>
 <p>ConcurrentHashMap是一个Segement数组,可以对单个Segement加锁<br>
 Segment 数组不可以扩容,默认每个Segement容量大小为2<br>
 初始化完成后得到一个Segement数组,只初始化了一个Segement[0]<br>
 Segement内部是数组HashEntry+链表<br>
 每一个segement对象都有一个count数(volicate)来统计内部的entry数量,加入count大于阈值会扩容成原来的两倍;统计size的时候前两次不加锁(如果出来的数据变了的话),在将remove和put方法锁住进行统计</p>
-<h4 id="b3_solo_h4_14">Put方法</h4>
+<h4 id="toc_h4_14">Put方法</h4>
 <ol>
 <li>计算key的hash值</li>
 <li>根据Hash值找到Segement位置下标j(计算方法:(hash &gt;&gt;&gt; segmentShift) &amp; segmentMask)</li>
@@ -201,7 +274,7 @@ Segement内部是数组HashEntry+链表<br>
 </ol>
 </li>
 </ol>
-<h4 id="b3_solo_h4_15">Get方法</h4>
+<h4 id="toc_h4_15">Get方法</h4>
 <p>get方法不用加锁,所用的变量都是volilate修饰,volatile可以保证内存可见性，所以不会读取到过期数据。</p>
 <ol>
 <li>计算Hash值,找到Segement(槽)</li>
@@ -209,22 +282,22 @@ Segement内部是数组HashEntry+链表<br>
 <li>遍历链表</li>
 </ol>
 <p>remove()元素后该元素后面的元素顺序不变,前面的会变成倒序(是从表头插入的)</p>
-<h3 id="b3_solo_h3_16">Java8中的ConcurrentHashMap</h3>
+<h3 id="toc_h3_16">Java8中的ConcurrentHashMap</h3>
 <p>加入了<strong>红黑树</strong><br>
 构造函数初始化(设置sizeCtl)<br>
 通过提供的初始化容量大小设置sizeCtl<br>
 sizeCtl:(1.5 * initialCapacity + 1),然后向上取最近的2的n次方<br>
 sizeCtl数值:-1(初始化) ,-n(有n-1个线程正在扩容),正数(下一次要扩容的大小)或0(没有初始化)</p>
-<h4 id="b3_solo_h4_17">初始化数组</h4>
+<h4 id="toc_h4_17">初始化数组</h4>
 <p>通过CAS将sizeCtl设置成-1,通过判断sizeCtl来判断是否被初始化,并设置默认值</p>
-<h4 id="b3_solo_h4_18">链表转红黑树</h4>
+<h4 id="toc_h4_18">链表转红黑树</h4>
 <p>对链表加锁,遍历链表,建立红黑树,并设置到对应的位置.不一定转化成红黑树,有可能就是数组扩容</p>
-<h4 id="b3_solo_h4_19">数据迁移</h4>
+<h4 id="toc_h4_19">数据迁移</h4>
 <p>将旧的数组大小分配给多个线程<br>
 数组第一个元素的hash值假如是MOVED(-1),表明正在迁移,迁移要判断是链表还是红黑树<br>
 迁移可以多线程并发,线程加入使sizectl自增,线程退出后sizectl自减<br>
 数据迁移的时候要得到当前数组位置元素的Sychronized锁</p>
-<h4 id="b3_solo_h4_20">Put方法</h4>
+<h4 id="toc_h4_20">Put方法</h4>
 <ol>
 <li>假如数组表为null,则初始化数组</li>
 <li>通过key的Hash值得到数组的下标位置
@@ -235,13 +308,12 @@ sizeCtl数值:-1(初始化) ,-n(有n-1个线程正在扩容),正数(下一次要
 </li>
 <li>插入后判断链表是否大于8并且数组长度是否大于64,只有前面两项都满足时才会转化成红黑树,否则就是扩容数组</li>
 </ol>
-<h4 id="b3_solo_h4_21">Get方法</h4>
+<h4 id="toc_h4_21">Get方法</h4>
 <ol>
 <li>计算hash值</li>
 <li>通过Hash找到数组的下标位置</li>
 <li>在链表或者红黑树中查找数据</li>
 </ol>
-<p></p>
                     <div>
                         <hr>
 标题：学习笔记|HashMap和ConcurrentHashMap<br>
@@ -257,83 +329,74 @@ sizeCtl数值:-1(初始化) ,-n(有n-1个线程正在扩容),正数(下一次要
         <div class="post__toc">
 <ul class="article__toc">
         <li class="toc__h2">
-            <a href="#b3_solo_h2_0">HashMap</a>
+            <a href="#toc_h2_0">HashMap</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_1">特征值</a>
+            <a href="#toc_h3_1">特征值</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_2">Java7中的HashMap</a>
+            <a href="#toc_h3_2">Java7中的HashMap</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_3">Put方法</a>
+            <a href="#toc_h4_3">Put方法</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_4">初始化数据</a>
+            <a href="#toc_h4_4">初始化数据</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_5">计算对应的数组下标</a>
+            <a href="#toc_h4_5">计算对应的数组下标</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_6">添加节点到链表</a>
+            <a href="#toc_h4_6">添加节点到链表</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_7">Get方法</a>
+            <a href="#toc_h4_7">Get方法</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_8">Java8中的HashMap</a>
+            <a href="#toc_h3_8">Java8中的HashMap</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_9">Put方法</a>
+            <a href="#toc_h4_9">Put方法</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_10">Get方法</a>
+            <a href="#toc_h4_10">Get方法</a>
         </li>
         <li class="toc__h2">
-            <a href="#b3_solo_h2_11">ConcurrentHashMap</a>
+            <a href="#toc_h2_11">ConcurrentHashMap</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_12">特征值</a>
+            <a href="#toc_h3_12">特征值</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_13">Java7中的ConcurrentHashMap</a>
+            <a href="#toc_h3_13">Java7中的ConcurrentHashMap</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_14">Put方法</a>
+            <a href="#toc_h4_14">Put方法</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_15">Get方法</a>
+            <a href="#toc_h4_15">Get方法</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_16">Java8中的ConcurrentHashMap</a>
+            <a href="#toc_h3_16">Java8中的ConcurrentHashMap</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_17">初始化数组</a>
+            <a href="#toc_h4_17">初始化数组</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_18">链表转红黑树</a>
+            <a href="#toc_h4_18">链表转红黑树</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_19">数据迁移</a>
+            <a href="#toc_h4_19">数据迁移</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_20">Put方法</a>
+            <a href="#toc_h4_20">Put方法</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_21">Get方法</a>
+            <a href="#toc_h4_21">Get方法</a>
         </li>
 </ul>        </div>
-<div class="comment">
-    <div class="comment__wrapper wrapper">
-        <div class="comment__title">
-            评论
-        </div>
-        <textarea rows="3" placeholder="评论内容只能为 2 到 500 个字符！" id="comment"></textarea>
-
-        <ul id="comments">
-        </ul>
-    </div>
-</div>
+        <div id="b3logsolocomments"></div>
+        <div id="vcomment" class="comment__wrapper wrapper" style="margin: 40px auto" data-name="ellenbboe" data-postId="1563870255078"></div>
     <div class="article__bottom">
         <div class="wrapper">
             <div class="fn__flex">
@@ -347,6 +410,7 @@ sizeCtl数值:-1(初始化) ,-n(有n-1个线程正在扩容),正数(下一次要
 <footer class="footer">
     <div class="wrapper fn__clear">
         <div class="fn__left">
+            <br>
             &copy; 2020
             <a href="https://ellenbboe.github.io">Kosmos</a>
             <a href="http://www.beian.miit.gov.cn/">浙ICP备18045840号-1</a>--------Let's move on
@@ -375,12 +439,23 @@ show_date_time();
 <style>
 #momk{animation:change 10s infinite;font-weight:800; }
 @keyframes change{0%{color:#5cb85c;}25%{color:#556bd8;}50%{color:#e40707;}75%{color:#66e616;}100% {color:#67bd31;}}
-</style> &nbsp;•&nbsp;
-            Powered by <a href="https://solo.b3log.org" target="_blank">Solo</a>
-            <br>
-            Theme Casper
-            <sup>[<a href="https://github.com/TryGhost/Casper" target="_blank">ref</a>]</sup>
-            by <a href="http://vanessa.b3log.org" target="_blank">Vanessa</a>
+</style>
+<script type="text/javascript">
+    /*自动刷新页面，避免无法访问*/
+    var OriginTitile = document.title;
+    var titleTime;
+    document.addEventListener('visibilitychange', function () {
+        if (document.hidden) {
+            document.title = '(〃´-ω･)  休息一下';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '起来嗨٩(๑❛ᴗ❛๑)۶';
+            titleTime = setTimeout(function () {
+                document.title = OriginTitile;
+            }, 3000);
+        }
+    });
+</script>
         </div>
         <div class="fn__right">
             <a href="https://ellenbboe.github.io/tags.html" rel="section">
@@ -395,36 +470,32 @@ show_date_time();
             友情链接
             </a>
             <br>
-            115 文章 &nbsp;
-            9 评论 &nbsp;
+            121 文章 &nbsp;
             <span data-uvstaturl="https://ellenbboe.github.io">11608</span> 浏览 &nbsp;
-            3 当前访客
+            
         </div>
     </div>
 </footer>
 
-<script type="text/javascript" src="https://ellenbboe.github.io/js/lib/compress/pjax.min.js" charset="utf-8"></script>
-<script type="text/javascript" src="https://ellenbboe.github.io/js/common.min.js?1578931371974"
-        charset="utf-8"></script>
-<script type="text/javascript"
-        src="https://ellenbboe.github.io/skins/Casper/js/common.min.js?1578931371974"
-        charset="utf-8"></script>
-<script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.4/dist/index.min.js"></script>
 <script>
-    var Label = {
-        servePath: "https://ellenbboe.github.io",
-        staticServePath: "https://ellenbboe.github.io",
-        luteAvailable: false,
-        hljsStyle: 'colorful',
-        langLabel: "zh_CN",
-        version: "3.7.0",
-    }
-    Util.init()
+  var Label = {
+    servePath: "https://ellenbboe.github.io",
+    staticServePath: "https://ellenbboe.github.io",
+    luteAvailable: false,
+    hljsStyle: 'colorful',
+    langLabel: "zh_CN",
+    version: "4.1.0",
+    staticSite: true,
+    showCodeBlockLn: false,
+  }
 </script>
+<script type="text/javascript"
+        src="https://ellenbboe.github.io/skins/Casper/js/common.min.js?1591150301084"
+        charset="utf-8"></script>
 
 
 <script type="text/javascript">
-    Util.addScript('https://ellenbboe.github.io/js/page.min.js?1578931371974', 'soloPageScript')
+    Util.addScript('https://ellenbboe.github.io/js/page.min.js?1591150301084', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1563870255078",
@@ -442,4 +513,4 @@ show_date_time();
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 40ms, 2020/01/14 13:32:39 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 62ms, 2020/06/03 12:32:28 -->

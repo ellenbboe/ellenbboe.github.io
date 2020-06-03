@@ -2,31 +2,104 @@
 <html>
 <head>
 <meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>操作系统之内存 - Kosmos</title><meta name="description" content="本文采用复习拷贝重新阅读大法 本文来自该仓库 虚拟内存 虚拟内存的目的是为了让物理内存扩充成更大的逻辑内存，从而让程序获得更多的可用内存。 为了更好的管理内存，操作系统将内存抽象成地址空间。每个程序拥有自己的地址空间，这个地址空间被分割成多个块，每一块称为一页。这些页被映射到物理内存，但不需要映射到连续的物理内存，也不需要所有页都必须在物理内存中。当程序引用到不在物理内存中的页时，由硬件执行必要的映射，将缺失的部分装入物理内存并重新执行失败的指令。 从上面的描述中可以看出，虚拟内存允许程序不用将地址空间中的每一页都映射到物理内存，也就是说一个程序不需要全部调入内存就可以运行，这使得有限的内存运行大程序成为可能。例如有一台计算机可以产生 16 位地址，那么一个程序的地址空间范围是 0~64K。该计算机只有 32KB 的物理内存，虚拟内存技术允许该计算机运行一个 64K 大小的程序。 这需要页面置换算法来辅助 分页系统地址映射 内存管理单元（MMU）管理着地址空间和物理内存的转换，其中的页表（Page table）存储着页（程序地址空间）和页框（物理内存空间）的映射表。 一个虚拟...."/><meta property="og:description" content="本文采用复习拷贝重新阅读大法 本文来自该仓库 虚拟内存 虚拟内存的目的是为了让物理内存扩充成更大的逻辑内存，从而让程序获得更多的可用内存。 为了更好的管理内存，操作系统将内存抽象成地址空间。每个程序拥有自己的地址空间，这个地址空间被分割成多个块，每一块称为一页。这些页被映射到物理内存，但不需要映射到连续的物理内存，也不需要所有页都必须在物理内存中。当程序引用到不在物理内存中的页时，由硬件执行必要的映射，将缺失的部分装入物理内存并重新执行失败的指令。 从上面的描述中可以看出，虚拟内存允许程序不用将地址空间中的每一页都映射到物理内存，也就是说一个程序不需要全部调入内存就可以运行，这使得有限的内存运行大程序成为可能。例如有一台计算机可以产生 16 位地址，那么一个程序的地址空间范围是 0~64K。该计算机只有 32KB 的物理内存，虚拟内存技术允许该计算机运行一个 64K 大小的程序。 这需要页面置换算法来辅助 分页系统地址映射 内存管理单元（MMU）管理着地址空间和物理内存的转换，其中的页表（Page table）存储着页（程序地址空间）和页框（物理内存空间）的映射表。 一个虚拟...."/>    <meta name="keywords" content="开源,开发者,笔记,kosmos"/><link rel="dns-prefetch" href="https://ellenbboe.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://ellenbboe.github.io"><link rel="icon" type="image/png" href="https://s2.ax1x.com/2020/01/12/loApPe.png"/><link rel="apple-touch-icon" href="https://s2.ax1x.com/2020/01/12/loApPe.png"><link rel="shortcut icon" type="image/x-icon" href="https://s2.ax1x.com/2020/01/12/loApPe.png"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="操作系统之内存 - Kosmos"/><meta property="og:site_name" content="Kosmos"/><meta property="og:url"      content="https://ellenbboe.github.io/articles/2019/04/13/1561009682385.html?"/><meta property="og:image" content="https://s2.ax1x.com/2020/01/12/loApPe.png"/><link rel="search" type="application/opensearchdescription+xml" title="操作系统之内存 - Kosmos" href="/opensearch.xml"><link href="https://ellenbboe.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://ellenbboe.github.io/manifest.json">        <link rel="canonical" href="https://ellenbboe.github.io/articles/2019/04/13/1561009682385.html">        <link rel="stylesheet"
-              href="https://ellenbboe.github.io/skins/Casper/css/base.css?1578931371974"/>
+              href="https://ellenbboe.github.io/skins/Casper/css/base.css?1591150301084"/>
             <link rel="prev" title="剑指offer_Part6" href="https://ellenbboe.github.io/articles/2019/04/12/1561009669327.html">
             <link rel="next" title="操作系统之磁盘" href="https://ellenbboe.github.io/articles/2019/04/13/1561009674101.html">
-    </head>
+    <script>
+onload = function() {
+    var click_cnt = 0;
+    var $html = document.getElementsByTagName("html")[0];
+    var $body = document.getElementsByTagName("body")[0];
+    $html.onclick = function(e) {
+        var $elem = document.createElement("b");
+        $elem.style.color = "#E94F06";
+        $elem.style.zIndex = 9999;
+        $elem.style.position = "absolute";
+        $elem.style.select = "none";
+        var x = e.pageX;
+        var y = e.pageY;
+        $elem.style.left = (x - 10) + "px";
+        $elem.style.top = (y - 20) + "px";
+        clearInterval(anim);
+        switch (++click_cnt) {
+            case 10:
+                $elem.innerText = "OωO";
+                break;
+            case 20:
+                $elem.innerText = "(๑•́ ∀ •̀๑)";
+                break;
+            case 30:
+                $elem.innerText = "(๑•́ ₃ •̀๑)";
+                break;
+            case 40:
+                $elem.innerText = "(๑•̀_•́๑)";
+                break;
+            case 50:
+                $elem.innerText = "（￣へ￣）";
+                break;
+            case 60:
+                $elem.innerText = "(╯°口°)╯(┴—┴";
+                break;
+            case 70:
+                $elem.innerText = "૮( ᵒ̌皿ᵒ̌ )ა";
+                break;
+            case 80:
+                $elem.innerText = "╮(｡>口<｡)╭";
+                break;
+            case 90:
+                $elem.innerText = "( ง ᵒ̌皿ᵒ̌)ง⁼³₌₃";
+                break;
+            case 100:
+            case 101:
+            case 102:
+            case 103:
+            case 104:
+            case 105:
+                $elem.innerText = "(ꐦ°᷄д°᷅)";
+                break;
+            default:
+                $elem.innerText = "❤";
+                break;
+        }
+        $elem.style.fontSize = Math.random() * 10 + 8 + "px";
+        var increase = 0;
+        var anim;
+        setTimeout(function() {
+            anim = setInterval(function() {
+                if (++increase == 150) {
+                    clearInterval(anim);
+                    $body.removeChild($elem);
+                }
+                $elem.style.top = y - 20 - increase + "px";
+                $elem.style.opacity = (150 - increase) / 120;
+            }, 8);
+        }, 70);
+        $body.appendChild($elem);
+    };
+};
+</script>
+</head>
 <body class="fn__flex-column">
 <div id="pjax" class="fn__flex-1">
     
     <header class="header header--article">
         <div class="wrapper header__title">
             <h1 class="header__h1 fn__flex-inline">
-                <img src="https://s2.ax1x.com/2020/01/12/loApPe.png">
+                <img src="https://s2.ax1x.com/2020/01/12/loApPe.png" alt="Kosmos">
                 <a href="https://ellenbboe.github.io" rel="start" class="header__title">Kosmos</a>
             </h1>
-            <h2 class="header__h2">---就算是痛苦难受，也要去体会那被称为生存的分量---</h2>
+            <h2 class="header__h2">---我们总得选择一条路去前行---</h2>
         </div>
         <nav class="wrapper header__nav fn__clear">
             <a href="https://ellenbboe.github.io" rel="start">
                     Kosmos
             </a>
 
-                <a class="fn__flex-inline" href="/my-github-repos" target="_self" rel="section">
-                    <img src="/images/github-icon.png"> 我的开源
+                <a class="fn__flex-inline" href="https://github.com/ellenbboe" target="_self" rel="section">
+                    <img src="https://s2.ax1x.com/2020/01/16/ljWMPP.png" alt="我的GIT"> 我的GIT
                 </a>
                 <a class="fn__flex-inline" href="/readlist" target="_self" rel="section">
-                     阅读列表
+                    <img src="https://s2.ax1x.com/2020/01/16/ljWPC6.png" alt="阅读列表"> 阅读列表
                 </a>
 
 
@@ -113,27 +186,27 @@
             <section class="item__content item__content--article vditor-reset">
                 <p>本文采用复习拷贝重新阅读大法<br>
 本文来自该<a href="https://github.com/CyC2018/CS-Notes" target="_blank">仓库</a></p>
-<h1 id="b3_solo_h1_0">虚拟内存</h1>
+<h1 id="toc_h1_0">虚拟内存</h1>
 <p>虚拟内存的目的是为了让物理内存扩充成更大的逻辑内存，从而让程序获得更多的可用内存。</p>
 <p>为了更好的管理内存，操作系统将内存抽象成地址空间。每个程序拥有自己的地址空间，这个地址空间被分割成多个块，每一块称为一页。这些页被映射到物理内存，但不需要映射到连续的物理内存，也不需要所有页都必须在物理内存中。当程序引用到不在物理内存中的页时，由硬件执行必要的映射，将缺失的部分装入物理内存并重新执行失败的指令。</p>
 <p>从上面的描述中可以看出，虚拟内存允许程序不用将地址空间中的每一页都映射到物理内存，也就是说一个程序不需要全部调入内存就可以运行，这使得有限的内存运行大程序成为可能。例如有一台计算机可以产生 16 位地址，那么一个程序的地址空间范围是 0~64K。该计算机只有 32KB 的物理内存，虚拟内存技术允许该计算机运行一个 64K 大小的程序。</p>
-<div align="center"> <img src="https://gitee.com/CyC2018/CS-Notes/raw/master/docs/pics/7b281b1e-0595-402b-ae35-8c91084c33c1.png?imageView2/2/w/1280/format/jpg/interlace/1/q/100"> </div><br>
+<div align="center"> <img src="https://gitee.com/CyC2018/CS-Notes/raw/master/docs/pics/7b281b1e-0595-402b-ae35-8c91084c33c1.png"> </div><br>
 <blockquote>
 <p>这需要页面置换算法来辅助</p>
 </blockquote>
-<h1 id="b3_solo_h1_1">分页系统地址映射</h1>
+<h1 id="toc_h1_1">分页系统地址映射</h1>
 <p>内存管理单元（MMU）管理着地址空间和物理内存的转换，其中的页表（Page table）存储着页（程序地址空间）和页框（物理内存空间）的映射表。</p>
 <p>一个虚拟地址分成两个部分，一部分存储页面号，一部分存储偏移量。</p>
 <p>下图的页表存放着 16 个页，这 16 个页需要用 4 个比特位来进行索引定位。例如对于虚拟地址（0010 000000000100），前 4 位是存储页面号 2，读取表项内容为（110 1），页表项最后一位表示是否存在于内存中，1 表示存在。后 12 位存储偏移量。这个页对应的页框(物理内存)的地址为 （110 000000000100）。</p>
-<div align="center"> <img src="https://gitee.com/CyC2018/CS-Notes/raw/master/docs/pics/cf4386a1-58c9-4eca-a17f-e12b1e9770eb.png?imageView2/2/w/1280/format/jpg/interlace/1/q/100" width="500"> </div><br>
+<div align="center"> <img src="https://gitee.com/CyC2018/CS-Notes/raw/master/docs/pics/cf4386a1-58c9-4eca-a17f-e12b1e9770eb.png" width="500"> </div><br>
 <blockquote>
 <p>页面号+offset(偏移量)</p>
 </blockquote>
-<h1 id="b3_solo_h1_2">页面置换算法</h1>
+<h1 id="toc_h1_2">页面置换算法</h1>
 <p>在程序运行过程中，如果要访问的页面不在内存中，就发生缺页中断从而将该页调入内存中。此时如果内存已无空闲空间，系统必须从内存中调出一个页面到磁盘对换区中来腾出空间。</p>
 <p>页面置换算法和缓存淘汰策略类似，可以将内存看成磁盘的缓存。在缓存系统中，缓存的大小有限，当有新的缓存到达时，需要淘汰一部分已经存在的缓存，这样才有空间存放新的缓存数据。</p>
 <p>页面置换算法的主要目标是使页面置换频率最低（也可以说缺页率最低）。</p>
-<h2 id="b3_solo_h2_3">1. 最佳</h2>
+<h2 id="toc_h2_3">1. 最佳</h2>
 <blockquote>
 <p>OPT, Optimal replacement algorithm</p>
 </blockquote>
@@ -148,7 +221,7 @@
 <blockquote>
 <p>实际无法实现...理想状态</p>
 </blockquote>
-<h2 id="b3_solo_h2_4">2. 最近最久未使用</h2>
+<h2 id="toc_h2_4">2. 最近最久未使用</h2>
 <blockquote>
 <p>LRU, Least Recently Used</p>
 </blockquote>
@@ -156,8 +229,8 @@
 <p>为了实现 LRU，需要在内存中维护一个所有页面的链表。当一个页面被访问时，将这个页面移到链表表头。这样就能保证链表表尾的页面是最近最久未访问的。</p>
 <p>因为每次访问都需要更新链表，因此这种方式实现的 LRU 代价很高。</p>
 <p>4，7，0，7，1，0，1，2，1，2，6</p>
-<div align="center"> <img src="https://gitee.com/CyC2018/CS-Notes/raw/master/docs/pics/eb859228-c0f2-4bce-910d-d9f76929352b.png?imageView2/2/w/1280/format/jpg/interlace/1/q/100"> </div><br>
-<h2 id="b3_solo_h2_5">3. 最近未使用</h2>
+<div align="center"> <img src="https://gitee.com/CyC2018/CS-Notes/raw/master/docs/pics/eb859228-c0f2-4bce-910d-d9f76929352b.png"> </div><br>
+<h2 id="toc_h2_5">3. 最近未使用</h2>
 <blockquote>
 <p>NRU, Not Recently Used</p>
 </blockquote>
@@ -170,31 +243,31 @@
 </ul>
 <p>当发生缺页中断时，NRU 算法随机地从类编号最小的非空类中挑选一个页面将它换出。</p>
 <p>NRU 优先换出已经被修改的脏页面（R=0，M=1），而不是被频繁使用的干净页面（R=1，M=0）。</p>
-<h2 id="b3_solo_h2_6">4. 先进先出</h2>
+<h2 id="toc_h2_6">4. 先进先出</h2>
 <blockquote>
 <p>FIFO, First In First Out</p>
 </blockquote>
 <p>选择换出的页面是最先进入的页面。</p>
 <p>该算法会将那些经常被访问的页面也被换出，从而使缺页率升高。</p>
-<h2 id="b3_solo_h2_7">5. 第二次机会算法</h2>
+<h2 id="toc_h2_7">5. 第二次机会算法</h2>
 <p>FIFO 算法可能会把经常使用的页面置换出去，为了避免这一问题，对该算法做一个简单的修改：</p>
 <p>当页面被访问 (读或写) 时设置该页面的 R 位为 1。需要替换的时候，检查最老页面的 R 位。如果 R 位是 0，那么这个页面既老又没有被使用，可以立刻置换掉；如果是 1，就将 R 位清 0，并把该页面放到链表的尾端，修改它的装入时间使它就像刚装入的一样，然后继续从链表的头部开始搜索。</p>
-<div align="center"> <img src="https://gitee.com/CyC2018/CS-Notes/raw/master/docs/pics/ecf8ad5d-5403-48b9-b6e7-f2e20ffe8fca.png?imageView2/2/w/1280/format/jpg/interlace/1/q/100"> </div><br>
-<h2 id="b3_solo_h2_8">6. 时钟</h2>
+<div align="center"> <img src="https://gitee.com/CyC2018/CS-Notes/raw/master/docs/pics/ecf8ad5d-5403-48b9-b6e7-f2e20ffe8fca.png"> </div><br>
+<h2 id="toc_h2_8">6. 时钟</h2>
 <blockquote>
 <p>Clock</p>
 </blockquote>
 <p>第二次机会算法需要在链表中移动页面，降低了效率。时钟算法使用环形链表将页面连接起来，再使用一个指针指向最老的页面。</p>
-<div align="center"> <img src="https://gitee.com/CyC2018/CS-Notes/raw/master/docs/pics/5f5ef0b6-98ea-497c-a007-f6c55288eab1.png?imageView2/2/w/1280/format/jpg/interlace/1/q/100"> </div><br>
-<h1 id="b3_solo_h1_9">分段</h1>
+<div align="center"> <img src="https://gitee.com/CyC2018/CS-Notes/raw/master/docs/pics/5f5ef0b6-98ea-497c-a007-f6c55288eab1.png"> </div><br>
+<h1 id="toc_h1_9">分段</h1>
 <p>虚拟内存采用的是分页技术，也就是将地址空间划分成固定大小的页，每一页再与内存进行映射。</p>
 <p>下图为一个编译器在编译过程中建立的多个表，有 4 个表是动态增长的，如果使用分页系统的一维地址空间，动态增长的特点会导致覆盖问题的出现。</p>
-<div align="center"> <img src="https://gitee.com/CyC2018/CS-Notes/raw/master/docs/pics/22de0538-7c6e-4365-bd3b-8ce3c5900216.png?imageView2/2/w/1280/format/jpg/interlace/1/q/100"> </div><br>
+<div align="center"> <img src="https://gitee.com/CyC2018/CS-Notes/raw/master/docs/pics/22de0538-7c6e-4365-bd3b-8ce3c5900216.png"> </div><br>
 <p>分段的做法是把每个表分成段，一个段构成一个独立的地址空间。每个段的长度可以不同，并且可以动态增长。</p>
-<div align="center"> <img src="https://gitee.com/CyC2018/CS-Notes/raw/master/docs/pics/e0900bb2-220a-43b7-9aa9-1d5cd55ff56e.png?imageView2/2/w/1280/format/jpg/interlace/1/q/100"> </div><br>
-<h1 id="b3_solo_h1_10">段页式</h1>
+<div align="center"> <img src="https://gitee.com/CyC2018/CS-Notes/raw/master/docs/pics/e0900bb2-220a-43b7-9aa9-1d5cd55ff56e.png"> </div><br>
+<h1 id="toc_h1_10">段页式</h1>
 <p>程序的地址空间划分成多个拥有独立地址空间的段，每个段上的地址空间划分成大小相同的页。这样既拥有分段系统的共享和保护，又拥有分页系统的虚拟内存功能。</p>
-<h1 id="b3_solo_h1_11">分页与分段的比较</h1>
+<h1 id="toc_h1_11">分页与分段的比较</h1>
 <ul>
 <li>
 <p>对程序员的透明性：分页透明，但是分段需要程序员显式划分每个段。</p>
@@ -221,6 +294,7 @@
 地址：<a href="https://ellenbboe.github.io/articles/2019/04/13/1561009682385.html" target="_blank">https://ellenbboe.github.io/articles/2019/04/13/1561009682385.html</a><br>
 <!-- 签名档内可使用 HTML、JavaScript -->
 <br>
+
                     </div>
             </section>
         </div>
@@ -228,53 +302,44 @@
         <div class="post__toc">
 <ul class="article__toc">
         <li class="toc__h1">
-            <a href="#b3_solo_h1_0">虚拟内存</a>
+            <a href="#toc_h1_0">虚拟内存</a>
         </li>
         <li class="toc__h1">
-            <a href="#b3_solo_h1_1">分页系统地址映射</a>
+            <a href="#toc_h1_1">分页系统地址映射</a>
         </li>
         <li class="toc__h1">
-            <a href="#b3_solo_h1_2">页面置换算法</a>
+            <a href="#toc_h1_2">页面置换算法</a>
         </li>
         <li class="toc__h2">
-            <a href="#b3_solo_h2_3">1. 最佳</a>
+            <a href="#toc_h2_3">1. 最佳</a>
         </li>
         <li class="toc__h2">
-            <a href="#b3_solo_h2_4">2. 最近最久未使用</a>
+            <a href="#toc_h2_4">2. 最近最久未使用</a>
         </li>
         <li class="toc__h2">
-            <a href="#b3_solo_h2_5">3. 最近未使用</a>
+            <a href="#toc_h2_5">3. 最近未使用</a>
         </li>
         <li class="toc__h2">
-            <a href="#b3_solo_h2_6">4. 先进先出</a>
+            <a href="#toc_h2_6">4. 先进先出</a>
         </li>
         <li class="toc__h2">
-            <a href="#b3_solo_h2_7">5. 第二次机会算法</a>
+            <a href="#toc_h2_7">5. 第二次机会算法</a>
         </li>
         <li class="toc__h2">
-            <a href="#b3_solo_h2_8">6. 时钟</a>
+            <a href="#toc_h2_8">6. 时钟</a>
         </li>
         <li class="toc__h1">
-            <a href="#b3_solo_h1_9">分段</a>
+            <a href="#toc_h1_9">分段</a>
         </li>
         <li class="toc__h1">
-            <a href="#b3_solo_h1_10">段页式</a>
+            <a href="#toc_h1_10">段页式</a>
         </li>
         <li class="toc__h1">
-            <a href="#b3_solo_h1_11">分页与分段的比较</a>
+            <a href="#toc_h1_11">分页与分段的比较</a>
         </li>
 </ul>        </div>
-<div class="comment">
-    <div class="comment__wrapper wrapper">
-        <div class="comment__title">
-            评论
-        </div>
-        <textarea rows="3" placeholder="评论内容只能为 2 到 500 个字符！" id="comment"></textarea>
-
-        <ul id="comments">
-        </ul>
-    </div>
-</div>
+        <div id="b3logsolocomments"></div>
+        <div id="vcomment" class="comment__wrapper wrapper" style="margin: 40px auto" data-name="ellenbboe" data-postId="1561009682385"></div>
     <div class="article__bottom">
         <div class="wrapper">
             <div class="fn__flex">
@@ -288,6 +353,7 @@
 <footer class="footer">
     <div class="wrapper fn__clear">
         <div class="fn__left">
+            <br>
             &copy; 2020
             <a href="https://ellenbboe.github.io">Kosmos</a>
             <a href="http://www.beian.miit.gov.cn/">浙ICP备18045840号-1</a>--------Let's move on
@@ -316,12 +382,23 @@ show_date_time();
 <style>
 #momk{animation:change 10s infinite;font-weight:800; }
 @keyframes change{0%{color:#5cb85c;}25%{color:#556bd8;}50%{color:#e40707;}75%{color:#66e616;}100% {color:#67bd31;}}
-</style> &nbsp;•&nbsp;
-            Powered by <a href="https://solo.b3log.org" target="_blank">Solo</a>
-            <br>
-            Theme Casper
-            <sup>[<a href="https://github.com/TryGhost/Casper" target="_blank">ref</a>]</sup>
-            by <a href="http://vanessa.b3log.org" target="_blank">Vanessa</a>
+</style>
+<script type="text/javascript">
+    /*自动刷新页面，避免无法访问*/
+    var OriginTitile = document.title;
+    var titleTime;
+    document.addEventListener('visibilitychange', function () {
+        if (document.hidden) {
+            document.title = '(〃´-ω･)  休息一下';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '起来嗨٩(๑❛ᴗ❛๑)۶';
+            titleTime = setTimeout(function () {
+                document.title = OriginTitile;
+            }, 3000);
+        }
+    });
+</script>
         </div>
         <div class="fn__right">
             <a href="https://ellenbboe.github.io/tags.html" rel="section">
@@ -336,36 +413,32 @@ show_date_time();
             友情链接
             </a>
             <br>
-            115 文章 &nbsp;
-            9 评论 &nbsp;
+            121 文章 &nbsp;
             <span data-uvstaturl="https://ellenbboe.github.io">11608</span> 浏览 &nbsp;
-            3 当前访客
+            
         </div>
     </div>
 </footer>
 
-<script type="text/javascript" src="https://ellenbboe.github.io/js/lib/compress/pjax.min.js" charset="utf-8"></script>
-<script type="text/javascript" src="https://ellenbboe.github.io/js/common.min.js?1578931371974"
-        charset="utf-8"></script>
-<script type="text/javascript"
-        src="https://ellenbboe.github.io/skins/Casper/js/common.min.js?1578931371974"
-        charset="utf-8"></script>
-<script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.4/dist/index.min.js"></script>
 <script>
-    var Label = {
-        servePath: "https://ellenbboe.github.io",
-        staticServePath: "https://ellenbboe.github.io",
-        luteAvailable: false,
-        hljsStyle: 'colorful',
-        langLabel: "zh_CN",
-        version: "3.7.0",
-    }
-    Util.init()
+  var Label = {
+    servePath: "https://ellenbboe.github.io",
+    staticServePath: "https://ellenbboe.github.io",
+    luteAvailable: false,
+    hljsStyle: 'colorful',
+    langLabel: "zh_CN",
+    version: "4.1.0",
+    staticSite: true,
+    showCodeBlockLn: false,
+  }
 </script>
+<script type="text/javascript"
+        src="https://ellenbboe.github.io/skins/Casper/js/common.min.js?1591150301084"
+        charset="utf-8"></script>
 
 
 <script type="text/javascript">
-    Util.addScript('https://ellenbboe.github.io/js/page.min.js?1578931371974', 'soloPageScript')
+    Util.addScript('https://ellenbboe.github.io/js/page.min.js?1591150301084', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1561009682385",
@@ -383,4 +456,4 @@ show_date_time();
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 37ms, 2020/01/14 13:32:39 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 52ms, 2020/06/03 12:32:28 -->

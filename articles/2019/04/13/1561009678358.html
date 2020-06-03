@@ -2,31 +2,104 @@
 <html>
 <head>
 <meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>剑指offer_Part7 - Kosmos</title><meta name="description" content="友情提示: 代码在这里 本文参照该仓库学习,大家可以star 60 n 个骰子的点数 把 n 个骰子仍在地上，求点数和为 s 的概率。 使用一个二维数组 dp 存储点数出现的次数，其中 dp[i][j] 表示前 i 个骰子产生点数 j 的次数。 动态规划解法 空间复杂度：O(N2) 动态规划解法 + 旋转数组 空间复杂度：O(N) 61 扑克牌顺子 五张牌，其中大小鬼牌面大小为 0,可变换成任意数字。判断这五张牌是否能组成顺子。 62 圆圈中最后剩下的数 题目描述 让小朋友们围成一个大圈。然后，随机指定一个数 m，让编号为 0 的小朋友开始报数。每次喊到 m-1 的那个小朋友要出列唱首歌，然后可以在礼品箱中任意的挑选礼物，并且不再回到圈中，从他的下一个小朋友开始，继续 0…m-1 报数 …. 这样下去 …. 直到剩下最后一个小朋友，可以不用表演。 解题思路 约瑟夫环，圆圈长度为 n 的解可以看成长度为 n-1 的解再加上报数的长度 m。因为是圆圈，所以最后需要对 n 取余。 记公式吧… 另外的一种方法 public int LastRemaining_Solution(int n,...."/><meta property="og:description" content="友情提示: 代码在这里 本文参照该仓库学习,大家可以star 60 n 个骰子的点数 把 n 个骰子仍在地上，求点数和为 s 的概率。 使用一个二维数组 dp 存储点数出现的次数，其中 dp[i][j] 表示前 i 个骰子产生点数 j 的次数。 动态规划解法 空间复杂度：O(N2) 动态规划解法 + 旋转数组 空间复杂度：O(N) 61 扑克牌顺子 五张牌，其中大小鬼牌面大小为 0,可变换成任意数字。判断这五张牌是否能组成顺子。 62 圆圈中最后剩下的数 题目描述 让小朋友们围成一个大圈。然后，随机指定一个数 m，让编号为 0 的小朋友开始报数。每次喊到 m-1 的那个小朋友要出列唱首歌，然后可以在礼品箱中任意的挑选礼物，并且不再回到圈中，从他的下一个小朋友开始，继续 0…m-1 报数 …. 这样下去 …. 直到剩下最后一个小朋友，可以不用表演。 解题思路 约瑟夫环，圆圈长度为 n 的解可以看成长度为 n-1 的解再加上报数的长度 m。因为是圆圈，所以最后需要对 n 取余。 记公式吧… 另外的一种方法 public int LastRemaining_Solution(int n,...."/>    <meta name="keywords" content="开源,开发者,笔记,kosmos"/><link rel="dns-prefetch" href="https://ellenbboe.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://ellenbboe.github.io"><link rel="icon" type="image/png" href="https://s2.ax1x.com/2020/01/12/loApPe.png"/><link rel="apple-touch-icon" href="https://s2.ax1x.com/2020/01/12/loApPe.png"><link rel="shortcut icon" type="image/x-icon" href="https://s2.ax1x.com/2020/01/12/loApPe.png"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="剑指offer_Part7 - Kosmos"/><meta property="og:site_name" content="Kosmos"/><meta property="og:url"      content="https://ellenbboe.github.io/articles/2019/04/13/1561009678358.html?"/><meta property="og:image" content="https://s2.ax1x.com/2020/01/12/loApPe.png"/><link rel="search" type="application/opensearchdescription+xml" title="剑指offer_Part7 - Kosmos" href="/opensearch.xml"><link href="https://ellenbboe.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://ellenbboe.github.io/manifest.json">        <link rel="canonical" href="https://ellenbboe.github.io/articles/2019/04/13/1561009678358.html">        <link rel="stylesheet"
-              href="https://ellenbboe.github.io/skins/Casper/css/base.css?1578931371974"/>
+              href="https://ellenbboe.github.io/skins/Casper/css/base.css?1591150301084"/>
             <link rel="prev" title="操作系统之磁盘" href="https://ellenbboe.github.io/articles/2019/04/13/1561009674101.html">
             <link rel="next" title="Leetcode之双指针" href="https://ellenbboe.github.io/articles/2019/04/14/1561009686330.html">
-    </head>
+    <script>
+onload = function() {
+    var click_cnt = 0;
+    var $html = document.getElementsByTagName("html")[0];
+    var $body = document.getElementsByTagName("body")[0];
+    $html.onclick = function(e) {
+        var $elem = document.createElement("b");
+        $elem.style.color = "#E94F06";
+        $elem.style.zIndex = 9999;
+        $elem.style.position = "absolute";
+        $elem.style.select = "none";
+        var x = e.pageX;
+        var y = e.pageY;
+        $elem.style.left = (x - 10) + "px";
+        $elem.style.top = (y - 20) + "px";
+        clearInterval(anim);
+        switch (++click_cnt) {
+            case 10:
+                $elem.innerText = "OωO";
+                break;
+            case 20:
+                $elem.innerText = "(๑•́ ∀ •̀๑)";
+                break;
+            case 30:
+                $elem.innerText = "(๑•́ ₃ •̀๑)";
+                break;
+            case 40:
+                $elem.innerText = "(๑•̀_•́๑)";
+                break;
+            case 50:
+                $elem.innerText = "（￣へ￣）";
+                break;
+            case 60:
+                $elem.innerText = "(╯°口°)╯(┴—┴";
+                break;
+            case 70:
+                $elem.innerText = "૮( ᵒ̌皿ᵒ̌ )ა";
+                break;
+            case 80:
+                $elem.innerText = "╮(｡>口<｡)╭";
+                break;
+            case 90:
+                $elem.innerText = "( ง ᵒ̌皿ᵒ̌)ง⁼³₌₃";
+                break;
+            case 100:
+            case 101:
+            case 102:
+            case 103:
+            case 104:
+            case 105:
+                $elem.innerText = "(ꐦ°᷄д°᷅)";
+                break;
+            default:
+                $elem.innerText = "❤";
+                break;
+        }
+        $elem.style.fontSize = Math.random() * 10 + 8 + "px";
+        var increase = 0;
+        var anim;
+        setTimeout(function() {
+            anim = setInterval(function() {
+                if (++increase == 150) {
+                    clearInterval(anim);
+                    $body.removeChild($elem);
+                }
+                $elem.style.top = y - 20 - increase + "px";
+                $elem.style.opacity = (150 - increase) / 120;
+            }, 8);
+        }, 70);
+        $body.appendChild($elem);
+    };
+};
+</script>
+</head>
 <body class="fn__flex-column">
 <div id="pjax" class="fn__flex-1">
     
     <header class="header header--article">
         <div class="wrapper header__title">
             <h1 class="header__h1 fn__flex-inline">
-                <img src="https://s2.ax1x.com/2020/01/12/loApPe.png">
+                <img src="https://s2.ax1x.com/2020/01/12/loApPe.png" alt="Kosmos">
                 <a href="https://ellenbboe.github.io" rel="start" class="header__title">Kosmos</a>
             </h1>
-            <h2 class="header__h2">---就算是痛苦难受，也要去体会那被称为生存的分量---</h2>
+            <h2 class="header__h2">---我们总得选择一条路去前行---</h2>
         </div>
         <nav class="wrapper header__nav fn__clear">
             <a href="https://ellenbboe.github.io" rel="start">
                     Kosmos
             </a>
 
-                <a class="fn__flex-inline" href="/my-github-repos" target="_self" rel="section">
-                    <img src="/images/github-icon.png"> 我的开源
+                <a class="fn__flex-inline" href="https://github.com/ellenbboe" target="_self" rel="section">
+                    <img src="https://s2.ax1x.com/2020/01/16/ljWMPP.png" alt="我的GIT"> 我的GIT
                 </a>
                 <a class="fn__flex-inline" href="/readlist" target="_self" rel="section">
-                     阅读列表
+                    <img src="https://s2.ax1x.com/2020/01/16/ljWPC6.png" alt="阅读列表"> 阅读列表
                 </a>
 
 
@@ -113,16 +186,16 @@
             <section class="item__content item__content--article vditor-reset">
                 <p>友情提示: 代码在<a href="https://github.com/apersonlikesc/sosoalgorithm" target="_blank">这里</a><br>
 本文参照该<a href="https://github.com/CyC2018/CS-Notes" target="_blank">仓库</a>学习,大家可以star</p>
-<h2 id="b3_solo_h2_0">60 n 个骰子的点数</h2>
+<h2 id="toc_h2_0">60 n 个骰子的点数</h2>
 <p>把 n 个骰子仍在地上，求点数和为 s 的概率。<br>
 使用一个二维数组 dp 存储点数出现的次数，其中 dp[i][j] 表示前 i 个骰子产生点数 j 的次数。</p>
 <p>动态规划解法<br>
 空间复杂度：O(N2)</p>
 <p>动态规划解法 + 旋转数组<br>
 空间复杂度：O(N)</p>
-<h2 id="b3_solo_h2_1">61 扑克牌顺子</h2>
+<h2 id="toc_h2_1">61 扑克牌顺子</h2>
 <p>五张牌，其中大小鬼牌面大小为 0,可变换成任意数字。判断这五张牌是否能组成顺子。</p>
-<h2 id="b3_solo_h2_2">62 圆圈中最后剩下的数</h2>
+<h2 id="toc_h2_2">62 圆圈中最后剩下的数</h2>
 <p>题目描述<br>
 让小朋友们围成一个大圈。然后，随机指定一个数 m，让编号为 0 的小朋友开始报数。每次喊到 m-1 的那个小朋友要出列唱首歌，然后可以在礼品箱中任意的挑选礼物，并且不再回到圈中，从他的下一个小朋友开始，继续 0...m-1 报数 .... 这样下去 .... 直到剩下最后一个小朋友，可以不用表演。</p>
 <p>解题思路<br>
@@ -146,21 +219,21 @@
        return list.size()==1?list.get(0):-1;
    }
 </code></pre>
-<h2 id="b3_solo_h2_3">63 股票的最大利润</h2>
+<h2 id="toc_h2_3">63 股票的最大利润</h2>
 <p>可以有一次买入和一次卖出，那么买入必须在前。求最大收益。<br>
 使用贪心策略，假设第 i 轮进行卖出操作，买入操作价格应该在 i 之前并且价格最低。</p>
-<h2 id="b3_solo_h2_4">64 求 1+2+3+...+n</h2>
+<h2 id="toc_h2_4">64 求 1+2+3+...+n</h2>
 <p>题目描述<br>
 要求不能使用乘除法、for、while、if、else、switch、case 等关键字及条件判断语句 A ? B : C。</p>
 <p>解题思路<br>
 使用递归解法最重要的是指定返回条件，但是本题无法直接使用 if 语句来指定返回条件。</p>
 <p>条件与 &amp;&amp; 具有短路原则，即在第一个条件语句为 false 的情况下不会去执行第二个条件语句。利用这一特性，将递归的返回条件取非然后作为 &amp;&amp; 的第一个条件语句，递归的主体转换为第二个条件语句，那么当递归的返回条件为 true 的情况下就不会执行递归的主体部分，递归返回。</p>
 <p>本题的递归返回条件为 n &lt;= 0，取非后就是 n &gt; 0；递归的主体部分为 sum += Sum_Solution(n - 1)，转换为条件语句后就是 (sum += Sum_Solution(n - 1)) &gt; 0。</p>
-<h2 id="b3_solo_h2_5">65 不用加减乘除做加法</h2>
+<h2 id="toc_h2_5">65 不用加减乘除做加法</h2>
 <p>写一个函数，求两个整数之和，要求不得使用 +、-、* 、/ 四则运算符号。</p>
-<h2 id="b3_solo_h2_6">66 构建乘积数组</h2>
+<h2 id="toc_h2_6">66 构建乘积数组</h2>
 <p>给定一个数组 A[0, 1,..., n-1]，请构建一个数组 B[0, 1,..., n-1]，其中 B 中的元素 B[i]=A[0]* A[1]* ...* A[i-1]* A[i+1]* ...* A[n-1]。要求不能使用除法。</p>
-<h2 id="b3_solo_h2_7">67 把字符串转换成整数</h2>
+<h2 id="toc_h2_7">67 把字符串转换成整数</h2>
 <p>将一个字符串转换成一个整数，字符串不是一个合法的数值则返回 0，要求不能使用字符串转换整数的库函数。<br>
 Iuput:<br>
 +2147483647<br>
@@ -168,9 +241,9 @@ Iuput:<br>
 <p>Output:<br>
 2147483647<br>
 0</p>
-<h2 id="b3_solo_h2_8">68 树中两个节点的最低公共祖先</h2>
+<h2 id="toc_h2_8">68 树中两个节点的最低公共祖先</h2>
 <p>二叉查找树<br>
-<img src="https://gitee.com/CyC2018/CS-Notes/raw/master/docs/pics/b39a085e-e7a2-4657-b75e-ba1652a4b132.jpg?imageView2/2/w/1280/format/jpg/interlace/1/q/100" alt=""></p>
+<img src="https://gitee.com/CyC2018/CS-Notes/raw/master/docs/pics/b39a085e-e7a2-4657-b75e-ba1652a4b132.jpg" alt=""></p>
 <pre><code class="language-java">public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
         if(root==null)
         {
@@ -217,6 +290,7 @@ Iuput:<br>
 地址：<a href="https://ellenbboe.github.io/articles/2019/04/13/1561009678358.html" target="_blank">https://ellenbboe.github.io/articles/2019/04/13/1561009678358.html</a><br>
 <!-- 签名档内可使用 HTML、JavaScript -->
 <br>
+
                     </div>
             </section>
         </div>
@@ -224,44 +298,35 @@ Iuput:<br>
         <div class="post__toc">
 <ul class="article__toc">
         <li class="toc__h2">
-            <a href="#b3_solo_h2_0">60 n 个骰子的点数</a>
+            <a href="#toc_h2_0">60 n 个骰子的点数</a>
         </li>
         <li class="toc__h2">
-            <a href="#b3_solo_h2_1">61 扑克牌顺子</a>
+            <a href="#toc_h2_1">61 扑克牌顺子</a>
         </li>
         <li class="toc__h2">
-            <a href="#b3_solo_h2_2">62 圆圈中最后剩下的数</a>
+            <a href="#toc_h2_2">62 圆圈中最后剩下的数</a>
         </li>
         <li class="toc__h2">
-            <a href="#b3_solo_h2_3">63 股票的最大利润</a>
+            <a href="#toc_h2_3">63 股票的最大利润</a>
         </li>
         <li class="toc__h2">
-            <a href="#b3_solo_h2_4">64 求 1+2+3+...+n</a>
+            <a href="#toc_h2_4">64 求 1+2+3+...+n</a>
         </li>
         <li class="toc__h2">
-            <a href="#b3_solo_h2_5">65 不用加减乘除做加法</a>
+            <a href="#toc_h2_5">65 不用加减乘除做加法</a>
         </li>
         <li class="toc__h2">
-            <a href="#b3_solo_h2_6">66 构建乘积数组</a>
+            <a href="#toc_h2_6">66 构建乘积数组</a>
         </li>
         <li class="toc__h2">
-            <a href="#b3_solo_h2_7">67 把字符串转换成整数</a>
+            <a href="#toc_h2_7">67 把字符串转换成整数</a>
         </li>
         <li class="toc__h2">
-            <a href="#b3_solo_h2_8">68 树中两个节点的最低公共祖先</a>
+            <a href="#toc_h2_8">68 树中两个节点的最低公共祖先</a>
         </li>
 </ul>        </div>
-<div class="comment">
-    <div class="comment__wrapper wrapper">
-        <div class="comment__title">
-            评论
-        </div>
-        <textarea rows="3" placeholder="评论内容只能为 2 到 500 个字符！" id="comment"></textarea>
-
-        <ul id="comments">
-        </ul>
-    </div>
-</div>
+        <div id="b3logsolocomments"></div>
+        <div id="vcomment" class="comment__wrapper wrapper" style="margin: 40px auto" data-name="ellenbboe" data-postId="1561009678358"></div>
     <div class="article__bottom">
         <div class="wrapper">
             <div class="fn__flex">
@@ -275,6 +340,7 @@ Iuput:<br>
 <footer class="footer">
     <div class="wrapper fn__clear">
         <div class="fn__left">
+            <br>
             &copy; 2020
             <a href="https://ellenbboe.github.io">Kosmos</a>
             <a href="http://www.beian.miit.gov.cn/">浙ICP备18045840号-1</a>--------Let's move on
@@ -303,12 +369,23 @@ show_date_time();
 <style>
 #momk{animation:change 10s infinite;font-weight:800; }
 @keyframes change{0%{color:#5cb85c;}25%{color:#556bd8;}50%{color:#e40707;}75%{color:#66e616;}100% {color:#67bd31;}}
-</style> &nbsp;•&nbsp;
-            Powered by <a href="https://solo.b3log.org" target="_blank">Solo</a>
-            <br>
-            Theme Casper
-            <sup>[<a href="https://github.com/TryGhost/Casper" target="_blank">ref</a>]</sup>
-            by <a href="http://vanessa.b3log.org" target="_blank">Vanessa</a>
+</style>
+<script type="text/javascript">
+    /*自动刷新页面，避免无法访问*/
+    var OriginTitile = document.title;
+    var titleTime;
+    document.addEventListener('visibilitychange', function () {
+        if (document.hidden) {
+            document.title = '(〃´-ω･)  休息一下';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '起来嗨٩(๑❛ᴗ❛๑)۶';
+            titleTime = setTimeout(function () {
+                document.title = OriginTitile;
+            }, 3000);
+        }
+    });
+</script>
         </div>
         <div class="fn__right">
             <a href="https://ellenbboe.github.io/tags.html" rel="section">
@@ -323,36 +400,32 @@ show_date_time();
             友情链接
             </a>
             <br>
-            115 文章 &nbsp;
-            9 评论 &nbsp;
+            121 文章 &nbsp;
             <span data-uvstaturl="https://ellenbboe.github.io">11608</span> 浏览 &nbsp;
-            3 当前访客
+            
         </div>
     </div>
 </footer>
 
-<script type="text/javascript" src="https://ellenbboe.github.io/js/lib/compress/pjax.min.js" charset="utf-8"></script>
-<script type="text/javascript" src="https://ellenbboe.github.io/js/common.min.js?1578931371974"
-        charset="utf-8"></script>
-<script type="text/javascript"
-        src="https://ellenbboe.github.io/skins/Casper/js/common.min.js?1578931371974"
-        charset="utf-8"></script>
-<script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.4/dist/index.min.js"></script>
 <script>
-    var Label = {
-        servePath: "https://ellenbboe.github.io",
-        staticServePath: "https://ellenbboe.github.io",
-        luteAvailable: false,
-        hljsStyle: 'colorful',
-        langLabel: "zh_CN",
-        version: "3.7.0",
-    }
-    Util.init()
+  var Label = {
+    servePath: "https://ellenbboe.github.io",
+    staticServePath: "https://ellenbboe.github.io",
+    luteAvailable: false,
+    hljsStyle: 'colorful',
+    langLabel: "zh_CN",
+    version: "4.1.0",
+    staticSite: true,
+    showCodeBlockLn: false,
+  }
 </script>
+<script type="text/javascript"
+        src="https://ellenbboe.github.io/skins/Casper/js/common.min.js?1591150301084"
+        charset="utf-8"></script>
 
 
 <script type="text/javascript">
-    Util.addScript('https://ellenbboe.github.io/js/page.min.js?1578931371974', 'soloPageScript')
+    Util.addScript('https://ellenbboe.github.io/js/page.min.js?1591150301084', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1561009678358",
@@ -370,4 +443,4 @@ show_date_time();
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 34ms, 2020/01/14 13:32:39 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 49ms, 2020/06/03 12:32:29 -->

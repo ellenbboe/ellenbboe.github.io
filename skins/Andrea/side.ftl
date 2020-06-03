@@ -3,18 +3,12 @@
     Solo - A small and beautiful blogging system written in Java.
     Copyright (c) 2010-present, b3log.org
 
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU Affero General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU Affero General Public License for more details.
-
-    You should have received a copy of the GNU Affero General Public License
-    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+    Solo is licensed under Mulan PSL v2.
+    You can use this software according to the terms and conditions of the Mulan PSL v2.
+    You may obtain a copy of Mulan PSL v2 at:
+            http://license.coscl.org.cn/MulanPSL2
+    THIS SOFTWARE IS PROVIDED ON AN "AS IS" BASIS, WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO NON-INFRINGEMENT, MERCHANTABILITY OR FIT FOR A PARTICULAR PURPOSE.
+    See the Mulan PSL v2 for more details.
 
 -->
 <div class="item" style="margin-top: -35px;">
@@ -37,14 +31,6 @@
                     ${statistic.statisticPublishedBlogArticleCount}
                     </span>
                 </li>
-                <#if commentable>
-                <li>
-                ${commentCount1Label}
-                    <span class='error-msg'>
-                    ${statistic.statisticPublishedBlogCommentCount}
-                    </span>
-                </li>
-                </#if>
             </ul>
         </dd>
     </dl>
@@ -68,62 +54,6 @@
 </div>
 
 <#else>
-    <#if 0 != recentComments?size || 0 != mostCommentArticles?size || 0 != mostViewCountArticles?size>
-    <div class="item">
-        <dl>
-            <#if 0 != mostCommentArticles?size>
-            <dd>
-                <h4>${mostCommentArticlesLabel}</h4>
-                <ul>
-                    <#list mostCommentArticles as article>
-                        <li>
-                            <a rel="nofollow" title="${article.articleTitle}"
-                               href="${servePath}${article.articlePermalink}">
-                                <sup>[${article.articleCommentCount}]</sup>
-                                ${article.articleTitle}
-                            </a>
-                        </li>
-                    </#list>
-                </ul>
-            </dd>
-            </#if>
-            <#if 0 != recentComments?size>
-            <dd>
-                <h4>${recentCommentsLabel}</h4>
-                <ul id="naviComments">
-                    <#list recentComments as comment>
-                        <li>
-                            <a class="author" title="${comment.commentName}" target="_blank" href="${comment.commentURL}">
-                                ${comment.commentName}
-                            </a>:
-                            <a rel="nofollow" class='side-comment' href="${servePath}${comment.commentSharpURL}">
-                                ${comment.commentContent}
-                            </a>
-                        </li>
-                    </#list>
-                </ul>
-            </dd>
-            </#if>
-            <#if 0 != mostViewCountArticles?size>
-            <dd>
-                <h4>${mostViewCountArticlesLabel}</h4>
-                <ul>
-                    <#list mostViewCountArticles as article>
-                        <li>
-                            <a rel="nofollow" title="${article.articleTitle}"
-                               href="${servePath}${article.articlePermalink}">
-                                <sup>[<span data-uvstaturl="${servePath}${article.articlePermalink}">${article.articleViewCount}</span>]</sup>
-                                ${article.articleTitle}
-                            </a>
-                        </li>
-                    </#list>
-                </ul>
-            </dd>
-            </#if>
-        </dl>
-    </div>
-    </#if>
-
     <#if 0 != mostUsedCategories?size || 0 != mostUsedTags?size>
         <div class="item">
             <dl>

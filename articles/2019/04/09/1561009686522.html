@@ -2,31 +2,104 @@
 <html>
 <head>
 <meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>剑指offer_Part4 - Kosmos</title><meta name="description" content="友情提示: 代码在这里 本文参照该仓库学习,大家可以star 30 包含 min 函数的栈 定义栈的数据结构，请在该类型中实现一个能够得到栈最小元素的 min 函数。 31 栈的压入、弹出序列 输入两个整数序列，第一个序列表示栈的压入顺序，请判断第二个序列是否为该栈的弹出顺序。假设压入栈的所有数字均不相等。 例如序列 1,2,3,4,5 是某栈的压入顺序，序列 4,5,3,2,1 是该压栈序列对应的一个弹出序列，但 4,3,5,1,2 就不可能是该压栈序列的弹出序列。 32 从上往下打印二叉树 从上往下打印出二叉树的每个节点，同层节点从左至右打印。 使用队列来进行层次遍历 32-2 把二叉树打印成多行 和上一题一样使用队列 32-3 按之字形顺序打印二叉树 请实现一个函数按照之字形打印二叉树，即第一行按照从左到右的顺序打印，第二层按照从右至左的顺序打印，第三行按照从左到右的顺序打印，其他行以此类推。采用reverse() 33 二叉搜索树的后序遍历序列 输入一个整数数组，判断该数组是不是某二叉搜索树的后序遍历的结果。假设输入的数组的任意两个数字都互不相同。 链接：https://www...."/><meta property="og:description" content="友情提示: 代码在这里 本文参照该仓库学习,大家可以star 30 包含 min 函数的栈 定义栈的数据结构，请在该类型中实现一个能够得到栈最小元素的 min 函数。 31 栈的压入、弹出序列 输入两个整数序列，第一个序列表示栈的压入顺序，请判断第二个序列是否为该栈的弹出顺序。假设压入栈的所有数字均不相等。 例如序列 1,2,3,4,5 是某栈的压入顺序，序列 4,5,3,2,1 是该压栈序列对应的一个弹出序列，但 4,3,5,1,2 就不可能是该压栈序列的弹出序列。 32 从上往下打印二叉树 从上往下打印出二叉树的每个节点，同层节点从左至右打印。 使用队列来进行层次遍历 32-2 把二叉树打印成多行 和上一题一样使用队列 32-3 按之字形顺序打印二叉树 请实现一个函数按照之字形打印二叉树，即第一行按照从左到右的顺序打印，第二层按照从右至左的顺序打印，第三行按照从左到右的顺序打印，其他行以此类推。采用reverse() 33 二叉搜索树的后序遍历序列 输入一个整数数组，判断该数组是不是某二叉搜索树的后序遍历的结果。假设输入的数组的任意两个数字都互不相同。 链接：https://www...."/>    <meta name="keywords" content="开源,开发者,笔记,kosmos"/><link rel="dns-prefetch" href="https://ellenbboe.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://ellenbboe.github.io"><link rel="icon" type="image/png" href="https://s2.ax1x.com/2020/01/12/loApPe.png"/><link rel="apple-touch-icon" href="https://s2.ax1x.com/2020/01/12/loApPe.png"><link rel="shortcut icon" type="image/x-icon" href="https://s2.ax1x.com/2020/01/12/loApPe.png"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="剑指offer_Part4 - Kosmos"/><meta property="og:site_name" content="Kosmos"/><meta property="og:url"      content="https://ellenbboe.github.io/articles/2019/04/09/1561009686522.html?"/><meta property="og:image" content="https://s2.ax1x.com/2020/01/12/loApPe.png"/><link rel="search" type="application/opensearchdescription+xml" title="剑指offer_Part4 - Kosmos" href="/opensearch.xml"><link href="https://ellenbboe.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://ellenbboe.github.io/manifest.json">        <link rel="canonical" href="https://ellenbboe.github.io/articles/2019/04/09/1561009686522.html">        <link rel="stylesheet"
-              href="https://ellenbboe.github.io/skins/Casper/css/base.css?1578931371974"/>
+              href="https://ellenbboe.github.io/skins/Casper/css/base.css?1591150301084"/>
             <link rel="prev" title="操作系统之进程线程" href="https://ellenbboe.github.io/articles/2019/04/07/1561009683315.html">
             <link rel="next" title="操作系统之死锁" href="https://ellenbboe.github.io/articles/2019/04/10/1561009687701.html">
-    </head>
+    <script>
+onload = function() {
+    var click_cnt = 0;
+    var $html = document.getElementsByTagName("html")[0];
+    var $body = document.getElementsByTagName("body")[0];
+    $html.onclick = function(e) {
+        var $elem = document.createElement("b");
+        $elem.style.color = "#E94F06";
+        $elem.style.zIndex = 9999;
+        $elem.style.position = "absolute";
+        $elem.style.select = "none";
+        var x = e.pageX;
+        var y = e.pageY;
+        $elem.style.left = (x - 10) + "px";
+        $elem.style.top = (y - 20) + "px";
+        clearInterval(anim);
+        switch (++click_cnt) {
+            case 10:
+                $elem.innerText = "OωO";
+                break;
+            case 20:
+                $elem.innerText = "(๑•́ ∀ •̀๑)";
+                break;
+            case 30:
+                $elem.innerText = "(๑•́ ₃ •̀๑)";
+                break;
+            case 40:
+                $elem.innerText = "(๑•̀_•́๑)";
+                break;
+            case 50:
+                $elem.innerText = "（￣へ￣）";
+                break;
+            case 60:
+                $elem.innerText = "(╯°口°)╯(┴—┴";
+                break;
+            case 70:
+                $elem.innerText = "૮( ᵒ̌皿ᵒ̌ )ა";
+                break;
+            case 80:
+                $elem.innerText = "╮(｡>口<｡)╭";
+                break;
+            case 90:
+                $elem.innerText = "( ง ᵒ̌皿ᵒ̌)ง⁼³₌₃";
+                break;
+            case 100:
+            case 101:
+            case 102:
+            case 103:
+            case 104:
+            case 105:
+                $elem.innerText = "(ꐦ°᷄д°᷅)";
+                break;
+            default:
+                $elem.innerText = "❤";
+                break;
+        }
+        $elem.style.fontSize = Math.random() * 10 + 8 + "px";
+        var increase = 0;
+        var anim;
+        setTimeout(function() {
+            anim = setInterval(function() {
+                if (++increase == 150) {
+                    clearInterval(anim);
+                    $body.removeChild($elem);
+                }
+                $elem.style.top = y - 20 - increase + "px";
+                $elem.style.opacity = (150 - increase) / 120;
+            }, 8);
+        }, 70);
+        $body.appendChild($elem);
+    };
+};
+</script>
+</head>
 <body class="fn__flex-column">
 <div id="pjax" class="fn__flex-1">
     
     <header class="header header--article">
         <div class="wrapper header__title">
             <h1 class="header__h1 fn__flex-inline">
-                <img src="https://s2.ax1x.com/2020/01/12/loApPe.png">
+                <img src="https://s2.ax1x.com/2020/01/12/loApPe.png" alt="Kosmos">
                 <a href="https://ellenbboe.github.io" rel="start" class="header__title">Kosmos</a>
             </h1>
-            <h2 class="header__h2">---就算是痛苦难受，也要去体会那被称为生存的分量---</h2>
+            <h2 class="header__h2">---我们总得选择一条路去前行---</h2>
         </div>
         <nav class="wrapper header__nav fn__clear">
             <a href="https://ellenbboe.github.io" rel="start">
                     Kosmos
             </a>
 
-                <a class="fn__flex-inline" href="/my-github-repos" target="_self" rel="section">
-                    <img src="/images/github-icon.png"> 我的开源
+                <a class="fn__flex-inline" href="https://github.com/ellenbboe" target="_self" rel="section">
+                    <img src="https://s2.ax1x.com/2020/01/16/ljWMPP.png" alt="我的GIT"> 我的GIT
                 </a>
                 <a class="fn__flex-inline" href="/readlist" target="_self" rel="section">
-                     阅读列表
+                    <img src="https://s2.ax1x.com/2020/01/16/ljWPC6.png" alt="阅读列表"> 阅读列表
                 </a>
 
 
@@ -113,19 +186,19 @@
             <section class="item__content item__content--article vditor-reset">
                 <p>友情提示: 代码在<a href="https://github.com/apersonlikesc/sosoalgorithm" target="_blank">这里</a><br>
 本文参照该<a href="https://github.com/CyC2018/CS-Notes" target="_blank">仓库</a>学习,大家可以star</p>
-<h2 id="b3_solo_h2_0">30  包含 min 函数的栈</h2>
+<h2 id="toc_h2_0">30  包含 min 函数的栈</h2>
 <p>定义栈的数据结构，请在该类型中实现一个能够得到栈最小元素的 min 函数。</p>
-<h2 id="b3_solo_h2_1">31 栈的压入、弹出序列</h2>
+<h2 id="toc_h2_1">31 栈的压入、弹出序列</h2>
 <p>输入两个整数序列，第一个序列表示栈的压入顺序，请判断第二个序列是否为该栈的弹出顺序。假设压入栈的所有数字均不相等。<br>
 例如序列 1,2,3,4,5 是某栈的压入顺序，序列 4,5,3,2,1 是该压栈序列对应的一个弹出序列，但 4,3,5,1,2 就不可能是该压栈序列的弹出序列。</p>
-<h2 id="b3_solo_h2_2">32 从上往下打印二叉树</h2>
+<h2 id="toc_h2_2">32 从上往下打印二叉树</h2>
 <p>从上往下打印出二叉树的每个节点，同层节点从左至右打印。<br>
 使用队列来进行层次遍历</p>
-<h2 id="b3_solo_h2_3">32-2 把二叉树打印成多行</h2>
+<h2 id="toc_h2_3">32-2 把二叉树打印成多行</h2>
 <p>和上一题一样使用队列</p>
-<h2 id="b3_solo_h2_4">32-3 按之字形顺序打印二叉树</h2>
+<h2 id="toc_h2_4">32-3 按之字形顺序打印二叉树</h2>
 <p>请实现一个函数按照之字形打印二叉树，即第一行按照从左到右的顺序打印，第二层按照从右至左的顺序打印，第三行按照从左到右的顺序打印，其他行以此类推。采用reverse()</p>
-<h2 id="b3_solo_h2_5">33 二叉搜索树的后序遍历序列</h2>
+<h2 id="toc_h2_5">33 二叉搜索树的后序遍历序列</h2>
 <p>输入一个整数数组，判断该数组是不是某二叉搜索树的后序遍历的结果。假设输入的数组的任意两个数字都互不相同。<br>
 链接：<a href="https://www.nowcoder.com/questionTerminal/a861533d45854474ac791d90e447bafd" target="_blank">https://www.nowcoder.com/questionTerminal/a861533d45854474ac791d90e447bafd</a><br>
 来源：牛客网</p>
@@ -135,9 +208,9 @@
 2、遍历序列（除去root结点），找到第一个大于root的位置，则该位置左边为左子树，右边为右子树；<br>
 3、遍历右子树，若发现有小于root的值，则直接返回false；<br>
 4、分别判断左子树和右子树是否仍是二叉搜索树（即递归步骤1、2、3）。</p>
-<h2 id="b3_solo_h2_6">34 二叉树中和为某一值的路径</h2>
+<h2 id="toc_h2_6">34 二叉树中和为某一值的路径</h2>
 <p>输入一颗二叉树和一个整数，打印出二叉树中结点值的和为输入整数的所有路径。路径定义为从树的根结点开始往下一直到叶结点所经过的结点形成一条路径。</p>
-<h2 id="b3_solo_h2_7">35 复杂链表的复制</h2>
+<h2 id="toc_h2_7">35 复杂链表的复制</h2>
 <p>输入一个复杂链表（每个节点中有节点值，以及两个指针，一个指向下一个节点，另一个特殊指针指向任意一个节点），返回结果为复制后复杂链表的 head。</p>
 <pre><code class="language-java">public class RandomListNode {
     int label;
@@ -152,14 +225,14 @@
 <p>第一步，在每个节点的后面插入复制的节点。<br>
 第二步，对复制节点的 random 链接进行赋值。<br>
 第三步，拆分。</p>
-<h2 id="b3_solo_h2_8">36 二叉搜索树与双向链表</h2>
+<h2 id="toc_h2_8">36 二叉搜索树与双向链表</h2>
 <p>输入一棵二叉搜索树，将该二叉搜索树转换成一个排序的双向链表。要求不能创建任何新的结点，只能调整树中结点指针的指向。<br>
 中序遍历(-.-)递归 通过前一个结点pre与当前结点进行链接</p>
-<h2 id="b3_solo_h2_9">37 序列化二叉树</h2>
+<h2 id="toc_h2_9">37 序列化二叉树</h2>
 <p>请实现两个函数，分别用来序列化和反序列化二叉树。<br>
 序列化有前序 中序 后序....(刚知道)<br>
 反序列化:遇数作左；遇#变向</p>
-<h2 id="b3_solo_h2_10">38 字符串的排列</h2>
+<h2 id="toc_h2_10">38 字符串的排列</h2>
 <p>输入一个字符串，按字典序打印出该字符串中字符的所有排列。例如输入字符串 abc，则打印出由字符 a, b, c 所能排列出来的所有字符串 abc, acb, bac, bca, cab 和 cba。</p>
 <p>回溯法 <a href="https://blog.csdn.net/u011582757/article/details/79893137" target="_blank">https://blog.csdn.net/u011582757/article/details/79893137</a></p>
 <p>1、递归算法<br>
@@ -202,7 +275,7 @@
 3 4 7 1 2 5 6 8 9<br>
 则347125689为346987521的下一个排列</p>
 <p>(吐了..)</p>
-<h2 id="b3_solo_h2_11">39 数组中出现次数超过一半的数字</h2>
+<h2 id="toc_h2_11">39 数组中出现次数超过一半的数字</h2>
 <p>数组中有一个数字出现的次数超过数组长度的一半，请找出这个数字。例如输入一个长度为9的数组{1,2,3,2,2,2,5,4,2}。由于数字2在数组中出现了5次，超过数组长度的一半，因此输出2。如果不存在则输出0。</p>
 <p>多数投票问题，可以利用 Boyer-Moore Majority Vote Algorithm 来解决这个问题，使得时间复杂度为 O(N)。</p>
 <p>使用 cnt 来统计一个元素出现的次数，当遍历到的元素和统计元素相等时，令 cnt++，否则令 cnt--。如果前面查找了 i 个元素，且 cnt == 0，说明前 i 个元素没有 majority，或者有 majority，但是出现的次数少于 i / 2 ，因为如果多于 i / 2 的话 cnt 就一定不会为 0 。此时剩下的 n - i 个元素中，majority 的数目依然多于 (n - i) / 2，因此继续查找就能找出 majority。</p>
@@ -223,6 +296,7 @@
 地址：<a href="https://ellenbboe.github.io/articles/2019/04/09/1561009686522.html" target="_blank">https://ellenbboe.github.io/articles/2019/04/09/1561009686522.html</a><br>
 <!-- 签名档内可使用 HTML、JavaScript -->
 <br>
+
                     </div>
             </section>
         </div>
@@ -230,53 +304,44 @@
         <div class="post__toc">
 <ul class="article__toc">
         <li class="toc__h2">
-            <a href="#b3_solo_h2_0">30 包含 min 函数的栈</a>
+            <a href="#toc_h2_0">30 包含 min 函数的栈</a>
         </li>
         <li class="toc__h2">
-            <a href="#b3_solo_h2_1">31 栈的压入、弹出序列</a>
+            <a href="#toc_h2_1">31 栈的压入、弹出序列</a>
         </li>
         <li class="toc__h2">
-            <a href="#b3_solo_h2_2">32 从上往下打印二叉树</a>
+            <a href="#toc_h2_2">32 从上往下打印二叉树</a>
         </li>
         <li class="toc__h2">
-            <a href="#b3_solo_h2_3">32-2 把二叉树打印成多行</a>
+            <a href="#toc_h2_3">32-2 把二叉树打印成多行</a>
         </li>
         <li class="toc__h2">
-            <a href="#b3_solo_h2_4">32-3 按之字形顺序打印二叉树</a>
+            <a href="#toc_h2_4">32-3 按之字形顺序打印二叉树</a>
         </li>
         <li class="toc__h2">
-            <a href="#b3_solo_h2_5">33 二叉搜索树的后序遍历序列</a>
+            <a href="#toc_h2_5">33 二叉搜索树的后序遍历序列</a>
         </li>
         <li class="toc__h2">
-            <a href="#b3_solo_h2_6">34 二叉树中和为某一值的路径</a>
+            <a href="#toc_h2_6">34 二叉树中和为某一值的路径</a>
         </li>
         <li class="toc__h2">
-            <a href="#b3_solo_h2_7">35 复杂链表的复制</a>
+            <a href="#toc_h2_7">35 复杂链表的复制</a>
         </li>
         <li class="toc__h2">
-            <a href="#b3_solo_h2_8">36 二叉搜索树与双向链表</a>
+            <a href="#toc_h2_8">36 二叉搜索树与双向链表</a>
         </li>
         <li class="toc__h2">
-            <a href="#b3_solo_h2_9">37 序列化二叉树</a>
+            <a href="#toc_h2_9">37 序列化二叉树</a>
         </li>
         <li class="toc__h2">
-            <a href="#b3_solo_h2_10">38 字符串的排列</a>
+            <a href="#toc_h2_10">38 字符串的排列</a>
         </li>
         <li class="toc__h2">
-            <a href="#b3_solo_h2_11">39 数组中出现次数超过一半的数字</a>
+            <a href="#toc_h2_11">39 数组中出现次数超过一半的数字</a>
         </li>
 </ul>        </div>
-<div class="comment">
-    <div class="comment__wrapper wrapper">
-        <div class="comment__title">
-            评论
-        </div>
-        <textarea rows="3" placeholder="评论内容只能为 2 到 500 个字符！" id="comment"></textarea>
-
-        <ul id="comments">
-        </ul>
-    </div>
-</div>
+        <div id="b3logsolocomments"></div>
+        <div id="vcomment" class="comment__wrapper wrapper" style="margin: 40px auto" data-name="ellenbboe" data-postId="1561009686522"></div>
     <div class="article__bottom">
         <div class="wrapper">
             <div class="fn__flex">
@@ -290,6 +355,7 @@
 <footer class="footer">
     <div class="wrapper fn__clear">
         <div class="fn__left">
+            <br>
             &copy; 2020
             <a href="https://ellenbboe.github.io">Kosmos</a>
             <a href="http://www.beian.miit.gov.cn/">浙ICP备18045840号-1</a>--------Let's move on
@@ -318,12 +384,23 @@ show_date_time();
 <style>
 #momk{animation:change 10s infinite;font-weight:800; }
 @keyframes change{0%{color:#5cb85c;}25%{color:#556bd8;}50%{color:#e40707;}75%{color:#66e616;}100% {color:#67bd31;}}
-</style> &nbsp;•&nbsp;
-            Powered by <a href="https://solo.b3log.org" target="_blank">Solo</a>
-            <br>
-            Theme Casper
-            <sup>[<a href="https://github.com/TryGhost/Casper" target="_blank">ref</a>]</sup>
-            by <a href="http://vanessa.b3log.org" target="_blank">Vanessa</a>
+</style>
+<script type="text/javascript">
+    /*自动刷新页面，避免无法访问*/
+    var OriginTitile = document.title;
+    var titleTime;
+    document.addEventListener('visibilitychange', function () {
+        if (document.hidden) {
+            document.title = '(〃´-ω･)  休息一下';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '起来嗨٩(๑❛ᴗ❛๑)۶';
+            titleTime = setTimeout(function () {
+                document.title = OriginTitile;
+            }, 3000);
+        }
+    });
+</script>
         </div>
         <div class="fn__right">
             <a href="https://ellenbboe.github.io/tags.html" rel="section">
@@ -338,36 +415,32 @@ show_date_time();
             友情链接
             </a>
             <br>
-            115 文章 &nbsp;
-            9 评论 &nbsp;
+            121 文章 &nbsp;
             <span data-uvstaturl="https://ellenbboe.github.io">11608</span> 浏览 &nbsp;
-            3 当前访客
+            
         </div>
     </div>
 </footer>
 
-<script type="text/javascript" src="https://ellenbboe.github.io/js/lib/compress/pjax.min.js" charset="utf-8"></script>
-<script type="text/javascript" src="https://ellenbboe.github.io/js/common.min.js?1578931371974"
-        charset="utf-8"></script>
-<script type="text/javascript"
-        src="https://ellenbboe.github.io/skins/Casper/js/common.min.js?1578931371974"
-        charset="utf-8"></script>
-<script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.4/dist/index.min.js"></script>
 <script>
-    var Label = {
-        servePath: "https://ellenbboe.github.io",
-        staticServePath: "https://ellenbboe.github.io",
-        luteAvailable: false,
-        hljsStyle: 'colorful',
-        langLabel: "zh_CN",
-        version: "3.7.0",
-    }
-    Util.init()
+  var Label = {
+    servePath: "https://ellenbboe.github.io",
+    staticServePath: "https://ellenbboe.github.io",
+    luteAvailable: false,
+    hljsStyle: 'colorful',
+    langLabel: "zh_CN",
+    version: "4.1.0",
+    staticSite: true,
+    showCodeBlockLn: false,
+  }
 </script>
+<script type="text/javascript"
+        src="https://ellenbboe.github.io/skins/Casper/js/common.min.js?1591150301084"
+        charset="utf-8"></script>
 
 
 <script type="text/javascript">
-    Util.addScript('https://ellenbboe.github.io/js/page.min.js?1578931371974', 'soloPageScript')
+    Util.addScript('https://ellenbboe.github.io/js/page.min.js?1591150301084', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1561009686522",
@@ -385,4 +458,4 @@ show_date_time();
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 40ms, 2020/01/14 13:32:40 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 76ms, 2020/06/03 12:32:29 -->

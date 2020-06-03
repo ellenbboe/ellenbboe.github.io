@@ -2,31 +2,104 @@
 <html>
 <head>
 <meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>Scrapy Pass 4 - Kosmos</title><meta name="description" content="Command line tool New in version 0.10. Scrapy is controlled through the scrapy command-line tool, to be referred here as the “Scrapy tool” to differentiate it from the sub-commands, which we just call “commands” or “Scrapy commands”. The Scrapy tool provides several commands, for multiple purposes, and each one accepts a different set of arguments and options. Configuration settings Scrapy will look for configuration parameters in ini-style scrapy.cfg files in standard locations: /etc/scrapy.cf...."/><meta property="og:description" content="Command line tool New in version 0.10. Scrapy is controlled through the scrapy command-line tool, to be referred here as the “Scrapy tool” to differentiate it from the sub-commands, which we just call “commands” or “Scrapy commands”. The Scrapy tool provides several commands, for multiple purposes, and each one accepts a different set of arguments and options. Configuration settings Scrapy will look for configuration parameters in ini-style scrapy.cfg files in standard locations: /etc/scrapy.cf...."/>    <meta name="keywords" content="开源,开发者,笔记,kosmos"/><link rel="dns-prefetch" href="https://ellenbboe.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://ellenbboe.github.io"><link rel="icon" type="image/png" href="https://s2.ax1x.com/2020/01/12/loApPe.png"/><link rel="apple-touch-icon" href="https://s2.ax1x.com/2020/01/12/loApPe.png"><link rel="shortcut icon" type="image/x-icon" href="https://s2.ax1x.com/2020/01/12/loApPe.png"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="Scrapy Pass 4 - Kosmos"/><meta property="og:site_name" content="Kosmos"/><meta property="og:url"      content="https://ellenbboe.github.io/articles/2018/08/17/1561009675994.html?"/><meta property="og:image" content="https://s2.ax1x.com/2020/01/12/loApPe.png"/><link rel="search" type="application/opensearchdescription+xml" title="Scrapy Pass 4 - Kosmos" href="/opensearch.xml"><link href="https://ellenbboe.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://ellenbboe.github.io/manifest.json">        <link rel="canonical" href="https://ellenbboe.github.io/articles/2018/08/17/1561009675994.html">        <link rel="stylesheet"
-              href="https://ellenbboe.github.io/skins/Casper/css/base.css?1578931371974"/>
+              href="https://ellenbboe.github.io/skins/Casper/css/base.css?1591150301084"/>
             <link rel="prev" title="2018-08-17" href="https://ellenbboe.github.io/articles/2018/08/17/1561009684132.html">
             <link rel="next" title="2018-08-18" href="https://ellenbboe.github.io/articles/2018/08/18/1561009681248.html">
-    </head>
+    <script>
+onload = function() {
+    var click_cnt = 0;
+    var $html = document.getElementsByTagName("html")[0];
+    var $body = document.getElementsByTagName("body")[0];
+    $html.onclick = function(e) {
+        var $elem = document.createElement("b");
+        $elem.style.color = "#E94F06";
+        $elem.style.zIndex = 9999;
+        $elem.style.position = "absolute";
+        $elem.style.select = "none";
+        var x = e.pageX;
+        var y = e.pageY;
+        $elem.style.left = (x - 10) + "px";
+        $elem.style.top = (y - 20) + "px";
+        clearInterval(anim);
+        switch (++click_cnt) {
+            case 10:
+                $elem.innerText = "OωO";
+                break;
+            case 20:
+                $elem.innerText = "(๑•́ ∀ •̀๑)";
+                break;
+            case 30:
+                $elem.innerText = "(๑•́ ₃ •̀๑)";
+                break;
+            case 40:
+                $elem.innerText = "(๑•̀_•́๑)";
+                break;
+            case 50:
+                $elem.innerText = "（￣へ￣）";
+                break;
+            case 60:
+                $elem.innerText = "(╯°口°)╯(┴—┴";
+                break;
+            case 70:
+                $elem.innerText = "૮( ᵒ̌皿ᵒ̌ )ა";
+                break;
+            case 80:
+                $elem.innerText = "╮(｡>口<｡)╭";
+                break;
+            case 90:
+                $elem.innerText = "( ง ᵒ̌皿ᵒ̌)ง⁼³₌₃";
+                break;
+            case 100:
+            case 101:
+            case 102:
+            case 103:
+            case 104:
+            case 105:
+                $elem.innerText = "(ꐦ°᷄д°᷅)";
+                break;
+            default:
+                $elem.innerText = "❤";
+                break;
+        }
+        $elem.style.fontSize = Math.random() * 10 + 8 + "px";
+        var increase = 0;
+        var anim;
+        setTimeout(function() {
+            anim = setInterval(function() {
+                if (++increase == 150) {
+                    clearInterval(anim);
+                    $body.removeChild($elem);
+                }
+                $elem.style.top = y - 20 - increase + "px";
+                $elem.style.opacity = (150 - increase) / 120;
+            }, 8);
+        }, 70);
+        $body.appendChild($elem);
+    };
+};
+</script>
+</head>
 <body class="fn__flex-column">
 <div id="pjax" class="fn__flex-1">
     
     <header class="header header--article">
         <div class="wrapper header__title">
             <h1 class="header__h1 fn__flex-inline">
-                <img src="https://s2.ax1x.com/2020/01/12/loApPe.png">
+                <img src="https://s2.ax1x.com/2020/01/12/loApPe.png" alt="Kosmos">
                 <a href="https://ellenbboe.github.io" rel="start" class="header__title">Kosmos</a>
             </h1>
-            <h2 class="header__h2">---就算是痛苦难受，也要去体会那被称为生存的分量---</h2>
+            <h2 class="header__h2">---我们总得选择一条路去前行---</h2>
         </div>
         <nav class="wrapper header__nav fn__clear">
             <a href="https://ellenbboe.github.io" rel="start">
                     Kosmos
             </a>
 
-                <a class="fn__flex-inline" href="/my-github-repos" target="_self" rel="section">
-                    <img src="/images/github-icon.png"> 我的开源
+                <a class="fn__flex-inline" href="https://github.com/ellenbboe" target="_self" rel="section">
+                    <img src="https://s2.ax1x.com/2020/01/16/ljWMPP.png" alt="我的GIT"> 我的GIT
                 </a>
                 <a class="fn__flex-inline" href="/readlist" target="_self" rel="section">
-                     阅读列表
+                    <img src="https://s2.ax1x.com/2020/01/16/ljWPC6.png" alt="阅读列表"> 阅读列表
                 </a>
 
 
@@ -111,11 +184,11 @@
         <div class="item__cover" style="background-image: url(https://img.hacpai.com/bing/20180909.jpg?imageView2/1/w/1280/h/720/interlace/1/q/100)"></div>
         <div class="wrapper">
             <section class="item__content item__content--article vditor-reset">
-                <p></p><h2 id="b3_solo_h2_0">Command line tool</h2>
+                <h2 id="toc_h2_0">Command line tool</h2>
 <p>New in version 0.10.</p>
 <p>Scrapy is controlled through the <code>scrapy</code> command-line tool, to be referred here as the “Scrapy tool” to differentiate it from the sub-commands, which we just call “<code>commands</code>” or “<code>Scrapy commands</code>”.</p>
 <p>The Scrapy tool provides several commands, for multiple purposes, and each one accepts a different set of arguments and options.</p>
-<h3 id="b3_solo_h3_1">Configuration settings</h3>
+<h3 id="toc_h3_1">Configuration settings</h3>
 <p>Scrapy will <strong>look for</strong> configuration parameters in ini-style <code>scrapy.cfg</code> files in standard locations:</p>
 <ol>
 <li><code>/etc/scrapy.cfg</code> or <code>c:\scrapy\scrapy.cfg</code> (system-wide),</li>
@@ -130,7 +203,7 @@ Scrapy also understands, and can be configured through, a number of environment 
 SCRAPY_PROJECT<br>
 SCRAPY_PYTHON_SHELL (see Scrapy shell)</p>
 </blockquote>
-<h3 id="b3_solo_h3_2">Default structure of Scrapy projects</h3>
+<h3 id="toc_h3_2">Default structure of Scrapy projects</h3>
 <p>Before delving into the command-line tool and its sub-commands, let’s first understand the directory structure of a Scrapy project.</p>
 <p>Though it can be modified, all Scrapy projects have the same file structure by default, similar to this:</p>
 <pre><code>scrapy.cfg
@@ -150,7 +223,7 @@ myproject/
 <pre><code>[settings]
 default = myproject.settings
 </code></pre>
-<h3 id="b3_solo_h3_3">Using the scrapy tool</h3>
+<h3 id="toc_h3_3">Using the scrapy tool</h3>
 <p>You can start by running the Scrapy tool with no arguments and it will print some usage help and the available commands:</p>
 <pre><code>Scrapy X.Y - no active project
 
@@ -170,26 +243,26 @@ Usage:
 
 [...]
 </code></pre>
-<h3 id="b3_solo_h3_4">Creating projects</h3>
+<h3 id="toc_h3_4">Creating projects</h3>
 <p>The first thing you typically do with the scrapy tool is create your Scrapy project:<br>
 <code>scrapy startproject myproject [project_dir]</code><br>
 That will create a Scrapy project under the project_dir directory. If project_dir wasn’t specified, project_dir will be the same as myproject.<br>
 Next, you go inside the new project directory:<br>
 <code>cd project_dir</code><br>
 And you’re ready to use the <code>scrapy command</code> to manage and control your project from <strong>there</strong>(<strong>project_dir</strong>).</p>
-<h3 id="b3_solo_h3_5">Controlling projects</h3>
+<h3 id="toc_h3_5">Controlling projects</h3>
 <p>You use the scrapy tool from inside your projects to control and manage them.<br>
 For example, to create a new spider:<br>
 <code>scrapy genspider mydomain mydomain.com</code><br>
 Some Scrapy commands (like <code>crawl</code>) must be run from <strong>inside</strong> a Scrapy project.</p>
 <p>Also keep in mind that some commands may have slightly different behaviours when running them from inside projects. For example, the fetch command will use spider-overridden behaviours (such as the <code>user_agent</code> attribute to override the user-agent) if the url being fetched is associated with some specific spider. This is intentional, as the fetch command is meant to be used to check how spiders are downloading pages.(注意某一些特殊命令会有不同的行为,这不废话吗)</p>
-<h3 id="b3_solo_h3_6">Available tool commands</h3>
+<h3 id="toc_h3_6">Available tool commands</h3>
 <p>This section contains a list of the available built-in commands with a description and some usage examples. Remember, you can always get more info about each command by running:<br>
 <code>scrapy &lt;command&gt; -h</code><br>
 And you can see all available commands with:<br>
 <code>scrapy -h</code><br>
 There are <strong>two</strong> kinds of commands, those that only work from inside a Scrapy project (<strong>Project-specific commands</strong>) and those that also work without an active Scrapy project (<strong>Global commands</strong>), though they may behave slightly different when running from inside a project (as they would use the project overridden settings).</p>
-<h4 id="b3_solo_h4_7">Global commands:</h4>
+<h4 id="toc_h4_7">Global commands:</h4>
 <pre><code>startproject
 genspider
 settings
@@ -199,7 +272,7 @@ fetch
 view
 version
 </code></pre>
-<h4 id="b3_solo_h4_8">Project-only commands:</h4>
+<h4 id="toc_h4_8">Project-only commands:</h4>
 <pre><code>crawl
 check
 list
@@ -207,7 +280,7 @@ edit
 parse
 bench
 </code></pre>
-<h4 id="b3_solo_h4_9">startproject(创建项目)</h4>
+<h4 id="toc_h4_9">startproject(创建项目)</h4>
 <blockquote>
 <p>Syntax: scrapy startproject &lt;project_name&gt; [project_dir]<br>
 Requires project: no</p>
@@ -215,7 +288,7 @@ Requires project: no</p>
 <p>Creates a new <code>Scrapy projec</code>t named <code>project_name</code>, under the project_dir directory. If <code>project_dir</code> wasn’t specified, <code>project_dir</code> will be the same as <code>project_name</code>.</p>
 <p>Usage example:<br>
 <code>$ scrapy startproject myproject</code></p>
-<h4 id="b3_solo_h4_10">genspider</h4>
+<h4 id="toc_h4_10">genspider</h4>
 <blockquote>
 <p>Syntax: scrapy genspider [-t template] <name> <domain><br>
 Requires project: no</domain></name></p>
@@ -236,7 +309,7 @@ $ scrapy genspider -t crawl scrapyorg scrapy.org
 Created spider 'scrapyorg' using template 'crawl'
 </code></pre>
 <p>This is just a convenience shortcut command for creating spiders based on pre-defined templates, but certainly not the only way to create spiders. You can just create the spider source code files yourself, instead of using this command.</p>
-<h4 id="b3_solo_h4_11">crawl</h4>
+<h4 id="toc_h4_11">crawl</h4>
 <blockquote>
 <p>Syntax: scrapy crawl <spider><br>
 Requires project: yes<br>
@@ -246,7 +319,7 @@ Start crawling using a spider.</spider></p>
 <pre><code>$ scrapy crawl myspider
 [ ... myspider starts crawling ... ]
 </code></pre>
-<h4 id="b3_solo_h4_12">check</h4>
+<h4 id="toc_h4_12">check</h4>
 <blockquote>
 <p>Syntax: scrapy check [-l] <spider><br>
 Requires project: yes<br>
@@ -268,7 +341,7 @@ $ scrapy check
 [FAILED] first_spider:parse
 &gt;&gt;&gt; Returned 92 requests, expected 0..4
 </code></pre>
-<h4 id="b3_solo_h4_13">list(列出项目中的所有spider)</h4>
+<h4 id="toc_h4_13">list(列出项目中的所有spider)</h4>
 <blockquote>
 <p>Syntax: scrapy list<br>
 Requires project: yes<br>
@@ -279,7 +352,7 @@ List all available <strong>spiders</strong> in the current project. The output i
 spider1
 spider2
 </code></pre>
-<h4 id="b3_solo_h4_14">edit(编辑)</h4>
+<h4 id="toc_h4_14">edit(编辑)</h4>
 <blockquote>
 <p>Syntax: scrapy edit <spider><br>
 Requires project: yes<br>
@@ -290,7 +363,7 @@ Edit the given spider using the editor defined in the EDITOR environment variabl
 <p>Usage example:</p>
 <pre><code>$ scrapy edit spider1
 </code></pre>
-<h4 id="b3_solo_h4_15">fetch (下载页面代码)</h4>
+<h4 id="toc_h4_15">fetch (下载页面代码)</h4>
 <blockquote>
 <p>Syntax: scrapy fetch <url><br>
 Requires project: no<br>
@@ -318,7 +391,7 @@ $ scrapy fetch --nolog --headers http://www.example.com/
  'Last-Modified': ['Fri, 30 Jul 2010 15:30:18 GMT'],
  'Server': ['Apache/2.2.3 (CentOS)']}
 </code></pre>
-<h4 id="b3_solo_h4_16">view</h4>
+<h4 id="toc_h4_16">view</h4>
 <blockquote>
 <p>Syntax: scrapy view <url><br>
 Requires project: no<br>
@@ -331,7 +404,7 @@ Usage example:</p>
 <pre><code>$ scrapy view http://www.example.com/some/page.html
 [ ... browser starts ... ]
 </code></pre>
-<h4 id="b3_solo_h4_17">shell</h4>
+<h4 id="toc_h4_17">shell</h4>
 <blockquote>
 <p>Syntax: scrapy shell [url]<br>
 Requires project: no<br>
@@ -357,7 +430,7 @@ $ scrapy shell --nolog http://httpbin.org/redirect-to?url=http%3A%2F%2Fexample.c
 $ scrapy shell --no-redirect --nolog http://httpbin.org/redirect-to?url=http%3A%2F%2Fexample.com%2F -c '(response.status, response.url)'
 (302, 'http://httpbin.org/redirect-to?url=http%3A%2F%2Fexample.com%2F')
 </code></pre>
-<h4 id="b3_solo_h4_18">parse</h4>
+<h4 id="toc_h4_18">parse</h4>
 <blockquote>
 <p>Syntax: scrapy parse <url> [options]<br>
 Requires project: yes<br>
@@ -388,7 +461,7 @@ Usage example:</p>
 # Requests  -----------------------------------------------------------------
 []
 </code></pre>
-<h4 id="b3_solo_h4_19">settings</h4>
+<h4 id="toc_h4_19">settings</h4>
 <blockquote>
 <p>Syntax: scrapy settings [options]<br>
 Requires project: no<br>
@@ -401,7 +474,7 @@ scrapybot
 $ scrapy settings --get DOWNLOAD_DELAY
 0
 </code></pre>
-<h4 id="b3_solo_h4_20">runspider(单纯的运行文件)</h4>
+<h4 id="toc_h4_20">runspider(单纯的运行文件)</h4>
 <blockquote>
 <p>Syntax: scrapy runspider &lt;spider_file.py&gt;<br>
 Requires project: no<br>
@@ -411,20 +484,19 @@ Run a spider self-contained in a Python file, without having to create a project
 <pre><code>$ scrapy runspider myspider.py
 [ ... spider starts crawling ... ]
 </code></pre>
-<h4 id="b3_solo_h4_21">version</h4>
+<h4 id="toc_h4_21">version</h4>
 <blockquote>
 <p>Syntax: scrapy version [-v]<br>
 Requires project: no<br>
 Prints the Scrapy version. If used with -v it also prints Python, Twisted and Platform info, which is useful for bug reports.</p>
 </blockquote>
-<h4 id="b3_solo_h4_22">bench(估计用不着)</h4>
+<h4 id="toc_h4_22">bench(估计用不着)</h4>
 <p>New in version 0.17.</p>
 <blockquote>
 <p>Syntax: scrapy bench<br>
 Requires project: no<br>
 Run a quick benchmark test. Benchmarking.</p>
 </blockquote>
-<p></p>
                     <div>
                         <hr>
 <img alt="今日诗词" src="https://v2.jinrishici.com/one.svg" style="max-width:100%; display: block; margin: 0 auto;">
@@ -434,6 +506,7 @@ Run a quick benchmark test. Benchmarking.</p>
 地址：<a href="https://ellenbboe.github.io/articles/2018/08/17/1561009675994.html" target="_blank">https://ellenbboe.github.io/articles/2018/08/17/1561009675994.html</a><br>
 <!-- 签名档内可使用 HTML、JavaScript -->
 <br>
+
                     </div>
             </section>
         </div>
@@ -441,86 +514,77 @@ Run a quick benchmark test. Benchmarking.</p>
         <div class="post__toc">
 <ul class="article__toc">
         <li class="toc__h2">
-            <a href="#b3_solo_h2_0">Command line tool</a>
+            <a href="#toc_h2_0">Command line tool</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_1">Configuration settings</a>
+            <a href="#toc_h3_1">Configuration settings</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_2">Default structure of Scrapy projects</a>
+            <a href="#toc_h3_2">Default structure of Scrapy projects</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_3">Using the scrapy tool</a>
+            <a href="#toc_h3_3">Using the scrapy tool</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_4">Creating projects</a>
+            <a href="#toc_h3_4">Creating projects</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_5">Controlling projects</a>
+            <a href="#toc_h3_5">Controlling projects</a>
         </li>
         <li class="toc__h3">
-            <a href="#b3_solo_h3_6">Available tool commands</a>
+            <a href="#toc_h3_6">Available tool commands</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_7">Global commands:</a>
+            <a href="#toc_h4_7">Global commands:</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_8">Project-only commands:</a>
+            <a href="#toc_h4_8">Project-only commands:</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_9">startproject(创建项目)</a>
+            <a href="#toc_h4_9">startproject(创建项目)</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_10">genspider</a>
+            <a href="#toc_h4_10">genspider</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_11">crawl</a>
+            <a href="#toc_h4_11">crawl</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_12">check</a>
+            <a href="#toc_h4_12">check</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_13">list(列出项目中的所有spider)</a>
+            <a href="#toc_h4_13">list(列出项目中的所有spider)</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_14">edit(编辑)</a>
+            <a href="#toc_h4_14">edit(编辑)</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_15">fetch (下载页面代码)</a>
+            <a href="#toc_h4_15">fetch (下载页面代码)</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_16">view</a>
+            <a href="#toc_h4_16">view</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_17">shell</a>
+            <a href="#toc_h4_17">shell</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_18">parse</a>
+            <a href="#toc_h4_18">parse</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_19">settings</a>
+            <a href="#toc_h4_19">settings</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_20">runspider(单纯的运行文件)</a>
+            <a href="#toc_h4_20">runspider(单纯的运行文件)</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_21">version</a>
+            <a href="#toc_h4_21">version</a>
         </li>
         <li class="toc__h4">
-            <a href="#b3_solo_h4_22">bench(估计用不着)</a>
+            <a href="#toc_h4_22">bench(估计用不着)</a>
         </li>
 </ul>        </div>
-<div class="comment">
-    <div class="comment__wrapper wrapper">
-        <div class="comment__title">
-            评论
-        </div>
-        <textarea rows="3" placeholder="评论内容只能为 2 到 500 个字符！" id="comment"></textarea>
-
-        <ul id="comments">
-        </ul>
-    </div>
-</div>
+        <div id="b3logsolocomments"></div>
+        <div id="vcomment" class="comment__wrapper wrapper" style="margin: 40px auto" data-name="ellenbboe" data-postId="1561009675994"></div>
     <div class="article__bottom">
         <div class="wrapper">
             <div class="fn__flex">
@@ -534,6 +598,7 @@ Run a quick benchmark test. Benchmarking.</p>
 <footer class="footer">
     <div class="wrapper fn__clear">
         <div class="fn__left">
+            <br>
             &copy; 2020
             <a href="https://ellenbboe.github.io">Kosmos</a>
             <a href="http://www.beian.miit.gov.cn/">浙ICP备18045840号-1</a>--------Let's move on
@@ -562,12 +627,23 @@ show_date_time();
 <style>
 #momk{animation:change 10s infinite;font-weight:800; }
 @keyframes change{0%{color:#5cb85c;}25%{color:#556bd8;}50%{color:#e40707;}75%{color:#66e616;}100% {color:#67bd31;}}
-</style> &nbsp;•&nbsp;
-            Powered by <a href="https://solo.b3log.org" target="_blank">Solo</a>
-            <br>
-            Theme Casper
-            <sup>[<a href="https://github.com/TryGhost/Casper" target="_blank">ref</a>]</sup>
-            by <a href="http://vanessa.b3log.org" target="_blank">Vanessa</a>
+</style>
+<script type="text/javascript">
+    /*自动刷新页面，避免无法访问*/
+    var OriginTitile = document.title;
+    var titleTime;
+    document.addEventListener('visibilitychange', function () {
+        if (document.hidden) {
+            document.title = '(〃´-ω･)  休息一下';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '起来嗨٩(๑❛ᴗ❛๑)۶';
+            titleTime = setTimeout(function () {
+                document.title = OriginTitile;
+            }, 3000);
+        }
+    });
+</script>
         </div>
         <div class="fn__right">
             <a href="https://ellenbboe.github.io/tags.html" rel="section">
@@ -582,36 +658,32 @@ show_date_time();
             友情链接
             </a>
             <br>
-            115 文章 &nbsp;
-            9 评论 &nbsp;
+            121 文章 &nbsp;
             <span data-uvstaturl="https://ellenbboe.github.io">11608</span> 浏览 &nbsp;
-            3 当前访客
+            
         </div>
     </div>
 </footer>
 
-<script type="text/javascript" src="https://ellenbboe.github.io/js/lib/compress/pjax.min.js" charset="utf-8"></script>
-<script type="text/javascript" src="https://ellenbboe.github.io/js/common.min.js?1578931371974"
-        charset="utf-8"></script>
-<script type="text/javascript"
-        src="https://ellenbboe.github.io/skins/Casper/js/common.min.js?1578931371974"
-        charset="utf-8"></script>
-<script src="https://cdn.jsdelivr.net/npm/uvstat@v1.0.4/dist/index.min.js"></script>
 <script>
-    var Label = {
-        servePath: "https://ellenbboe.github.io",
-        staticServePath: "https://ellenbboe.github.io",
-        luteAvailable: false,
-        hljsStyle: 'colorful',
-        langLabel: "zh_CN",
-        version: "3.7.0",
-    }
-    Util.init()
+  var Label = {
+    servePath: "https://ellenbboe.github.io",
+    staticServePath: "https://ellenbboe.github.io",
+    luteAvailable: false,
+    hljsStyle: 'colorful',
+    langLabel: "zh_CN",
+    version: "4.1.0",
+    staticSite: true,
+    showCodeBlockLn: false,
+  }
 </script>
+<script type="text/javascript"
+        src="https://ellenbboe.github.io/skins/Casper/js/common.min.js?1591150301084"
+        charset="utf-8"></script>
 
 
 <script type="text/javascript">
-    Util.addScript('https://ellenbboe.github.io/js/page.min.js?1578931371974', 'soloPageScript')
+    Util.addScript('https://ellenbboe.github.io/js/page.min.js?1591150301084', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
         "oId": "1561009675994",
@@ -629,4 +701,4 @@ show_date_time();
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 37ms, 2020/01/14 13:32:40 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 98ms, 2020/06/03 12:32:31 -->
