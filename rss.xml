@@ -6,17 +6,27 @@
     <atom:link href="https://ellenbboe.github.io/rss.xml" rel="self" type="application/rss+xml"/>
     <description>---我们总得选择一条路去前行---</description>
     <generator>Solo, v4.1.0, https://solo.b3log.org</generator>
-    <lastBuildDate>Wed, 03 Jun 2020 12:32:26 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 09 Jun 2020 19:52:14 +0800</lastBuildDate>
     <language>zh-cn</language>
+    <item>
+      <title>喂，那前面可是地狱啊。</title>
+      <link>https://ellenbboe.github.io/articles/2020/05/02/1588408685679.html</link>
+      <description/>
+      <author>ellenbboe</author>
+      <guid>https://ellenbboe.github.io/articles/2020/05/02/1588408685679.html</guid>
+      <category>情感</category>
+      <category>日常</category>
+      <pubDate>Mon, 08 Jun 2020 08:55:30 +0800</pubDate>
+    </item>
     <item>
       <title>游戏记忆-鬼泣5</title>
       <link>https://ellenbboe.github.io/articles/2020/05/17/1589701554726.html</link>
       <description><![CDATA[<p>游戏截图</p>]]></description>
       <author>ellenbboe</author>
       <guid>https://ellenbboe.github.io/articles/2020/05/17/1589701554726.html</guid>
-      <category>游戏</category>
-      <category>美图</category>
       <category>日常</category>
+      <category>美图</category>
+      <category>游戏</category>
       <pubDate>Sun, 17 May 2020 15:54:14 +0800</pubDate>
     </item>
     <item>
@@ -25,9 +35,9 @@
       <description><![CDATA[<p>游戏截图</p>]]></description>
       <author>ellenbboe</author>
       <guid>https://ellenbboe.github.io/articles/2020/05/17/1589701375714.html</guid>
+      <category>日常</category>
       <category>美图</category>
       <category>游戏</category>
-      <category>日常</category>
       <pubDate>Sun, 17 May 2020 15:42:55 +0800</pubDate>
     </item>
     <item>
@@ -47,9 +57,9 @@
       <description><![CDATA[<p>游戏截图</p>]]></description>
       <author>ellenbboe</author>
       <guid>https://ellenbboe.github.io/articles/2020/05/17/1589700629891.html</guid>
-      <category>日常</category>
       <category>游戏</category>
       <category>美图</category>
+      <category>日常</category>
       <pubDate>Sun, 17 May 2020 15:36:55 +0800</pubDate>
     </item>
     <item>
@@ -58,9 +68,9 @@
       <description><![CDATA[<p>游戏截图</p>]]></description>
       <author>ellenbboe</author>
       <guid>https://ellenbboe.github.io/articles/2020/05/17/1589700910835.html</guid>
-      <category>游戏</category>
       <category>日常</category>
       <category>美图</category>
+      <category>游戏</category>
       <pubDate>Sun, 17 May 2020 15:36:25 +0800</pubDate>
     </item>
     <item>
@@ -88,8 +98,8 @@
       <description><![CDATA[<p>]]>👶<![CDATA[ MyBatis 与 MyBatisPlus 生成代码</p>]]></description>
       <author>ellenbboe</author>
       <guid>https://ellenbboe.github.io/articles/2019/12/15/1576386330771.html</guid>
-      <category>Mybatis</category>
       <category>Mysql</category>
+      <category>Mybatis</category>
       <pubDate>Sat, 25 Jan 2020 14:56:35 +0800</pubDate>
     </item>
     <item>
@@ -100,19 +110,10 @@
       <author>ellenbboe</author>
       <guid>https://ellenbboe.github.io/articles/2019/12/09/1575889655832.html</guid>
       <category>笔记</category>
-      <category>异常</category>
       <category>总结</category>
+      <category>异常</category>
       <category>日志</category>
       <pubDate>Mon, 20 Jan 2020 12:37:51 +0800</pubDate>
-    </item>
-    <item>
-      <title>千磨万击还坚劲,任尔东南西北风 For 2019</title>
-      <link>https://ellenbboe.github.io/articles/2020/01/12/1578804303182.html</link>
-      <description><![CDATA[<p>总结过去，面向未来，冲冲冲 ]]>😿<![CDATA[</p>]]></description>
-      <author>ellenbboe</author>
-      <guid>https://ellenbboe.github.io/articles/2020/01/12/1578804303182.html</guid>
-      <category>总结</category>
-      <pubDate>Sun, 12 Jan 2020 14:04:39 +0800</pubDate>
     </item>
   </channel>
 </rss>
