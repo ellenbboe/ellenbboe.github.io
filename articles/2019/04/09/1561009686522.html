@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>剑指offer_Part4 - Kosmos</title><meta name="description" content="友情提示: 代码在这里 本文参照该仓库学习,大家可以star 30 包含 min 函数的栈 定义栈的数据结构，请在该类型中实现一个能够得到栈最小元素的 min 函数。 31 栈的压入、弹出序列 输入两个整数序列，第一个序列表示栈的压入顺序，请判断第二个序列是否为该栈的弹出顺序。假设压入栈的所有数字均不相等。 例如序列 1,2,3,4,5 是某栈的压入顺序，序列 4,5,3,2,1 是该压栈序列对应的一个弹出序列，但 4,3,5,1,2 就不可能是该压栈序列的弹出序列。 32 从上往下打印二叉树 从上往下打印出二叉树的每个节点，同层节点从左至右打印。 使用队列来进行层次遍历 32-2 把二叉树打印成多行 和上一题一样使用队列 32-3 按之字形顺序打印二叉树 请实现一个函数按照之字形打印二叉树，即第一行按照从左到右的顺序打印，第二层按照从右至左的顺序打印，第三行按照从左到右的顺序打印，其他行以此类推。采用reverse() 33 二叉搜索树的后序遍历序列 输入一个整数数组，判断该数组是不是某二叉搜索树的后序遍历的结果。假设输入的数组的任意两个数字都互不相同。 链接：https://www...."/><meta property="og:description" content="友情提示: 代码在这里 本文参照该仓库学习,大家可以star 30 包含 min 函数的栈 定义栈的数据结构，请在该类型中实现一个能够得到栈最小元素的 min 函数。 31 栈的压入、弹出序列 输入两个整数序列，第一个序列表示栈的压入顺序，请判断第二个序列是否为该栈的弹出顺序。假设压入栈的所有数字均不相等。 例如序列 1,2,3,4,5 是某栈的压入顺序，序列 4,5,3,2,1 是该压栈序列对应的一个弹出序列，但 4,3,5,1,2 就不可能是该压栈序列的弹出序列。 32 从上往下打印二叉树 从上往下打印出二叉树的每个节点，同层节点从左至右打印。 使用队列来进行层次遍历 32-2 把二叉树打印成多行 和上一题一样使用队列 32-3 按之字形顺序打印二叉树 请实现一个函数按照之字形打印二叉树，即第一行按照从左到右的顺序打印，第二层按照从右至左的顺序打印，第三行按照从左到右的顺序打印，其他行以此类推。采用reverse() 33 二叉搜索树的后序遍历序列 输入一个整数数组，判断该数组是不是某二叉搜索树的后序遍历的结果。假设输入的数组的任意两个数字都互不相同。 链接：https://www...."/>    <meta name="keywords" content="开源,开发者,笔记,kosmos"/><link rel="dns-prefetch" href="https://ellenbboe.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://ellenbboe.github.io"><link rel="icon" type="image/png" href="https://s2.ax1x.com/2020/01/12/loApPe.png"/><link rel="apple-touch-icon" href="https://s2.ax1x.com/2020/01/12/loApPe.png"><link rel="shortcut icon" type="image/x-icon" href="https://s2.ax1x.com/2020/01/12/loApPe.png"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="剑指offer_Part4 - Kosmos"/><meta property="og:site_name" content="Kosmos"/><meta property="og:url"      content="https://ellenbboe.github.io/articles/2019/04/09/1561009686522.html?"/><meta property="og:image" content="https://s2.ax1x.com/2020/01/12/loApPe.png"/><link rel="search" type="application/opensearchdescription+xml" title="剑指offer_Part4 - Kosmos" href="/opensearch.xml"><link href="https://ellenbboe.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://ellenbboe.github.io/manifest.json">        <link rel="canonical" href="https://ellenbboe.github.io/articles/2019/04/09/1561009686522.html">        <link rel="stylesheet"
-              href="https://ellenbboe.github.io/skins/Casper/css/base.css?1591635668640"/>
+              href="https://ellenbboe.github.io/skins/Casper/css/base.css?1599200828755"/>
             <link rel="prev" title="操作系统之进程线程" href="https://ellenbboe.github.io/articles/2019/04/07/1561009683315.html">
             <link rel="next" title="操作系统之死锁" href="https://ellenbboe.github.io/articles/2019/04/10/1561009687701.html">
     <script>
@@ -104,8 +104,8 @@ onload = function() {
 
 
             <div class="fn__right">
-    <a href="https://hacpai.com/member/ellenbboe"
-       title="https://hacpai.com/member/ellenbboe"
+    <a href="https://ld246.com/member/ellenbboe"
+       title="https://ld246.com/member/ellenbboe"
        class="user__site"
        target="_blank" rel="noopener nofollow">
         <svg viewBox="0 0 32 32" width="100%" height="100%">
@@ -340,6 +340,7 @@ onload = function() {
             <a href="#toc_h2_11">39 数组中出现次数超过一半的数字</a>
         </li>
 </ul>        </div>
+        <div id="gitalk-container" class="comment__wrapper wrapper" style="margin: 40px auto"></div>
         <div id="b3logsolocomments"></div>
         <div id="vcomment" class="comment__wrapper wrapper" style="margin: 40px auto" data-name="ellenbboe" data-postId="1561009686522"></div>
     <div class="article__bottom">
@@ -412,10 +413,10 @@ show_date_time();
             </a>
             &nbsp;•&nbsp;
             <a rel="archive" href="https://ellenbboe.github.io/links.html">
-            友情链接
+            友链
             </a>
             <br>
-            122 文章 &nbsp;
+            123 文章 &nbsp;
             <span data-uvstaturl="https://ellenbboe.github.io">11608</span> 浏览 &nbsp;
             
         </div>
@@ -424,25 +425,27 @@ show_date_time();
 
 <script>
   var Label = {
+    speech: true,
     servePath: "https://ellenbboe.github.io",
     staticServePath: "https://ellenbboe.github.io",
     luteAvailable: false,
     hljsStyle: 'colorful',
     langLabel: "zh_CN",
-    version: "4.1.0",
+    version: "4.3.0",
     staticSite: true,
     showCodeBlockLn: false,
+    articleId: "1561009686522",
   }
 </script>
 <script type="text/javascript"
-        src="https://ellenbboe.github.io/skins/Casper/js/common.min.js?1591635668640"
+        src="https://ellenbboe.github.io/skins/Casper/js/common.min.js?1599200828755"
         charset="utf-8"></script>
 
 
 <script type="text/javascript">
-    Util.addScript('https://ellenbboe.github.io/js/page.min.js?1591635668640', 'soloPageScript')
+    Util.addScript('https://ellenbboe.github.io/js/page.min.js?1599200828755', 'soloPageScript')
     var page = new Page({
-        "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
+        "commentContentCannotEmptyLabel": "评论不能为空",
         "oId": "1561009686522",
         "blogHost": "https://ellenbboe.github.io",
         "randomArticles1Label": "随机阅读：",
@@ -451,6 +454,8 @@ show_date_time();
     $(document).ready(function () {
         page.load();
     page.tips.externalRelevantArticlesDisplayCount = "0";
+        page.loadRandomArticles('<h3>随机阅读</h3>');
+        page.loadRelevantArticles('1561009686522', '<h3>相关阅读</h3>');
     Skin.initArticle()
     });
 </script>
@@ -458,4 +463,4 @@ show_date_time();
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 40ms, 2020/06/09 19:52:15 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 88ms, 2020/09/04 14:33:48 -->

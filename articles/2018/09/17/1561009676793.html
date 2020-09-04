@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>HTTP 代理原理与实现 - Kosmos</title><meta name="description" content="HTTP 代理原理与实现 HTTP 客户端向代理发送请求报文，代理服务器需要正确地处理请求和连接（例如正确处理 Connection: keep-alive），同时向服务器发送请求，并将收到的响应转发给客户端。 假如我通过代理访问 A 网站，对于 A 来说，它会把代理当做客户端，完全察觉不到真正客户端的存在，这实现了隐藏客户端 IP 的目的。 数据经过代理服务器后可能会经过修改,要小心数据有效性 1 │ var net = require(&#39;net&#39;) 2 │ var url = require(&#39;url&#39;) 3 │ var http = require(&#39;http&#39;) 4 │ 5 │ var hostname = &#39;127.0.0.1&#39; 6 │ var port = &#39;8888&#39; 7 │ =================================== 这个服务从请求报文中解析出请求 URL 和其他必要参数，新建到服务端的请求， 并把代理收到的请求转发给新建的请求，最后再把服务端响应返回给浏览器。 =================================== 8 │ ...."/><meta property="og:description" content="HTTP 代理原理与实现 HTTP 客户端向代理发送请求报文，代理服务器需要正确地处理请求和连接（例如正确处理 Connection: keep-alive），同时向服务器发送请求，并将收到的响应转发给客户端。 假如我通过代理访问 A 网站，对于 A 来说，它会把代理当做客户端，完全察觉不到真正客户端的存在，这实现了隐藏客户端 IP 的目的。 数据经过代理服务器后可能会经过修改,要小心数据有效性 1 │ var net = require(&#39;net&#39;) 2 │ var url = require(&#39;url&#39;) 3 │ var http = require(&#39;http&#39;) 4 │ 5 │ var hostname = &#39;127.0.0.1&#39; 6 │ var port = &#39;8888&#39; 7 │ =================================== 这个服务从请求报文中解析出请求 URL 和其他必要参数，新建到服务端的请求， 并把代理收到的请求转发给新建的请求，最后再把服务端响应返回给浏览器。 =================================== 8 │ ...."/>    <meta name="keywords" content="开源,开发者,笔记,kosmos"/><link rel="dns-prefetch" href="https://ellenbboe.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://ellenbboe.github.io"><link rel="icon" type="image/png" href="https://s2.ax1x.com/2020/01/12/loApPe.png"/><link rel="apple-touch-icon" href="https://s2.ax1x.com/2020/01/12/loApPe.png"><link rel="shortcut icon" type="image/x-icon" href="https://s2.ax1x.com/2020/01/12/loApPe.png"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="HTTP 代理原理与实现 - Kosmos"/><meta property="og:site_name" content="Kosmos"/><meta property="og:url"      content="https://ellenbboe.github.io/articles/2018/09/17/1561009676793.html?"/><meta property="og:image" content="https://s2.ax1x.com/2020/01/12/loApPe.png"/><link rel="search" type="application/opensearchdescription+xml" title="HTTP 代理原理与实现 - Kosmos" href="/opensearch.xml"><link href="https://ellenbboe.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://ellenbboe.github.io/manifest.json">        <link rel="canonical" href="https://ellenbboe.github.io/articles/2018/09/17/1561009676793.html">        <link rel="stylesheet"
-              href="https://ellenbboe.github.io/skins/Casper/css/base.css?1591635668640"/>
+              href="https://ellenbboe.github.io/skins/Casper/css/base.css?1599200828755"/>
             <link rel="prev" title="在android安装linux 失败" href="https://ellenbboe.github.io/articles/2018/09/15/1561009671768.html">
             <link rel="next" title="盲" href="https://ellenbboe.github.io/articles/2018/09/23/1561009688084.html">
     <script>
@@ -104,8 +104,8 @@ onload = function() {
 
 
             <div class="fn__right">
-    <a href="https://hacpai.com/member/ellenbboe"
-       title="https://hacpai.com/member/ellenbboe"
+    <a href="https://ld246.com/member/ellenbboe"
+       title="https://ld246.com/member/ellenbboe"
        class="user__site"
        target="_blank" rel="noopener nofollow">
         <svg viewBox="0 0 32 32" width="100%" height="100%">
@@ -281,6 +281,7 @@ onload = function() {
             <a href="#toc_h3_0">HTTP 代理原理与实现</a>
         </li>
 </ul>        </div>
+        <div id="gitalk-container" class="comment__wrapper wrapper" style="margin: 40px auto"></div>
         <div id="b3logsolocomments"></div>
         <div id="vcomment" class="comment__wrapper wrapper" style="margin: 40px auto" data-name="ellenbboe" data-postId="1561009676793"></div>
     <div class="article__bottom">
@@ -353,10 +354,10 @@ show_date_time();
             </a>
             &nbsp;•&nbsp;
             <a rel="archive" href="https://ellenbboe.github.io/links.html">
-            友情链接
+            友链
             </a>
             <br>
-            122 文章 &nbsp;
+            123 文章 &nbsp;
             <span data-uvstaturl="https://ellenbboe.github.io">11608</span> 浏览 &nbsp;
             
         </div>
@@ -365,25 +366,27 @@ show_date_time();
 
 <script>
   var Label = {
+    speech: true,
     servePath: "https://ellenbboe.github.io",
     staticServePath: "https://ellenbboe.github.io",
     luteAvailable: false,
     hljsStyle: 'colorful',
     langLabel: "zh_CN",
-    version: "4.1.0",
+    version: "4.3.0",
     staticSite: true,
     showCodeBlockLn: false,
+    articleId: "1561009676793",
   }
 </script>
 <script type="text/javascript"
-        src="https://ellenbboe.github.io/skins/Casper/js/common.min.js?1591635668640"
+        src="https://ellenbboe.github.io/skins/Casper/js/common.min.js?1599200828755"
         charset="utf-8"></script>
 
 
 <script type="text/javascript">
-    Util.addScript('https://ellenbboe.github.io/js/page.min.js?1591635668640', 'soloPageScript')
+    Util.addScript('https://ellenbboe.github.io/js/page.min.js?1599200828755', 'soloPageScript')
     var page = new Page({
-        "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
+        "commentContentCannotEmptyLabel": "评论不能为空",
         "oId": "1561009676793",
         "blogHost": "https://ellenbboe.github.io",
         "randomArticles1Label": "随机阅读：",
@@ -392,6 +395,8 @@ show_date_time();
     $(document).ready(function () {
         page.load();
     page.tips.externalRelevantArticlesDisplayCount = "0";
+        page.loadRandomArticles('<h3>随机阅读</h3>');
+        page.loadRelevantArticles('1561009676793', '<h3>相关阅读</h3>');
     Skin.initArticle()
     });
 </script>
@@ -399,4 +404,4 @@ show_date_time();
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 49ms, 2020/06/09 19:52:16 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 102ms, 2020/09/04 14:33:49 -->

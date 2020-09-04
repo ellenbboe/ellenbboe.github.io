@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>sql基本知识 - Kosmos</title><meta name="description" content="当我在将大小写忽略的时候之前使用大写的数据库的名字就进不去了,因为系统自动将我打的大写换成了小写….. 每一个检查点都会记录他自己的操作对象的信息状态,当共用的是同一个硬盘上的数据,硬盘上的数据是会被最近的检查点所覆盖掉的,当要回复在之前的某一个特定的检查点的时候,是先通过最近的检查点来逐级向上恢复的 当colume 与condition 条件相等时结果为result case colume when condition then result when condition then result when condition then result else result end 当满足某一条件时，执行某一result case when condition then result when condition then result when condition then result else result end 当满足某一条件时，执行某一result,把该结果赋值到new_column_name 字段中 case when condition then result wh...."/><meta property="og:description" content="当我在将大小写忽略的时候之前使用大写的数据库的名字就进不去了,因为系统自动将我打的大写换成了小写….. 每一个检查点都会记录他自己的操作对象的信息状态,当共用的是同一个硬盘上的数据,硬盘上的数据是会被最近的检查点所覆盖掉的,当要回复在之前的某一个特定的检查点的时候,是先通过最近的检查点来逐级向上恢复的 当colume 与condition 条件相等时结果为result case colume when condition then result when condition then result when condition then result else result end 当满足某一条件时，执行某一result case when condition then result when condition then result when condition then result else result end 当满足某一条件时，执行某一result,把该结果赋值到new_column_name 字段中 case when condition then result wh...."/>    <meta name="keywords" content="开源,开发者,笔记,kosmos"/><link rel="dns-prefetch" href="https://ellenbboe.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://ellenbboe.github.io"><link rel="icon" type="image/png" href="https://s2.ax1x.com/2020/01/12/loApPe.png"/><link rel="apple-touch-icon" href="https://s2.ax1x.com/2020/01/12/loApPe.png"><link rel="shortcut icon" type="image/x-icon" href="https://s2.ax1x.com/2020/01/12/loApPe.png"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="sql基本知识 - Kosmos"/><meta property="og:site_name" content="Kosmos"/><meta property="og:url"      content="https://ellenbboe.github.io/articles/2018/07/11/1561009686913.html?"/><meta property="og:image" content="https://s2.ax1x.com/2020/01/12/loApPe.png"/><link rel="search" type="application/opensearchdescription+xml" title="sql基本知识 - Kosmos" href="/opensearch.xml"><link href="https://ellenbboe.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://ellenbboe.github.io/manifest.json">        <link rel="canonical" href="https://ellenbboe.github.io/articles/2018/07/11/1561009686913.html">        <link rel="stylesheet"
-              href="https://ellenbboe.github.io/skins/Casper/css/base.css?1591635668640"/>
+              href="https://ellenbboe.github.io/skins/Casper/css/base.css?1599200828755"/>
             <link rel="prev" title="git基本操作" href="https://ellenbboe.github.io/articles/2018/07/10/1561009675261.html">
             <link rel="next" title="vim基础" href="https://ellenbboe.github.io/articles/2018/07/11/1561009670406.html">
     <script>
@@ -104,8 +104,8 @@ onload = function() {
 
 
             <div class="fn__right">
-    <a href="https://hacpai.com/member/ellenbboe"
-       title="https://hacpai.com/member/ellenbboe"
+    <a href="https://ld246.com/member/ellenbboe"
+       title="https://ld246.com/member/ellenbboe"
        class="user__site"
        target="_blank" rel="noopener nofollow">
         <svg viewBox="0 0 32 32" width="100%" height="100%">
@@ -237,6 +237,7 @@ end new_column_name
             <a href="#toc_h4_2">当满足某一条件时，执行某一result,把该结果赋值到new_column_name 字段中</a>
         </li>
 </ul>        </div>
+        <div id="gitalk-container" class="comment__wrapper wrapper" style="margin: 40px auto"></div>
         <div id="b3logsolocomments"></div>
         <div id="vcomment" class="comment__wrapper wrapper" style="margin: 40px auto" data-name="ellenbboe" data-postId="1561009686913"></div>
     <div class="article__bottom">
@@ -309,10 +310,10 @@ show_date_time();
             </a>
             &nbsp;•&nbsp;
             <a rel="archive" href="https://ellenbboe.github.io/links.html">
-            友情链接
+            友链
             </a>
             <br>
-            122 文章 &nbsp;
+            123 文章 &nbsp;
             <span data-uvstaturl="https://ellenbboe.github.io">11608</span> 浏览 &nbsp;
             
         </div>
@@ -321,25 +322,27 @@ show_date_time();
 
 <script>
   var Label = {
+    speech: true,
     servePath: "https://ellenbboe.github.io",
     staticServePath: "https://ellenbboe.github.io",
     luteAvailable: false,
     hljsStyle: 'colorful',
     langLabel: "zh_CN",
-    version: "4.1.0",
+    version: "4.3.0",
     staticSite: true,
     showCodeBlockLn: false,
+    articleId: "1561009686913",
   }
 </script>
 <script type="text/javascript"
-        src="https://ellenbboe.github.io/skins/Casper/js/common.min.js?1591635668640"
+        src="https://ellenbboe.github.io/skins/Casper/js/common.min.js?1599200828755"
         charset="utf-8"></script>
 
 
 <script type="text/javascript">
-    Util.addScript('https://ellenbboe.github.io/js/page.min.js?1591635668640', 'soloPageScript')
+    Util.addScript('https://ellenbboe.github.io/js/page.min.js?1599200828755', 'soloPageScript')
     var page = new Page({
-        "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
+        "commentContentCannotEmptyLabel": "评论不能为空",
         "oId": "1561009686913",
         "blogHost": "https://ellenbboe.github.io",
         "randomArticles1Label": "随机阅读：",
@@ -348,6 +351,8 @@ show_date_time();
     $(document).ready(function () {
         page.load();
     page.tips.externalRelevantArticlesDisplayCount = "0";
+        page.loadRandomArticles('<h3>随机阅读</h3>');
+        page.loadRelevantArticles('1561009686913', '<h3>相关阅读</h3>');
     Skin.initArticle()
     });
 </script>
@@ -355,4 +360,4 @@ show_date_time();
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 41ms, 2020/06/09 19:52:18 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 135ms, 2020/09/04 14:33:53 -->

@@ -23,7 +23,7 @@ window.Vcomment = Vcomment
  *
  * @author <a href="http://vanessa.b3log.org">Liyuan Li</a>
  * @author <a href="http://88250.b3log.org">Liang Ding</a>
- * @version 2.3.1.0, May 15, 2020
+ * @version 2.3.2.0, Jun 19, 2020
  */
 
 /**
@@ -174,6 +174,7 @@ window.Util = {
       lineNumber: Label.showCodeBlockLn,
       hljsEnable: !Label.luteAvailable,
       hljsStyle: Label.hljsStyle,
+      speech: Label.speech
     })
   },
   /**
@@ -261,7 +262,7 @@ window.Util = {
    */
   initDebugInfo: function () {
     console.log(
-      '%cSolo%c\n  🎸一款小而美的博客系统，专为程序员设计。\n\n  solo.b3log.org v' +
+      '%cSolo%c\n  🎸一款小而美的博客系统，专为程序员设计。\n\n  https://b3log.org/solo v' +
       Label.version + '\n  Copyright © 2010-present',
       'font-size:96px;color:#3b3e43', 'font-size:12px;color:#4285f4;')
   },
@@ -306,7 +307,7 @@ window.Util = {
   loadVditor: function (cb) {
     $.ajax({
       method: 'GET',
-      url: 'https://cdn.jsdelivr.net/npm/vditor@3.2.12/dist/index.min.js',
+      url: 'https://cdn.jsdelivr.net/npm/vditor@3.5.1/dist/index.min.js',
       dataType: 'script',
       cache: true,
       success: () => {

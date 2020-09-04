@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>操作系统之内存 - Kosmos</title><meta name="description" content="本文采用复习拷贝重新阅读大法 本文来自该仓库 虚拟内存 虚拟内存的目的是为了让物理内存扩充成更大的逻辑内存，从而让程序获得更多的可用内存。 为了更好的管理内存，操作系统将内存抽象成地址空间。每个程序拥有自己的地址空间，这个地址空间被分割成多个块，每一块称为一页。这些页被映射到物理内存，但不需要映射到连续的物理内存，也不需要所有页都必须在物理内存中。当程序引用到不在物理内存中的页时，由硬件执行必要的映射，将缺失的部分装入物理内存并重新执行失败的指令。 从上面的描述中可以看出，虚拟内存允许程序不用将地址空间中的每一页都映射到物理内存，也就是说一个程序不需要全部调入内存就可以运行，这使得有限的内存运行大程序成为可能。例如有一台计算机可以产生 16 位地址，那么一个程序的地址空间范围是 0~64K。该计算机只有 32KB 的物理内存，虚拟内存技术允许该计算机运行一个 64K 大小的程序。 这需要页面置换算法来辅助 分页系统地址映射 内存管理单元（MMU）管理着地址空间和物理内存的转换，其中的页表（Page table）存储着页（程序地址空间）和页框（物理内存空间）的映射表。 一个虚拟...."/><meta property="og:description" content="本文采用复习拷贝重新阅读大法 本文来自该仓库 虚拟内存 虚拟内存的目的是为了让物理内存扩充成更大的逻辑内存，从而让程序获得更多的可用内存。 为了更好的管理内存，操作系统将内存抽象成地址空间。每个程序拥有自己的地址空间，这个地址空间被分割成多个块，每一块称为一页。这些页被映射到物理内存，但不需要映射到连续的物理内存，也不需要所有页都必须在物理内存中。当程序引用到不在物理内存中的页时，由硬件执行必要的映射，将缺失的部分装入物理内存并重新执行失败的指令。 从上面的描述中可以看出，虚拟内存允许程序不用将地址空间中的每一页都映射到物理内存，也就是说一个程序不需要全部调入内存就可以运行，这使得有限的内存运行大程序成为可能。例如有一台计算机可以产生 16 位地址，那么一个程序的地址空间范围是 0~64K。该计算机只有 32KB 的物理内存，虚拟内存技术允许该计算机运行一个 64K 大小的程序。 这需要页面置换算法来辅助 分页系统地址映射 内存管理单元（MMU）管理着地址空间和物理内存的转换，其中的页表（Page table）存储着页（程序地址空间）和页框（物理内存空间）的映射表。 一个虚拟...."/>    <meta name="keywords" content="开源,开发者,笔记,kosmos"/><link rel="dns-prefetch" href="https://ellenbboe.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://ellenbboe.github.io"><link rel="icon" type="image/png" href="https://s2.ax1x.com/2020/01/12/loApPe.png"/><link rel="apple-touch-icon" href="https://s2.ax1x.com/2020/01/12/loApPe.png"><link rel="shortcut icon" type="image/x-icon" href="https://s2.ax1x.com/2020/01/12/loApPe.png"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="操作系统之内存 - Kosmos"/><meta property="og:site_name" content="Kosmos"/><meta property="og:url"      content="https://ellenbboe.github.io/articles/2019/04/13/1561009682385.html?"/><meta property="og:image" content="https://s2.ax1x.com/2020/01/12/loApPe.png"/><link rel="search" type="application/opensearchdescription+xml" title="操作系统之内存 - Kosmos" href="/opensearch.xml"><link href="https://ellenbboe.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://ellenbboe.github.io/manifest.json">        <link rel="canonical" href="https://ellenbboe.github.io/articles/2019/04/13/1561009682385.html">        <link rel="stylesheet"
-              href="https://ellenbboe.github.io/skins/Casper/css/base.css?1591635668640"/>
+              href="https://ellenbboe.github.io/skins/Casper/css/base.css?1599200828755"/>
             <link rel="prev" title="剑指offer_Part6" href="https://ellenbboe.github.io/articles/2019/04/12/1561009669327.html">
             <link rel="next" title="操作系统之磁盘" href="https://ellenbboe.github.io/articles/2019/04/13/1561009674101.html">
     <script>
@@ -104,8 +104,8 @@ onload = function() {
 
 
             <div class="fn__right">
-    <a href="https://hacpai.com/member/ellenbboe"
-       title="https://hacpai.com/member/ellenbboe"
+    <a href="https://ld246.com/member/ellenbboe"
+       title="https://ld246.com/member/ellenbboe"
        class="user__site"
        target="_blank" rel="noopener nofollow">
         <svg viewBox="0 0 32 32" width="100%" height="100%">
@@ -338,6 +338,7 @@ onload = function() {
             <a href="#toc_h1_11">分页与分段的比较</a>
         </li>
 </ul>        </div>
+        <div id="gitalk-container" class="comment__wrapper wrapper" style="margin: 40px auto"></div>
         <div id="b3logsolocomments"></div>
         <div id="vcomment" class="comment__wrapper wrapper" style="margin: 40px auto" data-name="ellenbboe" data-postId="1561009682385"></div>
     <div class="article__bottom">
@@ -410,10 +411,10 @@ show_date_time();
             </a>
             &nbsp;•&nbsp;
             <a rel="archive" href="https://ellenbboe.github.io/links.html">
-            友情链接
+            友链
             </a>
             <br>
-            122 文章 &nbsp;
+            123 文章 &nbsp;
             <span data-uvstaturl="https://ellenbboe.github.io">11608</span> 浏览 &nbsp;
             
         </div>
@@ -422,25 +423,27 @@ show_date_time();
 
 <script>
   var Label = {
+    speech: true,
     servePath: "https://ellenbboe.github.io",
     staticServePath: "https://ellenbboe.github.io",
     luteAvailable: false,
     hljsStyle: 'colorful',
     langLabel: "zh_CN",
-    version: "4.1.0",
+    version: "4.3.0",
     staticSite: true,
     showCodeBlockLn: false,
+    articleId: "1561009682385",
   }
 </script>
 <script type="text/javascript"
-        src="https://ellenbboe.github.io/skins/Casper/js/common.min.js?1591635668640"
+        src="https://ellenbboe.github.io/skins/Casper/js/common.min.js?1599200828755"
         charset="utf-8"></script>
 
 
 <script type="text/javascript">
-    Util.addScript('https://ellenbboe.github.io/js/page.min.js?1591635668640', 'soloPageScript')
+    Util.addScript('https://ellenbboe.github.io/js/page.min.js?1599200828755', 'soloPageScript')
     var page = new Page({
-        "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
+        "commentContentCannotEmptyLabel": "评论不能为空",
         "oId": "1561009682385",
         "blogHost": "https://ellenbboe.github.io",
         "randomArticles1Label": "随机阅读：",
@@ -449,6 +452,8 @@ show_date_time();
     $(document).ready(function () {
         page.load();
     page.tips.externalRelevantArticlesDisplayCount = "0";
+        page.loadRandomArticles('<h3>随机阅读</h3>');
+        page.loadRelevantArticles('1561009682385', '<h3>相关阅读</h3>');
     Skin.initArticle()
     });
 </script>
@@ -456,4 +461,4 @@ show_date_time();
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 47ms, 2020/06/09 19:52:15 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 66ms, 2020/09/04 14:33:48 -->

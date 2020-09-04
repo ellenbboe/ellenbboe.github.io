@@ -74,7 +74,7 @@ admin.userList = {
       cache: false,
       success: function (result, textStatus) {
         $('#tipMsg').text(result.msg)
-        if (!result.sc) {
+        if (0 !== result.code) {
           $('#loadMsg').text('')
           return
         }
@@ -93,7 +93,7 @@ admin.userList = {
         for (var i = 0; i < users.length; i++) {
           userData[i] = {}
           userData[i].userName = `${users[i].userName} 
-&nbsp; <a target="_blank" href="https://hacpai.com/member/${users[i].userName}" title="社区个人主页"><span class="icon-hacpai"></span></a>`
+&nbsp; <a target="_blank" href="https://ld246.com/member/${users[i].userName}" title="社区个人主页"><span class="icon-hacpai"></span></a>`
 
           if ('adminRole' === users[i].userRole) {
             userData[i].isAdmin = '&nbsp;' + Label.administratorLabel
@@ -139,7 +139,7 @@ admin.userList = {
       cache: false,
       success: function (result, textStatus) {
         $('#tipMsg').text(result.msg)
-        if (!result.sc) {
+        if (0 !== result.code) {
           $('#loadMsg').text('')
           return
         }
@@ -182,7 +182,7 @@ admin.userList = {
         success: function (result, textStatus) {
           $('#userUpdate').dialog('close')
           $('#tipMsg').text(result.msg)
-          if (!result.sc) {
+          if (0 !== result.code) {
             $('#loadMsg').text('')
             return
           }
@@ -212,7 +212,7 @@ admin.userList = {
         cache: false,
         success: function (result, textStatus) {
           $('#tipMsg').text(result.msg)
-          if (!result.sc) {
+          if (0 !== result.code) {
             $('#loadMsg').text('')
             return
           }
@@ -248,7 +248,7 @@ admin.userList = {
       cache: false,
       success: function (result, textStatus) {
         $('#tipMsg').text(result.msg)
-        if (!result.sc) {
+        if (0 !== result.code) {
           $('#loadMsg').text('')
           return
         }

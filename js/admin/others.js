@@ -84,8 +84,8 @@ admin.others = {
       type: 'GET',
       cache: false,
       success: function (result, textStatus) {
-        // AJAX 下载文件的话这里会发两次请求，用 sc 来判断是否是文件，如果没有 sc 说明文件可以下载（实际上就是 result）
-        if (!result.sc) {
+        // AJAX 下载文件的话这里会发两次请求，用 code 来判断是否是文件，如果没有 code 说明文件可以下载（实际上就是 result）
+        if (!result.code) {
           // 再发一次请求进行正式下载
           window.location = Label.servePath + '/console/export/sql'
         } else {
@@ -107,29 +107,6 @@ admin.others = {
   exportHexo: function () {
     $('#tipMsg').text('')
     window.open(Label.servePath + '/console/export/hexo')
-  },
-  /*
-   * 获取未使用的标签。
-   * XXX: Not used this function yet.
-   */
-  getUnusedTags: function () {
-    $.ajax({
-      url: Label.servePath + '/console/tag/unused',
-      type: 'GET',
-      cache: false,
-      success: function (result, textStatus) {
-        $('#tipMsg').text(result.msg)
-        if (!result.sc) {
-          $('#loadMsg').text('')
-          return
-        }
-
-        var unusedTags = result.unusedTags
-        if (0 === unusedTags.length) {
-          return
-        }
-      },
-    })
   },
   importZip () {
     const formData = new FormData()

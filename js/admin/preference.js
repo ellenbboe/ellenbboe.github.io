@@ -33,7 +33,7 @@ admin.preference = {
       cache: false,
       success: function (result, textStatus) {
         $('#tipMsg').text(result.msg)
-        if (!result.sc) {
+        if (0 !== result.code) {
           $('#loadMsg').text('')
           return
         }
@@ -44,9 +44,6 @@ admin.preference = {
         $('#metaDescription').val(preference.metaDescription)
         $('#blogTitle').val(preference.blogTitle)
         $('#blogSubtitle').val(preference.blogSubtitle)
-        $('#mostCommentArticleDisplayCount').val(preference.mostCommentArticleDisplayCount)
-        $('#mostViewArticleDisplayCount').val(preference.mostViewArticleDisplayCount)
-        $('#recentCommentDisplayCount').val(preference.recentCommentDisplayCount)
         $('#mostUsedTagDisplayCount').val(preference.mostUsedTagDisplayCount)
         $('#articleListDisplayCount').val(preference.articleListDisplayCount)
         $('#articleListPaginationWindowSize').val(preference.articleListPaginationWindowSize)
@@ -63,10 +60,11 @@ admin.preference = {
 
         'true' === preference.enableArticleUpdateHint ? $('#enableArticleUpdateHint').attr('checked', 'checked') : $('#enableArticleUpdateHint').removeAttr('checked')
         'true' === preference.allowVisitDraftViaPermalink ? $('#allowVisitDraftViaPermalink').attr('checked', 'checked') : $('#allowVisitDraftViaPermalink').removeAttr('checked')
-        'true' === preference.commentable ? $('#commentable').attr('checked', 'checked') : $('#commentable').removeAttr('checked')
         'true' === preference.syncGitHub ? $('#syncGitHub').attr('checked', 'checked') : $('#syncGitHub').removeAttr('checked')
         'true' === preference.pullGitHub ? $('#pullGitHub').attr('checked', 'checked') : $('#pullGitHub').removeAttr('checked')
         'true' === preference.showCodeBlockLn ? $('#showCodeBlockLn').attr('checked', 'checked') : $('#showCodeBlockLn').removeAttr('checked')
+        'true' === preference.speech ? $('#speech').attr('checked', 'checked') : $('#speech').removeAttr('checked')
+        'true' === preference.paragraphBeginningSpace ? $('#paragraphBeginningSpace').attr('checked', 'checked') : $('#paragraphBeginningSpace').removeAttr('checked')
 
         'true' === preference.footnotes ? $('#footnotes').attr('checked', 'checked') : $('#footnotes').removeAttr('checked')
         'true' === preference.showToC ? $('#showToC').attr('checked', 'checked') : $('#showToC').removeAttr('checked')
@@ -105,24 +103,6 @@ admin.preference = {
         Label.indexTagDisplayCntLabel + '] ' +
         Label.nonNegativeIntegerOnlyLabel)
       $('#mostUsedTagDisplayCount').focus()
-      return false
-    } else if (!/^\d+$/.test($('#recentCommentDisplayCount').val())) {
-      $('#tipMsg').text('[' + Label.paramSettingsLabel + ' - ' +
-        Label.indexRecentCommentDisplayCntLabel + '] ' +
-        Label.nonNegativeIntegerOnlyLabel)
-      $('#recentCommentDisplayCount').focus()
-      return false
-    } else if (!/^\d+$/.test($('#mostCommentArticleDisplayCount').val())) {
-      $('#tipMsg').text('[' + Label.paramSettingsLabel + ' - ' +
-        Label.indexMostCommentArticleDisplayCntLabel + '] ' +
-        Label.nonNegativeIntegerOnlyLabel)
-      $('#mostCommentArticleDisplayCount').focus()
-      return false
-    } else if (!/^\d+$/.test($('#mostViewArticleDisplayCount').val())) {
-      $('#tipMsg').text('[' + Label.paramSettingsLabel + ' - ' +
-        Label.indexMostViewArticleDisplayCntLabel + '] ' +
-        Label.nonNegativeIntegerOnlyLabel)
-      $('#mostViewArticleDisplayCount').focus()
       return false
     } else if (!/^\d+$/.test($('#articleListDisplayCount').val())) {
       $('#tipMsg').text('[' + Label.paramSettingsLabel + ' - ' + Label.pageSizeLabel +
@@ -188,9 +168,6 @@ admin.preference = {
         'metaDescription': $('#metaDescription').val(),
         'blogTitle': $('#blogTitle').val(),
         'blogSubtitle': $('#blogSubtitle').val(),
-        'mostCommentArticleDisplayCount': $('#mostCommentArticleDisplayCount').val(),
-        'mostViewArticleDisplayCount': $('#mostViewArticleDisplayCount').val(),
-        'recentCommentDisplayCount': $('#recentCommentDisplayCount').val(),
         'mostUsedTagDisplayCount': $('#mostUsedTagDisplayCount').val(),
         'articleListDisplayCount': $('#articleListDisplayCount').val(),
         'articleListPaginationWindowSize': $('#articleListPaginationWindowSize').val(),
@@ -213,7 +190,8 @@ admin.preference = {
         'syncGitHub': $('#syncGitHub').prop('checked'),
         'pullGitHub': $('#pullGitHub').prop('checked'),
         'showCodeBlockLn': $('#showCodeBlockLn').prop('checked'),
-        'commentable': $('#commentable').prop('checked'),
+        'speech': $('#speech').prop('checked'),
+        'paragraphBeginningSpace': $('#paragraphBeginningSpace').prop('checked'),
         'customVars': $('#customVars').val(),
         'githubPAT': $('#githubPAT').val(),
         'footnotes': $('#footnotes').prop('checked'),
@@ -233,7 +211,7 @@ admin.preference = {
       data: JSON.stringify(requestJSONObject),
       success: function (result, textStatus) {
         $('#tipMsg').text(result.msg)
-        if (!result.sc) {
+        if (0 !== result.code) {
           $('#loadMsg').text('')
           return
         }

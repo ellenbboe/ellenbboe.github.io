@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>shell基础 - Kosmos</title><meta name="description" content="shell开头 #!/bin/bash #!/bin/sh #!/usr/bin/awk #!/usr/bin/env python #!/usr/bin/perl 这几行在第一行,不再第一行就是注释 不用的话就用相关解释器带上文件名执行 在写脚本的时候如果不加前面的也会交给bash解释,但是还是指定解释器比较好 注意点一 定义变量名的时候等号旁边没有空格 要在登录后显示初始化内容可以将脚本文件放到 /etc/profile.d/ 的下面或者是更改/etc/motd 文件 单引号中`` 命令无效 当参数大于9个要使用${}方式 touch 主要是用来更新时间的…. 使用cat连接两个文件 ln -s 源文件 快捷方式 s表示链接 有多个命令就使用;号,若将输出全都重定向用{}扩起来,{}是父shell,()是子shell 注意点二 read读到换行符为止,所以就使用循环可以将文件读完,不然好像只能读一行 黑洞/dev/null 了解一下-.- cp mv rm 加上-i 进行确认 command == $(command) read file 是要求用户输入并且保存到...."/><meta property="og:description" content="shell开头 #!/bin/bash #!/bin/sh #!/usr/bin/awk #!/usr/bin/env python #!/usr/bin/perl 这几行在第一行,不再第一行就是注释 不用的话就用相关解释器带上文件名执行 在写脚本的时候如果不加前面的也会交给bash解释,但是还是指定解释器比较好 注意点一 定义变量名的时候等号旁边没有空格 要在登录后显示初始化内容可以将脚本文件放到 /etc/profile.d/ 的下面或者是更改/etc/motd 文件 单引号中`` 命令无效 当参数大于9个要使用${}方式 touch 主要是用来更新时间的…. 使用cat连接两个文件 ln -s 源文件 快捷方式 s表示链接 有多个命令就使用;号,若将输出全都重定向用{}扩起来,{}是父shell,()是子shell 注意点二 read读到换行符为止,所以就使用循环可以将文件读完,不然好像只能读一行 黑洞/dev/null 了解一下-.- cp mv rm 加上-i 进行确认 command == $(command) read file 是要求用户输入并且保存到...."/>    <meta name="keywords" content="开源,开发者,笔记,kosmos"/><link rel="dns-prefetch" href="https://ellenbboe.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://ellenbboe.github.io"><link rel="icon" type="image/png" href="https://s2.ax1x.com/2020/01/12/loApPe.png"/><link rel="apple-touch-icon" href="https://s2.ax1x.com/2020/01/12/loApPe.png"><link rel="shortcut icon" type="image/x-icon" href="https://s2.ax1x.com/2020/01/12/loApPe.png"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="shell基础 - Kosmos"/><meta property="og:site_name" content="Kosmos"/><meta property="og:url"      content="https://ellenbboe.github.io/articles/2018/07/11/1561009680301.html?"/><meta property="og:image" content="https://s2.ax1x.com/2020/01/12/loApPe.png"/><link rel="search" type="application/opensearchdescription+xml" title="shell基础 - Kosmos" href="/opensearch.xml"><link href="https://ellenbboe.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://ellenbboe.github.io/manifest.json">        <link rel="canonical" href="https://ellenbboe.github.io/articles/2018/07/11/1561009680301.html">        <link rel="stylesheet"
-              href="https://ellenbboe.github.io/skins/Casper/css/base.css?1591635668640"/>
+              href="https://ellenbboe.github.io/skins/Casper/css/base.css?1599200828755"/>
             <link rel="prev" title="vim基础" href="https://ellenbboe.github.io/articles/2018/07/11/1561009670406.html">
             <link rel="next" title="python脚本基础" href="https://ellenbboe.github.io/articles/2018/07/11/1561009675020.html">
     <script>
@@ -104,8 +104,8 @@ onload = function() {
 
 
             <div class="fn__right">
-    <a href="https://hacpai.com/member/ellenbboe"
-       title="https://hacpai.com/member/ellenbboe"
+    <a href="https://ld246.com/member/ellenbboe"
+       title="https://ld246.com/member/ellenbboe"
        class="user__site"
        target="_blank" rel="noopener nofollow">
         <svg viewBox="0 0 32 32" width="100%" height="100%">
@@ -416,6 +416,7 @@ FS分割符<br>
             <a href="#toc_h4_6">awk 'script' files</a>
         </li>
 </ul>        </div>
+        <div id="gitalk-container" class="comment__wrapper wrapper" style="margin: 40px auto"></div>
         <div id="b3logsolocomments"></div>
         <div id="vcomment" class="comment__wrapper wrapper" style="margin: 40px auto" data-name="ellenbboe" data-postId="1561009680301"></div>
     <div class="article__bottom">
@@ -488,10 +489,10 @@ show_date_time();
             </a>
             &nbsp;•&nbsp;
             <a rel="archive" href="https://ellenbboe.github.io/links.html">
-            友情链接
+            友链
             </a>
             <br>
-            122 文章 &nbsp;
+            123 文章 &nbsp;
             <span data-uvstaturl="https://ellenbboe.github.io">11608</span> 浏览 &nbsp;
             
         </div>
@@ -500,25 +501,27 @@ show_date_time();
 
 <script>
   var Label = {
+    speech: true,
     servePath: "https://ellenbboe.github.io",
     staticServePath: "https://ellenbboe.github.io",
     luteAvailable: false,
     hljsStyle: 'colorful',
     langLabel: "zh_CN",
-    version: "4.1.0",
+    version: "4.3.0",
     staticSite: true,
     showCodeBlockLn: false,
+    articleId: "1561009680301",
   }
 </script>
 <script type="text/javascript"
-        src="https://ellenbboe.github.io/skins/Casper/js/common.min.js?1591635668640"
+        src="https://ellenbboe.github.io/skins/Casper/js/common.min.js?1599200828755"
         charset="utf-8"></script>
 
 
 <script type="text/javascript">
-    Util.addScript('https://ellenbboe.github.io/js/page.min.js?1591635668640', 'soloPageScript')
+    Util.addScript('https://ellenbboe.github.io/js/page.min.js?1599200828755', 'soloPageScript')
     var page = new Page({
-        "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
+        "commentContentCannotEmptyLabel": "评论不能为空",
         "oId": "1561009680301",
         "blogHost": "https://ellenbboe.github.io",
         "randomArticles1Label": "随机阅读：",
@@ -527,6 +530,8 @@ show_date_time();
     $(document).ready(function () {
         page.load();
     page.tips.externalRelevantArticlesDisplayCount = "0";
+        page.loadRandomArticles('<h3>随机阅读</h3>');
+        page.loadRelevantArticles('1561009680301', '<h3>相关阅读</h3>');
     Skin.initArticle()
     });
 </script>
@@ -534,4 +539,4 @@ show_date_time();
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 40ms, 2020/06/09 19:52:18 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 59ms, 2020/09/04 14:33:53 -->
